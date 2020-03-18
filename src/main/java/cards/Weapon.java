@@ -11,13 +11,6 @@ public class Weapon extends Card {
     private int durability;
     private int attack;
 
-    public Weapon (String name, String description, RarityType rarity, HeroClass myHero, ArrayList<AbilityType> abilities, int price, int mana, int durability, int attack) {
-        super (name, description, rarity, myHero, abilities, price, mana);
-        this.durability = durability;
-        this.attack = attack;
-        setCardType(CardType.WEAPON);
-    }
-
     public int getDurability () { return this.durability; }
     public int getAttack () { return this.attack; }
 

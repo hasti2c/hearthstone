@@ -1,0 +1,9 @@
+{
+  "name": "Polymorph",
+  "description": "Transform a minion into a 1/1 Sheep.",
+  "mana": 4,
+  "price": 20,
+  "heroClass": "MAGE",
+  "rarity": "RARE",
+  "cardType": "SPELL"
+}

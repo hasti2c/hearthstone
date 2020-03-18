@@ -14,12 +14,10 @@ public class Hero implements Printable {
     private int health = 30;
     private final String name;
     private final HeroClass heroClass;
-    private Player myPlayer;
 
-    public Hero (HeroClass heroClass, String name, Player myPlayer) {
-        this.name = name;
+    public Hero (HeroClass heroClass) {
         this.heroClass = heroClass;
-        this.myPlayer = myPlayer;
+        this.name = heroClass.toString().toLowerCase();
         if (heroClass == HeroClass.WARLOCK)
             this.health = 35;
     }
@@ -30,20 +28,32 @@ public class Hero implements Printable {
     void setHealth (int health) { this.health = health; }
     public String toString () { return this.name; }
     public HeroClass getHeroClass () { return this.heroClass; }
-    public void addCard (Card card) { heroDeck.add(card); }
+
+    public void addCard (Card card) {
+        heroDeck.add(card);
+        List<String> deckNames = Hearthstone.getCurrentPlayer().getHeroDeck(this);
+        deckNames.add(card.toString());
+    }
+
+    public void createDeck (List<String> cardNames) {
+        heroDeck = new ArrayList<>();
+        for (Card c : Game.getCardsList())
+            if (cardNames.contains(c.toString()))
+                heroDeck.add(c);
+    }
 
     public boolean canAddCard (Card card) {
         int cnt = 0;
         for (Card c : heroDeck)
             if (c == card)
                 cnt++;
-        return cnt <= 1 && (card.getHeroClass() == this.heroClass || card.getHeroClass() == HeroClass.NEUTRAL) && this.heroDeck.size() < this.myPlayer.getDeckCap();
+        return cnt <= 1 && (card.getHeroClass() == this.heroClass || card.getHeroClass() == HeroClass.NEUTRAL) && this.heroDeck.size() < Hearthstone.getCurrentPlayer().getDeckCap();
     }
 
     @Override
     public String[] normalPrint () {
         String[] ret = new String[3];
-        if (myPlayer.getCurrentDirectory() instanceof Collections && this == myPlayer.getCurrentHero()) {
+        if (Hearthstone.getCurrentPlayer().getCurrentDirectory() instanceof Collections && this == Hearthstone.getCurrentPlayer().getCurrentHero()) {
             ret[0] = Console.GREEN;
             ret[2] = Console.RESET;
         }
@@ -52,6 +62,7 @@ public class Hero implements Printable {
     }
 
     public String[][] longPrint () {
+        Player myPlayer = Hearthstone.getCurrentPlayer();
         String[][] ret = new String[12][3];
         for (int i = 0; i < 12; i++)
             switch (i) {

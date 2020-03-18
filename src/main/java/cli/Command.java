@@ -4,14 +4,14 @@ import heros.*;
 import directories.*;
 import game.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import cards.*;
 
 class Command {
-    static Player signup (String username, String password) {
-        Player newPlayer = new Player (username, password);
-        Hearthstone.addPlayersList(newPlayer);
-        return newPlayer;
+    static Player signup (String username, String password) throws IOException {
+        return Player.getInstance(username, password);
     }
 
     static boolean login (Player p, String password) {
@@ -26,8 +26,7 @@ class Command {
     }
 
     static boolean deletePlayer () {
-        Hearthstone.removePlayersList(Hearthstone.getCurrentPlayer());
-        return logout();
+        return (new File("database/players/" + Hearthstone.getCurrentPlayer().toString() + ".json")).delete() && logout();
     }
 
     static boolean cd (String path) {
@@ -70,7 +69,7 @@ class Command {
             }
         } else if (d instanceof Store) {
             if (options.contains('b') && options.contains('s') && !options.contains('a')) {
-                for (Card c : Hearthstone.getCardsList())
+                for (Card c : Game.getCardsList())
                     if (!Hearthstone.getCurrentPlayer().getAllCards().contains(c) || Hearthstone.getCurrentPlayer().canSell(c))
                         objects.add(c);
                 options.remove(options.indexOf('b'));
@@ -84,7 +83,7 @@ class Command {
                         objects.add(c);
                 options.remove(options.indexOf('s'));
             } else {
-                objects.addAll(Hearthstone.getCardsList());
+                objects.addAll(Game.getCardsList());
                 if (options.contains('a'))
                     options.remove(options.indexOf('a'));
             }
@@ -140,7 +139,7 @@ class Command {
     static boolean buyCard (String name) {
         Card card = null;
         Player p = Hearthstone.getCurrentPlayer();
-        for (Card c : Hearthstone.getCardsList())
+        for (Card c : Game.getCardsList())
             if (c.toString().equals(name)) {
                 card = c;
                 break;

@@ -1,0 +1,9 @@
+{
+  "name": "Serrated Tooth",
+  "description": "Deathrattle: Give your minions Rush.",
+  "mana": 1,
+  "price": 10,
+  "heroClass": "ROGUE",
+  "rarity": "COMMON",
+  "cardType": "WEAPON"
+}

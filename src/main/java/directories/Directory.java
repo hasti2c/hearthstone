@@ -20,7 +20,6 @@ public class Directory implements Printable {
     public void addChild (Directory child) { children.add(child); }
     public void addContent (Printable o) { content.add(o); }
     public String toString () { return this.name; }
-    public Directory getParent () { return this.parent; }
     public ArrayList<Directory> getChildren () { return this.children; }
     public ArrayList<Printable> getContent () { return this.content; }
     public Player getMyPlayer () { return this.myPlayer; }
@@ -53,22 +52,31 @@ public class Directory implements Printable {
             int j = i;
             while (j < path.length() && path.charAt(j) != '/')
                 j++;
-            if (path.substring(i, j).equals("."))
-                ret.add (d);
-            else if (path.substring(i, j).equals("..")) {
-                ret.add (d.parent);
-                d = d.parent;
-            } else {
-                boolean mark = false;
-                for (Directory c : d.children)
-                    if (path.substring(i, j).equals(c.name)) {
-                        d = c;
-                        ret.add(d);
-                        mark = true;
-                        break;
-                    }
-                if(!mark)
-                    ret.add(null);
+            switch (path.substring(i, j)) {
+                case ".":
+                    ret.add(d);
+                    break;
+                case "..":
+                    ret.add(d.parent);
+                    d = d.parent;
+                    break;
+                case "~":
+                    ret = new ArrayList<>();
+                    ret.add(myPlayer.getHome());
+                    d = myPlayer.getHome();
+                    break;
+                default:
+                    boolean mark = false;
+                    for (Directory c : d.children)
+                        if (path.substring(i, j).equals(c.name)) {
+                            d = c;
+                            ret.add(d);
+                            mark = true;
+                            break;
+                        }
+                    if (!mark)
+                        ret.add(null);
+                    break;
             }
 
             i = j + 1;

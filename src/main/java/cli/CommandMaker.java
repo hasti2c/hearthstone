@@ -2,6 +2,11 @@ package cli;
 
 import directories.Collections;
 import game.*;
+
+import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 import directories.*;
 
@@ -23,7 +28,7 @@ class CommandMaker {
         usernameChars.add ('.');
     }
 
-    CommandMaker(String input, Console myConsole) {
+    CommandMaker(String input, Console myConsole) throws IOException {
         this.myConsole = myConsole;
         int i = 0;
         while (i < input.length()) {
@@ -47,79 +52,89 @@ class CommandMaker {
         this.valid = runCommand();
     }
 
-    private boolean runCommand () {
+    private boolean runCommand () throws IOException {
+        boolean ret = false;
         words.set(0, words.get(0).toLowerCase());
+        Directory d = null;
+        if (Hearthstone.getCurrentPlayer() != null)
+            d = Hearthstone.getCurrentPlayer().getCurrentDirectory();
         if (words.size() == 2 && words.get(0).equals("signup") && words.get(1).toLowerCase().equals("n"))
-            return runSignup();
-        if (words.size() == 2 && words.get(0).equals("signup") && words.get(1).toLowerCase().equals("y"))
-            return runLogin();
-        if (words.size() == 1 && words.get(0).equals("delete") && options.size() == 1 && options.get(0) == 'p')
-            return runDeletePlayer();
+            ret = runSignup();
+        else if (words.size() == 2 && words.get(0).equals("signup") && words.get(1).toLowerCase().equals("y"))
+            ret = runLogin();
+        else if (words.size() == 1 && words.get(0).equals("delete") && options.size() == 1 && options.get(0) == 'p')
+            ret = runDeletePlayer();
 
-        if (words.size() == 1 && words.get(0).equals("exit"))
+        else if (words.size() == 1 && words.get(0).equals("exit")) {
             if (options.size() == 0)
-                return Command.logout();
+                ret = Command.logout();
             else if (options.size() == 1 && options.get(0) == 'a') {
-                myConsole.quit = true;
-                return true;
+                myConsole.setQuit(true);
+                ret = true;
             }
+        }
 
-       Directory d = Hearthstone.getCurrentPlayer().getCurrentDirectory();
-        if (words.size() == 2 && words.get(0).equals("cd"))
-            return Command.cd(words.get(1));
-        if (words.size() == 1 && words.get(0).equals("ls"))
-            return Command.ls(options);
-        if (words.size() == 2 && words.get(0).equals("select") && d instanceof Collections)
-            return Command.selectHero(words.get(1));
-        if (words.size() == 2 && words.get(0).equals("add") && d instanceof HeroDirectory)
-            return Command.addCard(words.get(1));
-        if (words.size() == 2 && words.get(0).equals("remove") && d instanceof HeroDirectory)
-            return Command.removeCard(words.get(1));
-        if (words.size() == 2 && words.get(0).equals("buy") && d instanceof Store)
-            return Command.buyCard(words.get(1));
-        if (words.size() == 2 && words.get(0).equals("sell") && d instanceof Store)
-            return Command.sellCard(words.get(1));
-        if (words.size() == 1 && words.get(0).equals("wallet"))
-            return Command.wallet();
-        return false;
+        else if (words.size() == 2 && words.get(0).equals("cd"))
+            ret = Command.cd(words.get(1));
+        else if (words.size() == 1 && words.get(0).equals("ls"))
+            ret = Command.ls(options);
+        else if (words.size() == 2 && words.get(0).equals("ls")) {
+            String initPath = d.getPath();
+            ret = Command.cd(words.get(1)) && Command.ls(options) && Command.cd(initPath);
+        }
+        else if (words.size() == 2 && words.get(0).equals("select") && d instanceof Collections)
+            ret = Command.selectHero(words.get(1));
+        else if (words.size() == 2 && words.get(0).equals("add") && d instanceof HeroDirectory)
+            ret = Command.addCard(words.get(1));
+        else if (words.size() == 2 && words.get(0).equals("remove") && d instanceof HeroDirectory)
+            ret = Command.removeCard(words.get(1));
+        else if (words.size() == 2 && words.get(0).equals("buy") && d instanceof Store)
+            ret = Command.buyCard(words.get(1));
+        else if (words.size() == 2 && words.get(0).equals("sell") && d instanceof Store)
+            ret = Command.sellCard(words.get(1));
+        else if (words.size() == 1 && words.get(0).equals("wallet"))
+            ret = Command.wallet();
+        if (ret && Hearthstone.getCurrentPlayer() != null)
+            Hearthstone.getCurrentPlayer().updateJson();
+        return ret;
     }
 
-    private boolean runSignup () {
+    private boolean runSignup () throws IOException {
         String username = myConsole.getInput("Username: ");
         if (username.length() < 4)
             return false;
+
         for (int i = 0; i < username.length(); i++)
             if(!usernameChars.contains(username.charAt(i)))
                 return false;
-        for (Player p : Hearthstone.getPlayersList())
-            if (p.toString().equals(username))
+
+        try {
+            Hearthstone.readFile("database/players/" + username + ".json");
+            return false;
+        } catch (FileNotFoundException e) {
+            String password = myConsole.getPassword("Password: ");
+            if (password.length() < 8)
                 return false;
 
-        String password = myConsole.getPassword("Password: ");
-        if (password.length() < 8)
-            return false;
+            String passwordAgain = myConsole.getPassword("Repeat Password: ");
+            if (!passwordAgain.equals(password))
+                return false;
 
-        String passwordAgain = myConsole.getPassword("Repeat Password: ");
-        if (!passwordAgain.equals(password))
-            return false;
-
-        return Command.login (Command.signup (username, password), password);
+            boolean ret = Command.login (Command.signup (username, password), password);
+            //Hearthstone.writeFile(Hearthstone.defaultPath, Hearthstone.getGson.toJson(game));
+            return ret;
+        }
     }
 
-    private boolean runLogin () {
+    private boolean runLogin () throws IOException {
         String username = myConsole.getInput("Username: ");
-        boolean exists = false;
-        Player p = null;
-        for (Player player : Hearthstone.getPlayersList())
-            if(player.toString().equals(username)) {
-                exists = true;
-                p = player;
-            }
-        if (!exists)
+        try {
+            Player p = Player.getInstance("database/players/" + username + ".json");
+            String password = myConsole.getPassword("Password: ");
+            return Command.login (p, password);
+        } catch (FileNotFoundException e) {
             return false;
-
-        String password = myConsole.getPassword("Password: ");
-        return Command.login (p, password);
+        }
     }
 
     private boolean runDeletePlayer () {

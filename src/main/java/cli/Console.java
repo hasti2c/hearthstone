@@ -4,13 +4,15 @@ import directories.Collections;
 import game.*;
 import directories.*;
 import heros.*;
+
+import java.io.IOException;
 import java.util.*;
 import cards.*;
 
 public class Console {
     private Scanner sc = new Scanner(System.in);
     private String lastInput = "";
-    boolean quit = false;
+    private boolean quit = false;
 
     public static final String RESET = "\u001B[0m";
     public static final String RED = "\033[0;31m";
@@ -22,12 +24,14 @@ public class Console {
     public static final String BLACK = "\u001B[30m";
     public static final String BLACK_BG = "\u001B[40m";
 
-    public Console () {
+    public void setQuit (boolean quit) { this.quit = quit; }
+
+    public Console () throws IOException {
         while (!quit)
             nextCommand();
     }
 
-    private void nextCommand () {
+    private void nextCommand () throws IOException {
         if(Hearthstone.getCurrentPlayer() == null) {
             System.out.print(BLUE + "hearthstone" + RESET + ":" + PURPLE + "~" + RESET + "$ Do you already have an account? (y/n) ");
             lastInput = sc.nextLine();
@@ -60,24 +64,6 @@ public class Console {
         System.out.print(RESET);
         return password;
     }
-    /*static void printList (ArrayList<String> names) {
-        int maxLength = 0;
-        for (String name : names)
-            maxLength = Math.max(maxLength, name.length());
-        int k = 0;
-        for (int i = 0; i < names.size(); i++) {
-            System.out.print(names.get(i));
-            k += names.get(i).length();
-            while (k % (maxLength + 3) != 0) {
-                System.out.print(" ");
-                k++;
-            }
-            if (k > 200 - maxLength || i == names.size() - 1) {
-                System.out.println();
-                k = 0;
-            }
-        }
-    }*/
 
     static void normalPrint (ArrayList<Printable> objects) {
         int maxLength = 0;

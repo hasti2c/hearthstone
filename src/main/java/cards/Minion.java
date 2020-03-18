@@ -1,5 +1,6 @@
 package cards;
 
+import com.google.gson.Gson;
 import game.Hearthstone;
 import heros.*;
 import directories.*;
@@ -9,13 +10,6 @@ import java.util.*;
 public class Minion extends Card {
     private int HP;
     private int attack;
-
-    public Minion (String name, String description, RarityType rarity, HeroClass myHero, ArrayList<AbilityType> abilities, int price, int mana, int HP, int attack) {
-        super (name, description, rarity, myHero, abilities, price, mana);
-        this.HP = HP;
-        this.attack = attack;
-        setCardType(CardType.MINION);
-    }
 
     public int getHealth () { return this.HP; }
     public int getAttack () { return this.attack; }

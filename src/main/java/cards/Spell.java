@@ -7,11 +7,6 @@ import cli.*;
 import java.util.*;
 
 public class Spell extends Card {
-    public Spell (String name, String description, RarityType rarity, HeroClass myHero, ArrayList<AbilityType> abilities, int price, int mana) {
-        super (name, description, rarity, myHero, abilities, price, mana);
-        setCardType(CardType.SPELL);
-    }
-
     public String[][] longPrint () {
         String[][] ret = new String[12][3];
         Directory d = Hearthstone.getCurrentPlayer().getCurrentDirectory();

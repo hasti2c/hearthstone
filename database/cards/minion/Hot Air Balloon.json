@@ -1,0 +1,9 @@
+{
+  "name": "Hot Air Balloon",
+  "description": "At the start of your turn, gain +1 Health.",
+  "mana": 1,
+  "price": 10,
+  "heroClass": "NEUTRAL",
+  "rarity": "COMMON",
+  "cardType": "MINION"
+}
