@@ -1,0 +1,64 @@
+USER: hasti
+PASSWORD: minamano
+CREATED_AT: 2020/03/19 20:52:13
+
+signup 2020/03/19 20:52:13 
+login 2020/03/19 20:52:13 
+cd 2020/03/19 20:52:43 collections
+list 2020/03/19 20:52:45 heros: all + cards: all
+long_list 2020/03/19 20:52:46 heros: all + cards: all
+login 2020/03/19 21:59:01 
+list 2020/03/19 21:59:16 directories: all
+long_list 2020/03/19 21:59:19 directories: all
+cd 2020/03/19 21:59:22 collections
+long_list 2020/03/19 21:59:23 heros: all + cards: all
+login 2020/03/19 22:00:22 
+cd 2020/03/19 22:00:25 collections
+long_list 2020/03/19 22:00:26 heros: all + cards: all
+list 2020/03/19 22:00:33 heros: all + cards: all
+login 2020/03/19 22:01:18 
+list 2020/03/19 22:01:19 directories: all
+long_list 2020/03/19 22:01:21 directories: all
+cd 2020/03/19 22:01:24 collections
+list 2020/03/19 22:01:25 heros: all + cards: all
+cd 2020/03/19 22:01:32 mage
+cd 2020/03/19 22:01:32 collections
+cd 2020/03/19 22:01:36 mage
+login 2020/03/19 22:37:46 
+cd 2020/03/19 22:37:50 store
+list 2020/03/19 22:37:51 cards: all
+long_list 2020/03/19 22:37:53 cards: all
+list 2020/03/19 22:38:00 cards: all
+login 2020/03/19 22:44:22 
+list 2020/03/19 22:44:24 directories: all
+long_list 2020/03/19 22:44:26 directories: all
+cd 2020/03/19 22:44:30 collections
+cd 2020/03/19 22:44:37 store
+list 2020/03/19 22:44:40 cards: all
+long_list 2020/03/19 22:44:44 cards: all
+list 2020/03/19 22:44:46 cards: all
+login 2020/03/19 22:45:13 
+list 2020/03/19 22:45:21 cards: all
+login 2020/03/19 22:46:25 
+list 2020/03/19 22:46:26 directories: all
+cd 2020/03/19 22:46:30 store
+list 2020/03/19 22:46:31 cards: all
+login 2020/03/19 22:47:42 
+list 2020/03/19 22:47:45 cards: all
+list 2020/03/19 22:47:48 cards: all
+cd 2020/03/19 22:47:55 store
+list 2020/03/19 22:47:57 cards: all
+list 2020/03/19 22:48:00 cards: all
+list 2020/03/19 22:48:01 cards: buy
+list 2020/03/19 22:48:03 cards: sell
+list 2020/03/19 22:48:05 cards: all
+long_list 2020/03/19 22:48:06 cards: all
+long_list 2020/03/19 22:48:09 cards: all
+long_list 2020/03/19 22:48:13 cards: buy
+long_list 2020/03/19 22:48:16 cards: sell
+buy 2020/03/19 22:48:26 card: pyroblast
+list 2020/03/19 22:48:29 cards: all
+list 2020/03/19 22:48:30 cards: buy
+list 2020/03/19 22:48:33 cards: sell
+list 2020/03/19 22:48:43 cards: all
+long_list 2020/03/19 22:48:46 cards: all

@@ -4,7 +4,7 @@
   "balance": 50,
   "id": 2,
   "deckCap": 15,
-  "currentHeroName": "mage",
+  "currentHeroName": "rogue",
   "heroNames": [
     "mage",
     "rogue"
@@ -12,20 +12,23 @@
   "heroDecks": [
     [
       "mage",
-      "Hot Air Balloon"
+      "hot air balloon",
+      "hot air balloon",
+      "polymorph"
     ],
     [
-      "rogue"
+      "rogue",
+      "serrated tooth"
     ],
     [
       "warlock"
     ]
   ],
   "cardNames": [
-    "Serrated Tooth",
-    "Hot Air Balloon",
-    "Polymorph",
-    "Friendly Smith",
-    "Dreadscale"
+    "serrated tooth",
+    "hot air balloon",
+    "polymorph",
+    "friendly smith",
+    "dreadscale"
   ]
 }

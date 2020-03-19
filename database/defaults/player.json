@@ -9,7 +9,7 @@
   "heroDecks": [
     [
       "mage",
-      "Hot Air Balloon"
+      "hot air balloon"
     ],
     [
       "rogue"
@@ -19,10 +19,10 @@
     ]
   ],
   "cardNames": [
-    "Serrated Tooth",
-    "Hot Air Balloon",
-    "Polymorph",
-    "Friendly Smith",
-    "Dreadscale"
+    "serrated tooth",
+    "hot air balloon",
+    "polymorph",
+    "friendly smith",
+    "dreadscale"
   ]
 }

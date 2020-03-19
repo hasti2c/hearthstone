@@ -1,5 +1,5 @@
 {
-  "name": "Dreadscale",
+  "name": "dreadscale",
   "description": "At the end of your turn deal 1 damage to all other minions.",
   "mana": 3,
   "price": 40,

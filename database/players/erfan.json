@@ -1,7 +1,7 @@
 {
   "username": "erfan",
   "password": "SEMsemSEMsem",
-  "balance": 50,
+  "balance": 0,
   "id": 3,
   "deckCap": 15,
   "currentHeroName": "mage",
@@ -12,7 +12,7 @@
   "heroDecks": [
     [
       "mage",
-      "Hot Air Balloon"
+      "hot air balloon"
     ],
     [
       "rogue"
@@ -22,10 +22,11 @@
     ]
   ],
   "cardNames": [
-    "Serrated Tooth",
-    "Hot Air Balloon",
-    "Polymorph",
-    "Friendly Smith",
-    "Dreadscale"
+    "serrated tooth",
+    "hot air balloon",
+    "friendly smith",
+    "dreadscale",
+    "deathwing",
+    "pyroblast"
   ]
 }

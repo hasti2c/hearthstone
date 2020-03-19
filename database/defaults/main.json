@@ -1,17 +1,17 @@
 {
-  "playerCount": 6,
+  "playerCount": 3,
   "heroNames": [
     "MAGE",
     "ROGUE",
     "WARLOCK"
   ],
   "cardNames": [
-    "Serrated Tooth",
-    "Hot Air Balloon",
-    "Polymorph",
-    "Friendly Smith",
-    "Dreadscale",
-    "Deathwing",
-    "Pyroblast"
+    "serrated tooth",
+    "hot air balloon",
+    "polymorph",
+    "friendly smith",
+    "dreadscale",
+    "deathwing",
+    "pyroblast"
   ]
 }
