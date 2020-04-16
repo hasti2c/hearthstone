@@ -1,0 +1,11 @@
+{
+  "name": "murloc raider",
+  "description": "",
+  "mana": 1,
+  "HP": 1,
+  "attack": 2,
+  "price": 10,
+  "heroClass": "NEUTRAL",
+  "rarity": "COMMON",
+  "cardType": "MINION"
+}

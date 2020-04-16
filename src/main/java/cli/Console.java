@@ -1,13 +1,9 @@
 package cli;
 
-import directories.Collections;
 import game.*;
-import directories.*;
-import heros.*;
 
 import java.io.IOException;
 import java.util.*;
-import cards.*;
 
 public class Console {
     private Scanner sc = new Scanner(System.in);
@@ -17,14 +13,16 @@ public class Console {
     public static final String RESET = "\u001B[0m";
     public static final String RED = "\033[0;31m";
     public static final String BLUE = "\u001B[34m";
-    public static final String PURPLE = "\u001B[35m";
     public static final String GREEN = "\u001b[32m";
     public static final String LIGHT_PINK = "\u001b[38;5;219m";
-    public static final String DARK_PINK = "\u001b[38;5;126m";
-    public static final String BLACK = "\u001B[30m";
-    public static final String BLACK_BG = "\u001B[40m";
+    private static final String PURPLE = "\u001B[35m";
+    private static final String DARK_PINK = "\u001b[38;5;126m";
+    private static final String BLACK = "\u001B[30m";
+    private static final String BLACK_BG = "\u001B[40m";
 
-    public void setQuit (boolean quit) { this.quit = quit; }
+    void setQuit(boolean quit) { this.quit = quit; }
+
+    static void print (String s) { System.out.println(s); }
 
     public Console () throws IOException {
         while (!quit)
@@ -118,18 +116,18 @@ public class Console {
             for (int j = 0; j < 12; j++) {
                 if (!mark[j])
                     continue;;
-                String s = "";
+                StringBuilder s = new StringBuilder();
                 int length = 0;
                 if (i == -1) {
-                    s = DARK_PINK + title[j];
+                    s = new StringBuilder(DARK_PINK + title[j]);
                     length = title[j].length();
                 }
                 else {
                     for (int k = 0; k < 3; k++)
                         if (print.get(i)[j][k] != null)
-                            s += print.get(i)[j][k];
+                            s.append(print.get(i)[j][k]);
                         else if (k == 1)
-                            s += "--";
+                            s.append("--");
                     if (print.get(i)[j][1] != null)
                         length = print.get(i)[j][1].length();
                     else

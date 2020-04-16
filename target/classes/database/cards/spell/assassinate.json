@@ -1,0 +1,9 @@
+{
+  "name": "assassinate",
+  "description": "Destroy an enemy minion.",
+  "mana": 5,
+  "price": 10,
+  "heroClass": "NEUTRAL",
+  "rarity": "COMMON",
+  "cardType": "SPELL"
+}

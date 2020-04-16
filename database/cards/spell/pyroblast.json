@@ -1,9 +1,0 @@
-{
-  "name": "pyroblast",
-  "description": "Deal 10 damage.",
-  "mana": 10,
-  "price": 30,
-  "heroClass": "MAGE",
-  "rarity": "EPIC",
-  "cardType": "SPELL"
-}

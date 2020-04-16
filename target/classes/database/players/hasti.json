@@ -1,0 +1,26 @@
+{
+  "username": "hasti",
+  "password": "password",
+  "balance": 50,
+  "id": 1,
+  "deckCap": 15,
+  "currentHeroName": "mage",
+  "heroNames": [
+    "mage"
+  ],
+  "heroDecks": [
+    [
+      "mage"
+    ]
+  ],
+  "cardNames": [
+    "dreadscale",
+    "korkron elite",
+    "livin dragonbreath",
+    "murloc raider",
+    "senjin shieldmasta",
+    "voidwalker",
+    "wasteland assassin",
+    "polymorph"
+  ]
+}

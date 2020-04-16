@@ -1,6 +1,9 @@
 package game;
 
 import java.io.*;
+import java.time.*;
+import java.time.format.*;
+
 import cli.Console;
 import com.google.gson.*;
 
@@ -9,11 +12,17 @@ public class Hearthstone {
     private static Gson gson = (new GsonBuilder()).setPrettyPrinting().create();
     private static Player currentPlayer = null;
     private static Game game;
+    private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
-    public static Gson getGson () { return gson; }
+    static Gson getGson() { return gson; }
+
     public static Game getGame () { return game; }
+
     public static Player getCurrentPlayer () { return currentPlayer; }
+
     public static void setCurrentPlayer (Player p) { currentPlayer = p; }
+
+    public static String getTime () { return dtf.format(LocalDateTime.now()); }
 
     public static String readFile (String path) throws IOException {
         String ret = "";

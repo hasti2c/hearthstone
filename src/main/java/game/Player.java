@@ -7,11 +7,11 @@ import cards.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.*;
 
 public class Player {
-    private static String defaultPath = "database/defaults/player.json";
-
+    private static String defaultPath = "src/main/resources/database/defaults/player.json";
     private String username, password;
     private int balance, id, deckCap = 15;
     private String currentHeroName;
@@ -24,10 +24,9 @@ public class Player {
     private transient ArrayList<Card> allCards, deck;
     private transient Home home;
     private transient Directory currentDirectory = home;
+    private transient Writer logWriter;
 
-
-    public Player () throws IOException {
-        Game.setPlayerCount(Game.getPlayerCount() + 1);
+    public Player() throws IOException {
         id = Game.getPlayerCount();
         balance = 50;
         currentHeroName = null;
@@ -59,6 +58,8 @@ public class Player {
         for (Card c : Game.getCardsList())
             if (newPlayer.cardNames.contains(c.toString()))
                 newPlayer.addCardToAll(c);
+        if (newPlayer.username != null)
+            newPlayer.logWriter = new FileWriter (newPlayer.getLogPath(), true);
         return newPlayer;
     }
 
@@ -66,26 +67,48 @@ public class Player {
         Player def = getInstance(defaultPath);
         def.username = username;
         def.password = password;
+        def.logWriter = new FileWriter (def.getLogPath(), true);
         return def;
     }
 
     public void updateJson () throws IOException {
-        Hearthstone.writeFile("database/players/" + this.toString() + ".json", Hearthstone.getGson().toJson(this, Player.class));
+        Hearthstone.writeFile(getJsonPath(), Hearthstone.getGson().toJson(this, Player.class));
     }
 
+    public void log (String type, String details) throws IOException {
+        logWriter.write(type + " " + Hearthstone.getTime() + " " + details + "\n");
+        logWriter.flush();
+    }
 
     public boolean loginAttempt (String password) { return this.password.equals(password); }
+
     public String toString () { return this.username; }
+
     public Home getHome () { return home; }
+
     public Directory getCurrentDirectory () { return currentDirectory; }
+
     public void setCurrentDirectory (Directory currentDirectory) { this.currentDirectory = currentDirectory; }
+
     public ArrayList<Hero> getAllHeros () { return this.allHeros; }
+
     public ArrayList<Card> getAllCards () { return this.allCards; }
+
     public ArrayList<Card> getDeck () { return this.deck; }
+
     public Hero getCurrentHero () { return this.currentHero; }
+
     public int getDeckCap () { return this.deckCap; }
+
     public int getBalance () { return this.balance; }
+
     public void setBalance (int balance) { this.balance = balance; }
+
+    public int getId () { return this.id; }
+
+    public String getJsonPath () { return "src/main/resources/database/players/" + username + ".json"; }
+
+    public String getLogPath () { return "src/main/resources/logs/" + username + "-" + id + ".txt"; }
 
     public List<String> getHeroDeck (Hero h) {
         for (ArrayList<String> deck : heroDecks)
@@ -100,7 +123,7 @@ public class Player {
         this.currentHeroName = currentHero.toString();
     }
 
-    void addHero (Hero h) {
+    private void addHero(Hero h) {
         allHeros.add(h);
         if (!heroNames.contains(h.toString()))
             heroNames.add(h.toString());
@@ -119,11 +142,11 @@ public class Player {
             cardNames.add(card.toString());
         for (Directory d1 : home.getChildren())
             if (d1 instanceof Collections) {
+                d1.addContent(card);
                 for (Directory d2 : d1.getChildren())
                     if (d2 instanceof HeroDirectory && (((HeroDirectory) d2).getMyHero().getHeroClass() == card.getHeroClass() || card.getHeroClass() == HeroClass.NEUTRAL))
                         d2.addContent(card);
-            } else if (d1 instanceof Store)
-                d1.removeContent(card);
+            }
     }
 
     public void removeCardFromAll (Card card) {
@@ -137,7 +160,7 @@ public class Player {
             if (d1 instanceof Collections) {
                 for (Directory d2 : d1.getChildren())
                     if (d2 instanceof HeroDirectory)
-                        while (d2.removeContent(card)) { }
+                        while (d2.removeContent(card));
             } else if (d1 instanceof Store)
                 d1.addContent(card);
     }
@@ -150,6 +173,7 @@ public class Player {
         for (Hero h : allHeros)
             if (h.getHeroDeck().contains(c))
                 return false;
-        return true;
+        return allCards.contains(c);
     }
+
 }

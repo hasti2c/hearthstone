@@ -1,7 +1,7 @@
 package cards;
 
+import directories.Collections;
 import game.Hearthstone;
-import heros.*;
 import directories.*;
 import cli.*;
 import java.util.*;
@@ -13,11 +13,22 @@ public class Spell extends Card {
         for (int i = 0; i < 12; i++)
             switch (i) {
                 case 1:
-                    if (d instanceof HeroDirectory && ((HeroDirectory) d).getMyHero().getHeroDeck().contains(this)) {
+                    ArrayList <Card> deck;
+                    if (d instanceof  HeroDirectory)
+                        deck = ((HeroDirectory) d).getMyHero().getHeroDeck();
+                    else if (d instanceof Collections)
+                        deck = Hearthstone.getCurrentPlayer().getCurrentHero().getHeroDeck();
+                    else
+                        break;
+                    int cnt = 0;
+                    for (Card c : deck)
+                        if (c == this)
+                            cnt++;
+                    if (cnt > 0) {
                         ret[i][0] = Console.GREEN;
-                        ret[i][1] = "in deck";
+                        ret[i][1] = "in deck (" + cnt + ")";
                         ret[i][2] = Console.RESET;
-                    } else if (d instanceof HeroDirectory) {
+                    } else {
                         ret[i][0] = Console.RED;
                         ret[i][1] = "not in deck";
                         ret[i][2] = Console.RESET;

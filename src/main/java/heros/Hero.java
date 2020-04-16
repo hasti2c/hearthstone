@@ -4,9 +4,7 @@ import cards.*;
 import cli.*;
 import directories.Collections;
 import game.*;
-import directories.*;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Hero implements Printable {
@@ -23,10 +21,11 @@ public class Hero implements Printable {
     }
 
     public ArrayList<Card> getHeroDeck () { return heroDeck; }
-    void setHeroDeck (ArrayList<Card> cards) { heroDeck = cards; }
+
     public int getHealth () { return health; }
-    void setHealth (int health) { this.health = health; }
+
     public String toString () { return this.name; }
+
     public HeroClass getHeroClass () { return this.heroClass; }
 
     public void addCard (Card card) {
@@ -66,7 +65,7 @@ public class Hero implements Printable {
         String[][] ret = new String[12][3];
         for (int i = 0; i < 12; i++)
             switch (i) {
-                case 0:
+                case 1:
                     if (myPlayer.getCurrentDirectory() instanceof Collections && this == myPlayer.getCurrentHero()) {
                         ret[i][0] = Console.GREEN;
                         ret[i][1] = "current hero";

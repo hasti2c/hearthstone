@@ -1,5 +1,6 @@
 package directories;
 
+import java.io.IOException;
 import java.util.*;
 import game.*;
 import cli.*;
@@ -17,31 +18,36 @@ public class Directory implements Printable {
         this.myPlayer = myPlayer;
     }
 
-    public void addChild (Directory child) { children.add(child); }
+    void addChild(Directory child) { children.add(child); }
+
     public void addContent (Printable o) { content.add(o); }
+
     public String toString () { return this.name; }
+
     public ArrayList<Directory> getChildren () { return this.children; }
+
     public ArrayList<Printable> getContent () { return this.content; }
-    public Player getMyPlayer () { return this.myPlayer; }
+
+    Player getMyPlayer() { return this.myPlayer; }
 
     public boolean removeContent (Printable object) {
         boolean b = false;
         for (int i = 0; i < content.size(); i++)
             if (content.get(i) == object) {
-                content.remove(i);
+                content.remove(i--);
                 b = true;
             }
         return b;
     }
 
     public String getPath () {
-        String ret = name;
+        StringBuilder ret = new StringBuilder(name);
         Directory d = this;
         while (d.parent != null) {
             d = d.parent;
-            ret = d.name + "/" + ret;
+            ret.insert(0, d.name + "/");
         }
-        return ret;
+        return ret.toString();
     }
 
     public ArrayList<Directory> getList (String path) {
@@ -108,5 +114,20 @@ public class Directory implements Printable {
                     ret[i][1] = children.size() + content.size() + "";
             }
         return ret;
+    }
+
+    public ArrayList <Printable> getPrintables (ArrayList <Character> options, boolean l) throws IOException {
+        ArrayList <Printable> objects = new ArrayList<>();
+        objects.addAll(children);
+        objects.addAll(content);
+        if (options.contains('a'))
+            options.remove('a');
+        if (options.size() > 0)
+            return null;
+        if(l)
+            getMyPlayer().log("long_list", "directories: all");
+        else
+            getMyPlayer().log("list", "directories: all");
+        return objects;
     }
 }

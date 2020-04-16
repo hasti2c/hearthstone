@@ -1,0 +1,9 @@
+{
+  "name": "rockbiter weapon",
+  "description": "Give a friendly character +3 attack this turn.",
+  "mana": 1,
+  "price": 10,
+  "heroClass": "NEUTRAL",
+  "rarity": "COMMON",
+  "cardType": "SPELL"
+}

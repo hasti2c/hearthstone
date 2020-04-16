@@ -3,8 +3,6 @@ package cli;
 import directories.Collections;
 import game.*;
 
-import java.awt.*;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
@@ -62,28 +60,32 @@ class CommandMaker {
             ret = runSignup();
         else if (words.size() == 2 && words.get(0).equals("signup") && words.get(1).toLowerCase().equals("y"))
             ret = runLogin();
-        else if (words.size() == 1 && words.get(0).equals("delete") && options.size() == 1 && options.get(0) == 'p')
-            ret = runDeletePlayer();
-
         else if (words.size() == 1 && words.get(0).equals("exit")) {
             if (options.size() == 0)
                 ret = Command.logout();
             else if (options.size() == 1 && options.get(0) == 'a') {
+                Command.logout();
                 myConsole.setQuit(true);
                 ret = true;
             }
         }
 
+        if (Hearthstone.getCurrentPlayer() == null)
+            return ret;
+
+        if (words.size() == 1 && words.get(0).equals("delete") && options.size() == 1 && options.get(0) == 'p')
+            ret = runDeletePlayer();
         else if (words.size() == 2 && words.get(0).equals("cd"))
-            ret = Command.cd(words.get(1));
+            ret = Command.cd(words.get(1), true);
         else if (words.size() == 1 && words.get(0).equals("ls"))
             ret = Command.ls(options);
         else if (words.size() == 2 && words.get(0).equals("ls")) {
+            assert d != null;
             String initPath = d.getPath();
-            ret = Command.cd(words.get(1)) && Command.ls(options) && Command.cd(initPath);
+            ret = Command.cd(words.get(1), false) && Command.ls(options) && Command.cd(initPath, false);
         }
         else if (words.size() == 2 && words.get(0).equals("select") && d instanceof Collections)
-            ret = Command.selectHero(words.get(1));
+            ret = Command.selectHero(words.get(1)) && Command.cd(words.get(1), true);
         else if (words.size() == 2 && words.get(0).equals("add") && d instanceof HeroDirectory)
             ret = Command.addCard(words.get(1));
         else if (words.size() == 2 && words.get(0).equals("remove") && d instanceof HeroDirectory)
@@ -94,6 +96,8 @@ class CommandMaker {
             ret = Command.sellCard(words.get(1));
         else if (words.size() == 1 && words.get(0).equals("wallet"))
             ret = Command.wallet();
+        else if ((words.size() == 1 && words.get(0).equals("help") || words.size() == 2 && words.contains("help") && words.contains("hearthstone")))
+            ret = Command.help();
         if (ret && Hearthstone.getCurrentPlayer() != null)
             Hearthstone.getCurrentPlayer().updateJson();
         return ret;
@@ -109,7 +113,7 @@ class CommandMaker {
                 return false;
 
         try {
-            Hearthstone.readFile("database/players/" + username + ".json");
+            Hearthstone.readFile("src/main/resources/database/players/" + username + ".json");
             return false;
         } catch (FileNotFoundException e) {
             String password = myConsole.getPassword("Password: ");
@@ -120,16 +124,14 @@ class CommandMaker {
             if (!passwordAgain.equals(password))
                 return false;
 
-            boolean ret = Command.login (Command.signup (username, password), password);
-            //Hearthstone.writeFile(Hearthstone.defaultPath, Hearthstone.getGson.toJson(game));
-            return ret;
+            return Command.login (Command.signup (username, password), password);
         }
     }
 
     private boolean runLogin () throws IOException {
         String username = myConsole.getInput("Username: ");
         try {
-            Player p = Player.getInstance("database/players/" + username + ".json");
+            Player p = Player.getInstance("src/main/resources/database/players/" + username + ".json");
             String password = myConsole.getPassword("Password: ");
             return Command.login (p, password);
         } catch (FileNotFoundException e) {
@@ -137,7 +139,7 @@ class CommandMaker {
         }
     }
 
-    private boolean runDeletePlayer () {
+    private boolean runDeletePlayer () throws IOException {
         String password = myConsole.getPassword("Password: ");
         if (!Hearthstone.getCurrentPlayer().loginAttempt(password))
             return false;
