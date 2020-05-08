@@ -1,0 +1,24 @@
+{
+  "username": "erfan",
+  "password": "semSEMsemSEM",
+  "id": 2,
+  "balance": 50,
+  "deckCap": 0,
+  "heroNames": [
+    "mage"
+  ],
+  "cardNames": [
+    "dreadscale",
+    "korkron elite",
+    "livin dragonbreath",
+    "murloc raider",
+    "senjin shieldmasta",
+    "voidwalker",
+    "wasteland assassin",
+    "polymorph"
+  ],
+  "decks": [
+    "mage:dudurududu"
+  ],
+  "currentHeroName": "mage"
+}

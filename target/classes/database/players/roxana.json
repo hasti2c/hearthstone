@@ -1,0 +1,23 @@
+{
+  "username": "roxana",
+  "password": "roxroxrox",
+  "id": 5,
+  "balance": 0,
+  "deckCap": 0,
+  "heroNames": [
+    "mage"
+  ],
+  "cardNames": [
+    "senjin shieldmasta",
+    "voidwalker",
+    "wasteland assassin",
+    "polymorph",
+    "arcane explosion",
+    "arcane missiles",
+    "friendly smith",
+    "sound the bells",
+    "serrated tooth"
+  ],
+  "decks": [],
+  "currentHeroName": "mage"
+}

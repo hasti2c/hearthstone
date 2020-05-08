@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" spacing="80.0">
+         <children>
+            <Button fx:id="playButton" mnemonicParsing="false" prefHeight="160.0" prefWidth="200.0" text="Play">
+               <font>
+                  <Font size="64.0" />
+               </font>
+            </Button>
+            <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0" spacing="80.0">
+               <children>
+                  <Button fx:id="collectionsButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Collections">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="storeButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Store">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="statsButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Stats">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <buttons>
+          <Button fx:id="homeLogoutButton" mnemonicParsing="false" text="Log Out" />
+            <Button fx:id="homeExitButton" mnemonicParsing="false" text="Exit Game" />
+        </buttons>
+         <BorderPane.margin>
+            <Insets right="10.0" />
+         </BorderPane.margin>
+      </ButtonBar>
+   </bottom>
+</BorderPane>
