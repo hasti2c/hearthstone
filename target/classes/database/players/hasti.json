@@ -1,26 +1,31 @@
 {
   "username": "hasti",
   "password": "password",
-  "balance": 50,
   "id": 1,
+  "balance": 30,
   "deckCap": 15,
-  "currentHeroName": "mage",
   "heroNames": [
-    "mage"
-  ],
-  "heroDecks": [
-    [
-      "mage"
-    ]
+    "mage",
+    "warlock"
   ],
   "cardNames": [
     "dreadscale",
     "korkron elite",
-    "livin dragonbreath",
-    "murloc raider",
     "senjin shieldmasta",
     "voidwalker",
+    "polymorph",
+    "arcane explosion",
+    "arcane missiles",
     "wasteland assassin",
-    "polymorph"
-  ]
+    "sound the bells",
+    "friendly smith"
+  ],
+  "decks": [
+    "mage:default",
+    "mage:dumdum",
+    "mage:khar",
+    "warlock:default"
+  ],
+  "currentHeroName": "mage",
+  "currentDeckName": "mage:default"
 }

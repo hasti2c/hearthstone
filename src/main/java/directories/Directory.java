@@ -1,36 +1,55 @@
 package directories;
 
-import java.io.IOException;
 import java.util.*;
-import game.*;
 import cli.*;
+import directories.game.PlayGround;
+import gameObjects.*;
 
-public class Directory implements Printable {
-    private String name;
+public abstract class Directory implements Printable {
+    protected String name;
     private Directory parent;
-    private Player myPlayer;
-    private ArrayList<Directory> children = new ArrayList<>();
-    private ArrayList<Printable> content = new ArrayList<>();
+    protected Player player;
+    protected ArrayList<Directory> children = new ArrayList<>();
+    protected ArrayList<Printable> content = new ArrayList<>();
 
-    Directory (String name, Directory parent, Player myPlayer) {
+    public Directory(String name, Directory parent, Player player) {
         this.name = name;
         this.parent = parent;
-        this.myPlayer = myPlayer;
+        this.player = player;
     }
 
-    void addChild(Directory child) { children.add(child); }
+    protected void clear() {
+        children = new ArrayList<>();
+        content = new ArrayList<>();
+    }
 
-    public void addContent (Printable o) { content.add(o); }
+    public abstract void config();
 
-    public String toString () { return this.name; }
+    protected void addChild(Directory child) {
+        children.add(child);
+    }
 
-    public ArrayList<Directory> getChildren () { return this.children; }
+    public void addContent(Printable o) {
+        content.add(o);
+    }
 
-    public ArrayList<Printable> getContent () { return this.content; }
+    public String toString() {
+        return this.name;
+    }
 
-    Player getMyPlayer() { return this.myPlayer; }
+    public Directory getParent() {
+        return parent;
+    }
 
-    public boolean removeContent (Printable object) {
+    public ArrayList<Directory> getChildren() {
+        return this.children;
+    }
+
+    public ArrayList<Printable> getContent() {
+        return this.content;
+    }
+
+    public boolean removeContent(Printable object) {
         boolean b = false;
         for (int i = 0; i < content.size(); i++)
             if (content.get(i) == object) {
@@ -40,7 +59,7 @@ public class Directory implements Printable {
         return b;
     }
 
-    public String getPath () {
+    public String getPath() {
         StringBuilder ret = new StringBuilder(name);
         Directory d = this;
         while (d.parent != null) {
@@ -50,7 +69,7 @@ public class Directory implements Printable {
         return ret.toString();
     }
 
-    public ArrayList<Directory> getList (String path) {
+    public ArrayList<Directory> getList(String path) {
         ArrayList<Directory> ret = new ArrayList<>();
         Directory d = this;
         int i = 0;
@@ -68,8 +87,8 @@ public class Directory implements Printable {
                     break;
                 case "~":
                     ret = new ArrayList<>();
-                    ret.add(myPlayer.getHome());
-                    d = myPlayer.getHome();
+                    ret.add(player.getHome());
+                    d = player.getHome();
                     break;
                 default:
                     boolean mark = false;
@@ -92,42 +111,43 @@ public class Directory implements Printable {
         return ret;
     }
 
-    public String[] normalPrint () {
+    public String[] normalPrint(Player currentPlayer) {
         String[] ret = new String[3];
         ret[1] = toString();
         return ret;
     }
 
-    public String[][] longPrint () {
-        String[][] ret = new String[12][3];
-        for (int i = 0; i < 12; i++)
+    public String[][] longPrint(Player currentPlayer) {
+        String[][] ret = new String[16][3];
+        for (int i = 0; i < 16; i++)
             switch (i) {
-                case 3:
+                case 1:
                     ret[i][0] = Console.LIGHT_PINK;
                     ret[i][1] = toString();
                     ret[i][2] = Console.RESET;
                     break;
-                case 4:
+                case 2:
                     ret[i][1] = "directory";
                     break;
-                case 5:
+                case 4:
                     ret[i][1] = children.size() + content.size() + "";
             }
         return ret;
     }
 
-    public ArrayList <Printable> getPrintables (ArrayList <Character> options, boolean l) throws IOException {
-        ArrayList <Printable> objects = new ArrayList<>();
+    public ArrayList<Printable> getPrintables(ArrayList<Character> options, boolean l) {
+        ArrayList<Printable> objects = new ArrayList<>();
         objects.addAll(children);
         objects.addAll(content);
         if (options.contains('a'))
             options.remove('a');
         if (options.size() > 0)
             return null;
-        if(l)
-            getMyPlayer().log("long_list", "directories: all");
+        if (l)
+            player.log("long_list", "directories: all");
         else
-            getMyPlayer().log("list", "directories: all");
+            player.log("list", "directories: all");
         return objects;
     }
+
 }

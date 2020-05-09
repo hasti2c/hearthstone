@@ -1,31 +1,36 @@
 package directories;
 
+import controllers.game.*;
 import cli.*;
-import game.*;
-import cards.*;
+import gameObjects.*;
+import gameObjects.cards.*;
 import java.util.*;
-import java.io.IOException;
 
 public class Store extends Directory {
-    Store (Directory parent, Player myPlayer) {
-        super ("store", parent, myPlayer);
-        for (Card c : Game.getCardsList())
-                addContent(c);
+    Store(Directory parent, Player player) {
+        super("store", parent, player);
+        config();
     }
 
-    public ArrayList <Printable> getPrintables (ArrayList <Character> options, boolean l) throws IOException {
-        ArrayList <Printable> objects = new ArrayList<>(), buyable = new ArrayList<>(), sellable = new ArrayList<>();
+    public void config() {
+        clear();
+        for (Card c : GameController.getCardsList())
+            addContent(c);
+    }
+
+    public ArrayList<Printable> getPrintables(ArrayList<Character> options, boolean l) {
+        ArrayList<Printable> objects = new ArrayList<>(), buyable = new ArrayList<>(), sellable = new ArrayList<>();
         String details = "";
 
-        for (Printable c : getContent()) {
-            if (getMyPlayer().canBuy((Card) c))
+        for (Printable c : content) {
+            if (player.canBuy((Card) c))
                 buyable.add(c);
-            if (getMyPlayer().canSell((Card) c))
+            if (player.canSell((Card) c))
                 sellable.add(c);
         }
 
         if (options.contains('a') || options.size() == 0) {
-            objects.addAll(getContent());
+            objects.addAll(content);
             details = "cards: all";
         } else if (options.contains('b') && options.contains('s')) {
             objects.addAll(buyable);
@@ -40,18 +45,18 @@ public class Store extends Directory {
         }
 
         if (options.contains('a'))
-            options.remove(options.indexOf('a'));
+            options.remove('a');
         if (options.contains('s'))
-            options.remove(options.indexOf('s'));
+            options.remove('s');
         if (options.contains('b'))
-            options.remove(options.indexOf('b'));
+            options.remove('b');
         if (options.contains('c'))
-            options.remove(options.indexOf('c'));
+            options.remove('c');
 
-        if(l)
-            getMyPlayer().log("long_list", details);
+        if (l)
+            player.log("long_list", details);
         else
-            getMyPlayer().log("list", details);
+            player.log("list", details);
         return objects;
     }
 }

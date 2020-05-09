@@ -1,9 +1,8 @@
 package cli;
 
-import java.util.*;
-import directories.*;
+import gameObjects.*;
 
 public interface Printable {
-    public String[] normalPrint();
-    public String[][] longPrint();
+    String[] normalPrint(Player currentPlayer);
+    String[][] longPrint(Player currentPlayer);
 }
