@@ -6,6 +6,11 @@ import directories.game.PlayGround;
 import gameObjects.*;
 import gameObjects.heros.*;
 import directories.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public abstract class Card implements Printable {
     private String name, description;
@@ -13,6 +18,9 @@ public abstract class Card implements Printable {
     private HeroClass heroClass;
     private RarityType rarity;
     private CardType cardType;
+    private transient Image image;
+
+    //TODO not gson
 
     public String toString() {
         return this.name;
@@ -66,6 +74,33 @@ public abstract class Card implements Printable {
     }
 
     abstract Card cloneHelper();
+
+    private void configImage() {
+        try {
+            FileInputStream input = new FileInputStream("src/main/resources/assets/cards/" + name + ".png");
+            Image image = new Image(input);
+            this.image = image;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ImageView getImageView(int width, int height) {
+        if (image == null)
+            configImage();
+        ImageView iv = new ImageView(image);
+        if (width == -1) {
+            iv.setPreserveRatio(true);
+            iv.setFitHeight(height);
+        } else if (height == -1) {
+            iv.setPreserveRatio(true);
+            iv.setFitWidth(width);
+        } else {
+            iv.setFitHeight(height);
+            iv.setFitWidth(width);
+        }
+        return iv;
+    }
 
     public String[] normalPrint(Player currentPlayer) {
         String[] ret = new String[3];

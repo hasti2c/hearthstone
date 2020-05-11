@@ -1,0 +1,11 @@
+{
+  "name": "Blood Fury",
+  "description": "",
+  "mana": 3,
+  "durability": 8,
+  "attack": 3,
+  "price": 25,
+  "heroClass": "NEUTRAL",
+  "rarity": "RARE",
+  "cardType": "WEAPON"
+}

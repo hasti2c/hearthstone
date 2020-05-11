@@ -1,0 +1,9 @@
+{
+  "name": "Pharaohs Blessing",
+  "description": "Give a minion +4/+4, Divine Shield, and Taunt.",
+  "mana": 6,
+  "price": 25,
+  "heroClass": "NEUTRAL",
+  "rarity": "RARE",
+  "cardType": "SPELL"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Sprint",
+  "description": "Draw 4 cards.",
+  "mana": 7,
+  "price": 10,
+  "heroClass": "NEUTRAL",
+  "rarity": "COMMON",
+  "cardType": "SPELL"
+}

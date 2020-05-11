@@ -1,0 +1,11 @@
+{
+  "name": "Flik Skyshiv",
+  "description": "Destroy a minion and all copies of it (wherever they are).",
+  "mana": 6,
+  "HP": 4,
+  "attack": 4,
+  "price": 100,
+  "heroClass": "ROGUE",
+  "rarity": "LEGENDARY",
+  "cardType": "MINION"
+}

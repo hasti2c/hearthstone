@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
+<Pane id="playGround-bg" fx:id="pane" styleClass="background" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="1280.0" spacing="10.0">
          <children>
             <Button fx:id="homeButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="105.0" text="Home">
                <font>
@@ -58,86 +61,93 @@
             <Insets right="30.0" />
          </padding>
       </HBox>
-   </top>
-   <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <bottom>
-            <BorderPane prefHeight="256.0" prefWidth="1280.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
-               <center>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label fx:id="weaponName" text="Weapon" />
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
-                           <children>
-                              <Label fx:id="heroName" text="Hero" />
-                              <Label fx:id="hpLabel" text="HP:" />
-                              <Label fx:id="manaLabel" text="Mana:" />
-                           </children>
-                        </VBox>
-                        <Label fx:id="heroPowerName" text="Hero Power" />
-                     </children>
-                     <BorderPane.margin>
-                        <Insets left="250.0" />
-                     </BorderPane.margin>
-                  </HBox>
-               </center>
-               <right>
-                  <Label fx:id="deckName" text="Deck (n)" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets left="100.0" right="100.0" />
-                     </BorderPane.margin>
-                  </Label>
-               </right>
-               <bottom>
-                  <HBox fx:id="handHBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets />
-                     </BorderPane.margin>
-                  </HBox>
-               </bottom>
-            </BorderPane>
-         </bottom>
-         <top>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
-               <center>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label text="Weapon" />
-                        <Label text="Hero" />
-                        <Label text="Hero Power" />
-                     </children>
-                     <BorderPane.margin>
-                        <Insets left="250.0" />
-                     </BorderPane.margin>
-                  </HBox>
-               </center>
-               <right>
-                  <Label text="Deck (0)" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets left="100.0" right="100.0" />
-                     </BorderPane.margin>
-                  </Label>
-               </right>
-            </BorderPane>
-         </top>
-         <right>
-            <Button fx:id="endTurnButton" mnemonicParsing="false" text="End Turn" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-               </BorderPane.margin>
-            </Button>
-         </right>
-         <center>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets left="130.0" />
-               </BorderPane.margin>
-               <children>
-                  <HBox alignment="CENTER" prefHeight="142.0" prefWidth="200.0" spacing="20.0" />
-                  <HBox fx:id="inGameHBox" alignment="CENTER" prefHeight="142.0" prefWidth="200.0" spacing="20.0" />
-               </children>
-            </VBox>
-         </center>
-      </BorderPane>
-   </center>
-</BorderPane>
+      <HBox fx:id="manaHBox" layoutX="898.0" layoutY="732.0" prefHeight="25.0" prefWidth="230.0">
+         <children>
+            <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/hp-mana-attack/mana.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/hp-mana-attack/mana.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/hp-mana-attack/mana.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/hp-mana-attack/mana.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/hp-mana-attack/mana.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/hp-mana-attack/mana.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/hp-mana-attack/mana.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/hp-mana-attack/mana.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/hp-mana-attack/mana.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/hp-mana-attack/mana.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox fx:id="minionsHBox" alignment="CENTER" layoutX="290.0" layoutY="390.0" prefHeight="135.0" prefWidth="700.0" />
+      <HBox fx:id="handHBox1" alignment="CENTER" layoutX="490.0" layoutY="680.0" maxWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" />
+      <HBox fx:id="handHBox2" alignment="CENTER" layoutX="430.0" layoutY="730.0" prefHeight="100.0" />
+      <ImageView fx:id="heroImage" fitHeight="150.0" fitWidth="130.0" layoutX="580.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="49.0" fitWidth="32.0" layoutX="684.0" layoutY="643.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/hp-mana-attack/health.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="deckLabel" layoutX="1115.0" layoutY="475.0" text="30/30" textFill="WHITE">
+         <font>
+            <Font name="DIN Alternate Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="endTurnButton" layoutX="1025.0" layoutY="360.0" mnemonicParsing="false" text="End Turn" />
+      <Label fx:id="hpLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="688.0" layoutY="656.0" text="30" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="DIN Alternate Bold" size="23.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <Label fx:id="manaLabel" layoutX="843.0" layoutY="733.0" text="0/10" textFill="WHITE">
+         <font>
+            <Font name="DIN Alternate Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="weaponLabel" layoutX="490.0" layoutY="648.0" text="Weapon" textFill="WHITE" />
+      <Button fx:id="heroPowerButton" layoutX="749.0" layoutY="644.0" mnemonicParsing="false" text="Hero Power" />
+   </children>
+   <stylesheets>
+      <URL value="@../css/defaults.css" />
+      <URL value="@../css/playGround.css" />
+   </stylesheets>
+</Pane>

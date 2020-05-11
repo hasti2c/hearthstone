@@ -1,40 +1,4 @@
-USER: hasti
-PASSWORD: password
-CREATED_AT: 2020/03/20 03:00:03
-
-signup 2020/03/20 03:00:03 
-login 2020/03/20 03:00:03 
-cd 2020/03/20 03:00:06 store
-list 2020/03/20 03:00:07 cards: all
-long_list 2020/03/20 03:00:09 cards: all
-login 2020/03/20 03:04:50 
-cd 2020/03/20 03:18:37 store
-long_list 2020/03/20 03:18:39 cards: all
-cd 2020/03/20 03:18:59 mage
-long_list 2020/03/20 03:19:00 cards: all
-login 2020/04/16 14:04:39 
-logout 2020/04/16 14:04:41 
-login 2020/04/16 14:05:50 
-list 2020/04/16 14:05:52 directories: all
-long_list 2020/04/16 14:05:53 directories: all
-cd 2020/04/16 14:05:57 Play
-list 2020/04/16 14:06:00 directories: all
-long_list 2020/04/16 14:06:02 directories: all
-cd 2020/04/16 14:06:19 cards in game
-list 2020/04/16 14:06:22 directories: all
-long_list 2020/04/16 14:06:23 directories: all
-list 2020/04/16 14:06:25 directories: all
-login 2020/04/16 14:09:52 
-list 2020/04/16 14:09:55 directories: all
-cd 2020/04/16 14:09:58 play
-list 2020/04/16 14:09:59 directories: all
-long_list 2020/04/16 14:10:02 directories: all
-cd 2020/04/16 14:10:08 left in deck
-list 2020/04/16 14:10:10 directories: all
-login 2020/04/16 14:13:52 
-cd 2020/04/16 14:13:58 play
-login 2020/04/16 14:14:28 
-list 2020/04/16 14:14:31 directories: all
-cd 2020/04/16 14:14:33 play
-list 2020/04/16 14:14:34 directories: all
-long_list 2020/04/16 14:14:35 directories: all
+login 2020/05/12 00:38:36 
+cd 2020/05/12 00:38:36 ~
+cd 2020/05/12 00:38:39 collections
+cd 2020/05/12 01:26:53 collections

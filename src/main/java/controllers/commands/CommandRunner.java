@@ -21,7 +21,6 @@ import javafx.util.*;
 
 public class CommandRunner {
     //TODO singleton
-    //TODO use string methods
     //TODO handle directories (and cd) better
     private GameController game;
     private Console console;
@@ -124,6 +123,8 @@ public class CommandRunner {
             ret = playCard(word);
         else if (CommandType.ENDTURN.equals(commandType) && word == null)
             ret = endTurn();
+        else if (CommandType.HEROPOWER.equals(commandType) && word == null)
+            ret = heroPower();
 
         d = game.getCurrentPlayer().getCurrentDirectory();
         if (d != null)
@@ -361,7 +362,6 @@ public class CommandRunner {
         return h.removeDeck(name);
     }
 
-    //TODO add move to graphics
     private boolean moveDeck(String paths) {
         Pair<String, String> pathPair = seperateStrings(paths);
 
@@ -454,6 +454,8 @@ public class CommandRunner {
             Console.print(Console.LIGHT_PINK + "hero: " + Console.RESET + h);
             Console.print(Console.LIGHT_PINK + "health: " + Console.RESET + h.getHealth());
             Console.print(Console.LIGHT_PINK + "mana: " + Console.RESET + g.getMana());
+            if (g.getCurrentWeapon() != null)
+                Console.print(Console.LIGHT_PINK + "current weapon: " + Console.RESET + g.getCurrentWeapon());
         } else {
             assert d instanceof DeckDirectory;
             Deck deck = ((DeckDirectory) d).getDeck();
@@ -540,5 +542,17 @@ public class CommandRunner {
         else
             return false;
         return g.endTurn();
+    }
+
+    private boolean heroPower() {
+        Directory d = game.getCurrentPlayer().getCurrentDirectory();
+        Game g;
+        if (d instanceof PlayGround)
+            g = ((PlayGround) d).getGame();
+        else if (d instanceof GameCards)
+            g = ((PlayGround) d.getParent()).getGame();
+        else
+            return false;
+        return g.useHeroPower();
     }
 }

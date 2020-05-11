@@ -1,0 +1,11 @@
+{
+  "name": "Tomb Warden",
+  "description": "Taunt, Battlecry: Summon a copy of this minion.",
+  "mana": 8,
+  "HP": 6,
+  "attack": 3,
+  "price": 25,
+  "heroClass": "NEUTRAL",
+  "rarity": "RARE",
+  "cardType": "MINION"
+}

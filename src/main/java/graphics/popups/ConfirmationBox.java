@@ -11,15 +11,9 @@ public class ConfirmationBox extends PopupBox {
     private Button yesButton, noButton;
 
     public ConfirmationBox(String text, String yesText, String noText) {
-        load();
         label.setText(text);
         yesButton.setText(yesText);
-        noButton.setText(noText);
-        config();
-    }
-
-    protected void configElements() {
-        yesButton.setOnAction(e -> {
+        noButton.setText(noText);yesButton.setOnAction(e -> {
             response = true;
             close();
         });

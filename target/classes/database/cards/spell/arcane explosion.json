@@ -1,9 +1,0 @@
-{
-  "name": "arcane explosion",
-  "description": "deal 1 damage to all enemy minions.",
-  "mana": 2,
-  "price": 10,
-  "heroClass": "NEUTRAL",
-  "rarity": "COMMON",
-  "cardType": "SPELL"
-}

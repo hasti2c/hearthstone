@@ -1,16 +1,11 @@
 package directories.game;
 
-import cli.*;
 import directories.Directory;
-import directories.collections.HeroDirectory;
 import gameObjects.*;
-import gameObjects.cards.*;
-import gameObjects.heros.*;
-import java.util.*;
 
 public class PlayGround extends Directory {
     private Game game;
-    private GameCards inGame, hand, leftInDeck;
+    private GameCards minionsInGame, hand, leftInDeck;
 
     public PlayGround(Game game, Directory parent, Player player) {
         super("play", parent, player);
@@ -22,8 +17,8 @@ public class PlayGround extends Directory {
         clear();
 
 
-        inGame = new GameCards("cards in game", game.getInGame(), this, player);
-        addChild(inGame);
+        minionsInGame = new GameCards("minions in game", game.getMinionsInGame(), this, player);
+        addChild(minionsInGame);
 
         hand = new GameCards("hand", game.getHand(), this, player);
         addChild(hand);

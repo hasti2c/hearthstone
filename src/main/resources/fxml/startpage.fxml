@@ -1,51 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="vBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox id="startPage-bg" fx:id="vBox" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" spacing="20.0" styleClass="background" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="314.0" text="Hearthstone" textAlignment="CENTER">
+      <Label fx:id="signUpError" alignment="CENTER" styleClass="error" stylesheets="@../css/startPage.css" text="Your  sign up attempt was unsuccessful.&#10;Possible issues include:&#10;&#9;- Username is not available.&#10;&#9;- Username contains characters other than A-z, a-z, 0-9, . and _.&#10;&#9;- Username is less than 4 characters long.&#10;&#9;- Password is less than 8 characters long." textFill="FIREBRICK">
+         <effect>
+            <DropShadow />
+         </effect>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
          <font>
-            <Font name="System Bold" size="48.0" />
+            <Font size="15.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" prefHeight="44.0" prefWidth="600.0" spacing="20.0">
+      <Label fx:id="loginError" alignment="CENTER" styleClass="error" stylesheets="@../css/startPage.css" text="Your login attempt was unsuccessful.&#10;Possible issues include:&#10;&#9;- Username doesn't exist.&#10;&#9;- Password doesn't match username.&#10;" textFill="FIREBRICK">
+         <effect>
+            <DropShadow />
+         </effect>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1280.0" spacing="20.0">
          <children>
-            <Label text="Username">
+            <Label styleClass="outline" text="Username" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
-               </font></Label>
+                  <Font name="Comic Sans MS Bold" size="36.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect></Label>
             <TextField fx:id="usernameField" prefHeight="31.0" prefWidth="173.0" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="44.0" prefWidth="600.0" spacing="20.0">
+      <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1280.0" spacing="20.0">
          <children>
-            <Label text="Password ">
+            <Label styleClass="outline" text="Password " textFill="WHITE">
                <font>
-                  <Font size="18.0" />
-               </font></Label>
+                  <Font name="Comic Sans MS Bold" size="36.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect></Label>
             <PasswordField fx:id="passwordField" prefHeight="31.0" prefWidth="173.0" />
          </children>
       </HBox>
-      <Label fx:id="signUpError" prefHeight="127.0" prefWidth="377.0" text="Your  sign up attempt was unsuccessful.&#10;Possible issues include:&#10;&#9;- Username is not available.&#10;&#9;- Username contains characters other than A-z, a-z, 0-9, . and _.&#10;&#9;- Username is less than 4 characters long.&#10;&#9;- Password is less than 8 characters long." textFill="#c31717" />
-      <Label fx:id="loginError" prefHeight="71.0" prefWidth="229.0" text="Your login attempt was unsuccessful.&#10;Possible issues include:&#10;&#9;- Username doesn't exist.&#10;&#9;- Password doesn't match username.&#10;" textFill="#c31717" />
       <HBox alignment="CENTER" prefHeight="51.0" prefWidth="600.0" spacing="20.0">
          <children>
-            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#runLogin" prefHeight="38.0" prefWidth="62.0" text="Login">
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#runLogin" prefHeight="55.0" prefWidth="83.0" text="Login" textFill="WHITE">
                <font>
-                  <Font size="14.0" />
+                  <Font size="20.0" />
                </font></Button>
-            <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#runSignUp" prefHeight="38.0" prefWidth="82.0" text="Sign Up">
+            <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#runSignUp" prefHeight="66.0" prefWidth="102.0" text="Sign Up" textFill="WHITE">
                <font>
-                  <Font size="14.0" />
+                  <Font size="20.0" />
                </font></Button>
          </children>
       </HBox>
    </children>
+   <padding>
+      <Insets bottom="300.0" />
+   </padding>
+   <stylesheets>
+      <URL value="@../css/startPage.css" />
+      <URL value="@../css/defaults.css" />
+   </stylesheets>
 </VBox>

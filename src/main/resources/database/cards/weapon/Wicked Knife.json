@@ -1,0 +1,11 @@
+{
+  "name": "Wicked Knife",
+  "description": "",
+  "mana": 1,
+  "durability": 2,
+  "attack": 1,
+  "price": 10,
+  "heroClass": "NEUTRAL",
+  "rarity": "COMMON",
+  "cardType": "WEAPON"
+}

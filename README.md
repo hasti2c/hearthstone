@@ -1,106 +1,42 @@
+# Hearthstone project: Phase 2
+### Hasti Toossi (Student No. 98100464)
 
-# فاز اول پروژه
-هستی طوسی - شماره دانشجویی‌: ۹۸۱۰۰۴۶۴
-اسفند ۱۳۹۸
-
-## منابع و کتابخانه ها
-1.Maven\
-علت استفاده: آسانی انتقال کد به همراه کتابخانه‌ها و غیره، تضمین قابل اجرا بودن برنامه
-2. Gson\
-علت استفاده: استفاده‌ی راحت و بهینه از جیسون
-3. java.util
-4. java.io
-5. java.time
-6. jenkov.com\
-استفاده به عنوان منبع مطالعه
-
-## روش کارکرد کد
-
-### اشیا بازی
-* **کارت ها**\
-کلاس کارت سه زیرکلاس دارد:\
-minion, spell, weapon.\
-علت این تقسیم‌بندی، عملکرد مشابه کارت‌های هر کدام از این بخش‌هاست.
-
-* **هیرو**\
-برای هر هیرو اطلاعات مربوط به آن و همین‌طور یک آرایه‌لیست از کارت‌های دک آن نگهداری می‌شود.
-
-* **بازیکن**\
-کلاس بازیکن، مجموعه‌ی کارت‌ها و همینطور ‌‌قهرمان‌های خود را دارد.\
-از قهرمان‌ها و کارت‌ها، اشیایی مخصوص هر بازیکن درست نمی‌شود، بلکه مجموعه‌ی همه‌ی کارت‌ها و قهرمان‌ها در کلاس ‌‌"بازی" نگهداری می‌شود و بازیکن‌ها از همان‌ها استفاده می‌کنند.\
-علت این موضوع، این است که بازیکن‌ها نیاز به تغییر ویژگی کارت‌ها ندارند.\
-اطلاعات بازیکن از روی فایل جیسون هم‌نام آن خوانده می‌شود، اما برای تمیزی جیسون و همینطور ابسترکت بودن کارت، تنها اسامی هیروها و کارت‌ها به صورت استرینگ در جیسون نگهداری می‌شود و هنگام ساخت  بازیکن، اشیا از کلاس *بازی* برداشته می‌شوند.
-
-### اطلاعات استاتیک بازی
-* **کلاسِ بازی**\
-در این کلاس، اطلاعات کلی بازی مثل تعداد بازیکن ساخته شده، لیست هیروها و کارت‌ها و غیره قرار دارد.\
-این اطلاعات از روی فایل جیسون خوانده می‌شوند.
-
-* **(کلاس هارت‌استون (مِین** \
-در این کلاس،‌ چند مِتُد و فیلد کلی برای اجرای عملیات‌ها و عدم تکرار کد قرار دارد.\
-اما در خود تابع مِین، تنها دو کار انجام می‌شود:\
-یک شی از کلاس بازی ساخته می‌شود تا اطلاعات استاتیک در آن ذخیره شوند.\
-یک شی از کلاس کنسول ساخته می‌شود که همه‌ی وظایف را از آن به بعد انجام می‌دهد.\
-
-### رابط کاربری (Command Line Interface) 
-* **کنسول**\
-وقتی شی‌ای از این کلاس ساخته می‌شود، تا زمانی که کامند\
-exit -a \
-اجرا شود، این شی دستورها را ورودی می‌گیرد و پس از گرفتن ورودی اولیه، یک شی کامندمِیکر درست میکند تا اجرای دستور را به عهده بگیرد.\
-مسئولیت ورودی و خروجی گرفتن از ترمینال، فقط مسئولیت کلاس کنسول است و تنها کلاس‌های دیگر این پکیج، گاهی با استفاده مِتُدهای همین کلاس ورودی و خروجی می‌گیرد.
-
-* **(کامندمِیکر‌(سازنده‌ی دستور**\
-هنگام ساخته شدن شی، دستور کاربر به آن به صورت استرینگ داده می شود و این کلاس *کلمات* و *انتخاب‌ها* را جدا می‌کند (که نحوه و گاهی ترتیب ورودی دادن اهمیت نداشته باشد). سپس با توجه به کلمات دستور، مِتُد اجراکننده‌ی کامند را صدا می‌کند.\
-این کلاس در صورت معتبر نبودن ورودی و یا در برخی حالات خاص، از طریق کلاس کنسول خروجی داده و یا ورودی می‌گیرد.
-
-* **(کامَند(دستور**\
-این کلاس، برای هر عملیات، یک تابع استاتیک دارد. علت قرار داشتن این تابع‌ها در یک کلاس جدا، تنها برای بخش‌بندی شدن و مرتب بودن کد است.\
-مِتُدها، از آرایه‌ی *انتخاب‌های* کلاس کامند‌میکر را برای تعیین دقیق عملیات استفاده می‌کنند.
-
-###  شکل خاص دستورها
-من کامندها را کمی متفاوت با کامندهای نوشته شده در توضیحات پروژه پیاده‌سازی کردم، تا دستورات شبیه‌تر به دستورات ترمینال یونیکس شوند.\
-
-* **انعطاف‌پذیری ورودی**\
-برای ورودی، تعداد فاصله و غیره اهمیتی ندارد، و همینطور انتخاب‌هایی که با خط تیره مشخص می‌شوند، می‌توانند به هر ترتیب و تعدادی بیایند.\
-به عنوان مثال، دستورات زیر یکسان عمل می‌کنند:
-> ls -a -h\
-> ls -ha\
-> LS -aaah
-
-* **چاپ کامل**\
-در هر بخشی که دستور \
-ls\
-کار می‌کند، میتوان انتخاب\
--l\
-را به آن افزود تا اشیا با جزئیات چاپ شوند.
-
-* **ساختار دایرکتوری**\
-با استفاده از دایرکتوری، یک ساختار دایرکتوری‌وار وجود دارد، به این صورت که خانه (منو) در بالاست و بخش‌های ‌کالکشن و فروشگاه درون آن هستند. همینطور درون بخش کالکشن، هیروها نه به صورت هیرو که به صورت دایرکتوری هستند که با ورود به آن‌ها می‌توان کارت‌های آن‌ها و کارت‌های خنثی را دید.\
-برای کل این بخش‌ها، دستور \
-cd\
-برای حرکت در دایرکتوری‌ها، مشابه ترمینال عمل میکند. استفاده از علائمی مثل\
-**.** , **. .** , **~**\
-(یک نقطه،‌ دو نقطه و علامت خانه)\
-مشابه ترمینال عمل می‌کند.\
-در هر دایرکتوری با استفاده از دستور\
-help\
-کامندهای مجاز نمایش داده می‌شوند.
-
-## نقاط قوت و ضعف
-### نقاط قوت
-* استفاده از جیسون برای همه‌ی اشیا و همین‌طور فیلدهای استاتیک بازی
-* پرایوت بودن تمام فیلدها و محدودیت دسترسی
-* انجام شدن کمترین میزان عملیات ممکن در تابع مِین و تقسیم شدن عملیات‌ها بین متدها
-* جدا بودن کامل مسئولیت‌ها، مخصوصاً در رابط کاربری
-* انعطاف‌پذیری ورودی کنسول
-* ارتباط منطقی اجزا رابط کاربری و شباهت آن به ترمینال یونیکس
-* قابلیت گسترش آسان در بخش رابط کاربری
+- This project might not work properly on windows systems. It would be better if it was tested on a Unix-based operating system such as Linux or MacOS.
+- The cli interface also works for this phase, although the commands might not be very easy to guess! :D 
+- To test the main version (with graphics) you can run the Hearthstone class but to test the cli you can run HearthstoneConsole. (It's nothing special.)
 
 
-### نقاط ضعف
-* عدم تعلق اشیا کارت و هیرو به بازیکن و استفاده‌ی آن‌ها از متغیر
-Hearthstone.currentPlayer
-به جای فیلدی از خود شی
-* ایجاد شی "بازی" تنها برای خواندن فیلدها از فایل جیسون و عدم استفاده‌ی دیگر از شی
-*  وجود آرایه استرینگ نام اشیا در کلاس بازیکن برای ورودی گرفتن از جیسون
-* طولانی بودن کد مربوط به دایرکتوری‌ها
+## Explanation 
+
+- Each command given by the user is parsed and represented by a Command object. Then a CommandRunner object runs the command (by giving orders to different game objects).
+- The Console class and the GraphicsController / DirectoryGraphics classes are responsible for communicating with the user respectively through cli and graphics. (It's important to note that these UIs shouldn't be used at the same time.)
+- Each page has a Directory class and a DirectoryGraphics class. The Directory class isn't much more than an easier representation of each page. The DirectoryGraphics is more involved with logic, although mostly through CommandRunner.
+
+
+## Sources
+
+- The cards used in the game (and the pictures, etc.) where found through: [playhearthstone.com](The Play Hearthstone Website) and [hearthstone.gamepedia.com](Hearthstone Wiki).
+- The following websites where used as learning materials: [Jenkov](jenkov.com), [stackoverflow.com](Stack Overflow).
+- The build tool [maven.apache.org](Maven) was used in this project.
+
+
+## External Libraries
+
+- Javafx v11.0.2: This library was used because of the variation of its tools and also because it can be used together with fxml and css, resulting in more concise code.
+- Gson v2.8.6: Through the classes Gson, JsonReader, etc., this library offers a variety of options for different needs and with varying degrees of difficulty.
+
+
+## Positive Points
+
+- A good degree of abstraction and cleanness was used in the source code, though it could be improved.
+- A decent user interface, especially in the collections / store section with the Options feature.
+- CLI feature
+- Proper use of different java features such as Enums, Inner Classees, Interfaces, etc.
+
+
+## Negative Points
+
+- The scopes (logic and graphics) could be a lot more seperate. 
+- The interface in the game section isn't that good. (Especially for weapons / hero powers :D ).
+- The home page takes a long time to load when logging in. 
+- There are too many classes, for example two different classes for each page might be excessive.

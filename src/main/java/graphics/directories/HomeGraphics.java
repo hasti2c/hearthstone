@@ -1,7 +1,6 @@
 package graphics.directories;
 
 import controllers.commands.*;
-import directories.game.PlayGround;
 import graphics.*;
 import graphics.directories.collections.*;
 import javafx.fxml.*;

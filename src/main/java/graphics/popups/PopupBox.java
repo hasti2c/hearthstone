@@ -9,7 +9,12 @@ abstract class PopupBox {
     private Stage stage;
     private Parent root;
 
-    protected void load() {
+    protected PopupBox() {
+        load();
+        config();
+    }
+
+    private void load() {
         FXMLLoader loader = getLoader();
         loader.setController(this);
         try {
@@ -21,10 +26,7 @@ abstract class PopupBox {
 
     protected abstract FXMLLoader getLoader();
 
-    protected abstract void configElements();
-
-    protected void config() {
-        configElements();
+    private void config() {
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(new Scene(root));

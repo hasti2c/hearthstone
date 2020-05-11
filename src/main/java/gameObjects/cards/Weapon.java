@@ -71,7 +71,7 @@ public class Weapon extends Card {
                 case 2:
                     ret[i][1] = "weapon card";
                     break;
-                case 4:
+                case 3:
                     ret[i][1] = getHeroClass().toString().toLowerCase();
                 case 5:
                     if (d instanceof Store)

@@ -1,0 +1,11 @@
+{
+  "name": "Silver Sword",
+  "description": "After your hero attacks, give your minions +1/+1.",
+  "mana": 8,
+  "durability": 4,
+  "attack": 3,
+  "price": 25,
+  "heroClass": "NEUTRAL",
+  "rarity": "RARE",
+  "cardType": "WEAPON"
+}

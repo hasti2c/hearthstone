@@ -1,0 +1,18 @@
+#home-bg {
+-fx-background-image: url("../assets/backgrounds/home.png");
+}
+
+#play-button {
+  -fx-background-radius: 100;
+  -fx-border-color: white;
+  -fx-border-width: 7;
+  -fx-border-radius: 100;
+}
+
+.home.button {
+  -fx-font-size: 30;
+}
+
+#collections {
+  -fx-font-size: 25;
+}

@@ -2,6 +2,7 @@ package gameObjects;
 
 import gameObjects.cards.Card;
 import gameObjects.cards.Minion;
+import gameObjects.cards.Weapon;
 import gameObjects.heros.Deck;
 import gameObjects.heros.Hero;
 
@@ -11,8 +12,10 @@ public class Game {
     private Player player;
     private Hero hero;
     private Deck deck;
-    private ArrayList<Card> leftInDeck, hand = new ArrayList<>(), inGame = new ArrayList<>();
+    private ArrayList<Card> leftInDeck, hand = new ArrayList<>(), minionsInGame = new ArrayList<>();
+    private Weapon currentWeapon;
     private int turn = 1, playerCount = 1, playerNumber = 0, mana = 1;
+    private boolean usedHeroPower;
 
     public Game(Deck deck) {
         this.deck = deck;
@@ -31,8 +34,8 @@ public class Game {
         return hero;
     }
 
-    public ArrayList<Card> getInGame() {
-        return inGame;
+    public ArrayList<Card> getMinionsInGame() {
+        return minionsInGame;
     }
 
     public ArrayList<Card> getHand() { return hand; }
@@ -53,14 +56,16 @@ public class Game {
     }
 
     public boolean playCard(Card card) {
-        if (!isMyTurn() || !hand.contains(card) || mana < card.getMana() || (card instanceof Minion && inGame.size() >= 7))
+        if (!isMyTurn() || !hand.contains(card) || mana < card.getMana() || (card instanceof Minion && minionsInGame.size() >= 7))
             return false;
 
         deck.addUse(card);
         mana -= card.getMana();
         hand.remove(card);
         if (card instanceof Minion)
-            inGame.add(card);
+            minionsInGame.add(card);
+        else if (card instanceof Weapon)
+            currentWeapon = (Weapon) card;
         return true;
     }
 
@@ -69,8 +74,16 @@ public class Game {
             return false;
 
         turn++;
+        usedHeroPower = false;
         draw();
         mana = Math.min(myTurnNumber(), 10);
+        return true;
+    }
+
+    public boolean useHeroPower() {
+        if (usedHeroPower)
+            return false;
+        usedHeroPower = true;
         return true;
     }
 
@@ -84,5 +97,13 @@ public class Game {
 
     public int getMana() {
         return mana;
+    }
+
+    public Weapon getCurrentWeapon() {
+        return currentWeapon;
+    }
+
+    public boolean isHeroPowerUsed() {
+        return usedHeroPower;
     }
 }

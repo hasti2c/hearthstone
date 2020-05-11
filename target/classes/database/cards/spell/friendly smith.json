@@ -1,9 +1,0 @@
-{
-  "name": "friendly smith",
-  "description": "Discover a weapon from any class. Add it to your Adventure Deck with +2/+2",
-  "mana": 1,
-  "price": 10,
-  "heroClass": "ROGUE",
-  "rarity": "COMMON",
-  "cardType": "SPELL"
-}

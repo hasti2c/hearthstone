@@ -1,0 +1,9 @@
+{
+  "name": "Cinderstorm",
+  "description": "Deal 5 damage randomly split among all enemies.",
+  "mana": 3,
+  "price": 25,
+  "heroClass": "MAGE",
+  "rarity": "RARE",
+  "cardType": "SPELL"
+}

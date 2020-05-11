@@ -1,40 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="border" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <HBox fx:id="topHBox" alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="105.0" text="Back">
                <font>
                   <Font size="18.0" />
                </font>
                <HBox.margin>
-                  <Insets right="720.0" />
+                  <Insets right="350.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="optionsButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="135.0" text="Show Options">
+            <Label text="0/30" textFill="#141414">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" text="Buy Mode">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Label>
+            <JFXToggleButton fx:id="sellModeButton" maxWidth="50.0" prefHeight="60.0" prefWidth="50.0" text=" ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXToggleButton>
+            <Label text="Sell Mode">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="optionsButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="153.0" text="Show Options">
                <font>
                   <Font size="18.0" />
                </font>
                <HBox.margin>
-                  <Insets right="25.0" />
+                  <Insets left="25.0" right="25.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="homeButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="105.0" text="Home">
+            <Button fx:id="homeButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                <font>
                   <Font size="18.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0">
+                     <image>
+                        <Image url="@../assets/controls/home-button.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
             <MenuButton mnemonicParsing="false" prefHeight="40.0" prefWidth="105.0">
                <items>
@@ -82,8 +116,16 @@
             <Insets />
          </BorderPane.margin>
          <content>
-            <GridPane fx:id="grid" hgap="30.0" vgap="20.0" />
+            <GridPane fx:id="grid" gridLinesVisible="true" hgap="30.0" vgap="6.0">
+               <padding>
+                  <Insets bottom="7.0" left="30.0" right="30.0" top="7.0" />
+               </padding>
+            </GridPane>
          </content>
       </ScrollPane>
    </center>
+   <stylesheets>
+      <URL value="@../css/defaults.css" />
+      <URL value="@../css/cardsList.css" />
+   </stylesheets>
 </BorderPane>

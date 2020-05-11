@@ -13,12 +13,12 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <HBox fx:id="hBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: gray;">
+      <HBox fx:id="hBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0">
          <children>
             <VBox prefHeight="400.0" prefWidth="150.0" spacing="20.0">
                <children>
-                  <CheckBox mnemonicParsing="false" selected="true" text="Owned" />
-                  <CheckBox mnemonicParsing="false" prefWidth="100.0" selected="true" text="Not Owned" />
+                  <CheckBox fx:id="ownedBox" mnemonicParsing="false" selected="true" text="Owned" />
+                  <CheckBox fx:id="notOwnedBox" mnemonicParsing="false" prefWidth="100.0" selected="true" text="Not Owned" />
                   <Separator prefWidth="200.0" />
                   <CheckBox mnemonicParsing="false" selected="true" text="Unlocked" />
                   <CheckBox mnemonicParsing="false" text="Locked" />
@@ -60,7 +60,7 @@
       </HBox>
    </center>
    <bottom>
-      <HBox alignment="CENTER_RIGHT" spacing="10.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="doneButton" mnemonicParsing="false" text="Apply Changes" />
             <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" />

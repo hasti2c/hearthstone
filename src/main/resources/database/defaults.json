@@ -3,38 +3,68 @@
   "heroNames": [
     "mage",
     "rogue",
-    "warlock"
+    "warlock",
+    "hunter",
+    "priest"
   ],
   "cardNames": [
-    "dreadscale",
+    "argent protector",
+    "Curio Collector",
+    "Dread Infernal",
+    "Dreadscale",
+    "Flik Skyshiv",
+    "High Priest Amet",
     "korkron elite",
-    "livin dragonbreath",
     "murloc raider",
+    "Sathrovarr",
+    "Security Rover",
     "senjin shieldmasta",
+    "Swamp King Dred",
+    "Tomb Warden",
+    "Veranus",
     "voidwalker",
     "wasteland assassin",
-    "polymorph",
     "arcane explosion",
     "arcane missiles",
-    "friendly smith",
+    "assassinate",
+    "Cinderstorm",
+    "Friendly Smith",
+    "frost nova",
+    "Pharaohs Blessing",
+    "Polymorph",
+    "rockbiter weapon",
+    "Shadow Word Pain",
     "sound the bells",
-    "serrated tooth"
+    "Sprint",
+    "Swarm of Locusts",
+    "Book of Specters",
+    "Blood Fury",
+    "Dragon Claw",
+    "Silver Sword",
+    "Truesilver Champion",
+    "Wicked Knife"
   ],
   "defaultPlayer": {
     "balance": 50,
     "deckCap": 15,
     "heroNames": [
-      "mage"
+      "mage",
+      "warlock",
+      "priest"
     ],
     "cardNames": [
-      "dreadscale",
+      "Dreadscale",
       "korkron elite",
-      "livin dragonbreath",
       "murloc raider",
       "senjin shieldmasta",
       "voidwalker",
       "wasteland assassin",
-      "polymorph"
+      "Polymorph",
+      "Blood Fury",
+      "Sprint",
+      "Swarm of Locusts",
+      "Truesilver Champion",
+      "Sathrovarr"
     ],
     "decks": [],
     "currentHeroName": "mage"

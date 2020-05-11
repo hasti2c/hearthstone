@@ -319,4 +319,14 @@ public class Player {
     public void removeDeckFromAll(Deck deck) {
         allDecks.remove(deck);
     }
+
+    public ArrayList<Deck> getAllDecks() {
+        return allDecks;
+    }
+
+    public Deck getCurrentDeck() {
+        if (currentHero == null)
+            return null;
+        return currentHero.getCurrentDeck();
+    }
 }

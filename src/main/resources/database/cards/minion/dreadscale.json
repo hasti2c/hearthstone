@@ -1,10 +1,10 @@
 {
-  "name": "dreadscale",
+  "name": "Dreadscale",
   "description": "Charge",
   "mana": 3,
   "HP": 2,
   "attack": 4,
-  "price": 40,
+  "price": 100,
   "heroClass": "NEUTRAL",
   "rarity": "LEGENDARY",
   "cardType": "MINION"

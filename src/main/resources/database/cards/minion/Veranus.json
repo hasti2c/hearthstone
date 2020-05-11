@@ -1,0 +1,11 @@
+{
+  "name": "Veranus",
+  "description": "Battlecry: Change the Health of all enemy minions to 1.",
+  "mana": 6,
+  "HP": 6,
+  "attack": 7,
+  "price": 100,
+  "heroClass": "HUNTER",
+  "rarity": "LEGENDARY",
+  "cardType": "MINION"
+}

@@ -1,9 +1,0 @@
-{
-  "name": "mana burn",
-  "description": "your opponent has 2 f",
-  "mana": 1,
-  "price": 10,
-  "heroClass": "NEUTRAL",
-  "rarity": "COMMON",
-  "cardType": "SPELL"
-}

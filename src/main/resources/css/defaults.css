@@ -1,0 +1,35 @@
+.background {
+  -fx-background-repeat: no-repeat;
+  -fx-background-size: contain;
+  -fx-background-position: center;
+  -fx-background-color: black;
+}
+
+.button, .menu-button {
+  -fx-background-color: "#282424";
+  -fx-background-radius: 10;
+  -fx-border-color: darkgray;
+  -fx-border-radius: 10;
+  -fx-region-radius: 10;
+  -fx-text-fill: lightgray;
+  -fx-font-family: "Arial Rounded";
+  -fx-font-size: 20;
+}
+
+.context-menu {
+  -fx-background-color: "#282424";
+  -fx-font-family: "Arial Rounded"
+}
+
+.menu-item .label {
+  -fx-text-fill: white;
+  -fx-font-size: 20;
+}
+
+.scroll-pane {
+  -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+   -fx-background-color: transparent;
+}

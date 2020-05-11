@@ -6,26 +6,24 @@
   "deckCap": 15,
   "heroNames": [
     "mage",
-    "warlock"
+    "warlock",
+    "priest"
   ],
   "cardNames": [
-    "dreadscale",
+    "Dreadscale",
     "korkron elite",
     "senjin shieldmasta",
     "voidwalker",
-    "polymorph",
+    "Polymorph",
     "arcane explosion",
     "arcane missiles",
     "wasteland assassin",
     "sound the bells",
-    "friendly smith"
+    "Friendly Smith"
   ],
   "decks": [
-    "mage:default",
-    "mage:dumdum",
-    "mage:khar",
-    "warlock:default"
+    "mage:first"
   ],
   "currentHeroName": "mage",
-  "currentDeckName": "mage:default"
+  "currentDeckName": "mage:first"
 }

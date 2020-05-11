@@ -1,0 +1,25 @@
+#heroCards-bg {
+  -fx-background-image: url("../assets/backgrounds/blue-background.jpg");
+  -fx-background-size: contain;
+}
+
+#deck-bg {
+  -fx-background-image: url("../assets/backgrounds/green-background.png");
+}
+
+#store-bg {
+  -fx-background-image: url("../assets/backgrounds/brown-background.png");
+}
+
+#grid {
+  -fx-background-color: transparent;
+}
+
+.add-remove.button {
+  -fx-font-size: 18;
+}
+
+.add-remove.label {
+  -fx-font-size: 18;
+  -fx-font-family: "DIN Alternate";
+}

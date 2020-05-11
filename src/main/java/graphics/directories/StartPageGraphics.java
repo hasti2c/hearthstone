@@ -38,7 +38,7 @@ public class StartPageGraphics extends DirectoryGraphics {
     private void runSignUp() {
         vBox.getChildren().removeAll(loginError, signUpError);
         if (!runner.run(new Command(CommandType.SIGNUP))) {
-            vBox.getChildren().add(1, signUpError);
+            vBox.getChildren().add(0, signUpError);
         } else
             controller.displayHome();
         usernameField.clear();
@@ -49,7 +49,7 @@ public class StartPageGraphics extends DirectoryGraphics {
     private void runLogin() {
         vBox.getChildren().removeAll(loginError, signUpError);
         if (!runner.run(new Command(CommandType.LOGIN))) {
-            vBox.getChildren().add(1, loginError);
+            vBox.getChildren().add(0, loginError);
         } else
             controller.displayHome();
         usernameField.clear();
@@ -59,7 +59,7 @@ public class StartPageGraphics extends DirectoryGraphics {
 
     @Override
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(StartPageGraphics.class.getResource("/fxml/startpage.fxml"));
+        return new FXMLLoader(StartPageGraphics.class.getResource("/fxml/startPage.fxml"));
     }
 
     @Override

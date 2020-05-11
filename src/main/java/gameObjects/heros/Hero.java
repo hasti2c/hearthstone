@@ -10,6 +10,10 @@ import directories.game.PlayGround;
 import gameObjects.*;
 import cli.*;
 import cli.Console;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import javax.imageio.stream.ImageInputStream;
 
 public class Hero implements Printable {
     private ArrayList<Deck> decks = new ArrayList<>();
@@ -18,7 +22,9 @@ public class Hero implements Printable {
     private final String name;
     private final HeroClass heroClass;
     private Player player;
+    private HeroPower heroPower;
     private HeroDirectory directory;
+    private Image gameImage;
 
     //TODO default hero deck
     public Hero(Player player, HeroClass heroClass) {
@@ -27,6 +33,18 @@ public class Hero implements Printable {
         this.name = heroClass.toString().toLowerCase();
         if (heroClass == HeroClass.WARLOCK)
             this.health = 35;
+        //TODO actual hero powers
+        this.heroPower = new HeroPower(name + " hero power", 2, this);
+        configGameImage();
+    }
+
+    private void configGameImage() {
+        try {
+            FileInputStream input = new FileInputStream("src/main/resources/assets/heros/game/" + name + ".png");
+            gameImage = new Image(input);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getHealth() {
@@ -44,9 +62,7 @@ public class Hero implements Printable {
     public Hero clone() {
         Hero h = new Hero(player, heroClass);
         for (Deck d : decks)
-            h.addDeck(d.clone(h));
-//        for (Card c : heroDeck)
-//            h.addCard(c.clone());
+            h.decks.add(d.clone(h));
         h.health = health;
         return h;
     }
@@ -89,48 +105,9 @@ public class Hero implements Printable {
         return currentDeck;
     }
 
-    public String[] normalPrint(Player currentPlayer) {
-        String[] ret = new String[3];
-        if (currentPlayer.getCurrentDirectory() instanceof Collections && this == currentPlayer.getCurrentHero()) {
-            ret[0] = Console.GREEN;
-            ret[2] = Console.RESET;
-        }
-        ret[1] = toString();
-        return ret;
-    }
-
-    public String[][] longPrint(Player currentPlayer) {
-        String[][] ret = new String[16][3];
-        for (int i = 0; i < 16; i++)
-            switch (i) {
-                case 0:
-                    if (currentPlayer.getCurrentDirectory() instanceof Collections && this == currentPlayer.getCurrentHero()) {
-                        ret[i][0] = Console.GREEN;
-                        ret[i][1] = "current hero";
-                        ret[i][2] = Console.RESET;
-                    } else
-                        ret[i][1] = "";
-                    break;
-                case 1:
-                    ret[i][0] = Console.LIGHT_PINK;
-                    ret[i][1] = toString();
-                    ret[i][2] = Console.RESET;
-                    break;
-                case 2:
-                    ret[i][1] = "hero";
-                    break;
-                case 4:
-                    ret[i][1] = decks.size() + "";
-                    break;
-                case 7:
-                    ret[i][1] = health + "";
-            }
-        return ret;
-    }
-
     private void addDeck(Deck deck) {
-        player.addDeckToAll(deck);
         decks.add(deck);
+        player.addDeckToAll(deck);
     }
 
     public boolean addNewDeck(String name) {
@@ -168,5 +145,52 @@ public class Hero implements Printable {
 
     public void setDirectory(HeroDirectory directory) {
         this.directory = directory;
+    }
+
+    public HeroPower getHeroPower() {
+        return heroPower;
+    }
+
+    public Image getGameImage() {
+        return gameImage;
+    }
+
+    public String[] normalPrint(Player currentPlayer) {
+        String[] ret = new String[3];
+        if (currentPlayer.getCurrentDirectory() instanceof Collections && this == currentPlayer.getCurrentHero()) {
+            ret[0] = Console.GREEN;
+            ret[2] = Console.RESET;
+        }
+        ret[1] = toString();
+        return ret;
+    }
+
+    public String[][] longPrint(Player currentPlayer) {
+        String[][] ret = new String[16][3];
+        for (int i = 0; i < 16; i++)
+            switch (i) {
+                case 0:
+                    if (currentPlayer.getCurrentDirectory() instanceof Collections && this == currentPlayer.getCurrentHero()) {
+                        ret[i][0] = Console.GREEN;
+                        ret[i][1] = "current hero";
+                        ret[i][2] = Console.RESET;
+                    } else
+                        ret[i][1] = "";
+                    break;
+                case 1:
+                    ret[i][0] = Console.LIGHT_PINK;
+                    ret[i][1] = toString();
+                    ret[i][2] = Console.RESET;
+                    break;
+                case 2:
+                    ret[i][1] = "hero";
+                    break;
+                case 4:
+                    ret[i][1] = decks.size() + "";
+                    break;
+                case 7:
+                    ret[i][1] = health + "";
+            }
+        return ret;
     }
 }

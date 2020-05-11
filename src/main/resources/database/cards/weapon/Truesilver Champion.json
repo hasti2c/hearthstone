@@ -1,0 +1,11 @@
+{
+  "name": "Truesilver Champion",
+  "description": "Whenever your hero attacks, restore 2 health to it.",
+  "mana": 4,
+  "durability": 2,
+  "attack": 4,
+  "price": 25,
+  "heroClass": "NEUTRAL",
+  "rarity": "RARE",
+  "cardType": "WEAPON"
+}

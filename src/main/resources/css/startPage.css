@@ -1,0 +1,22 @@
+#startPage-bg {
+  -fx-background-image: url("../assets/backgrounds/startPage.jpg");
+}
+
+.outline.label .text {
+  -fx-stroke: black;
+  -fx-stroke-width: 0.8;
+  -fx-font-family: "DIN Alternate";
+  -fx-font-size: 30;
+}
+
+.error.label {
+  -fx-background-color: "#282424";
+  -fx-background-radius: 10;
+  -fx-border-color: firebrick;
+  -fx-border-radius: 10;
+  -fx-font-family: Arial;
+}
+
+.text-field {
+  -fx-font-size: 15;
+}

@@ -4,25 +4,26 @@ import controllers.commands.*;
 import gameObjects.cards.*;
 import gameObjects.heros.*;
 import graphics.*;
-import javafx.scene.control.*;
-import javafx.scene.paint.*;
+import javafx.scene.image.ImageView;
 
 public class HeroCardsGraphics extends CardsListGraphics {
     private HeroClass heroClass = null;
 
-    HeroCardsGraphics(GraphicsController controller, CommandRunner runner) {
+    HeroCardsGraphics(HeroClass heroClass, GraphicsController controller, CommandRunner runner) {
         super(controller, runner);
-    }
-
-    void setHeroClass(HeroClass heroClass) {
+        border.setId("heroCards-bg");
         this.heroClass = heroClass;
+        initTopHBox();
     }
 
-    protected Label getNode(Card card) {
-        Label name = new Label(card.toString());
-        if (notOwned.contains(card))
-            name.setTextFill(Color.LIGHTGRAY);
-        return name;
+    protected void initTopHBox() {
+        super.initTopHBox();
+        for (int i = 1; i < 5; i++)
+            topHBox.getChildren().get(i).setVisible(false);
+    }
+
+    protected ImageView getNode(Card card) {
+        return card.getImageView(-1, 300);
     }
 
     @Override

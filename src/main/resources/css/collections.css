@@ -1,0 +1,12 @@
+#collections-bg {
+  -fx-background-image: url("../assets/backgrounds/purple-background.png");
+}
+
+#grid .label {
+  -fx-font-size: 20;
+  -fx-font-family: "Arial Rounded";
+}
+
+#grid .button {
+  -fx-font-size: 20;
+}

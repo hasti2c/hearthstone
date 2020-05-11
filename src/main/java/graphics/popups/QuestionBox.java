@@ -14,16 +14,11 @@ public class QuestionBox extends PopupBox {
     private Button yesButton, noButton;
 
     public QuestionBox(String text, String yesText, String noText) {
-        load();
         label.setText(text);
         yesButton.setText(yesText);
         noButton.setText(noText);
-        config();
-    }
-
-    protected void configElements() {
         yesButton.setOnAction(e -> {
-            text = textField.getText();
+            this.text = textField.getText();
             buttonResponse = true;
             close();
         });

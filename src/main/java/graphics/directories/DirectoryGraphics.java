@@ -39,7 +39,7 @@ public abstract class DirectoryGraphics {
         loader.setController(this);
         try {
                 Parent root = loader.load();
-                scene = new Scene(root, 1280, 840);
+                scene = new Scene(root, 1280, 800);
         } catch (IOException e) {
                 e.printStackTrace();
         }

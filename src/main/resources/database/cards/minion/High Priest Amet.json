@@ -1,0 +1,11 @@
+{
+  "name": "High Priest Amet",
+  "description": "Whenever you summon a minion, set its Health equal to this minion's.",
+  "mana": 4,
+  "HP": 7,
+  "attack": 2,
+  "price": 100,
+  "heroClass": "PRIEST",
+  "rarity": "LEGENDARY",
+  "cardType": "MINION"
+}

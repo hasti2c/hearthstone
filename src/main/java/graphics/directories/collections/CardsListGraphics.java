@@ -17,15 +17,23 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 
+import javax.swing.text.html.Option;
+
 public abstract class CardsListGraphics extends DirectoryGraphics {
     private Map<String, Boolean> options;
     protected ArrayList<Card> owned = new ArrayList<>(), notOwned = new ArrayList<>();
-    private OptionsGraphics optionsGraphics;
+    protected OptionsGraphics optionsGraphics;
     private SortType sortType = SortType.OWNED_FIRST;
+    @FXML
+    protected BorderPane border;
+    @FXML
+    protected HBox topHBox;
     @FXML
     private Button backButton, optionsButton;
     @FXML
     private GridPane grid;
+    @FXML
+    protected ToggleButton sellModeButton;
 
     //TODO read options from json
     CardsListGraphics(GraphicsController controller, CommandRunner runner) {
@@ -37,7 +45,6 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
         optionsButton.setOnAction(e -> optionsGraphics.display());
 
         options = new HashMap<>(Map.of("Owned", true, "Not Owned", true, "Unlocked", true, "Locked", false, "Minion", true, "Spell", true, "Weapon", true));
-        optionsGraphics = new OptionsGraphics();
     }
 
     protected void config() {
@@ -50,6 +57,10 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
             if (!owned.contains(c))
                 notOwned.add(c);
         arrangeCards();
+    }
+
+    protected void initTopHBox() {
+        optionsGraphics = new OptionsGraphics();
     }
 
     private void clear() {
@@ -140,18 +151,20 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
         private ToggleGroup sort;
         @FXML
         private Button doneButton, cancelButton;
+        @FXML
+        private CheckBox ownedBox, notOwnedBox;
 
         OptionsGraphics() {
             load();
             clear();
             doneButton.setOnAction(e -> hide(true));
             cancelButton.setOnAction(e -> hide(false));
-            initChangeableVBox();
             initSort();
         }
 
         protected void config() {
             clear();
+            configChangeableVBox();
             configCheckBoxes();
         }
 
@@ -172,7 +185,7 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
             stage.initModality(Modality.APPLICATION_MODAL);
         }
 
-        private void initChangeableVBox() {
+        private void configChangeableVBox() {
             CardsListGraphics parent = CardsListGraphics.this;
             for (HeroClass hc : HeroClass.values())
                 addCheckBox(GameController.toProperCase(hc.toString()), parent.validHero(hc), parent.validHero(hc));
@@ -249,6 +262,21 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
             }
             stage.hide();
             CardsListGraphics.this.config();
+        }
+
+        protected void fixOwned(boolean disable, boolean selected) {
+            ownedBox.setSelected(selected);
+            ownedBox.setDisable(disable);
+            tmpOptions.replace("Owned", selected);
+            options.replace("Owned", selected);
+        }
+
+
+        protected void fixNotOwned(boolean disable, boolean selected) {
+            notOwnedBox.setSelected(selected);
+            notOwnedBox.setDisable(disable);
+            tmpOptions.replace("Not Owned", selected);
+            options.replace("Not Owned", selected);
         }
     }
 }

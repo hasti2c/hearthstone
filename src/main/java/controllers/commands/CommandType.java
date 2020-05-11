@@ -19,5 +19,6 @@ public enum CommandType {
     STATUS,
     DRAW,
     PLAY,
+    HEROPOWER,
     ENDTURN
 }

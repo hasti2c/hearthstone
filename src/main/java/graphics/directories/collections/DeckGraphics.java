@@ -4,20 +4,36 @@ import controllers.commands.*;
 import gameObjects.cards.*;
 import gameObjects.heros.*;
 import graphics.*;
+import graphics.popups.AlertBox;
 import javafx.geometry.*;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 
 public class DeckGraphics extends CardsListGraphics {
     private Deck deck;
+    private Label deckCount;
 
-    DeckGraphics(GraphicsController controller, CommandRunner runner) {
+    DeckGraphics(Deck deck, GraphicsController controller, CommandRunner runner) {
         super(controller, runner);
+        border.setId("deck-bg");
+        this.deck = deck;
+        initTopHBox();
     }
 
-    void setDeck(Deck deck) {
-        this.deck = deck;
+    protected void initTopHBox() {
+        super.initTopHBox();
+        for (int i = 2; i < 5; i++)
+            topHBox.getChildren().get(i).setVisible(false);
+        Node node = topHBox.getChildren().get(1);
+        assert node instanceof Label;
+        deckCount = (Label) node;
+    }
+
+    protected void config() {
+        super.config();
+        deckCount.setText(deck.getCards().size() + "/" + controller.getCurrentPlayer().getDeckCap());
     }
 
     public Deck getDeck() {
@@ -36,51 +52,50 @@ public class DeckGraphics extends CardsListGraphics {
 
     protected VBox getNode(Card card) {
         VBox vBox = new VBox();
-        vBox.setAlignment(Pos.CENTER);
-        vBox.setSpacing(20);
+        vBox.setAlignment(Pos.TOP_CENTER);
+        vBox.setPadding(new Insets(5, 0, 5, 0));
+        vBox.setSpacing(5);
 
-        if (notOwned.contains(card)) {
-            Label name = new Label(card.toString());
-            name.setTextFill(Color.LIGHTGRAY);
-            vBox.getChildren().add(name);
-        } else {
-            Label name = new Label(card.toString());
-            if (!deck.getCards().contains(card))
-                name.setTextFill(Color.DARKGRAY);
+
+        vBox.getChildren().add(card.getImageView(-1, 300));
+        if (owned.contains(card)) {
             int cnt = 0;
             for (Card c : deck.getCards())
                 if (c == card)
                     cnt++;
             Label count = new Label(cnt + "");
+            count.getStyleClass().add("add-remove");
 
             HBox hBox = new HBox();
             hBox.setAlignment(Pos.CENTER);
             hBox.setSpacing(20);
+            hBox.setPadding(new Insets(5));
 
             Button removeButton = new Button("-");
             Button addButton = new Button("+");
             removeButton.setOnAction(e -> removeCard(card));
             addButton.setOnAction(e -> addCard(card));
+            removeButton.getStyleClass().add("add-remove");
+            addButton.getStyleClass().add("add-remove");
 
-            hBox.getChildren().addAll(name, removeButton, count, addButton);
+            hBox.getChildren().addAll(removeButton, count, addButton);
             if (cnt == 0)
                 removeButton.setVisible(false);
             else if (cnt == 2)
                 addButton.setVisible(false);
-
-            vBox.getChildren().addAll(name, hBox);
+            vBox.getChildren().add(hBox);
         }
-
         return vBox;
     }
 
     private void removeCard(Card card) {
-        System.out.println(runner.run(new Command(CommandType.REMOVE, card.toString())));
+        runner.run(new Command(CommandType.REMOVE, card.toString()));
         config();
     }
 
     private void addCard(Card card) {
-        runner.run(new Command(CommandType.ADD, card.toString()));
+        if (!runner.run(new Command(CommandType.ADD, card.toString())))
+            (new AlertBox("This card couldn't be added to the deck. This deck is full.", Color.RED, "Okay")).display();
         config();
     }
 
