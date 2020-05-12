@@ -5,7 +5,6 @@ import javafx.application.*;
 import javafx.stage.*;
 
 public class HearthStone extends Application {
-    //TODO separator
     private GameController game;
     private GraphicsController graphics;
 

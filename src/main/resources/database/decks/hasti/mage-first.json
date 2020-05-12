@@ -1,14 +1,6 @@
 {
-  "cardNames": [
-    "Dreadscale",
-    "Dreadscale",
-    "senjin shieldmasta"
-  ],
-  "uses": [
-    0,
-    0,
-    0
-  ],
+  "cardNames": [],
+  "uses": [],
   "wins": 0,
   "games": 0
 }

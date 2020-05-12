@@ -4,7 +4,13 @@ import controllers.commands.*;
 import gameObjects.cards.*;
 import gameObjects.heros.*;
 import graphics.*;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 
 public class HeroCardsGraphics extends CardsListGraphics {
     private HeroClass heroClass = null;
@@ -16,14 +22,20 @@ public class HeroCardsGraphics extends CardsListGraphics {
         initTopHBox();
     }
 
-    protected void initTopHBox() {
-        super.initTopHBox();
-        for (int i = 1; i < 5; i++)
-            topHBox.getChildren().get(i).setVisible(false);
-    }
+    protected Node getNode(Card card) {
+        ImageView imageView = card.getImageView(-1, 300);
+        if (owned.contains(card))
+            return imageView;
 
-    protected ImageView getNode(Card card) {
-        return card.getImageView(-1, 300);
+        Button buy = new Button("View In Store");
+        buy.setOnAction(e -> controller.viewCardInStore(card));
+
+        VBox vBox = new VBox();
+        vBox.setAlignment(Pos.TOP_CENTER);
+        vBox.setPadding(new Insets(5, 0, 5, 0));
+        vBox.setSpacing(5);
+        vBox.getChildren().addAll(imageView, buy);
+        return vBox;
     }
 
     @Override
@@ -38,4 +50,8 @@ public class HeroCardsGraphics extends CardsListGraphics {
 
     @Override
     protected void runCd() {}
+
+    protected FXMLLoader getLoader() {
+        return new FXMLLoader(HeroCardsGraphics.class.getResource("/fxml/directories/heroCards.fxml"));
+    }
 }

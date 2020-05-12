@@ -37,6 +37,6 @@ public class QuestionBox extends PopupBox {
     }
 
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(QuestionBox.class.getResource("/fxml/questionBox.fxml"));
+        return new FXMLLoader(QuestionBox.class.getResource("/fxml/popups/questionBox.fxml"));
     }
 }

@@ -1,6 +1,7 @@
 package directories.game;
 
 import directories.*;
+import gameObjects.Game;
 import gameObjects.Player;
 import gameObjects.cards.Card;
 
@@ -19,5 +20,9 @@ public class GameCards extends Directory {
         clear();
         for (Card c : cards)
             addContent(c);
+    }
+
+    public Game getGame() {
+        return parent.getGame();
     }
 }

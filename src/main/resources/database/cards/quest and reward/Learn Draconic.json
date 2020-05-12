@@ -1,0 +1,9 @@
+{
+  "name": "Learn Draconic",
+  "description": "Spend 8 Mana on spells. Reward: Summon a 6/6 Dragon.",
+  "mana": 1,
+  "price": 10,
+  "heroClass": "NEUTRAL",
+  "rarity": "COMMON",
+  "cardType": "SPELL"
+}

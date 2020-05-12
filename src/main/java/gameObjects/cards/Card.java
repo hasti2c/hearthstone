@@ -20,8 +20,6 @@ public abstract class Card implements Printable {
     private CardType cardType;
     private transient Image image;
 
-    //TODO not gson
-
     public String toString() {
         return this.name;
     }

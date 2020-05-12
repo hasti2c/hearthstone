@@ -21,8 +21,6 @@ public class Console {
     private static final String BLACK = "\u001B[30m";
     private static final String BLACK_BG = "\u001B[40m";
 
-    //TODO exception for input errors
-
     public Console (GameController controller) {
         this.controller = controller;
         this.runner = new CommandRunner(controller, this);
@@ -43,7 +41,6 @@ public class Console {
         }
     }
 
-    //TODO quit anywhere
     private void signUpOrLogin () {
         if (confirm("Do you already have an account?"))
             parseAndRun("login");

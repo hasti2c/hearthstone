@@ -1,0 +1,20 @@
+USER: hasti
+PASSWORD: password
+CREATED_AT:  2020/05/13 01:04:49 
+
+signup 2020/05/13 01:04:49 
+login 2020/05/13 01:04:49 
+cd 2020/05/13 01:04:49 ~
+cd 2020/05/13 01:04:52 collections
+cd 2020/05/13 01:04:58 collections
+cd 2020/05/13 01:04:59 ~
+cd 2020/05/13 01:05:00 collections
+cd 2020/05/13 01:05:06 mage
+add 2020/05/13 01:05:06 deck: first -> hero: mage
+cd 2020/05/13 01:05:06 collections
+select 2020/05/13 01:05:08 hero: mage
+cd 2020/05/13 01:05:08 mage
+select 2020/05/13 01:05:08 deck: first
+cd 2020/05/13 01:05:08 first
+cd 2020/05/13 01:05:08 collections
+cd 2020/05/13 01:05:09 first

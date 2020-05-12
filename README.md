@@ -4,6 +4,7 @@
 - This project might not work properly on windows systems. It would be better if it was tested on a Unix-based operating system such as Linux or MacOS.
 - The cli interface also works for this phase, although the commands might not be very easy to guess! :D 
 - To test the main version (with graphics) you can run the Hearthstone class but to test the cli you can run HearthstoneConsole. (It's nothing special.)
+- Because of the volume of the files, assets couldn't be uploaded, but they can be found on [https://github.com/hasti2c/hearthstone/tree/phase2](phase2 branch on my Github repository).
 
 
 ## Explanation 

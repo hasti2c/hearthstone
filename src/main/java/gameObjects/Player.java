@@ -18,30 +18,39 @@ public class Player {
     private ArrayList<Hero> allHeros = new ArrayList<>();
     private ArrayList<Card> allCards = new ArrayList<>();
     private Home home = new Home(this);
+    private GameController controller;
+    private Game game;
     private Directory currentDirectory;
     private Writer logWriter;
     private static Player defaultPlayer;
 
-    public Player(JsonReader jsonReader) {
+    public Player(GameController controller, JsonReader jsonReader) {
+        this.controller = controller;
         config(jsonReader);
     }
 
-    public Player(String username) throws IOException {
+    public Player(GameController controller, String username) throws IOException {
+        this.controller = controller;
         config(new JsonReader(new FileReader("src/main/resources/database/players/" + username + ".json")));
         home = new Home(this);
         currentDirectory = home;
-        logWriter = new FileWriter(this.getLogPath());
+        logWriter = new FileWriter(this.getLogPath(), true);
     }
 
-    public Player(GameController game, String username, String password) {
+    public Player(GameController controller, String username, String password) {
         this.username = username;
         this.password = password;
-        id = game.getPlayerCount();
+        this.controller = controller;
+        id = controller.getPlayerCount();
         balance = defaultPlayer.balance;
+        deckCap = defaultPlayer.deckCap;
 
         allHeros = new ArrayList<>();
         for (Hero h : defaultPlayer.allHeros)
             addHero(new Hero(this, h.getHeroClass()));
+        allDecks = new ArrayList<>();
+        for (Deck d : defaultPlayer.allDecks)
+            addDeckToAll(new Deck(d));
 
         if (defaultPlayer.getCurrentHero() != null)
             for (Hero h : allHeros)
@@ -127,8 +136,8 @@ public class Player {
         }
     }
 
-    public static void configDefault(JsonReader jsonReader) {
-        defaultPlayer = new Player(jsonReader);
+    public static void configDefault(GameController controller, JsonReader jsonReader) {
+        defaultPlayer = new Player(controller, jsonReader);
     }
 
     private Deck createDeck(String name) {
@@ -204,6 +213,15 @@ public class Player {
         defaultPlayer.updateJson(jsonWriter);
     }
 
+    public void log(String line) {
+        try {
+            logWriter.write(line + "\n");
+            logWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void log(String type, String details) {
         try {
             logWriter.write(type + " " + GameController.getTime() + " " + details + "\n");
@@ -225,12 +243,15 @@ public class Player {
         return home;
     }
 
-    public Game getGame() {
-        if (!home.hasPlayGround())
+    public Game getNewGame() {
+        if (currentHero == null || currentHero.getCurrentDeck() == null)
             return null;
-        Directory pg = home.getChildren().get(0);
-        assert pg instanceof PlayGround;
-        return ((PlayGround) pg).getGame();
+        this.game = new Game(controller, currentHero.getCurrentDeck());
+        return game;
+    }
+
+    public Game getGame() {
+        return game;
     }
 
     public Directory getCurrentDirectory() {
@@ -269,8 +290,12 @@ public class Player {
         return "src/main/resources/database/players/" + username + ".json";
     }
 
+    public String getDeckJsonPath() {
+        return "src/main/resources/database/decks/" + username;
+    }
+
     public String getLogPath() {
-        return "src/main/resources/logs/" + username + "-" + id + ".txt";
+        return "src/main/resources/logs/players/" + username + "-" + id + ".txt";
     }
 
     public void setCurrentHero(Hero currentHero) {
@@ -328,5 +353,16 @@ public class Player {
         if (currentHero == null)
             return null;
         return currentHero.getCurrentDeck();
+    }
+
+    public boolean deleteDeckDirectory() {
+        File dir = new File(getDeckJsonPath());
+        File[] files = dir.listFiles();
+        assert files != null;
+
+        boolean ret = true;
+        for (File f : files)
+            ret &= f.delete();
+        return ret && dir.delete();
     }
 }

@@ -21,14 +21,15 @@
    <center>
       <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="ALWAYS" BorderPane.alignment="TOP_CENTER">
          <content>
-            <VBox alignment="TOP_CENTER" spacing="60.0">
+            <VBox alignment="TOP_CENTER">
                <children>
-                  <HBox fx:id="topHBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                  <HBox fx:id="topHBox1" alignment="CENTER" prefHeight="70.0" prefWidth="1162.0" spacing="20.0">
                      <children>
                         <Button fx:id="allButton" mnemonicParsing="false" text="View All Cards" />
                         <Button fx:id="neutralButton" mnemonicParsing="false" text="View Neutral Cards" />
                      </children>
                   </HBox>
+                  <HBox fx:id="topHBox2" alignment="CENTER" prefHeight="70.0" prefWidth="1162.0" spacing="20.0" />
                   <GridPane fx:id="grid" alignment="TOP_CENTER" hgap="20.0" prefHeight="30.0" prefWidth="1054.0" vgap="40.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.18080139160156" minWidth="10.0" prefWidth="83.48721313476562" />
@@ -50,7 +51,7 @@
                         <Label text="Options" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                      </children>
                      <VBox.margin>
-                        <Insets left="50.0" right="50.0" />
+                        <Insets left="50.0" right="50.0" top="60.0" />
                      </VBox.margin>
                   </GridPane>
                   <Button fx:id="addButton" mnemonicParsing="false" text="Add Deck" />
@@ -72,7 +73,7 @@
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0">
                      <image>
-                        <Image url="@../assets/controls/home-button.png" />
+                        <Image url="@../../assets/controls/home-button.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -118,7 +119,7 @@
       </HBox>
    </top>
    <stylesheets>
-      <URL value="@../css/defaults.css" />
-      <URL value="@../css/collections.css" />
+      <URL value="@../../css/defaults.css" />
+      <URL value="@../../css/collections.css" />
    </stylesheets>
 </BorderPane>

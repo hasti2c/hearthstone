@@ -55,11 +55,10 @@ public class StartPageGraphics extends DirectoryGraphics {
         usernameField.clear();
         passwordField.clear();
     }
-    //TODO on action methods in scene builder
 
     @Override
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(StartPageGraphics.class.getResource("/fxml/startPage.fxml"));
+        return new FXMLLoader(StartPageGraphics.class.getResource("/fxml/directories/startPage.fxml"));
     }
 
     @Override

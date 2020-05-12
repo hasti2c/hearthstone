@@ -1,0 +1,24 @@
+USER: diba
+PASSWORD: dibadiba
+CREATED_AT:  2020/05/13 01:12:16 
+
+signup 2020/05/13 01:12:16 
+login 2020/05/13 01:12:16 
+cd 2020/05/13 01:12:16 ~
+cd 2020/05/13 01:12:21 collections
+cd 2020/05/13 01:12:25 collections
+cd 2020/05/13 01:12:32 warlock
+add 2020/05/13 01:12:32 deck: first -> hero: warlock
+cd 2020/05/13 01:12:32 collections
+select 2020/05/13 01:12:33 hero: warlock
+cd 2020/05/13 01:12:33 warlock
+select 2020/05/13 01:12:33 deck: first
+cd 2020/05/13 01:12:33 first
+cd 2020/05/13 01:12:33 collections
+cd 2020/05/13 01:12:33 first
+add 2020/05/13 01:12:35 card: Dreadscale -> deck: warlock-first
+add 2020/05/13 01:12:35 card: Dreadscale -> deck: warlock-first
+add 2020/05/13 01:12:36 card: voidwalker -> deck: warlock-first
+add 2020/05/13 01:12:37 card: Blood Fury -> deck: warlock-first
+cd 2020/05/13 01:12:39 ~
+logout 2020/05/13 01:12:40 

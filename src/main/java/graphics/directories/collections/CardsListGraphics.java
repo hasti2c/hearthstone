@@ -1,6 +1,5 @@
 package graphics.directories.collections;
 
-import java.io.*;
 import java.util.*;
 import controllers.commands.*;
 import controllers.game.*;
@@ -9,42 +8,51 @@ import gameObjects.cards.*;
 import gameObjects.heros.*;
 import graphics.*;
 import graphics.directories.*;
+import graphics.popups.PopupBox;
 import javafx.fxml.*;
 import javafx.geometry.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.input.*;
 import javafx.scene.layout.*;
-import javafx.stage.*;
-
-import javax.swing.text.html.Option;
+import javafx.util.Pair;
 
 public abstract class CardsListGraphics extends DirectoryGraphics {
     private Map<String, Boolean> options;
     protected ArrayList<Card> owned = new ArrayList<>(), notOwned = new ArrayList<>();
     protected OptionsGraphics optionsGraphics;
+    private SearchGraphics searchGraphics;
     private SortType sortType = SortType.OWNED_FIRST;
+    private String searchText = "";
+    private Pair<Integer, Integer> manaRange, healthRange, attackRange;
     @FXML
     protected BorderPane border;
     @FXML
-    protected HBox topHBox;
+    private Button backButton, searchButton;
     @FXML
-    private Button backButton, optionsButton;
+    private MenuItem optionsButton, advancedSearchButton;
     @FXML
     private GridPane grid;
     @FXML
-    protected ToggleButton sellModeButton;
+    private TextField searchField;
 
-    //TODO read options from json
     CardsListGraphics(GraphicsController controller, CommandRunner runner) {
         super(controller, runner);
-        backButton.setOnAction(e -> {
+        if (backButton != null)
+            backButton.setOnAction(e -> {
             CollectionsGraphics collections = new CollectionsGraphics(controller, runner);
             collections.display();
         });
         optionsButton.setOnAction(e -> optionsGraphics.display());
+        searchButton.setOnAction(e -> {
+            searchText = searchField.getText();
+            config();
+        });
+        advancedSearchButton.setOnAction(e -> searchGraphics.display());
 
         options = new HashMap<>(Map.of("Owned", true, "Not Owned", true, "Unlocked", true, "Locked", false, "Minion", true, "Spell", true, "Weapon", true));
+        manaRange = new Pair<>(null, null);
+        healthRange = new Pair<>(null, null);
+        attackRange = new Pair<>(null, null);
     }
 
     protected void config() {
@@ -61,6 +69,7 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
 
     protected void initTopHBox() {
         optionsGraphics = new OptionsGraphics();
+        searchGraphics = new SearchGraphics();
     }
 
     private void clear() {
@@ -86,10 +95,10 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
     private void arrangeCards() {
         ArrayList<Card> cards = new ArrayList<>();
         for (Card c : owned)
-            if (options.get("Owned") && selectedCard(c) && validCard(c))
+            if (options.get("Owned") && shouldShow(c))
                 cards.add(c);
         for (Card c : notOwned)
-            if (options.get("Not Owned") && selectedCard(c) && validCard(c))
+            if (options.get("Not Owned") && shouldShow(c))
                 cards.add(c);
         cards.sort(this::compare);
 
@@ -98,10 +107,16 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
                 addColumn();
             Node n = getNode(cards.get(i));
             grid.add(n, i / 2, i % 2);
-            GridPane.setValignment(n, VPos.CENTER);
+            GridPane.setValignment(n, VPos.TOP);
             GridPane.setHalignment(n, HPos.CENTER);
         }
     }
+
+    private boolean shouldShow(Card card) {
+        return validCard(card) && selectedCard(card) && searchedCard(card) && advancedSearchedCard(card);
+    }
+
+    protected abstract boolean validCard(Card card);
 
     private boolean selectedCard(Card card) {
         boolean ret = options.get("Unlocked");
@@ -116,17 +131,49 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
         return ret;
     }
 
-    protected abstract boolean validCard(Card card);
+    private boolean searchedCard(Card card) {
+        if (searchText == null || "".equals(searchText))
+            return true;
+        String cardName = card.toString();
+        for (int i = 1; i <= cardName.length(); i++)
+            if (searchText.equalsIgnoreCase(cardName.substring(0, i)))
+                return true;
+        return false;
+    }
+
+    private boolean advancedSearchedCard(Card card) {
+        boolean ret = inRange(card.getMana(), manaRange);
+        if (card instanceof Minion) {
+            ret &= inRange(((Minion) card).getHP(), healthRange);
+            ret &= inRange(((Minion) card).getAttack(), attackRange);
+        } else if (card instanceof Weapon) {
+            ret &= inRange(((Weapon) card).getDurability(), healthRange);
+            ret &= inRange(((Weapon) card).getAttack(), attackRange);
+        }
+        return ret;
+    }
+
+    private boolean inRange(int n, Pair<Integer, Integer> range) {
+        return (range.getKey() == null || range.getKey() <= n) && (range.getValue() == null || n <= range.getValue());
+    }
 
     protected abstract Node getNode(Card card);
 
     protected abstract void runCd();
 
-    protected FXMLLoader getLoader() {
-        return new FXMLLoader(CardsListGraphics.class.getResource("/fxml/cardsList.fxml"));
+    protected abstract boolean validHero(HeroClass hc);
+
+    @Override
+    public void display() {
+        searchText = null;
+        super.display();
     }
 
-    protected abstract boolean validHero(HeroClass hc);
+    public void search(String searchText) {
+        searchField.setText(searchText);
+        this.searchText = searchText;
+        config();
+    }
 
     private int compare(Card c1, Card c2) {
         return switch (sortType) {
@@ -138,8 +185,7 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
         };
     }
 
-    public class OptionsGraphics {
-        private Stage stage;
+    public class OptionsGraphics extends PopupBox {
         private Map<String, Boolean> tmpOptions;
         private SortType tmpSortType;
         private ArrayList<CheckBox> checkBoxes;
@@ -155,11 +201,10 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
         private CheckBox ownedBox, notOwnedBox;
 
         OptionsGraphics() {
-            load();
-            clear();
-            doneButton.setOnAction(e -> hide(true));
-            cancelButton.setOnAction(e -> hide(false));
+            doneButton.setOnAction(e -> close(true));
+            cancelButton.setOnAction(e -> close(false));
             initSort();
+            config();
         }
 
         protected void config() {
@@ -173,16 +218,6 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
             changeableVBox.getChildren().clear();
             tmpOptions = new HashMap<>(options);
             tmpSortType = sortType;
-        }
-
-        private void configStage(Scene scene) {
-            scene.setOnKeyPressed(e -> {
-            if (KeyCode.ENTER.equals(e.getCode()))
-                hide(true);
-            });
-            stage = new Stage();
-            stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
         }
 
         private void configChangeableVBox() {
@@ -239,28 +274,17 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
             });
         }
 
-        private void load() {
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/options.fxml"));
-            loader.setController(this);
-            try {
-                Parent root = loader.load();
-                configStage(new Scene(root));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        @Override
+        protected FXMLLoader getLoader() {
+            return new FXMLLoader(this.getClass().getResource("/fxml/popups/options.fxml"));
         }
 
-        void display() {
-            config();
-            stage.showAndWait();
-        }
-
-        private void hide(boolean save) {
+        private void close(boolean save) {
             if (save) {
                 options = tmpOptions;
                 sortType = tmpSortType;
             }
-            stage.hide();
+            super.close();
             CardsListGraphics.this.config();
         }
 
@@ -271,12 +295,75 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
             options.replace("Owned", selected);
         }
 
-
         protected void fixNotOwned(boolean disable, boolean selected) {
             notOwnedBox.setSelected(selected);
             notOwnedBox.setDisable(disable);
             tmpOptions.replace("Not Owned", selected);
             options.replace("Not Owned", selected);
+        }
+    }
+
+    public class SearchGraphics extends PopupBox {
+        @FXML
+        private Button doneButton, cancelButton, clearMana, clearHealth, clearAttack;
+        @FXML
+        private TextField manaMin, manaMax, healthMin, healthMax, attackMin, attackMax;
+
+        SearchGraphics() {
+            doneButton.setOnAction(e -> close(true));
+            cancelButton.setOnAction(e -> close(false));
+
+            clearMana.setOnAction(e -> {
+                manaMin.setText(null);
+                manaMax.setText(null);
+            });
+            clearHealth.setOnAction(e -> {
+                healthMin.setText(null);
+                healthMax.setText(null);
+            });
+            clearAttack.setOnAction(e -> {
+                attackMin.setText(null);
+                attackMax.setText(null);
+            });
+        }
+
+        @Override
+        protected void config() {
+            if (manaRange.getKey() != null)
+            manaMin.setText(manaRange.getKey() + "");
+            if (manaRange.getValue() != null)
+            manaMax.setText(manaRange.getValue() + "");
+            if (healthRange.getKey() != null)
+            healthMin.setText(healthRange.getKey() + "");
+            if (healthRange.getValue() != null)
+            healthMax.setText(healthRange.getValue() + "");
+            if (attackRange.getKey() != null)
+            attackMin.setText(attackRange.getKey() + "");
+            if (attackRange.getValue() != null)
+            attackMax.setText(attackRange.getValue() + "");
+        }
+
+        private void close(boolean save) {
+            if (save) {
+                manaRange = new Pair<>(getInt(manaMin), getInt(manaMax));
+                healthRange = new Pair<>(getInt(healthMin), getInt(healthMax));
+                attackRange = new Pair<>(getInt(attackMin), getInt(attackMax));
+            }
+            super.close();
+            CardsListGraphics.this.config();
+        }
+
+        private Integer getInt(TextField field) {
+            try {
+                return Integer.parseInt(field.getText());
+            } catch (NumberFormatException e) {
+                return null;
+            }
+        }
+
+        @Override
+        protected FXMLLoader getLoader() {
+            return new FXMLLoader(SearchGraphics.class.getResource("/fxml/popups/search.fxml"));
         }
     }
 }

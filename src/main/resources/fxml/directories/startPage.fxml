@@ -13,7 +13,7 @@
 
 <VBox id="startPage-bg" fx:id="vBox" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" spacing="20.0" styleClass="background" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="signUpError" alignment="CENTER" styleClass="error" stylesheets="@../css/startPage.css" text="Your  sign up attempt was unsuccessful.&#10;Possible issues include:&#10;&#9;- Username is not available.&#10;&#9;- Username contains characters other than A-z, a-z, 0-9, . and _.&#10;&#9;- Username is less than 4 characters long.&#10;&#9;- Password is less than 8 characters long." textFill="FIREBRICK">
+      <Label fx:id="signUpError" alignment="CENTER" styleClass="error" stylesheets="@../../css/startPage.css" text="Your  sign up attempt was unsuccessful.&#10;Possible issues include:&#10;&#9;- Username is not available.&#10;&#9;- Username contains characters other than A-z, a-z, 0-9, . and _.&#10;&#9;- Username is less than 4 characters long.&#10;&#9;- Password is less than 8 characters long." textFill="FIREBRICK">
          <effect>
             <DropShadow />
          </effect>
@@ -24,7 +24,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="loginError" alignment="CENTER" styleClass="error" stylesheets="@../css/startPage.css" text="Your login attempt was unsuccessful.&#10;Possible issues include:&#10;&#9;- Username doesn't exist.&#10;&#9;- Password doesn't match username.&#10;" textFill="FIREBRICK">
+      <Label fx:id="loginError" alignment="CENTER" styleClass="error" stylesheets="@../../css/startPage.css" text="Your login attempt was unsuccessful.&#10;Possible issues include:&#10;&#9;- Username doesn't exist.&#10;&#9;- Password doesn't match username.&#10;" textFill="FIREBRICK">
          <effect>
             <DropShadow />
          </effect>
@@ -76,7 +76,7 @@
       <Insets bottom="300.0" />
    </padding>
    <stylesheets>
-      <URL value="@../css/startPage.css" />
-      <URL value="@../css/defaults.css" />
+      <URL value="@../../css/startPage.css" />
+      <URL value="@../../css/defaults.css" />
    </stylesheets>
 </VBox>

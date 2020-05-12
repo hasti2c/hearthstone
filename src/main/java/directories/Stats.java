@@ -30,4 +30,8 @@ public class Stats extends Directory {
         for (int i = 0; i < tmpContent.size() && i < 10; i++)
             content.add(tmpContent.get(i));
     }
+
+    public Game getGame() {
+        return null;
+    }
 }

@@ -1,3 +1,15 @@
 #playGround-bg {
   -fx-background-image: url("../assets/backgrounds/playGround.jpg");
 }
+
+.transparent-button {
+  -fx-background-color: transparent;
+  -fx-text-fill: black;
+  -fx-border-color: transparent;
+}
+
+#gameEventsScrollPane {
+  -fx-background-color: blanchedalmond;
+  -fx-border-width: 2;
+  -fx-border-color: maroon;
+}

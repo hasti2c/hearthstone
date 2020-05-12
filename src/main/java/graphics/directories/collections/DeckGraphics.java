@@ -5,6 +5,8 @@ import gameObjects.cards.*;
 import gameObjects.heros.*;
 import graphics.*;
 import graphics.popups.AlertBox;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.*;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -13,6 +15,7 @@ import javafx.scene.paint.*;
 
 public class DeckGraphics extends CardsListGraphics {
     private Deck deck;
+    @FXML
     private Label deckCount;
 
     DeckGraphics(Deck deck, GraphicsController controller, CommandRunner runner) {
@@ -20,15 +23,6 @@ public class DeckGraphics extends CardsListGraphics {
         border.setId("deck-bg");
         this.deck = deck;
         initTopHBox();
-    }
-
-    protected void initTopHBox() {
-        super.initTopHBox();
-        for (int i = 2; i < 5; i++)
-            topHBox.getChildren().get(i).setVisible(false);
-        Node node = topHBox.getChildren().get(1);
-        assert node instanceof Label;
-        deckCount = (Label) node;
     }
 
     protected void config() {
@@ -84,6 +78,10 @@ public class DeckGraphics extends CardsListGraphics {
             else if (cnt == 2)
                 addButton.setVisible(false);
             vBox.getChildren().add(hBox);
+        } else {
+            Button buy = new Button("View In Store");
+            buy.setOnAction(e -> controller.viewCardInStore(card));
+            vBox.getChildren().add(buy);
         }
         return vBox;
     }
@@ -102,5 +100,9 @@ public class DeckGraphics extends CardsListGraphics {
     @Override
     protected void runCd() {
         runner.run(new Command(CommandType.CD, "~/collections/" + deck.getHero().toString() + "/" + deck.toString()));
+    }
+
+    protected FXMLLoader getLoader() {
+        return new FXMLLoader(DeckGraphics.class.getResource("/fxml/directories/deck.fxml"));
     }
 }

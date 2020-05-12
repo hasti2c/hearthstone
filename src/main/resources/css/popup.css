@@ -1,0 +1,10 @@
+.button, .menu-button {
+  -fx-background-color: "#282424";
+  -fx-background-radius: 7;
+  -fx-border-color: darkgray;
+  -fx-border-radius: 7;
+  -fx-region-radius: 7;
+  -fx-text-fill: lightgray;
+  -fx-font-family: "Arial Rounded";
+  -fx-font-size: 14;
+}

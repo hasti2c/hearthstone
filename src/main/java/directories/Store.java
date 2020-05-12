@@ -59,4 +59,8 @@ public class Store extends Directory {
             player.log("list", details);
         return objects;
     }
+
+    public Game getGame() {
+        return null;
+    }
 }

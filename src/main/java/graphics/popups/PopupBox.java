@@ -5,13 +5,13 @@ import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.stage.*;
 
-abstract class PopupBox {
+public abstract class PopupBox {
     private Stage stage;
     private Parent root;
 
     protected PopupBox() {
         load();
-        config();
+        initStage();
     }
 
     private void load() {
@@ -24,15 +24,18 @@ abstract class PopupBox {
         }
     }
 
-    protected abstract FXMLLoader getLoader();
-
-    private void config() {
+    protected void initStage() {
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(new Scene(root));
     }
 
+    protected void config() {}
+
+    protected abstract FXMLLoader getLoader();
+
     public void display() {
+        config();
         stage.showAndWait();
     }
 

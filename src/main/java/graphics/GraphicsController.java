@@ -4,7 +4,9 @@ import java.util.*;
 import controllers.commands.*;
 import controllers.game.*;
 import gameObjects.*;
+import gameObjects.cards.Card;
 import graphics.directories.*;
+import graphics.directories.collections.StoreGraphics;
 import javafx.scene.*;
 import javafx.stage.*;
 
@@ -25,6 +27,7 @@ public class GraphicsController {
         home = new HomeGraphics(this, runner);
 
         displayStartPage();
+        stage.setOnCloseRequest(e -> exit());
         stage.show();
     }
 
@@ -60,5 +63,11 @@ public class GraphicsController {
 
     public void setScene(Scene scene) {
         stage.setScene(scene);
+    }
+
+    public void viewCardInStore(Card card) {
+        StoreGraphics store = home.getStore();
+        store.display();
+        store.search(card.toString());
     }
 }

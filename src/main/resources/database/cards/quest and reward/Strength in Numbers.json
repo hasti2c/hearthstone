@@ -1,0 +1,9 @@
+{
+  "name": "Strength in Numbers",
+  "description": "Sidequest: Spend 10 Mana on minions. Reward: Summon a minion from your deck.",
+  "mana": 1,
+  "price": 10,
+  "heroClass": "NEUTRAL",
+  "rarity": "COMMON",
+  "cardType": "SPELL"
+}

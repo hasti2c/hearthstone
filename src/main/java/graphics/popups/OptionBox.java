@@ -49,6 +49,6 @@ public class OptionBox extends PopupBox {
 
     @Override
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(OptionBox.class.getResource("/fxml/optionBox.fxml"));
+        return new FXMLLoader(OptionBox.class.getResource("/fxml/popups/optionBox.fxml"));
     }
 }

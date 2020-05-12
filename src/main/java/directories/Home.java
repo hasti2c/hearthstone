@@ -18,10 +18,9 @@ public class Home extends Directory {
     }
 
     public boolean createPlayGround() {
-        if (player.getCurrentHero() == null || player.getCurrentHero().getCurrentDeck() == null)
+        Game game = player.getNewGame();
+        if (game == null)
             return false;
-        Game game = new Game(player.getCurrentHero().getCurrentDeck());
-        game.startGame();
         PlayGround pg = new PlayGround(game, this, player);
         if (hasPlayGround())
             children.set(0, pg);
@@ -32,5 +31,9 @@ public class Home extends Directory {
 
     public boolean hasPlayGround() {
         return children.size() > 0 && children.get(0) instanceof PlayGround;
+    }
+
+    public Game getGame() {
+        return null;
     }
 }

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -65,52 +66,52 @@
          <children>
             <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/hp-mana-attack/mana.png" />
+                  <Image url="@../../assets/hp-mana-attack/mana.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/hp-mana-attack/mana.png" />
+                  <Image url="@../../assets/hp-mana-attack/mana.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/hp-mana-attack/mana.png" />
+                  <Image url="@../../assets/hp-mana-attack/mana.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/hp-mana-attack/mana.png" />
+                  <Image url="@../../assets/hp-mana-attack/mana.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/hp-mana-attack/mana.png" />
+                  <Image url="@../../assets/hp-mana-attack/mana.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/hp-mana-attack/mana.png" />
+                  <Image url="@../../assets/hp-mana-attack/mana.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/hp-mana-attack/mana.png" />
+                  <Image url="@../../assets/hp-mana-attack/mana.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/hp-mana-attack/mana.png" />
+                  <Image url="@../../assets/hp-mana-attack/mana.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/hp-mana-attack/mana.png" />
+                  <Image url="@../../assets/hp-mana-attack/mana.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/hp-mana-attack/mana.png" />
+                  <Image url="@../../assets/hp-mana-attack/mana.png" />
                </image>
             </ImageView>
          </children>
@@ -121,7 +122,7 @@
       <ImageView fx:id="heroImage" fitHeight="150.0" fitWidth="130.0" layoutX="580.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="49.0" fitWidth="32.0" layoutX="684.0" layoutY="643.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/hp-mana-attack/health.png" />
+            <Image url="@../../assets/hp-mana-attack/health.png" />
          </image>
       </ImageView>
       <Label fx:id="deckLabel" layoutX="1115.0" layoutY="475.0" text="30/30" textFill="WHITE">
@@ -129,7 +130,7 @@
             <Font name="DIN Alternate Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="endTurnButton" layoutX="1025.0" layoutY="360.0" mnemonicParsing="false" text="End Turn" />
+      <Button fx:id="endTurnButton" layoutX="1031.0" layoutY="365.0" mnemonicParsing="false" style="-fx-font-size: 17;" styleClass="transparent-button" text="End Turn" />
       <Label fx:id="hpLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="688.0" layoutY="656.0" text="30" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="DIN Alternate Bold" size="23.0" />
@@ -145,9 +146,22 @@
       </Label>
       <Label fx:id="weaponLabel" layoutX="490.0" layoutY="648.0" text="Weapon" textFill="WHITE" />
       <Button fx:id="heroPowerButton" layoutX="749.0" layoutY="644.0" mnemonicParsing="false" text="Hero Power" />
+      <Button fx:id="gameEventsButton" layoutX="34.0" layoutY="369.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="292.0" rotate="-90.0" styleClass="transparent-button" text="Click to see game events." />
+      <ScrollPane fx:id="gameEventsScrollPane" layoutX="246.0" layoutY="275.0" prefHeight="252.0" prefWidth="221.0">
+         <content>
+            <Label id="events-scrollpane" fx:id="gameEventsLabel" alignment="TOP_LEFT" minHeight="249.0" minWidth="203.0" text="Game Events" textFill="#5e0303">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Label>
+         </content>
+      </ScrollPane>
    </children>
    <stylesheets>
-      <URL value="@../css/defaults.css" />
-      <URL value="@../css/playGround.css" />
+      <URL value="@../../css/defaults.css" />
+      <URL value="@../../css/playGround.css" />
    </stylesheets>
 </Pane>

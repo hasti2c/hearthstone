@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="187.0" prefWidth="479.0" stylesheets="@../../css/popup.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="doneButton" mnemonicParsing="false" text="Start Game" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+         </padding>
+      </HBox>
+   </bottom>
+   <center>
+      <VBox fx:id="vBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="deckHBox" alignment="CENTER" prefHeight="112.0" prefWidth="479.0" spacing="20.0">
+               <children>
+                  <Label text="Your current deck is:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="deckName" text="Deck Name">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="passiveHBox" alignment="CENTER" prefHeight="112.0" prefWidth="479.0" spacing="20.0">
+               <children>
+                  <Label text="Choose a passive ability:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="passiveChoiceBox" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox fx:id="noDeckHBox" alignment="CENTER" prefHeight="112.0" prefWidth="479.0" spacing="20.0">
+               <children>
+                  <Label text="You don't have a current deck.">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="collectionsButton" mnemonicParsing="false" text="Open Collections" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

@@ -38,24 +38,24 @@ public class DeckDirectory extends Directory {
                 if (cards.contains(c) || (!cards.contains(c) && deck.canAddCard((Card) c)))
                     objects.add(c);
             }
-            details = "gameObjects.cards: deck + can_add";
+            details = "cards: deck + can_add";
         } else if (options.contains('m') && !options.contains('a')) {
             for (Printable c : content) {
                 assert c instanceof Card;
                 if (cards.contains(c))
                     objects.add(c);
             }
-            details = "gameObjects.cards: deck";
+            details = "cards: deck";
         } else if (options.contains('n') && !options.contains('a')) {
             for (Printable c : content) {
                 assert c instanceof Card;
                 if (!cards.contains(c) && deck.canAddCard((Card) c))
                     objects.add(c);
             }
-            details = "gameObjects.cards: can_add";
+            details = "cards: can_add";
         } else {
             objects.addAll(content);
-            details = "gameObjects.cards: all";
+            details = "cards: all";
         }
 
         if (options.contains('a'))
@@ -71,6 +71,8 @@ public class DeckDirectory extends Directory {
             return null;
         if (l)
             player.log("long_list", details);
+        else
+            player.log("list", details);
         return objects;
     }
 
@@ -112,5 +114,9 @@ public class DeckDirectory extends Directory {
                     ret[i][1] = deck.getCards().size() + "";
             }
         return ret;
+    }
+
+    public Game getGame() {
+        return null;
     }
 }

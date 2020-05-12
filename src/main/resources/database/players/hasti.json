@@ -2,7 +2,7 @@
   "username": "hasti",
   "password": "password",
   "id": 1,
-  "balance": 30,
+  "balance": 50,
   "deckCap": 15,
   "heroNames": [
     "mage",
@@ -12,14 +12,17 @@
   "cardNames": [
     "Dreadscale",
     "korkron elite",
+    "murloc raider",
     "senjin shieldmasta",
     "voidwalker",
-    "Polymorph",
-    "arcane explosion",
-    "arcane missiles",
     "wasteland assassin",
-    "sound the bells",
-    "Friendly Smith"
+    "Polymorph",
+    "Blood Fury",
+    "Sprint",
+    "Swarm of Locusts",
+    "Truesilver Champion",
+    "Sathrovarr",
+    "Strength in Numbers"
   ],
   "decks": [
     "mage:first"

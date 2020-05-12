@@ -22,17 +22,19 @@ public class PlayGroundGraphics extends DirectoryGraphics {
     @FXML
     private Pane pane;
     @FXML
-    private Label deckLabel, hpLabel, manaLabel, weaponLabel;
+    private Label deckLabel, hpLabel, manaLabel, weaponLabel, gameEventsLabel;
     @FXML
     private HBox handHBox1, handHBox2, manaHBox, minionsHBox;
     @FXML
-    private Button endTurnButton, heroPowerButton;
+    private Button endTurnButton, heroPowerButton, gameEventsButton;
     @FXML
     private ImageView heroImage;
+    @FXML
+    private ScrollPane gameEventsScrollPane;
 
-    protected PlayGroundGraphics(GraphicsController controller, CommandRunner runner) {
+    protected PlayGroundGraphics(Game game, GraphicsController controller, CommandRunner runner) {
         super(controller, runner);
-        this.game = controller.getCurrentPlayer().getGame();
+        this.game = game;
 
         homeButton.setOnAction(e -> {
             if (confirm())
@@ -49,12 +51,23 @@ public class PlayGroundGraphics extends DirectoryGraphics {
 
         heroImage.setImage(game.getHero().getGameImage());
         endTurnButton.setOnAction(e -> {
-            game.endTurn();
+            runner.run(new Command(CommandType.ENDTURN));
             config();
         });
         heroPowerButton.setOnAction(e -> {
-            game.useHeroPower();
+            runner.run(new Command(CommandType.HEROPOWER));
             config();
+        });
+
+        gameEventsScrollPane.setVisible(false);
+        gameEventsButton.setOnAction(e -> {
+            if (gameEventsScrollPane.isVisible()) {
+                gameEventsScrollPane.setVisible(false);
+                gameEventsButton.setText("Click to see game events.");
+            } else {
+                gameEventsScrollPane.setVisible(true);
+                gameEventsButton.setText("Click to hide game events.");
+            }
         });
     }
 
@@ -90,6 +103,8 @@ public class PlayGroundGraphics extends DirectoryGraphics {
             heroPowerButton.setText(game.getHero().getHeroPower().toString());
             heroPowerButton.setDisable(false);
         }
+
+        gameEventsLabel.setText("Game Events:\n" + game.getGameEvents());
     }
 
     private void configHand() {
@@ -132,7 +147,7 @@ public class PlayGroundGraphics extends DirectoryGraphics {
 
     @Override
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(PlayGroundGraphics.class.getResource("/fxml/playGround.fxml"));
+        return new FXMLLoader(PlayGroundGraphics.class.getResource("/fxml/directories/playGround.fxml"));
     }
 
     @Override
@@ -153,7 +168,7 @@ public class PlayGroundGraphics extends DirectoryGraphics {
         @Override
         public void handle(MouseEvent mouseEvent) {
             if (mouseEvent.getEventType() == MouseEvent.MOUSE_CLICKED) {
-                game.playCard(card);
+                runner.run(new Command(CommandType.PLAY, card.toString()));
                 config();
             } else if (mouseEvent.getEventType() == MouseEvent.MOUSE_ENTERED) {
                 pane.getChildren().add(bigImageView);

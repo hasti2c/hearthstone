@@ -50,15 +50,15 @@ public class Collections extends Directory {
         if (!options.contains('h') && !options.contains('c') || (options.contains('h') && options.contains('c'))) {
             objects.addAll(heros);
             objects.addAll(cards);
-            details = "gameObjects.heros: " + details + " + gameObjects.cards: " + details;
+            details = "heros: " + details + " + cards: " + details;
         }
         if (options.contains('h')) {
             objects.addAll(heros);
-            details = "gameObjects.heros: " + details;
+            details = "heros: " + details;
         }
         if (options.contains('c')) {
             objects.addAll(cards);
-            details = "gameObjects.cards: " + details;
+            details = "cards: " + details;
         }
 
         if (options.contains('c'))
@@ -74,5 +74,9 @@ public class Collections extends Directory {
             player.log("list", details);
 
         return objects;
+    }
+
+    public Game getGame() {
+        return null;
     }
 }

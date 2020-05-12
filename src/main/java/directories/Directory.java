@@ -7,7 +7,7 @@ import gameObjects.*;
 
 public abstract class Directory implements Printable {
     protected String name;
-    private Directory parent;
+    protected Directory parent;
     protected Player player;
     protected ArrayList<Directory> children = new ArrayList<>();
     protected ArrayList<Printable> content = new ArrayList<>();
@@ -144,10 +144,23 @@ public abstract class Directory implements Printable {
         if (options.size() > 0)
             return null;
         if (l)
-            player.log("long_list", "directories: all");
+            player.log("long_list", "directories + content: all");
         else
-            player.log("list", "directories: all");
+            player.log("list", "directories + content: all");
         return objects;
     }
 
+    public boolean startsGame(Directory destination) {
+        return !isInGame() && destination.isInGame();
+    }
+
+    public boolean endsGame(Directory destination) {
+        return isInGame() && !destination.isInGame();
+    }
+
+    public abstract Game getGame();
+
+    public boolean isInGame() {
+        return getGame() != null;
+    }
 }

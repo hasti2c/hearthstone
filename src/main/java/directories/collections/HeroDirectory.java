@@ -76,10 +76,10 @@ public class HeroDirectory extends Directory {
                 if (deck.getHero().getCurrentDeck() == deck)
                     objects.add(d);
             }
-            details = "gameObjects.cards: deck";
+            details = "decks: current";
         } else {
             objects.addAll(children);
-            details = "gameObjects.cards: all";
+            details = "decks: all";
         }
 
         if (options.contains('a'))
@@ -93,6 +93,12 @@ public class HeroDirectory extends Directory {
             return null;
         if (l)
             player.log("long_list", details);
+        else
+            player.log("list", details);
         return objects;
+    }
+
+    public Game getGame() {
+        return null;
     }
 }

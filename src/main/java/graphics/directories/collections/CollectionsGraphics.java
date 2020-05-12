@@ -18,7 +18,7 @@ public class CollectionsGraphics extends DirectoryGraphics {
     private ArrayList<Hero> heros;
     private ArrayList<Deck> decks;
     @FXML
-    private HBox topHBox;
+    private HBox topHBox1, topHBox2;
     @FXML
     private GridPane grid;
     @FXML
@@ -33,8 +33,9 @@ public class CollectionsGraphics extends DirectoryGraphics {
         heros = new ArrayList<>();
         decks = new ArrayList<>();
 
-        for (int i = topHBox.getChildren().size() - 1; i > 1; i--)
-            topHBox.getChildren().remove(i);
+        for (int i = topHBox1.getChildren().size() - 1; i > 1; i--)
+            topHBox1.getChildren().remove(i);
+        topHBox2.getChildren().clear();
 
         for (int i = grid.getChildren().size() - 1; i >= 0; i--) {
             Node n = grid.getChildren().get(i);
@@ -45,19 +46,23 @@ public class CollectionsGraphics extends DirectoryGraphics {
 
     protected void config() {
         clear();
-        configTopHBox();
+        configTopHBoxes();
         configDecks();
     }
 
-    private void configTopHBox() {
+    private void configTopHBoxes() {
         allButton.setOnAction(e -> displayHeroCards(null));
         neutralButton.setOnAction(e -> displayHeroCards(HeroClass.NEUTRAL));
         for (HeroClass hc : HeroClass.values())
             if (hc != HeroClass.NEUTRAL) {
                 Button button = new Button("View " + GameController.toProperCase(hc.toString()) + " Cards");
                 button.setOnAction(e -> displayHeroCards(hc));
-                topHBox.getChildren().add(button);
+                if (topHBox1.getChildren().size() < 4)
+                    topHBox1.getChildren().add(button);
+                else
+                    topHBox2.getChildren().add(button);
             }
+        topHBox2.setVisible(topHBox2.getChildren().size() != 0);
     }
 
     private void configDecks() {
@@ -101,7 +106,6 @@ public class CollectionsGraphics extends DirectoryGraphics {
 
     private void selectDeck(Deck deck) {
         runner.run(new Command(CommandType.SELECT, deck.getHero().toString()));
-        runner.run(new Command(CommandType.CD, deck.getHero().toString()));
         runner.run(new Command(CommandType.SELECT, deck.toString()));
         runner.run(new Command(CommandType.CD, "~/collections"));
         config();
@@ -195,7 +199,7 @@ public class CollectionsGraphics extends DirectoryGraphics {
 
     @Override
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(CollectionsGraphics.class.getResource("/fxml/collections.fxml"));
+        return new FXMLLoader(CollectionsGraphics.class.getResource("/fxml/directories/collections.fxml"));
     }
 
     @Override

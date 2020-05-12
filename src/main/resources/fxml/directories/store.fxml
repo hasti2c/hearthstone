@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -19,22 +20,19 @@
    <top>
       <HBox fx:id="topHBox" alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="105.0" text="Back">
+            <Label fx:id="balanceLabel" alignment="CENTER_RIGHT" text="Balance: 0">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
                <HBox.margin>
-                  <Insets right="350.0" />
+                  <Insets right="135.0" />
                </HBox.margin>
-            </Button>
-            <Label text="0/30" textFill="#141414">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="24.0" />
-               </font>
             </Label>
+            <TextField fx:id="searchField" />
+            <Button fx:id="searchButton" mnemonicParsing="false" text="Search">
+               <HBox.margin>
+                  <Insets right="140.0" />
+               </HBox.margin></Button>
             <Label alignment="CENTER_RIGHT" text="Buy Mode">
                <font>
                   <Font name="Arial Rounded MT Bold" size="18.0" />
@@ -50,14 +48,15 @@
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="optionsButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="153.0" text="Show Options">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </HBox.margin>
-            </Button>
+            <MenuButton mnemonicParsing="false" style="-fx-text-fill: lightgray;" textFill="WHITE">
+              <items>
+                <MenuItem fx:id="optionsButton" mnemonicParsing="false" text="Show Options" />
+                <MenuItem fx:id="advancedSearchButton" mnemonicParsing="false" text="Advanced Search" />
+              </items>
+               <graphic>
+                  <Label style="-fx-text-fill: lightgray;" text="Filters" />
+               </graphic>
+            </MenuButton>
             <Button fx:id="homeButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                <font>
                   <Font size="18.0" />
@@ -65,7 +64,7 @@
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0">
                      <image>
-                        <Image url="@../assets/controls/home-button.png" />
+                        <Image url="@../../assets/controls/home-button.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -125,7 +124,7 @@
       </ScrollPane>
    </center>
    <stylesheets>
-      <URL value="@../css/defaults.css" />
-      <URL value="@../css/cardsList.css" />
+      <URL value="@../../css/defaults.css" />
+      <URL value="@../../css/cardsList.css" />
    </stylesheets>
 </BorderPane>

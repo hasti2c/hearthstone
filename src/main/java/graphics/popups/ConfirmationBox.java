@@ -29,6 +29,6 @@ public class ConfirmationBox extends PopupBox {
 
     @Override
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(ConfirmationBox.class.getResource("/fxml/confirmationBox.fxml"));
+        return new FXMLLoader(ConfirmationBox.class.getResource("/fxml/popups/confirmationBox.fxml"));
     }
 }

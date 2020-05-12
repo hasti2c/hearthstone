@@ -60,7 +60,7 @@ public class StatsGraphics extends DirectoryGraphics {
 
     @Override
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(StatsGraphics.class.getResource("/fxml/stats.fxml"));
+        return new FXMLLoader(StatsGraphics.class.getResource("/fxml/directories/stats.fxml"));
     }
 
     @Override

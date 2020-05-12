@@ -23,6 +23,6 @@ public class AlertBox extends PopupBox {
 
     @Override
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(AlertBox.class.getResource("/fxml/alertBox.fxml"));
+        return new FXMLLoader(AlertBox.class.getResource("/fxml/popups/alertBox.fxml"));
     }
 }

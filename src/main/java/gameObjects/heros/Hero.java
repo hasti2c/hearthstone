@@ -19,23 +19,43 @@ public class Hero implements Printable {
     private ArrayList<Deck> decks = new ArrayList<>();
     private Deck currentDeck;
     private int health = 30;
-    private final String name;
+    private String name;
     private final HeroClass heroClass;
     private Player player;
     private HeroPower heroPower;
     private HeroDirectory directory;
     private Image gameImage;
 
-    //TODO default hero deck
     public Hero(Player player, HeroClass heroClass) {
         this.player = player;
         this.heroClass = heroClass;
-        this.name = heroClass.toString().toLowerCase();
-        if (heroClass == HeroClass.WARLOCK)
-            this.health = 35;
-        //TODO actual hero powers
-        this.heroPower = new HeroPower(name + " hero power", 2, this);
+        config();
         configGameImage();
+    }
+
+    private void config() {
+        try {
+            JsonReader jsonReader = new JsonReader(new FileReader("src/main/resources/database/heros/" + heroClass.toString().toLowerCase() + ".json"));
+            assert JsonToken.BEGIN_OBJECT == jsonReader.peek();
+            jsonReader.beginObject();
+            while(JsonToken.END_OBJECT != jsonReader.peek()) {
+                assert JsonToken.NAME == jsonReader.peek();
+                String field = jsonReader.nextName();
+                if ("name".equals(field)) {
+                    assert JsonToken.STRING == jsonReader.peek();
+                    name = jsonReader.nextString();
+                } else if ("health".equals(field)) {
+                    assert JsonToken.NUMBER == jsonReader.peek();
+                    health = jsonReader.nextInt();
+                } else if ("heroPowerName".equals(field)) {
+                    assert JsonToken.STRING == jsonReader.peek();
+                    heroPower = new HeroPower(jsonReader.nextString(), 2, this);
+                }
+            }
+            jsonReader.endObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void configGameImage() {
@@ -61,8 +81,12 @@ public class Hero implements Printable {
 
     public Hero clone() {
         Hero h = new Hero(player, heroClass);
-        for (Deck d : decks)
-            h.decks.add(d.clone(h));
+        for (Deck d : decks) {
+            Deck deck = d.clone(h);
+            h.decks.add(deck);
+            if (d == currentDeck)
+                h.currentDeck = deck;
+        }
         h.health = health;
         return h;
     }

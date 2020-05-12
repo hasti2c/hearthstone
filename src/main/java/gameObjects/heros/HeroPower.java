@@ -14,4 +14,8 @@ public class HeroPower {
     public String toString() {
         return name;
     }
+
+    public int getMana() {
+        return mana;
+    }
 }

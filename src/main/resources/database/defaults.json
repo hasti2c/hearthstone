@@ -1,5 +1,6 @@
 {
-  "playerCount": 6,
+  "playerCount": 2,
+  "gameCount": 0,
   "heroNames": [
     "mage",
     "rogue",
@@ -42,7 +43,18 @@
     "Dragon Claw",
     "Silver Sword",
     "Truesilver Champion",
-    "Wicked Knife"
+    "Wicked Knife",
+    "Strength in Numbers",
+    "Learn Draconic"
+  ],
+  "passiveNames": [
+    "Twice Draw",
+    "Off Cards",
+    "Warriors",
+    "Nurse",
+    "Free Power",
+    "Mana Jump",
+    "Zombie"
   ],
   "defaultPlayer": {
     "balance": 50,
@@ -64,7 +76,8 @@
       "Sprint",
       "Swarm of Locusts",
       "Truesilver Champion",
-      "Sathrovarr"
+      "Sathrovarr",
+      "Strength in Numbers"
     ],
     "decks": [],
     "currentHeroName": "mage"

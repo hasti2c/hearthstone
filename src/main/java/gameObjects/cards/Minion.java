@@ -17,6 +17,14 @@ public class Minion extends Card {
         return c;
     }
 
+    public int getHP() {
+        return hp;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
     public String[][] longPrint(Player currentPlayer) {
         String[][] ret = new String[16][3];
         Directory d = currentPlayer.getCurrentDirectory();

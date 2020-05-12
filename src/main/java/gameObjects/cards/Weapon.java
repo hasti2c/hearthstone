@@ -17,6 +17,14 @@ public class Weapon extends Card {
         return c;
     }
 
+    public int getDurability() {
+        return durability;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
     public String[][] longPrint(Player currentPlayer) {
         String[][] ret = new String[16][3];
         Directory d = currentPlayer.getCurrentDirectory();

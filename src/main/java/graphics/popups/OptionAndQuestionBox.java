@@ -41,7 +41,7 @@ public class OptionAndQuestionBox extends PopupBox {
 
     @Override
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(OptionAndQuestionBox.class.getResource("/fxml/optionAndQuestionBox.fxml"));
+        return new FXMLLoader(OptionAndQuestionBox.class.getResource("/fxml/popups/optionAndQuestionBox.fxml"));
     }
 
     public boolean getButtonResponse() {

@@ -1,17 +1,24 @@
 package graphics.directories.collections;
 
+import com.jfoenix.controls.JFXToggleButton;
 import controllers.commands.*;
 import gameObjects.*;
 import gameObjects.cards.*;
 import gameObjects.heros.HeroClass;
 import graphics.*;
 import graphics.popups.*;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
 public class StoreGraphics extends CardsListGraphics {
     private boolean sellMode = false;
+    @FXML
+    private Label balanceLabel;
+    @FXML
+    private JFXToggleButton sellModeButton;
 
     public StoreGraphics(GraphicsController controller, CommandRunner runner) {
         super(controller, runner);
@@ -24,10 +31,10 @@ public class StoreGraphics extends CardsListGraphics {
         });
     }
 
-    protected void initTopHBox() {
-        super.initTopHBox();
-        for (int i = 0; i < 2; i++)
-            topHBox.getChildren().get(i).setVisible(false);
+    @Override
+    protected void config() {
+        super.config();
+        balanceLabel.setText("Balance: " + controller.getCurrentPlayer().getBalance());
     }
 
     @Override
@@ -106,5 +113,9 @@ public class StoreGraphics extends CardsListGraphics {
     @Override
     protected void runCd() {
         runner.run(new Command(CommandType.CD, "~/store"));
+    }
+
+    protected FXMLLoader getLoader() {
+        return new FXMLLoader(StoreGraphics.class.getResource("/fxml/directories/store.fxml"));
     }
 }

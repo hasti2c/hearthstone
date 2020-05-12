@@ -12,7 +12,6 @@ import gameObjects.*;
 import gameObjects.cards.*;
 
 public class Deck implements Printable, Comparable<Deck> {
-    //TODO reset stats after change
     private String name;
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Integer> uses = new ArrayList<>();
@@ -23,6 +22,18 @@ public class Deck implements Printable, Comparable<Deck> {
     public Deck(Hero hero, String name) {
         this.hero = hero;
         this.name = name;
+    }
+
+    public Deck(Deck deck) {
+        name = deck.name;
+        hero = deck.hero.clone();
+        wins = deck.wins;
+        games = deck.games;
+
+        cards = new ArrayList<>();
+        for (Card c : deck.cards)
+            cards.add(c.clone());
+        uses = new ArrayList<>(deck.uses);
     }
 
     public void config(Player player) {
