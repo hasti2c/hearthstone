@@ -4,12 +4,12 @@
   "id": 1,
   "balance": 50,
   "deckCap": 15,
-  "heroNames": [
+  "allHeros": [
     "mage",
     "warlock",
     "priest"
   ],
-  "cardNames": [
+  "allCards": [
     "Dreadscale",
     "korkron elite",
     "murloc raider",
@@ -24,9 +24,9 @@
     "Sathrovarr",
     "Strength in Numbers"
   ],
-  "decks": [
+  "allDecks": [
     "mage:first"
   ],
-  "currentHeroName": "mage",
-  "currentDeckName": "mage:first"
+  "currentHero": "mage",
+  "currentDeck": "mage:first"
 }

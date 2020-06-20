@@ -8,8 +8,8 @@ import cli.Console;
 import controllers.game.*;
 import directories.*;
 import directories.collections.*;
-import gameObjects.*;
 import gameObjects.cards.*;
+import gameObjects.player.Player;
 
 public class Deck implements Printable, Comparable<Deck> {
     private String name;

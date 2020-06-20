@@ -1,0 +1,29 @@
+USER: ramin
+PASSWORD: 23456789
+CREATED_AT:  2020/05/13 23:03:03 
+
+signup 2020/05/13 23:03:03 
+login 2020/05/13 23:03:03 
+cd 2020/05/13 23:03:03 ~
+cd 2020/05/13 23:03:24 collections
+cd 2020/05/13 23:04:13 ~
+cd 2020/05/13 23:04:14 store
+cd 2020/05/13 23:04:27 ~
+cd 2020/05/13 23:04:28 stats
+cd 2020/05/13 23:04:30 ~
+cd 2020/05/13 23:04:31 collections
+cd 2020/05/13 23:04:39 priest
+add 2020/05/13 23:04:39 deck: derakht -> hero: priest
+cd 2020/05/13 23:04:39 collections
+select 2020/05/13 23:04:45 hero: priest
+cd 2020/05/13 23:04:45 priest
+select 2020/05/13 23:04:45 deck: derakht
+cd 2020/05/13 23:04:45 derakht
+cd 2020/05/13 23:04:45 collections
+cd 2020/05/13 23:04:51 derakht
+add 2020/05/13 23:04:52 card: voidwalker -> deck: priest-derakht
+add 2020/05/13 23:04:52 card: voidwalker -> deck: priest-derakht
+cd 2020/05/13 23:04:53 ~
+start_game 2020/05/13 23:04:59 game id: 1
+start_game 2020/05/13 23:05:09 game id: 2
+logout 2020/05/13 23:05:25 

@@ -3,9 +3,9 @@ package graphics.directories.collections;
 import java.util.*;
 import controllers.commands.*;
 import controllers.game.*;
-import gameObjects.*;
 import gameObjects.cards.*;
 import gameObjects.heros.*;
+import gameObjects.player.Player;
 import graphics.*;
 import graphics.directories.*;
 import graphics.popups.PopupBox;
@@ -60,7 +60,7 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
         optionsGraphics.config();
 
         Player player = controller.getCurrentPlayer();
-        owned.addAll(player.getAllCards());
+        owned.addAll(player.getInventory().getAllCards());
         for (Card c : GameController.getCardsList())
             if (!owned.contains(c))
                 notOwned.add(c);

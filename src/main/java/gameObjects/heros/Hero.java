@@ -7,13 +7,10 @@ import directories.*;
 import directories.collections.*;
 import directories.collections.Collections;
 import directories.game.PlayGround;
-import gameObjects.*;
 import cli.*;
 import cli.Console;
+import gameObjects.player.Player;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
-import javax.imageio.stream.ImageInputStream;
 
 public class Hero implements Printable {
     private ArrayList<Deck> decks = new ArrayList<>();
@@ -110,9 +107,8 @@ public class Hero implements Printable {
 
     public void setCurrentDeck(Deck currentDeck) {
         this.currentDeck = currentDeck;
-        Player p = player;
-        if (p != null && p.getCurrentHero() == this)
-            p.getHome().createPlayGround();
+        if (player != null && player.getInventory().getCurrentHero() == this)
+            player.getHome().createPlayGround();
     }
 
     public Player getPlayer() { return player; }
@@ -131,7 +127,7 @@ public class Hero implements Printable {
 
     private void addDeck(Deck deck) {
         decks.add(deck);
-        player.addDeckToAll(deck);
+        player.getInventory().addDeckToAll(deck);
     }
 
     public boolean addNewDeck(String name) {
@@ -159,7 +155,7 @@ public class Hero implements Printable {
         for (Deck d : decks)
             if (d.toString().equals(name)) {
                 decks.remove(d);
-                player.removeDeckFromAll(d);
+                player.getInventory().removeDeckFromAll(d);
                 if (currentDeck == d)
                     currentDeck = null;
                 return true;
@@ -180,8 +176,9 @@ public class Hero implements Printable {
     }
 
     public String[] normalPrint(Player currentPlayer) {
+        Player.Inventory currentInventory = currentPlayer.getInventory();
         String[] ret = new String[3];
-        if (currentPlayer.getCurrentDirectory() instanceof Collections && this == currentPlayer.getCurrentHero()) {
+        if (currentPlayer.getCurrentDirectory() instanceof Collections && this == currentInventory.getCurrentHero()) {
             ret[0] = Console.GREEN;
             ret[2] = Console.RESET;
         }
@@ -190,11 +187,12 @@ public class Hero implements Printable {
     }
 
     public String[][] longPrint(Player currentPlayer) {
+        Player.Inventory currentInventory = currentPlayer.getInventory();
         String[][] ret = new String[16][3];
         for (int i = 0; i < 16; i++)
             switch (i) {
                 case 0:
-                    if (currentPlayer.getCurrentDirectory() instanceof Collections && this == currentPlayer.getCurrentHero()) {
+                    if (currentPlayer.getCurrentDirectory() instanceof Collections && this == currentInventory.getCurrentHero()) {
                         ret[i][0] = Console.GREEN;
                         ret[i][1] = "current hero";
                         ret[i][2] = Console.RESET;

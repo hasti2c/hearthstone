@@ -3,8 +3,8 @@ package gameObjects.cards;
 import directories.collections.*;
 import directories.*;
 import cli.*;
-import gameObjects.*;
 import gameObjects.heros.*;
+import gameObjects.player.Player;
 
 public class Minion extends Card {
     private int hp;
@@ -25,13 +25,15 @@ public class Minion extends Card {
         return attack;
     }
 
+    @Override
     public String[][] longPrint(Player currentPlayer) {
+        Player.Inventory currentInventory = currentPlayer.getInventory();
         String[][] ret = new String[16][3];
         Directory d = currentPlayer.getCurrentDirectory();
         for (int i = 0; i < 16; i++)
             switch (i) {
                 case 0:
-                    if (d instanceof Store && currentPlayer.getAllCards().contains(this)) {
+                    if (d instanceof Store && currentInventory.getAllCards().contains(this)) {
                         ret[i][0] = Console.BLUE;
                         ret[i][1] = "owned";
                         ret[i][2] = Console.RESET;
@@ -52,8 +54,8 @@ public class Minion extends Card {
                         deck = ((DeckDirectory) d).getDeck();
                     else if (d instanceof HeroDirectory)
                         deck = ((HeroDirectory) d).getHero().getCurrentDeck();
-                    else if (d instanceof Collections && currentPlayer.getCurrentHero() != null)
-                        deck = currentPlayer.getCurrentHero().getCurrentDeck();
+                    else if (d instanceof Collections && currentInventory.getCurrentHero() != null)
+                        deck = currentInventory.getCurrentHero().getCurrentDeck();
                     else
                         break;
                     int cnt = 0;

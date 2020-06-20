@@ -1,0 +1,13 @@
+GAME_ID: 1
+STARTED_AT:  2020/05/13 23:04:59 
+
+p1: ramin
+p1_hero: priest
+p1_deck: derakht
+
+p1:end_turn 2020/05/13 23:05:01 
+p1:end_turn 2020/05/13 23:05:02 
+p1:end_turn 2020/05/13 23:05:02 
+p1:end_turn 2020/05/13 23:05:02 
+p1:play_card 2020/05/13 23:05:03 voidwalker
+p1:play_card 2020/05/13 23:05:03 voidwalker

@@ -2,13 +2,14 @@ package directories;
 
 import java.util.*;
 import cli.*;
-import directories.game.PlayGround;
 import gameObjects.*;
+import gameObjects.player.Player;
 
 public abstract class Directory implements Printable {
     protected String name;
     protected Directory parent;
     protected Player player;
+    protected Player.Inventory inventory;
     protected ArrayList<Directory> children = new ArrayList<>();
     protected ArrayList<Printable> content = new ArrayList<>();
 
@@ -16,6 +17,7 @@ public abstract class Directory implements Printable {
         this.name = name;
         this.parent = parent;
         this.player = player;
+        inventory = player.getInventory();
     }
 
     protected void clear() {
@@ -111,13 +113,23 @@ public abstract class Directory implements Printable {
         return ret;
     }
 
+    @Override
     public String[] normalPrint(Player currentPlayer) {
+        return normalPrint();
+    }
+
+    @Override
+    public String[][] longPrint(Player currentPlayer) {
+        return longPrint();
+    }
+
+    protected String[] normalPrint() {
         String[] ret = new String[3];
         ret[1] = toString();
         return ret;
     }
 
-    public String[][] longPrint(Player currentPlayer) {
+    protected String[][] longPrint() {
         String[][] ret = new String[16][3];
         for (int i = 0; i < 16; i++)
             switch (i) {

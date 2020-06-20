@@ -4,6 +4,7 @@ import controllers.game.GameController;
 import gameObjects.cards.*;
 import gameObjects.heros.Deck;
 import gameObjects.heros.Hero;
+import gameObjects.player.Player;
 
 import java.io.FileWriter;
 import java.io.IOException;

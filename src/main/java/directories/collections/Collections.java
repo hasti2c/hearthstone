@@ -5,6 +5,8 @@ import directories.*;
 import gameObjects.*;
 import gameObjects.cards.*;
 import gameObjects.heros.*;
+import gameObjects.player.Player;
+
 import java.util.*;
 
 public class Collections extends Directory {
@@ -15,9 +17,9 @@ public class Collections extends Directory {
 
     public void config() {
         clear();
-        for (Hero h : player.getAllHeros())
+        for (Hero h : inventory.getAllHeros())
             addHeroDirectory(h, player);
-        for (Card c : player.getAllCards())
+        for (Card c : inventory.getAllCards())
             addContent(c);
     }
 
@@ -30,9 +32,9 @@ public class Collections extends Directory {
         String details = "";
 
         if (options.contains('m') && !options.contains('a')) {
-            heros.add(player.getCurrentHero());
+            heros.add(inventory.getCurrentHero());
             for (Printable c : content)
-                if (player.getCurrentHero().getCurrentDeck().getCards().contains(c))
+                if (inventory.getCurrentHero().getCurrentDeck().getCards().contains(c))
                     cards.add(c);
             details = "current";
         } else {

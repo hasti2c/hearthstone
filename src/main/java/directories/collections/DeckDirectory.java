@@ -5,6 +5,8 @@ import directories.*;
 import gameObjects.*;
 import gameObjects.cards.*;
 import gameObjects.heros.*;
+import gameObjects.player.Player;
+
 import java.util.*;
 
 public class DeckDirectory extends Directory {
@@ -18,7 +20,7 @@ public class DeckDirectory extends Directory {
 
     public void config() {
         clear();
-        for (Card c : player.getAllCards())
+        for (Card c : inventory.getAllCards())
             if (c.getHeroClass().equals(deck.getHero().getHeroClass()) || c.getHeroClass().equals(HeroClass.NEUTRAL))
                 addContent(c);
         deck.setDirectory(this);
@@ -77,9 +79,9 @@ public class DeckDirectory extends Directory {
     }
 
     @Override
-    public String[] normalPrint(Player currentPlayer) {
+    protected String[] normalPrint() {
         String[] ret = new String[3];
-        if (currentPlayer.getCurrentDirectory() instanceof HeroDirectory && deck.getHero().getCurrentDeck() == deck) {
+        if (player.getCurrentDirectory() instanceof HeroDirectory && deck.getHero().getCurrentDeck() == deck) {
             ret[0] = Console.GREEN;
             ret[2] = Console.RESET;
         }
@@ -88,12 +90,12 @@ public class DeckDirectory extends Directory {
     }
 
     @Override
-    public String[][] longPrint(Player currentPlayer) {
+    protected String[][] longPrint() {
         String[][] ret = new String[16][3];
         for (int i = 0; i < 16; i++)
             switch (i) {
                 case 0:
-                    if (currentPlayer.getCurrentDirectory() instanceof HeroDirectory && deck.getHero().getCurrentDeck() == deck) {
+                    if (player.getCurrentDirectory() instanceof HeroDirectory && deck.getHero().getCurrentDeck() == deck) {
                         ret[i][0] = Console.GREEN;
                         ret[i][1] = "current deck";
                         ret[i][2] = Console.RESET;

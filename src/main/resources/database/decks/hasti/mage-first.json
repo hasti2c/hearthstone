@@ -1,6 +1,38 @@
 {
-  "cardNames": [],
-  "uses": [],
+  "cardNames": [
+    "murloc raider",
+    "murloc raider",
+    "Dreadscale",
+    "Dreadscale",
+    "korkron elite",
+    "korkron elite",
+    "senjin shieldmasta",
+    "senjin shieldmasta",
+    "voidwalker",
+    "voidwalker",
+    "Polymorph",
+    "Polymorph",
+    "Blood Fury",
+    "Blood Fury",
+    "Swarm of Locusts"
+  ],
+  "uses": [
+    2,
+    0,
+    2,
+    0,
+    1,
+    0,
+    0,
+    0,
+    2,
+    0,
+    1,
+    0,
+    2,
+    0,
+    1
+  ],
   "wins": 0,
   "games": 0
 }

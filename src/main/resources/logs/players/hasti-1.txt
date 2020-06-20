@@ -18,3 +18,31 @@ select 2020/05/13 01:05:08 deck: first
 cd 2020/05/13 01:05:08 first
 cd 2020/05/13 01:05:08 collections
 cd 2020/05/13 01:05:09 first
+login 2020/05/13 23:05:31 
+cd 2020/05/13 23:05:31 ~
+cd 2020/05/13 23:05:42 collections
+cd 2020/05/13 23:05:46 first
+add 2020/05/13 23:05:47 card: murloc raider -> deck: mage-first
+add 2020/05/13 23:05:47 card: murloc raider -> deck: mage-first
+add 2020/05/13 23:05:48 card: Dreadscale -> deck: mage-first
+add 2020/05/13 23:05:48 card: Dreadscale -> deck: mage-first
+add 2020/05/13 23:05:50 card: korkron elite -> deck: mage-first
+add 2020/05/13 23:05:50 card: korkron elite -> deck: mage-first
+add 2020/05/13 23:05:51 card: senjin shieldmasta -> deck: mage-first
+add 2020/05/13 23:05:51 card: senjin shieldmasta -> deck: mage-first
+add 2020/05/13 23:05:52 card: voidwalker -> deck: mage-first
+add 2020/05/13 23:05:52 card: voidwalker -> deck: mage-first
+add 2020/05/13 23:05:53 card: Polymorph -> deck: mage-first
+add 2020/05/13 23:05:53 card: Polymorph -> deck: mage-first
+add 2020/05/13 23:05:55 card: Blood Fury -> deck: mage-first
+add 2020/05/13 23:05:55 card: Blood Fury -> deck: mage-first
+add 2020/05/13 23:05:56 card: Swarm of Locusts -> deck: mage-first
+cd 2020/05/13 23:06:00 ~
+start_game 2020/05/13 23:06:03 game id: 3
+end_game 2020/05/13 23:15:41 game id: 3
+logout 2020/05/13 23:15:41 
+login 2020/06/16 16:19:46 
+cd 2020/06/16 16:19:46 ~
+start_game 2020/06/16 16:19:52 game id: 5
+end_game 2020/06/16 16:21:26 game id: 5
+logout 2020/06/16 16:21:26 

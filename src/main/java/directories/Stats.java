@@ -3,6 +3,8 @@ package directories;
 import cli.*;
 import gameObjects.*;
 import gameObjects.heros.*;
+import gameObjects.player.Player;
+
 import java.util.*;
 
 public class Stats extends Directory {
@@ -13,7 +15,7 @@ public class Stats extends Directory {
 
     public void config() {
         clear();
-        for (Hero h : player.getAllHeros())
+        for (Hero h : inventory.getAllHeros())
             content.addAll(h.getDecks());
     }
 

@@ -4,6 +4,8 @@ import controllers.game.*;
 import cli.*;
 import gameObjects.*;
 import gameObjects.cards.*;
+import gameObjects.player.Player;
+
 import java.util.*;
 
 public class Store extends Directory {

@@ -1,6 +1,6 @@
 {
-  "playerCount": 2,
-  "gameCount": 0,
+  "playerCount": 5,
+  "gameCount": 6,
   "heroNames": [
     "mage",
     "rogue",
@@ -59,27 +59,29 @@
   "defaultPlayer": {
     "balance": 50,
     "deckCap": 15,
-    "heroNames": [
-      "mage",
-      "warlock",
-      "priest"
-    ],
-    "cardNames": [
-      "Dreadscale",
-      "korkron elite",
-      "murloc raider",
-      "senjin shieldmasta",
-      "voidwalker",
-      "wasteland assassin",
-      "Polymorph",
-      "Blood Fury",
-      "Sprint",
-      "Swarm of Locusts",
-      "Truesilver Champion",
-      "Sathrovarr",
-      "Strength in Numbers"
-    ],
-    "decks": [],
-    "currentHeroName": "mage"
+    "inventory": {
+      "allHeros": [
+        "mage",
+        "warlock",
+        "priest"
+      ],
+      "allCards": [
+        "Dreadscale",
+        "korkron elite",
+        "murloc raider",
+        "senjin shieldmasta",
+        "voidwalker",
+        "wasteland assassin",
+        "Polymorph",
+        "Blood Fury",
+        "Sprint",
+        "Swarm of Locusts",
+        "Truesilver Champion",
+        "Sathrovarr",
+        "Strength in Numbers"
+      ],
+      "allDecks": [],
+      "currentHero": "mage"
+    }
   }
 }

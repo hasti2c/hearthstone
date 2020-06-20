@@ -5,6 +5,7 @@ import directories.*;
 import gameObjects.*;
 import gameObjects.heros.*;
 import cli.*;
+import gameObjects.player.Player;
 
 public class HeroDirectory extends Directory {
     private Hero hero;
@@ -27,9 +28,9 @@ public class HeroDirectory extends Directory {
     }
 
     @Override
-    public String[] normalPrint(Player currentPlayer) {
+    protected String[] normalPrint() {
         String[] ret = new String[3];
-        if (currentPlayer.getCurrentDirectory() instanceof Collections && hero == currentPlayer.getCurrentHero()) {
+        if (player.getCurrentDirectory() instanceof Collections && hero == inventory.getCurrentHero()) {
             ret[0] = Console.GREEN;
             ret[2] = Console.RESET;
         }
@@ -38,12 +39,12 @@ public class HeroDirectory extends Directory {
     }
 
     @Override
-    public String[][] longPrint(Player currentPlayer) {
+    protected String[][] longPrint() {
         String[][] ret = new String[16][3];
         for (int i = 0; i < 16; i++)
             switch (i) {
                 case 0:
-                    if (currentPlayer.getCurrentDirectory() instanceof Collections && hero == currentPlayer.getCurrentHero()) {
+                    if (player.getCurrentDirectory() instanceof Collections && hero == inventory.getCurrentHero()) {
                         ret[i][0] = Console.GREEN;
                         ret[i][1] = "current hero";
                         ret[i][2] = Console.RESET;

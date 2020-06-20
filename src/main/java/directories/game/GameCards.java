@@ -2,7 +2,7 @@ package directories.game;
 
 import directories.*;
 import gameObjects.Game;
-import gameObjects.Player;
+import gameObjects.player.Player;
 import gameObjects.cards.Card;
 
 import java.util.ArrayList;

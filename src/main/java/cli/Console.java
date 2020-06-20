@@ -3,7 +3,7 @@ package cli;
 import java.util.*;
 import controllers.commands.*;
 import controllers.game.*;
-import gameObjects.*;
+import gameObjects.player.Player;
 
 public class Console {
     private GameController controller;

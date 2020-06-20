@@ -3,9 +3,9 @@ package gameObjects.cards;
 import cli.*;
 import directories.collections.*;
 import directories.game.PlayGround;
-import gameObjects.*;
 import gameObjects.heros.*;
 import directories.*;
+import gameObjects.player.Player;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -100,7 +100,9 @@ public abstract class Card implements Printable {
         return iv;
     }
 
+    @Override
     public String[] normalPrint(Player currentPlayer) {
+        Player.Inventory currentInventory = currentPlayer.getInventory();
         String[] ret = new String[3];
         Directory d = currentPlayer.getCurrentDirectory();
         if (d instanceof Store) {
@@ -110,7 +112,7 @@ public abstract class Card implements Printable {
             } else if (currentPlayer.canBuy(this)) {
                 ret[0] = Console.GREEN;
                 ret[2] = Console.RESET;
-            } else if (!currentPlayer.getAllCards().contains(this) && !currentPlayer.canBuy(this)) {
+            } else if (!currentInventory.getAllCards().contains(this) && !currentPlayer.canBuy(this)) {
                 ret[0] = Console.RED;
                 ret[2] = Console.RESET;
             }
@@ -126,8 +128,8 @@ public abstract class Card implements Printable {
             deck = ((DeckDirectory) d).getDeck();
         else if (d instanceof HeroDirectory)
             deck = ((HeroDirectory) d).getHero().getCurrentDeck();
-        else if (d instanceof Collections && currentPlayer.getCurrentHero() != null)
-            deck = currentPlayer.getCurrentHero().getCurrentDeck();
+        else if (d instanceof Collections && currentInventory.getCurrentHero() != null)
+            deck = currentInventory.getCurrentHero().getCurrentDeck();
         int cnt = 0;
         if (deck != null)
             for (Card c : deck.getCards())
@@ -142,6 +144,7 @@ public abstract class Card implements Printable {
         return ret;
     }
 
+    @Override
     public abstract String[][] longPrint(Player currentPlayer);
 
     public int compareTo(Card c, Deck deck) {
