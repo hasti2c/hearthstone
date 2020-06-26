@@ -14,7 +14,7 @@ import javafx.scene.text.*;
 
 
 public class StatsGraphics extends DirectoryGraphics {
-    private ArrayList<Deck> decks = new ArrayList<>();
+    private final ArrayList<Deck> decks = new ArrayList<>();
     @FXML
     private GridPane grid;
     @FXML

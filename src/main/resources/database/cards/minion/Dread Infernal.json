@@ -2,7 +2,7 @@
   "name": "Dread Infernal",
   "description": "Battlecry: Deal 1 damage to ALL other characters.",
   "mana": 6,
-  "HP": 6,
+  "health": 6,
   "attack": 6,
   "price": 25,
   "heroClass": "WARLOCK",

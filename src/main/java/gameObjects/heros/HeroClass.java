@@ -1,5 +1,6 @@
 package gameObjects.heros;
 
+import controllers.game.GameController;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,6 +15,16 @@ public enum HeroClass {
     WARLOCK,
     HUNTER,
     PRIEST;
+
+    private Hero hero;
+
+    public Hero getHero() {
+        if (hero == null)
+            for (Hero h : GameController.getHerosList())
+                if (h.toString().equalsIgnoreCase(toString()))
+                    hero = h;
+        return hero;
+    }
 
     public ImageView getIcon() {
         if (this == NEUTRAL)

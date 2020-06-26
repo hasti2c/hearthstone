@@ -3,19 +3,19 @@ package graphics;
 import java.util.*;
 import controllers.commands.*;
 import controllers.game.*;
+import gameObjects.*;
 import gameObjects.cards.Card;
-import gameObjects.player.Player;
 import graphics.directories.*;
 import graphics.directories.collections.StoreGraphics;
 import javafx.scene.*;
 import javafx.stage.*;
 
 public class GraphicsController {
-    private Stage stage;
-    private CommandRunner runner;
-    private StartPageGraphics startPage;
-    private HomeGraphics home;
-    private GameController game;
+    private final Stage stage;
+    private final CommandRunner runner;
+    private final StartPageGraphics startPage;
+    private final HomeGraphics home;
+    private final GameController game;
     private Player currentPlayer;
 
     public GraphicsController(GameController game, Stage stage) {

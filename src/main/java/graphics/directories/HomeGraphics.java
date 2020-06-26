@@ -16,10 +16,10 @@ import java.util.ArrayList;
 
 public class HomeGraphics extends DirectoryGraphics {
     private PlayGroundGraphics playGround;
-    private CollectionsGraphics collections = new CollectionsGraphics(controller, runner);
-    private StoreGraphics store = new StoreGraphics(controller, runner);
-    private StatsGraphics stats = new StatsGraphics(controller, runner);
-    private GameBeginningGraphics gameBeginning;
+    private final CollectionsGraphics collections = new CollectionsGraphics(controller, runner);
+    private final StoreGraphics store = new StoreGraphics(controller, runner);
+    private final StatsGraphics stats = new StatsGraphics(controller, runner);
+    private final GameBeginningGraphics gameBeginning;
     @FXML
     private Button playButton, collectionsButton, storeButton, statsButton, homeLogoutButton, homeExitButton;
 
@@ -110,7 +110,7 @@ public class HomeGraphics extends DirectoryGraphics {
 
             game = controller.getCurrentPlayer().getGame();
             deckHBox.getChildren().add(1, game.getHero().getHeroClass().getIcon());
-            deckName.setText(game.getHero().getCurrentDeck().toString());
+            deckName.setText(game.getPlayer().getCurrentDeck().toString());
 
             ArrayList<Passive> passives = new ArrayList<>();
             while (passives.size() < 3) {

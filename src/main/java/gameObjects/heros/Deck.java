@@ -8,81 +8,48 @@ import cli.Console;
 import controllers.game.*;
 import directories.*;
 import directories.collections.*;
+import gameObjects.*;
 import gameObjects.cards.*;
-import gameObjects.player.Player;
 
-public class Deck implements Printable, Comparable<Deck> {
+public class Deck implements Printable, Comparable<Deck>, Configable {
     private String name;
-    private ArrayList<Card> cards = new ArrayList<>();
-    private ArrayList<Integer> uses = new ArrayList<>();
-    private Hero hero;
-    private int wins, games;
-    private DeckDirectory directory;
+    private final ArrayList<Card> cards = new ArrayList<>();
+    private final ArrayList<Integer> uses = new ArrayList<>();
+    private HeroClass heroClass;
+    private int wins, games, maxSize;
 
-    public Deck(Hero hero, String name) {
-        this.hero = hero;
-        this.name = name;
+    public Deck() {}
+
+    public static Deck getNewDeck(String name, HeroClass heroClass, int maxSize) {
+        Deck deck = new Deck();
+        deck.name = name;
+        deck.heroClass = heroClass;
+        deck.maxSize = maxSize;
+        return deck;
     }
 
-    public Deck(Deck deck) {
-        name = deck.name;
-        hero = deck.hero.clone();
-        wins = deck.wins;
-        games = deck.games;
+    @Override
+    public void initialize(GameController controller) {}
 
-        cards = new ArrayList<>();
-        for (Card c : deck.cards)
-            cards.add(c.clone());
-        uses = new ArrayList<>(deck.uses);
-    }
-
-    public void config(Player player) {
-        try {
-            JsonReader jsonReader = new JsonReader(new FileReader("src/main/resources/database/decks/" + player + "/" + hero + "-" + name + ".json"));
-            assert JsonToken.BEGIN_OBJECT.equals(jsonReader.peek());
-            jsonReader.beginObject();
-            while (!JsonToken.END_OBJECT.equals(jsonReader.peek())) {
-                assert JsonToken.NAME.equals(jsonReader.peek());
-                String field = jsonReader.nextName();
-                if ("cardNames".equals(field)) {
-                    assert JsonToken.BEGIN_ARRAY.equals(jsonReader.peek());
-                    jsonReader.beginArray();
-                    while (!JsonToken.END_ARRAY.equals(jsonReader.peek()))
-                        cards.add(GameController.getCard(jsonReader.nextString()));
-                    jsonReader.endArray();
-                } else if ("uses".equals(field)) {
-                    assert JsonToken.BEGIN_ARRAY.equals(jsonReader.peek());
-                    jsonReader.beginArray();
-                    while (!JsonToken.END_ARRAY.equals(jsonReader.peek())) {
-                        assert JsonToken.NUMBER.equals(jsonReader.peek());
-                        uses.add(jsonReader.nextInt());
-                    }
-                    jsonReader.endArray();
-                } else if ("wins".equals(field)) {
-                    assert JsonToken.NUMBER.equals(jsonReader.peek());
-                    wins = jsonReader.nextInt();
-                } else if ("games".equals(field)) {
-                    assert JsonToken.NUMBER.equals(jsonReader.peek());
-                    games = jsonReader.nextInt();
-                }
-            }
-            jsonReader.endObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public String getJsonPath(GameController controller, String name) {
+        return "decks/" + controller.getInitPlayerName() + "/";
     }
 
     public void updateJson(Player player) {
         try {
-            JsonWriter jsonWriter = new JsonWriter(new FileWriter("src/main/resources/database/decks/" + player + "/" + hero + "-" + name + ".json"));
+            JsonWriter jsonWriter = new JsonWriter(new FileWriter("src/main/resources/database/decks/" + player + "/" + name + ".json"));
             jsonWriter.setIndent("  ");
 
             jsonWriter.beginObject();
 
-            jsonWriter.name("cardNames");
+            jsonWriter.name("name").value(name);
+            jsonWriter.name("heroClass").value(heroClass.toString());
+
+            jsonWriter.name("cards");
             jsonWriter.beginArray();
             for (Card c : cards)
-                jsonWriter.value(c.toString());
+                jsonWriter.value(c.getClass().getSimpleName() + "/" + c.toString());
             jsonWriter.endArray();
 
             jsonWriter.name("uses");
@@ -93,6 +60,7 @@ public class Deck implements Printable, Comparable<Deck> {
 
             jsonWriter.name("wins").value(wins);
             jsonWriter.name("games").value(games);
+            jsonWriter.name("maxSize").value(maxSize);
 
             jsonWriter.endObject();
             jsonWriter.close();
@@ -133,24 +101,29 @@ public class Deck implements Printable, Comparable<Deck> {
         for (Card c : cards)
             if (c == card)
                 cnt++;
-        return cnt <= 1 && (card.getHeroClass() == hero.getHeroClass() || card.getHeroClass() == HeroClass.NEUTRAL) && cards.size() < hero.getPlayer().getDeckCap();
+        return cnt <= 1 && (card.getHeroClass() == heroClass || card.getHeroClass() == HeroClass.NEUTRAL) && cards.size() < maxSize;
     }
 
-    Deck clone(Hero hero) {
-        Deck d = new Deck(hero, name);
+    public Deck clone() {
+        Deck deck = new Deck();
+        deck.heroClass = heroClass;
         for (Card c : cards)
-            d.addCard(c.clone());
-        d.wins = wins;
-        d.games = games;
-        return d;
+            deck.addCard(c.clone());
+        deck.wins = wins;
+        deck.games = games;
+        return deck;
     }
 
     public ArrayList<Card> getCards() {
         return cards;
     }
 
+    public HeroClass getHeroClass() {
+        return heroClass;
+    }
+
     public Hero getHero() {
-        return hero;
+        return heroClass.getHero();
     }
 
     public int getWins() {
@@ -205,14 +178,11 @@ public class Deck implements Printable, Comparable<Deck> {
         return c;
     }
 
-    public void setDirectory(DeckDirectory directory) {
-        this.directory = directory;
-    }
-
+    @Override
     public String[] normalPrint(Player currentPlayer) {
         String[] ret = new String[3];
         Directory d = currentPlayer.getCurrentDirectory();
-        if (d instanceof HeroDirectory && ((HeroDirectory) d).getHero().getCurrentDeck() == this) {
+        if (d instanceof HeroDirectory && currentPlayer.getCurrentDeck() == this) {
             ret[0] = Console.GREEN;
             ret[2] = Console.RESET;
         }
@@ -220,13 +190,14 @@ public class Deck implements Printable, Comparable<Deck> {
         return ret;
     }
 
+    @Override
     public String[][] longPrint(Player currentPlayer) {
         String[][] ret = new String[16][3];
         Directory d = currentPlayer.getCurrentDirectory();
         for (int i = 0; i < 16; i++)
             switch (i) {
                 case 0:
-                    if (d instanceof HeroDirectory && ((HeroDirectory) d).getHero().getCurrentDeck() == this) {
+                    if (d instanceof HeroDirectory && currentPlayer.getCurrentDeck() == this) {
                         ret[i][0] = Console.GREEN;
                         ret[i][1] = "current deck";
                         ret[i][2] = Console.RESET;
@@ -242,7 +213,7 @@ public class Deck implements Printable, Comparable<Deck> {
                     ret[i][1] = "deck";
                     break;
                 case 3:
-                    ret[i][1] = hero.getHeroClass().toString().toLowerCase();
+                    ret[i][1] = heroClass.toString().toLowerCase();
                     break;
                 case 4:
                     ret[i][1] = cards.size() + "";
@@ -284,18 +255,11 @@ public class Deck implements Printable, Comparable<Deck> {
         return 0;
     }
 
-    public boolean move(Hero hero, String newName) {
-        for (Deck d : hero.getDecks())
-            if (d != this && d.toString().equals(newName))
-                return false;
-
+    public boolean move(HeroClass heroClass, String newName) {
         for (Card c : cards)
-            if (HeroClass.NEUTRAL != c.getHeroClass() && hero.getHeroClass() != c.getHeroClass())
+            if (HeroClass.NEUTRAL != c.getHeroClass() && heroClass != c.getHeroClass())
                 return false;
-
-        this.hero.getDecks().remove(this);
-        this.hero = hero;
-        hero.getDecks().add(this);
+        this.heroClass = heroClass;
         name = newName;
         return true;
     }

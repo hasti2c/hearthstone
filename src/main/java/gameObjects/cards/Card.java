@@ -1,24 +1,35 @@
 package gameObjects.cards;
 
 import cli.*;
+import controllers.game.GameController;
 import directories.collections.*;
 import directories.game.PlayGround;
+import gameObjects.*;
 import gameObjects.heros.*;
 import directories.*;
-import gameObjects.player.Player;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public abstract class Card implements Printable {
+public abstract class Card implements Printable, Configable {
     private String name, description;
     private int mana, price;
     private HeroClass heroClass;
     private RarityType rarity;
     private CardType cardType;
     private transient Image image;
+
+    @Override
+    public void initialize(GameController controller) {
+        configImage();
+    }
+
+    @Override
+    public String getJsonPath(GameController controller, String name) {
+        return "cards/";
+    }
 
     public String toString() {
         return this.name;
@@ -100,9 +111,7 @@ public abstract class Card implements Printable {
         return iv;
     }
 
-    @Override
     public String[] normalPrint(Player currentPlayer) {
-        Player.Inventory currentInventory = currentPlayer.getInventory();
         String[] ret = new String[3];
         Directory d = currentPlayer.getCurrentDirectory();
         if (d instanceof Store) {
@@ -112,7 +121,7 @@ public abstract class Card implements Printable {
             } else if (currentPlayer.canBuy(this)) {
                 ret[0] = Console.GREEN;
                 ret[2] = Console.RESET;
-            } else if (!currentInventory.getAllCards().contains(this) && !currentPlayer.canBuy(this)) {
+            } else if (!currentPlayer.getAllCards().contains(this) && !currentPlayer.canBuy(this)) {
                 ret[0] = Console.RED;
                 ret[2] = Console.RESET;
             }
@@ -123,13 +132,7 @@ public abstract class Card implements Printable {
             return ret;
         }
 
-        Deck deck = null;
-        if (d instanceof DeckDirectory)
-            deck = ((DeckDirectory) d).getDeck();
-        else if (d instanceof HeroDirectory)
-            deck = ((HeroDirectory) d).getHero().getCurrentDeck();
-        else if (d instanceof Collections && currentInventory.getCurrentHero() != null)
-            deck = currentInventory.getCurrentHero().getCurrentDeck();
+        Deck deck = currentPlayer.getCurrentDeck();
         int cnt = 0;
         if (deck != null)
             for (Card c : deck.getCards())
@@ -144,7 +147,6 @@ public abstract class Card implements Printable {
         return ret;
     }
 
-    @Override
     public abstract String[][] longPrint(Player currentPlayer);
 
     public int compareTo(Card c, Deck deck) {
@@ -159,5 +161,19 @@ public abstract class Card implements Printable {
         else if (c instanceof Minion && !(this instanceof Minion))
             return -1;
         return 0;
+    }
+
+    public static Class<? extends Configable> getSubclass(String name) {
+        int i = 0;
+        while (i < name.length() && name.charAt(i) != '/')
+            i++;
+        String className = name.substring(0, i);
+        return switch (className) {
+            case "Minion": yield Minion.class;
+            case "Spell": yield Spell.class;
+            case "Weapon": yield Weapon.class;
+            case "QuestAndReward": yield QuestAndReward.class;
+            default: yield null;
+        };
     }
 }

@@ -2,7 +2,7 @@
   "name": "wasteland assassin",
   "description": "Stealth, Reborn",
   "mana": 4,
-  "HP": 5,
+  "health": 5,
   "attack": 3,
   "price": 10,
   "heroClass": "NEUTRAL",

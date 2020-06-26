@@ -9,7 +9,6 @@ import controllers.game.*;
 import directories.collections.*;
 import directories.collections.Collections;
 import directories.game.PlayGround;
-import gameObjects.player.Player;
 import graphics.*;
 import graphics.directories.*;
 import gameObjects.*;
@@ -20,10 +19,10 @@ import javafx.util.*;
 
 
 public class CommandRunner {
-    private GameController controller;
+    private final GameController controller;
     private Console console;
     private GraphicsController graphics;
-    private static ArrayList<Character> usernameChars = new ArrayList<>();
+    private static final ArrayList<Character> usernameChars = new ArrayList<>();
 
     static {
         for (char c = 'a'; c <= 'z'; c++)
@@ -84,16 +83,9 @@ public class CommandRunner {
                 String initPath = d.getPath();
                 ret = cd(word, false) && ls(options) && cd(initPath, false);
             }
-        } else if (CommandType.SELECT.equals(commandType) && word != null) {
-            if ((d instanceof Collections))
-                ret = selectHero(word) && cd(word, true);
-            else if (d instanceof HeroDirectory)
+        } else if (CommandType.SELECT.equals(commandType) && word != null && d instanceof HeroDirectory)
                 ret = selectDeck(word) && cd(word, true);
-        } else if (CommandType.DESELECT.equals(commandType)) {
-            Hero h = controller.getCurrentPlayer().getInventory().getCurrentHero();
-            if (d instanceof Collections && (word == null || (h != null && word.equals(h.toString()))))
-                ret = deselectHero();
-            else if (d instanceof HeroDirectory && (word == null || (h != null && h.getCurrentDeck() != null && word.equals(h.getCurrentDeck().toString()))))
+        else if (CommandType.DESELECT.equals(commandType) && d instanceof HeroDirectory && word == null) {
             ret = deselectDeck();
         } else if (CommandType.ADD.equals(commandType) && word != null) {
             if (d instanceof DeckDirectory)
@@ -162,7 +154,7 @@ public class CommandRunner {
             return false;
 
         try {
-            controller.readFile("src/main/resources/database/players/" + username + ".json");
+            GameController.readFile("src/main/resources/database/players/" + username + ".json");
             return false;
         } catch (FileNotFoundException e) {
             String password;
@@ -223,7 +215,19 @@ public class CommandRunner {
 
     private Player signUp(String username, String password) {
         controller.setPlayerCount(controller.getPlayerCount() + 1);
-        return Player.getNewPlayer(controller, username, password);
+        Player p = Player.getNewPlayer(controller, username, password);
+        try {
+            (new File(p.getDeckJsonPath())).mkdir();
+            (new File(p.getLogPath())).createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        p.log("USER: " + username);
+        p.log("PASSWORD: " + password);
+        p.log("CREATED_AT: ", "");
+        p.log("");
+        p.log("signup", "");
+        return p;
     }
 
     private boolean login(Player p, String password) {
@@ -247,7 +251,9 @@ public class CommandRunner {
     private boolean deletePlayer() {
         Player p = controller.getCurrentPlayer();
         logout();
-        return p.deletePlayer();
+        p.log("");
+        p.log("DELETED_AT:", "");
+        return (new File(p.getJsonPath())).delete() && p.deleteDeckDirectory();
     }
 
     private boolean cd(String path, boolean log) {
@@ -273,7 +279,7 @@ public class CommandRunner {
     private boolean ls(ArrayList<Character> options) {
         boolean l = options.contains('l');
         if (l)
-            options.remove(options.indexOf('l'));
+            options.remove('l');
 
         ArrayList<Printable> objects = controller.getCurrentPlayer().getCurrentDirectory().getPrintables(options, l);
         if (objects == null)
@@ -285,34 +291,11 @@ public class CommandRunner {
         return true;
     }
 
-    private boolean selectHero(String name) {
-        Player player = controller.getCurrentPlayer();
-        Player.Inventory inventory = player.getInventory();
-        for (Hero h : inventory.getAllHeros())
-            if (h.toString().equals(name)) {
-                inventory.setCurrentHero(h);
-                player.log("select", "hero: " + h.toString());
-                return true;
-            }
-        return false;
-    }
-
-    private boolean deselectHero() {
-        Player player = controller.getCurrentPlayer();
-        Player.Inventory inventory = player.getInventory();
-        if (inventory.getCurrentHero() == null)
-            return false;
-        inventory.deselectCurrentHero();
-        player.log("deselect", "hero");
-        return true;
-    }
-
     private boolean selectDeck(String name) {
         Player player = controller.getCurrentPlayer();
-        Hero h = ((HeroDirectory) player.getCurrentDirectory()).getHero();
-        for (Deck d : h.getDecks())
+        for (Deck d : player.getAllDecks())
             if (d.toString().equals(name)) {
-                h.setCurrentDeck(d);
+                player.setCurrentDeck(d);
                 player.log("select", "deck: " + name);
                 return true;
             }
@@ -321,10 +304,10 @@ public class CommandRunner {
 
     private boolean deselectDeck() {
         Player player = controller.getCurrentPlayer();
-        Hero h = ((HeroDirectory) (player.getCurrentDirectory())).getHero();
-        if (h.getCurrentDeck() == null)
+        Hero hero = ((HeroDirectory) (player.getCurrentDirectory())).getHero();
+        if (player.getCurrentHero() != hero || player.getCurrentDeck() == null)
             return false;
-        h.deselectCurrentDeck();
+        player.deselectCurrentDeck();
         player.log("deselect", "deck");
         return true;
     }
@@ -357,7 +340,7 @@ public class CommandRunner {
     private boolean addDeck(String name) {
         Player player = controller.getCurrentPlayer();
         Hero h = ((HeroDirectory) player.getCurrentDirectory()).getHero();
-        boolean ret = validDeckName(name) && h.addNewDeck(name);
+        boolean ret = validDeckName(name) && player.addNewDeck(h.getHeroClass(), name);
         if (ret)
             player.log("add", "deck: " + name + " -> hero: " + h);
         return ret;
@@ -365,10 +348,9 @@ public class CommandRunner {
 
     private boolean removeDeck(String name) {
         Player player = controller.getCurrentPlayer();
-        Hero h = ((HeroDirectory) player.getCurrentDirectory()).getHero();
-        boolean ret = h.removeDeck(name);
+        boolean ret = player.removeDeck(name);
         if (ret)
-            player.log("remove", "deck: " + h + "-" + name);
+            player.log("remove", "deck: " + name);
         return ret;
     }
 
@@ -398,7 +380,7 @@ public class CommandRunner {
 
         String newName = getPathAndDeck(pathPair.getValue()).getValue();
         player.setCurrentDirectory(init);
-        ret &= validDeckName(newName) && deck.move(finalHero, newName);
+        ret &= validDeckName(newName) && deck.move(finalHero.getHeroClass(), newName);
         if (ret)
             player.log("move", "deck: " + initialHero + "-" + deck + " -> hero: " + finalHero);
         return ret;
@@ -425,34 +407,32 @@ public class CommandRunner {
 
     private boolean buyCard(String name) {
         Card card = null;
-        Player player = controller.getCurrentPlayer();
-        Player.Inventory inventory = player.getInventory();
+        Player p = controller.getCurrentPlayer();
         for (Card c : GameController.getCardsList())
             if (c.toString().equals(name)) {
                 card = c;
                 break;
             }
-        if (card == null || !player.canBuy(card))
+        if (card == null || !p.canBuy(card))
             return false;
-        inventory.addCardToAll(card);
-        player.setBalance(player.getBalance() - card.getPrice());
-        player.log("buy", "card: " + card.toString());
+        p.addCard(card);
+        p.setBalance(p.getBalance() - card.getPrice());
+        controller.getCurrentPlayer().log("buy", "card: " + card.toString());
         return true;
     }
 
     private boolean sellCard(String name) {
         Card card = null;
-        Player player = controller.getCurrentPlayer();
-        Player.Inventory inventory = player.getInventory();
-        for (Card c : inventory.getAllCards())
+        Player p = controller.getCurrentPlayer();
+        for (Card c : p.getAllCards())
             if (c.toString().equals(name))
                 card = c;
-        if (card == null || !player.canSell(card))
+        if (card == null || !p.canSell(card))
             return false;
         if (console != null && !console.getInput("are you sure? (y/n) ").equalsIgnoreCase("y"))
             return true;
-        inventory.removeCardFromAll(card);
-        player.setBalance(player.getBalance() + card.getPrice());
+        p.removeCard(card);
+        p.setBalance(p.getBalance() + card.getPrice());
         controller.getCurrentPlayer().log("sell", "card: " + card.toString());
         return true;
     }
@@ -568,7 +548,6 @@ public class CommandRunner {
 
     private boolean startGame() {
         Player player = controller.getCurrentPlayer();
-        Player.Inventory inventory = player.getInventory();
         Directory d = player.getCurrentDirectory();
         Game g = d.getGame();
         if (g == null)
@@ -581,8 +560,8 @@ public class CommandRunner {
             g.log("STARTED_AT: ", "");
             g.log("");
             g.log("p1: " + player);
-            g.log("p1_hero: " + inventory.getCurrentHero());
-            g.log("p1_deck: " + inventory.getCurrentDeck());
+            g.log("p1_hero: " + player.getCurrentHero());
+            g.log("p1_deck: " + player.getCurrentDeck());
             g.log("");
         } catch (IOException e) {
             e.printStackTrace();

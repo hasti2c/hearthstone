@@ -1,6 +1,7 @@
 {
-  "playerCount": 5,
-  "gameCount": 6,
+  "playerCount": 2,
+  "deckCount": 1,
+  "gameCount": 0,
   "heroNames": [
     "mage",
     "rogue",
@@ -56,32 +57,5 @@
     "Mana Jump",
     "Zombie"
   ],
-  "defaultPlayer": {
-    "balance": 50,
-    "deckCap": 15,
-    "inventory": {
-      "allHeros": [
-        "mage",
-        "warlock",
-        "priest"
-      ],
-      "allCards": [
-        "Dreadscale",
-        "korkron elite",
-        "murloc raider",
-        "senjin shieldmasta",
-        "voidwalker",
-        "wasteland assassin",
-        "Polymorph",
-        "Blood Fury",
-        "Sprint",
-        "Swarm of Locusts",
-        "Truesilver Champion",
-        "Sathrovarr",
-        "Strength in Numbers"
-      ],
-      "allDecks": [],
-      "currentHero": "mage"
-    }
-  }
+  "defaultPlayer": "-def"
 }

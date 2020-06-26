@@ -5,12 +5,10 @@ import directories.*;
 import gameObjects.*;
 import gameObjects.cards.*;
 import gameObjects.heros.*;
-import gameObjects.player.Player;
-
 import java.util.*;
 
 public class DeckDirectory extends Directory {
-    private Deck deck;
+    private final Deck deck;
 
     DeckDirectory(Deck deck, Directory parent, Player player) {
         super(deck.toString(), parent, player);
@@ -20,10 +18,9 @@ public class DeckDirectory extends Directory {
 
     public void config() {
         clear();
-        for (Card c : inventory.getAllCards())
+        for (Card c : player.getAllCards())
             if (c.getHeroClass().equals(deck.getHero().getHeroClass()) || c.getHeroClass().equals(HeroClass.NEUTRAL))
                 addContent(c);
-        deck.setDirectory(this);
     }
 
     public Deck getDeck() {
@@ -79,9 +76,9 @@ public class DeckDirectory extends Directory {
     }
 
     @Override
-    protected String[] normalPrint() {
+    public String[] normalPrint(Player currentPlayer) {
         String[] ret = new String[3];
-        if (player.getCurrentDirectory() instanceof HeroDirectory && deck.getHero().getCurrentDeck() == deck) {
+        if (currentPlayer.getCurrentDirectory() instanceof HeroDirectory && currentPlayer.getCurrentDeck() == deck) {
             ret[0] = Console.GREEN;
             ret[2] = Console.RESET;
         }
@@ -90,12 +87,12 @@ public class DeckDirectory extends Directory {
     }
 
     @Override
-    protected String[][] longPrint() {
+    public String[][] longPrint(Player currentPlayer) {
         String[][] ret = new String[16][3];
         for (int i = 0; i < 16; i++)
             switch (i) {
                 case 0:
-                    if (player.getCurrentDirectory() instanceof HeroDirectory && deck.getHero().getCurrentDeck() == deck) {
+                    if (currentPlayer.getCurrentDirectory() instanceof HeroDirectory && currentPlayer.getCurrentDeck() == deck) {
                         ret[i][0] = Console.GREEN;
                         ret[i][1] = "current deck";
                         ret[i][2] = Console.RESET;

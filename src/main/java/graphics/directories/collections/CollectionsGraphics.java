@@ -66,7 +66,7 @@ public class CollectionsGraphics extends DirectoryGraphics {
     }
 
     private void configDecks() {
-        for (Deck deck : controller.getCurrentPlayer().getInventory().getAllDecks())
+        for (Deck deck : controller.getCurrentPlayer().getAllDecks())
             configDeckRow(deck);
         for (Node n : grid.getChildren()) {
             GridPane.setHalignment(n, HPos.CENTER);
@@ -81,7 +81,7 @@ public class CollectionsGraphics extends DirectoryGraphics {
         grid.add(new Label(deck.getCards().size() + ""), 2, i);
 
         Node selectDeck;
-        if (controller.getCurrentPlayer().getInventory().getCurrentDeck() == deck)
+        if (controller.getCurrentPlayer().getCurrentDeck() == deck)
             selectDeck = new Label("Current Deck");
         else {
             selectDeck = new Button ("Select Deck");
@@ -113,7 +113,7 @@ public class CollectionsGraphics extends DirectoryGraphics {
 
     private void addDeck() {
         ArrayList<String> heroStrings = new ArrayList<>();
-        for (Hero h : controller.getCurrentPlayer().getInventory().getAllHeros())
+        for (Hero h : controller.getCurrentPlayer().getAllHeros())
             heroStrings.add(h.toString());
 
         OptionAndQuestionBox optionAndQuestionBox = new OptionAndQuestionBox("Type in the name of your new deck and choose its hero.", "Done", "Cancel", heroStrings);
@@ -144,7 +144,7 @@ public class CollectionsGraphics extends DirectoryGraphics {
 
     private void changeHero(Deck deck) {
         ArrayList<String> heroStrings = new ArrayList<>();
-        for (Hero h : controller.getCurrentPlayer().getInventory().getAllHeros())
+        for (Hero h : controller.getCurrentPlayer().getAllHeros())
             heroStrings.add(h.toString());
         OptionBox optionBox = new OptionBox("To which hero do you want to move " + deck + "?", "Done", "Cancel", heroStrings);
         optionBox.display();
@@ -153,12 +153,10 @@ public class CollectionsGraphics extends DirectoryGraphics {
             boolean ret = runner.run(new Command(CommandType.CD, deck.getHero().toString()));
             ret &= runner.run(new Command(CommandType.MV, deck + ":../" + heroName + "/" + deck));
             if (!ret) {
-                String alert = """
-                               Hero change couldn't be done.
-                               Possible reasons include:
-                                  - Selected hero already has a deck with that name.
-                                  - There are cards in this deck that can't be used by the selected Hero.
-                               """;
+                String alert = "Hero change couldn't be done.\n" +
+                               "Possible reasons include:\n" +
+                               "   - Selected hero already has a deck with that name.\n" +
+                               "   - There are cards in this deck that can't be used by the selected Hero.\n";
 
                 (new AlertBox(alert, Color.RED, "Okay")).display();
             }
@@ -188,12 +186,10 @@ public class CollectionsGraphics extends DirectoryGraphics {
     }
 
     private void deckNameError() {
-        String alert = """
-                               That's not a valid name for a deck.
-                               Possible reasons include:
-                                  - Characters other than A-Z, a-z, 0-9, _, . and space are used.
-                                  - This hero already has a deck with that name.
-                               """;
+        String alert = "That's not a valid name for a deck.\n" +
+                        "Possible reasons include:\n" +
+                        "   - Characters other than A-Z, a-z, 0-9, _, . and space are used.\n" +
+                        "   - This hero already has a deck with that name.\n";
         new AlertBox(alert, Color.RED, "Okay").display();
     }
 

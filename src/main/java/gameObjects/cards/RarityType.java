@@ -6,7 +6,7 @@ public enum RarityType {
     EPIC (3),
     LEGENDARY (4);
 
-    private int value;
+    private final int value;
 
     RarityType(int value) {
         this.value = value;

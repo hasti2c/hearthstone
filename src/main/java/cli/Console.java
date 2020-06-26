@@ -3,13 +3,13 @@ package cli;
 import java.util.*;
 import controllers.commands.*;
 import controllers.game.*;
-import gameObjects.player.Player;
+import gameObjects.*;
 
 public class Console {
-    private GameController controller;
-    private Scanner sc = new Scanner(System.in);
+    private final GameController controller;
+    private final Scanner sc = new Scanner(System.in);
     private boolean quit = false;
-    private CommandRunner runner;
+    private final CommandRunner runner;
 
     public static final String RESET = "\u001B[0m";
     public static final String RED = "\033[0;31m";

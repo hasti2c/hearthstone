@@ -2,7 +2,7 @@
   "name": "Security Rover",
   "description": "Whenever this minion takes damage, summon a 2/3 Mech with Taunt.",
   "mana": 6,
-  "HP": 6,
+  "health": 6,
   "attack": 2,
   "price": 25,
   "heroClass": "NEUTRAL",

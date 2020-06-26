@@ -1,6 +1,6 @@
 package cli;
 
-import gameObjects.player.Player;
+import gameObjects.*;
 
 public interface Printable {
     String[] normalPrint(Player currentPlayer);

@@ -1,5 +1,6 @@
 {
   "name": "rogue",
+  "heroClass": "ROGUE",
   "health": 30,
-  "heroPowerName": "rogue hero power"
+  "heroPower": "rogue hero power"
 }

@@ -2,7 +2,7 @@
   "name": "Swamp King Dred",
   "description": "After your opponent plays a minion, attack it.",
   "mana": 7,
-  "HP": 9,
+  "health": 9,
   "attack": 9,
   "price": 100,
   "heroClass": "HUNTER",

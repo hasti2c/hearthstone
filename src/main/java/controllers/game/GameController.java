@@ -5,21 +5,23 @@ import java.time.*;
 import java.time.format.*;
 import java.util.ArrayList;
 
+import com.google.gson.internal.$Gson$Preconditions;
+import gameObjects.*;
 import gameObjects.cards.*;
 import gameObjects.heros.*;
 import com.google.gson.*;
 import com.google.gson.stream.*;
-import gameObjects.player.Player;
 
 
 public class GameController {
     private Player currentPlayer = null;
-    private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-    private int playerCount, gameCount;
-    private static ArrayList<Hero> herosList = new ArrayList<>();
-    private static ArrayList<Card> cardsList = new ArrayList<>();
-    private static ArrayList<Passive> passivesList = new ArrayList<>();
-    private String defaultPath = "src/main/resources/database/defaults.json";
+    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    private int playerCount, deckCount, gameCount;
+    private String initPlayerName;
+    private static final ArrayList<Hero> herosList = new ArrayList<>();
+    private static final ArrayList<Card> cardsList = new ArrayList<>();
+    private static final ArrayList<Passive> passivesList = new ArrayList<>();
+    private final String defaultPath = "src/main/resources/database/defaults.json";
 
     public Player getCurrentPlayer() {
         return currentPlayer;
@@ -29,7 +31,7 @@ public class GameController {
         this.currentPlayer = currentPlayer;
     }
 
-    static ArrayList<Hero> getHerosList() {
+    public static ArrayList<Hero> getHerosList() {
         return herosList;
     }
 
@@ -44,6 +46,14 @@ public class GameController {
     public void setPlayerCount(int playerCount) {
         this.playerCount = playerCount;
         updateJson();
+    }
+
+    public int getDeckCount() {
+        return deckCount;
+    }
+
+    public void setDeckCount(int deckCount) {
+        this.deckCount = deckCount;
     }
 
     public int getGameCount() {
@@ -103,19 +113,19 @@ public class GameController {
     static Card getNewCard(String name) {
         Gson gson = new Gson();
         try {
-            String cardJson = readFile("src/main/resources/database/cards/quest and reward/" + name + ".json");
+            String cardJson = readFile("src/main/resources/database/cards/QuestAndReward/" + name + ".json");
             return gson.fromJson(cardJson, QuestAndReward.class);
         } catch (FileNotFoundException e1) {
             try {
-                String cardJson = readFile("src/main/resources/database/cards/minion/" + name + ".json");
+                String cardJson = readFile("src/main/resources/database/cards/Minion/" + name + ".json");
                 return gson.fromJson(cardJson, Minion.class);
             } catch (FileNotFoundException e2) {
                 try {
-                    String cardJson = readFile("src/main/resources/database/cards/spell/" + name + ".json");
+                    String cardJson = readFile("src/main/resources/database/cards/Spell/" + name + ".json");
                     return gson.fromJson(cardJson, Spell.class);
                 } catch (FileNotFoundException e3) {
                     try {
-                        String cardJson = readFile("src/main/resources/database/cards/weapon/" + name + ".json");
+                        String cardJson = readFile("src/main/resources/database/cards/Weapon/" + name + ".json");
                         return gson.fromJson(cardJson, Weapon.class);
                     } catch (FileNotFoundException e4) {
                         return null;
@@ -148,12 +158,14 @@ public class GameController {
                     String field = jsonReader.nextName();
                     if ("playerCount".equals(field))
                         playerCount = jsonReader.nextInt();
+                    else if ("deckCount".equals(field))
+                        playerCount = jsonReader.nextInt();
                     else if ("gameCount".equals(field))
                         gameCount = jsonReader.nextInt();
                     else if ("heroNames".equals(field)) {
                         jsonReader.beginArray();
                         while (!JsonToken.END_ARRAY.equals(jsonReader.peek()))
-                            herosList.add(new Hero(null, HeroClass.valueOf(jsonReader.nextString().toUpperCase())));
+                            herosList.add(Hero.getInstance(HeroClass.valueOf(jsonReader.nextString().toUpperCase()), this));
                         jsonReader.endArray();
                     } else if ("cardNames".equals(field)) {
                         jsonReader.beginArray();
@@ -171,7 +183,7 @@ public class GameController {
                     }
                 } else {
                     assert JsonToken.BEGIN_OBJECT.equals(next);
-                    Player.configDefault(this, jsonReader);
+                    Player.configDefaultPlayer(this, jsonReader);
                 }
             }
         } catch (IOException e) {
@@ -186,6 +198,7 @@ public class GameController {
 
             jsonWriter.beginObject();
             jsonWriter.name("playerCount").value(playerCount);
+            jsonWriter.name("deckCount").value(deckCount);
             jsonWriter.name("gameCount").value(gameCount);
 
             jsonWriter.name("heroNames");
@@ -214,6 +227,14 @@ public class GameController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getInitPlayerName() {
+        return initPlayerName;
+    }
+
+    public void setInitPlayerName(String initPlayerName) {
+        this.initPlayerName = initPlayerName;
     }
 
     public void log(String s, String s1) {

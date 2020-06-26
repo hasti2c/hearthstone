@@ -14,7 +14,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 
 public class DeckGraphics extends CardsListGraphics {
-    private Deck deck;
+    private final Deck deck;
     @FXML
     private Label deckCount;
 
@@ -36,12 +36,12 @@ public class DeckGraphics extends CardsListGraphics {
 
     @Override
     protected boolean validCard(Card card) {
-        return HeroClass.NEUTRAL.equals(card.getHeroClass()) || deck.getHero().getHeroClass().equals(card.getHeroClass());
+        return HeroClass.NEUTRAL.equals(card.getHeroClass()) || deck.getHeroClass().equals(card.getHeroClass());
     }
 
     @Override
     protected boolean validHero(HeroClass heroClass) {
-        return HeroClass.NEUTRAL.equals(heroClass) || deck.getHero().getHeroClass().equals(heroClass);
+        return HeroClass.NEUTRAL.equals(heroClass) || deck.getHeroClass().equals(heroClass);
     }
 
     protected VBox getNode(Card card) {
@@ -99,7 +99,7 @@ public class DeckGraphics extends CardsListGraphics {
 
     @Override
     protected void runCd() {
-        runner.run(new Command(CommandType.CD, "~/collections/" + deck.getHero().toString() + "/" + deck.toString()));
+        runner.run(new Command(CommandType.CD, "~/collections/" + deck.getHeroClass().toString().toLowerCase() + "/" + deck.toString()));
     }
 
     protected FXMLLoader getLoader() {

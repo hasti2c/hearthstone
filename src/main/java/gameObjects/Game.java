@@ -4,30 +4,35 @@ import controllers.game.GameController;
 import gameObjects.cards.*;
 import gameObjects.heros.Deck;
 import gameObjects.heros.Hero;
-import gameObjects.player.Player;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class Game {
-    private GameController controller;
-    private Player player;
-    private Hero hero;
-    private Deck deck;
-    private ArrayList<Card> leftInDeck, hand = new ArrayList<>(), minionsInGame = new ArrayList<>();
+    private final GameController controller;
+    private final Player player;
+    private final Hero hero;
+    private final Deck deck;
+    private final ArrayList<Card> leftInDeck;
+    private final ArrayList<Card> hand = new ArrayList<>();
+    private final ArrayList<Card> minionsInGame = new ArrayList<>();
     private Weapon currentWeapon;
-    private int id, turn = 1, playerCount = 1, playerNumber = 0, mana = 1;
+    private int id;
+    private int turn = 1;
+    private final int playerCount = 1;
+    private final int playerNumber = 0;
+    private int mana = 1;
     private boolean usedHeroPower;
     private FileWriter logWriter;
     private String gameEvents = "";
     private Passive passive;
 
-    public Game(GameController controller, Deck deck) {
+    public Game(GameController controller) {
         this.controller = controller;
-        this.deck = deck;
-        this.hero = deck.getHero().clone();
-        this.player = hero.getPlayer();
+        player = controller.getCurrentPlayer();
+        hero = player.getCurrentHero().clone();
+        deck = player.getCurrentDeck().clone();
         leftInDeck = new ArrayList<>(deck.getCards());
     }
 
@@ -41,6 +46,10 @@ public class Game {
         controller.setGameCount(id);
         for (int i = 0; i < 3; i++)
             draw();
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     public Hero getHero() {
@@ -96,8 +105,8 @@ public class Game {
         hand.remove(card);
         if (card instanceof Minion)
             minionsInGame.add(card);
-        else if (card instanceof Weapon)
-            currentWeapon = (Weapon) card;
+        else if (card instanceof Weapon w)
+            currentWeapon = w;
         return true;
     }
 

@@ -2,7 +2,7 @@
   "name": "Curio Collector",
   "description": "Whenever you draw a card, gain +1/+1.",
   "mana": 5,
-  "HP": 4,
+  "health": 4,
   "attack": 4,
   "price": 25,
   "heroClass": "NEUTRAL",

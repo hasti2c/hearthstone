@@ -1,5 +1,6 @@
 {
   "name": "hunter",
+  "heroClass": "HUNTER",
   "health": 30,
-  "heroPowerName": "Caltrops"
+  "heroPower": "Caltrops"
 }

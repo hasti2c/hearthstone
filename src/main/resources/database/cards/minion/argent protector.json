@@ -2,7 +2,7 @@
   "name": "argent protector",
   "description": "Battlecry: Give a friendly minion Divine Shield.",
   "mana": 2,
-  "HP": 3,
+  "health": 3,
   "attack": 3,
   "price": 10,
   "heroClass": "NEUTRAL",

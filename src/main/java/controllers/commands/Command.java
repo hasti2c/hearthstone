@@ -3,9 +3,9 @@ package controllers.commands;
 import java.util.*;
 
 public class Command {
-    private CommandType commandType;
-    private String word;
-    private ArrayList<Character> options;
+    private final CommandType commandType;
+    private final String word;
+    private final ArrayList<Character> options;
 
     public Command(CommandType commandType, String word, ArrayList<Character> options) {
         this.commandType = commandType;

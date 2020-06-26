@@ -3,56 +3,40 @@ package gameObjects.heros;
 import java.io.*;
 import java.util.*;
 import com.google.gson.stream.*;
+import controllers.game.GameController;
 import directories.*;
-import directories.collections.*;
 import directories.collections.Collections;
 import directories.game.PlayGround;
+import gameObjects.*;
 import cli.*;
 import cli.Console;
-import gameObjects.player.Player;
 import javafx.scene.image.Image;
 
-public class Hero implements Printable {
-    private ArrayList<Deck> decks = new ArrayList<>();
-    private Deck currentDeck;
+public class Hero implements Printable, Configable {
     private int health = 30;
     private String name;
-    private final HeroClass heroClass;
-    private Player player;
+    private HeroClass heroClass;
     private HeroPower heroPower;
-    private HeroDirectory directory;
     private Image gameImage;
 
-    public Hero(Player player, HeroClass heroClass) {
-        this.player = player;
-        this.heroClass = heroClass;
-        config();
+    public static Hero getInstance(HeroClass heroClass, GameController controller) {
+        try {
+            Configor<Hero> configor = new Configor<>(controller, heroClass.toString().toLowerCase(), Hero.class);
+            return configor.getConfigedObject();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void initialize(GameController controller) {
         configGameImage();
     }
 
-    private void config() {
-        try {
-            JsonReader jsonReader = new JsonReader(new FileReader("src/main/resources/database/heros/" + heroClass.toString().toLowerCase() + ".json"));
-            assert JsonToken.BEGIN_OBJECT == jsonReader.peek();
-            jsonReader.beginObject();
-            while(JsonToken.END_OBJECT != jsonReader.peek()) {
-                assert JsonToken.NAME == jsonReader.peek();
-                String field = jsonReader.nextName();
-                if ("name".equals(field)) {
-                    assert JsonToken.STRING == jsonReader.peek();
-                    name = jsonReader.nextString();
-                } else if ("health".equals(field)) {
-                    assert JsonToken.NUMBER == jsonReader.peek();
-                    health = jsonReader.nextInt();
-                } else if ("heroPowerName".equals(field)) {
-                    assert JsonToken.STRING == jsonReader.peek();
-                    heroPower = new HeroPower(jsonReader.nextString(), 2, this);
-                }
-            }
-            jsonReader.endObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public String getJsonPath(GameController controller, String name) {
+        return "heros/";
     }
 
     private void configGameImage() {
@@ -77,94 +61,14 @@ public class Hero implements Printable {
     }
 
     public Hero clone() {
-        Hero h = new Hero(player, heroClass);
-        for (Deck d : decks) {
-            Deck deck = d.clone(h);
-            h.decks.add(deck);
-            if (d == currentDeck)
-                h.currentDeck = deck;
-        }
+        //Hero h = new Hero(player, heroClass);
+        Hero h = new Hero();
+        h.name = name;
+        h.heroClass = heroClass;
         h.health = health;
+        h.gameImage = gameImage;
+        h.heroPower = heroPower;
         return h;
-    }
-
-    public Deck getDeck(String deckName) {
-        for (Deck d : decks)
-            if (d.toString().equals(deckName))
-                return d;
-        return null;
-    }
-
-    public Deck getNewDeck(String deckName) {
-        Deck d = new Deck(this, deckName);
-        addDeck(d);
-        return d;
-    }
-
-    public ArrayList<Deck> getDecks() {
-        return decks;
-    }
-
-    public void setCurrentDeck(Deck currentDeck) {
-        this.currentDeck = currentDeck;
-        if (player != null && player.getInventory().getCurrentHero() == this)
-            player.getHome().createPlayGround();
-    }
-
-    public Player getPlayer() { return player; }
-
-    public void deselectCurrentDeck() {
-        currentDeck = null;
-        assert player != null;
-        Directory home = player.getHome();
-        if (home.getChildren().get(0) instanceof PlayGround)
-            home.getChildren().remove(0);
-    }
-
-    public Deck getCurrentDeck() {
-        return currentDeck;
-    }
-
-    private void addDeck(Deck deck) {
-        decks.add(deck);
-        player.getInventory().addDeckToAll(deck);
-    }
-
-    public boolean addNewDeck(String name) {
-        for (Deck d : decks)
-            if (d.toString().equals(name))
-                return false;
-        Deck deck = new Deck(this, name);
-        addDeck(deck);
-        try {
-            assert player != null;
-            String path = "src/main/resources/database/decks/" + player + "/" + this.name + "-" + name + ".json";
-            (new File(path)).createNewFile();
-            JsonWriter jsonWriter = new JsonWriter(new FileWriter(path));
-            jsonWriter.setIndent("  ");
-            jsonWriter.beginObject();
-            jsonWriter.endObject();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return true;
-    }
-
-    public boolean removeDeck(String name) {
-        for (Deck d : decks)
-            if (d.toString().equals(name)) {
-                decks.remove(d);
-                player.getInventory().removeDeckFromAll(d);
-                if (currentDeck == d)
-                    currentDeck = null;
-                return true;
-            }
-        return false;
-    }
-
-    public void setDirectory(HeroDirectory directory) {
-        this.directory = directory;
     }
 
     public HeroPower getHeroPower() {
@@ -172,13 +76,14 @@ public class Hero implements Printable {
     }
 
     public Image getGameImage() {
+        if (gameImage == null)
+            configGameImage();
         return gameImage;
     }
 
     public String[] normalPrint(Player currentPlayer) {
-        Player.Inventory currentInventory = currentPlayer.getInventory();
         String[] ret = new String[3];
-        if (currentPlayer.getCurrentDirectory() instanceof Collections && this == currentInventory.getCurrentHero()) {
+        if (currentPlayer.getCurrentDirectory() instanceof Collections && this == currentPlayer.getCurrentHero()) {
             ret[0] = Console.GREEN;
             ret[2] = Console.RESET;
         }
@@ -187,12 +92,11 @@ public class Hero implements Printable {
     }
 
     public String[][] longPrint(Player currentPlayer) {
-        Player.Inventory currentInventory = currentPlayer.getInventory();
         String[][] ret = new String[16][3];
         for (int i = 0; i < 16; i++)
             switch (i) {
                 case 0:
-                    if (currentPlayer.getCurrentDirectory() instanceof Collections && this == currentInventory.getCurrentHero()) {
+                    if (currentPlayer.getCurrentDirectory() instanceof Collections && this == currentPlayer.getCurrentHero()) {
                         ret[i][0] = Console.GREEN;
                         ret[i][1] = "current hero";
                         ret[i][2] = Console.RESET;
@@ -208,7 +112,7 @@ public class Hero implements Printable {
                     ret[i][1] = "hero";
                     break;
                 case 4:
-                    ret[i][1] = decks.size() + "";
+                    ret[i][1] = currentPlayer.getHeroDecks(this).size() + "";
                     break;
                 case 7:
                     ret[i][1] = health + "";

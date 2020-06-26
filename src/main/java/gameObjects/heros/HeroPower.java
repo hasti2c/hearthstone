@@ -1,15 +1,11 @@
 package gameObjects.heros;
 
-public class HeroPower {
-    private String name;
-    private Hero hero;
-    private int mana;
+import controllers.game.GameController;
+import gameObjects.Configable;
 
-    HeroPower(String name, int mana, Hero hero) {
-        this.name = name;
-        this.mana = mana;
-        this.hero = hero;
-    }
+public class HeroPower implements Configable {
+    private String name;
+    private int mana;
 
     public String toString() {
         return name;
@@ -17,5 +13,13 @@ public class HeroPower {
 
     public int getMana() {
         return mana;
+    }
+
+    @Override
+    public void initialize(GameController controller) {}
+
+    @Override
+    public String getJsonPath(GameController controller, String name) {
+        return "hero powers/";
     }
 }

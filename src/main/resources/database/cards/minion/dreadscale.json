@@ -2,7 +2,7 @@
   "name": "Dreadscale",
   "description": "Charge",
   "mana": 3,
-  "HP": 2,
+  "health": 2,
   "attack": 4,
   "price": 100,
   "heroClass": "NEUTRAL",

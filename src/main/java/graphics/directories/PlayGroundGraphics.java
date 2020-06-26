@@ -18,7 +18,7 @@ import javafx.scene.layout.*;
 import java.util.ArrayList;
 
 public class PlayGroundGraphics extends DirectoryGraphics {
-    private Game game;
+    private final Game game;
     @FXML
     private Pane pane;
     @FXML
@@ -87,7 +87,7 @@ public class PlayGroundGraphics extends DirectoryGraphics {
             manaHBox.getChildren().get(i).setVisible(true);
         for (int i = game.getMana(); i < 10; i++)
             manaHBox.getChildren().get(i).setVisible(false);
-        deckLabel.setText(game.getLeftInDeck().size() + "/" + controller.getCurrentPlayer().getInventory().getCurrentHero().getCurrentDeck().getCards().size());
+        deckLabel.setText(game.getLeftInDeck().size() + "/" + controller.getCurrentPlayer().getCurrentDeck().getCards().size());
 
         configHand();
         for (Card c : game.getMinionsInGame())
@@ -156,8 +156,9 @@ public class PlayGroundGraphics extends DirectoryGraphics {
     }
 
     private class HandEventHandler implements EventHandler<MouseEvent> {
-        private Card card;
-        private ImageView normalImageView, bigImageView;
+        private final Card card;
+        private final ImageView normalImageView;
+        private final ImageView bigImageView;
 
         private HandEventHandler(Card card, ImageView normalImageView) {
             this.card = card;

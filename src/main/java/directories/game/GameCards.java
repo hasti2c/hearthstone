@@ -2,13 +2,13 @@ package directories.game;
 
 import directories.*;
 import gameObjects.Game;
-import gameObjects.player.Player;
+import gameObjects.Player;
 import gameObjects.cards.Card;
 
 import java.util.ArrayList;
 
 public class GameCards extends Directory {
-    private ArrayList<Card> cards;
+    private final ArrayList<Card> cards;
 
     GameCards(String name, ArrayList<Card> cards, Directory parent, Player player) {
         super(name, parent, player);

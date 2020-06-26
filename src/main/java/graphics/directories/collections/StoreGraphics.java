@@ -2,9 +2,9 @@ package graphics.directories.collections;
 
 import com.jfoenix.controls.JFXToggleButton;
 import controllers.commands.*;
+import gameObjects.*;
 import gameObjects.cards.*;
 import gameObjects.heros.HeroClass;
-import gameObjects.player.Player;
 import graphics.*;
 import graphics.popups.*;
 import javafx.fxml.FXML;

@@ -3,9 +3,9 @@ package graphics.directories.collections;
 import java.util.*;
 import controllers.commands.*;
 import controllers.game.*;
+import gameObjects.*;
 import gameObjects.cards.*;
 import gameObjects.heros.*;
-import gameObjects.player.Player;
 import graphics.*;
 import graphics.directories.*;
 import graphics.popups.PopupBox;
@@ -60,7 +60,7 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
         optionsGraphics.config();
 
         Player player = controller.getCurrentPlayer();
-        owned.addAll(player.getInventory().getAllCards());
+        owned.addAll(player.getAllCards());
         for (Card c : GameController.getCardsList())
             if (!owned.contains(c))
                 notOwned.add(c);
@@ -122,8 +122,8 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
         boolean ret = options.get("Unlocked");
         ret &= options.get(GameController.toProperCase(card.getCardType().toString()));
         ret &= options.get(GameController.toProperCase(card.getHeroClass().toString()));
-        if (this instanceof DeckGraphics) {
-            if (((DeckGraphics) this).getDeck().getCards().contains(card))
+        if (this instanceof DeckGraphics dg) {
+            if (dg.getDeck().getCards().contains(card))
                 ret &= options.get("In Deck");
             else
                 ret &= options.get("Not In Deck");
@@ -143,12 +143,12 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
 
     private boolean advancedSearchedCard(Card card) {
         boolean ret = inRange(card.getMana(), manaRange);
-        if (card instanceof Minion) {
-            ret &= inRange(((Minion) card).getHP(), healthRange);
-            ret &= inRange(((Minion) card).getAttack(), attackRange);
-        } else if (card instanceof Weapon) {
-            ret &= inRange(((Weapon) card).getDurability(), healthRange);
-            ret &= inRange(((Weapon) card).getAttack(), attackRange);
+        if (card instanceof Minion m) {
+            ret &= inRange(m.getHP(), healthRange);
+            ret &= inRange(m.getAttack(), attackRange);
+        } else if (card instanceof Weapon w) {
+            ret &= inRange(w.getDurability(), healthRange);
+            ret &= inRange(w.getAttack(), attackRange);
         }
         return ret;
     }
@@ -245,8 +245,8 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
             for (Node vBox : hBox.getChildren()) {
                 assert (vBox instanceof VBox);
                 for (Node node : ((VBox) vBox).getChildren())
-                    if (node instanceof CheckBox)
-                        checkBoxes.add((CheckBox) node);
+                    if (node instanceof CheckBox cb)
+                        checkBoxes.add(cb);
             }
 
             for (CheckBox cb : checkBoxes)

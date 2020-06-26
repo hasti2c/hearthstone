@@ -3,7 +3,6 @@ package directories;
 import directories.collections.*;
 import directories.game.PlayGround;
 import gameObjects.*;
-import gameObjects.player.Player;
 
 public class Home extends Directory {
     public Home(Player player) {

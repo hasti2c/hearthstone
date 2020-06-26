@@ -2,10 +2,9 @@ package directories.game;
 
 import directories.Directory;
 import gameObjects.*;
-import gameObjects.player.Player;
 
 public class PlayGround extends Directory {
-    private Game game;
+    private final Game game;
     private GameCards minionsInGame, hand, leftInDeck;
 
     public PlayGround(Game game, Directory parent, Player player) {

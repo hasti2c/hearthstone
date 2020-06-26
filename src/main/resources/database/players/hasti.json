@@ -2,7 +2,7 @@
   "username": "hasti",
   "password": "password",
   "id": 1,
-  "balance": 50,
+  "balance": 15,
   "deckCap": 15,
   "allHeros": [
     "mage",
@@ -10,23 +10,24 @@
     "priest"
   ],
   "allCards": [
-    "Dreadscale",
-    "korkron elite",
-    "murloc raider",
-    "senjin shieldmasta",
-    "voidwalker",
-    "wasteland assassin",
-    "Polymorph",
-    "Blood Fury",
-    "Sprint",
-    "Swarm of Locusts",
-    "Truesilver Champion",
-    "Sathrovarr",
-    "Strength in Numbers"
+    "Minion/Dreadscale",
+    "Minion/korkron elite",
+    "Minion/murloc raider",
+    "Minion/senjin shieldmasta",
+    "Minion/voidwalker",
+    "Minion/wasteland assassin",
+    "Spell/Polymorph",
+    "Weapon/Blood Fury",
+    "Spell/Sprint",
+    "Spell/Swarm of Locusts",
+    "Weapon/Truesilver Champion",
+    "Minion/Sathrovarr",
+    "QuestAndReward/Strength in Numbers",
+    "Minion/argent protector",
+    "Minion/Curio Collector"
   ],
   "allDecks": [
-    "mage:first"
+    "first"
   ],
-  "currentHero": "mage",
-  "currentDeck": "mage:first"
+  "currentDeck": "first"
 }

@@ -5,10 +5,9 @@ import directories.*;
 import gameObjects.*;
 import gameObjects.heros.*;
 import cli.*;
-import gameObjects.player.Player;
 
 public class HeroDirectory extends Directory {
-    private Hero hero;
+    private final Hero hero;
 
     HeroDirectory(Hero hero, Directory parent, Player player) {
         super(hero.toString(), parent, player);
@@ -18,9 +17,8 @@ public class HeroDirectory extends Directory {
 
     public void config() {
         clear();
-        for (Deck d : hero.getDecks())
+        for (Deck d : player.getHeroDecks(hero))
             addChild(new DeckDirectory(d, this, player));
-        hero.setDirectory(this);
     }
 
     public Hero getHero() {
@@ -28,9 +26,9 @@ public class HeroDirectory extends Directory {
     }
 
     @Override
-    protected String[] normalPrint() {
+    public String[] normalPrint(Player currentPlayer) {
         String[] ret = new String[3];
-        if (player.getCurrentDirectory() instanceof Collections && hero == inventory.getCurrentHero()) {
+        if (currentPlayer.getCurrentDirectory() instanceof Collections && hero == currentPlayer.getCurrentHero()) {
             ret[0] = Console.GREEN;
             ret[2] = Console.RESET;
         }
@@ -39,12 +37,12 @@ public class HeroDirectory extends Directory {
     }
 
     @Override
-    protected String[][] longPrint() {
+    public String[][] longPrint(Player currentPlayer) {
         String[][] ret = new String[16][3];
         for (int i = 0; i < 16; i++)
             switch (i) {
                 case 0:
-                    if (player.getCurrentDirectory() instanceof Collections && hero == inventory.getCurrentHero()) {
+                    if (currentPlayer.getCurrentDirectory() instanceof Collections && hero == currentPlayer.getCurrentHero()) {
                         ret[i][0] = Console.GREEN;
                         ret[i][1] = "current hero";
                         ret[i][2] = Console.RESET;
@@ -60,7 +58,7 @@ public class HeroDirectory extends Directory {
                     ret[i][1] = "hero";
                     break;
                 case 4:
-                    ret[i][1] = hero.getDecks().size() + "";
+                    ret[i][1] = player.getHeroDecks(hero).size() + "";
                 case 7:
                     ret[i][1] = hero.getHealth() + "";
             }
@@ -74,7 +72,7 @@ public class HeroDirectory extends Directory {
             for (Directory d : children) {
                 assert d instanceof DeckDirectory;
                 Deck deck = ((DeckDirectory) d).getDeck();
-                if (deck.getHero().getCurrentDeck() == deck)
+                if (player.getCurrentDeck() == deck)
                     objects.add(d);
             }
             details = "decks: current";
