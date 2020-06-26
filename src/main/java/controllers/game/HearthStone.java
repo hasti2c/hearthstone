@@ -18,11 +18,9 @@ public class HearthStone extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        game = new GameController();
-        game.configGame();
+        game = GameController.getInstance();
         graphics = new GraphicsController(game, primaryStage);
     }
-
 
 }
 

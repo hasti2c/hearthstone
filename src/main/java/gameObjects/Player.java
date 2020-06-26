@@ -24,8 +24,6 @@ public class Player implements Configable {
     private Directory currentDirectory;
     private Writer logWriter;
 
-    private static Player defaultPlayer;
-
     public static Player getExistingPlayer(GameController controller, String username) throws FileNotFoundException {
         controller.setInitPlayerName(username);
         Configor<Player> configor = new Configor<>(controller, username, Player.class);
@@ -36,17 +34,11 @@ public class Player implements Configable {
         Player player = new Player();
         player.username = username;
         player.password = password;
-        player.controller = controller;
         player.id = controller.getPlayerCount();
+        player.initialize(controller);
         player.copyDefault();
         Configor.putInMap(player, username);
         return player;
-    }
-
-    public static void configDefaultPlayer(GameController controller, JsonReader jsonReader) {
-        Configor<Player> configor = new Configor<>(controller, "-def-", Player.class, jsonReader);
-        defaultPlayer = configor.getConfigedObject();
-        defaultPlayer.controller = controller;
     }
 
     @Override
@@ -67,6 +59,7 @@ public class Player implements Configable {
     }
 
     private void copyDefault() {
+        Player defaultPlayer = controller.getDefaultPlayer();
         balance = defaultPlayer.balance;
         deckCap = defaultPlayer.deckCap;
 
@@ -129,15 +122,13 @@ public class Player implements Configable {
                 }
             jsonWriter.endArray();
 
-            jsonWriter.name("currentDeck").value(currentDeck.toString());
+            if (currentDeck != null)
+                jsonWriter.name("currentDeck").value(currentDeck.toString());
+
             jsonWriter.endObject();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void updateDefault(JsonWriter jsonWriter) {
-        defaultPlayer.updateJson(jsonWriter);
     }
 
     public void log(String line) {
@@ -246,7 +237,7 @@ public class Player implements Configable {
         Deck deck = Deck.getNewDeck(name, heroClass, deckCap);
         addDeck(deck);
         try {
-            String path = "src/main/resources/database/decks/" + username + "/" + ".json";
+            String path = "src/main/resources/database/decks/" + username + "/" + name + ".json";
             (new File(path)).createNewFile();
             JsonWriter jsonWriter = new JsonWriter(new FileWriter(path));
             jsonWriter.setIndent("  ");

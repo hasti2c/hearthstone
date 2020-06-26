@@ -112,7 +112,7 @@ public class HomeGraphics extends DirectoryGraphics {
             deckHBox.getChildren().add(1, game.getHero().getHeroClass().getIcon());
             deckName.setText(game.getPlayer().getCurrentDeck().toString());
 
-            ArrayList<Passive> passives = new ArrayList<>();
+            /*ArrayList<Passive> passives = new ArrayList<>();
             while (passives.size() < 3) {
                 Passive p = GameController.getRandomPassive();
                 if (!passives.contains(p))
@@ -120,7 +120,7 @@ public class HomeGraphics extends DirectoryGraphics {
             }
             for (Passive p : passives) {
                 passiveChoiceBox.getItems().add(p);
-            }
+            }*/
         }
 
         private void configNoDeck() {

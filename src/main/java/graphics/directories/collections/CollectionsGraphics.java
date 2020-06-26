@@ -105,7 +105,7 @@ public class CollectionsGraphics extends DirectoryGraphics {
     }
 
     private void selectDeck(Deck deck) {
-        runner.run(new Command(CommandType.SELECT, deck.getHero().toString()));
+        runner.run(new Command(CommandType.CD, deck.getHero().toString()));
         runner.run(new Command(CommandType.SELECT, deck.toString()));
         runner.run(new Command(CommandType.CD, "~/collections"));
         config();

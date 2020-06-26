@@ -19,16 +19,6 @@ public class Hero implements Printable, Configable {
     private HeroPower heroPower;
     private Image gameImage;
 
-    public static Hero getInstance(HeroClass heroClass, GameController controller) {
-        try {
-            Configor<Hero> configor = new Configor<>(controller, heroClass.toString().toLowerCase(), Hero.class);
-            return configor.getConfigedObject();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     @Override
     public void initialize(GameController controller) {
         configGameImage();

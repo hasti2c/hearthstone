@@ -17,22 +17,13 @@ public class Configor<O extends Configable> {
     private O object;
     private GameController controller;
 
-    public Configor(GameController controller, String name, Class<O> objectClass, JsonReader jsonReader) {
-        this.controller = controller;
-        this.name = name;
-        this.jsonReader = jsonReader;
-        try {
-            object = objectClass.getDeclaredConstructor().newInstance();
-        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-    }
-
     public Configor(GameController controller, String name, Class<O> objectClass) throws FileNotFoundException {
         this.controller = controller;
         this.name = name;
         try {
-        object = objectClass.getDeclaredConstructor().newInstance();
+            object = objectClass.getDeclaredConstructor().newInstance();
+            if (this.controller == null && object instanceof GameController c)
+                this.controller = c;
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
@@ -56,7 +47,6 @@ public class Configor<O extends Configable> {
                 field.setAccessible(true);
                 fillField(field);
                 field.setAccessible(false);
-                System.out.println(field);
             }
             jsonReader.endObject();
         } catch (IOException | NoSuchFieldException e) {
@@ -74,7 +64,6 @@ public class Configor<O extends Configable> {
                 currentClass = currentClass.getSuperclass();
             }
         }
-        System.out.println(fieldName);
         throw new NoSuchFieldException();
     }
 
@@ -128,12 +117,10 @@ public class Configor<O extends Configable> {
 
     private Configable getNewObject(Class<? extends Configable> readType, String objectName) {
         try {
-            System.out.println(readType);
             return readType.getDeclaredConstructor().newInstance();
         } catch (InstantiationException e) {
             try {
                 assert readType.equals(Card.class);
-                System.out.println(objectName);
                 return Card.getSubclass(objectName).getDeclaredConstructor().newInstance();
             } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException | InstantiationException ex) {
                 ex.printStackTrace();

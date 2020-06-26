@@ -13,15 +13,33 @@ import com.google.gson.*;
 import com.google.gson.stream.*;
 
 
-public class GameController {
-    private Player currentPlayer = null;
+public class GameController implements Configable {
+    private Player currentPlayer = null, defaultPlayer;
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-    private int playerCount, deckCount, gameCount;
+    private int playerCount, gameCount;
     private String initPlayerName;
-    private static final ArrayList<Hero> herosList = new ArrayList<>();
-    private static final ArrayList<Card> cardsList = new ArrayList<>();
-    private static final ArrayList<Passive> passivesList = new ArrayList<>();
+    private static ArrayList<Hero> herosList = new ArrayList<>();
+    private static ArrayList<Card> cardsList = new ArrayList<>();
+    //private static ArrayList<Passive> passivesList = new ArrayList<>();
     private final String defaultPath = "src/main/resources/database/defaults.json";
+
+    public static GameController getInstance() {
+        Configor<GameController> configor = null;
+        try {
+            configor = new Configor<>(null, "defaults", GameController.class);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return configor.getConfigedObject();
+    }
+
+    @Override
+    public void initialize(GameController controller) {}
+
+    @Override
+    public String getJsonPath(GameController controller, String name) {
+        return "";
+    }
 
     public Player getCurrentPlayer() {
         return currentPlayer;
@@ -46,14 +64,6 @@ public class GameController {
     public void setPlayerCount(int playerCount) {
         this.playerCount = playerCount;
         updateJson();
-    }
-
-    public int getDeckCount() {
-        return deckCount;
-    }
-
-    public void setDeckCount(int deckCount) {
-        this.deckCount = deckCount;
     }
 
     public int getGameCount() {
@@ -88,16 +98,6 @@ public class GameController {
         return ret;
     }
 
-    public static void writeFile(String path, String text) {
-        try {
-            Writer writer = new FileWriter(path);
-            writer.write(text);
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public static String toProperCase(String s) {
         s = s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
         for (int i = 1; i < s.length(); i++)
@@ -110,31 +110,6 @@ public class GameController {
         return (s.toUpperCase()).replace(' ', '_');
     }
 
-    static Card getNewCard(String name) {
-        Gson gson = new Gson();
-        try {
-            String cardJson = readFile("src/main/resources/database/cards/QuestAndReward/" + name + ".json");
-            return gson.fromJson(cardJson, QuestAndReward.class);
-        } catch (FileNotFoundException e1) {
-            try {
-                String cardJson = readFile("src/main/resources/database/cards/Minion/" + name + ".json");
-                return gson.fromJson(cardJson, Minion.class);
-            } catch (FileNotFoundException e2) {
-                try {
-                    String cardJson = readFile("src/main/resources/database/cards/Spell/" + name + ".json");
-                    return gson.fromJson(cardJson, Spell.class);
-                } catch (FileNotFoundException e3) {
-                    try {
-                        String cardJson = readFile("src/main/resources/database/cards/Weapon/" + name + ".json");
-                        return gson.fromJson(cardJson, Weapon.class);
-                    } catch (FileNotFoundException e4) {
-                        return null;
-                    }
-                }
-            }
-        }
-    }
-
     public static Card getCard(String name) {
         for (Card c : cardsList)
             if (c.toString().equals(name))
@@ -142,54 +117,11 @@ public class GameController {
         return null;
     }
 
-    public static Passive getRandomPassive() {
+    /*public static Passive getRandomPassive() {
         int n = passivesList.size();
         int i = (int) (Math.floor(Math.random() * n) % n);
         return passivesList.get(i);
-    }
-
-    void configGame() {
-        try {
-            JsonReader jsonReader = new JsonReader(new FileReader(defaultPath));
-            jsonReader.beginObject();
-            while (jsonReader.hasNext()) {
-                JsonToken next = jsonReader.peek();
-                if (JsonToken.NAME.equals(next)) {
-                    String field = jsonReader.nextName();
-                    if ("playerCount".equals(field))
-                        playerCount = jsonReader.nextInt();
-                    else if ("deckCount".equals(field))
-                        playerCount = jsonReader.nextInt();
-                    else if ("gameCount".equals(field))
-                        gameCount = jsonReader.nextInt();
-                    else if ("heroNames".equals(field)) {
-                        jsonReader.beginArray();
-                        while (!JsonToken.END_ARRAY.equals(jsonReader.peek()))
-                            herosList.add(Hero.getInstance(HeroClass.valueOf(jsonReader.nextString().toUpperCase()), this));
-                        jsonReader.endArray();
-                    } else if ("cardNames".equals(field)) {
-                        jsonReader.beginArray();
-                        while (!JsonToken.END_ARRAY.equals(jsonReader.peek())) {
-                            Card c = getNewCard(jsonReader.nextString());
-                            assert c != null;
-                            cardsList.add(c);
-                        }
-                        jsonReader.endArray();
-                    } else if ("passiveNames".equals(field)) {
-                        jsonReader.beginArray();
-                        while (!JsonToken.END_ARRAY.equals(jsonReader.peek()))
-                            passivesList.add(new Passive(jsonReader.nextString()));
-                        jsonReader.endArray();
-                    }
-                } else {
-                    assert JsonToken.BEGIN_OBJECT.equals(next);
-                    Player.configDefaultPlayer(this, jsonReader);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    }*/
 
     private void updateJson() {
         try {
@@ -198,29 +130,21 @@ public class GameController {
 
             jsonWriter.beginObject();
             jsonWriter.name("playerCount").value(playerCount);
-            jsonWriter.name("deckCount").value(deckCount);
             jsonWriter.name("gameCount").value(gameCount);
 
-            jsonWriter.name("heroNames");
+            jsonWriter.name("herosList");
             jsonWriter.beginArray();
             for (Hero h : herosList)
                 jsonWriter.value(h.toString());
             jsonWriter.endArray();
 
-            jsonWriter.name("cardNames");
+            jsonWriter.name("cardsList");
             jsonWriter.beginArray();
             for (Card c : cardsList)
-                jsonWriter.value(c.toString());
+                jsonWriter.value(c.getClass().getSimpleName() + "/" + c.toString());
             jsonWriter.endArray();
 
-            jsonWriter.name("passiveNames");
-            jsonWriter.beginArray();
-            for (Passive p : passivesList)
-                jsonWriter.value(p.toString());
-            jsonWriter.endArray();
-
-            jsonWriter.name("defaultPlayer");
-            Player.updateDefault(jsonWriter);
+            jsonWriter.name("defaultPlayer").value("-def-");
 
             jsonWriter.endObject();
             jsonWriter.close();
@@ -237,6 +161,7 @@ public class GameController {
         this.initPlayerName = initPlayerName;
     }
 
-    public void log(String s, String s1) {
+    public Player getDefaultPlayer() {
+        return defaultPlayer;
     }
 }

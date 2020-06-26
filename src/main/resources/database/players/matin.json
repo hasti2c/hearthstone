@@ -1,8 +1,8 @@
 {
-  "username": "hasti",
-  "password": "password",
-  "id": 1,
-  "balance": 5,
+  "username": "matin",
+  "password": "ramzramz",
+  "id": 6,
+  "balance": 50,
   "deckCap": 15,
   "allHeros": [
     "mage",
@@ -22,14 +22,10 @@
     "Spell/Swarm of Locusts",
     "Weapon/Truesilver Champion",
     "Minion/Sathrovarr",
-    "QuestAndReward/Strength in Numbers",
-    "Minion/argent protector",
-    "Minion/Curio Collector",
-    "Spell/arcane explosion"
+    "QuestAndReward/Strength in Numbers"
   ],
   "allDecks": [
-    "first",
-    "bye"
+    "hi"
   ],
-  "currentDeck": "first"
+  "currentDeck": "hi"
 }
