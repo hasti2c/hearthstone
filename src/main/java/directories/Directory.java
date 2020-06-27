@@ -2,8 +2,8 @@ package directories;
 
 import java.util.*;
 import cli.*;
-import directories.game.PlayGround;
 import gameObjects.*;
+import gameObjects.Player.Player;
 
 public abstract class Directory implements Printable {
     protected String name;

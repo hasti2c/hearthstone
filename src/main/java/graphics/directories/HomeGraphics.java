@@ -110,7 +110,7 @@ public class HomeGraphics extends DirectoryGraphics {
 
             game = controller.getCurrentPlayer().getGame();
             deckHBox.getChildren().add(1, game.getHero().getHeroClass().getIcon());
-            deckName.setText(game.getPlayer().getCurrentDeck().toString());
+            deckName.setText(game.getPlayer().getInventory().getCurrentDeck().toString());
 
             /*ArrayList<Passive> passives = new ArrayList<>();
             while (passives.size() < 3) {

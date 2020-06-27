@@ -1,6 +1,7 @@
 package gameObjects;
 
 import controllers.game.GameController;
+import gameObjects.Player.Player;
 import gameObjects.cards.*;
 import gameObjects.heros.Deck;
 import gameObjects.heros.Hero;
@@ -31,8 +32,8 @@ public class Game {
     public Game(GameController controller) {
         this.controller = controller;
         player = controller.getCurrentPlayer();
-        hero = player.getCurrentHero().clone();
-        deck = player.getCurrentDeck().clone();
+        hero = player.getInventory().getCurrentHero().clone();
+        deck = player.getInventory().getCurrentDeck().clone();
         leftInDeck = new ArrayList<>(deck.getCards());
     }
 

@@ -3,6 +3,7 @@ package directories.collections;
 import java.util.*;
 import directories.*;
 import gameObjects.*;
+import gameObjects.Player.Player;
 import gameObjects.heros.*;
 import cli.*;
 
@@ -17,7 +18,7 @@ public class HeroDirectory extends Directory {
 
     public void config() {
         clear();
-        for (Deck d : player.getHeroDecks(hero))
+        for (Deck d : player.getInventory().getHeroDecks(hero))
             addChild(new DeckDirectory(d, this, player));
     }
 
@@ -28,7 +29,7 @@ public class HeroDirectory extends Directory {
     @Override
     public String[] normalPrint(Player currentPlayer) {
         String[] ret = new String[3];
-        if (currentPlayer.getCurrentDirectory() instanceof Collections && hero == currentPlayer.getCurrentHero()) {
+        if (currentPlayer.getCurrentDirectory() instanceof Collections && hero == currentPlayer.getInventory().getCurrentHero()) {
             ret[0] = Console.GREEN;
             ret[2] = Console.RESET;
         }
@@ -42,7 +43,7 @@ public class HeroDirectory extends Directory {
         for (int i = 0; i < 16; i++)
             switch (i) {
                 case 0:
-                    if (currentPlayer.getCurrentDirectory() instanceof Collections && hero == currentPlayer.getCurrentHero()) {
+                    if (currentPlayer.getCurrentDirectory() instanceof Collections && hero == currentPlayer.getInventory().getCurrentHero()) {
                         ret[i][0] = Console.GREEN;
                         ret[i][1] = "current hero";
                         ret[i][2] = Console.RESET;
@@ -58,7 +59,7 @@ public class HeroDirectory extends Directory {
                     ret[i][1] = "hero";
                     break;
                 case 4:
-                    ret[i][1] = player.getHeroDecks(hero).size() + "";
+                    ret[i][1] = player.getInventory().getHeroDecks(hero).size() + "";
                 case 7:
                     ret[i][1] = hero.getHealth() + "";
             }
@@ -72,7 +73,7 @@ public class HeroDirectory extends Directory {
             for (Directory d : children) {
                 assert d instanceof DeckDirectory;
                 Deck deck = ((DeckDirectory) d).getDeck();
-                if (player.getCurrentDeck() == deck)
+                if (player.getInventory().getCurrentDeck() == deck)
                     objects.add(d);
             }
             details = "decks: current";

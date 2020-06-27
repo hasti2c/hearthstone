@@ -3,7 +3,7 @@ package graphics.directories.collections;
 import java.util.*;
 import controllers.commands.*;
 import controllers.game.*;
-import gameObjects.*;
+import gameObjects.Player.Player;
 import gameObjects.cards.*;
 import gameObjects.heros.*;
 import graphics.*;
@@ -60,7 +60,7 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
         optionsGraphics.config();
 
         Player player = controller.getCurrentPlayer();
-        owned.addAll(player.getAllCards());
+        owned.addAll(player.getInventory().getAllCards());
         for (Card c : GameController.getCardsList())
             if (!owned.contains(c))
                 notOwned.add(c);

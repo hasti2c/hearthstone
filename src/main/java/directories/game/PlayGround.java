@@ -2,6 +2,7 @@ package directories.game;
 
 import directories.Directory;
 import gameObjects.*;
+import gameObjects.Player.Player;
 
 public class PlayGround extends Directory {
     private final Game game;

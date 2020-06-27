@@ -9,6 +9,7 @@ import controllers.game.*;
 import directories.collections.*;
 import directories.collections.Collections;
 import directories.game.PlayGround;
+import gameObjects.Player.Player;
 import graphics.*;
 import graphics.directories.*;
 import gameObjects.*;
@@ -293,7 +294,7 @@ public class CommandRunner {
 
     private boolean selectDeck(String name) {
         Player player = controller.getCurrentPlayer();
-        for (Deck d : player.getAllDecks())
+        for (Deck d : player.getInventory().getAllDecks())
             if (d.toString().equals(name)) {
                 player.setCurrentDeck(d);
                 player.log("select", "deck: " + name);
@@ -305,7 +306,7 @@ public class CommandRunner {
     private boolean deselectDeck() {
         Player player = controller.getCurrentPlayer();
         Hero hero = ((HeroDirectory) (player.getCurrentDirectory())).getHero();
-        if (player.getCurrentHero() != hero || player.getCurrentDeck() == null)
+        if (player.getInventory().getCurrentHero() != hero || player.getInventory().getCurrentDeck() == null)
             return false;
         player.deselectCurrentDeck();
         player.log("deselect", "deck");
@@ -348,7 +349,7 @@ public class CommandRunner {
 
     private boolean removeDeck(String name) {
         Player player = controller.getCurrentPlayer();
-        boolean ret = player.removeDeck(name);
+        boolean ret = player.getInventory().removeDeck(name);
         if (ret)
             player.log("remove", "deck: " + name);
         return ret;
@@ -415,7 +416,7 @@ public class CommandRunner {
             }
         if (card == null || !p.canBuy(card))
             return false;
-        p.addCard(card);
+        p.getInventory().addCard(card);
         p.setBalance(p.getBalance() - card.getPrice());
         controller.getCurrentPlayer().log("buy", "card: " + card.toString());
         return true;
@@ -424,14 +425,14 @@ public class CommandRunner {
     private boolean sellCard(String name) {
         Card card = null;
         Player p = controller.getCurrentPlayer();
-        for (Card c : p.getAllCards())
+        for (Card c : p.getInventory().getAllCards())
             if (c.toString().equals(name))
                 card = c;
         if (card == null || !p.canSell(card))
             return false;
         if (console != null && !console.getInput("are you sure? (y/n) ").equalsIgnoreCase("y"))
             return true;
-        p.removeCard(card);
+        p.getInventory().removeCard(card);
         p.setBalance(p.getBalance() + card.getPrice());
         controller.getCurrentPlayer().log("sell", "card: " + card.toString());
         return true;
@@ -560,8 +561,8 @@ public class CommandRunner {
             g.log("STARTED_AT: ", "");
             g.log("");
             g.log("p1: " + player);
-            g.log("p1_hero: " + player.getCurrentHero());
-            g.log("p1_deck: " + player.getCurrentDeck());
+            g.log("p1_hero: " + player.getInventory().getCurrentHero());
+            g.log("p1_deck: " + player.getInventory().getCurrentDeck());
             g.log("");
         } catch (IOException e) {
             e.printStackTrace();

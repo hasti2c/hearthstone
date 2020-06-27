@@ -3,7 +3,7 @@ package gameObjects.cards;
 import directories.collections.*;
 import directories.*;
 import cli.*;
-import gameObjects.*;
+import gameObjects.Player.Player;
 import gameObjects.heros.*;
 
 public class Minion extends Card {
@@ -33,7 +33,7 @@ public class Minion extends Card {
         for (int i = 0; i < 16; i++)
             switch (i) {
                 case 0:
-                    if (d instanceof Store && currentPlayer.getAllCards().contains(this)) {
+                    if (d instanceof Store && currentPlayer.getInventory().getAllCards().contains(this)) {
                         ret[i][0] = Console.BLUE;
                         ret[i][1] = "owned";
                         ret[i][2] = Console.RESET;

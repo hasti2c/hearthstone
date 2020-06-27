@@ -1,15 +1,13 @@
 package gameObjects.heros;
 
 import java.io.*;
-import java.util.*;
-import com.google.gson.stream.*;
+
 import controllers.game.GameController;
-import directories.*;
 import directories.collections.Collections;
-import directories.game.PlayGround;
 import gameObjects.*;
 import cli.*;
 import cli.Console;
+import gameObjects.Player.Player;
 import javafx.scene.image.Image;
 
 public class Hero implements Printable, Configable {
@@ -73,7 +71,7 @@ public class Hero implements Printable, Configable {
 
     public String[] normalPrint(Player currentPlayer) {
         String[] ret = new String[3];
-        if (currentPlayer.getCurrentDirectory() instanceof Collections && this == currentPlayer.getCurrentHero()) {
+        if (currentPlayer.getCurrentDirectory() instanceof Collections && this == currentPlayer.getInventory().getCurrentHero()) {
             ret[0] = Console.GREEN;
             ret[2] = Console.RESET;
         }
@@ -86,7 +84,7 @@ public class Hero implements Printable, Configable {
         for (int i = 0; i < 16; i++)
             switch (i) {
                 case 0:
-                    if (currentPlayer.getCurrentDirectory() instanceof Collections && this == currentPlayer.getCurrentHero()) {
+                    if (currentPlayer.getCurrentDirectory() instanceof Collections && this == currentPlayer.getInventory().getCurrentHero()) {
                         ret[i][0] = Console.GREEN;
                         ret[i][1] = "current hero";
                         ret[i][2] = Console.RESET;
@@ -102,7 +100,7 @@ public class Hero implements Printable, Configable {
                     ret[i][1] = "hero";
                     break;
                 case 4:
-                    ret[i][1] = currentPlayer.getHeroDecks(this).size() + "";
+                    ret[i][1] = currentPlayer.getInventory().getHeroDecks(this).size() + "";
                     break;
                 case 7:
                     ret[i][1] = health + "";

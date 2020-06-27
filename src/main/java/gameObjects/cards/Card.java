@@ -2,9 +2,9 @@ package gameObjects.cards;
 
 import cli.*;
 import controllers.game.GameController;
-import directories.collections.*;
 import directories.game.PlayGround;
 import gameObjects.*;
+import gameObjects.Player.Player;
 import gameObjects.heros.*;
 import directories.*;
 import javafx.scene.image.Image;
@@ -121,7 +121,7 @@ public abstract class Card implements Printable, Configable {
             } else if (currentPlayer.canBuy(this)) {
                 ret[0] = Console.GREEN;
                 ret[2] = Console.RESET;
-            } else if (!currentPlayer.getAllCards().contains(this) && !currentPlayer.canBuy(this)) {
+            } else if (!currentPlayer.getInventory().getAllCards().contains(this) && !currentPlayer.canBuy(this)) {
                 ret[0] = Console.RED;
                 ret[2] = Console.RESET;
             }
@@ -132,7 +132,7 @@ public abstract class Card implements Printable, Configable {
             return ret;
         }
 
-        Deck deck = currentPlayer.getCurrentDeck();
+        Deck deck = currentPlayer.getInventory().getCurrentDeck();
         int cnt = 0;
         if (deck != null)
             for (Card c : deck.getCards())

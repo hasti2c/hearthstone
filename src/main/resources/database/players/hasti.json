@@ -2,34 +2,6 @@
   "username": "hasti",
   "password": "password",
   "id": 1,
-  "balance": 5,
-  "deckCap": 15,
-  "allHeros": [
-    "mage",
-    "warlock",
-    "priest"
-  ],
-  "allCards": [
-    "Minion/Dreadscale",
-    "Minion/korkron elite",
-    "Minion/murloc raider",
-    "Minion/senjin shieldmasta",
-    "Minion/voidwalker",
-    "Minion/wasteland assassin",
-    "Spell/Polymorph",
-    "Weapon/Blood Fury",
-    "Spell/Sprint",
-    "Spell/Swarm of Locusts",
-    "Weapon/Truesilver Champion",
-    "Minion/Sathrovarr",
-    "QuestAndReward/Strength in Numbers",
-    "Minion/argent protector",
-    "Minion/Curio Collector",
-    "Spell/arcane explosion"
-  ],
-  "allDecks": [
-    "first",
-    "bye"
-  ],
-  "currentDeck": "first"
+  "balance": 40,
+  "inventory": "hasti-inventory"
 }

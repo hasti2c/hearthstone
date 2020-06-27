@@ -66,7 +66,7 @@ public class CollectionsGraphics extends DirectoryGraphics {
     }
 
     private void configDecks() {
-        for (Deck deck : controller.getCurrentPlayer().getAllDecks())
+        for (Deck deck : controller.getCurrentPlayer().getInventory().getAllDecks())
             configDeckRow(deck);
         for (Node n : grid.getChildren()) {
             GridPane.setHalignment(n, HPos.CENTER);
@@ -81,7 +81,7 @@ public class CollectionsGraphics extends DirectoryGraphics {
         grid.add(new Label(deck.getCards().size() + ""), 2, i);
 
         Node selectDeck;
-        if (controller.getCurrentPlayer().getCurrentDeck() == deck)
+        if (controller.getCurrentPlayer().getInventory().getCurrentDeck() == deck)
             selectDeck = new Label("Current Deck");
         else {
             selectDeck = new Button ("Select Deck");
@@ -113,7 +113,7 @@ public class CollectionsGraphics extends DirectoryGraphics {
 
     private void addDeck() {
         ArrayList<String> heroStrings = new ArrayList<>();
-        for (Hero h : controller.getCurrentPlayer().getAllHeros())
+        for (Hero h : controller.getCurrentPlayer().getInventory().getAllHeros())
             heroStrings.add(h.toString());
 
         OptionAndQuestionBox optionAndQuestionBox = new OptionAndQuestionBox("Type in the name of your new deck and choose its hero.", "Done", "Cancel", heroStrings);
@@ -144,7 +144,7 @@ public class CollectionsGraphics extends DirectoryGraphics {
 
     private void changeHero(Deck deck) {
         ArrayList<String> heroStrings = new ArrayList<>();
-        for (Hero h : controller.getCurrentPlayer().getAllHeros())
+        for (Hero h : controller.getCurrentPlayer().getInventory().getAllHeros())
             heroStrings.add(h.toString());
         OptionBox optionBox = new OptionBox("To which hero do you want to move " + deck + "?", "Done", "Cancel", heroStrings);
         optionBox.display();

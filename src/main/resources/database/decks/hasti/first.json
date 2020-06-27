@@ -5,9 +5,11 @@
     "Spell/Polymorph",
     "Minion/murloc raider",
     "Minion/murloc raider",
-    "Spell/Polymorph"
+    "Spell/Polymorph",
+    "Spell/sound the bells"
   ],
   "uses": [
+    0,
     0,
     0,
     0,

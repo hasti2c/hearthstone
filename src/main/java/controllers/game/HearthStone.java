@@ -1,9 +1,5 @@
 package controllers.game;
 
-import directories.Directory;
-import directories.collections.Collections;
-import directories.collections.HeroDirectory;
-import gameObjects.Player;
 import graphics.*;
 import javafx.application.*;
 import javafx.stage.*;

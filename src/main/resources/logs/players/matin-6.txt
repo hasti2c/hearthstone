@@ -64,3 +64,4 @@ cd 2020/06/26 13:31:48 collections
 cd 2020/06/26 13:31:54 warlock
 move 2020/06/26 13:31:54 deck: warlock-hi -> hero: mage
 cd 2020/06/26 13:38:05 ~
+logout 2020/06/26 14:26:59 

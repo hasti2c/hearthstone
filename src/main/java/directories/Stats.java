@@ -2,6 +2,7 @@ package directories;
 
 import cli.*;
 import gameObjects.*;
+import gameObjects.Player.Player;
 import gameObjects.heros.*;
 import java.util.*;
 
@@ -13,7 +14,7 @@ public class Stats extends Directory {
 
     public void config() {
         clear();
-        content.addAll(player.getAllDecks());
+        content.addAll(player.getInventory().getAllDecks());
     }
 
     @Override

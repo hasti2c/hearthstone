@@ -3,7 +3,7 @@ package graphics;
 import java.util.*;
 import controllers.commands.*;
 import controllers.game.*;
-import gameObjects.*;
+import gameObjects.Player.Player;
 import gameObjects.cards.Card;
 import graphics.directories.*;
 import graphics.directories.collections.StoreGraphics;

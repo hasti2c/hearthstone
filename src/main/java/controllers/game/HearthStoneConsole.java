@@ -7,8 +7,7 @@ public class HearthStoneConsole {
     private static Console console;
 
     public static void main(String[] args) {
-        game = new GameController();
-        game.configGame();
+        game = GameController.getInstance();
 
         console = new Console(game);
         console.run();

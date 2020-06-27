@@ -1,23 +1,22 @@
-package gameObjects;
+package gameObjects.Player;
 
 import java.io.*;
 import java.util.*;
 
-import cli.Printable;
 import com.google.gson.stream.*;
 import controllers.game.*;
 import directories.*;
 import directories.game.PlayGround;
+import gameObjects.Configable;
+import gameObjects.Configor;
+import gameObjects.Game;
 import gameObjects.heros.*;
 import gameObjects.cards.*;
 
 public class Player implements Configable {
     private String username, password;
-    private int balance, id, deckCap;
-    private Deck currentDeck;
-    private ArrayList<Deck> allDecks = new ArrayList<>();
-    private ArrayList<Hero> allHeros = new ArrayList<>();
-    private final ArrayList<Card> allCards = new ArrayList<>();
+    private int balance, id;
+    private Inventory inventory;
     private Home home = new Home(this);
     private GameController controller;
     private Game game;
@@ -61,20 +60,7 @@ public class Player implements Configable {
     private void copyDefault() {
         Player defaultPlayer = controller.getDefaultPlayer();
         balance = defaultPlayer.balance;
-        deckCap = defaultPlayer.deckCap;
-
-        allHeros = new ArrayList<>(defaultPlayer.allHeros);
-        allDecks = new ArrayList<>();
-        for (Deck d : defaultPlayer.allDecks)
-            addDeck(d.clone());
-
-        if (defaultPlayer.getCurrentDeck() != null)
-            for (Deck d : allDecks)
-                if (defaultPlayer.currentDeck.toString().equals(d.toString()))
-                    setCurrentDeck(d);
-
-        for (Card c : defaultPlayer.allCards)
-            addCard(c);
+        inventory.copyDefault(defaultPlayer);
     }
 
     public void updateJson() {
@@ -98,32 +84,9 @@ public class Player implements Configable {
                 jsonWriter.name("password").value(password);
             if (id != 0)
                 jsonWriter.name("id").value(id);
-
             jsonWriter.name("balance").value(balance);
-            jsonWriter.name("deckCap").value(deckCap);
-
-            jsonWriter.name("allHeros");
-            jsonWriter.beginArray();
-            for (Hero h : allHeros)
-                jsonWriter.value(h.toString());
-            jsonWriter.endArray();
-
-            jsonWriter.name("allCards");
-            jsonWriter.beginArray();
-            for (Card c : allCards)
-                jsonWriter.value(c.getClass().getSimpleName() + "/" + c.toString());
-            jsonWriter.endArray();
-
-            jsonWriter.name("allDecks");
-            jsonWriter.beginArray();
-            for (Deck deck : allDecks) {
-                    jsonWriter.value(deck.toString());
-                    deck.updateJson(this);
-                }
-            jsonWriter.endArray();
-
-            if (currentDeck != null)
-                jsonWriter.name("currentDeck").value(currentDeck.toString());
+            jsonWriter.name("inventory").value(username + "-inventory");
+            inventory.updateJson(username);
 
             jsonWriter.endObject();
         } catch (IOException e) {
@@ -162,7 +125,7 @@ public class Player implements Configable {
     }
 
     public Game getNewGame() {
-        if (currentDeck == null)
+        if (inventory.getCurrentDeck() == null)
             return null;
         this.game = new Game(controller);
         return game;
@@ -178,18 +141,6 @@ public class Player implements Configable {
 
     public void setCurrentDirectory(Directory currentDirectory) {
         this.currentDirectory = currentDirectory;
-    }
-
-    public ArrayList<Hero> getAllHeros() {
-        return this.allHeros;
-    }
-
-    public ArrayList<Card> getAllCards() {
-        return this.allCards;
-    }
-
-    public int getDeckCap() {
-        return this.deckCap;
     }
 
     public int getBalance() {
@@ -212,30 +163,23 @@ public class Player implements Configable {
         return "src/main/resources/logs/players/" + username + "-" + id + ".txt";
     }
 
-    private void addHero(Hero h) {
-        allHeros.add(h);
+    public void setCurrentDeck(Deck currentDeck) {
+        inventory.setCurrentDeck(currentDeck);
+        home.createPlayGround();
     }
 
-    public void addCard(Card card) {
-        allCards.add(card);
-    }
-
-    public void addDeck(Deck deck) {
-        allDecks.add(deck);
-    }
-
-    public void removeCard(Card card) {
-        for (int i = 0; i < allCards.size(); i++)
-            if (allCards.get(i) == card)
-                allCards.remove(i--);
+    public void deselectCurrentDeck() {
+        inventory.setCurrentDeck(null);
+        if (home.getChildren().get(0) instanceof PlayGround)
+            home.getChildren().remove(0);
     }
 
     public boolean addNewDeck(HeroClass heroClass, String name) {
-        for (Deck d : allDecks)
+        for (Deck d : inventory.getAllDecks())
             if (d.toString().equals(name))
                 return false;
-        Deck deck = Deck.getNewDeck(name, heroClass, deckCap);
-        addDeck(deck);
+        Deck deck = Deck.getNewDeck(name, heroClass, inventory.getDeckCap());
+        inventory.addDeck(deck);
         try {
             String path = "src/main/resources/database/decks/" + username + "/" + name + ".json";
             (new File(path)).createNewFile();
@@ -251,60 +195,16 @@ public class Player implements Configable {
     }
 
     public boolean canBuy(Card c) {
-        return c != null && !allCards.contains(c) && balance >= c.getPrice();
+        return c != null && !inventory.getAllCards().contains(c) && balance >= c.getPrice();
     }
 
     public boolean canSell(Card c) {
-        if (!allCards.contains(c))
+        if (!inventory.getAllCards().contains(c))
             return false;
-        for (Deck d : allDecks)
+        for (Deck d : inventory.getAllDecks())
             if (d.getCards().contains(c))
                 return false;
-        return allCards.contains(c);
-    }
-
-    public ArrayList<Deck> getAllDecks() {
-        return allDecks;
-    }
-
-    public ArrayList<Deck> getHeroDecks(Hero hero) {
-        ArrayList<Deck> ret = new ArrayList<>();
-        for (Deck deck : allDecks)
-            if (deck.getHero() == hero)
-                ret.add(deck);
-        return ret;
-    }
-
-    public void setCurrentDeck(Deck currentDeck) {
-        this.currentDeck = currentDeck;
-        home.createPlayGround();
-    }
-
-    public void deselectCurrentDeck() {
-        currentDeck = null;
-        if (home.getChildren().get(0) instanceof PlayGround)
-            home.getChildren().remove(0);
-    }
-
-    public Deck getCurrentDeck() {
-        return currentDeck;
-    }
-
-    public Hero getCurrentHero() {
-        if (currentDeck == null)
-            return null;
-        return currentDeck.getHero();
-    }
-
-    public boolean removeDeck(String name) {
-        for (Deck d : allDecks)
-            if (d.toString().equals(name)) {
-                allDecks.remove(d);
-                if (currentDeck == d)
-                    currentDeck = null;
-                return true;
-            }
-        return false;
+        return inventory.getAllCards().contains(c);
     }
 
     public boolean deleteDeckDirectory() {
@@ -316,5 +216,9 @@ public class Player implements Configable {
         for (File f : files)
             ret &= f.delete();
         return ret && dir.delete();
+    }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 }

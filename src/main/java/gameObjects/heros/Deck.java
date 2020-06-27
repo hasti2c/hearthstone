@@ -9,6 +9,7 @@ import controllers.game.*;
 import directories.*;
 import directories.collections.*;
 import gameObjects.*;
+import gameObjects.Player.Player;
 import gameObjects.cards.*;
 
 public class Deck implements Printable, Comparable<Deck>, Configable {
@@ -36,9 +37,9 @@ public class Deck implements Printable, Comparable<Deck>, Configable {
         return "decks/" + controller.getInitPlayerName() + "/";
     }
 
-    public void updateJson(Player player) {
+    public void updateJson(String playerName) {
         try {
-            JsonWriter jsonWriter = new JsonWriter(new FileWriter("src/main/resources/database/decks/" + player + "/" + name + ".json"));
+            JsonWriter jsonWriter = new JsonWriter(new FileWriter("src/main/resources/database/decks/" + playerName + "/" + name + ".json"));
             jsonWriter.setIndent("  ");
 
             jsonWriter.beginObject();
@@ -182,7 +183,7 @@ public class Deck implements Printable, Comparable<Deck>, Configable {
     public String[] normalPrint(Player currentPlayer) {
         String[] ret = new String[3];
         Directory d = currentPlayer.getCurrentDirectory();
-        if (d instanceof HeroDirectory && currentPlayer.getCurrentDeck() == this) {
+        if (d instanceof HeroDirectory && currentPlayer.getInventory().getCurrentDeck() == this) {
             ret[0] = Console.GREEN;
             ret[2] = Console.RESET;
         }
@@ -197,7 +198,7 @@ public class Deck implements Printable, Comparable<Deck>, Configable {
         for (int i = 0; i < 16; i++)
             switch (i) {
                 case 0:
-                    if (d instanceof HeroDirectory && currentPlayer.getCurrentDeck() == this) {
+                    if (d instanceof HeroDirectory && currentPlayer.getInventory().getCurrentDeck() == this) {
                         ret[i][0] = Console.GREEN;
                         ret[i][1] = "current deck";
                         ret[i][2] = Console.RESET;

@@ -27,7 +27,7 @@ public class DeckGraphics extends CardsListGraphics {
 
     protected void config() {
         super.config();
-        deckCount.setText(deck.getCards().size() + "/" + controller.getCurrentPlayer().getDeckCap());
+        deckCount.setText(deck.getCards().size() + "/" + controller.getCurrentPlayer().getInventory().getDeckCap());
     }
 
     public Deck getDeck() {

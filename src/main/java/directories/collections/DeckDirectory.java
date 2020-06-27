@@ -3,6 +3,7 @@ package directories.collections;
 import cli.*;
 import directories.*;
 import gameObjects.*;
+import gameObjects.Player.Player;
 import gameObjects.cards.*;
 import gameObjects.heros.*;
 import java.util.*;
@@ -18,7 +19,7 @@ public class DeckDirectory extends Directory {
 
     public void config() {
         clear();
-        for (Card c : player.getAllCards())
+        for (Card c : player.getInventory().getAllCards())
             if (c.getHeroClass().equals(deck.getHero().getHeroClass()) || c.getHeroClass().equals(HeroClass.NEUTRAL))
                 addContent(c);
     }
@@ -78,7 +79,7 @@ public class DeckDirectory extends Directory {
     @Override
     public String[] normalPrint(Player currentPlayer) {
         String[] ret = new String[3];
-        if (currentPlayer.getCurrentDirectory() instanceof HeroDirectory && currentPlayer.getCurrentDeck() == deck) {
+        if (currentPlayer.getCurrentDirectory() instanceof HeroDirectory && currentPlayer.getInventory().getCurrentDeck() == deck) {
             ret[0] = Console.GREEN;
             ret[2] = Console.RESET;
         }
@@ -92,7 +93,7 @@ public class DeckDirectory extends Directory {
         for (int i = 0; i < 16; i++)
             switch (i) {
                 case 0:
-                    if (currentPlayer.getCurrentDirectory() instanceof HeroDirectory && currentPlayer.getCurrentDeck() == deck) {
+                    if (currentPlayer.getCurrentDirectory() instanceof HeroDirectory && currentPlayer.getInventory().getCurrentDeck() == deck) {
                         ret[i][0] = Console.GREEN;
                         ret[i][1] = "current deck";
                         ret[i][2] = Console.RESET;

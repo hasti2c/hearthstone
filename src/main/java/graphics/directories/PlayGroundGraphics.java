@@ -87,7 +87,7 @@ public class PlayGroundGraphics extends DirectoryGraphics {
             manaHBox.getChildren().get(i).setVisible(true);
         for (int i = game.getMana(); i < 10; i++)
             manaHBox.getChildren().get(i).setVisible(false);
-        deckLabel.setText(game.getLeftInDeck().size() + "/" + controller.getCurrentPlayer().getCurrentDeck().getCards().size());
+        deckLabel.setText(game.getLeftInDeck().size() + "/" + controller.getCurrentPlayer().getInventory().getCurrentDeck().getCards().size());
 
         configHand();
         for (Card c : game.getMinionsInGame())
