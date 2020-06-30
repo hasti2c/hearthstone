@@ -1,0 +1,28 @@
+GAME_ID: 68
+STARTED_AT:  2020/06/29 17:00:25 
+
+p1: hasti
+p1_hero: mage
+p1_deck: first
+
+p1:play_card 2020/06/29 17:00:27 murloc raider
+p1:end_turn 2020/06/29 17:00:29 
+p1:play_card 2020/06/29 17:00:31 sound the bells
+p1:end_turn 2020/06/29 17:00:32 
+p1:end_turn 2020/06/29 17:00:33 
+p1:end_turn 2020/06/29 17:00:33 
+p1:play_card 2020/06/29 17:00:34 voidwalker
+p1:play_card 2020/06/29 17:00:35 Polymorph
+p1:end_turn 2020/06/29 17:00:36 
+p1:end_turn 2020/06/29 17:00:36 
+p1:end_turn 2020/06/29 17:00:36 
+p1:end_turn 2020/06/29 17:00:38 
+p1:end_turn 2020/06/29 17:00:38 
+p1:end_turn 2020/06/29 17:00:38 
+p1:play_card 2020/06/29 17:00:39 Polymorph
+p1:play_card 2020/06/29 17:00:40 voidwalker
+p1:play_card 2020/06/29 17:00:40 murloc raider
+p1:end_turn 2020/06/29 17:00:41 
+p1:end_turn 2020/06/29 17:00:41 
+p1:end_turn 2020/06/29 17:00:42 
+p1:end_turn 2020/06/29 17:00:42 

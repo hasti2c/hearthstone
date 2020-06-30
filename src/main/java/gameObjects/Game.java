@@ -1,40 +1,36 @@
 package gameObjects;
 
 import controllers.game.GameController;
-import gameObjects.Player.Player;
+import gameObjects.Player.GamePlayer;
+import gameObjects.Player.PlayerFaction;
 import gameObjects.cards.*;
 import gameObjects.heros.Deck;
-import gameObjects.heros.Hero;
+import gameObjects.heros.DeckPair;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Game {
-    private final GameController controller;
-    private final Player player;
-    private final Hero hero;
-    private final Deck deck;
-    private final ArrayList<Card> leftInDeck;
-    private final ArrayList<Card> hand = new ArrayList<>();
-    private final ArrayList<Card> minionsInGame = new ArrayList<>();
-    private Weapon currentWeapon;
-    private int id;
-    private int turn = 1;
-    private final int playerCount = 1;
-    private final int playerNumber = 0;
-    private int mana = 1;
-    private boolean usedHeroPower;
+    private GameController controller;
+    private GamePlayer[] gamePlayers = new GamePlayer[2];
+    private int id, turn = 0;
+    private final int playerCount = 2;
+    private boolean random = true;
     private FileWriter logWriter;
     private String gameEvents = "";
     private Passive passive;
 
     public Game(GameController controller) {
         this.controller = controller;
-        player = controller.getCurrentPlayer();
-        hero = player.getInventory().getCurrentHero().clone();
-        deck = player.getInventory().getCurrentDeck().clone();
-        leftInDeck = new ArrayList<>(deck.getCards());
+        gamePlayers[0] = new GamePlayer(controller, this, PlayerFaction.FRIENDLY);
+        gamePlayers[1] = new GamePlayer(controller, this, PlayerFaction.ENEMY);
+    }
+
+    public Game(GameController controller, DeckPair deckPair) {
+        this.controller = controller;
+        Deck[] decks = deckPair.getDecks();
+        gamePlayers[0] = new GamePlayer(controller, this, PlayerFaction.FRIENDLY, decks[0]);
+        gamePlayers[1] = new GamePlayer(controller, this, PlayerFaction.ENEMY, decks[1]);
     }
 
     public void startGame() {
@@ -45,113 +41,40 @@ public class Game {
             e.printStackTrace();
         }
         controller.setGameCount(id);
-        for (int i = 0; i < 3; i++)
-            draw();
+        getCurrentPlayer().startTurn();
     }
 
-    public Player getPlayer() {
-        return player;
+    public GamePlayer getCurrentPlayer() {
+        return gamePlayers[turn % playerCount];
     }
 
-    public Hero getHero() {
-        return hero;
+    public GamePlayer[] getGamePlayers() {
+        return gamePlayers;
     }
 
     public int getId() {
         return id;
     }
 
-    public ArrayList<Card> getMinionsInGame() {
-        return minionsInGame;
+    public int getTurn() {
+        return turn;
     }
 
-    public ArrayList<Card> getHand() { return hand; }
-
-    public ArrayList<Card> getLeftInDeck() { return leftInDeck; }
-
-    private boolean draw() {
-        if (leftInDeck.size() == 0)
-            return false;
-
-        ArrayList<Card> questAndReward = new ArrayList<>();
-        for (Card c : leftInDeck)
-            if (c instanceof gameObjects.cards.QuestAndReward)
-                questAndReward.add(c);
-
-        Card card;
-        if (questAndReward.size() > 0)
-            card = getRandomCard(questAndReward);
-        else if (leftInDeck.size() > 0)
-            card = getRandomCard(leftInDeck);
-        else
-            return false;
-
-        leftInDeck.remove(card);
-        if (hand.size() < 12)
-            hand.add(card);
-        return true;
-    }
-
-    private Card getRandomCard(ArrayList<Card> cards) {
-        int n = cards.size(), i = (int) (Math.floor(n * Math.random())) % n;
-        return cards.get(i);
-    }
-
-    public boolean playCard(Card card) {
-        if (!isMyTurn() || !hand.contains(card) || mana < card.getMana() || (card instanceof Minion && minionsInGame.size() >= 7))
-            return false;
-
-        deck.addUse(card);
-        mana -= card.getMana();
-        hand.remove(card);
-        if (card instanceof Minion)
-            minionsInGame.add(card);
-        else if (card instanceof Weapon w)
-            currentWeapon = w;
-        return true;
-    }
-
-    public boolean endTurn() {
-        if (!isMyTurn())
-            return false;
-
+    public void nextTurn() {
         turn++;
-        usedHeroPower = false;
-        draw();
-        mana = Math.min(myTurnNumber(), 10);
-        return true;
+        getCurrentPlayer().startTurn();
     }
 
-    public boolean useHeroPower() {
-        if (usedHeroPower || mana < hero.getHeroPower().getMana())
-            return false;
-        usedHeroPower = true;
-        mana -= hero.getHeroPower().getMana();
-        return true;
-    }
-
-    private boolean isMyTurn() {
-        return turn % playerCount == playerNumber;
-    }
-
-    private int myTurnNumber() {
-        return (int) Math.ceil((double) turn / (double) playerCount);
-    }
-
-    public int getMana() {
-        return mana;
-    }
-
-    public Weapon getCurrentWeapon() {
-        return currentWeapon;
-    }
-
-    public boolean isHeroPowerUsed() {
-        return usedHeroPower;
+    public int getPlayerCount() {
+        return playerCount;
     }
 
     public void setPassive(Passive passive) {
         this.passive = passive;
+    }
+
+    public String getGameEvents() {
+        return gameEvents;
     }
 
     public String getLogPath() {
@@ -176,9 +99,5 @@ public class Game {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public String getGameEvents() {
-        return gameEvents;
     }
 }

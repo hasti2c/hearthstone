@@ -18,13 +18,13 @@ public class PlayGround extends Directory {
         clear();
 
 
-        minionsInGame = new GameCards("minions in game", game.getMinionsInGame(), this, player);
+        minionsInGame = new GameCards("minions in game", game.getCurrentPlayer().getMinionsInGame(), this, player);
         addChild(minionsInGame);
 
-        hand = new GameCards("hand", game.getHand(), this, player);
+        hand = new GameCards("hand", game.getCurrentPlayer().getHand(), this, player);
         addChild(hand);
 
-        leftInDeck = new GameCards("left in deck", game.getLeftInDeck(), this, player);
+        leftInDeck = new GameCards("left in deck", game.getCurrentPlayer().getLeftInDeck(), this, player);
         addChild(leftInDeck);
     }
 

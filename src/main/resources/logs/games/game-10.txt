@@ -1,0 +1,11 @@
+GAME_ID: 10
+STARTED_AT:  2020/06/28 02:58:29 
+
+p1: hasti
+p1_hero: mage
+p1_deck: first
+
+p1:play_card 2020/06/28 02:58:31 voidwalker
+p1:end_turn 2020/06/28 02:58:33 
+p1:play_card 2020/06/28 02:58:34 voidwalker
+p1:play_card 2020/06/28 02:58:35 murloc raider

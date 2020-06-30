@@ -116,6 +116,8 @@ public class CommandRunner {
             ret = endTurn();
         else if (CommandType.HEROPOWER.equals(commandType) && word == null)
             ret = heroPower();
+        else if (CommandType.DECKREADER.equals(commandType) && word == null && d instanceof Home)
+            ret = deckReader();
 
         d = controller.getCurrentPlayer().getCurrentDirectory();
         if (d != null)
@@ -280,7 +282,7 @@ public class CommandRunner {
     private boolean ls(ArrayList<Character> options) {
         boolean l = options.contains('l');
         if (l)
-            options.remove('l');
+            options.remove(options.indexOf('l'));
 
         ArrayList<Printable> objects = controller.getCurrentPlayer().getCurrentDirectory().getPrintables(options, l);
         if (objects == null)
@@ -449,12 +451,12 @@ public class CommandRunner {
         Directory d = player.getCurrentDirectory();
         if (d instanceof PlayGround) {
             Game g = d.getGame();
-            Hero h = g.getHero();
+            Hero h = g.getCurrentPlayer().getInventory().getCurrentHero();
             Console.print(Console.LIGHT_PINK + "hero: " + Console.RESET + h);
             Console.print(Console.LIGHT_PINK + "health: " + Console.RESET + h.getHealth());
-            Console.print(Console.LIGHT_PINK + "mana: " + Console.RESET + g.getMana());
-            if (g.getCurrentWeapon() != null)
-                Console.print(Console.LIGHT_PINK + "current weapon: " + Console.RESET + g.getCurrentWeapon());
+            Console.print(Console.LIGHT_PINK + "mana: " + Console.RESET + g.getCurrentPlayer().getMana());
+            if (g.getCurrentPlayer().getCurrentWeapon() != null)
+                Console.print(Console.LIGHT_PINK + "current weapon: " + Console.RESET + g.getCurrentPlayer().getCurrentWeapon());
         } else {
             assert d instanceof DeckDirectory;
             Deck deck = ((DeckDirectory) d).getDeck();
@@ -523,7 +525,13 @@ public class CommandRunner {
     private boolean playCard(String name) {
         Directory d = controller.getCurrentPlayer().getCurrentDirectory();
         Game g = d.getGame();
-        boolean ret = g != null && !"left in deck".equals(d.toString()) && g.playCard(GameController.getCard(name));
+        if (g == null)
+            return false;
+        boolean ret = !"left in deck".equals(d.toString());
+        Card cardClone = g.getCurrentPlayer().getCardClone(name);
+        if (cardClone == null)
+            return false;
+        ret &= g.getCurrentPlayer().playCard(cardClone);
         if (ret)
             g.log("p1:play_card", name);
         return ret;
@@ -532,16 +540,17 @@ public class CommandRunner {
     private boolean endTurn() {
         Directory d = controller.getCurrentPlayer().getCurrentDirectory();
         Game g = d.getGame();
-        boolean ret = g != null && g.endTurn();
-        if (ret)
+        if (g == null)
+            return false;
+        g.nextTurn();
             g.log("p1:end_turn", "");
-        return ret;
+        return true;
     }
 
     private boolean heroPower() {
         Directory d = controller.getCurrentPlayer().getCurrentDirectory();
         Game g = d.getGame();
-        boolean ret =  g != null && g.useHeroPower();
+        boolean ret =  g != null && g.getCurrentPlayer().useHeroPower();
         if (ret)
             g.log("p1:hero_power", "");
         return ret;
@@ -579,6 +588,15 @@ public class CommandRunner {
         player.log("end_game", "game id: " + g.getId());
         g.log("");
         g.log("ENDED_AT: ", "");
+        return true;
+    }
+
+    private boolean deckReader() {
+        DeckPair deckPair = DeckPair.getInstance(controller);
+        assert deckPair != null;
+        Game game = new Game(controller, deckPair);
+        controller.getCurrentPlayer().setGame(game);
+        game.startGame();
         return true;
     }
 }

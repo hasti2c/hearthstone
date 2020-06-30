@@ -1,0 +1,12 @@
+GAME_ID: 65
+STARTED_AT:  2020/06/29 16:57:18 
+
+p1: hasti
+p1_hero: mage
+p1_deck: first
+
+p1:end_turn 2020/06/29 16:57:19 
+p1:end_turn 2020/06/29 16:57:21 
+p1:end_turn 2020/06/29 16:57:21 
+p1:end_turn 2020/06/29 16:57:21 
+p1:hero_power 2020/06/29 16:57:23 

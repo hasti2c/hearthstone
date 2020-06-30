@@ -14,6 +14,7 @@
       <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="doneButton" mnemonicParsing="false" text="Start Game" />
+            <Button fx:id="deckReaderButton" mnemonicParsing="false" text="Deck Reader" />
             <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" />
          </children>
          <padding>

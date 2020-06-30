@@ -1,0 +1,18 @@
+GAME_ID: 111
+STARTED_AT:  2020/06/30 12:56:34 
+
+p1: hasti
+p1_hero: mage
+p1_deck: first
+
+p1:play_card 2020/06/30 12:56:35 murloc raider
+p1:end_turn 2020/06/30 12:56:38 
+p1:end_turn 2020/06/30 12:56:39 
+p1:end_turn 2020/06/30 12:56:39 
+p1:end_turn 2020/06/30 12:56:39 
+p1:end_turn 2020/06/30 12:56:39 
+p1:end_turn 2020/06/30 12:56:40 
+p1:end_turn 2020/06/30 12:56:40 
+p1:end_turn 2020/06/30 12:56:40 
+p1:end_turn 2020/06/30 12:56:40 
+p1:play_card 2020/06/30 12:56:41 korkron elite

@@ -10,8 +10,10 @@ import directories.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.nio.file.NoSuchFileException;
 
 public abstract class Card implements Printable, Configable {
     private String name, description;
@@ -28,7 +30,9 @@ public abstract class Card implements Printable, Configable {
 
     @Override
     public String getJsonPath(GameController controller, String name) {
-        return "cards/";
+        if (getSubclass(name) == null)
+            return null;
+        return "cards/" + getSubclass(name).getSimpleName() + "/";
     }
 
     public String toString() {
@@ -164,16 +168,37 @@ public abstract class Card implements Printable, Configable {
     }
 
     public static Class<? extends Configable> getSubclass(String name) {
-        int i = 0;
-        while (i < name.length() && name.charAt(i) != '/')
-            i++;
-        String className = name.substring(0, i);
-        return switch (className) {
-            case "Minion": yield Minion.class;
-            case "Spell": yield Spell.class;
-            case "Weapon": yield Weapon.class;
-            case "QuestAndReward": yield QuestAndReward.class;
-            default: yield null;
-        };
+        String path = "src/main/resources/database/cards/";
+        File file;
+        try {
+            tryToGetCard(Minion.class, name);
+            return Minion.class;
+        } catch (NoSuchFileException e1) {
+            try {
+                tryToGetCard(Spell.class, name);
+                return Spell.class;
+            } catch (NoSuchFileException e2) {
+                try {
+                    tryToGetCard(Weapon.class, name);
+                    return Weapon.class;
+                } catch (NoSuchFileException e3) {
+                    try {
+                        tryToGetCard(QuestAndReward.class, name);
+                        return QuestAndReward.class;
+                    } catch (NoSuchFileException e4) {
+                        e4.printStackTrace();
+                        return null;
+                    }
+                }
+            }
+        }
+    }
+
+    private static void tryToGetCard(Class<? extends Card> cardClass, String name) throws NoSuchFileException {
+        String path = "src/main/resources/database/cards/" + cardClass.getSimpleName() + "/" + name + ".json";
+        System.out.println(path);
+        File file = new File(path);
+        if (!file.isFile())
+            throw new NoSuchFileException(path);
     }
 }

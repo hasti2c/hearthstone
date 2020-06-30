@@ -165,7 +165,7 @@ public class Player implements Configable {
 
     public void setCurrentDeck(Deck currentDeck) {
         inventory.setCurrentDeck(currentDeck);
-        home.createPlayGround();
+        home.createPlayGround(getNewGame());
     }
 
     public void deselectCurrentDeck() {
@@ -178,7 +178,7 @@ public class Player implements Configable {
         for (Deck d : inventory.getAllDecks())
             if (d.toString().equals(name))
                 return false;
-        Deck deck = Deck.getNewDeck(name, heroClass, inventory.getDeckCap());
+        Deck deck = new Deck(name, heroClass, inventory.getDeckCap());
         inventory.addDeck(deck);
         try {
             String path = "src/main/resources/database/decks/" + username + "/" + name + ".json";
@@ -220,5 +220,10 @@ public class Player implements Configable {
 
     public Inventory getInventory() {
         return inventory;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+        home.createPlayGround(game);
     }
 }

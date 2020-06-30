@@ -61,7 +61,7 @@ public class HomeGraphics extends DirectoryGraphics {
         @FXML
         private Label deckName;
         @FXML
-        private Button doneButton, cancelButton, collectionsButton;
+        private Button doneButton, cancelButton, collectionsButton, deckReaderButton;
         @FXML
         private ChoiceBox<Passive> passiveChoiceBox;
 
@@ -78,6 +78,11 @@ public class HomeGraphics extends DirectoryGraphics {
             collectionsButton.setOnAction(e -> {
                 close();
                 collections.display();
+            });
+            deckReaderButton.setOnAction(e -> {
+                close();
+                runner.run(new Command(CommandType.DECKREADER));
+                displayPlayGround();
             });
         }
 
@@ -109,8 +114,8 @@ public class HomeGraphics extends DirectoryGraphics {
             doneButton.setDisable(false);
 
             game = controller.getCurrentPlayer().getGame();
-            deckHBox.getChildren().add(1, game.getHero().getHeroClass().getIcon());
-            deckName.setText(game.getPlayer().getInventory().getCurrentDeck().toString());
+            deckHBox.getChildren().add(1, game.getCurrentPlayer().getInventory().getCurrentHero().getHeroClass().getIcon());
+            deckName.setText(game.getCurrentPlayer().getInventory().getCurrentDeck().toString());
 
             /*ArrayList<Passive> passives = new ArrayList<>();
             while (passives.size() < 3) {

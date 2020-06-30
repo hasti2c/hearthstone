@@ -19,7 +19,10 @@ public class Home extends Directory {
     }
 
     public boolean createPlayGround() {
-        Game game = player.getNewGame();
+        return createPlayGround(player.getNewGame());
+    }
+
+    public boolean createPlayGround(Game game) {
         if (game == null)
             return false;
         PlayGround pg = new PlayGround(game, this, player);

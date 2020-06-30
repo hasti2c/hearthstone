@@ -1,0 +1,15 @@
+GAME_ID: 92
+STARTED_AT:  2020/06/30 00:19:26 
+
+p1: hasti
+p1_hero: mage
+p1_deck: first
+
+p1:play_card 2020/06/30 00:19:29 murloc raider
+p1:end_turn 2020/06/30 00:19:32 
+p1:end_turn 2020/06/30 00:19:34 
+p1:play_card 2020/06/30 00:19:36 Dreadscale
+p1:end_turn 2020/06/30 00:19:37 
+p1:play_card 2020/06/30 00:19:38 Truesilver Champion
+p1:end_turn 2020/06/30 00:19:40 
+p1:play_card 2020/06/30 00:19:41 wasteland assassin

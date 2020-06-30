@@ -49,7 +49,6 @@ public class Hero implements Printable, Configable {
     }
 
     public Hero clone() {
-        //Hero h = new Hero(player, heroClass);
         Hero h = new Hero();
         h.name = name;
         h.heroClass = heroClass;

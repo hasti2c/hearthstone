@@ -43,10 +43,28 @@ public class Inventory implements Configable {
 
         allDecks = new ArrayList<>();
         for (Deck deck : currentInventory.allDecks)
-            addDeck(deck.clone());
+            addDeck(deck.clone(this));
         for (Deck deck : allDecks)
             if (deck.toString().equals(currentInventory.currentDeck.toString()))
                 setCurrentDeck(deck);
+    }
+
+    public Inventory clone() {
+        Inventory inventory = new Inventory();
+        inventory.deckCap = deckCap;
+
+        for (Card card : allCards)
+            inventory.allCards.add(card.clone());
+        for (Hero hero : allHeros)
+            inventory.allHeros.add(hero.clone());
+        for (Deck deck : allDecks) {
+            Deck deckClone = deck.clone(inventory);
+            inventory.allDecks.add(deckClone);
+            if (deck == currentDeck)
+                inventory.currentDeck = deckClone;
+        }
+
+        return inventory;
     }
 
     public int getDeckCap() {
@@ -143,7 +161,7 @@ public class Inventory implements Configable {
             jsonWriter.name("allCards");
             jsonWriter.beginArray();
             for (Card c : allCards)
-                jsonWriter.value(c.getClass().getSimpleName() + "/" + c.toString());
+                jsonWriter.value(c.toString());
             jsonWriter.endArray();
 
             jsonWriter.name("allDecks");
@@ -161,5 +179,13 @@ public class Inventory implements Configable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Card getCard(String cardName) {
+        for (Card card : allCards) {
+            if (card.toString().equals(cardName))
+                return card;
+        }
+        return null;
     }
 }

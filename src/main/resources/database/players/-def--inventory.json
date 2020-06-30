@@ -6,19 +6,19 @@
     "priest"
   ],
   "allCards": [
-    "Minion/Dreadscale",
-    "Minion/korkron elite",
-    "Minion/murloc raider",
-    "Minion/senjin shieldmasta",
-    "Minion/voidwalker",
-    "Minion/wasteland assassin",
-    "Spell/Polymorph",
-    "Weapon/Blood Fury",
-    "Spell/Sprint",
-    "Spell/Swarm of Locusts",
-    "Weapon/Truesilver Champion",
-    "Minion/Sathrovarr",
-    "QuestAndReward/Strength in Numbers"
+    "Dreadscale",
+    "korkron elite",
+    "murloc raider",
+    "senjin shieldmasta",
+    "voidwalker",
+    "wasteland assassin",
+    "Polymorph",
+    "Blood Fury",
+    "Sprint",
+    "Swarm of Locusts",
+    "Truesilver Champion",
+    "Sathrovarr",
+    "Strength in Numbers"
   ],
   "allDecks": []
 }

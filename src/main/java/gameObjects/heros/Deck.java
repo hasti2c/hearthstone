@@ -9,24 +9,30 @@ import controllers.game.*;
 import directories.*;
 import directories.collections.*;
 import gameObjects.*;
+import gameObjects.Player.Inventory;
 import gameObjects.Player.Player;
 import gameObjects.cards.*;
 
 public class Deck implements Printable, Comparable<Deck>, Configable {
     private String name;
-    private final ArrayList<Card> cards = new ArrayList<>();
-    private final ArrayList<Integer> uses = new ArrayList<>();
+    private ArrayList<Card> cards = new ArrayList<>();
+    private ArrayList<Integer> uses = new ArrayList<>();
     private HeroClass heroClass;
     private int wins, games, maxSize;
 
     public Deck() {}
 
-    public static Deck getNewDeck(String name, HeroClass heroClass, int maxSize) {
-        Deck deck = new Deck();
-        deck.name = name;
-        deck.heroClass = heroClass;
-        deck.maxSize = maxSize;
-        return deck;
+    public Deck(String name, HeroClass heroClass, int maxSize) {
+        this.name = name;
+        this.heroClass = heroClass;
+        this.maxSize = maxSize;
+    }
+
+    public Deck(ArrayList<Card> cards) {
+        name = "Deck Reader";
+        this.cards = cards;
+        heroClass = HeroClass.MAGE;
+        maxSize = 15;
     }
 
     @Override
@@ -50,7 +56,7 @@ public class Deck implements Printable, Comparable<Deck>, Configable {
             jsonWriter.name("cards");
             jsonWriter.beginArray();
             for (Card c : cards)
-                jsonWriter.value(c.getClass().getSimpleName() + "/" + c.toString());
+                jsonWriter.value(c.toString());
             jsonWriter.endArray();
 
             jsonWriter.name("uses");
@@ -105,13 +111,15 @@ public class Deck implements Printable, Comparable<Deck>, Configable {
         return cnt <= 1 && (card.getHeroClass() == heroClass || card.getHeroClass() == HeroClass.NEUTRAL) && cards.size() < maxSize;
     }
 
-    public Deck clone() {
+    public Deck clone(Inventory inventory) {
         Deck deck = new Deck();
+        deck.name = name;
         deck.heroClass = heroClass;
         for (Card c : cards)
-            deck.addCard(c.clone());
+            deck.addCard(inventory.getCard(c.toString()));
         deck.wins = wins;
         deck.games = games;
+        deck.maxSize = maxSize;
         return deck;
     }
 

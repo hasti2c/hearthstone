@@ -1,0 +1,7 @@
+GAME_ID: 50
+STARTED_AT:  2020/06/28 18:51:22 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: bye
+

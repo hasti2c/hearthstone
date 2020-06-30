@@ -140,7 +140,7 @@ public class GameController implements Configable {
             jsonWriter.name("cardsList");
             jsonWriter.beginArray();
             for (Card c : cardsList)
-                jsonWriter.value(c.getClass().getSimpleName() + "/" + c.toString());
+                jsonWriter.value(c.toString());
             jsonWriter.endArray();
 
             jsonWriter.name("defaultPlayer").value("-def-");

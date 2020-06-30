@@ -1,0 +1,49 @@
+GAME_ID: 101
+STARTED_AT:  2020/06/30 01:59:58 
+
+p1: hasti
+p1_hero: mage
+p1_deck: first
+
+p1:end_turn 2020/06/30 02:00:02 
+p1:play_card 2020/06/30 02:00:04 voidwalker
+p1:end_turn 2020/06/30 02:00:05 
+p1:play_card 2020/06/30 02:00:07 argent protector
+p1:end_turn 2020/06/30 02:00:09 
+p1:play_card 2020/06/30 02:00:09 murloc raider
+p1:end_turn 2020/06/30 02:00:16 
+p1:end_turn 2020/06/30 02:00:19 
+p1:end_turn 2020/06/30 02:00:21 
+p1:end_turn 2020/06/30 02:00:21 
+p1:end_turn 2020/06/30 02:00:22 
+p1:end_turn 2020/06/30 02:00:22 
+p1:end_turn 2020/06/30 02:00:22 
+p1:end_turn 2020/06/30 02:00:22 
+p1:end_turn 2020/06/30 02:00:22 
+p1:end_turn 2020/06/30 02:00:23 
+p1:end_turn 2020/06/30 02:00:23 
+p1:end_turn 2020/06/30 02:00:23 
+p1:end_turn 2020/06/30 02:00:23 
+p1:end_turn 2020/06/30 02:00:23 
+p1:end_turn 2020/06/30 02:00:24 
+p1:end_turn 2020/06/30 02:00:24 
+p1:end_turn 2020/06/30 02:00:24 
+p1:end_turn 2020/06/30 02:00:25 
+p1:end_turn 2020/06/30 02:00:25 
+p1:end_turn 2020/06/30 02:00:25 
+p1:hero_power 2020/06/30 02:00:51 
+p1:end_turn 2020/06/30 02:00:56 
+p1:play_card 2020/06/30 02:00:56 Truesilver Champion
+p1:end_turn 2020/06/30 02:01:00 
+p1:hero_power 2020/06/30 02:01:01 
+p1:end_turn 2020/06/30 02:01:04 
+p1:hero_power 2020/06/30 02:01:06 
+p1:end_turn 2020/06/30 02:01:07 
+p1:end_turn 2020/06/30 02:01:24 
+p1:end_turn 2020/06/30 02:01:25 
+p1:end_turn 2020/06/30 02:01:25 
+p1:end_turn 2020/06/30 02:01:25 
+p1:end_turn 2020/06/30 02:01:25 
+p1:end_turn 2020/06/30 02:01:26 
+p1:end_turn 2020/06/30 02:01:26 
+p1:end_turn 2020/06/30 02:01:26 

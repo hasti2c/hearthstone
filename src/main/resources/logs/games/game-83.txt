@@ -1,0 +1,12 @@
+GAME_ID: 83
+STARTED_AT:  2020/06/29 20:01:40 
+
+p1: hasti
+p1_hero: mage
+p1_deck: first
+
+p1:play_card 2020/06/29 20:01:42 voidwalker
+p1:end_turn 2020/06/29 20:01:43 
+p1:play_card 2020/06/29 20:01:44 sound the bells
+p1:end_turn 2020/06/29 20:01:46 
+p1:play_card 2020/06/29 20:01:46 murloc raider
