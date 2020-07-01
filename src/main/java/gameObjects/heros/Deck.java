@@ -27,7 +27,7 @@ public class Deck implements Comparable<Deck>, Configable {
         name = "Deck Reader";
         this.cards = cards;
         heroClass = HeroClass.MAGE;
-        maxSize = 15;
+        maxSize = 30;
     }
 
     @Override
@@ -82,13 +82,10 @@ public class Deck implements Comparable<Deck>, Configable {
         return this.name;
     }
 
-    public boolean addCard(Card c) {
-        if (!canAddCard(c))
-            return false;
+    public void addCard(Card c) {
         cards.add(c);
         uses.add(0);
         resetStats();
-        return true;
     }
 
     public boolean removeCard(Card card) {
@@ -139,10 +136,6 @@ public class Deck implements Comparable<Deck>, Configable {
 
     public int getGames() {
         return games;
-    }
-
-    public void setGames(int games) {
-        this.games = games;
     }
 
     public int getUses(Card c) {

@@ -38,10 +38,6 @@ public class GamePlayer {
         return inventory;
     }
 
-    public int getPlayerNumber() {
-        return playerNumber;
-    }
-
     public PlayerFaction getPlayerFaction() {
         return playerFaction;
     }
@@ -150,12 +146,5 @@ public class GamePlayer {
         draw();
         usedHeroPower = false;
         mana = Math.min(getMyTurnNumber(), 10);
-    }
-
-    public Card getCardClone(String cardName) {
-        for (Card card : inventory.getCurrentDeck().getCards())
-            if (cardName.equals(card.toString()))
-                return card;
-        return null;
     }
 }

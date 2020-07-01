@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 public class HeroCards extends CardsList {
-    private HeroClass heroClass = null;
+    private HeroClass heroClass;
 
     HeroCards(HeroClass heroClass, GraphicsController controller, CommandRunner runner) {
         super(controller, runner);

@@ -1,0 +1,21 @@
+p1:play_card 2020/07/01 22:08:10 Learn Draconic
+p1:end_turn 2020/07/01 22:08:12 
+p1:end_turn 2020/07/01 22:08:12 
+p1:end_turn 2020/07/01 22:08:13 
+p1:end_turn 2020/07/01 22:08:13 
+p1:end_turn 2020/07/01 22:08:13 
+p1:end_turn 2020/07/01 22:08:13 
+p1:end_turn 2020/07/01 22:08:14 
+p1:end_turn 2020/07/01 22:08:14 
+p1:end_turn 2020/07/01 22:08:15 
+p1:end_turn 2020/07/01 22:08:15 
+p1:end_turn 2020/07/01 22:08:15 
+p1:end_turn 2020/07/01 22:08:18 
+p1:play_card 2020/07/01 22:08:19 Polymorph
+p1:play_card 2020/07/01 22:08:20 Book of Specters
+p1:end_turn 2020/07/01 22:08:23 
+p1:end_turn 2020/07/01 22:08:25 
+p1:play_card 2020/07/01 22:08:26 Sprint
+p1:end_turn 2020/07/01 22:08:36 
+p1:end_turn 2020/07/01 22:08:36 
+p1:play_card 2020/07/01 22:08:38 Sathrovarr

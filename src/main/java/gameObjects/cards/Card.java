@@ -9,7 +9,9 @@ import javafx.scene.image.ImageView;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.NoSuchFileException;
+import java.util.ArrayList;
 
 public abstract class Card implements Configable {
     private String name, description;
@@ -26,9 +28,7 @@ public abstract class Card implements Configable {
 
     @Override
     public String getJsonPath(GameController controller, String name) {
-        if (getSubclass(name) == null)
-            return null;
-        return "cards/" + getSubclass(name).getSimpleName() + "/";
+        return "cards/" + getCardClass(name).getSimpleName() + "/";
     }
 
     public String toString() {
@@ -70,6 +70,7 @@ public abstract class Card implements Configable {
             return 3;
     }
 
+    @Override
     public Card clone() {
         Card c = cloneHelper();
         c.name = name;
@@ -125,9 +126,14 @@ public abstract class Card implements Configable {
         return 0;
     }
 
-    public static Class<? extends Configable> getSubclass(String name) {
-        String path = "src/main/resources/database/cards/";
-        File file;
+    private static void tryToGetCard(Class<? extends Card> cardClass, String name) throws NoSuchFileException {
+        String path = "src/main/resources/database/cards/" + cardClass.getSimpleName() + "/" + name + ".json";
+        File file = new File(path);
+        if (!file.isFile())
+            throw new NoSuchFileException(path);
+    }
+
+    private static Class<? extends Card> getSubclass(String name) throws NoSuchFileException {
         try {
             tryToGetCard(Minion.class, name);
             return Minion.class;
@@ -140,22 +146,38 @@ public abstract class Card implements Configable {
                     tryToGetCard(Weapon.class, name);
                     return Weapon.class;
                 } catch (NoSuchFileException e3) {
-                    try {
-                        tryToGetCard(QuestAndReward.class, name);
-                        return QuestAndReward.class;
-                    } catch (NoSuchFileException e4) {
-                        e4.printStackTrace();
-                        return null;
-                    }
+                    tryToGetCard(QuestAndReward.class, name);
+                    return QuestAndReward.class;
                 }
             }
         }
     }
 
-    private static void tryToGetCard(Class<? extends Card> cardClass, String name) throws NoSuchFileException {
-        String path = "src/main/resources/database/cards/" + cardClass.getSimpleName() + "/" + name + ".json";
-        File file = new File(path);
-        if (!file.isFile())
-            throw new NoSuchFileException(path);
+    public static Class<? extends Configable> getCardClass(String cardName) {
+        try {
+            return getSubclass(cardName);
+        } catch (NoSuchFileException e) {
+            return switch (cardName) {
+                case "Minion" -> Minion.class;
+                case "Spell" -> Spell.class;
+                case "Weapon" -> Weapon.class;
+                case "QuestAndReward" -> QuestAndReward.class;
+                default -> null;
+            };
+        }
+    }
+
+    public static String getRandomCardName(Class<? extends Card> cardClass, String name) {
+        try {
+            getSubclass(name);
+            return name;
+        } catch (NoSuchFileException e) {
+            ArrayList<Card> cards = new ArrayList<>();
+            for (Card card : GameController.getCardsList())
+                if (cardClass.isAssignableFrom(card.getClass()))
+                    cards.add(card);
+            int n = cards.size();
+            return cards.get((int) ((Math.random() * n) % n)).toString();
+        }
     }
 }

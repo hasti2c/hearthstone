@@ -147,7 +147,7 @@ public class PlayGround extends Directory {
                 manaHBox.getChildren().get(i).setVisible(true);
             for (int i = gamePlayer.getMana(); i < 10; i++)
                 manaHBox.getChildren().get(i).setVisible(false);
-            deckLabel.setText(gamePlayer.getLeftInDeck().size() + "/" + controller.getCurrentPlayer().getInventory().getCurrentDeck().getCards().size());
+            deckLabel.setText(gamePlayer.getLeftInDeck().size() + "/" + gamePlayer.getInventory().getCurrentDeck().getCards().size());
 
             configHand();
             for (Card c : gamePlayer.getMinionsInGame())

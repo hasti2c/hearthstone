@@ -1,0 +1,42 @@
+p1:play_card 2020/07/01 22:04:26 Learn Draconic
+p1:end_turn 2020/07/01 22:04:30 
+p1:end_turn 2020/07/01 22:04:46 
+p1:play_card 2020/07/01 22:04:48 Book of Specters
+p1:end_turn 2020/07/01 22:04:53 
+p1:play_card 2020/07/01 22:04:56 Strength in Numbers
+p1:end_turn 2020/07/01 22:04:57 
+p1:end_turn 2020/07/01 22:05:01 
+p1:end_turn 2020/07/01 22:05:01 
+p1:end_turn 2020/07/01 22:05:01 
+p1:end_turn 2020/07/01 22:05:01 
+p1:end_turn 2020/07/01 22:05:01 
+p1:end_turn 2020/07/01 22:05:03 
+p1:end_turn 2020/07/01 22:05:04 
+p1:end_turn 2020/07/01 22:05:11 
+p1:end_turn 2020/07/01 22:05:12 
+p1:end_turn 2020/07/01 22:05:13 
+p1:end_turn 2020/07/01 22:05:14 
+p1:end_turn 2020/07/01 22:05:15 
+p1:end_turn 2020/07/01 22:05:15 
+p1:end_turn 2020/07/01 22:05:16 
+p1:end_turn 2020/07/01 22:05:17 
+p1:end_turn 2020/07/01 22:05:17 
+p1:end_turn 2020/07/01 22:05:18 
+p1:end_turn 2020/07/01 22:05:19 
+p1:end_turn 2020/07/01 22:05:21 
+p1:end_turn 2020/07/01 22:05:21 
+p1:end_turn 2020/07/01 22:05:22 
+p1:end_turn 2020/07/01 22:05:22 
+p1:end_turn 2020/07/01 22:05:23 
+p1:end_turn 2020/07/01 22:05:23 
+p1:end_turn 2020/07/01 22:05:25 
+p1:end_turn 2020/07/01 22:05:25 
+p1:play_card 2020/07/01 22:05:26 Swarm of Locusts
+p1:play_card 2020/07/01 22:05:26 Learn Draconic
+p1:end_turn 2020/07/01 22:05:29 
+p1:end_turn 2020/07/01 22:05:29 
+p1:end_turn 2020/07/01 22:05:30 
+p1:end_turn 2020/07/01 22:05:30 
+p1:end_turn 2020/07/01 22:05:30 
+
+ENDED_AT:  2020/07/01 22:05:37 

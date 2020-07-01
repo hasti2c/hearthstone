@@ -32,13 +32,6 @@ public class GameController implements Configable {
         return configor.getConfigedObject();
     }
 
-    public static Hero getHero(String heroName) {
-        for (Hero hero : herosList)
-            if (hero.toString().equals(heroName))
-                return hero;
-        return null;
-    }
-
     @Override
     public void initialize(GameController controller) {}
 
@@ -114,13 +107,6 @@ public class GameController implements Configable {
 
     public static String toEnumCase(String s) {
         return (s.toUpperCase()).replace(' ', '_');
-    }
-
-    public static Card getCard(String name) {
-        for (Card c : cardsList)
-            if (c.toString().equals(name))
-                return c;
-        return null;
     }
 
     /*public static Passive getRandomPassive() {

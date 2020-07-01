@@ -206,9 +206,11 @@ public class CommandRunner {
     }
 
     private boolean addCard(Deck deck, Card card) {
-        boolean ret = deck.addCard(card);
+        if (!deck.canAddCard(card))
+            return false;
+        deck.addCard(card);
         controller.getCurrentPlayer().log("add", "card: " + card + " -> deck: " + deck.getHero() + "-" + deck);
-        return ret;
+        return true;
     }
 
     private boolean removeCard(Deck deck, Card card) {

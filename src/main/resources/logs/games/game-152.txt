@@ -1,0 +1,3 @@
+p1:play_card 2020/07/01 22:17:25 Learn Draconic
+p1:end_turn 2020/07/01 22:17:26 
+p1:end_turn 2020/07/01 22:17:27 

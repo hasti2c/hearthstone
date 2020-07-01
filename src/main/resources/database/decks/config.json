@@ -1,4 +1,40 @@
 {
-  "friendly": ["Security Rover", "Strength in Numbers", "Security Rover", "Strength in Numbers"],
-  "enemy": ["Tomb Warden", "Learn Draconic"]
+  "friendly": [
+    "Learn Draconic",
+    "Book of Specters",
+    "Minion",
+    "Minion",
+    "Minion",
+    "Spell",
+    "Spell",
+    "Spell",
+    "Friendly Smith",
+    "Curio Collector",
+    "Pharaohs Blessing",
+    "Polymorph",
+    "Sprint",
+    "Minion",
+    "Minion",
+    "Minion",
+    "Minion",
+    "Minion",
+    "Minion",
+    "Minion",
+    "Minion"
+  ],
+  "enemy": [
+    "Strength in Numbers",
+    "Security Rover",
+    "Dreadscale",
+    "Weapon",
+    "Swarm of Locusts",
+    "Tomb Warden",
+    "Sathrovarr",
+    "Minion",
+    "Minion",
+    "Minion",
+    "Minion",
+    "Minion",
+    "Security Rover"
+  ]
 }

@@ -7,6 +7,7 @@ import gameObjects.heros.Hero;
 
 import java.io.*;
 import java.lang.reflect.*;
+import java.nio.file.NoSuchFileException;
 import java.util.*;
 
 public class Configor<O extends Configable> {
@@ -104,9 +105,10 @@ public class Configor<O extends Configable> {
                         return readPrimitive(readType);
                     }
                 } catch (NoSuchMethodException e1) {
-                    String objectName = jsonReader.nextString();
-                    Configable object = getNewObject((Class<? extends Configable>) readType, objectName);
-                    return (T) readObject(object.getClass(), objectName);
+                    String nextString = jsonReader.nextString();
+                    Class<? extends Configable> objectClass = getObjectClass((Class<? extends Configable>) readType, nextString);
+                    String objectName = getObjectName(objectClass, nextString);
+                    return (T) readObject(objectClass, objectName);
                 }
             }
         } catch (IOException e) {
@@ -115,20 +117,29 @@ public class Configor<O extends Configable> {
         return null;
     }
 
-    private Configable getNewObject(Class<? extends Configable> readType, String objectName) {
+    private Class<? extends Configable> getObjectClass(Class<? extends Configable> readType, String objectName) {
         try {
-            return readType.getDeclaredConstructor().newInstance();
+            return readType.getDeclaredConstructor().newInstance().getClass();
         } catch (InstantiationException e) {
-            try {
                 assert readType.equals(Card.class);
-                return Card.getSubclass(objectName).getDeclaredConstructor().newInstance();
-            } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException | InstantiationException ex) {
-                ex.printStackTrace();
-            }
+                return Card.getCardClass(objectName);
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    //TODO random "special hero card"
+    private String getObjectName(Class<? extends Configable> readType, String objectName) {
+        if (!Card.class.isAssignableFrom(readType))
+            return objectName;
+        try {
+            Method method = readType.getMethod("getRandomCardName", Class.class, String.class);
+            return (String) method.invoke(null, readType, objectName);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private <T extends Configable> T readObject(Class<T> readType, String objectName) {

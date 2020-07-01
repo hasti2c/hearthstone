@@ -100,14 +100,6 @@ public class Inventory implements Configable {
         return this.allHeros;
     }
 
-    public ArrayList<Deck> getHeroDecks(Hero hero) {
-        ArrayList<Deck> ret = new ArrayList<>();
-        for (Deck deck : allDecks)
-            if (deck.getHero() == hero)
-                ret.add(deck);
-        return ret;
-    }
-
     public Hero getCurrentHero() {
         if (currentDeck == null)
             return null;
@@ -185,13 +177,6 @@ public class Inventory implements Configable {
                 allCards.add(cardClone);
                 return cardClone;
             }
-        return null;
-    }
-
-    public Deck getDeck(String deckName) {
-        for (Deck deck : allDecks)
-            if (deck.toString().equals(deckName))
-                return deck;
         return null;
     }
 }

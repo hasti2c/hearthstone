@@ -68,10 +68,6 @@ public class Game {
         return playerCount;
     }
 
-    public void setPassive(Passive passive) {
-        this.passive = passive;
-    }
-
     public String getGameEvents() {
         return gameEvents;
     }
