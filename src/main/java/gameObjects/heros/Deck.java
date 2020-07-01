@@ -3,17 +3,12 @@ package gameObjects.heros;
 import java.io.*;
 import java.util.*;
 import com.google.gson.stream.*;
-import cli.*;
-import cli.Console;
 import controllers.game.*;
-import directories.*;
-import directories.collections.*;
 import gameObjects.*;
 import gameObjects.Player.Inventory;
-import gameObjects.Player.Player;
 import gameObjects.cards.*;
 
-public class Deck implements Printable, Comparable<Deck>, Configable {
+public class Deck implements Comparable<Deck>, Configable {
     private String name;
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Integer> uses = new ArrayList<>();
@@ -87,10 +82,13 @@ public class Deck implements Printable, Comparable<Deck>, Configable {
         return this.name;
     }
 
-    public void addCard(Card c) {
+    public boolean addCard(Card c) {
+        if (!canAddCard(c))
+            return false;
         cards.add(c);
         uses.add(0);
         resetStats();
+        return true;
     }
 
     public boolean removeCard(Card card) {
@@ -115,11 +113,11 @@ public class Deck implements Printable, Comparable<Deck>, Configable {
         Deck deck = new Deck();
         deck.name = name;
         deck.heroClass = heroClass;
-        for (Card c : cards)
-            deck.addCard(inventory.getCard(c.toString()));
+        deck.maxSize = maxSize;
+        for (Card card : cards)
+            deck.addCard(inventory.getCard(card.toString()));
         deck.wins = wins;
         deck.games = games;
-        deck.maxSize = maxSize;
         return deck;
     }
 
@@ -188,70 +186,6 @@ public class Deck implements Printable, Comparable<Deck>, Configable {
     }
 
     @Override
-    public String[] normalPrint(Player currentPlayer) {
-        String[] ret = new String[3];
-        Directory d = currentPlayer.getCurrentDirectory();
-        if (d instanceof HeroDirectory && currentPlayer.getInventory().getCurrentDeck() == this) {
-            ret[0] = Console.GREEN;
-            ret[2] = Console.RESET;
-        }
-        ret[1] = toString();
-        return ret;
-    }
-
-    @Override
-    public String[][] longPrint(Player currentPlayer) {
-        String[][] ret = new String[16][3];
-        Directory d = currentPlayer.getCurrentDirectory();
-        for (int i = 0; i < 16; i++)
-            switch (i) {
-                case 0:
-                    if (d instanceof HeroDirectory && currentPlayer.getInventory().getCurrentDeck() == this) {
-                        ret[i][0] = Console.GREEN;
-                        ret[i][1] = "current deck";
-                        ret[i][2] = Console.RESET;
-                    } else
-                        ret[i][1] = "";
-                    break;
-                case 1:
-                    ret[i][0] = Console.LIGHT_PINK;
-                    ret[i][1] = toString();
-                    ret[i][2] = Console.RESET;
-                    break;
-                case 2:
-                    ret[i][1] = "deck";
-                    break;
-                case 3:
-                    ret[i][1] = heroClass.toString().toLowerCase();
-                    break;
-                case 4:
-                    ret[i][1] = cards.size() + "";
-                    break;
-                case 11:
-                    if (d instanceof Stats)
-                        ret[i][1] = getWinPercentage() + "%";
-                    break;
-                case 12:
-                    if (d instanceof Stats)
-                        ret[i][1] = wins + "";
-                    break;
-                case 13:
-                    if (d instanceof Stats)
-                        ret[i][1] = games + "";
-                    break;
-                case 14:
-                    if (d instanceof Stats)
-                        ret[i][1] = getPriceAverage() + "";
-                    break;
-                case 15:
-                    if (d instanceof Stats && cards.size() != 0)
-                        ret[i][1] = getBestCard().toString();
-                    break;
-            }
-        return ret;
-    }
-
-    @Override
     public int compareTo(Deck d) {
         if (getWinPercentage() != d.getWinPercentage())
             return getWinPercentage() - d.getWinPercentage();
@@ -264,12 +198,15 @@ public class Deck implements Printable, Comparable<Deck>, Configable {
         return 0;
     }
 
-    public boolean move(HeroClass heroClass, String newName) {
+    public boolean move(HeroClass heroClass) {
         for (Card c : cards)
             if (HeroClass.NEUTRAL != c.getHeroClass() && heroClass != c.getHeroClass())
                 return false;
         this.heroClass = heroClass;
-        name = newName;
         return true;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

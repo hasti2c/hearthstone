@@ -1,20 +1,19 @@
 package graphics;
 
-import java.util.*;
 import controllers.commands.*;
 import controllers.game.*;
 import gameObjects.Player.Player;
 import gameObjects.cards.Card;
 import graphics.directories.*;
-import graphics.directories.collections.StoreGraphics;
+import graphics.directories.collections.Store;
 import javafx.scene.*;
 import javafx.stage.*;
 
 public class GraphicsController {
     private final Stage stage;
     private final CommandRunner runner;
-    private final StartPageGraphics startPage;
-    private final HomeGraphics home;
+    private final StartPage startPage;
+    private final Home home;
     private final GameController game;
     private Player currentPlayer;
 
@@ -23,8 +22,8 @@ public class GraphicsController {
         this.stage = stage;
         runner = new CommandRunner(game, this);
         currentPlayer = game.getCurrentPlayer();
-        startPage = new StartPageGraphics(this, runner);
-        home = new HomeGraphics(this, runner);
+        startPage = new StartPage(this, runner);
+        home = new Home(this, runner);
 
         displayStartPage();
         stage.setOnCloseRequest(e -> exit());
@@ -39,12 +38,12 @@ public class GraphicsController {
         return currentPlayer;
     }
 
-    public StartPageGraphics getStartPage() {
+    public StartPage getStartPage() {
         return startPage;
     }
 
     public void exit() {
-        runner.run(new Command(CommandType.EXIT, new ArrayList<>(Collections.singletonList('a'))));
+        runner.run(new Command(CommandType.EXIT));
         stage.close();
     }
 
@@ -53,7 +52,7 @@ public class GraphicsController {
     }
 
     public void displayStartPage() {
-        runner.run(new Command(CommandType.EXIT));
+        runner.run(new Command(CommandType.LOGOUT));
         startPage.display();
     }
 
@@ -66,7 +65,7 @@ public class GraphicsController {
     }
 
     public void viewCardInStore(Card card) {
-        StoreGraphics store = home.getStore();
+        Store store = home.getStore();
         store.display();
         store.search(card.toString());
     }

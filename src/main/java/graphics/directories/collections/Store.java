@@ -13,14 +13,14 @@ import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
-public class StoreGraphics extends CardsListGraphics {
+public class Store extends CardsList {
     private boolean sellMode = false;
     @FXML
     private Label balanceLabel;
     @FXML
     private JFXToggleButton sellModeButton;
 
-    public StoreGraphics(GraphicsController controller, CommandRunner runner) {
+    public Store(GraphicsController controller, CommandRunner runner) {
         super(controller, runner);
         border.setId("store-bg");
         initTopHBox();
@@ -44,8 +44,8 @@ public class StoreGraphics extends CardsListGraphics {
 
     protected void setSellMode(boolean sellMode) {
         this.sellMode = sellMode;
-        optionsGraphics.fixOwned(!sellMode, sellMode);
-        optionsGraphics.fixNotOwned(sellMode, !sellMode);
+        optionsPage.fixOwned(!sellMode, sellMode);
+        optionsPage.fixNotOwned(sellMode, !sellMode);
     }
 
     protected VBox getNode(Card card) {
@@ -77,7 +77,7 @@ public class StoreGraphics extends CardsListGraphics {
             ConfirmationBox confirmationBox = new ConfirmationBox(text, "Proceed", "Cancel");
             confirmationBox.display();
             if (confirmationBox.getResponse())
-                runner.run(new Command(CommandType.BUY, c.toString()));
+                runner.run(new Command(CommandType.BUY, c));
         } else {
             String text = "You don't have enough money to buy \"" + c + "\".\n" +
                     "Current Balance: " + currentPlayer.getBalance() + "\n" +
@@ -97,7 +97,7 @@ public class StoreGraphics extends CardsListGraphics {
             ConfirmationBox confirmationBox = new ConfirmationBox(text, "Proceed", "Cancel");
             confirmationBox.display();
             if (confirmationBox.getResponse())
-                runner.run(new Command(CommandType.SELL, c.toString()));
+                runner.run(new Command(CommandType.SELL, c));
         } else {
             String text = "You can't sell \"" + c + "\", because it is in at least one of your decks.";
             new AlertBox(text, "Okay").display();
@@ -110,12 +110,7 @@ public class StoreGraphics extends CardsListGraphics {
         return true;
     }
 
-    @Override
-    protected void runCd() {
-        runner.run(new Command(CommandType.CD, "~/store"));
-    }
-
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(StoreGraphics.class.getResource("/fxml/directories/store.fxml"));
+        return new FXMLLoader(Store.class.getResource("/fxml/directories/store.fxml"));
     }
 }

@@ -7,7 +7,7 @@ import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
 
-public abstract class DirectoryGraphics {
+public abstract class Directory {
     protected CommandRunner runner;
     protected GraphicsController controller;
     protected Scene scene;
@@ -16,7 +16,7 @@ public abstract class DirectoryGraphics {
     @FXML
     protected MenuItem logoutButton, exitButton;
 
-    protected DirectoryGraphics(GraphicsController controller, CommandRunner runner) {
+    protected Directory(GraphicsController controller, CommandRunner runner) {
         this.controller = controller;
         this.runner = runner;
         load();
@@ -32,8 +32,6 @@ public abstract class DirectoryGraphics {
 
     protected abstract FXMLLoader getLoader();
 
-    protected abstract void runCd();
-
     private void load() {
         FXMLLoader loader = getLoader();
         loader.setController(this);
@@ -46,7 +44,6 @@ public abstract class DirectoryGraphics {
     }
 
     public void display() {
-        runCd();
         controller.updatePlayer();
         config();
         controller.setScene(scene);

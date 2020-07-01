@@ -4,36 +4,18 @@ import java.util.*;
 
 public class Command {
     private final CommandType commandType;
-    private final String word;
-    private final ArrayList<Character> options;
+    private final Object[] input;
 
-    public Command(CommandType commandType, String word, ArrayList<Character> options) {
+    public Command(CommandType commandType, Object ...input) {
         this.commandType = commandType;
-        this.word = word;
-        this.options = options;
-    }
-
-    public Command(CommandType commandType, String word) {
-        this(commandType, word, new ArrayList<>());
-    }
-
-    public Command(CommandType commandType, ArrayList<Character> options) {
-        this(commandType, null, options);
-    }
-
-    public Command(CommandType commandType) {
-        this(commandType, null, new ArrayList<>());
+        this.input = input;
     }
 
     CommandType getCommandType() {
         return commandType;
     }
 
-    String getWord() {
-        return word;
-    }
-
-    public ArrayList<Character> getOptions() {
-        return options;
+    Object[] getInput() {
+        return input;
     }
 }

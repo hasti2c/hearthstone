@@ -5,8 +5,6 @@ import java.util.*;
 
 import com.google.gson.stream.*;
 import controllers.game.*;
-import directories.*;
-import directories.game.PlayGround;
 import gameObjects.Configable;
 import gameObjects.Configor;
 import gameObjects.Game;
@@ -17,10 +15,8 @@ public class Player implements Configable {
     private String username, password;
     private int balance, id;
     private Inventory inventory;
-    private Home home = new Home(this);
     private GameController controller;
     private Game game;
-    private Directory currentDirectory;
     private Writer logWriter;
 
     public static Player getExistingPlayer(GameController controller, String username) throws FileNotFoundException {
@@ -43,8 +39,6 @@ public class Player implements Configable {
     @Override
     public void initialize(GameController controller) {
         this.controller = controller;
-        home = new Home(this);
-        currentDirectory = home;
         try {
             logWriter = new FileWriter(this.getLogPath(), true);
         } catch (IOException e) {
@@ -120,27 +114,8 @@ public class Player implements Configable {
         return this.username;
     }
 
-    public Home getHome() {
-        return home;
-    }
-
-    public Game getNewGame() {
-        if (inventory.getCurrentDeck() == null)
-            return null;
-        this.game = new Game(controller);
-        return game;
-    }
-
     public Game getGame() {
         return game;
-    }
-
-    public Directory getCurrentDirectory() {
-        return currentDirectory;
-    }
-
-    public void setCurrentDirectory(Directory currentDirectory) {
-        this.currentDirectory = currentDirectory;
     }
 
     public int getBalance() {
@@ -165,13 +140,10 @@ public class Player implements Configable {
 
     public void setCurrentDeck(Deck currentDeck) {
         inventory.setCurrentDeck(currentDeck);
-        home.createPlayGround(getNewGame());
     }
 
     public void deselectCurrentDeck() {
         inventory.setCurrentDeck(null);
-        if (home.getChildren().get(0) instanceof PlayGround)
-            home.getChildren().remove(0);
     }
 
     public boolean addNewDeck(HeroClass heroClass, String name) {
@@ -224,6 +196,5 @@ public class Player implements Configable {
 
     public void setGame(Game game) {
         this.game = game;
-        home.createPlayGround(game);
     }
 }

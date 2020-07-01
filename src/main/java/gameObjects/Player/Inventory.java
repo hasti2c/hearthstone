@@ -3,7 +3,6 @@ package gameObjects.Player;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import controllers.game.GameController;
-import directories.game.PlayGround;
 import gameObjects.Configable;
 import gameObjects.cards.Card;
 import gameObjects.heros.Deck;
@@ -63,7 +62,6 @@ public class Inventory implements Configable {
             if (deck == currentDeck)
                 inventory.currentDeck = deckClone;
         }
-
         return inventory;
     }
 
@@ -75,15 +73,11 @@ public class Inventory implements Configable {
         allDecks.add(deck);
     }
 
-    public boolean removeDeck(String name) {
-        for (Deck d : allDecks)
-            if (d.toString().equals(name)) {
-                allDecks.remove(d);
-                if (currentDeck == d)
-                    currentDeck = null;
-                return true;
-            }
-        return false;
+    public boolean removeDeck(Deck deck) {
+        allDecks.remove(deck);
+        if (currentDeck == deck)
+            currentDeck = null;
+        return true;
     }
 
     public ArrayList<Deck> getAllDecks() {
@@ -182,10 +176,22 @@ public class Inventory implements Configable {
     }
 
     public Card getCard(String cardName) {
-        for (Card card : allCards) {
+        for (Card card : allCards)
             if (card.toString().equals(cardName))
                 return card;
-        }
+        for (Card card : GameController.getCardsList())
+            if (card.toString().equals(cardName)) {
+                Card cardClone = card.clone();
+                allCards.add(cardClone);
+                return cardClone;
+            }
+        return null;
+    }
+
+    public Deck getDeck(String deckName) {
+        for (Deck deck : allDecks)
+            if (deck.toString().equals(deckName))
+                return deck;
         return null;
     }
 }

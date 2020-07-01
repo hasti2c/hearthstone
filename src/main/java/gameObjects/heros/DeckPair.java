@@ -28,8 +28,6 @@ public class DeckPair implements Configable {
     public void initialize(GameController controller) {
         friendlyDeck = new Deck(friendly);
         enemyDeck = new Deck(enemy);
-        System.out.println(friendlyDeck + " " + friendlyDeck.getCards());
-        System.out.println(enemyDeck + " " + enemyDeck.getCards());
     }
 
     @Override

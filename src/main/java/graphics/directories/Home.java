@@ -1,8 +1,8 @@
 package graphics.directories;
 
 import controllers.commands.*;
-import controllers.game.GameController;
 import gameObjects.Game;
+import gameObjects.Player.Inventory;
 import gameObjects.cards.Passive;
 import graphics.*;
 import graphics.directories.collections.*;
@@ -12,21 +12,19 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.util.ArrayList;
-
-public class HomeGraphics extends DirectoryGraphics {
-    private PlayGroundGraphics playGround;
-    private final CollectionsGraphics collections = new CollectionsGraphics(controller, runner);
-    private final StoreGraphics store = new StoreGraphics(controller, runner);
-    private final StatsGraphics stats = new StatsGraphics(controller, runner);
-    private final GameBeginningGraphics gameBeginning;
+public class Home extends Directory {
+    private PlayGround playGround;
+    private final Collections collections = new Collections(controller, runner);
+    private final Store store = new Store(controller, runner);
+    private final Stats stats = new Stats(controller, runner);
+    private final GameStartPage gameBeginning;
     @FXML
     private Button playButton, collectionsButton, storeButton, statsButton, homeLogoutButton, homeExitButton;
 
-    public HomeGraphics(GraphicsController controller, CommandRunner runner) {
+    public Home(GraphicsController controller, CommandRunner runner) {
         super(controller, runner);
         //playButton.setOnAction(e -> displayPlayGround());
-        gameBeginning = new GameBeginningGraphics();
+        gameBeginning = new GameStartPage();
         playButton.setOnAction(e -> gameBeginning.display());
         collectionsButton.setOnAction(e -> collections.display());
         storeButton.setOnAction(e -> store.display());
@@ -40,19 +38,14 @@ public class HomeGraphics extends DirectoryGraphics {
 
     @Override
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(HomeGraphics.class.getResource("/fxml/directories/home.fxml"));
+        return new FXMLLoader(Home.class.getResource("/fxml/directories/home.fxml"));
     }
 
-    @Override
-    protected void runCd() {
-        runner.run(new Command(CommandType.CD, "~"));
-    }
-
-    public StoreGraphics getStore() {
+    public Store getStore() {
         return store;
     }
 
-    private class GameBeginningGraphics extends PopupBox {
+    private class GameStartPage extends PopupBox {
         private Game game;
         @FXML
         private HBox deckHBox, noDeckHBox, passiveHBox;
@@ -65,14 +58,15 @@ public class HomeGraphics extends DirectoryGraphics {
         @FXML
         private ChoiceBox<Passive> passiveChoiceBox;
 
-        protected GameBeginningGraphics() {
+        protected GameStartPage() {
             vBox.getChildren().remove(deckHBox);
             vBox.getChildren().remove(passiveHBox);
             vBox.getChildren().remove(noDeckHBox);
             cancelButton.setOnAction(e -> close());
             doneButton.setOnAction(e -> {
                 close();
-                game.setPassive(passiveChoiceBox.getValue());
+                //game.setPassive(passiveChoiceBox.getValue());
+                runner.run(new Command(CommandType.START_GAME));
                 displayPlayGround();
             });
             collectionsButton.setOnAction(e -> {
@@ -81,7 +75,7 @@ public class HomeGraphics extends DirectoryGraphics {
             });
             deckReaderButton.setOnAction(e -> {
                 close();
-                runner.run(new Command(CommandType.DECKREADER));
+                runner.run(new Command(CommandType.DECK_READER));
                 displayPlayGround();
             });
         }
@@ -94,7 +88,7 @@ public class HomeGraphics extends DirectoryGraphics {
 
         protected void config() {
             clear();
-            if (controller.getCurrentPlayer() == null || !controller.getCurrentPlayer().getHome().hasPlayGround())
+            if (controller.getCurrentPlayer() == null || controller.getCurrentPlayer().getInventory().getCurrentDeck() == null)
                 configNoDeck();
             else
                 configHasDeck();
@@ -102,7 +96,7 @@ public class HomeGraphics extends DirectoryGraphics {
 
         @Override
         protected FXMLLoader getLoader() {
-            return new FXMLLoader(GameBeginningGraphics.class.getResource("/fxml/popups/gameBeginning.fxml"));
+            return new FXMLLoader(GameStartPage.class.getResource("/fxml/popups/gameBeginning.fxml"));
         }
 
         private void configHasDeck() {
@@ -113,9 +107,9 @@ public class HomeGraphics extends DirectoryGraphics {
             vBox.getChildren().remove(noDeckHBox);
             doneButton.setDisable(false);
 
-            game = controller.getCurrentPlayer().getGame();
-            deckHBox.getChildren().add(1, game.getCurrentPlayer().getInventory().getCurrentHero().getHeroClass().getIcon());
-            deckName.setText(game.getCurrentPlayer().getInventory().getCurrentDeck().toString());
+            Inventory inventory = controller.getCurrentPlayer().getInventory();
+            deckHBox.getChildren().add(1, inventory.getCurrentHero().getHeroClass().getIcon());
+            deckName.setText(inventory.getCurrentDeck().toString());
 
             /*ArrayList<Passive> passives = new ArrayList<>();
             while (passives.size() < 3) {
@@ -137,8 +131,7 @@ public class HomeGraphics extends DirectoryGraphics {
         }
 
         private void displayPlayGround() {
-            assert controller.getCurrentPlayer().getHome().hasPlayGround();
-            playGround = new PlayGroundGraphics(controller.getCurrentPlayer().getGame(), controller, runner);
+            playGround = new PlayGround(controller.getCurrentPlayer().getGame(), controller, runner);
             playGround.display();
         }
     }

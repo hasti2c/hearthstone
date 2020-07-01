@@ -12,10 +12,10 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
-public class HeroCardsGraphics extends CardsListGraphics {
+public class HeroCards extends CardsList {
     private HeroClass heroClass = null;
 
-    HeroCardsGraphics(HeroClass heroClass, GraphicsController controller, CommandRunner runner) {
+    HeroCards(HeroClass heroClass, GraphicsController controller, CommandRunner runner) {
         super(controller, runner);
         border.setId("heroCards-bg");
         this.heroClass = heroClass;
@@ -48,10 +48,7 @@ public class HeroCardsGraphics extends CardsListGraphics {
         return this.heroClass == null || this.heroClass.equals(heroClass);
     }
 
-    @Override
-    protected void runCd() {}
-
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(HeroCardsGraphics.class.getResource("/fxml/directories/heroCards.fxml"));
+        return new FXMLLoader(HeroCards.class.getResource("/fxml/directories/heroCards.fxml"));
     }
 }

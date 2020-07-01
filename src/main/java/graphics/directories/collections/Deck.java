@@ -8,17 +8,16 @@ import graphics.popups.AlertBox;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.*;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 
-public class DeckGraphics extends CardsListGraphics {
-    private final Deck deck;
+public class Deck extends CardsList {
+    private final gameObjects.heros.Deck deck;
     @FXML
     private Label deckCount;
 
-    DeckGraphics(Deck deck, GraphicsController controller, CommandRunner runner) {
+    Deck(gameObjects.heros.Deck deck, GraphicsController controller, CommandRunner runner) {
         super(controller, runner);
         border.setId("deck-bg");
         this.deck = deck;
@@ -30,7 +29,7 @@ public class DeckGraphics extends CardsListGraphics {
         deckCount.setText(deck.getCards().size() + "/" + controller.getCurrentPlayer().getInventory().getDeckCap());
     }
 
-    public Deck getDeck() {
+    public gameObjects.heros.Deck getDeck() {
         return deck;
     }
 
@@ -87,22 +86,17 @@ public class DeckGraphics extends CardsListGraphics {
     }
 
     private void removeCard(Card card) {
-        runner.run(new Command(CommandType.REMOVE, card.toString()));
+        runner.run(new Command(CommandType.REMOVE_CARD, deck, card));
         config();
     }
 
     private void addCard(Card card) {
-        if (!runner.run(new Command(CommandType.ADD, card.toString())))
+        if (!runner.run(new Command(CommandType.ADD_CARD, deck, card)))
             (new AlertBox("This card couldn't be added to the deck. This deck is full.", Color.RED, "Okay")).display();
         config();
     }
 
-    @Override
-    protected void runCd() {
-        runner.run(new Command(CommandType.CD, "~/collections/" + deck.getHeroClass().toString().toLowerCase() + "/" + deck.toString()));
-    }
-
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(DeckGraphics.class.getResource("/fxml/directories/deck.fxml"));
+        return new FXMLLoader(Deck.class.getResource("/fxml/directories/deck.fxml"));
     }
 }

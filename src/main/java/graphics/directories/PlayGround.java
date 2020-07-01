@@ -12,8 +12,6 @@ import graphics.popups.*;
 import javafx.event.EventHandler;
 import javafx.fxml.*;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.input.*;
@@ -22,7 +20,7 @@ import javafx.scene.layout.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class PlayGroundGraphics extends DirectoryGraphics {
+public class PlayGround extends Directory {
     private final Game game;
     private GamePlayerGraphics[] gamePlayers = new GamePlayerGraphics[2];
     @FXML
@@ -34,7 +32,7 @@ public class PlayGroundGraphics extends DirectoryGraphics {
     @FXML
     private ScrollPane gameEventsScrollPane;
 
-    protected PlayGroundGraphics(Game game, GraphicsController controller, CommandRunner runner) {
+    protected PlayGround(Game game, GraphicsController controller, CommandRunner runner) {
         super(controller, runner);
         this.game = game;
         for (int i = 0; i < 2; i++) {
@@ -56,7 +54,7 @@ public class PlayGroundGraphics extends DirectoryGraphics {
         });
 
         endTurnButton.setOnAction(e -> {
-            runner.run(new Command(CommandType.ENDTURN));
+            runner.run(new Command(CommandType.END_TURN));
             config();
         });
 
@@ -87,12 +85,7 @@ public class PlayGroundGraphics extends DirectoryGraphics {
 
     @Override
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(PlayGroundGraphics.class.getResource("/fxml/directories/playGround.fxml"));
-    }
-
-    @Override
-    protected void runCd() {
-        runner.run(new Command(CommandType.CD, "~/play"));
+        return new FXMLLoader(PlayGround.class.getResource("/fxml/directories/playGround.fxml"));
     }
 
     private class GamePlayerGraphics {
@@ -115,7 +108,7 @@ public class PlayGroundGraphics extends DirectoryGraphics {
             heroImage.setImage(gamePlayer.getInventory().getCurrentHero().getGameImage());
 
             heroPowerButton.setOnAction(e -> {
-                runner.run(new Command(CommandType.HEROPOWER));
+                runner.run(new Command(CommandType.HERO_POWER));
                 config();
             });
         }
@@ -218,8 +211,8 @@ public class PlayGroundGraphics extends DirectoryGraphics {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (mouseEvent.getEventType() == MouseEvent.MOUSE_CLICKED) {
-                    runner.run(new Command(CommandType.PLAY, card.toString()));
-                    PlayGroundGraphics.this.config();
+                    runner.run(new Command(CommandType.PLAY, card));
+                    PlayGround.this.config();
                 } else if (mouseEvent.getEventType() == MouseEvent.MOUSE_ENTERED) {
                     pane.getChildren().add(bigImageView);
                     bigImageView.setLayoutX(getLayoutX() + getWidth(normalImageView) / 2 - getWidth(bigImageView) / 2);

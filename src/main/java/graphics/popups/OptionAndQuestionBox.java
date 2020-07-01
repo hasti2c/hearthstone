@@ -1,5 +1,6 @@
 package graphics.popups;
 
+import gameObjects.heros.HeroClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -48,8 +49,8 @@ public class OptionAndQuestionBox extends PopupBox {
         return buttonResponse;
     }
 
-    public String getHeroChoice() {
-        return heroChoice;
+    public HeroClass getHeroChoice() {
+        return HeroClass.valueOf(heroChoice.toUpperCase());
     }
 
     public String getDeckName() {

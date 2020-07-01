@@ -14,7 +14,7 @@ public class GamePlayer {
     private ArrayList<Card> leftInDeck, hand = new ArrayList<>(), minionsInGame = new ArrayList<>();
     private Weapon currentWeapon;
     private int playerNumber, mana = 1;
-    private boolean usedHeroPower;
+    private boolean usedHeroPower, randomDraw = true;
     private PlayerFaction playerFaction;
     private Game game;
 
@@ -30,6 +30,8 @@ public class GamePlayer {
     public GamePlayer(GameController controller, Game game, PlayerFaction playerFaction, Deck deck) {
         this(controller, game, playerFaction);
         inventory.setCurrentDeck(deck.clone(inventory));
+        leftInDeck = new ArrayList<>(inventory.getCurrentDeck().getCards());
+        randomDraw = false;
     }
 
     public Inventory getInventory() {
@@ -87,9 +89,9 @@ public class GamePlayer {
 
         Card card;
         if (questAndReward.size() > 0)
-            card = getRandomCard(questAndReward);
+            card = getNextCard(questAndReward);
         else if (leftInDeck.size() > 0)
-            card = getRandomCard(leftInDeck);
+            card = getNextCard(leftInDeck);
         else
             return false;
 
@@ -97,6 +99,12 @@ public class GamePlayer {
         if (hand.size() < 12)
             hand.add(card);
         return true;
+    }
+
+    private Card getNextCard(ArrayList<Card> cards) {
+        if (randomDraw)
+            return getRandomCard(cards);
+        return leftInDeck.get(0);
     }
 
     private Card getRandomCard(ArrayList<Card> cards) {

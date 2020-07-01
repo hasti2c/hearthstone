@@ -16,11 +16,11 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.util.Pair;
 
-public abstract class CardsListGraphics extends DirectoryGraphics {
+public abstract class CardsList extends Directory {
     private Map<String, Boolean> options;
     protected ArrayList<Card> owned = new ArrayList<>(), notOwned = new ArrayList<>();
-    protected OptionsGraphics optionsGraphics;
-    private SearchGraphics searchGraphics;
+    protected OptionsPage optionsPage;
+    private SearchPage searchPage;
     private SortType sortType = SortType.OWNED_FIRST;
     private String searchText = "";
     private Pair<Integer, Integer> manaRange, healthRange, attackRange;
@@ -35,19 +35,19 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
     @FXML
     private TextField searchField;
 
-    CardsListGraphics(GraphicsController controller, CommandRunner runner) {
+    CardsList(GraphicsController controller, CommandRunner runner) {
         super(controller, runner);
         if (backButton != null)
             backButton.setOnAction(e -> {
-            CollectionsGraphics collections = new CollectionsGraphics(controller, runner);
+            Collections collections = new Collections(controller, runner);
             collections.display();
         });
-        optionsButton.setOnAction(e -> optionsGraphics.display());
+        optionsButton.setOnAction(e -> optionsPage.display());
         searchButton.setOnAction(e -> {
             searchText = searchField.getText();
             config();
         });
-        advancedSearchButton.setOnAction(e -> searchGraphics.display());
+        advancedSearchButton.setOnAction(e -> searchPage.display());
 
         options = new HashMap<>(Map.of("Owned", true, "Not Owned", true, "Unlocked", true, "Locked", false, "Minion", true, "Spell", true, "Weapon", true));
         manaRange = new Pair<>(null, null);
@@ -57,7 +57,7 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
 
     protected void config() {
         clear();
-        optionsGraphics.config();
+        optionsPage.config();
 
         Player player = controller.getCurrentPlayer();
         owned.addAll(player.getInventory().getAllCards());
@@ -68,8 +68,8 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
     }
 
     protected void initTopHBox() {
-        optionsGraphics = new OptionsGraphics();
-        searchGraphics = new SearchGraphics();
+        optionsPage = new OptionsPage();
+        searchPage = new SearchPage();
     }
 
     private void clear() {
@@ -122,7 +122,7 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
         boolean ret = options.get("Unlocked");
         ret &= options.get(GameController.toProperCase(card.getCardType().toString()));
         ret &= options.get(GameController.toProperCase(card.getHeroClass().toString()));
-        if (this instanceof DeckGraphics dg) {
+        if (this instanceof Deck dg) {
             if (dg.getDeck().getCards().contains(card))
                 ret &= options.get("In Deck");
             else
@@ -159,8 +159,6 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
 
     protected abstract Node getNode(Card card);
 
-    protected abstract void runCd();
-
     protected abstract boolean validHero(HeroClass hc);
 
     @Override
@@ -185,7 +183,7 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
         };
     }
 
-    public class OptionsGraphics extends PopupBox {
+    public class OptionsPage extends PopupBox {
         private Map<String, Boolean> tmpOptions;
         private SortType tmpSortType;
         private ArrayList<CheckBox> checkBoxes;
@@ -200,7 +198,7 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
         @FXML
         private CheckBox ownedBox, notOwnedBox;
 
-        OptionsGraphics() {
+        OptionsPage() {
             doneButton.setOnAction(e -> close(true));
             cancelButton.setOnAction(e -> close(false));
             initSort();
@@ -221,10 +219,10 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
         }
 
         private void configChangeableVBox() {
-            CardsListGraphics parent = CardsListGraphics.this;
+            CardsList parent = CardsList.this;
             for (HeroClass hc : HeroClass.values())
                 addCheckBox(GameController.toProperCase(hc.toString()), parent.validHero(hc), parent.validHero(hc));
-            if (parent instanceof DeckGraphics) {
+            if (parent instanceof Deck) {
                 changeableVBox.getChildren().add(new Separator());
                 addCheckBox("In Deck", true, true);
                 addCheckBox("Not In Deck", true, true);
@@ -285,7 +283,7 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
                 sortType = tmpSortType;
             }
             super.close();
-            CardsListGraphics.this.config();
+            CardsList.this.config();
         }
 
         protected void fixOwned(boolean disable, boolean selected) {
@@ -303,13 +301,13 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
         }
     }
 
-    public class SearchGraphics extends PopupBox {
+    public class SearchPage extends PopupBox {
         @FXML
         private Button doneButton, cancelButton, clearMana, clearHealth, clearAttack;
         @FXML
         private TextField manaMin, manaMax, healthMin, healthMax, attackMin, attackMax;
 
-        SearchGraphics() {
+        SearchPage() {
             doneButton.setOnAction(e -> close(true));
             cancelButton.setOnAction(e -> close(false));
 
@@ -350,7 +348,7 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
                 attackRange = new Pair<>(getInt(attackMin), getInt(attackMax));
             }
             super.close();
-            CardsListGraphics.this.config();
+            CardsList.this.config();
         }
 
         private Integer getInt(TextField field) {
@@ -363,7 +361,7 @@ public abstract class CardsListGraphics extends DirectoryGraphics {
 
         @Override
         protected FXMLLoader getLoader() {
-            return new FXMLLoader(SearchGraphics.class.getResource("/fxml/popups/search.fxml"));
+            return new FXMLLoader(SearchPage.class.getResource("/fxml/popups/search.fxml"));
         }
     }
 }

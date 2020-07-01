@@ -3,25 +3,17 @@ package controllers.commands;
 
 import java.io.*;
 import java.util.*;
-import cli.*;
-import cli.Console;
 import controllers.game.*;
-import directories.collections.*;
-import directories.collections.Collections;
-import directories.game.PlayGround;
 import gameObjects.Player.Player;
 import graphics.*;
 import graphics.directories.*;
 import gameObjects.*;
 import gameObjects.heros.*;
-import directories.*;
 import gameObjects.cards.*;
-import javafx.util.*;
 
 
 public class CommandRunner {
     private final GameController controller;
-    private Console console;
     private GraphicsController graphics;
     private static final ArrayList<Character> usernameChars = new ArrayList<>();
 
@@ -41,87 +33,54 @@ public class CommandRunner {
         this.graphics = graphics;
     }
 
-    public CommandRunner(GameController controller, Console console) {
-        this.controller = controller;
-        this.console = console;
-    }
-
     public boolean run(Command cmd) {
         CommandType commandType = cmd.getCommandType();
-        String word = cmd.getWord();
-        ArrayList<Character> options = cmd.getOptions();
-        boolean ret = false;
-        Directory d = null;
-        if (controller.getCurrentPlayer() != null)
-            d = controller.getCurrentPlayer().getCurrentDirectory();
+        Object[] input = cmd.getInput();
 
-        if (CommandType.SIGNUP.equals(commandType) && word == null)
+        boolean ret = false;
+        if (CommandType.SIGN_UP.equals(commandType))
             ret = runSignup();
-        else if (CommandType.LOGIN.equals(commandType) && word == null)
+        else if (CommandType.LOGIN.equals(commandType))
             ret = runLogin();
-        else if (CommandType.EXIT.equals(commandType) && word == null) {
-            if (options.size() == 0)
-                ret = logout();
-            else if (options.size() == 1 && options.get(0) == 'a') {
-                logout();
-                if (console != null)
-                    console.setQuit(true);
-                ret = true;
-            }
-        }
+        else if (CommandType.EXIT.equals(commandType))
+            ret = logout();
 
         if (controller.getCurrentPlayer() == null)
             return ret;
 
-        if (CommandType.DELETE.equals(commandType) && word == null && options.size() == 1 && options.get(0) == 'p')
+        if (CommandType.DELETE.equals(commandType))
             ret = runDeletePlayer();
-        else if (CommandType.CD.equals(commandType) && word != null)
-            ret = cd(word, true);
-        else if (CommandType.LS.equals(commandType)) {
-            if (word == null)
-                ret = ls(options);
-            else {
-                String initPath = d.getPath();
-                ret = cd(word, false) && ls(options) && cd(initPath, false);
-            }
-        } else if (CommandType.SELECT.equals(commandType) && word != null && d instanceof HeroDirectory)
-                ret = selectDeck(word) && cd(word, true);
-        else if (CommandType.DESELECT.equals(commandType) && d instanceof HeroDirectory && word == null) {
-            ret = deselectDeck();
-        } else if (CommandType.ADD.equals(commandType) && word != null) {
-            if (d instanceof DeckDirectory)
-                ret = addCard(word);
-            else if (d instanceof HeroDirectory)
-                ret = addDeck(word);
-        } else if (CommandType.REMOVE.equals(commandType) && word != null) {
-            if (d instanceof DeckDirectory)
-                ret = removeCard(word);
-            else if (d instanceof HeroDirectory)
-                ret = removeDeck(word);
-        } else if (CommandType.MV.equals(commandType) && word != null && d instanceof HeroDirectory)
-            ret = moveDeck(word);
-        else if (CommandType.BUY.equals(commandType) && word != null && d instanceof Store)
-            ret = buyCard(word);
-        else if (CommandType.SELL.equals(commandType) && word != null && d instanceof Store)
-            ret = sellCard(word);
-        else if (CommandType.WALLET.equals(commandType) && word == null)
-            ret = wallet();
-        else if (CommandType.HELP.equals(commandType) && (word == null || word.equals("HearthStone")) )
-            ret = help();
-        else if (CommandType.STATUS.equals(commandType) && word == null && (d instanceof PlayGround || d instanceof DeckDirectory))
-            ret = status();
-        else if (CommandType.PLAY.equals(commandType) && word != null)
-            ret = playCard(word);
-        else if (CommandType.ENDTURN.equals(commandType) && word == null)
-            ret = endTurn();
-        else if (CommandType.HEROPOWER.equals(commandType) && word == null)
-            ret = heroPower();
-        else if (CommandType.DECKREADER.equals(commandType) && word == null && d instanceof Home)
+        else if (CommandType.SELECT.equals(commandType) && input[0] instanceof Deck deck)
+            ret = selectDeck(deck);
+        else if (CommandType.DESELECT.equals(commandType) && input[0] instanceof Deck deck)
+            ret = deselectDeck(deck);
+        else if (CommandType.ADD_DECK.equals(commandType) && input[0] instanceof HeroClass heroClass && input[1] instanceof String name)
+            ret = addDeck(heroClass, name);
+        else if (CommandType.ADD_CARD.equals(commandType) && input[0] instanceof Deck deck && input[1] instanceof Card card)
+            ret = addCard(deck, card);
+        else if (CommandType.REMOVE_DECK.equals(commandType) && input[0] instanceof Deck deck)
+            ret = removeDeck(deck);
+        else if (CommandType.REMOVE_CARD.equals(commandType) && input[0] instanceof Deck deck && input[1] instanceof Card card)
+            ret = removeCard(deck, card);
+        else if (CommandType.MOVE.equals(commandType) && input[0] instanceof Deck deck && input[1] instanceof HeroClass heroClass)
+            ret = moveDeck(deck, heroClass);
+        else if (CommandType.RENAME.equals(commandType) && input[0] instanceof Deck deck && input[1] instanceof String deckName)
+            ret = renameDeck(deck, deckName);
+        else if (CommandType.BUY.equals(commandType) && input[0] instanceof Card card)
+            ret = buyCard(card);
+        else if (CommandType.SELL.equals(commandType) && input[0] instanceof Card card)
+            ret = sellCard(card);
+        else if (CommandType.START_GAME.equals(commandType))
+            ret = startGame();
+        else if (CommandType.DECK_READER.equals(commandType))
             ret = deckReader();
+        else if (CommandType.PLAY.equals(commandType) && input[0] instanceof Card card)
+            ret = playCard(card);
+        else if (CommandType.END_TURN.equals(commandType))
+            ret = endTurn();
+        else if (CommandType.HERO_POWER.equals(commandType))
+            ret = heroPower();
 
-        d = controller.getCurrentPlayer().getCurrentDirectory();
-        if (d != null)
-            d.config();
         if (ret && controller.getCurrentPlayer() != null)
             controller.getCurrentPlayer().updateJson();
         return ret;
@@ -138,21 +97,15 @@ public class CommandRunner {
         for (int i = 0; i < name.length(); i++)
             if (!usernameChars.contains(name.charAt(i)) && name.charAt(i) != ' ')
                 return false;
+        for (Deck deck : controller.getCurrentPlayer().getInventory().getAllDecks())
+            if (deck.toString().equals(name))
+                return false;
         return true;
     }
 
     private boolean runSignup() {
-        StartPageGraphics startPage = null;
-        if (console == null) {
-            assert graphics != null;
-            startPage = graphics.getStartPage();
-        }
-
-        String username;
-        if (console != null)
-            username = console.getInput("Username: ");
-        else
-            username = startPage.getUsername();
+        StartPage startPage = graphics.getStartPage();
+        String username = startPage.getUsername();
         if (username.length() < 4 || !validUsername(username))
             return false;
 
@@ -160,44 +113,19 @@ public class CommandRunner {
             GameController.readFile("src/main/resources/database/players/" + username + ".json");
             return false;
         } catch (FileNotFoundException e) {
-            String password;
-            if (console != null)
-                password = console.getPassword("Password: ");
-            else
-                password = startPage.getPassword();
+            String password = startPage.getPassword();
             if (password.length() < 8)
                 return false;
-
-            if (console != null) {
-                String passwordAgain = console.getPassword("Repeat Password: ");
-                if (!passwordAgain.equals(password))
-                    return false;
-            }
-
             return login(signUp(username, password), password);
         }
     }
 
     private boolean runLogin() {
-        StartPageGraphics startPage = null;
-        if (console == null) {
-            assert graphics != null;
-            startPage = graphics.getStartPage();
-        }
-
-        String username;
-        if (console != null)
-            username = console.getInput("Username: ");
-        else
-            username = startPage.getUsername();
-
+        StartPage startPage = graphics.getStartPage();
+        String username = startPage.getUsername();
         try {
             Player p = Player.getExistingPlayer(controller, username);
-            String password;
-            if (console != null)
-                password = console.getPassword("Password: ");
-            else
-                password = startPage.getPassword();
+            String password = startPage.getPassword();
             return login(p, password);
         } catch (IOException e) {
             return false;
@@ -205,14 +133,14 @@ public class CommandRunner {
     }
 
     private boolean runDeletePlayer() {
-        String password = console.getPassword("Password: ");
+        /*String password = console.getPassword("Password: ");
         if (!controller.getCurrentPlayer().loginAttempt(password))
             return false;
         String sure = console.getInput("Are you sure you want to delete " + controller.getCurrentPlayer().toString() + "? (y/n) ");
         if (sure.equals("n"))
             return true;
         if (!sure.equals("y"))
-            return false;
+            return false;*/
         return deletePlayer();
     }
 
@@ -243,7 +171,7 @@ public class CommandRunner {
 
     private boolean logout() {
         Player player = controller.getCurrentPlayer();
-        if (player != null && player.getCurrentDirectory().isInGame())
+        if (player != null && player.getGame() != null)
             endGame();
         if (player != null)
             player.log("logout", "");
@@ -259,344 +187,149 @@ public class CommandRunner {
         return (new File(p.getJsonPath())).delete() && p.deleteDeckDirectory();
     }
 
-    private boolean cd(String path, boolean log) {
+    private boolean selectDeck(Deck deck) {
         Player player = controller.getCurrentPlayer();
-        Directory current = player.getCurrentDirectory();
-        ArrayList<Directory> list = current.getList(path);
-        for (Directory d : list)
-            if (d == null)
-                return false;
-        Directory destination = list.get(list.size() - 1);
-        player.setCurrentDirectory(destination);
-
-        if (current.startsGame(destination))
-            return startGame();
-        else if (current.endsGame(destination))
-            return endGame();
-
-        if (log && !current.isInGame())
-            controller.getCurrentPlayer().log("cd", destination.toString());
-        return true;
-    }
-
-    private boolean ls(ArrayList<Character> options) {
-        boolean l = options.contains('l');
-        if (l)
-            options.remove(options.indexOf('l'));
-
-        ArrayList<Printable> objects = controller.getCurrentPlayer().getCurrentDirectory().getPrintables(options, l);
-        if (objects == null)
+        if (!player.getInventory().getAllDecks().contains(deck))
             return false;
-        if (l)
-            console.longPrint(objects);
-        else
-            console.normalPrint(objects);
+        player.setCurrentDeck(deck);
+        player.log("select", "deck: " + deck);
         return true;
     }
 
-    private boolean selectDeck(String name) {
+    private boolean deselectDeck(Deck deck) {
         Player player = controller.getCurrentPlayer();
-        for (Deck d : player.getInventory().getAllDecks())
-            if (d.toString().equals(name)) {
-                player.setCurrentDeck(d);
-                player.log("select", "deck: " + name);
-                return true;
-            }
-        return false;
-    }
-
-    private boolean deselectDeck() {
-        Player player = controller.getCurrentPlayer();
-        Hero hero = ((HeroDirectory) (player.getCurrentDirectory())).getHero();
-        if (player.getInventory().getCurrentHero() != hero || player.getInventory().getCurrentDeck() == null)
+        if (player.getInventory().getCurrentDeck() != deck)
             return false;
         player.deselectCurrentDeck();
         player.log("deselect", "deck");
         return true;
     }
 
-    private boolean addCard(String name) {
-        Card card = null;
-        DeckDirectory dd = ((DeckDirectory) controller.getCurrentPlayer().getCurrentDirectory());
-        Deck deck = dd.getDeck();
-        for (Printable c : dd.getContent())
-            if (c.toString().equals(name))
-                card = (Card) c;
-        if (card == null || !deck.canAddCard(card))
-            return false;
-        dd.getDeck().addCard(card);
+    private boolean addCard(Deck deck, Card card) {
+        boolean ret = deck.addCard(card);
         controller.getCurrentPlayer().log("add", "card: " + card + " -> deck: " + deck.getHero() + "-" + deck);
+        return ret;
+    }
+
+    private boolean removeCard(Deck deck, Card card) {
+        deck.removeCard(card);
+        controller.getCurrentPlayer().log("remove", "card: " + card + " -> deck: " + deck.getHero() + "-" + deck);
         return true;
     }
 
-    private boolean removeCard(String name) {
-        Deck d = ((DeckDirectory) controller.getCurrentPlayer().getCurrentDirectory()).getDeck();
-        for (Card c : d.getCards())
-            if (c.toString().equals(name)) {
-                d.removeCard(c);
-                controller.getCurrentPlayer().log("remove", "card: " + c + " -> deck: " + d.getHero() + "-" + d);
-                return true;
-            }
-        return false;
-    }
-
-    private boolean addDeck(String name) {
+    private boolean addDeck(HeroClass heroClass, String name) {
         Player player = controller.getCurrentPlayer();
-        Hero h = ((HeroDirectory) player.getCurrentDirectory()).getHero();
-        boolean ret = validDeckName(name) && player.addNewDeck(h.getHeroClass(), name);
+        boolean ret = validDeckName(name) && player.addNewDeck(heroClass, name);
         if (ret)
-            player.log("add", "deck: " + name + " -> hero: " + h);
+            player.log("add", "deck: " + name + " -> hero: " + heroClass);
         return ret;
     }
 
-    private boolean removeDeck(String name) {
+    private boolean removeDeck(Deck deck) {
         Player player = controller.getCurrentPlayer();
-        boolean ret = player.getInventory().removeDeck(name);
+        boolean ret = player.getInventory().removeDeck(deck);
         if (ret)
-            player.log("remove", "deck: " + name);
+            player.log("remove", "deck: " + deck);
         return ret;
     }
 
-    private boolean moveDeck(String paths) {
-        Player player = controller.getCurrentPlayer();
-        Pair<String, String> pathPair = seperateStrings(paths);
-
-        Directory init = player.getCurrentDirectory();
-
-        boolean ret = cd(pathPair.getKey(), false);
-        Directory d = player.getCurrentDirectory();
-        if (!(d instanceof DeckDirectory)) {
-            player.setCurrentDirectory(init);
-            return false;
-        }
-        Deck deck = ((DeckDirectory) d).getDeck();
-        Hero initialHero = deck.getHero();
-
-        player.setCurrentDirectory(init);
-        ret &= cd(getPathAndDeck(pathPair.getValue()).getKey(), false);
-        d = player.getCurrentDirectory();
-        if (!(d instanceof HeroDirectory)) {
-            player.setCurrentDirectory(init);
-            return false;
-        }
-        Hero finalHero = ((HeroDirectory) d).getHero();
-
-        String newName = getPathAndDeck(pathPair.getValue()).getValue();
-        player.setCurrentDirectory(init);
-        ret &= validDeckName(newName) && deck.move(finalHero.getHeroClass(), newName);
+    private boolean moveDeck(Deck deck, HeroClass heroClass) {
+        boolean ret = deck.move(heroClass);
         if (ret)
-            player.log("move", "deck: " + initialHero + "-" + deck + " -> hero: " + finalHero);
+            controller.getCurrentPlayer().log("move", "deck:" + deck + " -> hero: " + heroClass);
         return ret;
     }
 
-    private Pair<String, String> getPathAndDeck(String path) {
-        path = "./" + path;
-        int i = path.length() - 1;
-        while (path.charAt(i) != '/') {
-            assert i > 0;
-            i--;
-        }
-        return new Pair<>(path.substring(0, i), path.substring(i + 1));
+    private boolean renameDeck(Deck deck, String deckName) {
+        boolean ret = validDeckName(deckName);
+        deck.setName(deckName);
+        if (ret)
+            controller.getCurrentPlayer().log("rename", "deck: -> name: " + deckName);
+        return ret;
     }
 
-    private static Pair<String, String> seperateStrings(String s) {
-        int i = 0;
-        while (s.charAt(i) != ':') {
-            i++;
-            assert i < s.length();
-        }
-        return new Pair<>(s.substring(0, i), s.substring(i + 1));
-    }
-
-    private boolean buyCard(String name) {
-        Card card = null;
-        Player p = controller.getCurrentPlayer();
-        for (Card c : GameController.getCardsList())
-            if (c.toString().equals(name)) {
-                card = c;
-                break;
-            }
-        if (card == null || !p.canBuy(card))
+    private boolean buyCard(Card card) {
+        Player player = controller.getCurrentPlayer();
+        if (!player.canBuy(card))
             return false;
-        p.getInventory().addCard(card);
-        p.setBalance(p.getBalance() - card.getPrice());
+        player.getInventory().addCard(card);
+        player.setBalance(player.getBalance() - card.getPrice());
         controller.getCurrentPlayer().log("buy", "card: " + card.toString());
         return true;
     }
 
-    private boolean sellCard(String name) {
-        Card card = null;
+    private boolean sellCard(Card card) {
         Player p = controller.getCurrentPlayer();
-        for (Card c : p.getInventory().getAllCards())
-            if (c.toString().equals(name))
-                card = c;
-        if (card == null || !p.canSell(card))
+        if (!p.canSell(card))
             return false;
-        if (console != null && !console.getInput("are you sure? (y/n) ").equalsIgnoreCase("y"))
-            return true;
         p.getInventory().removeCard(card);
         p.setBalance(p.getBalance() + card.getPrice());
         controller.getCurrentPlayer().log("sell", "card: " + card.toString());
         return true;
     }
 
-    private boolean wallet() {
-        Console.print("balance: " + controller.getCurrentPlayer().getBalance() + " coins");
-        controller.getCurrentPlayer().log("wallet", "");
-        return true;
-    }
-
-    private boolean status() {
-        Player player = controller.getCurrentPlayer();
-        Directory d = player.getCurrentDirectory();
-        if (d instanceof PlayGround) {
-            Game g = d.getGame();
-            Hero h = g.getCurrentPlayer().getInventory().getCurrentHero();
-            Console.print(Console.LIGHT_PINK + "hero: " + Console.RESET + h);
-            Console.print(Console.LIGHT_PINK + "health: " + Console.RESET + h.getHealth());
-            Console.print(Console.LIGHT_PINK + "mana: " + Console.RESET + g.getCurrentPlayer().getMana());
-            if (g.getCurrentPlayer().getCurrentWeapon() != null)
-                Console.print(Console.LIGHT_PINK + "current weapon: " + Console.RESET + g.getCurrentPlayer().getCurrentWeapon());
-        } else {
-            assert d instanceof DeckDirectory;
-            Deck deck = ((DeckDirectory) d).getDeck();
-            Console.print(Console.LIGHT_PINK + "wins: " + Console.RESET + deck.getWins());
-            Console.print(Console.LIGHT_PINK + "games: " + Console.RESET + deck.getGames());
-        }
-        player.log("status", d.toString());
-        return true;
-    }
-
-    private boolean help() {
-        Directory d = controller.getCurrentPlayer().getCurrentDirectory();
-        String help = "";
-        if (d instanceof Home) {
-            help += "cd: you can use cd to move to other directories.\n\n";
-            help += "                   Home\n";
-            help += "                 /     \\\n";
-            help += "       Collections     Store\n";
-            help += "            |\n";
-            help += "gameObjects/heros\n\n";
-            help += "   . : current directory\n";
-            help += "   .. : parrent directory\n";
-            help += "   ~ : home\n\n";
-            help += "-----------------------------------------------------------\n\n";
-            help += "ls: see a list of child directories.";
-        } else if (d instanceof Collections) {
-            help += "ls OPTIONS:\n";
-            help += "   -a OR nothing: see your gameObjects.heros and gameObjects.cards\n";
-            help += "   -m: see current hero and current deck\n\n";
-            help += "   -h: only gameObjects.heros\n";
-            help += "   -c: only card\n\n";
-            help += "   -l: long printing format\n\n";
-            help += "NOTE: you can use the options at the same time.\n";
-            help += "you can specify directory to use command.\n\n";
-            help += "-----------------------------------------------------------\n\n";
-            help += "select: choose hero as your current hero";
-        } else if (d instanceof HeroDirectory) {
-            help += "ls OPTIONS:\n";
-            help += "   -a OR -c OR nothing: see all gameObjects.cards for this hero (special and neutral)\n";
-            help += "   -m: see gameObjects.cards in this hero's deck\n";
-            help += "   -n: see gameObjects.cards not in this hero's deck that can be added to it.\n\n";
-            help += "   -l: long printing format\n\n";
-            help += "NOTE: you can use the options at the same time.\n";
-            help += "you can specify directory to use command.\n\n";
-            help += "-----------------------------------------------------------\n\n";
-            help += "add: add card to this hero's deck\n";
-            help += "remove: remove card from this hero's deck";
-        } else if (d instanceof Store) {
-            help += "ls OPTIONS:\n";
-            help += "   -a OR nothing: see all gameObjects.cards available in the controllers.game\n";
-            help += "   -b: see gameObjects.cards you can buy\n";
-            help += "   -n: see gameObjects.cards you can sell\n\n";
-            help += "   -l: long printing format\n\n";
-            help += "NOTE: you can use the options at the same time.\n";
-            help += "you can specify directory to use command.\n\n";
-            help += "-----------------------------------------------------------\n\n";
-            help += "buy: buy card\n";
-            help += "sell: sell card\n";
-            help += "wallet: get your balance";
-        }
-        Console.print(help);
-        controller.getCurrentPlayer().log("help", "");
-        return true;
-    }
-
-    private boolean playCard(String name) {
-        Directory d = controller.getCurrentPlayer().getCurrentDirectory();
-        Game g = d.getGame();
-        if (g == null)
-            return false;
-        boolean ret = !"left in deck".equals(d.toString());
-        Card cardClone = g.getCurrentPlayer().getCardClone(name);
-        if (cardClone == null)
-            return false;
-        ret &= g.getCurrentPlayer().playCard(cardClone);
-        if (ret)
-            g.log("p1:play_card", name);
-        return ret;
-    }
-
-    private boolean endTurn() {
-        Directory d = controller.getCurrentPlayer().getCurrentDirectory();
-        Game g = d.getGame();
-        if (g == null)
-            return false;
-        g.nextTurn();
-            g.log("p1:end_turn", "");
-        return true;
-    }
-
-    private boolean heroPower() {
-        Directory d = controller.getCurrentPlayer().getCurrentDirectory();
-        Game g = d.getGame();
-        boolean ret =  g != null && g.getCurrentPlayer().useHeroPower();
-        if (ret)
-            g.log("p1:hero_power", "");
-        return ret;
-    }
-
     private boolean startGame() {
         Player player = controller.getCurrentPlayer();
-        Directory d = player.getCurrentDirectory();
-        Game g = d.getGame();
-        if (g == null)
+        if (player.getInventory().getCurrentDeck() == null)
             return false;
-        g.startGame();
-        player.log("start_game", "game id: " + g.getId());
+        Game game = new Game(controller);
+        player.setGame(game);
+        game.startGame();
+        player.log("start_game", "game id: " + game.getId());
         try {
-            (new File(g.getLogPath())).createNewFile();
-            g.log("GAME_ID: " + g.getId());
-            g.log("STARTED_AT: ", "");
-            g.log("");
-            g.log("p1: " + player);
-            g.log("p1_hero: " + player.getInventory().getCurrentHero());
-            g.log("p1_deck: " + player.getInventory().getCurrentDeck());
-            g.log("");
+            (new File(game.getLogPath())).createNewFile();
+            game.log("GAME_ID: " + game.getId());
+            game.log("STARTED_AT: ", "");
+            game.log("");
+            game.log("p1: " + player);
+            game.log("p1_hero: " + player.getInventory().getCurrentHero());
+            game.log("p1_deck: " + player.getInventory().getCurrentDeck());
+            game.log("");
         } catch (IOException e) {
             e.printStackTrace();
         }
         return true;
     }
 
-    private boolean endGame() {
-        Player player = controller.getCurrentPlayer();
-        Directory d = player.getCurrentDirectory();
-        Game g = d.getGame();
-        if (g == null)
-            return false;
-        player.log("end_game", "game id: " + g.getId());
-        g.log("");
-        g.log("ENDED_AT: ", "");
-        return true;
-    }
-
     private boolean deckReader() {
         DeckPair deckPair = DeckPair.getInstance(controller);
-        assert deckPair != null;
+        if (deckPair == null)
+            return false;
         Game game = new Game(controller, deckPair);
         controller.getCurrentPlayer().setGame(game);
         game.startGame();
+        return true;
+    }
+
+    private boolean playCard(Card card) {
+        Game game = controller.getCurrentPlayer().getGame();
+        boolean ret = game.getCurrentPlayer().playCard(card);
+        if (ret)
+            game.log("p1:play_card", card.toString());
+        return ret;
+    }
+
+    private boolean endTurn() {
+        Game game = controller.getCurrentPlayer().getGame();
+        game.nextTurn();
+            game.log("p1:end_turn", "");
+        return true;
+    }
+
+    private boolean heroPower() {
+        Game game = controller.getCurrentPlayer().getGame();
+        boolean ret =  game.getCurrentPlayer().useHeroPower();
+        if (ret)
+            game.log("p1:hero_power", "");
+        return ret;
+    }
+
+    private boolean endGame() {
+        Player player = controller.getCurrentPlayer();
+        Game game = player.getGame();
+        player.log("end_game", "game id: " + game.getId());
+        game.log("");
+        game.log("ENDED_AT: ", "");
         return true;
     }
 }

@@ -1,0 +1,24 @@
+p1:play_card 2020/07/01 18:27:19 Strength in Numbers
+p1:end_turn 2020/07/01 18:27:20 
+p1:end_turn 2020/07/01 18:27:24 
+p1:end_turn 2020/07/01 18:27:30 
+p1:end_turn 2020/07/01 18:27:33 
+p1:play_card 2020/07/01 18:27:33 Strength in Numbers
+p1:end_turn 2020/07/01 18:27:35 
+p1:play_card 2020/07/01 18:27:36 Learn Draconic
+p1:end_turn 2020/07/01 18:27:38 
+p1:end_turn 2020/07/01 18:27:38 
+p1:end_turn 2020/07/01 18:27:38 
+p1:end_turn 2020/07/01 18:27:38 
+p1:end_turn 2020/07/01 18:27:38 
+p1:end_turn 2020/07/01 18:27:38 
+p1:end_turn 2020/07/01 18:27:38 
+p1:end_turn 2020/07/01 18:27:39 
+p1:end_turn 2020/07/01 18:27:39 
+p1:end_turn 2020/07/01 18:27:40 
+p1:play_card 2020/07/01 18:27:41 Tomb Warden
+p1:end_turn 2020/07/01 18:27:43 
+p1:play_card 2020/07/01 18:27:44 Security Rover
+p1:end_turn 2020/07/01 18:27:47 
+p1:end_turn 2020/07/01 18:27:47 
+p1:play_card 2020/07/01 18:27:48 Security Rover

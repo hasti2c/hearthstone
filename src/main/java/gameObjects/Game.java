@@ -15,7 +15,6 @@ public class Game {
     private GamePlayer[] gamePlayers = new GamePlayer[2];
     private int id, turn = 0;
     private final int playerCount = 2;
-    private boolean random = true;
     private FileWriter logWriter;
     private String gameEvents = "";
     private Passive passive;

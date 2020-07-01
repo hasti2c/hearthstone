@@ -6,7 +6,7 @@ import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
-public class StartPageGraphics extends DirectoryGraphics {
+public class StartPage extends Directory {
     @FXML
     private VBox vBox;
     @FXML
@@ -18,7 +18,7 @@ public class StartPageGraphics extends DirectoryGraphics {
     @FXML
     private Label signUpError, loginError;
 
-    public StartPageGraphics(GraphicsController controller, CommandRunner runner) {
+    public StartPage(GraphicsController controller, CommandRunner runner) {
         super(controller, runner);
         vBox.getChildren().removeAll(signUpError, loginError);
     }
@@ -37,7 +37,7 @@ public class StartPageGraphics extends DirectoryGraphics {
     @FXML
     private void runSignUp() {
         vBox.getChildren().removeAll(loginError, signUpError);
-        if (!runner.run(new Command(CommandType.SIGNUP))) {
+        if (!runner.run(new Command(CommandType.SIGN_UP))) {
             vBox.getChildren().add(0, signUpError);
         } else
             controller.displayHome();
@@ -58,11 +58,6 @@ public class StartPageGraphics extends DirectoryGraphics {
 
     @Override
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(StartPageGraphics.class.getResource("/fxml/directories/startPage.fxml"));
-    }
-
-    @Override
-    protected void runCd() {
-        runner.run(new Command(CommandType.EXIT));
+        return new FXMLLoader(StartPage.class.getResource("/fxml/directories/startPage.fxml"));
     }
 }

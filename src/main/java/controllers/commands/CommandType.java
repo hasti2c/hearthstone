@@ -1,25 +1,24 @@
 package controllers.commands;
 
 public enum CommandType {
-    SIGNUP,
+    SIGN_UP,
     LOGIN,
     EXIT,
+    LOGOUT,
     DELETE,
-    CD,
-    LS,
     SELECT,
     DESELECT,
-    ADD,
-    REMOVE,
-    MV,
+    ADD_CARD,
+    ADD_DECK,
+    REMOVE_CARD,
+    REMOVE_DECK,
+    MOVE,
+    RENAME,
     BUY,
     SELL,
-    WALLET,
-    HELP,
-    STATUS,
-    DRAW,
     PLAY,
-    DECKREADER,
-    HEROPOWER,
-    ENDTURN
+    DECK_READER,
+    HERO_POWER,
+    END_TURN,
+    START_GAME
 }

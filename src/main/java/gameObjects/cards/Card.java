@@ -1,12 +1,8 @@
 package gameObjects.cards;
 
-import cli.*;
 import controllers.game.GameController;
-import directories.game.PlayGround;
 import gameObjects.*;
-import gameObjects.Player.Player;
 import gameObjects.heros.*;
-import directories.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -15,7 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.nio.file.NoSuchFileException;
 
-public abstract class Card implements Printable, Configable {
+public abstract class Card implements Configable {
     private String name, description;
     private int mana, price;
     private HeroClass heroClass;
@@ -115,44 +111,6 @@ public abstract class Card implements Printable, Configable {
         return iv;
     }
 
-    public String[] normalPrint(Player currentPlayer) {
-        String[] ret = new String[3];
-        Directory d = currentPlayer.getCurrentDirectory();
-        if (d instanceof Store) {
-            if (currentPlayer.canSell(this)) {
-                ret[0] = Console.BLUE;
-                ret[2] = Console.RESET;
-            } else if (currentPlayer.canBuy(this)) {
-                ret[0] = Console.GREEN;
-                ret[2] = Console.RESET;
-            } else if (!currentPlayer.getInventory().getAllCards().contains(this) && !currentPlayer.canBuy(this)) {
-                ret[0] = Console.RED;
-                ret[2] = Console.RESET;
-            }
-            ret[1] = toString();
-            return ret;
-        } else if (d instanceof PlayGround) {
-            ret[1] = toString();
-            return ret;
-        }
-
-        Deck deck = currentPlayer.getInventory().getCurrentDeck();
-        int cnt = 0;
-        if (deck != null)
-            for (Card c : deck.getCards())
-                if (c == this)
-                    cnt++;
-        if (cnt > 0) {
-            ret[0] = Console.GREEN;
-            ret[1] = toString() + " (" + cnt + ")";
-            ret[2] = Console.RESET;
-        } else
-            ret[1] = toString();
-        return ret;
-    }
-
-    public abstract String[][] longPrint(Player currentPlayer);
-
     public int compareTo(Card c, Deck deck) {
         if (deck.getUses(this) != deck.getUses(c))
             return deck.getUses(this) - deck.getUses(c);
@@ -196,7 +154,6 @@ public abstract class Card implements Printable, Configable {
 
     private static void tryToGetCard(Class<? extends Card> cardClass, String name) throws NoSuchFileException {
         String path = "src/main/resources/database/cards/" + cardClass.getSimpleName() + "/" + name + ".json";
-        System.out.println(path);
         File file = new File(path);
         if (!file.isFile())
             throw new NoSuchFileException(path);

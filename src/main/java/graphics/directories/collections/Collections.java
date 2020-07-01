@@ -14,9 +14,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 
-public class CollectionsGraphics extends DirectoryGraphics {
+public class Collections extends Directory {
     private ArrayList<Hero> heros;
-    private ArrayList<Deck> decks;
+    private ArrayList<gameObjects.heros.Deck> decks;
     @FXML
     private HBox topHBox1, topHBox2;
     @FXML
@@ -24,7 +24,7 @@ public class CollectionsGraphics extends DirectoryGraphics {
     @FXML
     private Button allButton, neutralButton, addButton;
 
-    public CollectionsGraphics(GraphicsController controller, CommandRunner runner) {
+    public Collections(GraphicsController controller, CommandRunner runner) {
         super(controller, runner);
         addButton.setOnAction(e -> addDeck());
     }
@@ -66,7 +66,7 @@ public class CollectionsGraphics extends DirectoryGraphics {
     }
 
     private void configDecks() {
-        for (Deck deck : controller.getCurrentPlayer().getInventory().getAllDecks())
+        for (gameObjects.heros.Deck deck : controller.getCurrentPlayer().getInventory().getAllDecks())
             configDeckRow(deck);
         for (Node n : grid.getChildren()) {
             GridPane.setHalignment(n, HPos.CENTER);
@@ -74,7 +74,7 @@ public class CollectionsGraphics extends DirectoryGraphics {
         }
     }
 
-    private void configDeckRow(Deck deck) {
+    private void configDeckRow(gameObjects.heros.Deck deck) {
         int i = grid.getRowCount();
         grid.add(deck.getHero().getHeroClass().getIcon(), 0, i);
         grid.add(new Label(deck.toString()), 1, i);
@@ -104,10 +104,8 @@ public class CollectionsGraphics extends DirectoryGraphics {
         grid.add(options, 5, i);
     }
 
-    private void selectDeck(Deck deck) {
-        runner.run(new Command(CommandType.CD, deck.getHero().toString()));
-        runner.run(new Command(CommandType.SELECT, deck.toString()));
-        runner.run(new Command(CommandType.CD, "~/collections"));
+    private void selectDeck(gameObjects.heros.Deck deck) {
+        runner.run(new Command(CommandType.SELECT, deck));
         config();
     }
 
@@ -120,43 +118,37 @@ public class CollectionsGraphics extends DirectoryGraphics {
         optionAndQuestionBox.display();
 
         if (optionAndQuestionBox.getButtonResponse()) {
-            boolean b = runner.run(new Command(CommandType.CD, optionAndQuestionBox.getHeroChoice()));
-            b &= runner.run(new Command(CommandType.ADD, optionAndQuestionBox.getDeckName()));
-            b &= runner.run(new Command(CommandType.CD, ".."));
-            if (!b)
+            if (!runner.run(new Command(CommandType.ADD_DECK, optionAndQuestionBox.getHeroChoice(), optionAndQuestionBox.getDeckName())))
                 deckNameError();
         }
         config();
     }
 
-    private void renameDeck(Deck deck) {
+    private void renameDeck(gameObjects.heros.Deck deck) {
         QuestionBox questionBox = new QuestionBox("What is the name you want to set for " + deck.toString() + "?", "Done", "Cancel");
         questionBox.display();
         if (questionBox.getButtonResponse()) {
-            boolean b = runner.run(new Command(CommandType.CD, deck.getHero().toString()));
-            b &= runner.run(new Command(CommandType.MV, deck.toString() + ":" + questionBox.getText()));
-            b &= runner.run(new Command(CommandType.CD, ".."));
-            if (!b)
+            if (!runner.run(new Command(CommandType.RENAME, deck, questionBox.getText())))
                 deckNameError();
         }
         config();
     }
 
-    private void changeHero(Deck deck) {
+    private void changeHero(gameObjects.heros.Deck deck) {
         ArrayList<String> heroStrings = new ArrayList<>();
         for (Hero h : controller.getCurrentPlayer().getInventory().getAllHeros())
             heroStrings.add(h.toString());
         OptionBox optionBox = new OptionBox("To which hero do you want to move " + deck + "?", "Done", "Cancel", heroStrings);
         optionBox.display();
         if (optionBox.getButtonResponse()) {
-            String heroName = optionBox.getChoice();
-            boolean ret = runner.run(new Command(CommandType.CD, deck.getHero().toString()));
-            ret &= runner.run(new Command(CommandType.MV, deck + ":../" + heroName + "/" + deck));
-            if (!ret) {
-                String alert = "Hero change couldn't be done.\n" +
-                               "Possible reasons include:\n" +
-                               "   - Selected hero already has a deck with that name.\n" +
-                               "   - There are cards in this deck that can't be used by the selected Hero.\n";
+            HeroClass heroClass = HeroClass.valueOf(optionBox.getChoice().toUpperCase());
+            if (!runner.run(new Command(CommandType.MOVE, deck, heroClass))) {
+                String alert = """
+                        Hero change couldn't be done.
+                        Possible reasons include:
+                           - Selected hero already has a deck with that name.
+                           - There are cards in this deck that can't be used by the selected Hero.
+                        """;
 
                 (new AlertBox(alert, Color.RED, "Okay")).display();
             }
@@ -164,24 +156,21 @@ public class CollectionsGraphics extends DirectoryGraphics {
         config();
     }
 
-    private void deleteDeck(Deck deck) {
+    private void deleteDeck(gameObjects.heros.Deck deck) {
         ConfirmationBox confirmationBox = new ConfirmationBox("Are you sure you want to delete the deck " + deck.toString() + "?", "Yes", "No");
         confirmationBox.display();
-        if (confirmationBox.getResponse()) {
-            runner.run(new Command(CommandType.CD, deck.getHero().toString()));
-            runner.run(new Command(CommandType.REMOVE, deck.toString()));
-            runner.run(new Command(CommandType.CD, ".."));
-        }
+        if (confirmationBox.getResponse())
+            runner.run(new Command(CommandType.REMOVE_DECK, deck));
         config();
     }
 
-    private void displayDeck(Deck deck) {
-        DeckGraphics graphics = new DeckGraphics(deck, controller, runner);
+    private void displayDeck(gameObjects.heros.Deck deck) {
+        Deck graphics = new Deck(deck, controller, runner);
         graphics.display();
     }
 
     private void displayHeroCards(HeroClass heroClass) {
-        HeroCardsGraphics graphics = new HeroCardsGraphics(heroClass, controller, runner);
+        HeroCards graphics = new HeroCards(heroClass, controller, runner);
         graphics.display();
     }
 
@@ -195,11 +184,6 @@ public class CollectionsGraphics extends DirectoryGraphics {
 
     @Override
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(CollectionsGraphics.class.getResource("/fxml/directories/collections.fxml"));
-    }
-
-    @Override
-    protected void runCd() {
-        runner.run(new Command(CommandType.CD, "~/collections"));
+        return new FXMLLoader(Collections.class.getResource("/fxml/directories/collections.fxml"));
     }
 }

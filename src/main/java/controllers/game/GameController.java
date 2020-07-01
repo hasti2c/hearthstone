@@ -32,6 +32,13 @@ public class GameController implements Configable {
         return configor.getConfigedObject();
     }
 
+    public static Hero getHero(String heroName) {
+        for (Hero hero : herosList)
+            if (hero.toString().equals(heroName))
+                return hero;
+        return null;
+    }
+
     @Override
     public void initialize(GameController controller) {}
 
