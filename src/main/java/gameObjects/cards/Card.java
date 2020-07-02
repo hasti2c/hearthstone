@@ -5,6 +5,7 @@ import gameObjects.*;
 import gameObjects.heros.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,11 +20,12 @@ public abstract class Card implements Configable {
     private HeroClass heroClass;
     private RarityType rarity;
     private CardType cardType;
-    private transient Image image;
+    private transient Image image, fullImage;
 
     @Override
     public void initialize(GameController controller) {
         configImage();
+        configFullImage();
     }
 
     @Override
@@ -87,9 +89,8 @@ public abstract class Card implements Configable {
 
     private void configImage() {
         try {
-            FileInputStream input = new FileInputStream("src/main/resources/assets/cards/" + name + ".png");
-            Image image = new Image(input);
-            this.image = image;
+            FileInputStream input = new FileInputStream("src/main/resources/assets/cards/normal/" + name + ".png");
+            image = new Image(input);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -110,6 +111,21 @@ public abstract class Card implements Configable {
             iv.setFitWidth(width);
         }
         return iv;
+    }
+
+    private void configFullImage() {
+        try {
+            FileInputStream input = new FileInputStream("src/main/resources/assets/cards/full/" + name + ".jpg");
+            this.fullImage = new Image(input);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ImagePattern getFullImagePattern() {
+        if (fullImage == null)
+            configFullImage();
+        return new ImagePattern(fullImage);
     }
 
     public int compareTo(Card c, Deck deck) {

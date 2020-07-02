@@ -1,0 +1,26 @@
+GAME_ID: 169
+STARTED_AT:  2020/07/02 14:05:22 
+
+p1: hasti
+p1_hero: mage
+p1_deck: first
+
+p1:end_turn 2020/07/02 14:05:24 
+p1:end_turn 2020/07/02 14:05:25 
+p1:end_turn 2020/07/02 14:05:25 
+p1:end_turn 2020/07/02 14:05:25 
+p1:end_turn 2020/07/02 14:05:28 
+p1:end_turn 2020/07/02 14:05:28 
+p1:play_card 2020/07/02 14:05:29 Polymorph
+p1:end_turn 2020/07/02 14:05:30 
+p1:end_turn 2020/07/02 14:05:30 
+p1:end_turn 2020/07/02 14:05:30 
+p1:end_turn 2020/07/02 14:05:31 
+p1:play_card 2020/07/02 14:05:33 sound the bells
+p1:play_card 2020/07/02 14:05:35 Polymorph
+p1:end_turn 2020/07/02 14:05:37 
+p1:end_turn 2020/07/02 14:05:37 
+p1:end_turn 2020/07/02 14:05:37 
+p1:end_turn 2020/07/02 14:05:42 
+p1:play_card 2020/07/02 14:05:42 Dreadscale
+p1:play_card 2020/07/02 14:05:43 Truesilver Champion

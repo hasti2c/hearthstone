@@ -1,0 +1,15 @@
+GAME_ID: 205
+STARTED_AT:  2020/07/02 20:50:21 
+
+p1: hasti
+p1_hero: mage
+p1_deck: first
+
+p1:end_turn 2020/07/02 20:50:23 
+p1:end_turn 2020/07/02 20:50:24 
+p1:play_card 2020/07/02 20:50:25 voidwalker
+p1:end_turn 2020/07/02 20:50:26 
+p1:end_turn 2020/07/02 20:50:26 
+p1:play_card 2020/07/02 20:50:30 argent protector
+p1:end_turn 2020/07/02 20:50:31 
+p1:play_card 2020/07/02 20:50:32 argent protector

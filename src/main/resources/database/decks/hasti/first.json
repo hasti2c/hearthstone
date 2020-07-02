@@ -5,7 +5,6 @@
     "Polymorph",
     "sound the bells",
     "voidwalker",
-    "murloc raider",
     "Polymorph",
     "Sprint",
     "Truesilver Champion",
@@ -16,9 +15,11 @@
     "Dreadscale",
     "korkron elite",
     "senjin shieldmasta",
-    "wasteland assassin"
+    "wasteland assassin",
+    "voidwalker"
   ],
   "uses": [
+    0,
     0,
     0,
     0,

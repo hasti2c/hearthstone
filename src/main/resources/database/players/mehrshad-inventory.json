@@ -1,15 +1,11 @@
 {
-  "username": "diba",
-  "password": "dibadiba",
-  "id": 2,
-  "balance": 50,
   "deckCap": 15,
-  "heroNames": [
+  "allHeros": [
     "mage",
     "warlock",
     "priest"
   ],
-  "cardNames": [
+  "allCards": [
     "Dreadscale",
     "korkron elite",
     "murloc raider",
@@ -24,9 +20,5 @@
     "Sathrovarr",
     "Strength in Numbers"
   ],
-  "decks": [
-    "warlock:first"
-  ],
-  "currentHeroName": "warlock",
-  "currentDeckName": "warlock:first"
+  "allDecks": []
 }

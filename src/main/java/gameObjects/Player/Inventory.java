@@ -32,20 +32,22 @@ public class Inventory implements Configable {
         return "players/";
     }
 
-    public void copyDefault(Player defaultPlayer) {
-        Inventory currentInventory = defaultPlayer.getInventory();
-        deckCap = currentInventory.getDeckCap();
+    public static Inventory copyDefault(Player defaultPlayer) {
+        Inventory defaultInventory = defaultPlayer.getInventory();
+        Inventory inventory = new Inventory();
+        inventory.deckCap = defaultInventory.getDeckCap();
 
-        allHeros = new ArrayList<>(currentInventory.allHeros);
-        for (Card c : allCards)
-            addCard(c);
+        inventory.allHeros = new ArrayList<>(defaultInventory.allHeros);
+        for (Card c : inventory.allCards)
+            inventory.addCard(c);
 
-        allDecks = new ArrayList<>();
-        for (Deck deck : currentInventory.allDecks)
-            addDeck(deck.clone(this));
-        for (Deck deck : allDecks)
-            if (deck.toString().equals(currentInventory.currentDeck.toString()))
-                setCurrentDeck(deck);
+        inventory.allDecks = new ArrayList<>();
+        for (Deck deck : defaultInventory.allDecks)
+            inventory.addDeck(deck.clone(inventory));
+        for (Deck deck : inventory.allDecks)
+            if (deck.toString().equals(defaultInventory.currentDeck.toString()))
+                inventory.setCurrentDeck(deck);
+        return defaultInventory;
     }
 
     public Inventory clone() {

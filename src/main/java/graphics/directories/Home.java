@@ -6,6 +6,7 @@ import gameObjects.Player.Inventory;
 import gameObjects.cards.Passive;
 import graphics.*;
 import graphics.directories.collections.*;
+import graphics.directories.playground.PlayGround;
 import graphics.popups.PopupBox;
 import javafx.fxml.*;
 import javafx.scene.control.*;

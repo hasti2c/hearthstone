@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.text.Font?>
+
+<Group xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Ellipse fx:id="ellipse" layoutX="54.0" layoutY="67.0" radiusX="41.0" radiusY="58.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fitHeight="130.0" layoutY="1.0" preserveRatio="true">
+         <image>
+            <Image url="@../assets/templates/inplay_minion.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="attackLabel" alignment="CENTER" layoutX="14.0" layoutY="93.0" prefHeight="16.0" prefWidth="16.0" text="0" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="13.0" />
+         </font></Label>
+      <Label fx:id="healthLabel" alignment="CENTER" layoutX="72.0" layoutY="94.0" prefHeight="16.0" prefWidth="16.0" text="0" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</Group>

@@ -43,8 +43,12 @@ public class Game {
         getCurrentPlayer().startTurn();
     }
 
+    public int getCurrentPlayerNumber() {
+        return turn % playerCount;
+    }
+
     public GamePlayer getCurrentPlayer() {
-        return gamePlayers[turn % playerCount];
+        return gamePlayers[getCurrentPlayerNumber()];
     }
 
     public GamePlayer[] getGamePlayers() {

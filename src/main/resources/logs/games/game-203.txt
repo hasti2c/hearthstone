@@ -1,0 +1,23 @@
+GAME_ID: 203
+STARTED_AT:  2020/07/02 20:49:00 
+
+p1: hasti
+p1_hero: mage
+p1_deck: first
+
+p1:end_turn 2020/07/02 20:49:03 
+p1:end_turn 2020/07/02 20:49:03 
+p1:end_turn 2020/07/02 20:49:04 
+p1:end_turn 2020/07/02 20:49:05 
+p1:play_card 2020/07/02 20:49:07 voidwalker
+p1:end_turn 2020/07/02 20:49:09 
+p1:end_turn 2020/07/02 20:49:09 
+p1:end_turn 2020/07/02 20:49:12 
+p1:end_turn 2020/07/02 20:49:12 
+p1:end_turn 2020/07/02 20:49:14 
+p1:play_card 2020/07/02 20:49:15 sound the bells
+p1:play_card 2020/07/02 20:49:16 Blood Fury
+p1:end_turn 2020/07/02 20:49:18 
+p1:play_card 2020/07/02 20:49:19 wasteland assassin
+p1:end_turn 2020/07/02 20:49:20 
+p1:play_card 2020/07/02 20:49:22 wasteland assassin

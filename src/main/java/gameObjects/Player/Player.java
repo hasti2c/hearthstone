@@ -54,7 +54,7 @@ public class Player implements Configable {
     private void copyDefault() {
         Player defaultPlayer = controller.getDefaultPlayer();
         balance = defaultPlayer.balance;
-        inventory.copyDefault(defaultPlayer);
+        inventory = Inventory.copyDefault(defaultPlayer);
     }
 
     public void updateJson() {

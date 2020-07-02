@@ -1,0 +1,14 @@
+GAME_ID: 213
+STARTED_AT:  2020/07/02 22:34:52 
+
+p1: hasti
+p1_hero: mage
+p1_deck: first
+
+p1:play_card 2020/07/02 22:34:53 voidwalker
+p1:end_turn 2020/07/02 22:34:55 
+p1:end_turn 2020/07/02 22:34:57 
+p1:end_turn 2020/07/02 22:34:57 
+p1:end_turn 2020/07/02 22:34:57 
+p1:end_turn 2020/07/02 22:34:58 
+p1:play_card 2020/07/02 22:35:00 Dreadscale
