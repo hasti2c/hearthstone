@@ -1,0 +1,11 @@
+GAME_ID: 229
+STARTED_AT:  2020/07/03 00:13:58 
+
+p1: hasti
+p1_hero: mage
+p1_deck: first
+
+p1:end_turn 2020/07/03 00:14:01 
+p1:play_card 2020/07/03 00:14:02 murloc raider
+p1:end_turn 2020/07/03 00:14:03 
+p1:play_card 2020/07/03 00:14:04 murloc raider

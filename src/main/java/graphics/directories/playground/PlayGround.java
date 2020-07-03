@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class PlayGround extends Directory {
     private final Game game;
-    private GamePlayerGraphics[] gamePlayers = new GamePlayerGraphics[2];
+    private final GamePlayerGraphics[] gamePlayers = new GamePlayerGraphics[2];
     @FXML
     private Pane pane;
     @FXML

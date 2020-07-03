@@ -1,0 +1,12 @@
+GAME_ID: 223
+STARTED_AT:  2020/07/02 23:51:37 
+
+p1: hasti
+p1_hero: mage
+p1_deck: first
+
+p1:end_turn 2020/07/02 23:51:39 
+p1:end_turn 2020/07/02 23:51:40 
+p1:play_card 2020/07/02 23:51:41 sound the bells
+p1:end_turn 2020/07/02 23:51:42 
+p1:end_turn 2020/07/02 23:51:43 

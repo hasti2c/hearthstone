@@ -1,8 +1,12 @@
 package gameObjects.cards;
 
-public class Minion extends Card {
+import gameObjects.Player.GamePlayer;
+import gameObjects.Targetable;
+
+public class Minion extends Card implements Targetable {
     private int health;
     private int attack;
+    private boolean hasAttacked = false;
 
     public Minion() {}
 
@@ -13,11 +17,31 @@ public class Minion extends Card {
         return c;
     }
 
-    public int getHP() {
+    public boolean getHasAttacked() {
+        return hasAttacked;
+    }
+
+    public void setHasAttacked(boolean hasAttacked) {
+        this.hasAttacked = hasAttacked;
+    }
+
+    public int getHealth() {
         return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getAttack(GamePlayer gamePlayer) {
+        return attack;
     }
 
     public int getAttack() {
         return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
     }
 }

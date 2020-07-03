@@ -1,0 +1,31 @@
+{
+  "name": "weapons",
+  "heroClass": "WARLOCK",
+  "cards": [
+    "Blood Fury",
+    "Blood Fury",
+    "Truesilver Champion",
+    "Truesilver Champion",
+    "Wicked Knife",
+    "Wicked Knife",
+    "Dragon Claw",
+    "Dragon Claw",
+    "Silver Sword",
+    "Silver Sword"
+  ],
+  "uses": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "wins": 0,
+  "games": 0,
+  "maxSize": 15
+}

@@ -1,6 +1,7 @@
 package gameObjects.heros;
 
 import controllers.game.GameController;
+import gameObjects.Player.Inventory;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,14 +17,11 @@ public enum HeroClass {
     HUNTER,
     PRIEST;
 
-    private Hero hero;
-
-    public Hero getHero() {
-        if (hero == null)
-            for (Hero h : GameController.getHerosList())
-                if (h.toString().equalsIgnoreCase(toString()))
-                    hero = h;
-        return hero;
+    public Hero getHero(Inventory inventory) {
+        for (Hero h : inventory.getAllHeros())
+            if (h.toString().equalsIgnoreCase(toString()))
+                return h;
+        return null;
     }
 
     public ImageView getIcon() {

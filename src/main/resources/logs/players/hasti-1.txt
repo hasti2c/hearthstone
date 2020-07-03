@@ -863,3 +863,214 @@ login 2020/07/02 22:48:02
 start_game 2020/07/02 22:48:05 game id: 220
 login 2020/07/02 23:04:27 
 start_game 2020/07/02 23:04:30 game id: 221
+login 2020/07/02 23:49:25 
+start_game 2020/07/02 23:49:31 game id: 222
+login 2020/07/02 23:51:34 
+start_game 2020/07/02 23:51:37 game id: 223
+login 2020/07/02 23:52:41 
+start_game 2020/07/02 23:52:44 game id: 224
+login 2020/07/02 23:53:48 
+start_game 2020/07/02 23:53:51 game id: 225
+login 2020/07/02 23:57:05 
+start_game 2020/07/02 23:59:07 game id: 226
+remove 2020/07/02 23:59:39 card: Sathrovarr -> deck: mage-first
+remove 2020/07/02 23:59:40 card: Sprint -> deck: mage-first
+add 2020/07/02 23:59:42 card: murloc raider -> deck: mage-first
+add 2020/07/02 23:59:42 card: murloc raider -> deck: mage-first
+remove 2020/07/02 23:59:47 card: Swarm of Locusts -> deck: mage-first
+remove 2020/07/02 23:59:50 card: Truesilver Champion -> deck: mage-first
+remove 2020/07/02 23:59:50 card: Polymorph -> deck: mage-first
+remove 2020/07/02 23:59:51 card: Polymorph -> deck: mage-first
+add 2020/07/02 23:59:53 card: Strength in Numbers -> deck: mage-first
+add 2020/07/02 23:59:53 card: Strength in Numbers -> deck: mage-first
+buy 2020/07/02 23:59:56 card: arcane missiles
+add 2020/07/03 00:00:04 card: senjin shieldmasta -> deck: mage-first
+add 2020/07/03 00:00:12 card: arcane missiles -> deck: mage-first
+remove 2020/07/03 00:00:20 card: wasteland assassin -> deck: mage-first
+remove 2020/07/03 00:00:21 card: senjin shieldmasta -> deck: mage-first
+remove 2020/07/03 00:00:21 card: senjin shieldmasta -> deck: mage-first
+remove 2020/07/03 00:00:22 card: korkron elite -> deck: mage-first
+remove 2020/07/03 00:00:23 card: Blood Fury -> deck: mage-first
+remove 2020/07/03 00:00:26 card: Dreadscale -> deck: mage-first
+remove 2020/07/03 00:00:26 card: sound the bells -> deck: mage-first
+remove 2020/07/03 00:00:29 card: argent protector -> deck: mage-first
+add 2020/07/03 00:00:31 card: arcane missiles -> deck: mage-first
+buy 2020/07/03 00:00:34 card: rockbiter weapon
+add 2020/07/03 00:00:39 card: wasteland assassin -> deck: mage-first
+add 2020/07/03 00:00:39 card: wasteland assassin -> deck: mage-first
+remove 2020/07/03 00:00:42 card: wasteland assassin -> deck: mage-first
+remove 2020/07/03 00:00:42 card: wasteland assassin -> deck: mage-first
+add 2020/07/03 00:01:00 card: rockbiter weapon -> deck: mage-first
+add 2020/07/03 00:01:01 card: rockbiter weapon -> deck: mage-first
+remove 2020/07/03 00:01:05 card: Strength in Numbers -> deck: mage-first
+remove 2020/07/03 00:01:05 card: Strength in Numbers -> deck: mage-first
+remove 2020/07/03 00:01:06 card: arcane missiles -> deck: mage-first
+remove 2020/07/03 00:01:06 card: arcane missiles -> deck: mage-first
+remove 2020/07/03 00:01:07 card: rockbiter weapon -> deck: mage-first
+remove 2020/07/03 00:01:07 card: rockbiter weapon -> deck: mage-first
+add 2020/07/03 00:01:10 card: argent protector -> deck: mage-first
+add 2020/07/03 00:01:11 card: argent protector -> deck: mage-first
+add 2020/07/03 00:01:17 card: Dreadscale -> deck: mage-first
+add 2020/07/03 00:01:17 card: Dreadscale -> deck: mage-first
+add 2020/07/03 00:01:21 card: korkron elite -> deck: mage-first
+add 2020/07/03 00:01:21 card: korkron elite -> deck: mage-first
+add 2020/07/03 00:01:23 card: senjin shieldmasta -> deck: mage-first
+add 2020/07/03 00:01:23 card: senjin shieldmasta -> deck: mage-first
+add 2020/07/03 00:01:24 card: wasteland assassin -> deck: mage-first
+add 2020/07/03 00:01:24 card: wasteland assassin -> deck: mage-first
+add 2020/07/03 00:01:37 card: Curio Collector -> deck: mage-first
+start_game 2020/07/03 00:01:42 game id: 227
+login 2020/07/03 00:12:23 
+start_game 2020/07/03 00:12:26 game id: 228
+start_game 2020/07/03 00:13:58 game id: 229
+login 2020/07/03 00:14:41 
+start_game 2020/07/03 00:14:44 game id: 230
+login 2020/07/03 00:15:26 
+start_game 2020/07/03 00:15:29 game id: 231
+login 2020/07/03 00:17:10 
+start_game 2020/07/03 00:17:14 game id: 232
+login 2020/07/03 00:19:59 
+start_game 2020/07/03 00:20:03 game id: 233
+login 2020/07/03 00:20:55 
+start_game 2020/07/03 00:20:58 game id: 234
+login 2020/07/03 12:25:14 
+start_game 2020/07/03 12:25:18 game id: 235
+login 2020/07/03 12:26:37 
+start_game 2020/07/03 12:26:40 game id: 236
+login 2020/07/03 12:30:22 
+start_game 2020/07/03 12:30:25 game id: 237
+login 2020/07/03 13:01:58 
+start_game 2020/07/03 13:02:04 game id: 238
+login 2020/07/03 13:03:55 
+start_game 2020/07/03 13:03:58 game id: 239
+login 2020/07/03 13:05:18 
+login 2020/07/03 13:06:42 
+start_game 2020/07/03 13:06:44 game id: 241
+login 2020/07/03 13:07:33 
+start_game 2020/07/03 13:07:41 game id: 242
+login 2020/07/03 13:13:19 
+start_game 2020/07/03 13:13:27 game id: 243
+login 2020/07/03 13:14:44 
+start_game 2020/07/03 13:14:47 game id: 244
+login 2020/07/03 13:15:39 
+start_game 2020/07/03 13:15:42 game id: 245
+end_game 2020/07/03 13:15:58 game id: 245
+logout 2020/07/03 13:15:58 
+login 2020/07/03 13:16:49 
+start_game 2020/07/03 13:16:52 game id: 246
+end_game 2020/07/03 13:17:05 game id: 246
+logout 2020/07/03 13:17:05 
+login 2020/07/03 13:18:07 
+start_game 2020/07/03 13:18:10 game id: 247
+login 2020/07/03 13:19:14 
+start_game 2020/07/03 13:19:17 game id: 248
+login 2020/07/03 13:19:54 
+start_game 2020/07/03 13:19:57 game id: 249
+login 2020/07/03 13:20:47 
+start_game 2020/07/03 13:20:50 game id: 250
+login 2020/07/03 13:22:02 
+start_game 2020/07/03 13:22:05 game id: 251
+login 2020/07/03 13:23:20 
+start_game 2020/07/03 13:23:23 game id: 252
+login 2020/07/03 13:26:32 
+start_game 2020/07/03 13:26:35 game id: 253
+login 2020/07/03 13:27:48 
+start_game 2020/07/03 13:27:55 game id: 254
+login 2020/07/03 13:31:59 
+start_game 2020/07/03 13:32:02 game id: 255
+login 2020/07/03 13:48:12 
+start_game 2020/07/03 13:48:15 game id: 256
+login 2020/07/03 13:59:23 
+start_game 2020/07/03 13:59:26 game id: 257
+login 2020/07/03 14:00:33 
+start_game 2020/07/03 14:00:38 game id: 258
+login 2020/07/03 14:02:38 
+start_game 2020/07/03 14:02:47 game id: 260
+login 2020/07/03 14:14:20 
+remove 2020/07/03 14:14:32 card: Dreadscale -> deck: mage-first
+remove 2020/07/03 14:14:32 card: Dreadscale -> deck: mage-first
+remove 2020/07/03 14:14:33 card: korkron elite -> deck: mage-first
+remove 2020/07/03 14:14:33 card: korkron elite -> deck: mage-first
+add 2020/07/03 14:14:37 card: Dreadscale -> deck: mage-first
+add 2020/07/03 14:14:37 card: Dreadscale -> deck: mage-first
+add 2020/07/03 14:14:38 card: korkron elite -> deck: mage-first
+add 2020/07/03 14:14:38 card: korkron elite -> deck: mage-first
+rename 2020/07/03 14:14:52 deck: -> name: minions
+buy 2020/07/03 14:15:11 card: Wicked Knife
+rename 2020/07/03 14:15:21 deck: -> name: weapons
+select 2020/07/03 14:15:28 deck: weapons
+add 2020/07/03 14:15:37 card: Blood Fury -> deck: warlock-weapons
+add 2020/07/03 14:15:37 card: Blood Fury -> deck: warlock-weapons
+add 2020/07/03 14:15:37 card: Truesilver Champion -> deck: warlock-weapons
+add 2020/07/03 14:15:37 card: Truesilver Champion -> deck: warlock-weapons
+add 2020/07/03 14:15:38 card: Wicked Knife -> deck: warlock-weapons
+add 2020/07/03 14:15:38 card: Wicked Knife -> deck: warlock-weapons
+sell 2020/07/03 14:15:57 card: arcane missiles
+sell 2020/07/03 14:15:59 card: rockbiter weapon
+sell 2020/07/03 14:16:00 card: Polymorph
+buy 2020/07/03 14:16:07 card: Dragon Claw
+sell 2020/07/03 14:16:15 card: Swarm of Locusts
+buy 2020/07/03 14:16:21 card: Silver Sword
+add 2020/07/03 14:16:30 card: Dragon Claw -> deck: warlock-weapons
+add 2020/07/03 14:16:30 card: Dragon Claw -> deck: warlock-weapons
+add 2020/07/03 14:16:31 card: Silver Sword -> deck: warlock-weapons
+add 2020/07/03 14:16:31 card: Silver Sword -> deck: warlock-weapons
+start_game 2020/07/03 14:16:34 game id: 261
+login 2020/07/03 14:17:39 
+start_game 2020/07/03 14:17:42 game id: 262
+login 2020/07/03 14:19:56 
+start_game 2020/07/03 14:19:59 game id: 263
+end_game 2020/07/03 14:22:31 game id: 263
+logout 2020/07/03 14:22:31 
+login 2020/07/03 14:24:38 
+start_game 2020/07/03 14:24:41 game id: 264
+login 2020/07/03 14:25:36 
+start_game 2020/07/03 14:25:39 game id: 265
+login 2020/07/03 14:31:18 
+start_game 2020/07/03 14:31:21 game id: 266
+login 2020/07/03 14:33:44 
+start_game 2020/07/03 14:33:47 game id: 267
+login 2020/07/03 15:05:18 
+start_game 2020/07/03 15:05:21 game id: 268
+login 2020/07/03 15:33:52 
+start_game 2020/07/03 15:33:55 game id: 269
+login 2020/07/03 15:37:19 
+start_game 2020/07/03 15:37:23 game id: 270
+login 2020/07/03 15:40:27 
+start_game 2020/07/03 15:44:25 game id: 271
+login 2020/07/03 15:47:06 
+start_game 2020/07/03 15:47:16 game id: 272
+login 2020/07/03 15:48:42 
+start_game 2020/07/03 15:48:45 game id: 273
+login 2020/07/03 15:50:56 
+start_game 2020/07/03 15:51:00 game id: 274
+login 2020/07/03 15:53:42 
+start_game 2020/07/03 15:53:46 game id: 275
+login 2020/07/03 15:56:27 
+start_game 2020/07/03 15:56:31 game id: 276
+login 2020/07/03 16:05:39 
+start_game 2020/07/03 16:05:43 game id: 277
+login 2020/07/03 16:07:25 
+start_game 2020/07/03 16:07:28 game id: 278
+login 2020/07/03 16:09:00 
+start_game 2020/07/03 16:09:03 game id: 279
+login 2020/07/03 16:10:12 
+start_game 2020/07/03 16:10:15 game id: 280
+login 2020/07/03 16:12:00 
+start_game 2020/07/03 16:12:05 game id: 281
+login 2020/07/03 16:13:25 
+start_game 2020/07/03 16:13:32 game id: 282
+login 2020/07/03 16:15:09 
+start_game 2020/07/03 16:15:15 game id: 283
+login 2020/07/03 16:16:17 
+start_game 2020/07/03 16:16:22 game id: 284
+login 2020/07/03 16:16:58 
+start_game 2020/07/03 16:17:07 game id: 285
+login 2020/07/03 16:18:00 
+start_game 2020/07/03 16:19:18 game id: 286
+end_game 2020/07/03 16:53:38 game id: 286
+logout 2020/07/03 16:53:38 
+login 2020/07/03 19:55:44 
+start_game 2020/07/03 19:55:56 game id: 287
+login 2020/07/03 20:07:54 
+start_game 2020/07/03 20:07:57 game id: 288

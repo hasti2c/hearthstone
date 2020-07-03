@@ -20,5 +20,6 @@ public enum CommandType {
     DECK_READER,
     HERO_POWER,
     END_TURN,
-    START_GAME
+    START_GAME,
+    ATTACK
 }

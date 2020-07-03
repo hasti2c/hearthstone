@@ -12,21 +12,22 @@
     "senjin shieldmasta",
     "voidwalker",
     "wasteland assassin",
-    "Polymorph",
     "Blood Fury",
     "Sprint",
-    "Swarm of Locusts",
     "Truesilver Champion",
     "Sathrovarr",
     "Strength in Numbers",
     "argent protector",
     "Curio Collector",
     "arcane explosion",
-    "sound the bells"
+    "sound the bells",
+    "Wicked Knife",
+    "Dragon Claw",
+    "Silver Sword"
   ],
   "allDecks": [
-    "first",
-    "bye"
+    "minions",
+    "weapons"
   ],
-  "currentDeck": "first"
+  "currentDeck": "weapons"
 }

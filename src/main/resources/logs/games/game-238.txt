@@ -1,0 +1,20 @@
+GAME_ID: 238
+STARTED_AT:  2020/07/03 13:02:04 
+
+p1: hasti
+p1_hero: mage
+p1_deck: first
+
+p1:play_card 2020/07/03 13:02:12 murloc raider
+p1:end_turn 2020/07/03 13:02:13 
+p1:play_card 2020/07/03 13:02:15 murloc raider
+p1:end_turn 2020/07/03 13:02:20 
+p1:play_card 2020/07/03 13:02:23 murloc raider
+p1:end_turn 2020/07/03 13:02:25 
+p1:play_card 2020/07/03 13:02:26 argent protector
+p1:end_turn 2020/07/03 13:02:31 
+p1:play_card 2020/07/03 13:02:33 Dreadscale
+p1:end_turn 2020/07/03 13:02:39 
+p1:play_card 2020/07/03 13:02:40 Dreadscale
+p1:end_turn 2020/07/03 13:02:42 
+p1:play_card 2020/07/03 13:02:43 senjin shieldmasta

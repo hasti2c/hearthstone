@@ -12,6 +12,8 @@ import gameObjects.heros.HeroClass;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class Inventory implements Configable {
@@ -19,7 +21,7 @@ public class Inventory implements Configable {
     private Deck currentDeck;
     private ArrayList<Deck> allDecks = new ArrayList<>();
     private ArrayList<Hero> allHeros = new ArrayList<>();
-    private ArrayList<Card> allCards = new ArrayList<>();
+    private final ArrayList<Card> allCards = new ArrayList<>();
 
     public Inventory() {
     }
@@ -105,7 +107,7 @@ public class Inventory implements Configable {
     public Hero getCurrentHero() {
         if (currentDeck == null)
             return null;
-        return currentDeck.getHero();
+        return currentDeck.getHero(this);
     }
 
     public ArrayList<Card> getAllCards() {
@@ -180,5 +182,19 @@ public class Inventory implements Configable {
                 return cardClone;
             }
         return null;
+    }
+
+    public void doCardAction(String actionName, Object ...input) {
+        Class[] inputClasses = new Class[input.length];
+        for (int i = 0; i < input.length; i++)
+            inputClasses[i] = input[i].getClass();
+
+        try {
+            Method method = Card.class.getMethod(actionName, inputClasses);
+            for (Card c : allCards)
+                method.invoke(c, input);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 }

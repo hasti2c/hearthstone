@@ -1,0 +1,15 @@
+GAME_ID: 281
+STARTED_AT:  2020/07/03 16:12:05 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: weapons
+
+p1:play_card 2020/07/03 16:12:08 Wicked Knife
+p1:end_turn 2020/07/03 16:12:10 
+p1:end_turn 2020/07/03 16:12:13 
+p1:end_turn 2020/07/03 16:12:13 
+p1:end_turn 2020/07/03 16:12:14 
+p1:end_turn 2020/07/03 16:12:14 
+p1:play_card 2020/07/03 16:12:15 Wicked Knife
+p1:end_turn 2020/07/03 16:12:19 

@@ -18,6 +18,19 @@ public class Configor<O extends Configable> {
     private O object;
     private GameController controller;
 
+    public Configor(GameController controller, String name, Class<O> objectClass, JsonReader jsonReader) throws FileNotFoundException {
+        this.controller = controller;
+        this.name = name;
+        try {
+            object = objectClass.getDeclaredConstructor().newInstance();
+            if (this.controller == null && object instanceof GameController c)
+                this.controller = c;
+        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        this.jsonReader = jsonReader;
+    }
+
     public Configor(GameController controller, String name, Class<O> objectClass) throws FileNotFoundException {
         this.controller = controller;
         this.name = name;
@@ -105,10 +118,13 @@ public class Configor<O extends Configable> {
                         return readPrimitive(readType);
                     }
                 } catch (NoSuchMethodException e1) {
-                    String nextString = jsonReader.nextString();
-                    Class<? extends Configable> objectClass = getObjectClass((Class<? extends Configable>) readType, nextString);
-                    String objectName = getObjectName(objectClass, nextString);
-                    return (T) readObject(objectClass, objectName);
+                    if (JsonToken.STRING.equals(jsonReader.peek())) {
+                        String nextString = jsonReader.nextString();
+                        Class<? extends Configable> objectClass = getObjectClass((Class<? extends Configable>) readType, nextString);
+                        String objectName = getObjectName(objectClass, nextString);
+                        return (T) readObject(objectClass, objectName);
+                    } else if (JsonToken.BEGIN_OBJECT.equals(jsonReader.peek()))
+                        return (T) readObject((Class<? extends Configable>) readType);
                 }
             }
         } catch (IOException e) {
@@ -145,6 +161,17 @@ public class Configor<O extends Configable> {
     private <T extends Configable> T readObject(Class<T> readType, String objectName) {
         try {
             Configor<T> objectConfigor = new Configor<>(controller, objectName, readType);
+            return objectConfigor.getConfigedObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    private <T extends Configable> T readObject(Class<T> readType) {
+        try {
+            Configor<T> objectConfigor = new Configor<>(controller, name + "." + readType.getSimpleName(), readType, jsonReader);
             return objectConfigor.getConfigedObject();
         } catch (IOException e) {
             e.printStackTrace();

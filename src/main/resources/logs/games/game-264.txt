@@ -1,0 +1,16 @@
+GAME_ID: 264
+STARTED_AT:  2020/07/03 14:24:41 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: weapons
+
+p1:play_card 2020/07/03 14:24:42 Wicked Knife
+p1:end_turn 2020/07/03 14:24:46 
+p1:end_turn 2020/07/03 14:24:47 
+p1:end_turn 2020/07/03 14:24:50 
+p1:end_turn 2020/07/03 14:24:51 
+p1:play_card 2020/07/03 14:24:51 Wicked Knife
+p1:end_turn 2020/07/03 14:24:53 
+p1:end_turn 2020/07/03 14:24:53 
+p1:play_card 2020/07/03 14:24:55 Blood Fury

@@ -144,7 +144,7 @@ public abstract class CardsList extends Directory {
     private boolean advancedSearchedCard(Card card) {
         boolean ret = inRange(card.getMana(), manaRange);
         if (card instanceof Minion m) {
-            ret &= inRange(m.getHP(), healthRange);
+            ret &= inRange(m.getHealth(), healthRange);
             ret &= inRange(m.getAttack(), attackRange);
         } else if (card instanceof Weapon w) {
             ret &= inRange(w.getDurability(), healthRange);

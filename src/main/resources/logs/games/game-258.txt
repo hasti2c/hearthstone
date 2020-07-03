@@ -1,0 +1,8 @@
+GAME_ID: 258
+STARTED_AT:  2020/07/03 14:00:38 
+
+p1: hasti
+p1_hero: mage
+p1_deck: first
+
+p1:play_card 2020/07/03 14:00:40 voidwalker

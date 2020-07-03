@@ -11,8 +11,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Game {
-    private GameController controller;
-    private GamePlayer[] gamePlayers = new GamePlayer[2];
+    private final GameController controller;
+    private final GamePlayer[] gamePlayers = new GamePlayer[2];
     private int id, turn = 0;
     private final int playerCount = 2;
     private FileWriter logWriter;
@@ -49,6 +49,10 @@ public class Game {
 
     public GamePlayer getCurrentPlayer() {
         return gamePlayers[getCurrentPlayerNumber()];
+    }
+
+    public GamePlayer getOtherPlayer() {
+        return gamePlayers[playerCount - 1 - getCurrentPlayerNumber()];
     }
 
     public GamePlayer[] getGamePlayers() {

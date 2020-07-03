@@ -1,0 +1,16 @@
+GAME_ID: 260
+STARTED_AT:  2020/07/03 14:02:47 
+
+p1: hasti
+p1_hero: mage
+p1_deck: first
+
+p1:play_card 2020/07/03 14:02:48 murloc raider
+p1:end_turn 2020/07/03 14:02:51 
+p1:play_card 2020/07/03 14:02:51 voidwalker
+p1:end_turn 2020/07/03 14:02:53 
+p1:play_card 2020/07/03 14:02:54 voidwalker
+p1:end_turn 2020/07/03 14:02:55 
+p1:play_card 2020/07/03 14:02:56 argent protector
+p1:end_turn 2020/07/03 14:02:57 
+p1:play_card 2020/07/03 14:02:58 Dreadscale

@@ -11,7 +11,7 @@ import gameObjects.cards.*;
 public class Deck implements Comparable<Deck>, Configable {
     private String name;
     private ArrayList<Card> cards = new ArrayList<>();
-    private ArrayList<Integer> uses = new ArrayList<>();
+    private final ArrayList<Integer> uses = new ArrayList<>();
     private HeroClass heroClass;
     private int wins, games, maxSize;
 
@@ -111,8 +111,13 @@ public class Deck implements Comparable<Deck>, Configable {
         deck.name = name;
         deck.heroClass = heroClass;
         deck.maxSize = maxSize;
-        for (Card card : cards)
-            deck.addCard(inventory.getCard(card.toString()));
+        for (Card card : cards) {
+            Card clone = inventory.getCard(card.toString());
+            if (deck.cards.contains(clone))
+                deck.addCard(card.clone());
+            else
+                deck.addCard(clone);
+        }
         deck.wins = wins;
         deck.games = games;
         return deck;
@@ -126,8 +131,8 @@ public class Deck implements Comparable<Deck>, Configable {
         return heroClass;
     }
 
-    public Hero getHero() {
-        return heroClass.getHero();
+    public Hero getHero(Inventory inventory) {
+        return heroClass.getHero(inventory);
     }
 
     public int getWins() {

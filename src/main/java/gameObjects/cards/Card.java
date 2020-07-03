@@ -2,6 +2,8 @@ package gameObjects.cards;
 
 import controllers.game.GameController;
 import gameObjects.*;
+import gameObjects.cards.abilities.Ability;
+import gameObjects.cards.abilities.ChangeStats;
 import gameObjects.heros.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,9 +12,10 @@ import javafx.scene.paint.ImagePattern;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.lang.reflect.InvocationTargetException;
 import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
+
+import static gameObjects.cards.abilities.AbilityType.EVERY_DRAW;
 
 public abstract class Card implements Configable {
     private String name, description;
@@ -21,11 +24,17 @@ public abstract class Card implements Configable {
     private RarityType rarity;
     private CardType cardType;
     private transient Image image, fullImage;
+    private final ArrayList<Ability> abilities = new ArrayList<>();
+    private ChangeStats changeStats;
 
     @Override
     public void initialize(GameController controller) {
         configImage();
         configFullImage();
+        if (changeStats != null)
+        abilities.add(changeStats);
+        if (changeStats != null)
+            changeStats.setCard(this);
     }
 
     @Override
@@ -195,5 +204,11 @@ public abstract class Card implements Configable {
             int n = cards.size();
             return cards.get((int) ((Math.random() * n) % n)).toString();
         }
+    }
+
+    public void doActionOnDraw(Card drawn) {
+        for (Ability ability : abilities)
+            if (EVERY_DRAW.equals(ability.getAbilityType()))
+                ability.doAction();
     }
 }

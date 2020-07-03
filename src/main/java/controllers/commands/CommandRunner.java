@@ -14,7 +14,7 @@ import gameObjects.cards.*;
 
 public class CommandRunner {
     private final GameController controller;
-    private GraphicsController graphics;
+    private final GraphicsController graphics;
     private static final ArrayList<Character> usernameChars = new ArrayList<>();
 
     static {
@@ -80,6 +80,8 @@ public class CommandRunner {
             ret = endTurn();
         else if (CommandType.HERO_POWER.equals(commandType))
             ret = heroPower();
+        else if (CommandType.ATTACK.equals(commandType) && input[0] instanceof Targetable attacker && input[1] instanceof Targetable defender)
+            ret = attack(attacker, defender);
 
         if (ret && controller.getCurrentPlayer() != null)
             controller.getCurrentPlayer().updateJson();
@@ -209,13 +211,13 @@ public class CommandRunner {
         if (!deck.canAddCard(card))
             return false;
         deck.addCard(card);
-        controller.getCurrentPlayer().log("add", "card: " + card + " -> deck: " + deck.getHero() + "-" + deck);
+        controller.getCurrentPlayer().log("add", "card: " + card + " -> deck: " + deck.getHeroClass().toString().toLowerCase() + "-" + deck);
         return true;
     }
 
     private boolean removeCard(Deck deck, Card card) {
         deck.removeCard(card);
-        controller.getCurrentPlayer().log("remove", "card: " + card + " -> deck: " + deck.getHero() + "-" + deck);
+        controller.getCurrentPlayer().log("remove", "card: " + card + " -> deck: " + deck.getHeroClass().toString().toLowerCase() + "-" + deck);
         return true;
     }
 
@@ -324,6 +326,11 @@ public class CommandRunner {
         if (ret)
             game.log("p1:hero_power", "");
         return ret;
+    }
+
+    private boolean attack(Targetable attacker, Targetable defender) {
+        Game game = controller.getCurrentPlayer().getGame();
+        return game.getCurrentPlayer().attack(attacker, defender);
     }
 
     private boolean endGame() {

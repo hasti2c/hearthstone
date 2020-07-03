@@ -1,6 +1,6 @@
 {
   "name": "Dreadscale",
-  "description": "Charge",
+  "description": "At the end of your turn, deal 1 damage to all other minions.",
   "mana": 3,
   "health": 2,
   "attack": 4,

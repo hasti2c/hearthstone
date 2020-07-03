@@ -1,0 +1,19 @@
+GAME_ID: 237
+STARTED_AT:  2020/07/03 12:30:25 
+
+p1: hasti
+p1_hero: mage
+p1_deck: first
+
+p1:end_turn 2020/07/03 12:30:27 
+p1:play_card 2020/07/03 12:30:28 murloc raider
+p1:end_turn 2020/07/03 12:30:29 
+p1:play_card 2020/07/03 12:30:30 argent protector
+p1:end_turn 2020/07/03 12:30:34 
+p1:play_card 2020/07/03 12:30:35 voidwalker
+p1:end_turn 2020/07/03 12:30:40 
+p1:play_card 2020/07/03 12:30:41 argent protector
+p1:end_turn 2020/07/03 12:30:42 
+p1:play_card 2020/07/03 12:30:44 argent protector
+p1:end_turn 2020/07/03 12:30:46 
+p1:play_card 2020/07/03 12:30:47 murloc raider

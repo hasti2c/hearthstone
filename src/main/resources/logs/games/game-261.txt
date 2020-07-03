@@ -1,0 +1,7 @@
+GAME_ID: 261
+STARTED_AT:  2020/07/03 14:16:34 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: weapons
+

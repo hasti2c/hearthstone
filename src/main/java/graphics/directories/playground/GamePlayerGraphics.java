@@ -5,8 +5,13 @@ import controllers.commands.CommandRunner;
 import controllers.commands.CommandType;
 import gameObjects.Player.GamePlayer;
 import gameObjects.Player.PlayerFaction;
+import gameObjects.Targetable;
 import gameObjects.cards.Card;
 import gameObjects.cards.Minion;
+import gameObjects.cards.Weapon;
+import gameObjects.heros.Hero;
+import graphics.directories.playground.cards.MinionGraphics;
+import graphics.directories.playground.cards.WeaponGraphics;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,16 +33,20 @@ public class GamePlayerGraphics {
     private final PlayGround playGround;
     private final CommandRunner runner;
     private final PlayerFaction playerFaction;
-    private GamePlayer gamePlayer;
+    private final GamePlayer gamePlayer;
     private Pane pane;
+    private Targetable selectedTargetable;
+    private final TargetEventHandler heroEventHandler;
     @FXML
     private ImageView heroImage;
     @FXML
-    private Label hpLabel, manaLabel, weaponLabel, deckLabel;
+    private Label hpLabel, manaLabel, deckLabel;
     @FXML
     private Button heroPowerButton;
     @FXML
     private HBox manaHBox, handHBox1, handHBox2, minionsHBox;
+    @FXML
+    private Pane weaponPane;
 
     GamePlayerGraphics(PlayGround playGround, CommandRunner runner, GamePlayer gamePlayer) {
         this.playGround = playGround;
@@ -45,7 +54,10 @@ public class GamePlayerGraphics {
         this.gamePlayer = gamePlayer;
         this.playerFaction = gamePlayer.getPlayerFaction();
         load();
+
         heroImage.setImage(gamePlayer.getInventory().getCurrentHero().getGameImage());
+        heroEventHandler = new TargetEventHandler(gamePlayer.getInventory().getCurrentHero(), heroImage);
+        heroImage.addEventHandler(MouseEvent.MOUSE_CLICKED, heroEventHandler);
 
         heroPowerButton.setOnAction(e -> {
             runner.run(new Command(CommandType.HERO_POWER));
@@ -76,6 +88,8 @@ public class GamePlayerGraphics {
             handHBox1.getChildren().clear();
             handHBox2.getChildren().clear();
             minionsHBox.getChildren().clear();
+            weaponPane.getChildren().clear();
+            heroEventHandler.deselect();
         }
 
         void config() {
@@ -90,19 +104,9 @@ public class GamePlayerGraphics {
             deckLabel.setText(gamePlayer.getLeftInDeck().size() + "/" + gamePlayer.getInventory().getCurrentDeck().getCards().size());
 
             configHand();
-            for (Card c : gamePlayer.getMinionsInGame()) {
-                Group group = new MinionGraphics((Minion) c).getGroup();
-                group.addEventFilter(MouseEvent.MOUSE_CLICKED, new MinionsEventHandler(c, group));
-                minionsHBox.getChildren().add(group);
-            }
-            if (this == playGround.getCurrentGamePlayer())
-                enableMinions();
-            else
-                disableMinions();
-            if (gamePlayer.getCurrentWeapon() != null)
-                weaponLabel.setText(gamePlayer.getCurrentWeapon().toString());
-            else
-                weaponLabel.setText("");
+            configTargets();
+            configWeapon();
+
             if (gamePlayer.isHeroPowerUsed()) {
                 heroPowerButton.setText("used");
                 heroPowerButton.setDisable(true);
@@ -112,38 +116,88 @@ public class GamePlayerGraphics {
             }
         }
 
-        private void enableMinions() {
-            for (Node n : minionsHBox.getChildren()) {
-                n.setDisable(false);
-                n.setEffect(new Glow());
-            }
-        }
-
-        private void disableMinions() {
-            disableMinions(null);
-        }
-
-        private void disableMinions(Node ignored) {
-            for (Node n : minionsHBox.getChildren())
-                if (n != ignored)
-                    n.setDisable(true);
-        }
-
         private void configHand() {
-            ArrayList<Card> hand = gamePlayer.getHand();
-            for (int i = 0; i < hand.size(); i++) {
-                ImageView iv = getImageView(hand.get(i));
-                if (i < 5)
-                    handHBox1.getChildren().add(iv);
+        ArrayList<Card> hand = gamePlayer.getHand();
+        for (int i = 0; i < hand.size(); i++) {
+            ImageView iv = getImageView(hand.get(i));
+            if (i < 5)
+                handHBox1.getChildren().add(iv);
+            else
+                handHBox2.getChildren().add(iv);
+        }
+        if (hand.size() < 5)
+            handHBox2.setVisible(false);
+        else {
+            handHBox2.setVisible(true);
+            handHBox2.setLayoutX(640 - handHBox2.getChildren().size() * 30);
+        }
+    }
+
+        private void configTargets() {
+            for (Minion minion : gamePlayer.getMinionsInGame()) {
+                Group group = new MinionGraphics(minion).getGroup();
+                group.addEventFilter(MouseEvent.MOUSE_CLICKED, new TargetEventHandler(minion, group));
+                minionsHBox.getChildren().add(group);
+            }
+
+            if (this == playGround.getCurrentGamePlayer())
+                attackMode();
+            else
+                defenseMode();
+        }
+
+        private void configWeapon() {
+            if (gamePlayer.getCurrentWeapon() == null)
+                return;
+            if (gamePlayer.canAttack(gamePlayer.getInventory().getCurrentHero()))
+                weaponPane.getChildren().add((new WeaponGraphics(gamePlayer.getCurrentWeapon()).getGroup()));
+            else
+                weaponPane.getChildren().add(Weapon.getClosedImageView());
+        }
+
+        private void attackMode() {
+            for (Minion minion : gamePlayer.getMinionsInGame())
+                if (gamePlayer.canAttack(minion))
+                    enableTarget(minion);
                 else
-                    handHBox2.getChildren().add(iv);
-            }
-            if (hand.size() < 5)
-                handHBox2.setVisible(false);
-            else {
-                handHBox2.setVisible(true);
-                handHBox2.setLayoutX(640 - handHBox2.getChildren().size() * 30);
-            }
+                    disableTarget(minion);
+            Hero hero = gamePlayer.getInventory().getCurrentHero();
+            if (gamePlayer.canAttack(hero))
+                enableTarget(hero);
+            else
+                disableTarget(hero);
+        }
+
+        private void defenseMode() {
+            for (Minion minion : gamePlayer.getMinionsInGame())
+                if (gamePlayer.canBeAttacked(minion))
+                    enableTarget(minion);
+                else
+                    disableTarget(minion);
+            Hero hero = gamePlayer.getInventory().getCurrentHero();
+            if (gamePlayer.canBeAttacked(hero))
+                enableTarget(hero);
+            else
+                disableTarget(hero);
+        }
+
+        private Node getNode(Targetable targetable) {
+            if (targetable instanceof Hero)
+                return heroImage;
+            assert gamePlayer.getMinionsInGame().contains(targetable);
+            return minionsHBox.getChildren().get(gamePlayer.getMinionsInGame().indexOf(targetable));
+        }
+
+        private void enableTarget(Targetable targetable) {
+            Node node = getNode(targetable);
+            node.setDisable(false);
+            node.setEffect(new Glow());
+        }
+
+        private void disableTarget(Targetable targetable) {
+            Node node = getNode(targetable);
+            node.setDisable(true);
+            node.setEffect(null);
         }
 
         private ImageView getImageView(Card card) {
@@ -164,6 +218,10 @@ public class GamePlayerGraphics {
         public Pane getPane() {
         return pane;
     }
+
+        private Targetable getSelectedTarget() {
+            return selectedTargetable;
+        }
 
         private class HandEventHandler implements EventHandler<MouseEvent> {
             private final Card card;
@@ -220,46 +278,52 @@ public class GamePlayerGraphics {
             }
         }
 
-        private class MinionsEventHandler implements EventHandler<MouseEvent> {
-            private final Group group;
-            private final Card card;
-            private boolean isSelected;
+        private class TargetEventHandler implements EventHandler<MouseEvent> {
+            private final Node node;
+            private final Targetable targetable;
+            private boolean isSelected = false;
 
-            private MinionsEventHandler(Card card, Group group) {
-                this.card = card;
-                this.group = group;
+            private TargetEventHandler(Targetable targetable, Node node) {
+                this.targetable = targetable;
+                this.node = node;
             }
 
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if (mouseEvent.getEventType() == MouseEvent.MOUSE_CLICKED)
+                if (mouseEvent.getEventType() == MouseEvent.MOUSE_CLICKED) {
                     if (!isSelected)
                         select();
                     else
-                        unselect();
-            }
-
-            private boolean select() {
-                isSelected = true;
-                group.setEffect(new Bloom());
-                if (playGround.getCurrentGamePlayer() == GamePlayerGraphics.this) {
-                    playGround.getCurrentGamePlayer().disableMinions(group);
-                    playGround.getOtherGamePlayer().enableMinions();
-                } else {
-                    playGround.getCurrentGamePlayer().disableMinions();
-                    playGround.getOtherGamePlayer().disableMinions();
+                        deselect();
                 }
-                return true;
             }
 
-            private boolean unselect() {
-                if (playGround.getCurrentGamePlayer() != GamePlayerGraphics.this)
-                    return false;
+            private void select() {
+                isSelected = true;
+                selectedTargetable = targetable;
+
+                GamePlayerGraphics current = playGround.getCurrentGamePlayer(), other = playGround.getOtherGamePlayer();
+                if (current == GamePlayerGraphics.this) {
+                    current.defenseMode();
+                    other.defenseMode();
+                    enableTarget(targetable);
+                    node.setEffect(new Bloom());
+                } else {
+                    runner.run(new Command(CommandType.ATTACK, current.getSelectedTarget(), selectedTargetable));
+                    deselect();
+                    current.config();
+                    other.config();
+                }
+            }
+
+            private void deselect() {
                 isSelected = false;
-                group.setEffect(null);
-                playGround.getCurrentGamePlayer().enableMinions();
-                playGround.getOtherGamePlayer().disableMinions();
-                return false;
+                selectedTargetable = null;
+                node.setEffect(null);
+
+                GamePlayerGraphics current = playGround.getCurrentGamePlayer(), other = playGround.getOtherGamePlayer();
+                current.attackMode();
+                other.attackMode();
             }
         }
 }

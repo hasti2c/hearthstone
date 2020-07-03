@@ -7,5 +7,10 @@
   "price": 25,
   "heroClass": "NEUTRAL",
   "rarity": "RARE",
-  "cardType": "MINION"
+  "cardType": "MINION",
+  "changeStats": {
+    "type": "CONSTANT",
+    "abilityType": "EVERY_DRAW",
+    "targetType": "SELF"
+  }
 }

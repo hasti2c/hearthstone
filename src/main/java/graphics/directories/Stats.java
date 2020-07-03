@@ -33,7 +33,7 @@ public class Stats extends Directory {
         for (int i = 0; i < decks.size(); i++) {
             Deck deck = decks.get(i);
             addLabel(deck.toString(), 1, i + 1);
-            addLabel(deck.getHero().toString(), 2, i + 1);
+            addLabel(deck.getHeroClass().toString().toLowerCase(), 2, i + 1);
             addLabel(deck.getWinPercentage() + "", 3, i + 1);
             addLabel(deck.getWins() + "", 4, i + 1);
             addLabel(deck.getGames() + "", 5, i + 1);

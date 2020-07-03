@@ -76,7 +76,7 @@ public class Collections extends Directory {
 
     private void configDeckRow(gameObjects.heros.Deck deck) {
         int i = grid.getRowCount();
-        grid.add(deck.getHero().getHeroClass().getIcon(), 0, i);
+        grid.add(deck.getHeroClass().getIcon(), 0, i);
         grid.add(new Label(deck.toString()), 1, i);
         grid.add(new Label(deck.getCards().size() + ""), 2, i);
 
@@ -175,10 +175,12 @@ public class Collections extends Directory {
     }
 
     private void deckNameError() {
-        String alert = "That's not a valid name for a deck.\n" +
-                        "Possible reasons include:\n" +
-                        "   - Characters other than A-Z, a-z, 0-9, _, . and space are used.\n" +
-                        "   - This hero already has a deck with that name.\n";
+        String alert = """
+                That's not a valid name for a deck.
+                Possible reasons include:
+                   - Characters other than A-Z, a-z, 0-9, _, . and space are used.
+                   - This hero already has a deck with that name.
+                """;
         new AlertBox(alert, Color.RED, "Okay").display();
     }
 

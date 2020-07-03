@@ -1,0 +1,24 @@
+GAME_ID: 222
+STARTED_AT:  2020/07/02 23:49:31 
+
+p1: hasti
+p1_hero: mage
+p1_deck: first
+
+p1:end_turn 2020/07/02 23:49:33 
+p1:end_turn 2020/07/02 23:49:35 
+p1:play_card 2020/07/02 23:49:36 argent protector
+p1:end_turn 2020/07/02 23:49:37 
+p1:end_turn 2020/07/02 23:49:42 
+p1:play_card 2020/07/02 23:49:44 Dreadscale
+p1:end_turn 2020/07/02 23:49:50 
+p1:play_card 2020/07/02 23:49:56 Blood Fury
+p1:end_turn 2020/07/02 23:49:57 
+p1:end_turn 2020/07/02 23:49:58 
+p1:play_card 2020/07/02 23:50:00 korkron elite
+p1:end_turn 2020/07/02 23:50:03 
+p1:end_turn 2020/07/02 23:50:25 
+p1:end_turn 2020/07/02 23:50:30 
+p1:end_turn 2020/07/02 23:50:34 
+p1:end_turn 2020/07/02 23:50:37 
+p1:end_turn 2020/07/02 23:50:42 

@@ -4,7 +4,7 @@ public enum PlayerFaction {
     FRIENDLY (0),
     ENEMY (1);
 
-    private int playerNumber;
+    private final int playerNumber;
 
     PlayerFaction(int playerNumber) {
         this.playerNumber = playerNumber;

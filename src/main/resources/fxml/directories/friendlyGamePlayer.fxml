@@ -25,7 +25,6 @@
             <Glow />
          </effect>
       </Label>
-      <Label fx:id="weaponLabel" layoutX="369.0" layoutY="249.0" text="Weapon" textFill="WHITE" />
       <Button fx:id="heroPowerButton" layoutX="630.0" layoutY="234.0" mnemonicParsing="false" text="Hero Power" />
       <HBox fx:id="manaHBox" layoutX="783.0" layoutY="345.0" prefHeight="25.0" prefWidth="230.0">
          <children>
@@ -94,5 +93,6 @@
       <HBox fx:id="handHBox2" alignment="CENTER" layoutX="325.0" layoutY="353.0" prefHeight="100.0" />
       <HBox fx:id="handHBox1" alignment="CENTER" layoutX="384.0" layoutY="303.0" maxWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" />
       <HBox fx:id="minionsHBox" alignment="CENTER" layoutX="180.0" layoutY="2.0" prefHeight="135.0" prefWidth="700.0" />
+      <Pane fx:id="weaponPane" layoutX="340.0" layoutY="185.0" prefHeight="125.0" prefWidth="125.0" />
    </children>
 </Pane>

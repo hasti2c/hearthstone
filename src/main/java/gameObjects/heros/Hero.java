@@ -4,13 +4,15 @@ import java.io.*;
 
 import controllers.game.GameController;
 import gameObjects.*;
+import gameObjects.Player.GamePlayer;
 import javafx.scene.image.Image;
 
-public class Hero implements Configable {
+public class Hero implements Configable, Targetable {
     private int health = 30;
     private String name;
     private HeroClass heroClass;
     private HeroPower heroPower;
+    private boolean hasAttacked = false;
     private Image gameImage;
 
     @Override
@@ -32,8 +34,26 @@ public class Hero implements Configable {
         }
     }
 
+    public boolean getHasAttacked() {
+        return hasAttacked;
+    }
+
+    public void setHasAttacked(boolean hasAttacked) {
+        this.hasAttacked = hasAttacked;
+    }
+
     public int getHealth() {
         return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getAttack(GamePlayer gamePlayer) {
+        if (gamePlayer.getCurrentWeapon() == null || !gamePlayer.canAttack(this))
+            return 0;
+        return gamePlayer.getCurrentWeapon().getAttack();
     }
 
     public String toString() {
