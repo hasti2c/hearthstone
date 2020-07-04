@@ -1,13 +1,8 @@
 package gameObjects.heros;
 
-import controllers.game.GameController;
-import gameObjects.Player.Inventory;
-import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import gameObjects.player.*;
+import javafx.scene.image.*;
+import java.io.*;
 
 public enum HeroClass {
     NEUTRAL,

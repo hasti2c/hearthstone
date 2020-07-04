@@ -1,7 +1,7 @@
 package gameObjects.heros;
 
-import controllers.game.GameController;
-import gameObjects.Configable;
+import controllers.game.*;
+import gameObjects.*;
 
 public class HeroPower implements Configable {
     private String name;

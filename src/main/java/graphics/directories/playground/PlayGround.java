@@ -1,30 +1,13 @@
 package graphics.directories.playground;
 
-import controllers.commands.Command;
-import controllers.commands.CommandRunner;
-import controllers.commands.CommandType;
-import controllers.game.GameController;
-import gameObjects.Game;
-import gameObjects.Player.GamePlayer;
-import gameObjects.Player.PlayerFaction;
-import gameObjects.cards.Card;
+import controllers.commands.*;
+import gameObjects.*;
 import graphics.*;
-import graphics.directories.Directory;
+import graphics.directories.*;
 import graphics.popups.*;
-import javafx.event.EventHandler;
 import javafx.fxml.*;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.effect.Bloom;
-import javafx.scene.effect.Glow;
-import javafx.scene.image.*;
-import javafx.scene.input.*;
 import javafx.scene.layout.*;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class PlayGround extends Directory {
     private final Game game;

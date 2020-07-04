@@ -1,0 +1,24 @@
+GAME_ID: 381
+STARTED_AT:  2020/07/04 16:20:58 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/04 16:21:00 
+p1:end_turn 2020/07/04 16:21:01 
+p1:end_turn 2020/07/04 16:21:01 
+p1:end_turn 2020/07/04 16:21:01 
+p1:end_turn 2020/07/04 16:21:02 
+p1:end_turn 2020/07/04 16:21:02 
+p1:end_turn 2020/07/04 16:21:02 
+p1:end_turn 2020/07/04 16:21:02 
+p1:end_turn 2020/07/04 16:21:02 
+p1:end_turn 2020/07/04 16:21:02 
+p1:play_card 2020/07/04 16:21:03 korkron elite
+p1:end_turn 2020/07/04 16:21:06 
+p1:play_card 2020/07/04 16:21:06 murloc raider
+p1:play_card 2020/07/04 16:21:07 murloc raider
+p1:end_turn 2020/07/04 16:21:08 
+p1:play_card 2020/07/04 16:21:09 Security Rover
+p1:end_turn 2020/07/04 16:21:10 

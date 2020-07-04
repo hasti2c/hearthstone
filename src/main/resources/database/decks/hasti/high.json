@@ -1,0 +1,27 @@
+{
+  "name": "high",
+  "heroClass": "PRIEST",
+  "cards": [
+    "High Priest Amet",
+    "High Priest Amet",
+    "voidwalker",
+    "voidwalker",
+    "murloc raider",
+    "murloc raider",
+    "senjin shieldmasta",
+    "senjin shieldmasta"
+  ],
+  "uses": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "wins": 0,
+  "games": 0,
+  "maxSize": 15
+}

@@ -1,0 +1,13 @@
+GAME_ID: 435
+STARTED_AT:  2020/07/04 19:59:03 
+
+p1: hasti
+p1_hero: mage
+p1_deck: spell
+
+p1:end_turn 2020/07/04 19:59:05 
+p1:end_turn 2020/07/04 19:59:06 
+p1:end_turn 2020/07/04 19:59:07 
+p1:end_turn 2020/07/04 19:59:07 
+p1:end_turn 2020/07/04 19:59:08 
+p1:end_turn 2020/07/04 19:59:08 

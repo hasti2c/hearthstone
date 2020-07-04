@@ -1,0 +1,22 @@
+GAME_ID: 359
+STARTED_AT:  2020/07/04 12:53:37 
+
+p1: hasti
+p1_hero: priest
+p1_deck: high
+
+p1:play_card 2020/07/04 12:53:39 voidwalker
+p1:end_turn 2020/07/04 12:53:43 
+p1:play_card 2020/07/04 12:53:44 murloc raider
+p1:end_turn 2020/07/04 12:53:45 
+p1:play_card 2020/07/04 12:53:46 murloc raider
+p1:end_turn 2020/07/04 12:53:47 
+p1:play_card 2020/07/04 12:53:49 voidwalker
+p1:end_turn 2020/07/04 12:53:50 
+p1:end_turn 2020/07/04 12:53:51 
+p1:end_turn 2020/07/04 12:53:51 
+p1:play_card 2020/07/04 12:53:53 High Priest Amet
+p1:end_turn 2020/07/04 12:54:00 
+p1:play_card 2020/07/04 12:54:03 voidwalker
+p1:end_turn 2020/07/04 12:54:04 
+p1:play_card 2020/07/04 12:54:05 voidwalker

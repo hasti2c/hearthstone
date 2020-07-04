@@ -2,10 +2,10 @@ package graphics;
 
 import controllers.commands.*;
 import controllers.game.*;
-import gameObjects.Player.Player;
-import gameObjects.cards.Card;
+import gameObjects.player.*;
+import gameObjects.cards.*;
 import graphics.directories.*;
-import graphics.directories.collections.Store;
+import graphics.directories.collections.*;
 import javafx.scene.*;
 import javafx.stage.*;
 

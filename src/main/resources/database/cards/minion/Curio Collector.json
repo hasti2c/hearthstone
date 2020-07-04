@@ -8,9 +8,12 @@
   "heroClass": "NEUTRAL",
   "rarity": "RARE",
   "cardType": "MINION",
-  "changeStats": {
+  "changeStatsAbility": {
+    "abilityType": "DRAW",
+    "callerSide": "SELF",
+    "targetType": "SELF",
     "type": "CONSTANT",
-    "abilityType": "EVERY_DRAW",
-    "targetType": "SELF"
+    "attackChange": 1,
+    "healthChange": 1
   }
 }

@@ -7,5 +7,12 @@
   "price": 100,
   "heroClass": "PRIEST",
   "rarity": "LEGENDARY",
-  "cardType": "MINION"
+  "cardType": "MINION",
+  "changeStatsAbility": {
+    "abilityType": "PLAY",
+    "callerSide": "SELF",
+    "targetType": "PLAYED",
+    "targetCardType": "MINION",
+    "type": "COPY_HEALTH"
+  }
 }

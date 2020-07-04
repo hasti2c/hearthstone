@@ -1,0 +1,41 @@
+GAME_ID: 350
+STARTED_AT:  2020/07/04 12:19:28 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/04 12:19:30 
+p1:end_turn 2020/07/04 12:19:30 
+p1:end_turn 2020/07/04 12:19:32 
+p1:end_turn 2020/07/04 12:19:32 
+p1:play_card 2020/07/04 12:19:33 murloc raider
+p1:end_turn 2020/07/04 12:19:35 
+p1:end_turn 2020/07/04 12:19:37 
+p1:end_turn 2020/07/04 12:19:37 
+p1:end_turn 2020/07/04 12:19:37 
+p1:end_turn 2020/07/04 12:19:41 
+p1:play_card 2020/07/04 12:19:42 sound the bells
+p1:play_card 2020/07/04 12:19:47 Blood Fury
+p1:end_turn 2020/07/04 12:19:50 
+p1:end_turn 2020/07/04 12:19:50 
+p1:play_card 2020/07/04 12:19:53 korkron elite
+p1:end_turn 2020/07/04 12:19:54 
+p1:play_card 2020/07/04 12:19:57 Strength in Numbers
+p1:play_card 2020/07/04 12:19:59 sound the bells
+p1:end_turn 2020/07/04 12:20:06 
+p1:play_card 2020/07/04 12:20:14 korkron elite
+p1:end_turn 2020/07/04 12:20:15 
+p1:play_card 2020/07/04 12:20:23 Curio Collector
+p1:end_turn 2020/07/04 12:20:25 
+p1:end_turn 2020/07/04 12:20:27 
+p1:end_turn 2020/07/04 12:20:28 
+p1:end_turn 2020/07/04 12:20:29 
+p1:end_turn 2020/07/04 12:20:29 
+p1:end_turn 2020/07/04 12:20:29 
+p1:end_turn 2020/07/04 12:20:29 
+p1:end_turn 2020/07/04 12:20:30 
+p1:end_turn 2020/07/04 12:20:30 
+p1:end_turn 2020/07/04 12:20:35 
+p1:play_card 2020/07/04 12:20:36 Dreadscale
+p1:end_turn 2020/07/04 12:20:37 

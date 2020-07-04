@@ -1,0 +1,41 @@
+{
+  "name": "swamp",
+  "heroClass": "HUNTER",
+  "cards": [
+    "Swamp King Dred",
+    "Swamp King Dred",
+    "murloc raider",
+    "murloc raider",
+    "voidwalker",
+    "voidwalker",
+    "senjin shieldmasta",
+    "senjin shieldmasta",
+    "argent protector",
+    "argent protector",
+    "Strength in Numbers",
+    "Strength in Numbers",
+    "Sathrovarr",
+    "Sathrovarr"
+  ],
+  "uses": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "wins": 0,
+  "games": 0,
+  "maxSize": 15
+}

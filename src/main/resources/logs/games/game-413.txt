@@ -1,0 +1,18 @@
+GAME_ID: 413
+STARTED_AT:  2020/07/04 17:39:58 
+
+p1: hasti
+p1_hero: mage
+p1_deck: spell
+
+p1:end_turn 2020/07/04 17:40:00 
+p1:end_turn 2020/07/04 17:40:00 
+p1:end_turn 2020/07/04 17:40:00 
+p1:end_turn 2020/07/04 17:40:00 
+p1:end_turn 2020/07/04 17:40:00 
+p1:end_turn 2020/07/04 17:40:00 
+p1:end_turn 2020/07/04 17:40:01 
+p1:end_turn 2020/07/04 17:40:01 
+p1:end_turn 2020/07/04 17:40:01 
+p1:end_turn 2020/07/04 17:40:01 
+p1:play_card 2020/07/04 17:40:02 Swarm of Locusts

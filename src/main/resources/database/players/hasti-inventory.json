@@ -3,7 +3,9 @@
   "allHeros": [
     "mage",
     "warlock",
-    "priest"
+    "priest",
+    "hunter",
+    "rogue"
   ],
   "allCards": [
     "Dreadscale",
@@ -23,11 +25,33 @@
     "sound the bells",
     "Wicked Knife",
     "Dragon Claw",
-    "Silver Sword"
+    "Silver Sword",
+    "High Priest Amet",
+    "Swamp King Dred",
+    "Tomb Warden",
+    "Security Rover",
+    "Dread Infernal",
+    "Flik Skyshiv",
+    "arcane missiles",
+    "Veranus",
+    "Cinderstorm",
+    "assassinate",
+    "Friendly Smith",
+    "frost nova",
+    "Pharaohs Blessing",
+    "Polymorph",
+    "rockbiter weapon",
+    "Shadow Word Pain",
+    "Swarm of Locusts",
+    "Book of Specters",
+    "Learn Draconic"
   ],
   "allDecks": [
     "minions",
-    "weapons"
+    "weapons",
+    "high",
+    "swamp",
+    "spell"
   ],
-  "currentDeck": "weapons"
+  "currentDeck": "spell"
 }

@@ -1,0 +1,42 @@
+GAME_ID: 369
+STARTED_AT:  2020/07/04 15:12:37 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/04 15:13:05 
+p1:end_turn 2020/07/04 15:13:06 
+p1:end_turn 2020/07/04 15:13:06 
+p1:end_turn 2020/07/04 15:13:06 
+p1:end_turn 2020/07/04 15:13:06 
+p1:end_turn 2020/07/04 15:13:06 
+p1:end_turn 2020/07/04 15:13:06 
+p1:end_turn 2020/07/04 15:13:07 
+p1:end_turn 2020/07/04 15:13:07 
+p1:end_turn 2020/07/04 15:13:07 
+p1:end_turn 2020/07/04 15:13:07 
+p1:end_turn 2020/07/04 15:13:07 
+p1:end_turn 2020/07/04 15:13:08 
+p1:end_turn 2020/07/04 15:13:08 
+p1:play_card 2020/07/04 15:13:09 Tomb Warden
+p1:end_turn 2020/07/04 15:13:17 
+p1:end_turn 2020/07/04 15:13:18 
+p1:end_turn 2020/07/04 15:13:18 
+p1:end_turn 2020/07/04 15:13:18 
+p1:end_turn 2020/07/04 15:13:18 
+p1:end_turn 2020/07/04 15:13:18 
+p1:end_turn 2020/07/04 15:13:18 
+p1:end_turn 2020/07/04 15:13:19 
+p1:end_turn 2020/07/04 15:13:19 
+p1:end_turn 2020/07/04 15:13:19 
+p1:end_turn 2020/07/04 15:13:19 
+p1:play_card 2020/07/04 15:13:21 Curio Collector
+p1:play_card 2020/07/04 15:13:21 Dreadscale
+p1:end_turn 2020/07/04 15:13:22 
+p1:end_turn 2020/07/04 15:13:23 
+p1:play_card 2020/07/04 15:13:24 Tomb Warden
+p1:end_turn 2020/07/04 15:13:25 
+p1:end_turn 2020/07/04 15:13:26 
+p1:end_turn 2020/07/04 15:13:28 
+p1:play_card 2020/07/04 15:13:29 Tomb Warden

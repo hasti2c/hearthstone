@@ -7,5 +7,11 @@
   "price": 25,
   "heroClass": "NEUTRAL",
   "rarity": "RARE",
-  "cardType": "MINION"
+  "cardType": "MINION",
+  "addCardAbility": {
+    "abilityType": "BATTLE_CRY",
+    "callerSide": "SELF",
+    "targetType": "SELF",
+    "type": "SUMMON"
+  }
 }

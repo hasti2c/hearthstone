@@ -1,14 +1,10 @@
 package graphics.directories.playground.cards;
 
-import gameObjects.cards.Minion;
-import gameObjects.cards.Weapon;
-import graphics.directories.playground.GamePlayerGraphics;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Ellipse;
-import javafx.scene.shape.Shape;
+import gameObjects.cards.*;
+import graphics.directories.playground.*;
+import javafx.fxml.*;
+import javafx.scene.control.*;
+import javafx.scene.shape.*;
 
 public class WeaponGraphics extends CardGraphics<Weapon> {
     @FXML

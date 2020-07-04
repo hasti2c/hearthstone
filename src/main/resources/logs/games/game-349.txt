@@ -1,0 +1,25 @@
+GAME_ID: 349
+STARTED_AT:  2020/07/04 12:16:44 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/04 12:16:47 
+p1:end_turn 2020/07/04 12:16:48 
+p1:end_turn 2020/07/04 12:16:51 
+p1:end_turn 2020/07/04 12:16:51 
+p1:play_card 2020/07/04 12:16:52 Dreadscale
+p1:end_turn 2020/07/04 12:16:54 
+p1:end_turn 2020/07/04 12:16:57 
+p1:end_turn 2020/07/04 12:17:00 
+p1:end_turn 2020/07/04 12:17:03 
+p1:end_turn 2020/07/04 12:17:03 
+p1:end_turn 2020/07/04 12:17:05 
+p1:end_turn 2020/07/04 12:17:05 
+p1:play_card 2020/07/04 12:17:07 Strength in Numbers
+p1:play_card 2020/07/04 12:17:07 Strength in Numbers
+p1:play_card 2020/07/04 12:17:09 korkron elite
+p1:end_turn 2020/07/04 12:17:15 
+p1:play_card 2020/07/04 12:17:18 murloc raider
+p1:end_turn 2020/07/04 12:17:19 

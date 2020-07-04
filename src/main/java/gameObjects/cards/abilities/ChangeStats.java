@@ -1,21 +1,24 @@
 package gameObjects.cards.abilities;
 
-import gameObjects.cards.Card;
-import gameObjects.cards.Minion;
+import gameObjects.player.*;
+import gameObjects.cards.*;
 
 import static gameObjects.cards.abilities.ChangeStatsType.CONSTANT;
-import static gameObjects.cards.abilities.ChangeStatsType.COPY_HEALTH;
 
 public class ChangeStats extends Ability {
     private ChangeStatsType type;
     private int attackChange, healthChange;
 
     @Override
-    protected void doAction(Card target) {
-        if (!(target instanceof Minion minion) || type == COPY_HEALTH)
+    protected void doAction(GamePlayer gamePlayer, Card caller, Card target) {
+        if (!(target instanceof Minion minion))
             return;
-        minion.setAttack(minion.getAttack() + attackChange);
-        minion.setHealth(minion.getHealth() + healthChange);
+        if (type == CONSTANT) {
+            minion.setAttack(minion.getAttack() + attackChange);
+            minion.setHealth(minion.getHealth() + healthChange);
+        } else {
+            minion.setHealth(((Minion) caller).getHealth());
+        }
     }
 }
 

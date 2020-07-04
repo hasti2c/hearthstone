@@ -1,14 +1,9 @@
 package graphics.popups;
 
-import gameObjects.heros.HeroClass;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-
-import java.util.ArrayList;
+import gameObjects.heros.*;
+import javafx.fxml.*;
+import javafx.scene.control.*;
+import java.util.*;
 
 public class OptionAndQuestionBox extends PopupBox {
     private String heroChoice, deckName;

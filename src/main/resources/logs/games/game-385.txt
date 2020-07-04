@@ -1,0 +1,17 @@
+GAME_ID: 385
+STARTED_AT:  2020/07/04 16:29:11 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:play_card 2020/07/04 16:29:14 murloc raider
+p1:end_turn 2020/07/04 16:29:16 
+p1:end_turn 2020/07/04 16:29:16 
+p1:end_turn 2020/07/04 16:29:16 
+p1:end_turn 2020/07/04 16:29:17 
+p1:end_turn 2020/07/04 16:29:18 
+p1:end_turn 2020/07/04 16:29:19 
+p1:play_card 2020/07/04 16:29:20 korkron elite
+p1:play_card 2020/07/04 16:29:21 murloc raider
+p1:end_turn 2020/07/04 16:29:23 

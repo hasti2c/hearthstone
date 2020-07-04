@@ -1,11 +1,11 @@
 package gameObjects.heros;
 
 import java.io.*;
-
-import controllers.game.GameController;
+import controllers.game.*;
 import gameObjects.*;
-import gameObjects.Player.GamePlayer;
-import javafx.scene.image.Image;
+import gameObjects.player.*;
+import graphics.directories.playground.targets.*;
+import javafx.scene.image.*;
 
 public class Hero implements Configable, Targetable {
     private int health = 30;

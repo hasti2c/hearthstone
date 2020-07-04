@@ -1,12 +1,10 @@
 package gameObjects.heros;
 
-import controllers.game.GameController;
-import gameObjects.Configable;
-import gameObjects.Configor;
-import gameObjects.cards.Card;
-
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import controllers.game.*;
+import gameObjects.*;
+import gameObjects.cards.*;
+import java.io.*;
+import java.util.*;
 
 public class DeckPair implements Configable {
     private ArrayList<Card> friendly, enemy;

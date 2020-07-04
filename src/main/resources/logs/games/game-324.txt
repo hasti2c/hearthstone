@@ -1,0 +1,21 @@
+GAME_ID: 324
+STARTED_AT:  2020/07/03 23:08:25 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:play_card 2020/07/03 23:08:26 voidwalker
+p1:end_turn 2020/07/03 23:08:28 
+p1:end_turn 2020/07/03 23:08:28 
+p1:end_turn 2020/07/03 23:08:28 
+p1:end_turn 2020/07/03 23:08:28 
+p1:end_turn 2020/07/03 23:08:30 
+p1:end_turn 2020/07/03 23:08:30 
+p1:play_card 2020/07/03 23:08:31 High Priest Amet
+p1:end_turn 2020/07/03 23:08:34 
+p1:end_turn 2020/07/03 23:08:34 
+p1:play_card 2020/07/03 23:08:35 murloc raider
+p1:end_turn 2020/07/03 23:08:38 
+p1:end_turn 2020/07/03 23:08:38 
+p1:play_card 2020/07/03 23:08:44 murloc raider

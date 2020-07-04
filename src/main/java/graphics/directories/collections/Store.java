@@ -1,14 +1,13 @@
 package graphics.directories.collections;
 
-import com.jfoenix.controls.JFXToggleButton;
+import com.jfoenix.controls.*;
 import controllers.commands.*;
-import gameObjects.Player.Player;
+import gameObjects.player.*;
 import gameObjects.cards.*;
-import gameObjects.heros.HeroClass;
+import gameObjects.heros.*;
 import graphics.*;
 import graphics.popups.*;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.fxml.*;
 import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;

@@ -3,22 +3,20 @@ package controllers.game;
 import java.io.*;
 import java.time.*;
 import java.time.format.*;
-import java.util.ArrayList;
-
+import java.util.*;
 import gameObjects.*;
-import gameObjects.Player.Player;
+import gameObjects.player.*;
 import gameObjects.cards.*;
 import gameObjects.heros.*;
 import com.google.gson.stream.*;
-
 
 public class GameController implements Configable {
     private Player currentPlayer = null, defaultPlayer;
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     private int playerCount, gameCount;
     private String initPlayerName;
-    private static final ArrayList<Hero> herosList = new ArrayList<>();
-    private static final ArrayList<Card> cardsList = new ArrayList<>();
+    private static ArrayList<Hero> herosList = new ArrayList<>();
+    private static ArrayList<Card> cardsList = new ArrayList<>();
     //private static ArrayList<Passive> passivesList = new ArrayList<>();
     private final String defaultPath = "src/main/resources/database/defaults.json";
 

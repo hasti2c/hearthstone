@@ -1,7 +1,7 @@
 package gameObjects.cards;
 
-import gameObjects.Player.GamePlayer;
-import gameObjects.Targetable;
+import gameObjects.player.*;
+import graphics.directories.playground.targets.*;
 
 public class Minion extends Card implements Targetable {
     private int health;

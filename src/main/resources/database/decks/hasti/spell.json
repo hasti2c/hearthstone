@@ -1,0 +1,35 @@
+{
+  "name": "spell",
+  "heroClass": "MAGE",
+  "cards": [
+    "Swarm of Locusts",
+    "Swarm of Locusts",
+    "Book of Specters",
+    "Book of Specters",
+    "murloc raider",
+    "murloc raider",
+    "voidwalker",
+    "voidwalker"
+  ],
+  "uses": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "wins": 0,
+  "games": 0,
+  "maxSize": 15
+}

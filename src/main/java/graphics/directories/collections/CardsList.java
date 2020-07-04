@@ -3,18 +3,18 @@ package graphics.directories.collections;
 import java.util.*;
 import controllers.commands.*;
 import controllers.game.*;
-import gameObjects.Player.Player;
+import gameObjects.player.*;
 import gameObjects.cards.*;
 import gameObjects.heros.*;
 import graphics.*;
 import graphics.directories.*;
-import graphics.popups.PopupBox;
+import graphics.popups.*;
 import javafx.fxml.*;
 import javafx.geometry.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.util.Pair;
+import javafx.util.*;
 
 public abstract class CardsList extends Directory {
     private Map<String, Boolean> options;

@@ -1,13 +1,10 @@
 package gameObjects;
 
 import com.google.gson.stream.*;
-import controllers.game.GameController;
-import gameObjects.cards.Card;
-import gameObjects.heros.Hero;
-
+import controllers.game.*;
+import gameObjects.cards.*;
 import java.io.*;
 import java.lang.reflect.*;
-import java.nio.file.NoSuchFileException;
 import java.util.*;
 
 public class Configor<O extends Configable> {

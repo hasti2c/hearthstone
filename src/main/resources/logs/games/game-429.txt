@@ -1,0 +1,10 @@
+GAME_ID: 429
+STARTED_AT:  2020/07/04 18:02:04 
+
+p1: hasti
+p1_hero: mage
+p1_deck: spell
+
+p1:end_turn 2020/07/04 18:02:11 
+p1:end_turn 2020/07/04 18:02:11 
+p1:play_card 2020/07/04 18:02:14 Book of Specters

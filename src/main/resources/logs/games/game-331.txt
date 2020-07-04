@@ -1,0 +1,17 @@
+GAME_ID: 331
+STARTED_AT:  2020/07/04 01:28:33 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/04 01:28:35 
+p1:end_turn 2020/07/04 01:28:36 
+p1:end_turn 2020/07/04 01:28:37 
+p1:end_turn 2020/07/04 01:28:38 
+p1:play_card 2020/07/04 01:28:41 murloc raider
+p1:play_card 2020/07/04 01:28:43 Strength in Numbers
+p1:end_turn 2020/07/04 01:28:45 
+p1:play_card 2020/07/04 01:28:46 Dreadscale
+p1:end_turn 2020/07/04 01:28:52 
+p1:play_card 2020/07/04 01:28:55 Dreadscale

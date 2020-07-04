@@ -1,5 +1,10 @@
 package gameObjects.cards.abilities;
 
 public enum TargetType {
-    SELF
+    SELF,
+    PLAYED,
+    ALL_ELSE,
+    RANDOM,
+    BY_STATS,
+    DECK
 }

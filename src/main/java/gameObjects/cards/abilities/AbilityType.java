@@ -1,5 +1,9 @@
 package gameObjects.cards.abilities;
 
 public enum AbilityType {
-    EVERY_DRAW
+    DRAW,
+    PLAY,
+    END_TURN,
+    BATTLE_CRY,
+    TAKES_DAMAGE
 }

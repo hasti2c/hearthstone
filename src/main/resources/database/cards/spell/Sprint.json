@@ -5,5 +5,12 @@
   "price": 10,
   "heroClass": "NEUTRAL",
   "rarity": "COMMON",
-  "cardType": "SPELL"
+  "cardType": "SPELL",
+  "addCardAbility": {
+    "abilityType": "BATTLE_CRY",
+    "callerSide": "SELF",
+    "targetType": "DECK",
+    "times": 4,
+    "type": "DRAW"
+  }
 }

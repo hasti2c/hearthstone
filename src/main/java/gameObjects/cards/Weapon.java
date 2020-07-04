@@ -1,12 +1,7 @@
 package gameObjects.cards;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
-import javax.imageio.stream.FileImageInputStream;
-import javax.imageio.stream.ImageInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import javafx.scene.image.*;
+import java.io.*;
 
 public class Weapon extends Card {
     private int durability;

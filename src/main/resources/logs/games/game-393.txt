@@ -1,0 +1,21 @@
+GAME_ID: 393
+STARTED_AT:  2020/07/04 16:46:19 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/04 16:46:21 
+p1:end_turn 2020/07/04 16:46:21 
+p1:end_turn 2020/07/04 16:46:21 
+p1:end_turn 2020/07/04 16:46:21 
+p1:end_turn 2020/07/04 16:46:21 
+p1:end_turn 2020/07/04 16:46:21 
+p1:end_turn 2020/07/04 16:46:21 
+p1:end_turn 2020/07/04 16:46:21 
+p1:end_turn 2020/07/04 16:46:22 
+p1:end_turn 2020/07/04 16:46:22 
+p1:play_card 2020/07/04 16:46:23 Security Rover
+p1:end_turn 2020/07/04 16:46:24 
+p1:play_card 2020/07/04 16:46:25 Curio Collector
+p1:end_turn 2020/07/04 16:46:37 

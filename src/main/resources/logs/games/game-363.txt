@@ -1,0 +1,27 @@
+GAME_ID: 363
+STARTED_AT:  2020/07/04 13:03:28 
+
+p1: hasti
+p1_hero: hunter
+p1_deck: swamp
+
+p1:play_card 2020/07/04 13:03:30 Strength in Numbers
+p1:end_turn 2020/07/04 13:03:31 
+p1:play_card 2020/07/04 13:03:32 Strength in Numbers
+p1:end_turn 2020/07/04 13:03:43 
+p1:end_turn 2020/07/04 13:03:43 
+p1:end_turn 2020/07/04 13:03:44 
+p1:end_turn 2020/07/04 13:03:45 
+p1:end_turn 2020/07/04 13:03:46 
+p1:end_turn 2020/07/04 13:03:46 
+p1:end_turn 2020/07/04 13:03:46 
+p1:end_turn 2020/07/04 13:03:46 
+p1:end_turn 2020/07/04 13:03:46 
+p1:end_turn 2020/07/04 13:03:47 
+p1:end_turn 2020/07/04 13:03:47 
+p1:play_card 2020/07/04 13:03:48 Swamp King Dred
+p1:end_turn 2020/07/04 13:03:49 
+p1:end_turn 2020/07/04 13:03:52 
+p1:play_card 2020/07/04 13:03:53 senjin shieldmasta
+p1:end_turn 2020/07/04 13:03:54 
+p1:play_card 2020/07/04 13:03:58 senjin shieldmasta

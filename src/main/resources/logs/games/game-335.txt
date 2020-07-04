@@ -1,0 +1,20 @@
+GAME_ID: 335
+STARTED_AT:  2020/07/04 01:41:11 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/04 01:41:13 
+p1:end_turn 2020/07/04 01:41:17 
+p1:play_card 2020/07/04 01:41:18 murloc raider
+p1:end_turn 2020/07/04 01:41:19 
+p1:play_card 2020/07/04 01:41:21 murloc raider
+p1:end_turn 2020/07/04 01:41:22 
+p1:play_card 2020/07/04 01:41:25 sound the bells
+p1:end_turn 2020/07/04 01:41:27 
+p1:play_card 2020/07/04 01:41:28 Dreadscale
+p1:end_turn 2020/07/04 01:41:34 
+p1:play_card 2020/07/04 01:41:38 korkron elite
+p1:end_turn 2020/07/04 01:41:42 
+p1:play_card 2020/07/04 01:41:43 sound the bells

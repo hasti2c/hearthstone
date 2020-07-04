@@ -10,7 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.*;
 
-
 public class Stats extends Directory {
     private ArrayList<Deck> decks;
     @FXML

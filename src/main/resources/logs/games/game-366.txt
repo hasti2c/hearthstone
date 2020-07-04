@@ -1,0 +1,24 @@
+GAME_ID: 366
+STARTED_AT:  2020/07/04 15:05:04 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/04 15:05:09 
+p1:end_turn 2020/07/04 15:05:09 
+p1:play_card 2020/07/04 15:05:11 murloc raider
+p1:end_turn 2020/07/04 15:05:12 
+p1:end_turn 2020/07/04 15:05:12 
+p1:end_turn 2020/07/04 15:05:13 
+p1:end_turn 2020/07/04 15:05:13 
+p1:end_turn 2020/07/04 15:05:13 
+p1:end_turn 2020/07/04 15:05:13 
+p1:end_turn 2020/07/04 15:05:14 
+p1:play_card 2020/07/04 15:05:15 korkron elite
+p1:end_turn 2020/07/04 15:05:18 
+p1:end_turn 2020/07/04 15:05:18 
+p1:end_turn 2020/07/04 15:05:18 
+p1:end_turn 2020/07/04 15:05:22 
+p1:end_turn 2020/07/04 15:05:22 
+p1:play_card 2020/07/04 15:05:23 Tomb Warden

@@ -4,13 +4,12 @@ import controllers.commands.*;
 import gameObjects.cards.*;
 import gameObjects.heros.*;
 import graphics.*;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
+import javafx.fxml.*;
+import javafx.geometry.*;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
+import javafx.scene.layout.*;
 
 public class HeroCards extends CardsList {
     private final HeroClass heroClass;

@@ -1,33 +1,20 @@
 package graphics.directories.playground;
 
-import controllers.commands.Command;
-import controllers.commands.CommandRunner;
-import controllers.commands.CommandType;
-import gameObjects.Player.GamePlayer;
-import gameObjects.Player.PlayerFaction;
-import gameObjects.Targetable;
-import gameObjects.cards.Card;
-import gameObjects.cards.Minion;
-import gameObjects.cards.Weapon;
-import gameObjects.heros.Hero;
-import graphics.directories.playground.cards.MinionGraphics;
-import graphics.directories.playground.cards.WeaponGraphics;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.effect.Bloom;
-import javafx.scene.effect.Glow;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-
-import java.io.IOException;
-import java.util.ArrayList;
+import controllers.commands.*;
+import gameObjects.player.*;
+import graphics.directories.playground.targets.*;
+import gameObjects.cards.*;
+import gameObjects.heros.*;
+import graphics.directories.playground.cards.*;
+import javafx.event.*;
+import javafx.fxml.*;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
+import javafx.scene.input.*;
+import javafx.scene.layout.*;
+import java.io.*;
+import java.util.*;
 
 public class GamePlayerGraphics {
     private final PlayGround playGround;
@@ -36,7 +23,7 @@ public class GamePlayerGraphics {
     private final GamePlayer gamePlayer;
     private Pane pane;
     private Targetable selectedTargetable;
-    private final TargetEventHandler heroEventHandler;
+    private final AttackEventHandler heroEventHandler;
     @FXML
     private ImageView heroImage;
     @FXML
@@ -56,7 +43,7 @@ public class GamePlayerGraphics {
         load();
 
         heroImage.setImage(gamePlayer.getInventory().getCurrentHero().getGameImage());
-        heroEventHandler = new TargetEventHandler(gamePlayer.getInventory().getCurrentHero(), heroImage);
+        heroEventHandler = new AttackEventHandler(gamePlayer.getInventory().getCurrentHero(), heroImage);
         heroImage.addEventHandler(MouseEvent.MOUSE_CLICKED, heroEventHandler);
 
         heroPowerButton.setOnAction(e -> {
@@ -136,7 +123,7 @@ public class GamePlayerGraphics {
         private void configTargets() {
             for (Minion minion : gamePlayer.getMinionsInGame()) {
                 Group group = new MinionGraphics(minion).getGroup();
-                group.addEventFilter(MouseEvent.MOUSE_CLICKED, new TargetEventHandler(minion, group));
+                group.addEventFilter(MouseEvent.MOUSE_CLICKED, new AttackEventHandler(minion, group));
                 minionsHBox.getChildren().add(group);
             }
 
@@ -189,15 +176,11 @@ public class GamePlayerGraphics {
         }
 
         private void enableTarget(Targetable targetable) {
-            Node node = getNode(targetable);
-            node.setDisable(false);
-            node.setEffect(new Glow());
+            TargetEventHandler.enableNode(getNode(targetable));
         }
 
         private void disableTarget(Targetable targetable) {
-            Node node = getNode(targetable);
-            node.setDisable(true);
-            node.setEffect(null);
+            TargetEventHandler.disableNode(getNode(targetable));
         }
 
         private ImageView getImageView(Card card) {
@@ -278,52 +261,39 @@ public class GamePlayerGraphics {
             }
         }
 
-        private class TargetEventHandler implements EventHandler<MouseEvent> {
-            private final Node node;
-            private final Targetable targetable;
-            private boolean isSelected = false;
-
-            private TargetEventHandler(Targetable targetable, Node node) {
-                this.targetable = targetable;
-                this.node = node;
+        private class AttackEventHandler extends TargetEventHandler {
+            private AttackEventHandler(Targetable targetable, Node node) {
+                super(targetable, node);
             }
 
             @Override
-            public void handle(MouseEvent mouseEvent) {
-                if (mouseEvent.getEventType() == MouseEvent.MOUSE_CLICKED) {
-                    if (!isSelected)
-                        select();
-                    else
-                        deselect();
-                }
-            }
-
-            private void select() {
-                isSelected = true;
+            protected void setSelectedTargetable(Targetable targetable) {
                 selectedTargetable = targetable;
-
-                GamePlayerGraphics current = playGround.getCurrentGamePlayer(), other = playGround.getOtherGamePlayer();
-                if (current == GamePlayerGraphics.this) {
-                    current.defenseMode();
-                    other.defenseMode();
-                    enableTarget(targetable);
-                    node.setEffect(new Bloom());
-                } else {
-                    runner.run(new Command(CommandType.ATTACK, current.getSelectedTarget(), selectedTargetable));
-                    deselect();
-                    current.config();
-                    other.config();
-                }
             }
 
-            private void deselect() {
-                isSelected = false;
-                selectedTargetable = null;
-                node.setEffect(null);
+            @Override
+            protected boolean isEnough() {
+                return playGround.getCurrentGamePlayer() != GamePlayerGraphics.this;
+            }
 
+            @Override
+            protected void deselectedMode() {
+                playGround.getCurrentGamePlayer().attackMode();
+                playGround.getOtherGamePlayer().attackMode();
+            }
+
+            @Override
+            protected void oneSelectedMode() {
+                playGround.getCurrentGamePlayer().defenseMode();
+                playGround.getOtherGamePlayer().defenseMode();
+            }
+
+            @Override
+            protected void doAction() {
                 GamePlayerGraphics current = playGround.getCurrentGamePlayer(), other = playGround.getOtherGamePlayer();
-                current.attackMode();
-                other.attackMode();
+                runner.run(new Command(CommandType.ATTACK, current.getSelectedTarget(), selectedTargetable));
+                current.config();
+                other.config();
             }
         }
 }

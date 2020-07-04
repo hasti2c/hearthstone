@@ -1,14 +1,10 @@
 package gameObjects;
 
-import controllers.game.GameController;
-import gameObjects.Player.GamePlayer;
-import gameObjects.Player.PlayerFaction;
+import controllers.game.*;
+import gameObjects.player.*;
 import gameObjects.cards.*;
-import gameObjects.heros.Deck;
-import gameObjects.heros.DeckPair;
-
-import java.io.FileWriter;
-import java.io.IOException;
+import gameObjects.heros.*;
+import java.io.*;
 
 public class Game {
     private final GameController controller;
@@ -40,6 +36,8 @@ public class Game {
             e.printStackTrace();
         }
         controller.setGameCount(id);
+        gamePlayers[0].initialize();
+        gamePlayers[1].initialize();
         getCurrentPlayer().startTurn();
     }
 
@@ -68,6 +66,7 @@ public class Game {
     }
 
     public void nextTurn() {
+        getCurrentPlayer().endTurn();
         turn++;
         getCurrentPlayer().startTurn();
     }

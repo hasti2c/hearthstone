@@ -1,0 +1,18 @@
+GAME_ID: 357
+STARTED_AT:  2020/07/04 12:50:35 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/04 12:50:37 
+p1:end_turn 2020/07/04 12:50:38 
+p1:end_turn 2020/07/04 12:50:39 
+p1:play_card 2020/07/04 12:50:41 murloc raider
+p1:play_card 2020/07/04 12:50:41 murloc raider
+p1:end_turn 2020/07/04 12:50:42 
+p1:play_card 2020/07/04 12:50:44 murloc raider
+p1:end_turn 2020/07/04 12:50:45 
+p1:end_turn 2020/07/04 12:50:46 
+p1:play_card 2020/07/04 12:50:47 Dreadscale
+p1:end_turn 2020/07/04 12:50:51 

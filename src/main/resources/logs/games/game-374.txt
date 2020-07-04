@@ -1,0 +1,27 @@
+GAME_ID: 374
+STARTED_AT:  2020/07/04 15:36:03 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/04 15:36:06 
+p1:end_turn 2020/07/04 15:36:06 
+p1:end_turn 2020/07/04 15:36:06 
+p1:end_turn 2020/07/04 15:36:06 
+p1:end_turn 2020/07/04 15:36:06 
+p1:end_turn 2020/07/04 15:36:06 
+p1:end_turn 2020/07/04 15:36:07 
+p1:end_turn 2020/07/04 15:36:07 
+p1:end_turn 2020/07/04 15:36:07 
+p1:end_turn 2020/07/04 15:36:07 
+p1:end_turn 2020/07/04 15:36:07 
+p1:end_turn 2020/07/04 15:36:08 
+p1:end_turn 2020/07/04 15:36:08 
+p1:end_turn 2020/07/04 15:36:09 
+p1:end_turn 2020/07/04 15:36:09 
+p1:end_turn 2020/07/04 15:36:09 
+p1:end_turn 2020/07/04 15:36:10 
+p1:end_turn 2020/07/04 15:36:12 
+p1:play_card 2020/07/04 15:36:14 Sathrovarr
+p1:end_turn 2020/07/04 15:36:17 

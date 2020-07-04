@@ -1,15 +1,8 @@
 package graphics.popups;
 
-import javafx.beans.Observable;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-
-import java.util.ArrayList;
+import javafx.fxml.*;
+import javafx.scene.control.*;
+import java.util.*;
 
 public class OptionBox extends PopupBox {
     private String choice;

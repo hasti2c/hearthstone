@@ -1,7 +1,5 @@
 package controllers.commands;
 
-import java.util.*;
-
 public class Command {
     private final CommandType commandType;
     private final Object[] input;

@@ -1,0 +1,31 @@
+GAME_ID: 375
+STARTED_AT:  2020/07/04 15:36:20 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/04 15:36:23 
+p1:end_turn 2020/07/04 15:36:23 
+p1:end_turn 2020/07/04 15:36:23 
+p1:end_turn 2020/07/04 15:36:24 
+p1:end_turn 2020/07/04 15:36:24 
+p1:end_turn 2020/07/04 15:36:24 
+p1:end_turn 2020/07/04 15:36:24 
+p1:end_turn 2020/07/04 15:36:24 
+p1:end_turn 2020/07/04 15:36:25 
+p1:end_turn 2020/07/04 15:36:25 
+p1:end_turn 2020/07/04 15:36:27 
+p1:end_turn 2020/07/04 15:36:30 
+p1:play_card 2020/07/04 15:36:32 murloc raider
+p1:play_card 2020/07/04 15:36:32 korkron elite
+p1:end_turn 2020/07/04 15:36:36 
+p1:end_turn 2020/07/04 15:36:42 
+p1:play_card 2020/07/04 15:36:45 Tomb Warden
+p1:end_turn 2020/07/04 15:36:46 
+p1:end_turn 2020/07/04 15:36:48 
+p1:play_card 2020/07/04 15:36:50 Dreadscale
+p1:play_card 2020/07/04 15:36:52 Curio Collector
+p1:end_turn 2020/07/04 15:36:53 
+p1:end_turn 2020/07/04 15:36:56 
+p1:play_card 2020/07/04 15:37:02 Sathrovarr

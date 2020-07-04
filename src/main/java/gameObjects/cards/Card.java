@@ -1,21 +1,16 @@
 package gameObjects.cards;
 
-import controllers.game.GameController;
+import controllers.game.*;
 import gameObjects.*;
-import gameObjects.cards.abilities.Ability;
-import gameObjects.cards.abilities.ChangeStats;
+import gameObjects.player.*;
+import gameObjects.cards.abilities.*;
 import gameObjects.heros.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.ImagePattern;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.nio.file.NoSuchFileException;
-import java.util.ArrayList;
-
-import static gameObjects.cards.abilities.AbilityType.EVERY_DRAW;
+import javafx.scene.image.*;
+import javafx.scene.paint.*;
+import java.io.*;
+import java.nio.file.*;
+import java.util.*;
+import static gameObjects.cards.abilities.AbilityType.*;
 
 public abstract class Card implements Configable {
     private String name, description;
@@ -24,17 +19,20 @@ public abstract class Card implements Configable {
     private RarityType rarity;
     private CardType cardType;
     private transient Image image, fullImage;
-    private final ArrayList<Ability> abilities = new ArrayList<>();
-    private ChangeStats changeStats;
+    private ArrayList<Ability> abilities = new ArrayList<>();
+    private ChangeStats changeStatsAbility;
+    private Attack attackAbility;
+    private AddCard addCardAbility;
 
     @Override
     public void initialize(GameController controller) {
-        configImage();
-        configFullImage();
-        if (changeStats != null)
-        abilities.add(changeStats);
-        if (changeStats != null)
-            changeStats.setCard(this);
+        abilities = new ArrayList<>();
+        if (changeStatsAbility != null)
+            abilities.add(changeStatsAbility);
+        if (attackAbility != null)
+            abilities.add(attackAbility);
+        if (addCardAbility != null)
+            abilities.add(addCardAbility);
     }
 
     @Override
@@ -81,6 +79,12 @@ public abstract class Card implements Configable {
             return 3;
     }
 
+    public boolean isValid() {
+        if (!(this instanceof Minion minion))
+            return true;
+        return minion.getHealth() > 0;
+    }
+
     @Override
     public Card clone() {
         Card c = cloneHelper();
@@ -91,6 +95,7 @@ public abstract class Card implements Configable {
         c.heroClass = heroClass;
         c.rarity = rarity;
         c.cardType = cardType;
+        c.abilities = abilities;
         return c;
     }
 
@@ -151,6 +156,11 @@ public abstract class Card implements Configable {
         return 0;
     }
 
+    public static Card getRandomCard(ArrayList<Card> cards) {
+        int n = cards.size(), i = (int) (Math.floor(n * Math.random())) % n;
+        return cards.get(i);
+    }
+
     private static void tryToGetCard(Class<? extends Card> cardClass, String name) throws NoSuchFileException {
         String path = "src/main/resources/database/cards/" + cardClass.getSimpleName() + "/" + name + ".json";
         File file = new File(path);
@@ -206,9 +216,29 @@ public abstract class Card implements Configable {
         }
     }
 
-    public void doActionOnDraw(Card drawn) {
+    public void doActionOnDraw(GamePlayer actionPerformer, Card drawn) {
         for (Ability ability : abilities)
-            if (EVERY_DRAW.equals(ability.getAbilityType()))
-                ability.doAction();
+            if (DRAW.equals(ability.getAbilityType()))
+                ability.callDoAction(actionPerformer,this, null);
+    }
+
+    public void doActionOnPlay(GamePlayer actionPerformer, Card played) {
+        for (Ability ability : abilities)
+            if (PLAY.equals(ability.getAbilityType()))
+                ability.callDoAction(actionPerformer, this, played);
+            else if (BATTLE_CRY.equals(ability.getAbilityType()) && this == played)
+                ability.callDoAction(actionPerformer, this, played);
+    }
+
+    public void doActionOnEndTurn(GamePlayer actionPerformer) {
+        for (Ability ability : abilities)
+            if (END_TURN.equals(ability.getAbilityType()))
+                ability.callDoAction(actionPerformer, this, null);
+    }
+
+    public void doActionOnDamaged(GamePlayer actionPerformer, Card damaged) {
+        for (Ability ability : abilities)
+            if (TAKES_DAMAGE.equals(ability.getAbilityType()) && this == damaged)
+                ability.callDoAction(actionPerformer, this, damaged);
     }
 }

@@ -5,7 +5,7 @@ import java.util.*;
 import com.google.gson.stream.*;
 import controllers.game.*;
 import gameObjects.*;
-import gameObjects.Player.Inventory;
+import gameObjects.player.*;
 import gameObjects.cards.*;
 
 public class Deck implements Comparable<Deck>, Configable {
@@ -111,13 +111,8 @@ public class Deck implements Comparable<Deck>, Configable {
         deck.name = name;
         deck.heroClass = heroClass;
         deck.maxSize = maxSize;
-        for (Card card : cards) {
-            Card clone = inventory.getCard(card.toString());
-            if (deck.cards.contains(clone))
-                deck.addCard(card.clone());
-            else
-                deck.addCard(clone);
-        }
+        for (Card card : cards)
+            deck.addCard(inventory.getCard(card.toString()));
         deck.wins = wins;
         deck.games = games;
         return deck;

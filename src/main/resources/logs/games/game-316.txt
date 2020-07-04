@@ -1,0 +1,35 @@
+GAME_ID: 316
+STARTED_AT:  2020/07/03 22:34:44 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/03 22:34:47 
+p1:end_turn 2020/07/03 22:34:47 
+p1:end_turn 2020/07/03 22:34:47 
+p1:end_turn 2020/07/03 22:34:47 
+p1:end_turn 2020/07/03 22:34:47 
+p1:end_turn 2020/07/03 22:34:48 
+p1:end_turn 2020/07/03 22:34:48 
+p1:end_turn 2020/07/03 22:34:48 
+p1:end_turn 2020/07/03 22:34:49 
+p1:end_turn 2020/07/03 22:34:53 
+p1:play_card 2020/07/03 22:34:54 Dreadscale
+p1:play_card 2020/07/03 22:34:55 murloc raider
+p1:play_card 2020/07/03 22:34:57 voidwalker
+p1:end_turn 2020/07/03 22:34:57 
+p1:end_turn 2020/07/03 22:34:57 
+p1:play_card 2020/07/03 22:35:00 wasteland assassin
+p1:end_turn 2020/07/03 22:35:02 
+p1:end_turn 2020/07/03 22:35:02 
+p1:play_card 2020/07/03 22:35:03 Dreadscale
+p1:end_turn 2020/07/03 22:35:04 
+p1:end_turn 2020/07/03 22:35:04 
+p1:play_card 2020/07/03 22:35:05 Curio Collector
+p1:end_turn 2020/07/03 22:35:06 
+p1:end_turn 2020/07/03 22:35:06 
+p1:end_turn 2020/07/03 22:35:07 
+p1:end_turn 2020/07/03 22:35:07 
+p1:end_turn 2020/07/03 22:35:07 
+p1:end_turn 2020/07/03 22:35:07 

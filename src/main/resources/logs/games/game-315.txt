@@ -1,0 +1,26 @@
+GAME_ID: 315
+STARTED_AT:  2020/07/03 22:30:41 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/03 22:30:43 
+p1:end_turn 2020/07/03 22:30:43 
+p1:end_turn 2020/07/03 22:30:43 
+p1:end_turn 2020/07/03 22:30:43 
+p1:end_turn 2020/07/03 22:30:44 
+p1:end_turn 2020/07/03 22:30:44 
+p1:end_turn 2020/07/03 22:30:45 
+p1:end_turn 2020/07/03 22:30:45 
+p1:end_turn 2020/07/03 22:30:46 
+p1:end_turn 2020/07/03 22:30:46 
+p1:end_turn 2020/07/03 22:30:47 
+p1:end_turn 2020/07/03 22:30:48 
+p1:play_card 2020/07/03 22:30:49 Curio Collector
+p1:end_turn 2020/07/03 22:30:50 
+p1:end_turn 2020/07/03 22:30:50 
+p1:end_turn 2020/07/03 22:30:51 
+p1:end_turn 2020/07/03 22:30:51 
+p1:play_card 2020/07/03 22:30:52 korkron elite
+p1:play_card 2020/07/03 22:30:52 senjin shieldmasta

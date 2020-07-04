@@ -1,35 +1,45 @@
 package graphics.directories;
 
 import controllers.commands.*;
-import gameObjects.Game;
-import gameObjects.Player.Inventory;
-import gameObjects.cards.Passive;
+import gameObjects.*;
+import gameObjects.player.*;
+import gameObjects.cards.*;
 import graphics.*;
 import graphics.directories.collections.*;
-import graphics.directories.playground.PlayGround;
-import graphics.popups.PopupBox;
+import graphics.directories.playground.*;
+import graphics.popups.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 public class Home extends Directory {
     private PlayGround playGround;
-    private final Collections collections = new Collections(controller, runner);
-    private final Store store = new Store(controller, runner);
-    private final Stats stats = new Stats(controller, runner);
-    private final GameStartPage gameBeginning;
+    private Collections collections;
+    private Store store;
+    private Stats stats;
+    private GameStartPage gameBeginning;
     @FXML
     private Button playButton, collectionsButton, storeButton, statsButton, homeLogoutButton, homeExitButton;
 
     public Home(GraphicsController controller, CommandRunner runner) {
         super(controller, runner);
         //playButton.setOnAction(e -> displayPlayGround());
-        gameBeginning = new GameStartPage();
-        playButton.setOnAction(e -> gameBeginning.display());
-        collectionsButton.setOnAction(e -> collections.display());
-        storeButton.setOnAction(e -> store.display());
-        statsButton.setOnAction(e -> stats.display());
+        playButton.setOnAction(e -> {
+            if (gameBeginning == null)
+                gameBeginning = new GameStartPage();
+            gameBeginning.display();
+        });
+        collectionsButton.setOnAction(e -> displayCollections());
+        storeButton.setOnAction(e -> {
+            if (store == null)
+                store = new Store(controller, runner);
+            store.display();
+        });
+        statsButton.setOnAction(e -> {
+            if (stats == null)
+                stats = new Stats(controller, runner);
+            stats.display();
+        });
         homeLogoutButton.setOnAction(e -> controller.displayStartPage());
         homeExitButton.setOnAction(e -> controller.exit());
     }
@@ -42,7 +52,15 @@ public class Home extends Directory {
         return new FXMLLoader(Home.class.getResource("/fxml/directories/home.fxml"));
     }
 
+    private void displayCollections() {
+        if (collections == null)
+            collections = new Collections(controller, runner);
+        collections.display();
+    }
+
     public Store getStore() {
+        if (store == null)
+            store = new Store(controller, runner);
         return store;
     }
 
@@ -70,10 +88,7 @@ public class Home extends Directory {
                 runner.run(new Command(CommandType.START_GAME));
                 displayPlayGround();
             });
-            collectionsButton.setOnAction(e -> {
-                close();
-                collections.display();
-            });
+            collectionsButton.setOnAction(e -> displayCollections());
             deckReaderButton.setOnAction(e -> {
                 close();
                 runner.run(new Command(CommandType.DECK_READER));

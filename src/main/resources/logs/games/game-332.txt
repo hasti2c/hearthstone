@@ -1,0 +1,23 @@
+GAME_ID: 332
+STARTED_AT:  2020/07/04 01:30:25 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/04 01:30:28 
+p1:end_turn 2020/07/04 01:30:28 
+p1:end_turn 2020/07/04 01:30:30 
+p1:end_turn 2020/07/04 01:30:30 
+p1:end_turn 2020/07/04 01:30:32 
+p1:end_turn 2020/07/04 01:30:33 
+p1:end_turn 2020/07/04 01:30:34 
+p1:end_turn 2020/07/04 01:30:37 
+p1:play_card 2020/07/04 01:30:41 Blood Fury
+p1:play_card 2020/07/04 01:30:42 murloc raider
+p1:play_card 2020/07/04 01:30:43 Strength in Numbers
+p1:end_turn 2020/07/04 01:30:44 
+p1:play_card 2020/07/04 01:30:47 murloc raider
+p1:play_card 2020/07/04 01:30:48 Dreadscale
+p1:end_turn 2020/07/04 01:30:55 
+p1:play_card 2020/07/04 01:31:02 Dreadscale

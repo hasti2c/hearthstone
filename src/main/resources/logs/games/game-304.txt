@@ -1,0 +1,24 @@
+GAME_ID: 304
+STARTED_AT:  2020/07/03 22:00:00 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/03 22:00:02 
+p1:end_turn 2020/07/03 22:00:02 
+p1:end_turn 2020/07/03 22:00:02 
+p1:end_turn 2020/07/03 22:00:02 
+p1:end_turn 2020/07/03 22:00:03 
+p1:end_turn 2020/07/03 22:00:03 
+p1:end_turn 2020/07/03 22:00:03 
+p1:end_turn 2020/07/03 22:00:03 
+p1:play_card 2020/07/03 22:00:06 Curio Collector
+p1:end_turn 2020/07/03 22:00:16 
+p1:end_turn 2020/07/03 22:00:17 
+p1:end_turn 2020/07/03 22:00:17 
+p1:end_turn 2020/07/03 22:00:23 
+p1:end_turn 2020/07/03 22:00:24 
+p1:end_turn 2020/07/03 22:00:24 
+p1:play_card 2020/07/03 22:00:25 Dreadscale
+p1:play_card 2020/07/03 22:00:25 wasteland assassin

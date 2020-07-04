@@ -1,0 +1,8 @@
+GAME_ID: 289
+STARTED_AT:  2020/07/03 21:25:12 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: weapons
+
+p1:play_card 2020/07/03 21:25:13 Wicked Knife

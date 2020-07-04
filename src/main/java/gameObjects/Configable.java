@@ -1,6 +1,6 @@
 package gameObjects;
 
-import controllers.game.GameController;
+import controllers.game.*;
 
 public interface Configable {
     void initialize(GameController controller);

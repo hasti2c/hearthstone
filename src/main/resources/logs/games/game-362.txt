@@ -1,0 +1,29 @@
+GAME_ID: 362
+STARTED_AT:  2020/07/04 12:59:50 
+
+p1: hasti
+p1_hero: hunter
+p1_deck: swamp
+
+p1:play_card 2020/07/04 12:59:51 Strength in Numbers
+p1:end_turn 2020/07/04 12:59:54 
+p1:end_turn 2020/07/04 12:59:54 
+p1:end_turn 2020/07/04 12:59:55 
+p1:end_turn 2020/07/04 12:59:55 
+p1:end_turn 2020/07/04 12:59:57 
+p1:end_turn 2020/07/04 13:00:00 
+p1:play_card 2020/07/04 13:00:01 voidwalker
+p1:end_turn 2020/07/04 13:00:04 
+p1:end_turn 2020/07/04 13:00:07 
+p1:play_card 2020/07/04 13:00:08 argent protector
+p1:end_turn 2020/07/04 13:00:10 
+p1:play_card 2020/07/04 13:00:12 argent protector
+p1:end_turn 2020/07/04 13:00:13 
+p1:end_turn 2020/07/04 13:00:14 
+p1:end_turn 2020/07/04 13:00:14 
+p1:end_turn 2020/07/04 13:00:14 
+p1:end_turn 2020/07/04 13:00:14 
+p1:end_turn 2020/07/04 13:00:19 
+p1:play_card 2020/07/04 13:00:20 Swamp King Dred
+p1:end_turn 2020/07/04 13:00:25 
+p1:play_card 2020/07/04 13:00:27 senjin shieldmasta
