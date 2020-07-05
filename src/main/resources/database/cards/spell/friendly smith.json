@@ -5,5 +5,19 @@
   "price": 10,
   "heroClass": "ROGUE",
   "rarity": "COMMON",
-  "cardType": "SPELL"
+  "cardType": "SPELL",
+  "addCardAbility": {
+    "abilityType": "BATTLE_CRY",
+    "targetType": "DISCOVER",
+    "targetCardType": "WEAPON",
+    "type": "SUMMON",
+    "nextChangeStats": {
+      "callerSide": "SELF",
+      "targetType": "SELF",
+      "targetCardType": "WEAPON",
+      "type": "CONSTANT",
+      "attackChange": 4,
+      "durabilityChange": 4
+    }
+  }
 }

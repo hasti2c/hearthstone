@@ -1,0 +1,10 @@
+GAME_ID: 522
+STARTED_AT:  2020/07/05 16:50:48 
+
+p1: hasti
+p1_hero: rogue
+p1_deck: smith
+
+p1:play_card 2020/07/05 16:50:54 Friendly Smith
+p1:end_turn 2020/07/05 16:50:57 
+p1:play_card 2020/07/05 16:50:59 Friendly Smith

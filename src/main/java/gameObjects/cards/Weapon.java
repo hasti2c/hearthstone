@@ -21,8 +21,16 @@ public class Weapon extends Card {
         return durability;
     }
 
+    public void setDurability(int durability) {
+        this.durability = durability;
+    }
+
     public int getAttack() {
         return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
     }
 
     public static ImageView getClosedImageView() {
@@ -40,5 +48,4 @@ public class Weapon extends Card {
         closedImageView.setLayoutY(2);
         return closedImageView;
     }
-
 }

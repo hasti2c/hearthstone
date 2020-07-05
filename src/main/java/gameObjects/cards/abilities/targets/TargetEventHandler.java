@@ -1,4 +1,4 @@
-package graphics.directories.playground.targets;
+package gameObjects.cards.abilities.targets;
 
 import javafx.event.*;
 import javafx.scene.*;
@@ -15,7 +15,7 @@ public abstract class TargetEventHandler implements EventHandler<MouseEvent> {
         this.node = node;
     }
 
-    protected void initialize() {
+    public void initialize() {
         deselect();
         deselectedMode();
     }

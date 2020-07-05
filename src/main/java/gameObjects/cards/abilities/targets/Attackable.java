@@ -1,8 +1,8 @@
-package graphics.directories.playground.targets;
+package gameObjects.cards.abilities.targets;
 
 import gameObjects.player.*;
 
-public interface Targetable {
+public interface Attackable extends Targetable {
     boolean getHasAttacked();
     void setHasAttacked(boolean hasAttacked);
     int getHealth();

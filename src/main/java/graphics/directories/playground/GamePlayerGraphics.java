@@ -1,8 +1,10 @@
 package graphics.directories.playground;
 
 import controllers.commands.*;
+import gameObjects.cards.abilities.targets.Attackable;
+import gameObjects.cards.abilities.targets.TargetEventHandler;
+import gameObjects.cards.abilities.targets.Targetable;
 import gameObjects.player.*;
-import graphics.directories.playground.targets.*;
 import gameObjects.cards.*;
 import gameObjects.heros.*;
 import graphics.directories.playground.cards.*;
@@ -22,7 +24,7 @@ public class GamePlayerGraphics {
     private final PlayerFaction playerFaction;
     private final GamePlayer gamePlayer;
     private Pane pane;
-    private Targetable selectedTargetable;
+    private Attackable selectedAttackable;
     private AttackEventHandler heroEventHandler;
     @FXML
     private ImageView heroImage;
@@ -107,6 +109,7 @@ public class GamePlayerGraphics {
             heroImage.addEventHandler(MouseEvent.MOUSE_CLICKED, heroEventHandler);
         }
         heroEventHandler.deselect();
+        heroEventHandler.initialize();
     }
 
     private void configHand() {
@@ -179,23 +182,23 @@ public class GamePlayerGraphics {
             disableTarget(hero);
     }
 
-    private Node getNode(Targetable targetable) {
-        if (targetable instanceof Hero)
+    private Node getNode(Attackable attackable) {
+        if (attackable instanceof Hero)
             return heroImage;
         if (gamePlayer.getMinionsInGame().size() != minionsHBox.getChildren().size())
             return null;
-        assert gamePlayer.getMinionsInGame().contains(targetable);
-        return minionsHBox.getChildren().get(gamePlayer.getMinionsInGame().indexOf(targetable));
+        assert gamePlayer.getMinionsInGame().contains(attackable);
+        return minionsHBox.getChildren().get(gamePlayer.getMinionsInGame().indexOf(attackable));
     }
 
-    private void enableTarget(Targetable targetable) {
-        Node node = getNode(targetable);
+    private void enableTarget(Attackable attackable) {
+        Node node = getNode(attackable);
         if (node != null)
             TargetEventHandler.enableNode(node);
     }
 
-    private void disableTarget(Targetable targetable) {
-        Node node = getNode(targetable);
+    private void disableTarget(Attackable attackable) {
+        Node node = getNode(attackable);
         if (node != null)
             TargetEventHandler.disableNode(node);
     }
@@ -232,8 +235,8 @@ public class GamePlayerGraphics {
     return pane;
 }
 
-    private Targetable getSelectedTarget() {
-            return selectedTargetable;
+    private Attackable getSelectedAttackable() {
+            return selectedAttackable;
         }
 
     public HBox getMinionsHBox() {
@@ -316,7 +319,7 @@ public class GamePlayerGraphics {
 
         @Override
         protected void setSelectedTargetable(Targetable targetable) {
-            selectedTargetable = targetable;
+            selectedAttackable = (Attackable) targetable;
         }
 
         @Override
@@ -339,7 +342,7 @@ public class GamePlayerGraphics {
         @Override
         protected void doAction() {
             GamePlayerGraphics current = playGround.getCurrentGamePlayer();
-            runner.run(new Command(CommandType.ATTACK, current.getSelectedTarget(), selectedTargetable));
+            runner.run(new Command(CommandType.ATTACK, current.getSelectedAttackable(), selectedAttackable));
             playGround.config();
         }
     }

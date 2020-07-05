@@ -13,7 +13,7 @@
 
 <Pane id="playGround-bg" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="1280.0" spacing="10.0">
+      <HBox fx:id="topBar" alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="1280.0" spacing="10.0">
          <children>
             <Button fx:id="homeButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="105.0" text="Home">
                <font>

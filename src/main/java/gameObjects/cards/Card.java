@@ -2,19 +2,20 @@ package gameObjects.cards;
 
 import controllers.game.*;
 import gameObjects.*;
+import gameObjects.cards.abilities.targets.Targetable;
 import gameObjects.player.*;
 import gameObjects.cards.abilities.*;
 import gameObjects.heros.*;
-import graphics.directories.playground.GamePlayerGraphics;
 import javafx.scene.image.*;
 import javafx.scene.paint.*;
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 import static gameObjects.cards.abilities.AbilityType.*;
-import static gameObjects.cards.abilities.TargetType.SELECTED;
+import static gameObjects.cards.abilities.targets.TargetType.DISCOVER;
+import static gameObjects.cards.abilities.targets.TargetType.SELECTED;
 
-public abstract class Card implements Configable {
+public abstract class Card implements Configable, Targetable {
     private String name, description;
     private int mana, price;
     private HeroClass heroClass;
@@ -162,6 +163,8 @@ public abstract class Card implements Configable {
     }
 
     public static Card getRandomCard(ArrayList<Card> cards) {
+        if (cards.size() == 0)
+            return null;
         int n = cards.size(), i = (int) (Math.floor(n * Math.random())) % n;
         return cards.get(i);
     }
@@ -249,7 +252,7 @@ public abstract class Card implements Configable {
 
     public boolean needsTarget() {
         for (Ability ability : abilities)
-            if (SELECTED.equals(ability.getTargetType()))
+            if (SELECTED.equals(ability.getTargetType()) || DISCOVER.equals(ability.getTargetType()))
                 return true;
         return false;
     }

@@ -6,6 +6,7 @@ import graphics.*;
 import graphics.directories.*;
 import graphics.popups.*;
 import javafx.fxml.*;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
@@ -20,6 +21,8 @@ public class PlayGround extends Directory {
     private Button endTurnButton, gameEventsButton;
     @FXML
     private ScrollPane gameEventsScrollPane;
+    @FXML
+    private HBox topBar;
 
     public PlayGround(Game game, GraphicsController controller, CommandRunner runner) {
         super(controller, runner);
@@ -84,5 +87,20 @@ public class PlayGround extends Directory {
     @Override
     protected FXMLLoader getLoader() {
         return new FXMLLoader(PlayGround.class.getResource("/fxml/directories/playGround.fxml"));
+    }
+
+    public void showDiscover(Pane pane) {
+        this.pane.getChildren().add(pane);
+        putOnTop(topBar);
+        putOnTop(endTurnButton);
+    }
+
+    public void removeDiscover(Pane pane) {
+        this.pane.getChildren().remove(pane);
+    }
+
+    private void putOnTop(Node node) {
+        pane.getChildren().remove(node);
+        pane.getChildren().add(node);
     }
 }

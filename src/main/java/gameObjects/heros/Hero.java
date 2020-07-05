@@ -3,11 +3,11 @@ package gameObjects.heros;
 import java.io.*;
 import controllers.game.*;
 import gameObjects.*;
+import gameObjects.cards.abilities.targets.Attackable;
 import gameObjects.player.*;
-import graphics.directories.playground.targets.*;
 import javafx.scene.image.*;
 
-public class Hero implements Configable, Targetable {
+public class Hero implements Configable, Attackable {
     private int health = 30;
     private String name;
     private HeroClass heroClass;

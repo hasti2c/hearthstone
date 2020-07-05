@@ -1,4 +1,4 @@
-package gameObjects.cards.abilities;
+package gameObjects.cards.abilities.targets;
 
 public enum TargetType {
     SELF,
@@ -7,5 +7,6 @@ public enum TargetType {
     RANDOM,
     BY_STATS,
     DECK,
-    SELECTED
+    SELECTED,
+    DISCOVER
 }

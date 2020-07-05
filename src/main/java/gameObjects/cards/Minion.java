@@ -1,9 +1,9 @@
 package gameObjects.cards;
 
+import gameObjects.cards.abilities.targets.Attackable;
 import gameObjects.player.*;
-import graphics.directories.playground.targets.*;
 
-public class Minion extends Card implements Targetable {
+public class Minion extends Card implements Attackable {
     private int health;
     private int attack;
     private boolean hasAttacked = false;

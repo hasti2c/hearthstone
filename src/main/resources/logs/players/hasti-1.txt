@@ -1596,3 +1596,88 @@ add 2020/07/05 13:30:03 card: senjin shieldmasta -> deck: mage-spell
 start_game 2020/07/05 13:30:06 game id: 491
 login 2020/07/05 13:30:49 
 start_game 2020/07/05 13:30:51 game id: 492
+login 2020/07/05 15:09:03 
+start_game 2020/07/05 15:09:07 game id: 493
+select 2020/07/05 15:09:18 deck: high
+add 2020/07/05 15:09:39 deck: smith -> hero: ROGUE
+select 2020/07/05 15:09:41 deck: smith
+add 2020/07/05 15:09:51 card: Friendly Smith -> deck: rogue-smith
+add 2020/07/05 15:09:51 card: Friendly Smith -> deck: rogue-smith
+start_game 2020/07/05 15:09:55 game id: 494
+login 2020/07/05 15:16:23 
+start_game 2020/07/05 15:16:26 game id: 495
+login 2020/07/05 15:19:23 
+start_game 2020/07/05 15:19:27 game id: 496
+login 2020/07/05 15:37:40 
+start_game 2020/07/05 15:37:43 game id: 497
+login 2020/07/05 15:38:14 
+start_game 2020/07/05 15:38:17 game id: 498
+login 2020/07/05 15:39:33 
+start_game 2020/07/05 15:39:36 game id: 499
+login 2020/07/05 15:40:07 
+start_game 2020/07/05 15:40:11 game id: 500
+login 2020/07/05 15:40:45 
+start_game 2020/07/05 15:40:47 game id: 501
+login 2020/07/05 15:41:18 
+start_game 2020/07/05 15:41:23 game id: 502
+login 2020/07/05 15:42:52 
+start_game 2020/07/05 15:42:55 game id: 503
+login 2020/07/05 15:45:59 
+start_game 2020/07/05 15:46:01 game id: 504
+login 2020/07/05 15:46:41 
+start_game 2020/07/05 15:46:51 game id: 505
+start_game 2020/07/05 15:47:04 game id: 506
+login 2020/07/05 15:57:00 
+start_game 2020/07/05 15:57:03 game id: 507
+login 2020/07/05 15:59:25 
+start_game 2020/07/05 15:59:30 game id: 508
+login 2020/07/05 16:00:56 
+start_game 2020/07/05 16:01:03 game id: 509
+login 2020/07/05 16:02:23 
+start_game 2020/07/05 16:02:25 game id: 510
+login 2020/07/05 16:03:22 
+start_game 2020/07/05 16:03:25 game id: 511
+login 2020/07/05 16:03:39 
+start_game 2020/07/05 16:03:46 game id: 512
+login 2020/07/05 16:04:40 
+start_game 2020/07/05 16:04:43 game id: 513
+login 2020/07/05 16:04:58 
+start_game 2020/07/05 16:05:01 game id: 514
+login 2020/07/05 16:08:17 
+start_game 2020/07/05 16:08:20 game id: 515
+login 2020/07/05 16:42:08 
+start_game 2020/07/05 16:42:11 game id: 516
+login 2020/07/05 16:46:02 
+start_game 2020/07/05 16:46:05 game id: 517
+login 2020/07/05 16:46:25 
+start_game 2020/07/05 16:46:28 game id: 518
+add 2020/07/05 16:47:03 card: murloc raider -> deck: rogue-smith
+add 2020/07/05 16:47:03 card: murloc raider -> deck: rogue-smith
+add 2020/07/05 16:47:04 card: voidwalker -> deck: rogue-smith
+add 2020/07/05 16:47:04 card: voidwalker -> deck: rogue-smith
+start_game 2020/07/05 16:47:07 game id: 519
+start_game 2020/07/05 16:47:20 game id: 520
+start_game 2020/07/05 16:47:24 game id: 521
+login 2020/07/05 16:50:38 
+start_game 2020/07/05 16:50:48 game id: 522
+start_game 2020/07/05 16:52:32 game id: 523
+login 2020/07/05 17:26:23 
+start_game 2020/07/05 17:26:27 game id: 524
+login 2020/07/05 17:26:51 
+start_game 2020/07/05 17:26:53 game id: 525
+login 2020/07/05 17:28:27 
+start_game 2020/07/05 17:28:30 game id: 526
+login 2020/07/05 17:29:02 
+start_game 2020/07/05 17:29:05 game id: 527
+login 2020/07/05 17:29:27 
+start_game 2020/07/05 17:29:31 game id: 528
+login 2020/07/05 17:30:18 
+start_game 2020/07/05 17:30:21 game id: 529
+login 2020/07/05 17:31:15 
+start_game 2020/07/05 17:31:19 game id: 530
+login 2020/07/05 17:32:08 
+start_game 2020/07/05 17:32:11 game id: 531
+login 2020/07/05 17:34:02 
+start_game 2020/07/05 17:34:05 game id: 532
+login 2020/07/05 17:34:50 
+start_game 2020/07/05 17:34:53 game id: 533

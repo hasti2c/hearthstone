@@ -6,6 +6,7 @@ import graphics.*;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 
 public abstract class Directory {
     protected CommandRunner runner;

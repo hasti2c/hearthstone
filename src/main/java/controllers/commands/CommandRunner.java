@@ -3,13 +3,13 @@ package controllers.commands;
 import java.io.*;
 import java.util.*;
 import controllers.game.*;
+import gameObjects.cards.abilities.targets.Attackable;
 import gameObjects.player.Player;
 import graphics.*;
 import graphics.directories.*;
 import gameObjects.*;
 import gameObjects.heros.*;
 import gameObjects.cards.*;
-import graphics.directories.playground.targets.*;
 
 public class CommandRunner {
     private final GameController controller;
@@ -79,7 +79,7 @@ public class CommandRunner {
             ret = endTurn();
         else if (CommandType.HERO_POWER.equals(commandType))
             ret = heroPower();
-        else if (CommandType.ATTACK.equals(commandType) && input[0] instanceof Targetable attacker && input[1] instanceof Targetable defender)
+        else if (CommandType.ATTACK.equals(commandType) && input[0] instanceof Attackable attacker && input[1] instanceof Attackable defender)
             ret = attack(attacker, defender);
 
         if (ret && controller.getCurrentPlayer() != null)
@@ -327,7 +327,7 @@ public class CommandRunner {
         return ret;
     }
 
-    private boolean attack(Targetable attacker, Targetable defender) {
+    private boolean attack(Attackable attacker, Attackable defender) {
         Game game = controller.getCurrentPlayer().getGame();
         return game.getCurrentPlayer().attack(attacker, defender);
     }

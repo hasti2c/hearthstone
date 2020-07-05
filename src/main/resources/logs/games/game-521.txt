@@ -1,0 +1,12 @@
+GAME_ID: 521
+STARTED_AT:  2020/07/05 16:47:24 
+
+p1: hasti
+p1_hero: rogue
+p1_deck: smith
+
+p1:end_turn 2020/07/05 16:47:26 
+p1:end_turn 2020/07/05 16:47:27 
+p1:end_turn 2020/07/05 16:47:28 
+p1:play_card 2020/07/05 16:47:29 Friendly Smith
+p1:play_card 2020/07/05 16:47:39 murloc raider

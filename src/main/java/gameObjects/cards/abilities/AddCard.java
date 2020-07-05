@@ -30,6 +30,8 @@ public class AddCard extends Ability {
             case ALL_THREE -> {
                 if (target instanceof Minion minion)
                     addToList(player.getMinionsInGame(), caller, minion, 7);
+                else if (target instanceof Weapon weapon)
+                    player.setCurrentWeapon(weapon);
                 addToList(player.getHand(), caller, target, 12);
                 addToList(player.getLeftInDeck(), caller, target, -1);
             }
@@ -40,6 +42,8 @@ public class AddCard extends Ability {
             case SUMMON -> {
                 if (target instanceof Minion minion)
                     addToList(player.getMinionsInGame(), caller, minion, 7);
+                else if (target instanceof Weapon weapon)
+                    player.setCurrentWeapon(weapon);
             }
         }
     }

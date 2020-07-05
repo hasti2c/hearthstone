@@ -7,17 +7,21 @@ import static gameObjects.cards.abilities.ChangeStatsType.CONSTANT;
 
 public class ChangeStats extends Ability {
     private ChangeStatsType type;
-    private int attackChange, healthChange;
+    private int attackChange, healthChange, durabilityChange;
 
     @Override
     protected void doAction(GamePlayer actionPerformer, Card caller, Card target) {
-        if (!(target instanceof Minion minion))
-            return;
         if (type == CONSTANT) {
-            minion.setAttack(minion.getAttack() + attackChange);
-            minion.setHealth(minion.getHealth() + healthChange);
+            if (target instanceof Minion minion) {
+                minion.setAttack(minion.getAttack() + attackChange);
+                minion.setHealth(minion.getHealth() + healthChange);
+            } else if (target instanceof Weapon weapon) {
+                weapon.setAttack(weapon.getAttack() + attackChange);
+                weapon.setDurability(weapon.getDurability() + durabilityChange);
+            }
         } else {
-            minion.setHealth(((Minion) caller).getHealth());
+            if (target instanceof Minion minion && caller instanceof Minion minionCaller)
+            minion.setHealth(minionCaller.getHealth());
         }
     }
 }

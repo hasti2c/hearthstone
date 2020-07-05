@@ -51,7 +51,8 @@
     "weapons",
     "high",
     "swamp",
-    "spell"
+    "spell",
+    "smith"
   ],
-  "currentDeck": "spell"
+  "currentDeck": "smith"
 }
