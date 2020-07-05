@@ -3,19 +3,22 @@ package gameObjects.cards.abilities;
 import gameObjects.player.*;
 import gameObjects.cards.*;
 
+import java.util.ArrayList;
+
 import static gameObjects.cards.abilities.AddCardType.*;
 
 public class AddCard extends Ability {
     private AddCardType type;
     private CardType discardCardType;
+    private boolean insert = false;
 
     @Override
-    protected void doAction(GamePlayer gamePlayer, Card caller, Card target) {
+    protected void doAction(GamePlayer actionPerformer, Card caller, Card target) {
         GamePlayer player;
-        if (gamePlayer.owns(caller))
-            player = gamePlayer;
+        if (actionPerformer.owns(caller))
+            player = actionPerformer;
         else
-            player = gamePlayer.getOpponent();
+            player = actionPerformer.getOpponent();
 
         if (target.getCardType().equals(discardCardType)) {
             if (type.equals(DRAW))
@@ -25,30 +28,33 @@ public class AddCard extends Ability {
 
         switch (type) {
             case ALL_THREE -> {
-                addToMinionsInGame(player, target);
-                addToDeck(player, target);
-                addToHand(player, target);
+                if (target instanceof Minion minion)
+                    addToList(player.getMinionsInGame(), caller, minion, 7);
+                addToList(player.getHand(), caller, target, 12);
+                addToList(player.getLeftInDeck(), caller, target, -1);
             }
             case DRAW -> {
-                addToHand(player, target);
+                addToList(player.getHand(), caller, target, 12);
                 player.getLeftInDeck().remove(target);
             }
-            case SUMMON -> addToMinionsInGame(player, target);
+            case SUMMON -> {
+                if (target instanceof Minion minion)
+                    addToList(player.getMinionsInGame(), caller, minion, 7);
+            }
         }
     }
 
-    private void addToMinionsInGame(GamePlayer gamePlayer, Card target) {
-        if (gamePlayer.getMinionsInGame().size() < 7 && target instanceof Minion minion)
-            gamePlayer.getMinionsInGame().add((Minion) minion.clone());
-    }
+    private <T extends Card> void addToList(ArrayList<T> arrayList, Card caller, T target, int maxSize) {
+        int index = arrayList.indexOf(caller);
+        if (!insert)
+            index = -1;
 
-    private void addToHand(GamePlayer gamePlayer, Card target) {
-        if (gamePlayer.getHand().size() < 12)
-            gamePlayer.getHand().add(target.clone());
-    }
-
-    private void addToDeck(GamePlayer gamePlayer, Card target) {
-        gamePlayer.getLeftInDeck().add(target.clone());
+        if (maxSize == -1 || arrayList.size() < maxSize) {
+            if (index == -1)
+                arrayList.add((T) target.clone());
+            else
+                arrayList.add(index, (T) target.clone());
+        }
     }
 }
 

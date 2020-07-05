@@ -1,0 +1,22 @@
+GAME_ID: 492
+STARTED_AT:  2020/07/05 13:30:51 
+
+p1: hasti
+p1_hero: mage
+p1_deck: spell
+
+p1:play_card 2020/07/05 13:30:56 murloc raider
+p1:end_turn 2020/07/05 13:30:57 
+p1:end_turn 2020/07/05 13:30:58 
+p1:play_card 2020/07/05 13:30:59 murloc raider
+p1:end_turn 2020/07/05 13:30:59 
+p1:end_turn 2020/07/05 13:31:00 
+p1:play_card 2020/07/05 13:31:01 voidwalker
+p1:end_turn 2020/07/05 13:31:01 
+p1:play_card 2020/07/05 13:31:02 Book of Specters
+p1:play_card 2020/07/05 13:31:03 voidwalker
+p1:end_turn 2020/07/05 13:31:04 
+p1:end_turn 2020/07/05 13:31:04 
+p1:play_card 2020/07/05 13:31:06 murloc raider
+p1:end_turn 2020/07/05 13:31:09 
+p1:play_card 2020/07/05 13:31:11 Polymorph

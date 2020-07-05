@@ -1,0 +1,19 @@
+GAME_ID: 486
+STARTED_AT:  2020/07/05 13:14:11 
+
+p1: hasti
+p1_hero: mage
+p1_deck: spell
+
+p1:play_card 2020/07/05 13:14:12 voidwalker
+p1:end_turn 2020/07/05 13:14:13 
+p1:end_turn 2020/07/05 13:14:14 
+p1:end_turn 2020/07/05 13:14:14 
+p1:end_turn 2020/07/05 13:14:16 
+p1:play_card 2020/07/05 13:14:17 murloc raider
+p1:end_turn 2020/07/05 13:14:18 
+p1:end_turn 2020/07/05 13:14:18 
+p1:end_turn 2020/07/05 13:14:19 
+p1:play_card 2020/07/05 13:14:21 voidwalker
+p1:end_turn 2020/07/05 13:14:22 
+p1:play_card 2020/07/05 13:14:24 Polymorph

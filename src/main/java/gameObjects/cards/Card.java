@@ -5,12 +5,14 @@ import gameObjects.*;
 import gameObjects.player.*;
 import gameObjects.cards.abilities.*;
 import gameObjects.heros.*;
+import graphics.directories.playground.GamePlayerGraphics;
 import javafx.scene.image.*;
 import javafx.scene.paint.*;
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 import static gameObjects.cards.abilities.AbilityType.*;
+import static gameObjects.cards.abilities.TargetType.SELECTED;
 
 public abstract class Card implements Configable {
     private String name, description;
@@ -23,6 +25,7 @@ public abstract class Card implements Configable {
     private ChangeStats changeStatsAbility;
     private Attack attackAbility;
     private AddCard addCardAbility;
+    private Remove removeAbility;
 
     @Override
     public void initialize(GameController controller) {
@@ -33,6 +36,8 @@ public abstract class Card implements Configable {
             abilities.add(attackAbility);
         if (addCardAbility != null)
             abilities.add(addCardAbility);
+        if (removeAbility != null)
+            abilities.add(removeAbility);
     }
 
     @Override
@@ -240,5 +245,12 @@ public abstract class Card implements Configable {
         for (Ability ability : abilities)
             if (TAKES_DAMAGE.equals(ability.getAbilityType()) && this == damaged)
                 ability.callDoAction(actionPerformer, this, damaged);
+    }
+
+    public boolean needsTarget() {
+        for (Ability ability : abilities)
+            if (SELECTED.equals(ability.getTargetType()))
+                return true;
+        return false;
     }
 }

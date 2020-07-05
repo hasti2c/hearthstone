@@ -1,0 +1,33 @@
+GAME_ID: 459
+STARTED_AT:  2020/07/05 12:18:11 
+
+p1: hasti
+p1_hero: mage
+p1_deck: spell
+
+p1:play_card 2020/07/05 12:18:12 voidwalker
+p1:end_turn 2020/07/05 12:18:13 
+p1:play_card 2020/07/05 12:18:19 murloc raider
+p1:end_turn 2020/07/05 12:18:26 
+p1:play_card 2020/07/05 12:18:27 murloc raider
+p1:end_turn 2020/07/05 12:18:31 
+p1:play_card 2020/07/05 12:18:32 voidwalker
+p1:end_turn 2020/07/05 12:19:34 
+p1:end_turn 2020/07/05 12:19:35 
+p1:end_turn 2020/07/05 12:19:35 
+p1:end_turn 2020/07/05 12:19:35 
+p1:end_turn 2020/07/05 12:19:35 
+p1:end_turn 2020/07/05 12:19:36 
+p1:end_turn 2020/07/05 12:19:36 
+p1:play_card 2020/07/05 12:19:37 Swarm of Locusts
+p1:end_turn 2020/07/05 12:19:43 
+p1:play_card 2020/07/05 12:19:45 murloc raider
+p1:end_turn 2020/07/05 12:19:47 
+p1:end_turn 2020/07/05 12:19:47 
+p1:play_card 2020/07/05 12:19:48 Book of Specters
+p1:play_card 2020/07/05 12:19:49 voidwalker
+p1:end_turn 2020/07/05 12:19:50 
+p1:play_card 2020/07/05 12:19:53 Pharaohs Blessing
+p1:end_turn 2020/07/05 12:19:56 
+p1:play_card 2020/07/05 12:19:58 Pharaohs Blessing
+p1:end_turn 2020/07/05 12:20:02 

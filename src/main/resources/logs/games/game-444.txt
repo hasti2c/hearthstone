@@ -1,0 +1,14 @@
+GAME_ID: 444
+STARTED_AT:  2020/07/05 11:44:33 
+
+p1: hasti
+p1_hero: mage
+p1_deck: spell
+
+p1:end_turn 2020/07/05 11:44:36 
+p1:end_turn 2020/07/05 11:44:37 
+p1:end_turn 2020/07/05 11:44:37 
+p1:end_turn 2020/07/05 11:44:39 
+p1:play_card 2020/07/05 11:44:40 voidwalker
+p1:end_turn 2020/07/05 11:44:42 
+p1:play_card 2020/07/05 11:44:43 voidwalker

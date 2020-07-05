@@ -9,11 +9,11 @@ public class Attack extends Ability {
     private int damageAmount;
 
     @Override
-    protected void doAction(GamePlayer gamePlayer, Card caller, Card target) {
+    protected void doAction(GamePlayer actionPerformer, Card caller, Card target) {
         if (!(caller instanceof Minion targeter && target instanceof Minion defender))
             return;
         if (type.equals(NORMAL))
-            gamePlayer.rawAttack(targeter, defender);
+            actionPerformer.rawAttack(targeter, defender);
         else
             defender.setHealth(defender.getHealth() - damageAmount);
     }

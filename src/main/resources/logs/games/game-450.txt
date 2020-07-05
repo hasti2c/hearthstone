@@ -1,0 +1,19 @@
+GAME_ID: 450
+STARTED_AT:  2020/07/05 11:59:53 
+
+p1: hasti
+p1_hero: mage
+p1_deck: spell
+
+p1:end_turn 2020/07/05 11:59:54 
+p1:end_turn 2020/07/05 11:59:54 
+p1:end_turn 2020/07/05 11:59:54 
+p1:end_turn 2020/07/05 11:59:54 
+p1:end_turn 2020/07/05 11:59:55 
+p1:end_turn 2020/07/05 11:59:55 
+p1:end_turn 2020/07/05 11:59:56 
+p1:end_turn 2020/07/05 11:59:56 
+p1:end_turn 2020/07/05 11:59:56 
+p1:end_turn 2020/07/05 11:59:57 
+p1:end_turn 2020/07/05 12:00:06 
+p1:play_card 2020/07/05 12:00:09 Pharaohs Blessing

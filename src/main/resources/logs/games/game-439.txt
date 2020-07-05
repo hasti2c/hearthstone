@@ -10,3 +10,5 @@ p1:end_turn 2020/07/04 20:06:42
 p1:play_card 2020/07/04 20:06:43 Book of Specters
 p1:end_turn 2020/07/04 20:07:32 
 p1:play_card 2020/07/04 20:07:37 Book of Specters
+
+ENDED_AT:  2020/07/04 20:09:41 

@@ -2,6 +2,7 @@ package gameObjects.player;
 
 import controllers.game.*;
 import gameObjects.*;
+import graphics.directories.playground.GamePlayerGraphics;
 import graphics.directories.playground.targets.*;
 import gameObjects.cards.*;
 import gameObjects.heros.*;
@@ -20,6 +21,7 @@ public class GamePlayer {
     private boolean usedHeroPower, randomDraw = true;
     private final PlayerFaction playerFaction;
     private final Game game;
+    private GamePlayerGraphics graphics;
 
     public GamePlayer(GameController controller, Game game, PlayerFaction playerFaction) {
         Player player = controller.getCurrentPlayer();
@@ -247,5 +249,13 @@ public class GamePlayer {
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setGraphics(GamePlayerGraphics graphics) {
+        this.graphics = graphics;
+    }
+
+    public GamePlayerGraphics getGraphics() {
+        return graphics;
     }
 }

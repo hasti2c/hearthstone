@@ -6,5 +6,6 @@ public enum TargetType {
     ALL_ELSE,
     RANDOM,
     BY_STATS,
-    DECK
+    DECK,
+    SELECTED
 }

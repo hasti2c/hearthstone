@@ -1,0 +1,28 @@
+GAME_ID: 488
+STARTED_AT:  2020/07/05 13:28:47 
+
+p1: hasti
+p1_hero: mage
+p1_deck: spell
+
+p1:play_card 2020/07/05 13:28:49 voidwalker
+p1:end_turn 2020/07/05 13:28:50 
+p1:end_turn 2020/07/05 13:28:51 
+p1:end_turn 2020/07/05 13:28:53 
+p1:end_turn 2020/07/05 13:28:53 
+p1:play_card 2020/07/05 13:28:54 murloc raider
+p1:end_turn 2020/07/05 13:28:55 
+p1:end_turn 2020/07/05 13:28:55 
+p1:play_card 2020/07/05 13:28:56 voidwalker
+p1:end_turn 2020/07/05 13:28:58 
+p1:end_turn 2020/07/05 13:29:00 
+p1:play_card 2020/07/05 13:29:01 murloc raider
+p1:end_turn 2020/07/05 13:29:03 
+p1:play_card 2020/07/05 13:29:04 Polymorph
+p1:end_turn 2020/07/05 13:29:08 
+p1:end_turn 2020/07/05 13:29:12 
+p1:play_card 2020/07/05 13:29:13 murloc raider
+p1:end_turn 2020/07/05 13:29:14 
+p1:end_turn 2020/07/05 13:29:16 
+p1:play_card 2020/07/05 13:29:17 Swarm of Locusts
+p1:end_turn 2020/07/05 13:29:22 

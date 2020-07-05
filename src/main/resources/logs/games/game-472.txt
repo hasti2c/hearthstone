@@ -1,0 +1,24 @@
+GAME_ID: 472
+STARTED_AT:  2020/07/05 12:52:20 
+
+p1: hasti
+p1_hero: mage
+p1_deck: spell
+
+p1:end_turn 2020/07/05 12:52:21 
+p1:end_turn 2020/07/05 12:52:22 
+p1:play_card 2020/07/05 12:52:24 Book of Specters
+p1:end_turn 2020/07/05 12:52:25 
+p1:play_card 2020/07/05 12:52:25 voidwalker
+p1:play_card 2020/07/05 12:52:26 voidwalker
+p1:end_turn 2020/07/05 12:52:28 
+p1:end_turn 2020/07/05 12:52:28 
+p1:end_turn 2020/07/05 12:52:29 
+p1:end_turn 2020/07/05 12:52:29 
+p1:end_turn 2020/07/05 12:52:30 
+p1:end_turn 2020/07/05 12:52:30 
+p1:end_turn 2020/07/05 12:52:31 
+p1:play_card 2020/07/05 12:52:33 Swarm of Locusts
+p1:end_turn 2020/07/05 12:52:34 
+p1:play_card 2020/07/05 12:52:36 murloc raider
+p1:play_card 2020/07/05 12:52:37 Polymorph

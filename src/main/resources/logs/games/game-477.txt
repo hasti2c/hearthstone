@@ -1,0 +1,33 @@
+GAME_ID: 477
+STARTED_AT:  2020/07/05 12:57:50 
+
+p1: hasti
+p1_hero: mage
+p1_deck: spell
+
+p1:play_card 2020/07/05 12:57:53 voidwalker
+p1:end_turn 2020/07/05 12:57:55 
+p1:end_turn 2020/07/05 12:57:55 
+p1:end_turn 2020/07/05 12:57:55 
+p1:end_turn 2020/07/05 12:57:56 
+p1:end_turn 2020/07/05 12:57:56 
+p1:end_turn 2020/07/05 12:57:57 
+p1:end_turn 2020/07/05 12:57:58 
+p1:play_card 2020/07/05 12:57:59 Polymorph
+p1:end_turn 2020/07/05 12:58:11 
+p1:end_turn 2020/07/05 12:58:13 
+p1:play_card 2020/07/05 12:58:14 voidwalker
+p1:play_card 2020/07/05 12:58:16 Polymorph
+p1:end_turn 2020/07/05 12:58:17 
+p1:end_turn 2020/07/05 12:58:19 
+p1:end_turn 2020/07/05 12:58:20 
+p1:end_turn 2020/07/05 12:58:21 
+p1:play_card 2020/07/05 12:58:22 Pharaohs Blessing
+p1:play_card 2020/07/05 12:58:25 voidwalker
+p1:end_turn 2020/07/05 12:58:26 
+p1:play_card 2020/07/05 12:58:27 murloc raider
+p1:play_card 2020/07/05 12:58:28 Swarm of Locusts
+p1:end_turn 2020/07/05 12:58:29 
+p1:end_turn 2020/07/05 12:58:29 
+p1:play_card 2020/07/05 12:58:31 Polymorph
+p1:play_card 2020/07/05 12:58:37 Polymorph

@@ -15,6 +15,11 @@ public abstract class TargetEventHandler implements EventHandler<MouseEvent> {
         this.node = node;
     }
 
+    protected void initialize() {
+        deselect();
+        deselectedMode();
+    }
+
     @Override
     public void handle(MouseEvent mouseEvent) {
         if (mouseEvent.getEventType() == MouseEvent.MOUSE_CLICKED) {

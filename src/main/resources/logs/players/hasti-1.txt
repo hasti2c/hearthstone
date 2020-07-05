@@ -1488,3 +1488,111 @@ login 2020/07/04 20:03:35
 start_game 2020/07/04 20:03:38 game id: 438
 login 2020/07/04 20:06:21 
 start_game 2020/07/04 20:06:24 game id: 439
+end_game 2020/07/04 20:09:41 game id: 439
+logout 2020/07/04 20:09:41 
+login 2020/07/05 11:33:54 
+start_game 2020/07/05 11:33:57 game id: 440
+login 2020/07/05 11:35:59 
+start_game 2020/07/05 11:36:02 game id: 441
+login 2020/07/05 11:37:53 
+start_game 2020/07/05 11:37:55 game id: 442
+login 2020/07/05 11:38:45 
+start_game 2020/07/05 11:38:47 game id: 443
+login 2020/07/05 11:42:26 
+start_game 2020/07/05 11:44:33 game id: 444
+login 2020/07/05 11:53:44 
+start_game 2020/07/05 11:53:47 game id: 445
+login 2020/07/05 11:56:49 
+start_game 2020/07/05 11:56:52 game id: 446
+add 2020/07/05 11:57:12 card: Pharaohs Blessing -> deck: mage-spell
+add 2020/07/05 11:57:12 card: Pharaohs Blessing -> deck: mage-spell
+start_game 2020/07/05 11:57:15 game id: 447
+login 2020/07/05 11:58:20 
+start_game 2020/07/05 11:58:24 game id: 448
+login 2020/07/05 11:58:55 
+start_game 2020/07/05 11:58:58 game id: 449
+login 2020/07/05 11:59:50 
+start_game 2020/07/05 11:59:53 game id: 450
+login 2020/07/05 12:03:40 
+start_game 2020/07/05 12:03:43 game id: 451
+login 2020/07/05 12:06:05 
+start_game 2020/07/05 12:06:07 game id: 452
+login 2020/07/05 12:08:22 
+start_game 2020/07/05 12:08:25 game id: 453
+login 2020/07/05 12:09:01 
+start_game 2020/07/05 12:09:04 game id: 454
+login 2020/07/05 12:11:35 
+start_game 2020/07/05 12:11:38 game id: 455
+login 2020/07/05 12:13:06 
+start_game 2020/07/05 12:13:09 game id: 456
+login 2020/07/05 12:14:46 
+start_game 2020/07/05 12:14:49 game id: 457
+login 2020/07/05 12:16:01 
+start_game 2020/07/05 12:16:04 game id: 458
+login 2020/07/05 12:18:08 
+start_game 2020/07/05 12:18:11 game id: 459
+start_game 2020/07/05 12:20:08 game id: 460
+start_game 2020/07/05 12:21:02 game id: 461
+login 2020/07/05 12:22:33 
+start_game 2020/07/05 12:22:36 game id: 462
+login 2020/07/05 12:23:52 
+start_game 2020/07/05 12:23:55 game id: 463
+login 2020/07/05 12:24:44 
+start_game 2020/07/05 12:24:47 game id: 464
+login 2020/07/05 12:31:25 
+start_game 2020/07/05 12:31:28 game id: 465
+login 2020/07/05 12:32:03 
+start_game 2020/07/05 12:32:06 game id: 466
+login 2020/07/05 12:36:01 
+start_game 2020/07/05 12:36:04 game id: 467
+login 2020/07/05 12:43:21 
+start_game 2020/07/05 12:43:24 game id: 468
+add 2020/07/05 12:43:46 card: Polymorph -> deck: mage-spell
+add 2020/07/05 12:43:47 card: Polymorph -> deck: mage-spell
+start_game 2020/07/05 12:43:49 game id: 469
+login 2020/07/05 12:44:41 
+start_game 2020/07/05 12:44:44 game id: 470
+login 2020/07/05 12:49:22 
+start_game 2020/07/05 12:49:25 game id: 471
+login 2020/07/05 12:52:17 
+start_game 2020/07/05 12:52:20 game id: 472
+login 2020/07/05 12:53:30 
+start_game 2020/07/05 12:53:33 game id: 473
+login 2020/07/05 12:54:12 
+start_game 2020/07/05 12:54:15 game id: 474
+login 2020/07/05 12:54:37 
+start_game 2020/07/05 12:54:40 game id: 475
+login 2020/07/05 12:55:39 
+start_game 2020/07/05 12:55:41 game id: 476
+login 2020/07/05 12:57:47 
+start_game 2020/07/05 12:57:50 game id: 477
+login 2020/07/05 13:00:27 
+start_game 2020/07/05 13:00:31 game id: 478
+login 2020/07/05 13:01:15 
+start_game 2020/07/05 13:01:17 game id: 479
+login 2020/07/05 13:04:07 
+start_game 2020/07/05 13:04:10 game id: 480
+login 2020/07/05 13:06:25 
+start_game 2020/07/05 13:06:27 game id: 481
+login 2020/07/05 13:06:58 
+start_game 2020/07/05 13:07:01 game id: 482
+login 2020/07/05 13:07:49 
+start_game 2020/07/05 13:07:51 game id: 483
+login 2020/07/05 13:10:44 
+start_game 2020/07/05 13:10:46 game id: 484
+login 2020/07/05 13:13:19 
+start_game 2020/07/05 13:13:21 game id: 485
+login 2020/07/05 13:14:06 
+start_game 2020/07/05 13:14:11 game id: 486
+login 2020/07/05 13:18:13 
+start_game 2020/07/05 13:18:16 game id: 487
+login 2020/07/05 13:28:44 
+start_game 2020/07/05 13:28:47 game id: 488
+start_game 2020/07/05 13:29:36 game id: 489
+start_game 2020/07/05 13:29:51 game id: 490
+add 2020/07/05 13:30:02 card: korkron elite -> deck: mage-spell
+add 2020/07/05 13:30:02 card: korkron elite -> deck: mage-spell
+add 2020/07/05 13:30:03 card: senjin shieldmasta -> deck: mage-spell
+start_game 2020/07/05 13:30:06 game id: 491
+login 2020/07/05 13:30:49 
+start_game 2020/07/05 13:30:51 game id: 492

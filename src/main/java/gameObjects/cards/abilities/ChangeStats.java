@@ -10,7 +10,7 @@ public class ChangeStats extends Ability {
     private int attackChange, healthChange;
 
     @Override
-    protected void doAction(GamePlayer gamePlayer, Card caller, Card target) {
+    protected void doAction(GamePlayer actionPerformer, Card caller, Card target) {
         if (!(target instanceof Minion minion))
             return;
         if (type == CONSTANT) {

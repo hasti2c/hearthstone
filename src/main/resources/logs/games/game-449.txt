@@ -1,0 +1,24 @@
+GAME_ID: 449
+STARTED_AT:  2020/07/05 11:58:58 
+
+p1: hasti
+p1_hero: mage
+p1_deck: spell
+
+p1:play_card 2020/07/05 11:59:01 voidwalker
+p1:end_turn 2020/07/05 11:59:02 
+p1:play_card 2020/07/05 11:59:03 voidwalker
+p1:end_turn 2020/07/05 11:59:04 
+p1:play_card 2020/07/05 11:59:05 voidwalker
+p1:end_turn 2020/07/05 11:59:06 
+p1:play_card 2020/07/05 11:59:07 Book of Specters
+p1:end_turn 2020/07/05 11:59:09 
+p1:play_card 2020/07/05 11:59:10 murloc raider
+p1:end_turn 2020/07/05 11:59:16 
+p1:end_turn 2020/07/05 11:59:16 
+p1:end_turn 2020/07/05 11:59:16 
+p1:end_turn 2020/07/05 11:59:16 
+p1:end_turn 2020/07/05 11:59:17 
+p1:end_turn 2020/07/05 11:59:17 
+p1:end_turn 2020/07/05 11:59:17 
+p1:play_card 2020/07/05 11:59:19 Pharaohs Blessing

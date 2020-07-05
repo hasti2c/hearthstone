@@ -61,7 +61,7 @@ public class PlayGround extends Directory {
     }
 
     @Override
-    protected void config() {
+    public void config() {
         for (GamePlayerGraphics gamePlayer : gamePlayers)
             gamePlayer.config();
         gameEventsLabel.setText("Game Events:\n" + game.getGameEvents());
