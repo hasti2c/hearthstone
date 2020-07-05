@@ -14,6 +14,7 @@
     "targetCardType": "MINION",
     "type": "SUMMON",
     "targetHealth": 2,
-    "targetAttack": 3
+    "targetAttack": 3,
+    "hasTaunt": true
   }
 }

@@ -1,0 +1,21 @@
+GAME_ID: 550
+STARTED_AT:  2020/07/05 19:45:55 
+
+p1: hasti
+p1_hero: priest
+p1_deck: high
+
+p1:play_card 2020/07/05 19:45:58 murloc raider
+p1:end_turn 2020/07/05 19:45:58 
+p1:end_turn 2020/07/05 19:45:59 
+p1:end_turn 2020/07/05 19:45:59 
+p1:end_turn 2020/07/05 19:45:59 
+p1:end_turn 2020/07/05 19:45:59 
+p1:end_turn 2020/07/05 19:45:59 
+p1:end_turn 2020/07/05 19:45:59 
+p1:end_turn 2020/07/05 19:45:59 
+p1:end_turn 2020/07/05 19:46:00 
+p1:end_turn 2020/07/05 19:46:00 
+p1:play_card 2020/07/05 19:46:01 Swarm of Locusts
+p1:end_turn 2020/07/05 19:46:13 
+p1:play_card 2020/07/05 19:46:15 Swarm of Locusts

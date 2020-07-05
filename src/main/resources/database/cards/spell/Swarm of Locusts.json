@@ -13,6 +13,7 @@
     "targetCardType": "MINION",
     "targetHealth": 1,
     "targetAttack": 1,
+    "hasRush": true,
     "times": 7,
     "type": "SUMMON"
   }

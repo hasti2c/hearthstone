@@ -5,7 +5,6 @@ import gameObjects.player.*;
 public interface Attackable extends Targetable {
     boolean getHasAttacked();
     void setHasAttacked(boolean hasAttacked);
-    int getHealth();
-    void setHealth(int health);
+    void doDamage(int damage);
     int getAttack(GamePlayer gamePlayer);
 }

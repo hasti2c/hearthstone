@@ -8,6 +8,7 @@ import static gameObjects.cards.abilities.ChangeStatsType.CONSTANT;
 public class ChangeStats extends Ability {
     private ChangeStatsType type;
     private int attackChange, healthChange, durabilityChange;
+    private boolean giveTaunt, giveDivineShield;
 
     @Override
     protected void doAction(GamePlayer actionPerformer, Card caller, Card target) {
@@ -15,6 +16,10 @@ public class ChangeStats extends Ability {
             if (target instanceof Minion minion) {
                 minion.setAttack(minion.getAttack() + attackChange);
                 minion.setHealth(minion.getHealth() + healthChange);
+                if (giveTaunt)
+                    minion.setTaunt(true);
+                if (giveDivineShield)
+                    minion.setDivineShield(true);
             } else if (target instanceof Weapon weapon) {
                 weapon.setAttack(weapon.getAttack() + attackChange);
                 weapon.setDurability(weapon.getDurability() + durabilityChange);

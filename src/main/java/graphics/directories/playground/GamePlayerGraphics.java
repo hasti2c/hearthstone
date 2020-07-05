@@ -169,14 +169,14 @@ public class GamePlayerGraphics {
             disableTarget(hero);
     }
 
-    private void defenseMode() {
+    private void defenseMode(Attackable attacker) {
         for (Minion minion : gamePlayer.getMinionsInGame())
-            if (gamePlayer.canBeAttacked(minion))
+            if (gamePlayer.canBeAttacked(attacker, minion))
                 enableTarget(minion);
             else
                 disableTarget(minion);
         Hero hero = gamePlayer.getInventory().getCurrentHero();
-        if (gamePlayer.canBeAttacked(hero))
+        if (gamePlayer.canBeAttacked(attacker, hero))
             enableTarget(hero);
         else
             disableTarget(hero);
@@ -335,8 +335,8 @@ public class GamePlayerGraphics {
 
         @Override
         protected void oneSelectedMode() {
-            playGround.getCurrentGamePlayer().defenseMode();
-            playGround.getOtherGamePlayer().defenseMode();
+            playGround.getCurrentGamePlayer().defenseMode((Attackable) targetable);
+            playGround.getOtherGamePlayer().defenseMode((Attackable) targetable);
         }
 
         @Override

@@ -13,6 +13,8 @@
     "targetCardType": "MINION",
     "type": "CONSTANT",
     "healthChange": 4,
-    "attackChange": 4
+    "attackChange": 4,
+    "giveTaunt": true,
+    "giveDivineShield": true
   }
 }

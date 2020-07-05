@@ -1681,3 +1681,58 @@ login 2020/07/05 17:34:02
 start_game 2020/07/05 17:34:05 game id: 532
 login 2020/07/05 17:34:50 
 start_game 2020/07/05 17:34:53 game id: 533
+login 2020/07/05 18:48:54 
+start_game 2020/07/05 18:48:58 game id: 534
+add 2020/07/05 18:49:17 card: Tomb Warden -> deck: rogue-smith
+add 2020/07/05 18:49:17 card: Tomb Warden -> deck: rogue-smith
+start_game 2020/07/05 18:49:19 game id: 535
+login 2020/07/05 18:50:25 
+start_game 2020/07/05 18:50:27 game id: 536
+login 2020/07/05 18:51:41 
+start_game 2020/07/05 18:51:45 game id: 537
+login 2020/07/05 18:52:41 
+start_game 2020/07/05 18:52:44 game id: 538
+login 2020/07/05 19:03:04 
+start_game 2020/07/05 19:03:07 game id: 539
+login 2020/07/05 19:21:00 
+start_game 2020/07/05 19:21:03 game id: 540
+add 2020/07/05 19:21:13 card: Sathrovarr -> deck: rogue-smith
+add 2020/07/05 19:21:13 card: Sathrovarr -> deck: rogue-smith
+start_game 2020/07/05 19:21:16 game id: 541
+login 2020/07/05 19:26:12 
+start_game 2020/07/05 19:26:16 game id: 542
+add 2020/07/05 19:28:56 card: Pharaohs Blessing -> deck: rogue-smith
+add 2020/07/05 19:28:56 card: Pharaohs Blessing -> deck: rogue-smith
+start_game 2020/07/05 19:29:01 game id: 543
+login 2020/07/05 19:37:08 
+start_game 2020/07/05 19:37:11 game id: 544
+add 2020/07/05 19:37:27 card: Security Rover -> deck: rogue-smith
+add 2020/07/05 19:37:27 card: Security Rover -> deck: rogue-smith
+start_game 2020/07/05 19:37:33 game id: 545
+login 2020/07/05 19:39:14 
+start_game 2020/07/05 19:39:16 game id: 546
+login 2020/07/05 19:41:32 
+start_game 2020/07/05 19:41:36 game id: 547
+login 2020/07/05 19:42:37 
+start_game 2020/07/05 19:42:44 game id: 548
+login 2020/07/05 19:44:42 
+start_game 2020/07/05 19:44:58 game id: 549
+add 2020/07/05 19:45:41 card: Swarm of Locusts -> deck: rogue-smith
+select 2020/07/05 19:45:45 deck: high
+select 2020/07/05 19:45:47 deck: minions
+select 2020/07/05 19:45:47 deck: high
+add 2020/07/05 19:45:51 card: Swarm of Locusts -> deck: priest-high
+add 2020/07/05 19:45:52 card: Swarm of Locusts -> deck: priest-high
+start_game 2020/07/05 19:45:55 game id: 550
+login 2020/07/05 20:23:46 
+start_game 2020/07/05 20:23:49 game id: 551
+login 2020/07/05 20:27:07 
+start_game 2020/07/05 20:27:10 game id: 552
+login 2020/07/05 20:27:45 
+start_game 2020/07/05 20:27:47 game id: 553
+login 2020/07/05 20:28:35 
+start_game 2020/07/05 20:28:37 game id: 554
+login 2020/07/05 20:31:04 
+start_game 2020/07/05 20:31:07 game id: 555
+select 2020/07/05 20:31:17 deck: smith
+start_game 2020/07/05 20:31:27 game id: 556

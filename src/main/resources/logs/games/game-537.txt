@@ -1,0 +1,22 @@
+GAME_ID: 537
+STARTED_AT:  2020/07/05 18:51:45 
+
+p1: hasti
+p1_hero: rogue
+p1_deck: smith
+
+p1:end_turn 2020/07/05 18:51:48 
+p1:end_turn 2020/07/05 18:51:48 
+p1:end_turn 2020/07/05 18:51:48 
+p1:end_turn 2020/07/05 18:51:48 
+p1:end_turn 2020/07/05 18:51:48 
+p1:end_turn 2020/07/05 18:51:48 
+p1:end_turn 2020/07/05 18:51:49 
+p1:end_turn 2020/07/05 18:51:49 
+p1:end_turn 2020/07/05 18:51:49 
+p1:end_turn 2020/07/05 18:51:49 
+p1:end_turn 2020/07/05 18:51:49 
+p1:end_turn 2020/07/05 18:51:49 
+p1:end_turn 2020/07/05 18:51:50 
+p1:end_turn 2020/07/05 18:51:50 
+p1:play_card 2020/07/05 18:51:51 Tomb Warden

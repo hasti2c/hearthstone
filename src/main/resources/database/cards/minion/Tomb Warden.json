@@ -8,6 +8,7 @@
   "heroClass": "NEUTRAL",
   "rarity": "RARE",
   "cardType": "MINION",
+  "taunt": true,
   "addCardAbility": {
     "abilityType": "BATTLE_CRY",
     "callerSide": "SELF",

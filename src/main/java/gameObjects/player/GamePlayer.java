@@ -124,9 +124,10 @@ public class GamePlayer {
         inventory.getCurrentDeck().addUse(card);
         mana -= card.getMana();
         hand.remove(card);
-        if (card instanceof Minion minion)
+        if (card instanceof Minion minion) {
             minionsInGame.add(minion);
-        else if (card instanceof Weapon weapon) {
+            minion.setAsleep(true);
+        } else if (card instanceof Weapon weapon) {
             setCurrentWeapon(weapon);
         } else if (card instanceof Spell spell)
             lastSpell = spell;
@@ -180,21 +181,48 @@ public class GamePlayer {
 
     public void endTurn() {
         doCardAction("doActionOnEndTurn");
+        for (Minion minion : getMinionsInGame())
+            minion.setAsleep(false);
     }
 
-    public boolean canAttack(Attackable attackable) {
-        boolean ret = this == game.getCurrentPlayer() && !attackable.getHasAttacked();
-        if (attackable instanceof Minion minion)
-            return ret && minionsInGame.contains(minion);
-        return ret && currentWeapon != null;
+    public boolean canAttack(Attackable attacker) {
+        boolean ret = this == game.getCurrentPlayer() && !attacker.getHasAttacked();
+        if (attacker instanceof Hero)
+            return ret && currentWeapon != null;
+        Minion minion = (Minion) attacker;
+        ret &= minionsInGame.contains(minion) && (!minion.getAsleep() || minion.getRush());
+        return ret;
+        /*
+        if (target == null || target instanceof Minion)
+            ret &= !minion.getAsleep() || minion.getRush();
+        else
+            ret &= !minion.getAsleep();
+        return ret;
+         */
     }
 
-    public boolean canBeAttacked(Attackable attackable) {
-        return this != game.getCurrentPlayer() && (attackable instanceof Hero || minionsInGame.contains(attackable));
+    public boolean canBeAttacked(Attackable attacker, Attackable target) {
+        boolean ret = this != game.getCurrentPlayer();
+        if (target instanceof Minion minion) {
+            ret &= minionsInGame.contains(minion);
+            ret &= !hasAnyTaunt() || minion.getTaunt();
+        } else {
+            ret &= !hasAnyTaunt();
+            if (attacker instanceof Minion minion)
+                ret &= !minion.getAsleep();
+        }
+        return ret;
+    }
+
+    private boolean hasAnyTaunt() {
+        for (Minion minion : minionsInGame)
+            if (minion.getTaunt())
+                return true;
+        return false;
     }
 
     public boolean attack(Attackable attacker, Attackable defender) {
-        if (!canAttack(attacker) || !getOpponent().canBeAttacked(defender))
+        if (!canAttack(attacker) || !getOpponent().canBeAttacked(attacker, defender))
             return false;
         rawAttack(attacker, defender);
         attacker.setHasAttacked(true);
@@ -206,8 +234,8 @@ public class GamePlayer {
     public void rawAttack(Attackable attacker, Attackable defender) {
         if (defender instanceof Card card)
             doCardAction("doActionOnDamaged", card);
-        attacker.setHealth(attacker.getHealth() - defender.getAttack(getOpponent()));
-        defender.setHealth(defender.getHealth() - attacker.getAttack(this));
+        attacker.doDamage(defender.getAttack(getOpponent()));
+        defender.doDamage(attacker.getAttack(this));
         if (attacker instanceof Hero && currentWeapon != null)
             currentWeapon.setDurability(currentWeapon.getDurability() - 1);
     }

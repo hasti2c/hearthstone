@@ -34,6 +34,10 @@ public class Hero implements Configable, Attackable {
         }
     }
 
+    public void doDamage(int damage) {
+        health -= damage;
+    }
+
     public boolean getHasAttacked() {
         return hasAttacked;
     }
@@ -44,10 +48,6 @@ public class Hero implements Configable, Attackable {
 
     public int getHealth() {
         return health;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
     }
 
     public int getAttack(GamePlayer gamePlayer) {

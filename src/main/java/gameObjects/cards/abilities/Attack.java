@@ -15,7 +15,7 @@ public class Attack extends Ability {
         if (type.equals(NORMAL))
             actionPerformer.rawAttack(targeter, defender);
         else
-            defender.setHealth(defender.getHealth() - damageAmount);
+            defender.doDamage(damageAmount);
     }
 }
 

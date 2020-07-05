@@ -20,6 +20,7 @@ public abstract class Ability implements Configable {
     protected CardType targetCardType;
     private int times = 1;
     private int targetAttack, targetHealth;
+    private boolean hasTaunt = false, hasRush = false;
     private Ability nextAbility;
     private AddCard nextAddCard;
     private ChangeStats nextChangeStats;
@@ -82,16 +83,21 @@ public abstract class Ability implements Configable {
             case BY_STATS -> {
                 ArrayList<Card> possibleCards = new ArrayList<>();
                 for (Card card : GameController.getCardsList())
-                    if (isValidTarget(card) && ((Minion) card).getHealth() == targetHealth && ((Minion) card).getAttack() == targetAttack)
+                    if (isValidTarget(card) && card instanceof Minion minion && matchesStats (minion))
                         possibleCards.add(card);
                 if (possibleCards.size() > 0)
                     targets.add(Card.getRandomCard(possibleCards));
                 else {
-                    Minion minion = (Minion) Card.getRandomCard(GameController.getCardsList());
+                    Minion minion = (Minion) Card.getRandomCard(getValidSublist(GameController.getCardsList()));
                     if (minion == null)
                         break;
                     minion.setHealth(targetHealth);
                     minion.setAttack(targetAttack);
+                    if (hasTaunt)
+                        minion.setTaunt(true);
+                    if (hasRush)
+                        minion.setRush(true);
+                    targets.add(minion);
                 }
             }
             case DECK -> {
@@ -143,6 +149,14 @@ public abstract class Ability implements Configable {
 
     private boolean isValidTarget(Card target) {
         return targetCardType == null || targetCardType.equals(target.getCardType());
+    }
+
+    private boolean matchesStats(Minion minion) {
+        boolean ret = targetHealth == 0 || minion.getHealth() == targetHealth;
+        ret &= targetAttack == 0 || minion.getAttack() == targetAttack;
+        ret &= !hasTaunt || minion.getTaunt();
+        ret &= !hasRush || minion.getRush();
+        return ret;
     }
 
     public AbilityType getAbilityType() {

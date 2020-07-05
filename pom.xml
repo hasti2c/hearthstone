@@ -10,7 +10,7 @@
 
     <properties>
         <maven.compiler.source>14</maven.compiler.source>
-        <maven.compiler.targetable>14</maven.compiler.targetable>
+        <maven.compiler.attackable>14</maven.compiler.attackable>
     </properties>
 
     <build>

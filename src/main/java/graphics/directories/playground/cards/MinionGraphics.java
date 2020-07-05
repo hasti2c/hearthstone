@@ -4,6 +4,7 @@ import gameObjects.cards.*;
 import graphics.directories.playground.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.*;
 
 public class MinionGraphics extends CardGraphics<Minion> {
@@ -11,6 +12,8 @@ public class MinionGraphics extends CardGraphics<Minion> {
     protected Ellipse ellipse;
     @FXML
     private Label healthLabel, attackLabel;
+    @FXML
+    private ImageView taunt, asleep, divineShield;
 
     public MinionGraphics(Minion card) {
         super(card);
@@ -23,6 +26,9 @@ public class MinionGraphics extends CardGraphics<Minion> {
     protected void config() {
         healthLabel.setText(card.getHealth() + "");
         attackLabel.setText(card.getAttack() + "");
+        taunt.setVisible(card.getTaunt());
+        asleep.setVisible(card.getAsleep() && !card.getRush());
+        divineShield.setVisible(card.getDivineShield());
     }
 
     protected Shape getShape() {

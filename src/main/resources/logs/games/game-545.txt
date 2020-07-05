@@ -1,0 +1,27 @@
+GAME_ID: 545
+STARTED_AT:  2020/07/05 19:37:33 
+
+p1: hasti
+p1_hero: rogue
+p1_deck: smith
+
+p1:end_turn 2020/07/05 19:37:36 
+p1:end_turn 2020/07/05 19:37:37 
+p1:end_turn 2020/07/05 19:37:37 
+p1:end_turn 2020/07/05 19:37:37 
+p1:end_turn 2020/07/05 19:37:38 
+p1:end_turn 2020/07/05 19:37:38 
+p1:end_turn 2020/07/05 19:37:41 
+p1:play_card 2020/07/05 19:37:42 voidwalker
+p1:play_card 2020/07/05 19:37:44 Friendly Smith
+p1:end_turn 2020/07/05 19:37:45 
+p1:end_turn 2020/07/05 19:37:46 
+p1:end_turn 2020/07/05 19:37:46 
+p1:end_turn 2020/07/05 19:37:46 
+p1:end_turn 2020/07/05 19:37:46 
+p1:end_turn 2020/07/05 19:37:46 
+p1:play_card 2020/07/05 19:37:49 Security Rover
+p1:end_turn 2020/07/05 19:37:52 
+p1:play_card 2020/07/05 19:37:53 murloc raider
+p1:end_turn 2020/07/05 19:37:56 
+p1:end_turn 2020/07/05 19:37:56 
