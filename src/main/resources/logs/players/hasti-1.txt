@@ -2049,3 +2049,33 @@ add 2020/07/06 21:31:56 card: Blood Fury -> deck: rogue-smith
 add 2020/07/06 21:31:57 card: Truesilver Champion -> deck: rogue-smith
 add 2020/07/06 21:31:57 card: Truesilver Champion -> deck: rogue-smith
 start_game 2020/07/06 21:32:00 game id: 691
+login 2020/07/06 22:28:41 
+start_game 2020/07/06 22:28:44 game id: 692
+select 2020/07/06 22:29:00 deck: zarafe
+add 2020/07/06 22:29:42 card: Dread Infernal -> deck: warlock-zarafe
+add 2020/07/06 22:29:43 card: Dread Infernal -> deck: warlock-zarafe
+start_game 2020/07/06 22:29:46 game id: 693
+login 2020/07/06 22:30:24 
+start_game 2020/07/06 22:30:27 game id: 694
+login 2020/07/06 23:02:11 
+login 2020/07/07 00:37:49 
+start_game 2020/07/07 00:37:52 game id: 695
+remove 2020/07/07 00:38:51 card: Blood Fury -> deck: mage-minions
+remove 2020/07/07 00:38:51 card: Blood Fury -> deck: mage-minions
+remove 2020/07/07 00:38:52 card: Sprint -> deck: mage-minions
+remove 2020/07/07 00:38:52 card: Sprint -> deck: mage-minions
+add 2020/07/07 00:38:56 card: Cinderstorm -> deck: mage-minions
+add 2020/07/07 00:38:56 card: Cinderstorm -> deck: mage-minions
+start_game 2020/07/07 00:38:59 game id: 696
+start_game 2020/07/07 00:40:14 game id: 697
+select 2020/07/07 00:40:48 deck: minions
+start_game 2020/07/07 00:41:00 game id: 698
+start_game 2020/07/07 00:41:47 game id: 699
+start_game 2020/07/07 00:42:14 game id: 700
+start_game 2020/07/07 00:44:21 game id: 701
+login 2020/07/07 00:45:34 
+start_game 2020/07/07 00:45:37 game id: 702
+login 2020/07/07 00:53:59 
+start_game 2020/07/07 00:54:02 game id: 703
+login 2020/07/07 00:56:56 
+start_game 2020/07/07 00:56:59 game id: 704

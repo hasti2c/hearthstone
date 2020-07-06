@@ -27,6 +27,13 @@ public class Minion extends Card implements Attackable {
         return c;
     }
 
+    Card copyHelper() {
+        Minion c = new Minion();
+        c.health = health;
+        c.attack = attack;
+        return c;
+    }
+
     public void doDamage(int damage) {
         if (divineShield) {
             divineShield = false;

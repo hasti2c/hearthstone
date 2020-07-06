@@ -4,5 +4,17 @@
   "mana": 3,
   "price": 25,
   "heroClass": "MAGE",
-  "rarity": "RARE"
+  "rarity": "RARE",
+  "attackAbility": {
+    "abilityType": "BATTLE_CRY",
+    "callerSide": "SELF",
+    "targetType": "RANDOM_ENEMY",
+    "targetElementTypes": [
+      "MINION",
+      "HERO"
+    ],
+    "type": "CONSTANT",
+    "damageAmount": 1,
+    "times": 5
+  }
 }

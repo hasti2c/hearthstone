@@ -1,0 +1,32 @@
+GAME_ID: 700
+STARTED_AT:  2020/07/07 00:42:14 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/07 00:42:16 
+p1:end_turn 2020/07/07 00:42:17 
+p1:end_turn 2020/07/07 00:42:19 
+p1:end_turn 2020/07/07 00:42:19 
+p1:end_turn 2020/07/07 00:42:20 
+p1:end_turn 2020/07/07 00:42:20 
+p1:end_turn 2020/07/07 00:42:21 
+p1:end_turn 2020/07/07 00:42:23 
+p1:end_turn 2020/07/07 00:42:23 
+p1:play_card 2020/07/07 00:42:24 Truesilver Champion
+p1:end_turn 2020/07/07 00:42:26 
+p1:end_turn 2020/07/07 00:42:26 
+p1:play_card 2020/07/07 00:42:27 Security Rover
+p1:end_turn 2020/07/07 00:42:28 
+p1:end_turn 2020/07/07 00:42:29 
+p1:play_card 2020/07/07 00:42:31 Pharaohs Blessing
+p1:end_turn 2020/07/07 00:42:44 
+p1:end_turn 2020/07/07 00:42:45 
+p1:play_card 2020/07/07 00:42:47 Tomb Warden
+p1:end_turn 2020/07/07 00:42:50 
+p1:play_card 2020/07/07 00:42:58 Tomb Warden
+p1:end_turn 2020/07/07 00:42:59 
+p1:end_turn 2020/07/07 00:43:00 
+p1:play_card 2020/07/07 00:43:09 Cinderstorm
+p1:end_turn 2020/07/07 00:44:17 

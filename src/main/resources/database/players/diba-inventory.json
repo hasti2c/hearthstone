@@ -1,0 +1,24 @@
+{
+  "deckCap": 15,
+  "allHeros": [
+    "mage",
+    "warlock",
+    "priest"
+  ],
+  "allCards": [
+    "Dreadscale",
+    "korkron elite",
+    "murloc raider",
+    "senjin shieldmasta",
+    "voidwalker",
+    "wasteland assassin",
+    "Polymorph",
+    "Blood Fury",
+    "Sprint",
+    "Swarm of Locusts",
+    "Truesilver Champion",
+    "Sathrovarr",
+    "Strength in Numbers"
+  ],
+  "allDecks": []
+}

@@ -15,6 +15,10 @@ public class Spell extends Card {
         return new Spell();
     }
 
+    Card copyHelper() {
+        return new Spell();
+    }
+
     public boolean isHealingSpell() {
         if (abilities.size() == 0)
             return false;

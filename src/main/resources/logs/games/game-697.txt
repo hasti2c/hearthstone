@@ -1,0 +1,21 @@
+GAME_ID: 697
+STARTED_AT:  2020/07/07 00:40:14 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: zarafe
+
+p1:end_turn 2020/07/07 00:40:30 
+p1:end_turn 2020/07/07 00:40:31 
+p1:end_turn 2020/07/07 00:40:31 
+p1:end_turn 2020/07/07 00:40:32 
+p1:end_turn 2020/07/07 00:40:35 
+p1:end_turn 2020/07/07 00:40:35 
+p1:play_card 2020/07/07 00:40:36 voidwalker
+p1:play_card 2020/07/07 00:40:37 Blood Fury
+p1:end_turn 2020/07/07 00:40:39 
+p1:end_turn 2020/07/07 00:40:39 
+p1:play_card 2020/07/07 00:40:40 voidwalker
+p1:play_card 2020/07/07 00:40:41 Dreadscale
+p1:end_turn 2020/07/07 00:40:42 
+p1:end_turn 2020/07/07 00:40:43 

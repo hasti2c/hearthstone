@@ -4,6 +4,7 @@ public enum TargetType {
     SELF,
     PLAYED,
     ALL_ELSE,
+    RANDOM_ENEMY,
     RANDOM,
     BY_STATS,
     MY_DECK,

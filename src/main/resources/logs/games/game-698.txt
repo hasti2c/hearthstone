@@ -1,0 +1,26 @@
+GAME_ID: 698
+STARTED_AT:  2020/07/07 00:41:00 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/07 00:41:08 
+p1:end_turn 2020/07/07 00:41:09 
+p1:end_turn 2020/07/07 00:41:09 
+p1:end_turn 2020/07/07 00:41:09 
+p1:end_turn 2020/07/07 00:41:10 
+p1:end_turn 2020/07/07 00:41:12 
+p1:end_turn 2020/07/07 00:41:13 
+p1:end_turn 2020/07/07 00:41:14 
+p1:end_turn 2020/07/07 00:41:14 
+p1:play_card 2020/07/07 00:41:15 Cinderstorm
+p1:end_turn 2020/07/07 00:41:21 
+p1:end_turn 2020/07/07 00:41:22 
+p1:end_turn 2020/07/07 00:41:23 
+p1:end_turn 2020/07/07 00:41:24 
+p1:end_turn 2020/07/07 00:41:24 
+p1:play_card 2020/07/07 00:41:25 Security Rover
+p1:end_turn 2020/07/07 00:41:38 
+p1:play_card 2020/07/07 00:41:39 Security Rover
+p1:end_turn 2020/07/07 00:41:43 

@@ -51,7 +51,21 @@ public abstract class Card extends Playable implements Targetable {
         return c;
     }
 
+    public Card copy() {
+        Card c = copyHelper();
+        c.name = name;
+        c.description = description;
+        c.mana = mana;
+        c.price = price;
+        c.heroClass = heroClass;
+        c.rarity = rarity;
+        c.elementType = elementType;
+        return c;
+    }
+
     abstract Card cloneHelper();
+
+    abstract Card copyHelper();
 
     @Override
     protected String getImagePath() {

@@ -62,9 +62,9 @@ public class AddCard extends Ability {
 
         if (maxSize == -1 || arrayList.size() < maxSize) {
             if (index == -1)
-                arrayList.add((T) card.clone());
+                arrayList.add((T) card.copy());
             else
-                arrayList.add(index, (T) card.clone());
+                arrayList.add(index, (T) card.copy());
         }
     }
 }

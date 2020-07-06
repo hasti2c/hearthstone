@@ -21,6 +21,13 @@ public class Weapon extends Card {
         return c;
     }
 
+    Card copyHelper() {
+        Weapon c = new Weapon();
+        c.durability = durability;
+        c.attack = attack;
+        return c;
+    }
+
     public int getDurability() {
         return durability;
     }

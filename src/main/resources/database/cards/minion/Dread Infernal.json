@@ -6,5 +6,16 @@
   "attack": 6,
   "price": 25,
   "heroClass": "WARLOCK",
-  "rarity": "RARE"
+  "rarity": "RARE",
+  "attackAbility": {
+    "abilityType": "BATTLE_CRY",
+    "callerSide": "SELF",
+    "targetType": "ALL_ELSE",
+    "targetElementTypes": [
+      "MINION",
+      "HERO"
+    ],
+    "type": "CONSTANT",
+    "damageAmount": 1
+  }
 }

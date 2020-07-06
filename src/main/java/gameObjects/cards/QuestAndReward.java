@@ -10,4 +10,8 @@ public class QuestAndReward extends Card {
     public Card cloneHelper() {
         return new QuestAndReward();
     }
+
+    public Card copyHelper() {
+        return new QuestAndReward();
+    }
 }
