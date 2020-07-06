@@ -1,5 +1,7 @@
 package gameObjects.cards.abilities;
 
+import gameObjects.Playable;
+import gameObjects.cards.abilities.targets.Attackable;
 import gameObjects.player.*;
 import gameObjects.cards.*;
 import static gameObjects.cards.abilities.AttackType.*;
@@ -9,13 +11,16 @@ public class Attack extends Ability {
     private int damageAmount;
 
     @Override
-    protected void doAction(GamePlayer actionPerformer, Card caller, Card target) {
-        if (!(caller instanceof Minion targeter && target instanceof Minion defender))
+    protected void doAction(GamePlayer actionPerformer, Playable caller, Card target) {
+        if (!(target instanceof Attackable defender))
             return;
-        if (type.equals(NORMAL))
-            actionPerformer.rawAttack(targeter, defender);
-        else
-            defender.doDamage(damageAmount);
+        switch (type) {
+            case NORMAL -> {
+                if (caller instanceof Attackable attacker)
+                    actionPerformer.rawAttack(attacker, defender);
+            }
+            case CONSTANT -> defender.doDamage(damageAmount);
+        }
     }
 }
 

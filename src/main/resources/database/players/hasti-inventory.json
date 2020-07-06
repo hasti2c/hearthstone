@@ -47,12 +47,12 @@
     "Learn Draconic"
   ],
   "allDecks": [
+    "spell",
     "minions",
     "weapons",
+    "smith",
     "high",
-    "swamp",
-    "spell",
-    "smith"
+    "swamp"
   ],
-  "currentDeck": "smith"
+  "currentDeck": "minions"
 }

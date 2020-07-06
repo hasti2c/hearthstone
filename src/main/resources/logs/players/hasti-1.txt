@@ -1736,3 +1736,84 @@ login 2020/07/05 20:31:04
 start_game 2020/07/05 20:31:07 game id: 555
 select 2020/07/05 20:31:17 deck: smith
 start_game 2020/07/05 20:31:27 game id: 556
+end_game 2020/07/05 20:38:39 game id: 556
+logout 2020/07/05 20:38:39 
+login 2020/07/05 20:56:09 
+start_game 2020/07/05 20:56:12 game id: 557
+end_game 2020/07/05 20:56:21 game id: 557
+logout 2020/07/05 20:56:21 
+login 2020/07/05 22:09:27 
+start_game 2020/07/05 22:09:31 game id: 558
+login 2020/07/05 22:10:12 
+start_game 2020/07/05 22:10:15 game id: 559
+login 2020/07/05 22:10:35 
+select 2020/07/05 22:10:53 deck: minions
+start_game 2020/07/05 22:10:56 game id: 560
+login 2020/07/05 22:11:48 
+start_game 2020/07/05 22:11:50 game id: 561
+login 2020/07/05 22:12:54 
+start_game 2020/07/05 22:12:57 game id: 562
+login 2020/07/05 22:14:01 
+start_game 2020/07/05 22:14:04 game id: 563
+login 2020/07/05 22:15:28 
+start_game 2020/07/05 22:15:31 game id: 564
+add 2020/07/05 22:15:50 card: Blood Fury -> deck: mage-minions
+remove 2020/07/05 22:15:53 card: murloc raider -> deck: mage-minions
+remove 2020/07/05 22:15:53 card: murloc raider -> deck: mage-minions
+remove 2020/07/05 22:15:54 card: Dreadscale -> deck: mage-minions
+remove 2020/07/05 22:15:54 card: Dreadscale -> deck: mage-minions
+remove 2020/07/05 22:15:55 card: korkron elite -> deck: mage-minions
+remove 2020/07/05 22:15:55 card: korkron elite -> deck: mage-minions
+add 2020/07/05 22:15:56 card: Blood Fury -> deck: mage-minions
+add 2020/07/05 22:15:58 card: Truesilver Champion -> deck: mage-minions
+add 2020/07/05 22:15:58 card: Truesilver Champion -> deck: mage-minions
+start_game 2020/07/05 22:16:01 game id: 565
+login 2020/07/05 22:21:25 
+start_game 2020/07/05 22:21:31 game id: 566
+login 2020/07/05 22:26:16 
+start_game 2020/07/05 22:26:21 game id: 567
+login 2020/07/05 22:28:04 
+start_game 2020/07/05 22:28:08 game id: 568
+login 2020/07/05 22:28:56 
+start_game 2020/07/05 22:28:58 game id: 569
+login 2020/07/05 22:32:15 
+start_game 2020/07/05 22:32:18 game id: 570
+login 2020/07/05 22:34:46 
+start_game 2020/07/05 22:34:49 game id: 571
+login 2020/07/05 22:35:31 
+start_game 2020/07/05 22:35:34 game id: 572
+start_game 2020/07/05 22:35:55 game id: 573
+login 2020/07/05 22:37:46 
+start_game 2020/07/05 22:37:49 game id: 574
+end_game 2020/07/05 22:47:28 game id: 574
+logout 2020/07/05 22:47:28 
+login 2020/07/05 22:49:17 
+start_game 2020/07/05 22:49:23 game id: 575
+login 2020/07/05 22:50:02 
+start_game 2020/07/05 22:50:05 game id: 576
+login 2020/07/05 23:21:33 
+start_game 2020/07/05 23:21:36 game id: 577
+login 2020/07/05 23:27:47 
+start_game 2020/07/05 23:27:51 game id: 578
+login 2020/07/05 23:28:56 
+start_game 2020/07/05 23:28:59 game id: 579
+login 2020/07/05 23:30:51 
+start_game 2020/07/05 23:30:55 game id: 580
+login 2020/07/06 10:32:14 
+start_game 2020/07/06 10:32:17 game id: 581
+login 2020/07/06 10:33:24 
+start_game 2020/07/06 10:33:27 game id: 582
+login 2020/07/06 10:34:14 
+start_game 2020/07/06 10:34:23 game id: 583
+login 2020/07/06 10:36:28 
+start_game 2020/07/06 10:36:31 game id: 584
+login 2020/07/06 10:40:52 
+start_game 2020/07/06 10:40:56 game id: 585
+login 2020/07/06 10:42:16 
+start_game 2020/07/06 10:42:19 game id: 586
+login 2020/07/06 10:43:12 
+start_game 2020/07/06 10:43:16 game id: 587
+login 2020/07/06 12:13:27 
+start_game 2020/07/06 12:13:30 game id: 588
+end_game 2020/07/06 12:24:20 game id: 588
+logout 2020/07/06 12:24:20 

@@ -1,21 +1,21 @@
-package graphics.directories.playground;
+package graphics.directories.playground.playables;
 
-import gameObjects.cards.*;
+import gameObjects.Playable;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.shape.*;
 import java.io.*;
 
-public abstract class CardGraphics <T extends Card> {
-    protected final T card;
+public abstract class PlayableGraphics<T extends Playable> {
+    protected final T playable;
     protected Group group;
     protected Shape shape;
 
-    protected CardGraphics(T card) {
-        this.card = card;
+    protected PlayableGraphics(T playable) {
+        this.playable = playable;
         load();
         shape = getShape();
-        shape.setFill(card.getFullImagePattern());
+        shape.setFill(playable.getFullImagePattern());
         config();
     }
 

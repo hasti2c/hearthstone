@@ -38,30 +38,30 @@ public abstract class Ability implements Configable {
         return null;
     }
 
-    private void callDoAction(GamePlayer actionPerformer, Card caller, Card played, boolean assertValidCaller) {
+    private void callDoAction(GamePlayer actionPerformer, Playable caller, Card played, boolean assertValidCaller) {
         for (int i = 0; i < times; i++) {
             if (targetType.equals(SELECTED))
                 selectAndDoAction(actionPerformer, caller);
             else if (targetType.equals(DISCOVER))
-                discoverAndDoAction(actionPerformer, caller, played);
+                discoverAndDoAction(actionPerformer, (Card) caller, played);
             else
-                for (Card target : getTarget(actionPerformer, caller, played))
-                    if (isValidCaller(actionPerformer, caller) && (assertValidCaller || caller.isValid()) && target.isValid())
+                for (Card target : getTarget(actionPerformer, (Card) caller, played))
+                    if (isValidCaller(actionPerformer, (Card) caller) && (assertValidCaller || caller.isValid()) && target.isValid())
                         doActionAndNext(actionPerformer, caller, target);
         }
     }
 
-    public void callDoAction(GamePlayer actionPerformer, Card caller, Card played) {
+    public void callDoAction(GamePlayer actionPerformer, Playable caller, Card played) {
         callDoAction(actionPerformer, caller, played, false);
     }
 
-    public void doActionAndNext(GamePlayer actionPerformer, Card caller, Card target) {
+    public void doActionAndNext(GamePlayer actionPerformer, Playable caller, Card target) {
         doAction(actionPerformer, caller, target);
         if (nextAbility != null)
             nextAbility.callDoAction(actionPerformer, target, null, true);
     }
 
-    protected abstract void doAction(GamePlayer actionPerformer, Card caller, Card target);
+    protected abstract void doAction(GamePlayer actionPerformer, Playable caller, Card target);
 
     private ArrayList<Card> getTarget(GamePlayer actionPerformer, Card caller, Card played) {
         ArrayList<Card> targets = new ArrayList<>();
@@ -167,17 +167,17 @@ public abstract class Ability implements Configable {
         return targetType;
     }
 
-    protected void selectAndDoAction(GamePlayer actionPerformer, Card caller) {
+    protected void selectAndDoAction(GamePlayer actionPerformer, Playable caller) {
         selectionMode(actionPerformer, caller);
         selectionMode(actionPerformer.getOpponent(), caller);
     }
 
-    private void selectionMode(GamePlayer gamePlayer, Card caller) {
+    private void selectionMode(GamePlayer gamePlayer, Playable caller) {
         addEventHandlerToAll(gamePlayer, caller);
         gamePlayer.getGraphics().disableHero();
     }
 
-    private void addEventHandlerToAll(GamePlayer gamePlayer, Card caller) {
+    private void addEventHandlerToAll(GamePlayer gamePlayer, Playable caller) {
         ArrayList<Minion> minionsInGame = gamePlayer.getMinionsInGame();
         gamePlayer.getGraphics().reloadMinionsHBox();
         HBox minionsHBox = gamePlayer.getGraphics().getMinionsHBox();
@@ -192,9 +192,9 @@ public abstract class Ability implements Configable {
 
     private class SelectionEventHandler extends TargetEventHandler {
         private GamePlayerGraphics player;
-        private Card caller;
+        private Playable caller;
 
-        protected SelectionEventHandler(GamePlayerGraphics player, Card caller, Targetable targetable, Node node) {
+        protected SelectionEventHandler(GamePlayerGraphics player, Playable caller, Targetable targetable, Node node) {
             super(targetable, node);
             this.player = player;
             this.caller = caller;
@@ -202,7 +202,8 @@ public abstract class Ability implements Configable {
         }
 
         @Override
-        protected void setSelectedTargetable(Targetable targetable) {}
+        protected void setSelectedTargetable(Targetable targetable) {
+        }
 
         @Override
         protected boolean isEnough() {

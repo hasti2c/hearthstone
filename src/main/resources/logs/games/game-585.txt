@@ -1,0 +1,25 @@
+GAME_ID: 585
+STARTED_AT:  2020/07/06 10:40:56 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/06 10:41:00 
+p1:end_turn 2020/07/06 10:41:00 
+p1:end_turn 2020/07/06 10:41:00 
+p1:end_turn 2020/07/06 10:41:00 
+p1:end_turn 2020/07/06 10:41:00 
+p1:end_turn 2020/07/06 10:41:01 
+p1:end_turn 2020/07/06 10:41:01 
+p1:end_turn 2020/07/06 10:41:01 
+p1:end_turn 2020/07/06 10:41:01 
+p1:end_turn 2020/07/06 10:41:01 
+p1:end_turn 2020/07/06 10:41:02 
+p1:end_turn 2020/07/06 10:41:02 
+p1:play_card 2020/07/06 10:41:03 Security Rover
+p1:end_turn 2020/07/06 10:41:04 
+p1:play_card 2020/07/06 10:41:05 Security Rover
+p1:end_turn 2020/07/06 10:41:06 
+p1:end_turn 2020/07/06 10:41:12 
+p1:end_turn 2020/07/06 10:41:13 

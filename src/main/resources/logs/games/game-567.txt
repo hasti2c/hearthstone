@@ -1,0 +1,12 @@
+GAME_ID: 567
+STARTED_AT:  2020/07/05 22:26:21 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/05 22:26:24 
+p1:end_turn 2020/07/05 22:26:25 
+p1:end_turn 2020/07/05 22:26:25 
+p1:end_turn 2020/07/05 22:26:25 
+p1:play_card 2020/07/05 22:26:27 Blood Fury

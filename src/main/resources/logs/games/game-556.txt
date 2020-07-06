@@ -48,3 +48,5 @@ p1:end_turn 2020/07/05 20:32:58
 p1:play_card 2020/07/05 20:32:59 Pharaohs Blessing
 p1:end_turn 2020/07/05 20:33:05 
 p1:end_turn 2020/07/05 20:33:08 
+
+ENDED_AT:  2020/07/05 20:38:39 

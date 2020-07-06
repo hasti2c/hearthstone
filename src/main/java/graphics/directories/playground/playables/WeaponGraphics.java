@@ -1,4 +1,4 @@
-package graphics.directories.playground.cards;
+package graphics.directories.playground.playables;
 
 import gameObjects.cards.*;
 import graphics.directories.playground.*;
@@ -6,7 +6,7 @@ import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.shape.*;
 
-public class WeaponGraphics extends CardGraphics<Weapon> {
+public class WeaponGraphics extends PlayableGraphics<Weapon> {
     @FXML
     protected Circle circle;
     @FXML
@@ -21,8 +21,8 @@ public class WeaponGraphics extends CardGraphics<Weapon> {
     }
 
     protected void config() {
-        durabilityLabel.setText(card.getDurability() + "");
-        attackLabel.setText(card.getAttack() + "");
+        durabilityLabel.setText(playable.getDurability() + "");
+        attackLabel.setText(playable.getAttack() + "");
     }
 
     protected Shape getShape() {

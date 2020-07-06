@@ -78,10 +78,6 @@ public class GamePlayer {
         this.mana = mana;
     }
 
-    public boolean isHeroPowerUsed() {
-        return usedHeroPower;
-    }
-
     public void setUsedHeroPower(boolean usedHeroPower) {
         this.usedHeroPower = usedHeroPower;
     }
@@ -106,7 +102,7 @@ public class GamePlayer {
         leftInDeck.remove(card);
         if (hand.size() < 12) {
             hand.add(card);
-            doCardAction("doActionOnDraw", card);
+            doCardAction("doActionOnDraw");
         }
         return true;
     }
@@ -145,7 +141,12 @@ public class GamePlayer {
             return false;
         setUsedHeroPower(true);
         setMana(getMana() - inventory.getCurrentHero().getHeroPower().getMana());
+        doCardAction("doActionOnHeroPower");
         return true;
+    }
+
+    public boolean canUseHeroPower() {
+        return !usedHeroPower;
     }
 
     public int getMyTurnNumber() {
@@ -156,8 +157,11 @@ public class GamePlayer {
         return game.getTurn() % game.getPlayerCount() == playerNumber;
     }
 
-    public boolean owns(Card card) {
-        return minionsInGame.contains(card) || lastSpell == card || currentWeapon == card || hand.contains(card) || leftInDeck.contains(card);
+    public boolean owns(Playable playable) {
+        boolean ret = minionsInGame.contains(playable) || hand.contains(playable) || leftInDeck.contains(playable);
+        ret &= lastSpell == playable || currentWeapon == playable;
+        ret &= inventory.getCurrentHero().getHeroPower() == playable;
+        return ret;
     }
 
     public GamePlayer getOpponent() {
@@ -248,9 +252,12 @@ public class GamePlayer {
 
     private void doCardAction(String actionName) {
         try {
-            Method method = Card.class.getDeclaredMethod(actionName, GamePlayer.class);
-            for (Card card : minionsInGame)
-                method.invoke(card, this);
+            Method method = Playable.class.getDeclaredMethod(actionName, GamePlayer.class);
+            for (Playable playable : getPlayables())
+                method.invoke(playable, this);
+            for (Playable playable : getOpponent().getPlayables())
+                method.invoke(playable, this);
+
             clearDeadMinions();
             getOpponent().clearDeadMinions();
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
@@ -262,27 +269,28 @@ public class GamePlayer {
 
     private void doCardAction(String actionName, Card input) {
         try {
-            Method method = Card.class.getDeclaredMethod(actionName, GamePlayer.class, Card.class);
+            Method method = Playable.class.getDeclaredMethod(actionName, GamePlayer.class, Card.class);
 
-            int n = minionsInGame.size();
-            if (n > 0)
-                for (int i = 0; i < n; i++)
-                    method.invoke(minionsInGame.get(i), this, input);
-            if (lastSpell != null)
-                method.invoke(lastSpell, this, input);
-
-            n = getOpponent().minionsInGame.size();
-            if (n > 0)
-                for (int i = 0; i < n; i++)
-                    method.invoke(getOpponent().minionsInGame.get(i), this, input);
-            if (getOpponent().lastSpell != null)
-                method.invoke(getOpponent().lastSpell, this, input);
+            for (Playable playable : getPlayables())
+                method.invoke(playable, this, input);
+            for (Playable playable : getOpponent().getPlayables())
+                method.invoke(playable, this, input);
 
             clearDeadMinions();
             getOpponent().clearDeadMinions();
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
+    }
+
+    private ArrayList<Playable> getPlayables() {
+        ArrayList<Playable> ret = new ArrayList<>(minionsInGame);
+        if (lastSpell != null)
+            ret.add(lastSpell);
+        if (currentWeapon != null)
+            ret.add(currentWeapon);
+        ret.add(inventory.getCurrentHero().getHeroPower());
+        return ret;
     }
 
     public void setGraphics(GamePlayerGraphics graphics) {

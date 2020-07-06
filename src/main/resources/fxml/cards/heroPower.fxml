@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<Group xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Circle fx:id="circle" layoutX="62.0" layoutY="68.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fitHeight="125.0" preserveRatio="true">
+         <image>
+            <Image url="@../../assets/templates/hero_power.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="manaLabel" alignment="CENTER" layoutX="49.0" layoutY="6.0" prefHeight="22.0" prefWidth="25.0" text="2" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</Group>

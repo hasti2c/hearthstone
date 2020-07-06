@@ -15,47 +15,14 @@ import static gameObjects.cards.abilities.AbilityType.*;
 import static gameObjects.cards.abilities.targets.TargetType.DISCOVER;
 import static gameObjects.cards.abilities.targets.TargetType.SELECTED;
 
-public abstract class Card implements Configable, Targetable {
-    private String name, description;
-    private int mana, price;
-    private HeroClass heroClass;
+public abstract class Card extends Playable implements Targetable {
+    private int price;
     private RarityType rarity;
     private CardType cardType;
-    private transient Image image, fullImage;
-    private ArrayList<Ability> abilities = new ArrayList<>();
-    private ChangeStats changeStatsAbility;
-    private Attack attackAbility;
-    private AddCard addCardAbility;
-    private Remove removeAbility;
-
-    @Override
-    public void initialize(GameController controller) {
-        abilities = new ArrayList<>();
-        if (changeStatsAbility != null)
-            abilities.add(changeStatsAbility);
-        if (attackAbility != null)
-            abilities.add(attackAbility);
-        if (addCardAbility != null)
-            abilities.add(addCardAbility);
-        if (removeAbility != null)
-            abilities.add(removeAbility);
-    }
 
     @Override
     public String getJsonPath(GameController controller, String name) {
         return "cards/" + getCardClass(name).getSimpleName() + "/";
-    }
-
-    public String toString() {
-        return this.name;
-    }
-
-    String getDescription() {
-        return this.description;
-    }
-
-    public int getMana() {
-        return this.mana;
     }
 
     public int getPrice() {
@@ -64,10 +31,6 @@ public abstract class Card implements Configable, Targetable {
 
     public CardType getCardType() {
         return this.cardType;
-    }
-
-    public HeroClass getHeroClass() {
-        return this.heroClass;
     }
 
     public RarityType getRarity() {
@@ -83,12 +46,6 @@ public abstract class Card implements Configable, Targetable {
             return 2;
         else
             return 3;
-    }
-
-    public boolean isValid() {
-        if (!(this instanceof Minion minion))
-            return true;
-        return minion.getHealth() > 0;
     }
 
     @Override
@@ -107,45 +64,14 @@ public abstract class Card implements Configable, Targetable {
 
     abstract Card cloneHelper();
 
-    private void configImage() {
-        try {
-            FileInputStream input = new FileInputStream("src/main/resources/assets/cards/normal/" + name + ".png");
-            image = new Image(input);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+    @Override
+    protected String getImagePath() {
+        return "cards/normal/" + name + ".png";
     }
 
-    public ImageView getImageView(int width, int height) {
-        if (image == null)
-            configImage();
-        ImageView iv = new ImageView(image);
-        if (width == -1) {
-            iv.setPreserveRatio(true);
-            iv.setFitHeight(height);
-        } else if (height == -1) {
-            iv.setPreserveRatio(true);
-            iv.setFitWidth(width);
-        } else {
-            iv.setFitHeight(height);
-            iv.setFitWidth(width);
-        }
-        return iv;
-    }
-
-    private void configFullImage() {
-        try {
-            FileInputStream input = new FileInputStream("src/main/resources/assets/cards/full/" + name + ".jpg");
-            this.fullImage = new Image(input);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public ImagePattern getFullImagePattern() {
-        if (fullImage == null)
-            configFullImage();
-        return new ImagePattern(fullImage);
+    @Override
+    protected String getFullImagePath() {
+        return "cards/full/" + name + ".jpg";
     }
 
     public int compareTo(Card c, Deck deck) {
@@ -222,38 +148,5 @@ public abstract class Card implements Configable, Targetable {
             int n = cards.size();
             return cards.get((int) ((Math.random() * n) % n)).toString();
         }
-    }
-
-    public void doActionOnDraw(GamePlayer actionPerformer, Card drawn) {
-        for (Ability ability : abilities)
-            if (DRAW.equals(ability.getAbilityType()))
-                ability.callDoAction(actionPerformer,this, null);
-    }
-
-    public void doActionOnPlay(GamePlayer actionPerformer, Card played) {
-        for (Ability ability : abilities)
-            if (PLAY.equals(ability.getAbilityType()))
-                ability.callDoAction(actionPerformer, this, played);
-            else if (BATTLE_CRY.equals(ability.getAbilityType()) && this == played)
-                ability.callDoAction(actionPerformer, this, played);
-    }
-
-    public void doActionOnEndTurn(GamePlayer actionPerformer) {
-        for (Ability ability : abilities)
-            if (END_TURN.equals(ability.getAbilityType()))
-                ability.callDoAction(actionPerformer, this, null);
-    }
-
-    public void doActionOnDamaged(GamePlayer actionPerformer, Card damaged) {
-        for (Ability ability : abilities)
-            if (TAKES_DAMAGE.equals(ability.getAbilityType()) && this == damaged)
-                ability.callDoAction(actionPerformer, this, damaged);
-    }
-
-    public boolean needsTarget() {
-        for (Ability ability : abilities)
-            if (SELECTED.equals(ability.getTargetType()) || DISCOVER.equals(ability.getTargetType()))
-                return true;
-        return false;
     }
 }

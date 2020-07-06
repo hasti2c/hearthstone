@@ -7,7 +7,7 @@ import gameObjects.cards.abilities.targets.Targetable;
 import gameObjects.player.*;
 import gameObjects.cards.*;
 import gameObjects.heros.*;
-import graphics.directories.playground.cards.*;
+import graphics.directories.playground.playables.*;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.*;
@@ -31,11 +31,9 @@ public class GamePlayerGraphics {
     @FXML
     private Label hpLabel, manaLabel, deckLabel;
     @FXML
-    private Button heroPowerButton;
-    @FXML
     private HBox manaHBox, handHBox1, handHBox2, minionsHBox;
     @FXML
-    private Pane weaponPane;
+    private Pane weaponPane, heroPowerPane;
 
     GamePlayerGraphics(PlayGround playGround, CommandRunner runner, GamePlayer gamePlayer) {
         this.playGround = playGround;
@@ -46,10 +44,10 @@ public class GamePlayerGraphics {
         load();
         heroImage.setImage(gamePlayer.getInventory().getCurrentHero().getGameImage());
 
-        heroPowerButton.setOnAction(e -> {
+        /*heroPowerButton.setOnAction(e -> {
             runner.run(new Command(CommandType.HERO_POWER));
             config();
-        });
+        });*/
     }
 
     private FXMLLoader getLoader() {
@@ -76,6 +74,7 @@ public class GamePlayerGraphics {
         handHBox2.getChildren().clear();
         minionsHBox.getChildren().clear();
         weaponPane.getChildren().clear();
+        heroPowerPane.getChildren().clear();
     }
 
     protected void config() {
@@ -89,18 +88,19 @@ public class GamePlayerGraphics {
             manaHBox.getChildren().get(i).setVisible(false);
         deckLabel.setText(gamePlayer.getLeftInDeck().size() + "/" + gamePlayer.getInventory().getCurrentDeck().getCards().size());
 
+        configHero();
         configHand();
         configTargets();
         configWeapon();
-        configHero();
-
-        if (gamePlayer.isHeroPowerUsed()) {
-            heroPowerButton.setText("used");
-            heroPowerButton.setDisable(true);
-        } else {
-            heroPowerButton.setText(gamePlayer.getInventory().getCurrentHero().getHeroPower().toString());
-            heroPowerButton.setDisable(false);
-        }
+        configHeroPower();
+//
+//        if (gamePlayer.isHeroPowerUsed()) {
+//            heroPowerButton.setText("used");
+//            heroPowerButton.setDisable(true);
+//        } else {
+//            heroPowerButton.setText(gamePlayer.getInventory().getCurrentHero().getHeroPower().toString());
+//            heroPowerButton.setDisable(false);
+//        }
     }
 
     private void configHero() {
@@ -154,6 +154,20 @@ public class GamePlayerGraphics {
             weaponPane.getChildren().add((new WeaponGraphics(gamePlayer.getCurrentWeapon()).getGroup()));
         else
             weaponPane.getChildren().add(Weapon.getClosedImageView());
+    }
+
+    private void configHeroPower() {
+        HeroPower heroPower = gamePlayer.getInventory().getCurrentHero().getHeroPower();
+        if (gamePlayer.canUseHeroPower()) {
+            Group group = (new HeroPowerGraphics(heroPower)).getGroup();
+            heroPowerPane.getChildren().add(group);
+            group.setOnMouseClicked(e -> {
+                gamePlayer.useHeroPower();
+                if (!heroPower.needsTarget())
+                    config();
+            });
+        } else
+            heroPowerPane.getChildren().add(HeroPower.getClosedImageView());
     }
 
     private void attackMode() {

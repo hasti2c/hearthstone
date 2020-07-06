@@ -1,0 +1,12 @@
+GAME_ID: 572
+STARTED_AT:  2020/07/05 22:35:34 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/05 22:35:43 
+p1:end_turn 2020/07/05 22:35:44 
+p1:end_turn 2020/07/05 22:35:46 
+p1:end_turn 2020/07/05 22:35:47 
+p1:end_turn 2020/07/05 22:35:51 

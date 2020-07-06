@@ -7,6 +7,7 @@ public enum TargetType {
     RANDOM,
     BY_STATS,
     DECK,
-    SELECTED,
+    SELECTED_ANY,
+    SELECTED_CARD,
     DISCOVER
 }

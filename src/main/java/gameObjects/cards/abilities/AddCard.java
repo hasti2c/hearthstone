@@ -1,5 +1,6 @@
 package gameObjects.cards.abilities;
 
+import gameObjects.Playable;
 import gameObjects.player.*;
 import gameObjects.cards.*;
 
@@ -13,7 +14,7 @@ public class AddCard extends Ability {
     private boolean insert = false;
 
     @Override
-    protected void doAction(GamePlayer actionPerformer, Card caller, Card target) {
+    protected void doAction(GamePlayer actionPerformer, Playable caller, Card target) {
         GamePlayer player;
         if (actionPerformer.owns(caller))
             player = actionPerformer;
@@ -48,7 +49,7 @@ public class AddCard extends Ability {
         }
     }
 
-    private <T extends Card> void addToList(ArrayList<T> arrayList, Card caller, T target, int maxSize) {
+    private <T extends Card> void addToList(ArrayList<T> arrayList, Playable caller, T target, int maxSize) {
         int index = arrayList.indexOf(caller);
         if (!insert)
             index = -1;

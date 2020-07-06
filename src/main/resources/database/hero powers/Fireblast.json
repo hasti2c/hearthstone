@@ -1,4 +1,11 @@
 {
   "name": "Fireblast",
-  "mana": 2
+  "mana": 2,
+  "attackAbility": {
+    "abilityType": "HERO_POWER",
+    "callerSide": "SELF",
+    "targetType": "SELECTED",
+    "type": "CONSTANT",
+    "damageAmount": 2
+  }
 }

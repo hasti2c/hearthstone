@@ -5,5 +5,6 @@ public enum AbilityType {
     PLAY,
     END_TURN,
     BATTLE_CRY,
-    TAKES_DAMAGE
+    TAKES_DAMAGE,
+    HERO_POWER
 }
