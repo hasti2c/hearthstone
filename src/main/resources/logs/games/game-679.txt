@@ -1,0 +1,27 @@
+GAME_ID: 679
+STARTED_AT:  2020/07/06 20:18:10 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: weapons
+
+p1:play_card 2020/07/06 20:18:12 Wicked Knife
+p1:end_turn 2020/07/06 20:18:16 
+p1:end_turn 2020/07/06 20:18:17 
+p1:end_turn 2020/07/06 20:18:20 
+p1:end_turn 2020/07/06 20:18:20 
+p1:play_card 2020/07/06 20:18:22 Blood Fury
+p1:end_turn 2020/07/06 20:18:33 
+p1:end_turn 2020/07/06 20:18:34 
+p1:end_turn 2020/07/06 20:18:34 
+p1:end_turn 2020/07/06 20:18:34 
+p1:end_turn 2020/07/06 20:18:34 
+p1:end_turn 2020/07/06 20:18:34 
+p1:end_turn 2020/07/06 20:18:34 
+p1:end_turn 2020/07/06 20:18:34 
+p1:end_turn 2020/07/06 20:18:35 
+p1:end_turn 2020/07/06 20:18:35 
+p1:end_turn 2020/07/06 20:18:36 
+p1:end_turn 2020/07/06 20:18:36 
+p1:play_card 2020/07/06 20:18:38 Truesilver Champion
+p1:play_card 2020/07/06 20:18:39 Dragon Claw

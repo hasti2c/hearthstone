@@ -4,10 +4,6 @@
   "cards": [
     "Friendly Smith",
     "Friendly Smith",
-    "murloc raider",
-    "murloc raider",
-    "voidwalker",
-    "voidwalker",
     "Tomb Warden",
     "Tomb Warden",
     "Sathrovarr",
@@ -16,9 +12,17 @@
     "Pharaohs Blessing",
     "Security Rover",
     "Security Rover",
-    "Swarm of Locusts"
+    "Swarm of Locusts",
+    "Blood Fury",
+    "Blood Fury",
+    "Truesilver Champion",
+    "Truesilver Champion"
   ],
   "uses": [
+    0,
+    0,
+    0,
+    0,
     0,
     0,
     0,

@@ -6,8 +6,8 @@ import gameObjects.cards.Element;
 import gameObjects.cards.Minion;
 import gameObjects.player.GamePlayer;
 
-public class Remove extends Ability {
-    private RemoveType type;
+public class RemoveCard extends Ability {
+    private RemoveCardType type;
 
     @Override
     protected void doAction(GamePlayer actionPerformer, Playable caller, Element target) {
@@ -24,12 +24,14 @@ public class Remove extends Ability {
                 if (target instanceof Minion minion)
                     minion.setHealth(0);
             }
+            case HAND -> player.getHand().remove(target);
             case DECK -> player.getLeftInDeck().remove(target);
         }
     }
 }
 
-enum RemoveType {
+enum RemoveCardType {
     BATTLEFIELD,
+    HAND,
     DECK
 }

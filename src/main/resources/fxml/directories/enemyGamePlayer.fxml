@@ -83,7 +83,7 @@
             <Font name="DIN Alternate Bold" size="17.0" />
          </font>
       </Label>
-      <Label fx:id="deckLabel" layoutX="988.0" layoutY="260.0" text="30/30" textFill="WHITE">
+      <Label fx:id="deckLabel" layoutX="997.0" layoutY="260.0" text="30/30" textFill="WHITE">
          <font>
             <Font name="DIN Alternate Bold" size="18.0" />
          </font>

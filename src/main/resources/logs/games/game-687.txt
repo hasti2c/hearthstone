@@ -1,0 +1,22 @@
+GAME_ID: 687
+STARTED_AT:  2020/07/06 20:56:00 
+
+p1: hasti
+p1_hero: hunter
+p1_deck: swamp
+
+p1:end_turn 2020/07/06 20:56:03 
+p1:end_turn 2020/07/06 20:56:03 
+p1:end_turn 2020/07/06 20:56:04 
+p1:end_turn 2020/07/06 20:56:04 
+p1:end_turn 2020/07/06 20:56:05 
+p1:end_turn 2020/07/06 20:56:05 
+p1:play_card 2020/07/06 20:56:06 senjin shieldmasta
+p1:end_turn 2020/07/06 20:56:12 
+p1:end_turn 2020/07/06 20:56:16 
+p1:end_turn 2020/07/06 20:56:17 
+p1:end_turn 2020/07/06 20:56:18 
+p1:end_turn 2020/07/06 20:56:21 
+p1:end_turn 2020/07/06 20:56:23 
+p1:end_turn 2020/07/06 20:56:23 
+p1:play_card 2020/07/06 20:56:25 Swamp King Dred

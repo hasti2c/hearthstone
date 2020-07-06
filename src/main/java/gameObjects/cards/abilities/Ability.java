@@ -27,13 +27,11 @@ public abstract class Ability implements Configable {
     private Ability nextAbility;
     private AddCard nextAddCard;
     private ChangeStats nextChangeStats;
+    private RemoveCard nextRemoveCard;
 
     @Override
     public void initialize(GameController controller) {
-        if (nextAddCard != null)
-            nextAbility = nextAddCard;
-        else if (nextChangeStats != null)
-            nextAbility = nextChangeStats;
+        setNextAbility();
     }
 
     @Override
@@ -117,6 +115,11 @@ public abstract class Ability implements Configable {
                 if (possibleElements.size() > 0)
                     targets.add(Element.getRandomElement(possibleElements));
             }
+            case OPPONENT_HAND -> {
+                ArrayList<Element> possibleElements = getValidSublist(actionPerformer.getOpponent().getHand());
+                if (possibleElements.size() > 0)
+                    targets.add(Element.getRandomElement(possibleElements));
+            }
             case BATTLEFIELD -> {
                 ArrayList<Element> possibleElements = getValidSublist(actionPerformer.getMinionsInGame());
                 possibleElements.addAll(getValidSublist(actionPerformer.getOpponent().getMinionsInGame()));
@@ -195,6 +198,23 @@ public abstract class Ability implements Configable {
     private void discoverAndDoAction(GamePlayer actionPerformer, Card caller, Card played) {
         DiscoverGraphics discover = new DiscoverGraphics(actionPerformer, this, caller, getTarget(actionPerformer, caller, played));
         discover.display();
+    }
+
+    public void setNextAbility() {
+        if (nextAddCard != null)
+            nextAbility = nextAddCard;
+        else if (nextChangeStats != null)
+            nextAbility = nextChangeStats;
+        else if (nextRemoveCard != null)
+            nextAbility = nextRemoveCard;
+    }
+
+    public void removeNextAbility() {
+        nextAbility = null;
+    }
+
+    public Ability getNextAbility() {
+        return nextAbility;
     }
 
     private class SelectionEventHandler extends TargetEventHandler {

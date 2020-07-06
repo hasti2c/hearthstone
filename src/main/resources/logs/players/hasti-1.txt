@@ -2010,3 +2010,42 @@ start_game 2020/07/06 19:08:29 game id: 675
 login 2020/07/06 19:16:40 
 start_game 2020/07/06 19:16:43 game id: 676
 start_game 2020/07/06 19:17:39 game id: 677
+end_game 2020/07/06 19:21:59 game id: 677
+logout 2020/07/06 19:21:59 
+login 2020/07/06 20:10:53 
+start_game 2020/07/06 20:10:57 game id: 678
+select 2020/07/06 20:18:07 deck: weapons
+start_game 2020/07/06 20:18:10 game id: 679
+login 2020/07/06 20:44:30 
+start_game 2020/07/06 20:44:51 game id: 680
+select 2020/07/06 20:44:59 deck: spell
+start_game 2020/07/06 20:45:01 game id: 681
+login 2020/07/06 20:46:20 
+start_game 2020/07/06 20:46:23 game id: 682
+select 2020/07/06 20:47:12 deck: smith
+start_game 2020/07/06 20:47:14 game id: 683
+login 2020/07/06 20:48:02 
+start_game 2020/07/06 20:48:05 game id: 684
+select 2020/07/06 20:49:17 deck: swamp
+start_game 2020/07/06 20:49:19 game id: 685
+login 2020/07/06 20:50:54 
+start_game 2020/07/06 20:50:57 game id: 686
+login 2020/07/06 20:55:44 
+start_game 2020/07/06 20:56:00 game id: 687
+login 2020/07/06 21:21:31 
+start_game 2020/07/06 21:21:35 game id: 688
+select 2020/07/06 21:21:49 deck: smith
+start_game 2020/07/06 21:21:55 game id: 689
+login 2020/07/06 21:31:29 
+start_game 2020/07/06 21:31:33 game id: 690
+select 2020/07/06 21:31:49 deck: weapons
+select 2020/07/06 21:31:50 deck: smith
+remove 2020/07/06 21:31:53 card: voidwalker -> deck: rogue-smith
+remove 2020/07/06 21:31:53 card: voidwalker -> deck: rogue-smith
+remove 2020/07/06 21:31:54 card: murloc raider -> deck: rogue-smith
+remove 2020/07/06 21:31:54 card: murloc raider -> deck: rogue-smith
+add 2020/07/06 21:31:56 card: Blood Fury -> deck: rogue-smith
+add 2020/07/06 21:31:56 card: Blood Fury -> deck: rogue-smith
+add 2020/07/06 21:31:57 card: Truesilver Champion -> deck: rogue-smith
+add 2020/07/06 21:31:57 card: Truesilver Champion -> deck: rogue-smith
+start_game 2020/07/06 21:32:00 game id: 691

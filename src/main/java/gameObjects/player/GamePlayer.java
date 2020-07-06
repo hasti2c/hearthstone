@@ -117,13 +117,14 @@ public class GamePlayer {
     }
 
     public boolean playCard(Card card) {
-        if (!isMyTurn() || !hand.contains(card) || mana < card.getMana() || (card instanceof Minion && minionsInGame.size() >= 7))
+        if (!isMyTurn() || !hand.contains(card) || mana < card.getGameMana(inventory.getCurrentHero().getHeroClass()) || (card instanceof Minion && minionsInGame.size() >= 7))
             return false;
 
         inventory.getCurrentDeck().addUse(card);
-        mana -= card.getMana();
+        mana -= card.getGameMana(inventory.getCurrentHero().getHeroClass());
         hand.remove(card);
         if (card instanceof Minion minion) {
+            inventory.getCurrentHero().getHeroClass().doHeroAction(minion);
             minionsInGame.add(minion);
             minion.setAsleep(true);
         } else if (card instanceof Weapon weapon) {
@@ -136,13 +137,17 @@ public class GamePlayer {
 
     public void setCurrentWeapon(Weapon weapon) {
         currentWeapon = weapon;
+        if (weapon != null)
+            inventory.getCurrentHero().getHeroPower().promote();
+        else
+            inventory.getCurrentHero().getHeroPower().demote();
         inventory.getCurrentHero().setHasAttacked(false);
     }
 
     public boolean useHeroPower() {
         Hero hero = inventory.getCurrentHero();
         HeroPower heroPower = hero.getHeroPower();
-        if (!isMyTurn() || usedHeroPower || mana < heroPower.getMana())
+        if (!isMyTurn() || usedHeroPower || mana < heroPower.getGameMana(inventory.getCurrentHero().getHeroClass()))
             return false;
         setUsedHeroPower(true);
         heroPower.reduceCost(this);

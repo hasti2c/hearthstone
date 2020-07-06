@@ -5,7 +5,7 @@
   "price": 25,
   "heroClass": "MAGE",
   "rarity": "RARE",
-  "removeAbility": {
+  "removeCardAbility": {
     "abilityType": "BATTLE_CRY",
     "callerSide": "SELF",
     "targetType": "SELECTED",

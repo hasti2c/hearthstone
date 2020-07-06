@@ -8,6 +8,7 @@ public enum TargetType {
     BY_STATS,
     MY_DECK,
     OPPONENT_DECK,
+    OPPONENT_HAND,
     BATTLEFIELD,
     SELECTED,
     DISCOVER

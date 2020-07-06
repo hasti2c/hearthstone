@@ -22,7 +22,7 @@ public class DiscoverGraphics {
     private GamePlayer actionPerformer;
     private Pane pane;
     private Card caller;
-    private ArrayList<Card> targets;
+    private ArrayList<Card> targets = new ArrayList<>();
     private Ability ability;
     @FXML
     private HBox cardsHBox;

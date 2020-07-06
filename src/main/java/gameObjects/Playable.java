@@ -3,10 +3,7 @@ package gameObjects;
 import controllers.game.GameController;
 import gameObjects.cards.Card;
 import gameObjects.cards.Element;
-import gameObjects.cards.ElementType;
-import gameObjects.cards.Minion;
 import gameObjects.cards.abilities.*;
-import gameObjects.cards.abilities.targets.Targetable;
 import gameObjects.heros.HeroClass;
 import gameObjects.player.GamePlayer;
 import javafx.scene.image.Image;
@@ -29,7 +26,7 @@ public abstract class Playable extends Element {
     private ChangeStats changeStatsAbility;
     private Attack attackAbility;
     private AddCard addCardAbility;
-    private Remove removeAbility;
+    private RemoveCard removeCardAbility;
 
     @Override
     public void initialize(GameController controller) {
@@ -40,12 +37,16 @@ public abstract class Playable extends Element {
             abilities.add(attackAbility);
         if (addCardAbility != null)
             abilities.add(addCardAbility);
-        if (removeAbility != null)
-            abilities.add(removeAbility);
+        if (removeCardAbility != null)
+            abilities.add(removeCardAbility);
     }
 
     public int getMana() {
         return mana;
+    }
+
+    public int getGameMana(HeroClass heroClass) {
+        return mana - heroClass.getManaReduction(this);
     }
 
     public HeroClass getHeroClass() {

@@ -32,6 +32,10 @@ public class ChangeStats extends Ability {
                 minion.setHealth(minionCaller.getHealth());
         }
     }
+
+    public boolean onlyHeals() {
+        return type == CONSTANT && attackChange == 0 && durabilityChange == 0 && !giveDivineShield && !giveTaunt && healthChange > 0;
+    }
 }
 
 enum ChangeStatsType {

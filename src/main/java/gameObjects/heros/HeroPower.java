@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import static gameObjects.cards.ElementType.HERO_POWER;
+import static gameObjects.heros.HeroClass.ROGUE;
 
 public class HeroPower extends Playable {
     private static Image closedImage;
@@ -20,6 +21,12 @@ public class HeroPower extends Playable {
 
     public HeroPower() {
         elementType = HERO_POWER;
+    }
+
+    @Override
+    public void initialize(GameController controller) {
+        super.initialize(controller);
+        demote();
     }
 
     public HeroPower clone() {
@@ -75,5 +82,17 @@ public class HeroPower extends Playable {
         gamePlayer.setMana(gamePlayer.getMana() - mana);
         Hero hero = gamePlayer.getInventory().getCurrentHero();
         hero.setHealth(hero.getHealth() - healthCost);
+    }
+
+    public void promote() {
+        if (heroClass != ROGUE)
+            return;
+        abilities.get(0).getNextAbility().setNextAbility();
+    }
+
+    public void demote() {
+        if (heroClass != ROGUE)
+            return;
+        abilities.get(0).getNextAbility().removeNextAbility();
     }
 }
