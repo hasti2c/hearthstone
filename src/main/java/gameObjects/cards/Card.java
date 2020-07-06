@@ -77,13 +77,6 @@ public abstract class Card extends Playable implements Targetable {
         return 0;
     }
 
-    public static Card getRandomCard(ArrayList<Card> cards) {
-        if (cards.size() == 0)
-            return null;
-        int n = cards.size(), i = (int) (Math.floor(n * Math.random())) % n;
-        return cards.get(i);
-    }
-
     private static void tryToGetCard(Class<? extends Card> cardClass, String name) throws NoSuchFileException {
         String path = "src/main/resources/database/cards/" + cardClass.getSimpleName() + "/" + name + ".json";
         File file = new File(path);

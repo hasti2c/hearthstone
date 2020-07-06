@@ -1,0 +1,21 @@
+GAME_ID: 677
+STARTED_AT:  2020/07/06 19:17:39 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: zarafe
+
+p1:play_card 2020/07/06 19:17:41 voidwalker
+p1:end_turn 2020/07/06 19:17:45 
+p1:end_turn 2020/07/06 19:17:45 
+p1:end_turn 2020/07/06 19:17:47 
+p1:end_turn 2020/07/06 19:17:47 
+p1:end_turn 2020/07/06 19:17:50 
+p1:play_card 2020/07/06 19:17:53 voidwalker
+p1:end_turn 2020/07/06 19:17:54 
+p1:end_turn 2020/07/06 19:17:55 
+p1:play_card 2020/07/06 19:17:56 Dreadscale
+p1:end_turn 2020/07/06 19:17:58 
+p1:play_card 2020/07/06 19:18:03 voidwalker
+p1:end_turn 2020/07/06 19:18:08 
+p1:end_turn 2020/07/06 19:18:16 

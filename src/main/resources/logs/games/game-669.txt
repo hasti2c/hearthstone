@@ -1,0 +1,9 @@
+GAME_ID: 669
+STARTED_AT:  2020/07/06 18:59:05 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: zarafe
+
+p1:end_turn 2020/07/06 18:59:07 
+p1:end_turn 2020/07/06 18:59:07 

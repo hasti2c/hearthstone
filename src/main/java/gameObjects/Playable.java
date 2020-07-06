@@ -105,34 +105,23 @@ public abstract class Playable extends Element {
     }
 
     public void doActionOnDraw(GamePlayer actionPerformer) {
-        for (Ability ability : abilities)
-            if (DRAW.equals(ability.getAbilityType()))
-                ability.callDoAction(actionPerformer,(Card) this, null);
+        DRAW.doActionOnRandomAbility(abilities, actionPerformer, this, null, null);
     }
 
     public void doActionOnPlay(GamePlayer actionPerformer, Card played) {
-        for (Ability ability : abilities)
-            if (PLAY.equals(ability.getAbilityType()))
-                ability.callDoAction(actionPerformer, this, played);
-            else if (BATTLE_CRY.equals(ability.getAbilityType()) && this == played)
-                ability.callDoAction(actionPerformer, this, played);
+        PLAY.doActionOnRandomAbility(abilities, actionPerformer, this, played, null);
+        BATTLE_CRY.doActionOnRandomAbility(abilities, actionPerformer, this, played, null);
     }
 
     public void doActionOnEndTurn(GamePlayer actionPerformer) {
-        for (Ability ability : abilities)
-            if (END_TURN.equals(ability.getAbilityType()))
-                ability.callDoAction(actionPerformer, this, null);
+        END_TURN.doActionOnRandomAbility(abilities, actionPerformer, this, null, null);
     }
 
     public void doActionOnDamaged(GamePlayer actionPerformer, Card damaged) {
-        for (Ability ability : abilities)
-            if (TAKES_DAMAGE.equals(ability.getAbilityType()) && this == damaged)
-                ability.callDoAction(actionPerformer, this, null);
+        TAKES_DAMAGE.doActionOnRandomAbility(abilities, actionPerformer, this, null, damaged);
     }
 
     public void doActionOnHeroPower(GamePlayer actionPerformer) {
-        for (Ability ability : abilities)
-            if (HERO_POWER.equals(ability.getAbilityType()))
-                ability.callDoAction(actionPerformer, this, null);
+        HERO_POWER.doActionOnRandomAbility(abilities, actionPerformer, this, null, null);
     }
 }

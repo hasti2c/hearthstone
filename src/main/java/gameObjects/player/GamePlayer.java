@@ -151,7 +151,7 @@ public class GamePlayer {
     }
 
     public boolean canUseHeroPower() {
-        return !usedHeroPower;
+        return !usedHeroPower && !inventory.getCurrentHero().getHeroPower().isPassive();
     }
 
     public int getMyTurnNumber() {

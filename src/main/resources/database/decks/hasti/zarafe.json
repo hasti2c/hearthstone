@@ -1,8 +1,30 @@
 {
   "name": "zarafe",
   "heroClass": "WARLOCK",
-  "cards": [],
-  "uses": [],
+  "cards": [
+    "Dreadscale",
+    "Dreadscale",
+    "korkron elite",
+    "korkron elite",
+    "Blood Fury",
+    "Blood Fury",
+    "voidwalker",
+    "voidwalker",
+    "Sprint",
+    "Sprint"
+  ],
+  "uses": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
   "wins": 0,
   "games": 0,
   "maxSize": 15

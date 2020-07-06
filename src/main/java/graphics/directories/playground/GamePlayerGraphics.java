@@ -153,13 +153,14 @@ public class GamePlayerGraphics {
         if (gamePlayer.canUseHeroPower()) {
             Group group = (new HeroPowerGraphics(heroPower)).getGroup();
             heroPowerPane.getChildren().add(group);
-            if (!heroPower.isPassive())
-                group.setOnMouseClicked(e -> {
-                    gamePlayer.useHeroPower();
-                    if (!heroPower.needsTarget())
-                        playGround.config();
-                });
-        } else
+            group.setOnMouseClicked(e -> {
+                gamePlayer.useHeroPower();
+                if (!heroPower.needsTarget())
+                    playGround.config();
+            });
+        } else if (heroPower.isPassive())
+            heroPowerPane.getChildren().add((new HeroPowerGraphics(heroPower)).getGroup());
+        else
             heroPowerPane.getChildren().add(HeroPower.getClosedImageView());
     }
 

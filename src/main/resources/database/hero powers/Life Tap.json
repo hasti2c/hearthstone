@@ -2,5 +2,22 @@
   "name": "Life Tap",
   "heroClass": "WARLOCK",
   "mana": 2,
-  "healthCost": 2
+  "healthCost": 2,
+  "changeStatsAbility": {
+    "abilityType": "HERO_POWER",
+    "callerSide": "SELF",
+    "targetType": "BATTLEFIELD",
+    "targetElementTypes": [
+      "MINION"
+    ],
+    "type": "CONSTANT",
+    "attackChange": 1,
+    "healthChange": 1
+  },
+  "addCardAbility": {
+    "abilityType": "HERO_POWER",
+    "callerSide": "SELF",
+    "targetType": "MY_DECK",
+    "type": "DRAW"
+  }
 }

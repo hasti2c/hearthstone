@@ -1984,3 +1984,29 @@ select 2020/07/06 18:20:48 deck: swamp
 add 2020/07/06 18:21:03 deck: zarafe -> hero: WARLOCK
 select 2020/07/06 18:21:05 deck: zarafe
 start_game 2020/07/06 18:24:09 game id: 668
+login 2020/07/06 18:59:03 
+start_game 2020/07/06 18:59:05 game id: 669
+add 2020/07/06 18:59:16 card: Dreadscale -> deck: warlock-zarafe
+add 2020/07/06 18:59:16 card: Dreadscale -> deck: warlock-zarafe
+add 2020/07/06 18:59:17 card: korkron elite -> deck: warlock-zarafe
+add 2020/07/06 18:59:17 card: korkron elite -> deck: warlock-zarafe
+add 2020/07/06 18:59:18 card: Blood Fury -> deck: warlock-zarafe
+add 2020/07/06 18:59:18 card: Blood Fury -> deck: warlock-zarafe
+add 2020/07/06 18:59:19 card: voidwalker -> deck: warlock-zarafe
+add 2020/07/06 18:59:19 card: voidwalker -> deck: warlock-zarafe
+add 2020/07/06 18:59:20 card: Sprint -> deck: warlock-zarafe
+add 2020/07/06 18:59:20 card: Sprint -> deck: warlock-zarafe
+start_game 2020/07/06 18:59:22 game id: 670
+login 2020/07/06 19:00:34 
+start_game 2020/07/06 19:00:37 game id: 671
+login 2020/07/06 19:01:20 
+start_game 2020/07/06 19:01:23 game id: 672
+login 2020/07/06 19:01:50 
+start_game 2020/07/06 19:01:54 game id: 673
+login 2020/07/06 19:04:25 
+start_game 2020/07/06 19:04:28 game id: 674
+login 2020/07/06 19:08:26 
+start_game 2020/07/06 19:08:29 game id: 675
+login 2020/07/06 19:16:40 
+start_game 2020/07/06 19:16:43 game id: 676
+start_game 2020/07/06 19:17:39 game id: 677

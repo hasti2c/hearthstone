@@ -117,6 +117,12 @@ public abstract class Ability implements Configable {
                 if (possibleElements.size() > 0)
                     targets.add(Element.getRandomElement(possibleElements));
             }
+            case BATTLEFIELD -> {
+                ArrayList<Element> possibleElements = getValidSublist(actionPerformer.getMinionsInGame());
+                possibleElements.addAll(getValidSublist(actionPerformer.getOpponent().getMinionsInGame()));
+                if (possibleElements.size() > 0)
+                    targets.add(Element.getRandomElement(possibleElements));
+            }
             case DISCOVER -> {
                 ArrayList<Element> possibleElements = getValidSublist(GameController.getCardsList());
                 for (int i = 0; i < 3; i++) {
