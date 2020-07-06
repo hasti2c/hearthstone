@@ -7,11 +7,12 @@
   "price": 25,
   "heroClass": "NEUTRAL",
   "rarity": "RARE",
-  "cardType": "MINION",
   "addCardAbility": {
     "abilityType": "TAKES_DAMAGE",
     "targetType": "BY_STATS",
-    "targetCardType": "MINION",
+    "targetElementTypes": [
+      "MINION"
+    ],
     "type": "SUMMON",
     "targetHealth": 2,
     "targetAttack": 3,

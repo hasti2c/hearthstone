@@ -1,4 +1,15 @@
 {
   "name": "Caltrops",
-  "mana": 2
+  "heroClass": "HUNTER",
+  "mana": 0,
+  "attackAbility": {
+    "abilityType": "PLAY",
+    "callerSide": "OPPONENT",
+    "targetType": "PLAYED",
+    "targetElementTypes": [
+      "MINION"
+    ],
+    "type": "CONSTANT",
+    "damageAmount": 1
+  }
 }

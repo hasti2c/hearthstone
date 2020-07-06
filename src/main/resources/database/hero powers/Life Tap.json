@@ -1,4 +1,6 @@
 {
   "name": "Life Tap",
-  "mana": 2
+  "heroClass": "WARLOCK",
+  "mana": 2,
+  "healthCost": 2
 }

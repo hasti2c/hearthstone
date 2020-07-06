@@ -1,0 +1,10 @@
+GAME_ID: 626
+STARTED_AT:  2020/07/06 15:19:25 
+
+p1: hasti
+p1_hero: hunter
+p1_deck: swamp
+
+p1:play_card 2020/07/06 15:19:29 voidwalker
+p1:end_turn 2020/07/06 15:19:30 
+p1:play_card 2020/07/06 15:19:32 voidwalker

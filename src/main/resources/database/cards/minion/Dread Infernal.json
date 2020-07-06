@@ -6,6 +6,5 @@
   "attack": 6,
   "price": 25,
   "heroClass": "WARLOCK",
-  "rarity": "RARE",
-  "cardType": "MINION"
+  "rarity": "RARE"
 }

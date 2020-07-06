@@ -1,11 +1,16 @@
 {
   "name": "Fireblast",
+  "heroClass": "MAGE",
   "mana": 2,
   "attackAbility": {
     "abilityType": "HERO_POWER",
     "callerSide": "SELF",
     "targetType": "SELECTED",
+    "targetElementTypes": [
+      "MINION",
+      "HERO"
+    ],
     "type": "CONSTANT",
-    "damageAmount": 2
+    "damageAmount": 1
   }
 }

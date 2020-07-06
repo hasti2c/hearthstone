@@ -32,7 +32,6 @@ public class PlayGround extends Directory {
             pane.getChildren().add(i, gamePlayers[i].getPane());
         }
 
-
         homeButton.setOnAction(e -> {
             if (confirm())
                 controller.displayHome();
@@ -45,7 +44,6 @@ public class PlayGround extends Directory {
             if (confirm())
                 controller.exit();
         });
-
         endTurnButton.setOnAction(e -> {
             runner.run(new Command(CommandType.END_TURN));
             config();

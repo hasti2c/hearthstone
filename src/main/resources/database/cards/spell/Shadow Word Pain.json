@@ -4,6 +4,5 @@
   "mana": 2,
   "price": 100,
   "heroClass": "PRIEST",
-  "rarity": "COMMON",
-  "cardType": "SPELL"
+  "rarity": "COMMON"
 }

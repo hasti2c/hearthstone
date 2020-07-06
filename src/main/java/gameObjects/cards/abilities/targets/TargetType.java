@@ -6,8 +6,8 @@ public enum TargetType {
     ALL_ELSE,
     RANDOM,
     BY_STATS,
-    DECK,
-    SELECTED_ANY,
-    SELECTED_CARD,
+    MY_DECK,
+    OPPONENT_DECK,
+    SELECTED,
     DISCOVER
 }

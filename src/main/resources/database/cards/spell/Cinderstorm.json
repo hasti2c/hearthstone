@@ -4,6 +4,5 @@
   "mana": 3,
   "price": 25,
   "heroClass": "MAGE",
-  "rarity": "RARE",
-  "cardType": "SPELL"
+  "rarity": "RARE"
 }

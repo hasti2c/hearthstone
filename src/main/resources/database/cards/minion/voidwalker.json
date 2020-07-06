@@ -2,10 +2,9 @@
   "name": "voidwalker",
   "description": "Taunt",
   "mana": 1,
-  "health": 1,
+  "health": 3,
   "attack": 1,
   "price": 10,
   "heroClass": "NEUTRAL",
-  "rarity": "COMMON",
-  "cardType": "MINION"
+  "rarity": "COMMON"
 }

@@ -7,7 +7,6 @@
   "price": 25,
   "heroClass": "NEUTRAL",
   "rarity": "RARE",
-  "cardType": "MINION",
   "changeStatsAbility": {
     "abilityType": "DRAW",
     "callerSide": "SELF",

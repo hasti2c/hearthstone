@@ -1,0 +1,7 @@
+GAME_ID: 621
+STARTED_AT:  2020/07/06 15:06:25 
+
+p1: hasti
+p1_hero: priest
+p1_deck: high
+

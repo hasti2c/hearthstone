@@ -5,12 +5,13 @@
   "price": 25,
   "heroClass": "NEUTRAL",
   "rarity": "RARE",
-  "cardType": "SPELL",
   "changeStatsAbility": {
     "abilityType": "BATTLE_CRY",
     "callerSide": "SELF",
     "targetType": "SELECTED",
-    "targetCardType": "MINION",
+    "targetElementTypes": [
+      "MINION"
+    ],
     "type": "CONSTANT",
     "healthChange": 4,
     "attackChange": 4,

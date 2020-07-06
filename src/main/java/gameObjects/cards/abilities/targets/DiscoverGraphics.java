@@ -1,6 +1,7 @@
 package gameObjects.cards.abilities.targets;
 
 import gameObjects.cards.Card;
+import gameObjects.cards.Element;
 import gameObjects.cards.Minion;
 import gameObjects.cards.abilities.Ability;
 import gameObjects.player.GamePlayer;
@@ -26,10 +27,11 @@ public class DiscoverGraphics {
     @FXML
     private HBox cardsHBox;
 
-    public DiscoverGraphics(GamePlayer actionPerformer, Ability ability, Card caller, ArrayList<Card> targets) {
+    public DiscoverGraphics(GamePlayer actionPerformer, Ability ability, Card caller, ArrayList<Element> targets) {
         this.actionPerformer = actionPerformer;
         playGround = actionPerformer.getGraphics().getPlayGround();
-        this.targets = targets;
+        for (Element element : targets)
+            this.targets.add((Card) element);
         this.caller = caller;
         this.ability = ability;
         load();

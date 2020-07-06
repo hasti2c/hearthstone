@@ -1,0 +1,13 @@
+GAME_ID: 642
+STARTED_AT:  2020/07/06 17:21:50 
+
+p1: hasti
+p1_hero: hunter
+p1_deck: swamp
+
+p1:end_turn 2020/07/06 17:21:53 
+p1:end_turn 2020/07/06 17:21:53 
+p1:play_card 2020/07/06 17:21:54 argent protector
+p1:end_turn 2020/07/06 17:21:57 
+p1:end_turn 2020/07/06 17:21:58 
+p1:play_card 2020/07/06 17:22:01 voidwalker

@@ -1,0 +1,13 @@
+GAME_ID: 610
+STARTED_AT:  2020/07/06 14:23:23 
+
+p1: hasti
+p1_hero: priest
+p1_deck: high
+
+p1:play_card 2020/07/06 14:23:25 voidwalker
+p1:end_turn 2020/07/06 14:23:26 
+p1:end_turn 2020/07/06 14:23:29 
+p1:end_turn 2020/07/06 14:23:31 
+p1:end_turn 2020/07/06 14:23:37 
+p1:end_turn 2020/07/06 14:23:42 

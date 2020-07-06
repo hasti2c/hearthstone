@@ -118,9 +118,13 @@ public abstract class CardsList extends Directory {
 
     protected abstract boolean validCard(Card card);
 
+    //TODO untof =)
     private boolean selectedCard(Card card) {
         boolean ret = options.get("Unlocked");
-        ret &= options.get(GameController.toProperCase(card.getCardType().toString()));
+        ElementType elementType = card.getElementType();
+        if (elementType == ElementType.QUEST_AND_REWARD)
+            elementType = ElementType.SPELL;
+        ret &= options.get(GameController.toProperCase(elementType.toString()));
         ret &= options.get(GameController.toProperCase(card.getHeroClass().toString()));
         if (this instanceof Deck dg) {
             if (dg.getDeck().getCards().contains(card))

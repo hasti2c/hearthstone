@@ -1,7 +1,11 @@
 package gameObjects.cards;
 
-public class QuestAndReward extends Spell {
-    public QuestAndReward() {}
+import static gameObjects.cards.ElementType.QUEST_AND_REWARD;
+
+public class QuestAndReward extends Card {
+    public QuestAndReward() {
+        elementType = QUEST_AND_REWARD;
+    }
 
     public Card cloneHelper() {
         return new QuestAndReward();

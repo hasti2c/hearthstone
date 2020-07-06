@@ -10,7 +10,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="heroImage" fitHeight="150.0" fitWidth="130.0" layoutX="467.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true" />
+      <Pane fx:id="heroImagePane" layoutX="467.0" layoutY="94.0" />
       <ImageView fitHeight="49.0" fitWidth="32.0" layoutX="574.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../assets/hp-mana-attack/health.png" />

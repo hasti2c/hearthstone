@@ -10,20 +10,21 @@ import static gameObjects.cards.abilities.AddCardType.*;
 
 public class AddCard extends Ability {
     private AddCardType type;
-    private CardType discardCardType;
+    private ElementType discardElementType;
     private boolean insert = false;
 
     @Override
-    protected void doAction(GamePlayer actionPerformer, Playable caller, Card target) {
+    protected void doAction(GamePlayer actionPerformer, Playable caller, Element target) {
+        Card card = (Card) target;
         GamePlayer player;
-        if (actionPerformer.owns(caller))
-            player = actionPerformer;
-        else
+        if (actionPerformer.getOpponent().owns(caller))
             player = actionPerformer.getOpponent();
+        else
+            player = actionPerformer;
 
-        if (target.getCardType().equals(discardCardType)) {
+        if (target.getElementType().equals(discardElementType)) {
             if (type.equals(DRAW))
-                player.getLeftInDeck().remove(target);
+                player.getLeftInDeck().remove(card);
             return;
         }
 
@@ -33,32 +34,33 @@ public class AddCard extends Ability {
                     addToList(player.getMinionsInGame(), caller, minion, 7);
                 else if (target instanceof Weapon weapon)
                     player.setCurrentWeapon(weapon);
-                addToList(player.getHand(), caller, target, 12);
-                addToList(player.getLeftInDeck(), caller, target, -1);
+                addToList(player.getHand(), caller, card, 12);
+                addToList(player.getLeftInDeck(), caller, card, -1);
             }
             case DRAW -> {
-                addToList(player.getHand(), caller, target, 12);
-                player.getLeftInDeck().remove(target);
+                addToList(player.getHand(), caller, card, 12);
+                player.getLeftInDeck().remove(card);
             }
+            case HAND -> addToList(player.getHand(), caller, card, 12);
             case SUMMON -> {
-                if (target instanceof Minion minion)
+                if (card instanceof Minion minion)
                     addToList(player.getMinionsInGame(), caller, minion, 7);
-                else if (target instanceof Weapon weapon)
+                else if (card instanceof Weapon weapon)
                     player.setCurrentWeapon(weapon);
             }
         }
     }
 
-    private <T extends Card> void addToList(ArrayList<T> arrayList, Playable caller, T target, int maxSize) {
+    private <T extends Card> void addToList(ArrayList<T> arrayList, Playable caller, T card, int maxSize) {
         int index = arrayList.indexOf(caller);
         if (!insert)
             index = -1;
 
         if (maxSize == -1 || arrayList.size() < maxSize) {
             if (index == -1)
-                arrayList.add((T) target.clone());
+                arrayList.add((T) card.clone());
             else
-                arrayList.add(index, (T) target.clone());
+                arrayList.add(index, (T) card.clone());
         }
     }
 }
@@ -66,5 +68,6 @@ public class AddCard extends Ability {
 enum AddCardType {
     ALL_THREE,
     SUMMON,
-    DRAW
+    DRAW,
+    HAND
 }

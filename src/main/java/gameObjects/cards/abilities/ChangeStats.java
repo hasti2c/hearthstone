@@ -1,6 +1,7 @@
 package gameObjects.cards.abilities;
 
 import gameObjects.Playable;
+import gameObjects.heros.Hero;
 import gameObjects.player.*;
 import gameObjects.cards.*;
 
@@ -12,7 +13,7 @@ public class ChangeStats extends Ability {
     private boolean giveTaunt, giveDivineShield;
 
     @Override
-    protected void doAction(GamePlayer actionPerformer, Playable caller, Card target) {
+    protected void doAction(GamePlayer actionPerformer, Playable caller, Element target) {
         if (type == CONSTANT) {
             if (target instanceof Minion minion) {
                 minion.setAttack(minion.getAttack() + attackChange);
@@ -24,7 +25,8 @@ public class ChangeStats extends Ability {
             } else if (target instanceof Weapon weapon) {
                 weapon.setAttack(weapon.getAttack() + attackChange);
                 weapon.setDurability(weapon.getDurability() + durabilityChange);
-            }
+            } else if (target instanceof Hero hero)
+                hero.setHealth(hero.getHealth() + healthChange);
         } else {
             if (target instanceof Minion minion && caller instanceof Minion minionCaller)
                 minion.setHealth(minionCaller.getHealth());

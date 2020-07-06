@@ -1,0 +1,15 @@
+GAME_ID: 637
+STARTED_AT:  2020/07/06 15:53:17 
+
+p1: hasti
+p1_hero: hunter
+p1_deck: swamp
+
+p1:play_card 2020/07/06 15:53:20 murloc raider
+p1:end_turn 2020/07/06 15:53:22 
+p1:end_turn 2020/07/06 15:53:22 
+p1:end_turn 2020/07/06 15:53:23 
+p1:end_turn 2020/07/06 15:53:23 
+p1:end_turn 2020/07/06 15:53:24 
+p1:end_turn 2020/07/06 15:53:26 
+p1:play_card 2020/07/06 15:53:27 senjin shieldmasta

@@ -5,12 +5,13 @@
   "price": 25,
   "heroClass": "NEUTRAL",
   "rarity": "RARE",
-  "cardType": "SPELL",
   "addCardAbility": {
     "abilityType": "BATTLE_CRY",
     "callerSide": "SELF",
     "targetType": "BY_STATS",
-    "targetCardType": "MINION",
+    "targetElementTypes": [
+      "MINION"
+    ],
     "targetHealth": 1,
     "targetAttack": 1,
     "hasRush": true,

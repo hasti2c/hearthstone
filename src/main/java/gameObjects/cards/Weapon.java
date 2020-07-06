@@ -3,12 +3,16 @@ package gameObjects.cards;
 import javafx.scene.image.*;
 import java.io.*;
 
+import static gameObjects.cards.ElementType.WEAPON;
+
 public class Weapon extends Card {
     private int durability;
     private int attack;
     private static Image closedImage;
 
-    public Weapon() {}
+    public Weapon() {
+        elementType = WEAPON;
+    }
 
     Card cloneHelper() {
         Weapon c = new Weapon();

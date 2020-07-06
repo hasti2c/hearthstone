@@ -6,6 +6,9 @@ import gameObjects.cards.abilities.targets.Attackable;
 import graphics.directories.playground.GamePlayerGraphics;
 import gameObjects.cards.*;
 import gameObjects.heros.*;
+import javafx.scene.Node;
+import javafx.util.Pair;
+
 import java.lang.reflect.*;
 import java.util.*;
 
@@ -109,7 +112,7 @@ public class GamePlayer {
 
     private Card getNextCard(ArrayList<Card> cards) {
         if (randomDraw)
-            return Card.getRandomCard(cards);
+            return Element.getRandomElement(cards);
         return leftInDeck.get(0);
     }
 
@@ -137,10 +140,12 @@ public class GamePlayer {
     }
 
     public boolean useHeroPower() {
-        if (!isMyTurn() || usedHeroPower || mana < inventory.getCurrentHero().getHeroPower().getMana())
+        Hero hero = inventory.getCurrentHero();
+        HeroPower heroPower = hero.getHeroPower();
+        if (!isMyTurn() || usedHeroPower || mana < heroPower.getMana())
             return false;
         setUsedHeroPower(true);
-        setMana(getMana() - inventory.getCurrentHero().getHeroPower().getMana());
+        heroPower.reduceCost(this);
         doCardAction("doActionOnHeroPower");
         return true;
     }
@@ -159,8 +164,8 @@ public class GamePlayer {
 
     public boolean owns(Playable playable) {
         boolean ret = minionsInGame.contains(playable) || hand.contains(playable) || leftInDeck.contains(playable);
-        ret &= lastSpell == playable || currentWeapon == playable;
-        ret &= inventory.getCurrentHero().getHeroPower() == playable;
+        ret |= lastSpell == playable || currentWeapon == playable;
+        ret |= inventory.getCurrentHero().getHeroPower() == playable;
         return ret;
     }
 
@@ -299,5 +304,19 @@ public class GamePlayer {
 
     public GamePlayerGraphics getGraphics() {
         return graphics;
+    }
+
+    public ArrayList<Pair<Element, Node>> getCurrentElementsAndNodes() {
+        ArrayList<Pair<Element, Node>> elements = new ArrayList<>();
+        graphics.reloadMinionsHBox();
+        graphics.reloadHeroImage();
+        for (int i = 0; i < minionsInGame.size(); i++)
+            elements.add(new Pair<>(minionsInGame.get(i), graphics.getMinionsHBox().getChildren().get(i)));
+        if (currentWeapon != null)
+            elements.add(new Pair<>(currentWeapon, graphics.getWeaponNode()));
+        if (canUseHeroPower())
+            elements.add(new Pair<>(inventory.getCurrentHero().getHeroPower(), graphics.getHeroPowerNode()));
+        elements.add(new Pair<>(inventory.getCurrentHero(), graphics.getHeroImageView()));
+        return elements;
     }
 }

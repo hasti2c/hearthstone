@@ -6,6 +6,5 @@
   "attack": 1,
   "price": 10,
   "heroClass": "NEUTRAL",
-  "rarity": "COMMON",
-  "cardType": "WEAPON"
-}
+  "rarity": "COMMON"
+  }

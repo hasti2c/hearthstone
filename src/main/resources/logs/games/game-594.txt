@@ -1,0 +1,21 @@
+GAME_ID: 594
+STARTED_AT:  2020/07/06 13:24:42 
+
+p1: hasti
+p1_hero: mage
+p1_deck: minions
+
+p1:end_turn 2020/07/06 13:24:47 
+p1:end_turn 2020/07/06 13:24:48 
+p1:end_turn 2020/07/06 13:24:53 
+p1:end_turn 2020/07/06 13:24:55 
+p1:end_turn 2020/07/06 13:24:55 
+p1:end_turn 2020/07/06 13:24:55 
+p1:end_turn 2020/07/06 13:24:55 
+p1:end_turn 2020/07/06 13:24:56 
+p1:end_turn 2020/07/06 13:24:56 
+p1:end_turn 2020/07/06 13:24:56 
+p1:play_card 2020/07/06 13:24:58 Curio Collector
+p1:end_turn 2020/07/06 13:24:58 
+p1:play_card 2020/07/06 13:25:00 Pharaohs Blessing
+p1:end_turn 2020/07/06 13:25:02 

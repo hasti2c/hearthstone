@@ -1,0 +1,13 @@
+GAME_ID: 612
+STARTED_AT:  2020/07/06 14:27:09 
+
+p1: hasti
+p1_hero: priest
+p1_deck: high
+
+p1:end_turn 2020/07/06 14:27:11 
+p1:end_turn 2020/07/06 14:27:12 
+p1:end_turn 2020/07/06 14:27:14 
+p1:end_turn 2020/07/06 14:27:15 
+p1:end_turn 2020/07/06 14:27:17 
+p1:end_turn 2020/07/06 14:27:18 

@@ -3,22 +3,15 @@ package gameObjects.cards;
 import controllers.game.*;
 import gameObjects.*;
 import gameObjects.cards.abilities.targets.Targetable;
-import gameObjects.player.*;
-import gameObjects.cards.abilities.*;
 import gameObjects.heros.*;
-import javafx.scene.image.*;
-import javafx.scene.paint.*;
+
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
-import static gameObjects.cards.abilities.AbilityType.*;
-import static gameObjects.cards.abilities.targets.TargetType.DISCOVER;
-import static gameObjects.cards.abilities.targets.TargetType.SELECTED;
 
 public abstract class Card extends Playable implements Targetable {
     private int price;
     private RarityType rarity;
-    private CardType cardType;
 
     @Override
     public String getJsonPath(GameController controller, String name) {
@@ -27,10 +20,6 @@ public abstract class Card extends Playable implements Targetable {
 
     public int getPrice() {
         return this.price;
-    }
-
-    public CardType getCardType() {
-        return this.cardType;
     }
 
     public RarityType getRarity() {
@@ -57,7 +46,7 @@ public abstract class Card extends Playable implements Targetable {
         c.price = price;
         c.heroClass = heroClass;
         c.rarity = rarity;
-        c.cardType = cardType;
+        c.elementType = elementType;
         c.abilities = abilities;
         return c;
     }

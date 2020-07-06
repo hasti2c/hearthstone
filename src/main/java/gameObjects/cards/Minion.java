@@ -3,13 +3,17 @@ package gameObjects.cards;
 import gameObjects.cards.abilities.targets.Attackable;
 import gameObjects.player.*;
 
+import static gameObjects.cards.ElementType.MINION;
+
 public class Minion extends Card implements Attackable {
     private int health;
     private int attack;
     private boolean hasAttacked = false;
     private boolean taunt, asleep = true, rush, divineShield;
 
-    public Minion() {}
+    public Minion() {
+        elementType = MINION;
+    }
 
     Card cloneHelper() {
         Minion c = new Minion();

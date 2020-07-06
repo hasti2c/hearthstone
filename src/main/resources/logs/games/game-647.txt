@@ -1,0 +1,7 @@
+GAME_ID: 647
+STARTED_AT:  2020/07/06 17:46:26 
+
+p1: hasti
+p1_hero: rogue
+p1_deck: smith
+

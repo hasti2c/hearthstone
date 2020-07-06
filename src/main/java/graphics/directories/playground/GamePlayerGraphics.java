@@ -25,15 +25,12 @@ public class GamePlayerGraphics {
     private final GamePlayer gamePlayer;
     private Pane pane;
     private Attackable selectedAttackable;
-    private AttackEventHandler heroEventHandler;
-    @FXML
-    private ImageView heroImage;
     @FXML
     private Label hpLabel, manaLabel, deckLabel;
     @FXML
     private HBox manaHBox, handHBox1, handHBox2, minionsHBox;
     @FXML
-    private Pane weaponPane, heroPowerPane;
+    private Pane weaponPane, heroPowerPane, heroImagePane;
 
     GamePlayerGraphics(PlayGround playGround, CommandRunner runner, GamePlayer gamePlayer) {
         this.playGround = playGround;
@@ -42,7 +39,7 @@ public class GamePlayerGraphics {
         gamePlayer.setGraphics(this);
         this.playerFaction = gamePlayer.getPlayerFaction();
         load();
-        heroImage.setImage(gamePlayer.getInventory().getCurrentHero().getGameImage());
+        reloadHeroImage();
 
         /*heroPowerButton.setOnAction(e -> {
             runner.run(new Command(CommandType.HERO_POWER));
@@ -93,23 +90,18 @@ public class GamePlayerGraphics {
         configTargets();
         configWeapon();
         configHeroPower();
-//
-//        if (gamePlayer.isHeroPowerUsed()) {
-//            heroPowerButton.setText("used");
-//            heroPowerButton.setDisable(true);
-//        } else {
-//            heroPowerButton.setText(gamePlayer.getInventory().getCurrentHero().getHeroPower().toString());
-//            heroPowerButton.setDisable(false);
-//        }
     }
 
     private void configHero() {
-        if (heroEventHandler == null) {
-            heroEventHandler = new AttackEventHandler(gamePlayer.getInventory().getCurrentHero(), heroImage);
-            heroImage.addEventHandler(MouseEvent.MOUSE_CLICKED, heroEventHandler);
-        }
-        heroEventHandler.deselect();
-        heroEventHandler.initialize();
+        reloadHeroImage();
+        Hero hero = gamePlayer.getInventory().getCurrentHero();
+        Node node = heroImagePane.getChildren().get(0);
+        node.addEventHandler(MouseEvent.MOUSE_CLICKED, new AttackEventHandler(hero, node));
+    }
+
+    public void reloadHeroImage() {
+        heroImagePane.getChildren().clear();
+        heroImagePane.getChildren().add(gamePlayer.getInventory().getCurrentHero().getGameImageView(125, -1));
     }
 
     private void configHand() {
@@ -161,11 +153,12 @@ public class GamePlayerGraphics {
         if (gamePlayer.canUseHeroPower()) {
             Group group = (new HeroPowerGraphics(heroPower)).getGroup();
             heroPowerPane.getChildren().add(group);
-            group.setOnMouseClicked(e -> {
-                gamePlayer.useHeroPower();
-                if (!heroPower.needsTarget())
-                    config();
-            });
+            if (!heroPower.isPassive())
+                group.setOnMouseClicked(e -> {
+                    gamePlayer.useHeroPower();
+                    if (!heroPower.needsTarget())
+                        playGround.config();
+                });
         } else
             heroPowerPane.getChildren().add(HeroPower.getClosedImageView());
     }
@@ -198,7 +191,7 @@ public class GamePlayerGraphics {
 
     private Node getNode(Attackable attackable) {
         if (attackable instanceof Hero)
-            return heroImage;
+            return heroImagePane.getChildren().get(0);
         if (gamePlayer.getMinionsInGame().size() != minionsHBox.getChildren().size())
             return null;
         assert gamePlayer.getMinionsInGame().contains(attackable);
@@ -269,6 +262,22 @@ public class GamePlayerGraphics {
         return gamePlayer;
     }
 
+    public Node getWeaponNode() {
+        if (weaponPane.getChildren().size() == 0)
+            return null;
+        return weaponPane.getChildren().get(0);
+    }
+
+    public Node getHeroPowerNode() {
+        if (heroPowerPane.getChildren().size() == 0)
+            return null;
+        return heroPowerPane.getChildren().get(0);
+    }
+
+    public ImageView getHeroImageView() {
+        return (ImageView) heroImagePane.getChildren().get(0);
+    }
+
     private class HandEventHandler implements EventHandler<MouseEvent> {
         private final Card card;
         private final ImageView normalImageView;
@@ -326,7 +335,7 @@ public class GamePlayerGraphics {
     }
 
     private class AttackEventHandler extends TargetEventHandler {
-        private AttackEventHandler(Targetable targetable, Node node) {
+        AttackEventHandler(Targetable targetable, Node node) {
             super(targetable, node);
             initialize();
         }

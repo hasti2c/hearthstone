@@ -7,11 +7,13 @@
   "price": 100,
   "heroClass": "NEUTRAL",
   "rarity": "LEGENDARY",
-  "cardType": "MINION",
   "attackAbility": {
     "abilityType": "END_TURN",
     "callerSide": "SELF",
     "targetType": "ALL_ELSE",
+    "targetElementTypes": [
+      "MINION"
+    ],
     "type": "CONSTANT",
     "damageAmount": 1
   }

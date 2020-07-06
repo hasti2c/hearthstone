@@ -3,17 +3,23 @@ package gameObjects.heros;
 import java.io.*;
 import controllers.game.*;
 import gameObjects.*;
+import gameObjects.cards.Element;
+import gameObjects.cards.ElementType;
 import gameObjects.cards.abilities.targets.Attackable;
 import gameObjects.player.*;
 import javafx.scene.image.*;
 
-public class Hero implements Configable, Attackable {
+import static gameObjects.cards.ElementType.HERO;
+
+public class Hero extends Element implements Attackable {
     private int health = 30;
-    private String name;
-    private HeroClass heroClass;
     private HeroPower heroPower;
     private boolean hasAttacked = false;
     private Image gameImage;
+
+    public Hero() {
+        elementType = HERO;
+    }
 
     @Override
     public void initialize(GameController controller) {
@@ -50,18 +56,14 @@ public class Hero implements Configable, Attackable {
         return health;
     }
 
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     public int getAttack(GamePlayer gamePlayer) {
         if (gamePlayer.getCurrentWeapon() == null || !gamePlayer.canAttack(this))
             return 0;
         return gamePlayer.getCurrentWeapon().getAttack();
-    }
-
-    public String toString() {
-        return this.name;
-    }
-
-    public HeroClass getHeroClass() {
-        return this.heroClass;
     }
 
     public Hero clone() {
@@ -70,7 +72,7 @@ public class Hero implements Configable, Attackable {
         h.heroClass = heroClass;
         h.health = health;
         h.gameImage = gameImage;
-        h.heroPower = heroPower;
+        h.heroPower = heroPower.clone();
         return h;
     }
 
@@ -78,9 +80,20 @@ public class Hero implements Configable, Attackable {
         return heroPower;
     }
 
-    public Image getGameImage() {
+    public ImageView getGameImageView(int width, int height) {
         if (gameImage == null)
             configGameImage();
-        return gameImage;
+        ImageView iv = new ImageView(gameImage);
+        if (width == -1) {
+            iv.setPreserveRatio(true);
+            iv.setFitHeight(height);
+        } else if (height == -1) {
+            iv.setPreserveRatio(true);
+            iv.setFitWidth(width);
+        } else {
+            iv.setFitHeight(height);
+            iv.setFitWidth(width);
+        }
+        return iv;
     }
 }

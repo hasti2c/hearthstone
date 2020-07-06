@@ -1,0 +1,11 @@
+GAME_ID: 664
+STARTED_AT:  2020/07/06 18:05:43 
+
+p1: hasti
+p1_hero: rogue
+p1_deck: smith
+
+p1:end_turn 2020/07/06 18:05:45 
+p1:end_turn 2020/07/06 18:05:45 
+p1:end_turn 2020/07/06 18:05:52 
+p1:end_turn 2020/07/06 18:05:55 

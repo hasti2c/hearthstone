@@ -52,7 +52,8 @@
     "weapons",
     "smith",
     "high",
-    "swamp"
+    "swamp",
+    "zarafe"
   ],
-  "currentDeck": "minions"
+  "currentDeck": "zarafe"
 }

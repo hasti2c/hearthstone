@@ -6,6 +6,5 @@
   "attack": 4,
   "price": 100,
   "heroClass": "ROGUE",
-  "rarity": "LEGENDARY",
-  "cardType": "MINION"
+  "rarity": "LEGENDARY"
 }

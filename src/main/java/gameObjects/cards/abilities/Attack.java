@@ -11,7 +11,7 @@ public class Attack extends Ability {
     private int damageAmount;
 
     @Override
-    protected void doAction(GamePlayer actionPerformer, Playable caller, Card target) {
+    protected void doAction(GamePlayer actionPerformer, Playable caller, Element target) {
         if (!(target instanceof Attackable defender))
             return;
         switch (type) {

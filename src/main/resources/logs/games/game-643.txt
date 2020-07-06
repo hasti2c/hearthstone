@@ -1,0 +1,12 @@
+GAME_ID: 643
+STARTED_AT:  2020/07/06 17:22:57 
+
+p1: hasti
+p1_hero: hunter
+p1_deck: swamp
+
+p1:play_card 2020/07/06 17:22:58 murloc raider
+p1:end_turn 2020/07/06 17:22:59 
+p1:end_turn 2020/07/06 17:23:03 
+p1:end_turn 2020/07/06 17:23:03 
+p1:play_card 2020/07/06 17:23:04 argent protector

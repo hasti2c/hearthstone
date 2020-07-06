@@ -8,16 +8,19 @@ import gameObjects.cards.*;
 import graphics.directories.playground.GamePlayerGraphics;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
+import javafx.util.Pair;
 
 import java.util.*;
+
+import static gameObjects.cards.ElementType.HERO;
+import static gameObjects.cards.ElementType.MINION;
 import static gameObjects.cards.abilities.targets.TargetType.*;
 
 public abstract class Ability implements Configable {
     protected AbilityType abilityType;
     protected PlayerSide callerSide;
     protected TargetType targetType;
-    protected CardType targetCardType;
+    protected ArrayList<ElementType> targetElementTypes = new ArrayList<>();
     private int times = 1;
     private int targetAttack, targetHealth;
     private boolean hasTaunt = false, hasRush = false;
@@ -38,16 +41,20 @@ public abstract class Ability implements Configable {
         return null;
     }
 
-    private void callDoAction(GamePlayer actionPerformer, Playable caller, Card played, boolean assertValidCaller) {
+    private void callDoAction(GamePlayer actionPerformer, Playable caller, Element played, boolean assertValidCaller) {
         for (int i = 0; i < times; i++) {
             if (targetType.equals(SELECTED))
                 selectAndDoAction(actionPerformer, caller);
             else if (targetType.equals(DISCOVER))
-                discoverAndDoAction(actionPerformer, (Card) caller, played);
-            else
-                for (Card target : getTarget(actionPerformer, (Card) caller, played))
-                    if (isValidCaller(actionPerformer, (Card) caller) && (assertValidCaller || caller.isValid()) && target.isValid())
+                discoverAndDoAction(actionPerformer, (Card) caller, (Card) played);
+            else {
+                System.out.println(getTarget(actionPerformer, caller, (Card) played));
+                for (Element target : getTarget(actionPerformer, caller, (Card) played)) {
+                    System.out.println(target + " " + isValidCaller(actionPerformer, caller) + " " + caller.isValid() + " " + target.isValid());
+                    if (isValidCaller(actionPerformer, caller) && (assertValidCaller || caller.isValid()) && target.isValid())
                         doActionAndNext(actionPerformer, caller, target);
+                }
+            }
         }
     }
 
@@ -55,16 +62,16 @@ public abstract class Ability implements Configable {
         callDoAction(actionPerformer, caller, played, false);
     }
 
-    public void doActionAndNext(GamePlayer actionPerformer, Playable caller, Card target) {
+    public void doActionAndNext(GamePlayer actionPerformer, Playable caller, Element target) {
         doAction(actionPerformer, caller, target);
         if (nextAbility != null)
-            nextAbility.callDoAction(actionPerformer, target, null, true);
+            nextAbility.callDoAction(actionPerformer, (Playable) target, null, true);
     }
 
-    protected abstract void doAction(GamePlayer actionPerformer, Playable caller, Card target);
+    protected abstract void doAction(GamePlayer actionPerformer, Playable caller, Element target);
 
-    private ArrayList<Card> getTarget(GamePlayer actionPerformer, Card caller, Card played) {
-        ArrayList<Card> targets = new ArrayList<>();
+    private ArrayList<Element> getTarget(GamePlayer actionPerformer, Playable caller, Card played) {
+        ArrayList<Element> targets = new ArrayList<>();
         switch (targetType) {
             case SELF -> addIfValid(targets, caller);
             case PLAYED -> addIfValid(targets, played);
@@ -76,19 +83,19 @@ public abstract class Ability implements Configable {
                 targets.remove(caller);
             }
             case RANDOM -> {
-                ArrayList<Card> possibleCards = getValidSublist(GameController.getCardsList());
-                if (possibleCards.size() > 0)
-                    targets.add(Card.getRandomCard(possibleCards));
+                ArrayList<Element> possibleElements = getValidSublist(GameController.getCardsList());
+                if (possibleElements.size() > 0)
+                    targets.add(Element.getRandomElement(possibleElements));
             }
             case BY_STATS -> {
-                ArrayList<Card> possibleCards = new ArrayList<>();
+                ArrayList<Element> possibleElements = new ArrayList<>();
                 for (Card card : GameController.getCardsList())
                     if (isValidTarget(card) && card instanceof Minion minion && matchesStats (minion))
-                        possibleCards.add(card);
-                if (possibleCards.size() > 0)
-                    targets.add(Card.getRandomCard(possibleCards));
+                        possibleElements.add(card);
+                if (possibleElements.size() > 0)
+                    targets.add(Element.getRandomElement(possibleElements));
                 else {
-                    Minion minion = (Minion) Card.getRandomCard(getValidSublist(GameController.getCardsList()));
+                    Minion minion = (Minion) Element.getRandomElement(getValidSublist(GameController.getCardsList()));
                     if (minion == null)
                         break;
                     minion.setHealth(targetHealth);
@@ -100,46 +107,44 @@ public abstract class Ability implements Configable {
                     targets.add(minion);
                 }
             }
-            case DECK -> {
-                ArrayList<Card> possibleCards = getValidSublist(actionPerformer.getLeftInDeck());
-                if (possibleCards.size() > 0)
-                    addIfValid(targets, Card.getRandomCard(possibleCards));
+            case MY_DECK -> {
+                ArrayList<Element> possibleElements = getValidSublist(actionPerformer.getLeftInDeck());
+                if (possibleElements.size() > 0)
+                    targets.add(Element.getRandomElement(possibleElements));
+            }
+            case OPPONENT_DECK -> {
+                ArrayList<Element> possibleElements = getValidSublist(actionPerformer.getOpponent().getLeftInDeck());
+                if (possibleElements.size() > 0)
+                    targets.add(Element.getRandomElement(possibleElements));
             }
             case DISCOVER -> {
-                ArrayList<Card> possibleCards = getValidSublist(GameController.getCardsList());
+                ArrayList<Element> possibleElements = getValidSublist(GameController.getCardsList());
                 for (int i = 0; i < 3; i++) {
-                    Card card = Card.getRandomCard(possibleCards);
+                    Card card = (Card) Element.getRandomElement(possibleElements);
                     if (card != null)
                         targets.add(card);
-                    possibleCards.remove(card);
+                    possibleElements.remove(card);
                 }
             }
         }
         return targets;
     }
 
-    private ArrayList<Card> getValidSublist(ArrayList<? extends Card> list) {
-        ArrayList<Card> validCards = new ArrayList<>();
-        for (Card card : list)
-            addIfValid(validCards, card);
+    private ArrayList<Element> getValidSublist(ArrayList<? extends Element> list) {
+        ArrayList<Element> validCards = new ArrayList<>();
+        for (Element element : list)
+            addIfValid(validCards, element);
         return validCards;
     }
 
-    private boolean hasValidTarget(ArrayList<Card> list) {
-        for (Card card : list)
-            if (isValidTarget(card))
-                return true;
-        return false;
-    }
-
-    private boolean addIfValid(ArrayList<Card> targets, Card target) {
+    private boolean addIfValid(ArrayList<Element> targets, Element target) {
         if (target == null || !isValidTarget(target))
             return false;
         targets.add(target);
         return true;
     }
 
-    private boolean isValidCaller(GamePlayer actionPerformer, Card caller) {
+    private boolean isValidCaller(GamePlayer actionPerformer, Playable caller) {
         if (callerSide == null)
             return true;
         boolean ret = callerSide.equals(PlayerSide.SELF) && actionPerformer.owns(caller);
@@ -147,8 +152,8 @@ public abstract class Ability implements Configable {
         return ret;
     }
 
-    private boolean isValidTarget(Card target) {
-        return targetCardType == null || targetCardType.equals(target.getCardType());
+    private boolean isValidTarget(Element target) {
+        return targetElementTypes.size() == 0 || targetElementTypes.contains(target.getElementType());
     }
 
     private boolean matchesStats(Minion minion) {
@@ -173,16 +178,12 @@ public abstract class Ability implements Configable {
     }
 
     private void selectionMode(GamePlayer gamePlayer, Playable caller) {
-        addEventHandlerToAll(gamePlayer, caller);
-        gamePlayer.getGraphics().disableHero();
-    }
-
-    private void addEventHandlerToAll(GamePlayer gamePlayer, Playable caller) {
-        ArrayList<Minion> minionsInGame = gamePlayer.getMinionsInGame();
-        gamePlayer.getGraphics().reloadMinionsHBox();
-        HBox minionsHBox = gamePlayer.getGraphics().getMinionsHBox();
-        for (int i = 0; i < minionsInGame.size(); i++)
-            minionsHBox.getChildren().get(i).addEventHandler(MouseEvent.MOUSE_CLICKED, new SelectionEventHandler(gamePlayer.getGraphics(), caller, minionsInGame.get(i), minionsHBox.getChildren().get(i)));
+        ArrayList<Pair<Element, Node>> elements = gamePlayer.getCurrentElementsAndNodes();
+        for (Pair<Element, Node> pair : elements)
+            if (isValidTarget(pair.getKey()) && pair.getKey() instanceof Targetable targetable)
+                pair.getValue().addEventHandler(MouseEvent.MOUSE_CLICKED, new SelectionEventHandler(gamePlayer.getGraphics(), caller, targetable, pair.getValue()));
+            else if (pair.getKey() instanceof Targetable)
+                TargetEventHandler.disableNode(pair.getValue());
     }
 
     private void discoverAndDoAction(GamePlayer actionPerformer, Card caller, Card played) {
@@ -212,8 +213,14 @@ public abstract class Ability implements Configable {
 
         @Override
         protected void deselectedMode() {
-            player.enableMinions();
-            player.getOpponent().enableMinions();
+            if (targetElementTypes.contains(MINION)) {
+                player.enableMinions();
+                player.getOpponent().enableMinions();
+            }
+            if (targetElementTypes.contains(HERO)) {
+                player.enableHero();
+                player.getOpponent().enableHero();
+            }
         }
 
         @Override
@@ -221,7 +228,7 @@ public abstract class Ability implements Configable {
 
         @Override
         protected void doAction() {
-            Ability.this.doActionAndNext(player.getGamePlayer(), caller, (Card) targetable) ;
+            Ability.this.doActionAndNext(player.getGamePlayer(), caller, (Element) targetable) ;
             player.getPlayGround().config();
         }
     }

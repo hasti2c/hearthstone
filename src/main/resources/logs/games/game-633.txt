@@ -1,0 +1,18 @@
+GAME_ID: 633
+STARTED_AT:  2020/07/06 15:43:19 
+
+p1: hasti
+p1_hero: hunter
+p1_deck: swamp
+
+p1:play_card 2020/07/06 15:43:21 murloc raider
+p1:end_turn 2020/07/06 15:43:24 
+p1:play_card 2020/07/06 15:43:26 murloc raider
+p1:end_turn 2020/07/06 15:43:27 
+p1:end_turn 2020/07/06 15:43:28 
+p1:end_turn 2020/07/06 15:43:28 
+p1:end_turn 2020/07/06 15:43:28 
+p1:end_turn 2020/07/06 15:43:29 
+p1:play_card 2020/07/06 15:43:30 voidwalker
+p1:end_turn 2020/07/06 15:43:36 
+p1:play_card 2020/07/06 15:43:37 voidwalker

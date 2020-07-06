@@ -1,0 +1,16 @@
+GAME_ID: 638
+STARTED_AT:  2020/07/06 15:54:31 
+
+p1: hasti
+p1_hero: hunter
+p1_deck: swamp
+
+p1:play_card 2020/07/06 15:54:47 murloc raider
+p1:end_turn 2020/07/06 15:54:50 
+p1:end_turn 2020/07/06 15:54:53 
+p1:end_turn 2020/07/06 15:54:56 
+p1:play_card 2020/07/06 15:57:55 argent protector
+p1:end_turn 2020/07/06 15:59:28 
+p1:end_turn 2020/07/06 15:59:31 
+p1:end_turn 2020/07/06 15:59:32 
+p1:play_card 2020/07/06 16:00:45 senjin shieldmasta

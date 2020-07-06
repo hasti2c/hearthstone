@@ -1,0 +1,7 @@
+GAME_ID: 622
+STARTED_AT:  2020/07/06 15:07:30 
+
+p1: hasti
+p1_hero: priest
+p1_deck: high
+

@@ -1,4 +1,16 @@
 {
   "name": "Heal",
-  "mana": 2
+  "heroClass": "PRIEST",
+  "mana": 2,
+  "changeStatsAbility": {
+    "abilityType": "HERO_POWER",
+    "callerSide": "SELF",
+    "targetType": "SELECTED",
+    "targetElementTypes": [
+      "MINION",
+      "HERO"
+    ],
+    "type": "CONSTANT",
+    "healthChange": 4
+  }
 }

@@ -1,0 +1,15 @@
+{
+  "name": "Dagger Mastery",
+  "heroClass": "ROGUE",
+  "mana": 2,
+  "removeAbility": {
+    "abilityType": "HERO_POWER",
+    "callerSide": "SELF",
+    "targetType": "OPPONENT_DECK",
+    "type": "DECK",
+    "nextAddCard": {
+      "targetType": "SELF",
+      "type": "HAND"
+    }
+  }
+}

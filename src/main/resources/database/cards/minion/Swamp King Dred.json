@@ -7,7 +7,6 @@
   "price": 100,
   "heroClass": "HUNTER",
   "rarity": "LEGENDARY",
-  "cardType": "MINION",
   "attackAbility": {
     "abilityType": "PLAY",
     "callerSide": "OPPONENT",

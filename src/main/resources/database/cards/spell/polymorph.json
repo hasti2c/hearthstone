@@ -5,17 +5,21 @@
   "price": 25,
   "heroClass": "MAGE",
   "rarity": "RARE",
-  "cardType": "SPELL",
   "removeAbility": {
     "abilityType": "BATTLE_CRY",
     "callerSide": "SELF",
     "targetType": "SELECTED",
-    "targetCardType": "MINION",
+    "targetElementTypes": [
+      "MINION"
+    ],
+    "type": "BATTLEFIELD",
     "nextAddCard": {
       "targetType": "BY_STATS",
       "targetHealth": 1,
       "targetAttack": 1,
-      "targetCardType": "MINION",
+      "targetElementTypes": [
+      "MINION"
+    ],
       "type": "SUMMON",
       "insert": true
     }

@@ -2,6 +2,8 @@ package gameObjects;
 
 import controllers.game.GameController;
 import gameObjects.cards.Card;
+import gameObjects.cards.Element;
+import gameObjects.cards.ElementType;
 import gameObjects.cards.Minion;
 import gameObjects.cards.abilities.*;
 import gameObjects.cards.abilities.targets.Targetable;
@@ -19,10 +21,9 @@ import static gameObjects.cards.abilities.AbilityType.*;
 import static gameObjects.cards.abilities.targets.TargetType.DISCOVER;
 import static gameObjects.cards.abilities.targets.TargetType.SELECTED;
 
-public abstract class Playable implements Configable {
-    protected String name, description;
+public abstract class Playable extends Element {
+    protected String description;
     protected int mana;
-    protected HeroClass heroClass;
     protected Image image, fullImage;
     protected ArrayList<Ability> abilities = new ArrayList<>();
     private ChangeStats changeStatsAbility;
@@ -43,22 +44,12 @@ public abstract class Playable implements Configable {
             abilities.add(removeAbility);
     }
 
-    public String toString() {
-        return this.name;
-    }
-
     public int getMana() {
         return mana;
     }
 
     public HeroClass getHeroClass() {
         return this.heroClass;
-    }
-
-    public boolean isValid() {
-        if (!(this instanceof Minion minion))
-            return true;
-        return minion.getHealth() > 0;
     }
 
     public boolean needsTarget() {
@@ -122,7 +113,7 @@ public abstract class Playable implements Configable {
     public void doActionOnPlay(GamePlayer actionPerformer, Card played) {
         for (Ability ability : abilities)
             if (PLAY.equals(ability.getAbilityType()))
-                ability.callDoAction(actionPerformer,  this, played);
+                ability.callDoAction(actionPerformer, this, played);
             else if (BATTLE_CRY.equals(ability.getAbilityType()) && this == played)
                 ability.callDoAction(actionPerformer, this, played);
     }
