@@ -1,0 +1,27 @@
+GAME_ID: 712
+STARTED_AT:  2020/07/07 14:13:16 
+
+p1: hasti
+p1_hero: priest
+p1_deck: high
+
+p1:play_card 2020/07/07 14:13:18 voidwalker
+p1:end_turn 2020/07/07 14:13:19 
+p1:end_turn 2020/07/07 14:13:19 
+p1:play_card 2020/07/07 14:13:20 murloc raider
+p1:end_turn 2020/07/07 14:13:21 
+p1:end_turn 2020/07/07 14:13:21 
+p1:end_turn 2020/07/07 14:13:22 
+p1:end_turn 2020/07/07 14:13:22 
+p1:end_turn 2020/07/07 14:13:22 
+p1:end_turn 2020/07/07 14:13:23 
+p1:end_turn 2020/07/07 14:13:23 
+p1:end_turn 2020/07/07 14:13:25 
+p1:play_card 2020/07/07 14:13:26 senjin shieldmasta
+p1:play_card 2020/07/07 14:13:27 murloc raider
+p1:play_card 2020/07/07 14:13:27 voidwalker
+p1:end_turn 2020/07/07 14:13:30 
+p1:end_turn 2020/07/07 14:13:30 
+p1:play_card 2020/07/07 14:13:36 Temple Enforcer
+
+ENDED_AT:  2020/07/07 14:17:59 

@@ -1,0 +1,23 @@
+{
+  "name": "Hand of Adal",
+  "description": "Give a minion +2/+2. Draw a card.",
+  "mana": 2,
+  "price": 10,
+  "heroClass": "NEUTRAL",
+  "rarity": "COMMON",
+  "changeStatsAbility": {
+    "abilityType": "BATTLE_CRY",
+    "callerSide": "SELF",
+    "targetType": "SELECTED",
+    "targetElementTypes": [
+      "MINION"
+    ],
+    "type": "CONSTANT",
+    "healthChange": 2,
+    "attackChange": 2,
+    "nextAddCard": {
+      "targetType": "MY_DECK",
+      "type": "DRAW"
+    }
+  }
+}

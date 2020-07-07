@@ -1,0 +1,27 @@
+GAME_ID: 731
+STARTED_AT:  2020/07/07 15:47:52 
+
+p1: hasti
+p1_hero: rogue
+p1_deck: p
+
+p1:end_turn 2020/07/07 15:47:54 
+p1:end_turn 2020/07/07 15:47:54 
+p1:end_turn 2020/07/07 15:47:54 
+p1:end_turn 2020/07/07 15:47:55 
+p1:end_turn 2020/07/07 15:47:55 
+p1:end_turn 2020/07/07 15:47:55 
+p1:end_turn 2020/07/07 15:47:55 
+p1:end_turn 2020/07/07 15:47:56 
+p1:end_turn 2020/07/07 15:47:57 
+p1:end_turn 2020/07/07 15:47:57 
+p1:play_card 2020/07/07 15:47:59 Deadly Poison
+p1:play_card 2020/07/07 15:48:00 Deadly Poison
+p1:play_card 2020/07/07 15:48:00 Truesilver Champion
+p1:end_turn 2020/07/07 15:48:02 
+p1:end_turn 2020/07/07 15:48:02 
+p1:play_card 2020/07/07 15:48:06 Hogger
+p1:end_turn 2020/07/07 15:48:09 
+p1:end_turn 2020/07/07 15:48:09 
+p1:play_card 2020/07/07 15:48:10 Blood Fury
+p1:play_card 2020/07/07 15:48:15 Dirty Rat

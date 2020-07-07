@@ -2079,3 +2079,160 @@ login 2020/07/07 00:53:59
 start_game 2020/07/07 00:54:02 game id: 703
 login 2020/07/07 00:56:56 
 start_game 2020/07/07 00:56:59 game id: 704
+select 2020/07/07 01:02:45 deck: spell
+login 2020/07/07 13:51:07 
+start_game 2020/07/07 13:51:10 game id: 705
+select 2020/07/07 13:51:17 deck: smith
+add 2020/07/07 13:51:28 deck: p -> hero: ROGUE
+select 2020/07/07 13:51:29 deck: zarafe
+select 2020/07/07 13:51:30 deck: p
+add 2020/07/07 13:51:37 card: Deadly Poison -> deck: rogue-p
+add 2020/07/07 13:51:37 card: Deadly Poison -> deck: rogue-p
+add 2020/07/07 13:51:42 card: Blood Fury -> deck: rogue-p
+add 2020/07/07 13:51:42 card: Blood Fury -> deck: rogue-p
+add 2020/07/07 13:51:43 card: Truesilver Champion -> deck: rogue-p
+add 2020/07/07 13:51:43 card: Truesilver Champion -> deck: rogue-p
+start_game 2020/07/07 13:51:45 game id: 706
+login 2020/07/07 14:01:25 
+start_game 2020/07/07 14:01:28 game id: 707
+remove 2020/07/07 14:01:41 card: murloc raider -> deck: hunter-swamp
+remove 2020/07/07 14:01:42 card: murloc raider -> deck: hunter-swamp
+remove 2020/07/07 14:01:42 card: voidwalker -> deck: hunter-swamp
+remove 2020/07/07 14:01:42 card: voidwalker -> deck: hunter-swamp
+remove 2020/07/07 14:01:43 card: senjin shieldmasta -> deck: hunter-swamp
+remove 2020/07/07 14:01:43 card: senjin shieldmasta -> deck: hunter-swamp
+add 2020/07/07 14:01:47 card: King Krush -> deck: hunter-swamp
+add 2020/07/07 14:01:47 card: King Krush -> deck: hunter-swamp
+start_game 2020/07/07 14:01:51 game id: 708
+select 2020/07/07 14:01:58 deck: swamp
+start_game 2020/07/07 14:02:00 game id: 709
+login 2020/07/07 14:02:42 
+start_game 2020/07/07 14:02:45 game id: 710
+login 2020/07/07 14:12:45 
+start_game 2020/07/07 14:12:49 game id: 711
+add 2020/07/07 14:13:08 card: Temple Enforcer -> deck: priest-high
+add 2020/07/07 14:13:08 card: Temple Enforcer -> deck: priest-high
+select 2020/07/07 14:13:13 deck: high
+start_game 2020/07/07 14:13:16 game id: 712
+end_game 2020/07/07 14:17:59 game id: 712
+logout 2020/07/07 14:17:59 
+login 2020/07/07 14:30:21 
+start_game 2020/07/07 14:30:24 game id: 713
+add 2020/07/07 14:30:34 card: Gruul -> deck: priest-high
+add 2020/07/07 14:30:34 card: Gruul -> deck: priest-high
+start_game 2020/07/07 14:30:37 game id: 714
+login 2020/07/07 15:04:14 
+start_game 2020/07/07 15:04:18 game id: 715
+select 2020/07/07 15:05:26 deck: p
+add 2020/07/07 15:05:35 card: Hogger -> deck: rogue-p
+add 2020/07/07 15:05:36 card: Hogger -> deck: rogue-p
+start_game 2020/07/07 15:05:39 game id: 716
+login 2020/07/07 15:07:04 
+start_game 2020/07/07 15:07:06 game id: 717
+login 2020/07/07 15:08:12 
+start_game 2020/07/07 15:08:15 game id: 718
+login 2020/07/07 15:10:32 
+start_game 2020/07/07 15:10:35 game id: 719
+start_game 2020/07/07 15:11:29 game id: 720
+login 2020/07/07 15:13:38 
+start_game 2020/07/07 15:13:41 game id: 721
+login 2020/07/07 15:30:53 
+start_game 2020/07/07 15:30:57 game id: 722
+login 2020/07/07 15:32:48 
+start_game 2020/07/07 15:32:52 game id: 723
+login 2020/07/07 15:34:31 
+start_game 2020/07/07 15:34:35 game id: 724
+login 2020/07/07 15:35:09 
+start_game 2020/07/07 15:35:13 game id: 725
+add 2020/07/07 15:35:28 card: Big Bad Archmage -> deck: rogue-p
+add 2020/07/07 15:35:28 card: Big Bad Archmage -> deck: rogue-p
+start_game 2020/07/07 15:35:30 game id: 726
+login 2020/07/07 15:43:45 
+start_game 2020/07/07 15:43:48 game id: 727
+add 2020/07/07 15:44:12 card: Dirty Rat -> deck: rogue-p
+add 2020/07/07 15:44:12 card: Dirty Rat -> deck: rogue-p
+start_game 2020/07/07 15:44:14 game id: 728
+login 2020/07/07 15:45:25 
+start_game 2020/07/07 15:45:33 game id: 729
+login 2020/07/07 15:47:09 
+start_game 2020/07/07 15:47:12 game id: 730
+login 2020/07/07 15:47:50 
+start_game 2020/07/07 15:47:52 game id: 731
+login 2020/07/07 15:57:54 
+start_game 2020/07/07 15:57:58 game id: 732
+login 2020/07/07 16:00:13 
+start_game 2020/07/07 16:00:16 game id: 733
+start_game 2020/07/07 16:00:28 game id: 734
+add 2020/07/07 16:01:15 card: Kobold Stickyfinger -> deck: rogue-p
+add 2020/07/07 16:01:15 card: Kobold Stickyfinger -> deck: rogue-p
+login 2020/07/07 16:03:24 
+start_game 2020/07/07 16:03:27 game id: 735
+start_game 2020/07/07 16:03:44 game id: 736
+login 2020/07/07 16:04:39 
+start_game 2020/07/07 16:04:42 game id: 737
+login 2020/07/07 16:14:30 
+start_game 2020/07/07 16:14:35 game id: 738
+login 2020/07/07 16:15:56 
+start_game 2020/07/07 16:15:59 game id: 739
+login 2020/07/07 16:17:40 
+start_game 2020/07/07 16:17:42 game id: 740
+login 2020/07/07 16:19:13 
+start_game 2020/07/07 16:19:16 game id: 741
+login 2020/07/07 16:33:09 
+start_game 2020/07/07 16:33:12 game id: 742
+select 2020/07/07 16:33:23 deck: weapons
+add 2020/07/07 16:33:26 card: Astral Rift -> deck: warlock-weapons
+add 2020/07/07 16:33:26 card: Astral Rift -> deck: warlock-weapons
+start_game 2020/07/07 16:33:28 game id: 743
+login 2020/07/07 16:33:59 
+start_game 2020/07/07 16:34:02 game id: 744
+end_game 2020/07/07 16:44:59 game id: 744
+logout 2020/07/07 16:44:59 
+login 2020/07/07 17:32:24 
+add 2020/07/07 17:32:36 card: Flame Lance -> deck: warlock-weapons
+add 2020/07/07 17:32:37 card: Flame Lance -> deck: warlock-weapons
+start_game 2020/07/07 17:32:40 game id: 745
+select 2020/07/07 17:33:15 deck: minions
+add 2020/07/07 17:33:18 card: Flame Lance -> deck: mage-minions
+add 2020/07/07 17:33:19 card: Flame Lance -> deck: mage-minions
+start_game 2020/07/07 17:33:21 game id: 746
+login 2020/07/07 17:37:08 
+start_game 2020/07/07 17:37:12 game id: 747
+select 2020/07/07 17:37:20 deck: swamp
+add 2020/07/07 17:37:27 card: Firelands Portal -> deck: hunter-swamp
+add 2020/07/07 17:37:27 card: Firelands Portal -> deck: hunter-swamp
+start_game 2020/07/07 17:37:30 game id: 748
+login 2020/07/07 17:43:37 
+start_game 2020/07/07 17:43:41 game id: 749
+login 2020/07/07 17:49:35 
+start_game 2020/07/07 17:49:38 game id: 750
+start_game 2020/07/07 17:50:11 game id: 751
+login 2020/07/07 17:51:35 
+start_game 2020/07/07 17:51:38 game id: 752
+login 2020/07/07 18:03:09 
+start_game 2020/07/07 18:03:12 game id: 753
+add 2020/07/07 18:03:26 card: Cobra Shot -> deck: hunter-swamp
+add 2020/07/07 18:03:26 card: Cobra Shot -> deck: hunter-swamp
+add 2020/07/07 18:03:28 card: Divine Strength -> deck: hunter-swamp
+remove 2020/07/07 18:03:29 card: Firelands Portal -> deck: hunter-swamp
+remove 2020/07/07 18:03:29 card: Firelands Portal -> deck: hunter-swamp
+add 2020/07/07 18:03:30 card: Divine Strength -> deck: hunter-swamp
+remove 2020/07/07 18:03:34 card: King Krush -> deck: hunter-swamp
+remove 2020/07/07 18:03:35 card: King Krush -> deck: hunter-swamp
+remove 2020/07/07 18:03:36 card: Swamp King Dred -> deck: hunter-swamp
+remove 2020/07/07 18:03:36 card: Swamp King Dred -> deck: hunter-swamp
+remove 2020/07/07 18:03:39 card: Strength in Numbers -> deck: hunter-swamp
+remove 2020/07/07 18:03:39 card: Strength in Numbers -> deck: hunter-swamp
+start_game 2020/07/07 18:03:42 game id: 754
+login 2020/07/07 18:10:48 
+start_game 2020/07/07 18:10:51 game id: 755
+add 2020/07/07 18:11:06 card: Hand of Adal -> deck: hunter-swamp
+add 2020/07/07 18:11:07 card: Hand of Adal -> deck: hunter-swamp
+add 2020/07/07 18:11:08 card: Amani War Bear -> deck: hunter-swamp
+add 2020/07/07 18:11:08 card: Amani War Bear -> deck: hunter-swamp
+login 2020/07/07 18:11:57 
+start_game 2020/07/07 18:12:00 game id: 756
+start_game 2020/07/07 18:13:11 game id: 757
+login 2020/07/07 18:14:57 
+start_game 2020/07/07 18:15:00 game id: 758
+start_game 2020/07/07 18:16:22 game id: 759

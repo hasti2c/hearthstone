@@ -1,0 +1,28 @@
+GAME_ID: 748
+STARTED_AT:  2020/07/07 17:37:30 
+
+p1: hasti
+p1_hero: hunter
+p1_deck: swamp
+
+p1:end_turn 2020/07/07 17:37:33 
+p1:end_turn 2020/07/07 17:37:33 
+p1:end_turn 2020/07/07 17:37:33 
+p1:end_turn 2020/07/07 17:37:34 
+p1:end_turn 2020/07/07 17:37:34 
+p1:end_turn 2020/07/07 17:37:34 
+p1:end_turn 2020/07/07 17:37:34 
+p1:end_turn 2020/07/07 17:37:35 
+p1:end_turn 2020/07/07 17:37:35 
+p1:end_turn 2020/07/07 17:37:35 
+p1:end_turn 2020/07/07 17:37:36 
+p1:end_turn 2020/07/07 17:37:36 
+p1:play_card 2020/07/07 17:37:37 Swamp King Dred
+p1:end_turn 2020/07/07 17:37:38 
+p1:end_turn 2020/07/07 17:37:38 
+p1:end_turn 2020/07/07 17:37:38 
+p1:end_turn 2020/07/07 17:37:41 
+p1:play_card 2020/07/07 17:37:42 Firelands Portal
+p1:end_turn 2020/07/07 17:37:48 
+p1:end_turn 2020/07/07 17:37:49 
+p1:play_card 2020/07/07 17:37:50 Firelands Portal

@@ -167,10 +167,11 @@ public class GamePlayer {
         return game.getTurn() % game.getPlayerCount() == playerNumber;
     }
 
-    public boolean owns(Playable playable) {
-        boolean ret = minionsInGame.contains(playable) || hand.contains(playable) || leftInDeck.contains(playable);
-        ret |= lastSpell == playable || currentWeapon == playable;
-        ret |= inventory.getCurrentHero().getHeroPower() == playable;
+    public boolean owns(Element element) {
+        boolean ret = minionsInGame.contains(element) || hand.contains(element) || leftInDeck.contains(element);
+        ret |= lastSpell == element || currentWeapon == element;
+        ret |= inventory.getCurrentHero().getHeroPower() == element;
+        ret |= inventory.getCurrentHero() == element;
         return ret;
     }
 

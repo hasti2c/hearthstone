@@ -1,0 +1,33 @@
+GAME_ID: 759
+STARTED_AT:  2020/07/07 18:16:22 
+
+p1: hasti
+p1_hero: hunter
+p1_deck: swamp
+
+p1:play_card 2020/07/07 18:16:24 Divine Strength
+p1:end_turn 2020/07/07 18:16:25 
+p1:end_turn 2020/07/07 18:16:25 
+p1:end_turn 2020/07/07 18:16:26 
+p1:play_card 2020/07/07 18:16:27 Hand of Adal
+p1:end_turn 2020/07/07 18:16:29 
+p1:end_turn 2020/07/07 18:16:31 
+p1:end_turn 2020/07/07 18:16:31 
+p1:end_turn 2020/07/07 18:16:32 
+p1:end_turn 2020/07/07 18:16:32 
+p1:end_turn 2020/07/07 18:16:33 
+p1:end_turn 2020/07/07 18:16:33 
+p1:end_turn 2020/07/07 18:16:33 
+p1:end_turn 2020/07/07 18:16:33 
+p1:end_turn 2020/07/07 18:16:34 
+p1:end_turn 2020/07/07 18:16:34 
+p1:end_turn 2020/07/07 18:16:34 
+p1:end_turn 2020/07/07 18:16:35 
+p1:play_card 2020/07/07 18:16:36 Sathrovarr
+p1:end_turn 2020/07/07 18:16:37 
+p1:play_card 2020/07/07 18:16:38 argent protector
+p1:play_card 2020/07/07 18:16:39 Divine Strength
+p1:play_card 2020/07/07 18:16:42 Divine Strength
+p1:play_card 2020/07/07 18:16:44 Hand of Adal
+p1:end_turn 2020/07/07 18:17:08 
+p1:play_card 2020/07/07 18:17:10 Amani War Bear

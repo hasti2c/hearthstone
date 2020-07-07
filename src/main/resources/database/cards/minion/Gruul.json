@@ -1,0 +1,17 @@
+{
+  "name": "Gruul",
+  "description": "At the end of each turn, gain +1/+1.",
+  "mana": 8,
+  "health": 7,
+  "attack": 7,
+  "price": 100,
+  "heroClass": "NEUTRAL",
+  "rarity": "LEGENDARY",
+  "changeStatsAbility": {
+    "abilityType": "END_TURN",
+    "targetType": "SELF",
+    "type": "CONSTANT",
+    "attackChange": 1,
+    "healthChange": 1
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Flame Lance",
+  "description": "Deal 8 damage to a minion.",
+  "mana": 5,
+  "price": 10,
+  "heroClass": "NEUTRAL",
+  "rarity": "COMMON",
+  "attackAbility": {
+    "abilityType": "BATTLE_CRY",
+    "callerSide": "SELF",
+    "targetType": "SELECTED",
+    "targetElementTypes": [
+      "MINION"
+    ],
+    "type": "CONSTANT",
+    "damageAmount": 8
+  }
+}

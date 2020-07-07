@@ -14,13 +14,15 @@ public class AddCard extends Ability {
     private boolean insert = false;
 
     @Override
-    protected void doAction(GamePlayer actionPerformer, Playable caller, Element target) {
+    protected void doAction(GamePlayer actionPerformer, Element caller, Element target) {
         Card card = (Card) target;
         GamePlayer player;
         if (actionPerformer.getOpponent().owns(caller))
             player = actionPerformer.getOpponent();
         else
             player = actionPerformer;
+        if (type == OPPONENT_SUMMON)
+            player = player.getOpponent();
 
         if (target.getElementType().equals(discardElementType)) {
             if (type.equals(DRAW))
@@ -44,7 +46,7 @@ public class AddCard extends Ability {
                 player.getLeftInDeck().remove(card);
             }
             case HAND -> addToList(player.getHand(), caller, card, 12);
-            case SUMMON -> {
+            case SUMMON, OPPONENT_SUMMON -> {
                 if (card instanceof Minion minion) {
                     player.getInventory().getCurrentHero().getHeroClass().doHeroAction(minion);
                     addToList(player.getMinionsInGame(), caller, minion, 7);
@@ -52,10 +54,14 @@ public class AddCard extends Ability {
                 else if (card instanceof Weapon weapon)
                     player.setCurrentWeapon(weapon);
             }
+            case WEAPON -> {
+                if (target instanceof Weapon weapon)
+                    player.setCurrentWeapon(weapon);
+            }
         }
     }
 
-    private <T extends Card> void addToList(ArrayList<T> arrayList, Playable caller, T card, int maxSize) {
+    private <T extends Card> void addToList(ArrayList<T> arrayList, Element caller, T card, int maxSize) {
         int index = arrayList.indexOf(caller);
         if (!insert)
             index = -1;
@@ -72,6 +78,8 @@ public class AddCard extends Ability {
 enum AddCardType {
     ALL_THREE,
     SUMMON,
+    OPPONENT_SUMMON,
+    WEAPON,
     DRAW,
     HAND
 }

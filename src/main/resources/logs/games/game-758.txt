@@ -1,0 +1,31 @@
+GAME_ID: 758
+STARTED_AT:  2020/07/07 18:15:00 
+
+p1: hasti
+p1_hero: hunter
+p1_deck: swamp
+
+p1:play_card 2020/07/07 18:15:01 Divine Strength
+p1:end_turn 2020/07/07 18:15:03 
+p1:end_turn 2020/07/07 18:15:03 
+p1:end_turn 2020/07/07 18:15:04 
+p1:end_turn 2020/07/07 18:15:05 
+p1:end_turn 2020/07/07 18:15:05 
+p1:end_turn 2020/07/07 18:15:05 
+p1:end_turn 2020/07/07 18:15:06 
+p1:end_turn 2020/07/07 18:15:06 
+p1:play_card 2020/07/07 18:15:07 argent protector
+p1:end_turn 2020/07/07 18:15:10 
+p1:end_turn 2020/07/07 18:15:10 
+p1:play_card 2020/07/07 18:15:11 Hand of Adal
+p1:end_turn 2020/07/07 18:15:29 
+p1:play_card 2020/07/07 18:15:30 Hand of Adal
+p1:end_turn 2020/07/07 18:15:49 
+p1:play_card 2020/07/07 18:15:55 argent protector
+p1:play_card 2020/07/07 18:15:58 Hand of Adal
+p1:end_turn 2020/07/07 18:16:01 
+p1:play_card 2020/07/07 18:16:03 Divine Strength
+p1:end_turn 2020/07/07 18:16:06 
+p1:play_card 2020/07/07 18:16:08 Cobra Shot
+p1:end_turn 2020/07/07 18:16:10 
+p1:play_card 2020/07/07 18:16:11 Hand of Adal

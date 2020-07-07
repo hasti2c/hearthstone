@@ -45,6 +45,10 @@ public abstract class Playable extends Element {
         return mana;
     }
 
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
+
     public int getGameMana(HeroClass heroClass) {
         return mana - heroClass.getManaReduction(this);
     }

@@ -1,0 +1,11 @@
+{
+  "name": "King Krush",
+  "description": "Charge",
+  "mana": 9,
+  "health": 8,
+  "attack": 8,
+  "price": 100,
+  "heroClass": "HUNTER",
+  "rarity": "LEGENDARY",
+  "charge": true
+}

@@ -28,12 +28,13 @@
     "Silver Sword",
     "High Priest Amet",
     "Swamp King Dred",
+    "Temple Enforcer",
     "Tomb Warden",
     "Security Rover",
     "Dread Infernal",
-    "Flik Skyshiv",
+    "Deadly Poison",
     "arcane missiles",
-    "Veranus",
+    "King Krush",
     "Cinderstorm",
     "assassinate",
     "Friendly Smith",
@@ -41,10 +42,21 @@
     "Pharaohs Blessing",
     "Polymorph",
     "rockbiter weapon",
-    "Shadow Word Pain",
     "Swarm of Locusts",
     "Book of Specters",
-    "Learn Draconic"
+    "Learn Draconic",
+    "Gruul",
+    "Hogger",
+    "Big Bad Archmage",
+    "Dirty Rat",
+    "Kobold Stickyfinger",
+    "Astral Rift",
+    "Flame Lance",
+    "Firelands Portal",
+    "Cobra Shot",
+    "Divine Strength",
+    "Hand of Adal",
+    "Amani War Bear"
   ],
   "allDecks": [
     "spell",
@@ -53,7 +65,8 @@
     "smith",
     "high",
     "swamp",
-    "zarafe"
+    "zarafe",
+    "p"
   ],
-  "currentDeck": "minions"
+  "currentDeck": "swamp"
 }

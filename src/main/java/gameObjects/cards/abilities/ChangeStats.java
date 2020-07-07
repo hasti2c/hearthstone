@@ -13,7 +13,7 @@ public class ChangeStats extends Ability {
     private boolean giveTaunt, giveDivineShield;
 
     @Override
-    protected void doAction(GamePlayer actionPerformer, Playable caller, Element target) {
+    protected void doAction(GamePlayer actionPerformer, Element caller, Element target) {
         if (type == CONSTANT) {
             if (target instanceof Minion minion) {
                 minion.setAttack(minion.getAttack() + attackChange);

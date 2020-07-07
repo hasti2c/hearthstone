@@ -1,0 +1,15 @@
+{
+  "name": "Deadly Poison",
+  "description": "Give your weapon +2 Attack.",
+  "mana": 1,
+  "price": 10,
+  "heroClass": "ROGUE",
+  "rarity": "COMMON",
+  "changeStatsAbility": {
+    "abilityType": "BATTLE_CRY",
+    "callerSide": "SELF",
+    "targetType": "MY_WEAPON",
+    "type": "CONSTANT",
+    "attackChange": 2
+  }
+}

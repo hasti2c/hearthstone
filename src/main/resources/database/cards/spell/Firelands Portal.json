@@ -1,0 +1,27 @@
+{
+  "name": "Firelands Portal",
+  "description": "Deal 5 damage. Summon a random 5-Cost minion.",
+  "mana": 7,
+  "price": 10,
+  "heroClass": "NEUTRAL",
+  "rarity": "COMMON",
+  "attackAbility": {
+    "abilityType": "BATTLE_CRY",
+    "callerSide": "SELF",
+    "targetType": "SELECTED",
+    "targetElementTypes": [
+      "MINION",
+      "HERO"
+    ],
+    "type": "CONSTANT",
+    "damageAmount": 5,
+    "nextAddCard": {
+      "targetType": "BY_STATS",
+      "targetMana": 5,
+      "targetElementTypes": [
+        "MINION"
+      ],
+      "type": "OPPONENT_SUMMON"
+    }
+  }
+}

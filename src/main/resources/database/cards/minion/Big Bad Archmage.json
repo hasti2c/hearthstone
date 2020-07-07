@@ -1,0 +1,20 @@
+{
+  "name": "Big Bad Archmage",
+  "description": "At the end of your turn, summon a random 6-Cost minion.",
+  "mana": 10,
+  "health": 6,
+  "attack": 6,
+  "price": 50,
+  "heroClass": "NEUTRAL",
+  "rarity": "EPIC",
+  "addCardAbility": {
+    "abilityType": "END_TURN",
+    "callerSide": "SELF",
+    "targetType": "BY_STATS",
+    "targetElementTypes": [
+      "MINION"
+    ],
+    "targetMana": 6,
+    "type": "SUMMON"
+  }
+}

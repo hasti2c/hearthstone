@@ -1,0 +1,39 @@
+{
+  "name": "p",
+  "heroClass": "ROGUE",
+  "cards": [
+    "Deadly Poison",
+    "Deadly Poison",
+    "Blood Fury",
+    "Blood Fury",
+    "Truesilver Champion",
+    "Truesilver Champion",
+    "Hogger",
+    "Hogger",
+    "Big Bad Archmage",
+    "Big Bad Archmage",
+    "Dirty Rat",
+    "Dirty Rat",
+    "Kobold Stickyfinger",
+    "Kobold Stickyfinger"
+  ],
+  "uses": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "wins": 0,
+  "games": 0,
+  "maxSize": 15
+}

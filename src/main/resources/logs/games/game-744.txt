@@ -1,0 +1,17 @@
+GAME_ID: 744
+STARTED_AT:  2020/07/07 16:34:02 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: weapons
+
+p1:end_turn 2020/07/07 16:34:03 
+p1:end_turn 2020/07/07 16:34:04 
+p1:end_turn 2020/07/07 16:34:04 
+p1:end_turn 2020/07/07 16:34:04 
+p1:end_turn 2020/07/07 16:34:05 
+p1:play_card 2020/07/07 16:34:06 Astral Rift
+p1:end_turn 2020/07/07 16:34:07 
+p1:play_card 2020/07/07 16:34:09 Astral Rift
+
+ENDED_AT:  2020/07/07 16:44:59 

@@ -1,0 +1,25 @@
+GAME_ID: 709
+STARTED_AT:  2020/07/07 14:02:00 
+
+p1: hasti
+p1_hero: hunter
+p1_deck: swamp
+
+p1:end_turn 2020/07/07 14:02:03 
+p1:end_turn 2020/07/07 14:02:03 
+p1:end_turn 2020/07/07 14:02:04 
+p1:end_turn 2020/07/07 14:02:04 
+p1:end_turn 2020/07/07 14:02:05 
+p1:end_turn 2020/07/07 14:02:05 
+p1:end_turn 2020/07/07 14:02:06 
+p1:end_turn 2020/07/07 14:02:06 
+p1:end_turn 2020/07/07 14:02:06 
+p1:end_turn 2020/07/07 14:02:06 
+p1:end_turn 2020/07/07 14:02:07 
+p1:end_turn 2020/07/07 14:02:07 
+p1:end_turn 2020/07/07 14:02:08 
+p1:play_card 2020/07/07 14:02:08 Swamp King Dred
+p1:end_turn 2020/07/07 14:02:10 
+p1:end_turn 2020/07/07 14:02:12 
+p1:end_turn 2020/07/07 14:02:12 
+p1:play_card 2020/07/07 14:02:14 King Krush

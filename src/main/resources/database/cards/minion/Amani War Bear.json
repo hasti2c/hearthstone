@@ -1,0 +1,12 @@
+{
+  "name": "Amani War Bear",
+  "description": "Rush, Taunt",
+  "mana": 7,
+  "health": 7,
+  "attack": 5,
+  "price": 10,
+  "heroClass": "NEUTRAL",
+  "rarity": "COMMON",
+  "rush": true,
+  "taunt": true
+}

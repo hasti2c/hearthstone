@@ -1,0 +1,22 @@
+{
+  "name": "Hogger",
+  "description": "At the end of your turn, summon a 2/2 Gnoll with Taunt.",
+  "mana": 6,
+  "health": 4,
+  "attack": 4,
+  "price": 100,
+  "heroClass": "NEUTRAL",
+  "rarity": "LEGENDARY",
+  "addCardAbility": {
+    "abilityType": "END_TURN",
+    "callerSide": "SELF",
+    "targetType": "BY_STATS",
+    "targetElementTypes": [
+      "MINION"
+    ],
+    "targetHealth": 2,
+    "targetAttack": 2,
+    "hasTaunt": true,
+    "type": "SUMMON"
+  }
+}

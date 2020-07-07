@@ -1,5 +1,6 @@
 package gameObjects.cards;
 
+import controllers.game.GameController;
 import gameObjects.cards.abilities.targets.Attackable;
 import gameObjects.player.*;
 
@@ -9,10 +10,16 @@ public class Minion extends Card implements Attackable {
     private int health;
     private int attack;
     private boolean hasAttacked = false;
-    private boolean taunt, asleep = true, rush, divineShield;
+    private boolean taunt, asleep = true, rush, charge, divineShield;
 
     public Minion() {
         elementType = MINION;
+    }
+
+    @Override
+    public void initialize(GameController controller) {
+        super.initialize(controller);
+        setAsleep(true);
     }
 
     Card cloneHelper() {
@@ -21,9 +28,10 @@ public class Minion extends Card implements Attackable {
         c.attack = attack;
         c.hasAttacked = hasAttacked;
         c.taunt = taunt;
-        c.asleep = asleep;
         c.rush = rush;
+        c.charge = charge;
         c.divineShield = divineShield;
+        c.setAsleep(true);
         return c;
     }
 
@@ -84,6 +92,8 @@ public class Minion extends Card implements Attackable {
 
     public void setAsleep(boolean asleep) {
         this.asleep = asleep;
+        if (charge)
+            this.asleep = false;
     }
 
     public boolean getRush() {

@@ -1,0 +1,27 @@
+GAME_ID: 752
+STARTED_AT:  2020/07/07 17:51:38 
+
+p1: hasti
+p1_hero: hunter
+p1_deck: swamp
+
+p1:end_turn 2020/07/07 17:51:40 
+p1:end_turn 2020/07/07 17:51:41 
+p1:end_turn 2020/07/07 17:51:41 
+p1:end_turn 2020/07/07 17:51:41 
+p1:end_turn 2020/07/07 17:51:41 
+p1:end_turn 2020/07/07 17:51:41 
+p1:end_turn 2020/07/07 17:51:42 
+p1:end_turn 2020/07/07 17:51:44 
+p1:end_turn 2020/07/07 17:51:44 
+p1:end_turn 2020/07/07 17:51:44 
+p1:end_turn 2020/07/07 17:51:45 
+p1:end_turn 2020/07/07 17:51:45 
+p1:end_turn 2020/07/07 17:51:45 
+p1:end_turn 2020/07/07 17:51:46 
+p1:end_turn 2020/07/07 17:51:46 
+p1:end_turn 2020/07/07 17:51:47 
+p1:end_turn 2020/07/07 17:51:47 
+p1:play_card 2020/07/07 17:51:48 King Krush
+p1:end_turn 2020/07/07 17:51:50 
+p1:play_card 2020/07/07 17:51:51 Firelands Portal

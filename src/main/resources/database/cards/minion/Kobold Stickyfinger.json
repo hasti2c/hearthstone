@@ -1,0 +1,20 @@
+{
+  "name": "Kobold Stickyfinger",
+  "description": "Batllecry: Steal your opponent's weapon.",
+  "mana": 5,
+  "health": 4,
+  "attack": 4,
+  "price": 50,
+  "heroClass": "NEUTRAL",
+  "rarity": "EPIC",
+  "removeCardAbility": {
+    "abilityType": "BATTLE_CRY",
+    "callerSide": "SELF",
+    "targetType": "OPPONENT_WEAPON",
+    "type": "WEAPON",
+    "nextAddCard": {
+      "targetType": "SELF",
+      "type": "WEAPON"
+    }
+  }
+}

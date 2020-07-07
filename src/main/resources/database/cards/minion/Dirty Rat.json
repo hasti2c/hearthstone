@@ -1,0 +1,24 @@
+{
+  "name": "Dirty Rat",
+  "description": "Taunt. Battlecry: Your opponent summons a random minion from their hand.",
+  "mana": 2,
+  "health": 6,
+  "attack": 2,
+  "price": 50,
+  "heroClass": "NEUTRAL",
+  "rarity": "EPIC",
+  "taunt": true,
+  "removeCardAbility": {
+    "abilityType": "BATTLE_CRY",
+    "callerSide": "SELF",
+    "targetType": "OPPONENT_HAND",
+    "targetElementTypes": [
+      "MINION"
+    ],
+    "type": "HAND",
+    "nextAddCard": {
+      "targetType": "SELF",
+      "type": "OPPONENT_SUMMON"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+GAME_ID: 718
+STARTED_AT:  2020/07/07 15:08:15 
+
+p1: hasti
+p1_hero: rogue
+p1_deck: p
+
+p1:play_card 2020/07/07 15:08:17 Deadly Poison
+p1:end_turn 2020/07/07 15:08:18 
+p1:end_turn 2020/07/07 15:08:18 
+p1:end_turn 2020/07/07 15:08:19 
+p1:end_turn 2020/07/07 15:08:19 
+p1:end_turn 2020/07/07 15:08:19 
+p1:end_turn 2020/07/07 15:08:19 
+p1:end_turn 2020/07/07 15:08:19 
+p1:end_turn 2020/07/07 15:08:19 
+p1:end_turn 2020/07/07 15:08:20 
+p1:end_turn 2020/07/07 15:08:20 
+p1:play_card 2020/07/07 15:08:22 Hogger
+p1:end_turn 2020/07/07 15:08:25 
+p1:end_turn 2020/07/07 15:08:27 
+p1:end_turn 2020/07/07 15:08:27 
+p1:end_turn 2020/07/07 15:08:28 
+p1:end_turn 2020/07/07 15:08:29 

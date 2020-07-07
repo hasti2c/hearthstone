@@ -1,0 +1,7 @@
+GAME_ID: 734
+STARTED_AT:  2020/07/07 16:00:28 
+
+p1: hasti
+p1_hero: rogue
+p1_deck: p
+

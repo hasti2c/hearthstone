@@ -1,0 +1,28 @@
+GAME_ID: 751
+STARTED_AT:  2020/07/07 17:50:11 
+
+p1: hasti
+p1_hero: hunter
+p1_deck: swamp
+
+p1:end_turn 2020/07/07 17:50:13 
+p1:end_turn 2020/07/07 17:50:14 
+p1:end_turn 2020/07/07 17:50:14 
+p1:end_turn 2020/07/07 17:50:14 
+p1:end_turn 2020/07/07 17:50:15 
+p1:end_turn 2020/07/07 17:50:15 
+p1:play_card 2020/07/07 17:50:16 argent protector
+p1:end_turn 2020/07/07 17:50:17 
+p1:end_turn 2020/07/07 17:50:17 
+p1:play_card 2020/07/07 17:50:21 Strength in Numbers
+p1:play_card 2020/07/07 17:50:21 Strength in Numbers
+p1:end_turn 2020/07/07 17:50:23 
+p1:end_turn 2020/07/07 17:50:23 
+p1:end_turn 2020/07/07 17:50:29 
+p1:end_turn 2020/07/07 17:50:30 
+p1:end_turn 2020/07/07 17:50:31 
+p1:play_card 2020/07/07 17:50:32 argent protector
+p1:end_turn 2020/07/07 17:50:33 
+p1:play_card 2020/07/07 17:50:34 Firelands Portal
+p1:end_turn 2020/07/07 17:50:41 
+p1:play_card 2020/07/07 17:50:42 Firelands Portal

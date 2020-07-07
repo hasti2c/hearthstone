@@ -1,0 +1,20 @@
+{
+  "name": "Temple Enforcer",
+  "description": "Give a friendly minion +3 Health.",
+  "mana": 5,
+  "health": 6,
+  "attack": 5,
+  "price": 10,
+  "heroClass": "PRIEST",
+  "rarity": "COMMON",
+  "changeStatsAbility": {
+    "abilityType": "BATTLE_CRY",
+    "callerSide": "SELF",
+    "targetType": "RANDOM_FRIENDLY",
+    "targetElementTypes": [
+      "MINION"
+    ],
+    "type": "CONSTANT",
+    "healthChange": 3
+  }
+}

@@ -10,11 +10,11 @@ public class RemoveCard extends Ability {
     private RemoveCardType type;
 
     @Override
-    protected void doAction(GamePlayer actionPerformer, Playable caller, Element target) {
+    protected void doAction(GamePlayer actionPerformer, Element caller, Element target) {
         GamePlayer player;
-        if (actionPerformer.owns((Card) target))
+        if (actionPerformer.owns(target))
             player = actionPerformer;
-        else if (actionPerformer.getOpponent().owns((Card) target))
+        else if (actionPerformer.getOpponent().owns(target))
             player = actionPerformer.getOpponent();
         else
             return;
@@ -24,6 +24,7 @@ public class RemoveCard extends Ability {
                 if (target instanceof Minion minion)
                     minion.setHealth(0);
             }
+            case WEAPON -> player.setCurrentWeapon(null);
             case HAND -> player.getHand().remove(target);
             case DECK -> player.getLeftInDeck().remove(target);
         }
@@ -32,6 +33,7 @@ public class RemoveCard extends Ability {
 
 enum RemoveCardType {
     BATTLEFIELD,
+    WEAPON,
     HAND,
     DECK
 }

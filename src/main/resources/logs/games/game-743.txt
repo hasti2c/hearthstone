@@ -1,0 +1,17 @@
+GAME_ID: 743
+STARTED_AT:  2020/07/07 16:33:28 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: weapons
+
+p1:play_card 2020/07/07 16:33:30 Wicked Knife
+p1:end_turn 2020/07/07 16:33:31 
+p1:end_turn 2020/07/07 16:33:31 
+p1:end_turn 2020/07/07 16:33:32 
+p1:end_turn 2020/07/07 16:33:32 
+p1:end_turn 2020/07/07 16:33:33 
+p1:end_turn 2020/07/07 16:33:33 
+p1:end_turn 2020/07/07 16:33:34 
+p1:play_card 2020/07/07 16:33:35 Astral Rift
+p1:end_turn 2020/07/07 16:33:39 

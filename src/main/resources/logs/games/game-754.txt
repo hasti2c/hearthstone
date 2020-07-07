@@ -1,0 +1,40 @@
+GAME_ID: 754
+STARTED_AT:  2020/07/07 18:03:42 
+
+p1: hasti
+p1_hero: hunter
+p1_deck: swamp
+
+p1:end_turn 2020/07/07 18:03:43 
+p1:end_turn 2020/07/07 18:03:44 
+p1:end_turn 2020/07/07 18:03:46 
+p1:end_turn 2020/07/07 18:03:46 
+p1:end_turn 2020/07/07 18:03:47 
+p1:end_turn 2020/07/07 18:03:47 
+p1:end_turn 2020/07/07 18:03:47 
+p1:end_turn 2020/07/07 18:03:47 
+p1:end_turn 2020/07/07 18:03:47 
+p1:end_turn 2020/07/07 18:03:49 
+p1:play_card 2020/07/07 18:03:50 argent protector
+p1:play_card 2020/07/07 18:03:51 argent protector
+p1:end_turn 2020/07/07 18:03:53 
+p1:play_card 2020/07/07 18:03:55 argent protector
+p1:end_turn 2020/07/07 18:04:03 
+p1:end_turn 2020/07/07 18:04:04 
+p1:play_card 2020/07/07 18:04:05 Cobra Shot
+p1:end_turn 2020/07/07 18:04:12 
+p1:play_card 2020/07/07 18:04:14 Cobra Shot
+p1:end_turn 2020/07/07 18:04:20 
+p1:end_turn 2020/07/07 18:04:21 
+p1:play_card 2020/07/07 18:04:22 Divine Strength
+p1:end_turn 2020/07/07 18:04:24 
+p1:end_turn 2020/07/07 18:04:25 
+p1:play_card 2020/07/07 18:04:26 Divine Strength
+p1:end_turn 2020/07/07 18:04:30 
+p1:play_card 2020/07/07 18:04:32 argent protector
+p1:play_card 2020/07/07 18:04:34 Divine Strength
+p1:play_card 2020/07/07 18:04:40 Cobra Shot
+p1:end_turn 2020/07/07 18:04:41 
+p1:end_turn 2020/07/07 18:04:42 
+p1:end_turn 2020/07/07 18:04:44 
+p1:play_card 2020/07/07 18:04:44 Cobra Shot

@@ -1,8 +1,0 @@
-{
-  "name": "Shadow Word Pain",
-  "description": "Destroy a minion with 3 or less Attack.",
-  "mana": 2,
-  "price": 100,
-  "heroClass": "PRIEST",
-  "rarity": "COMMON"
-}

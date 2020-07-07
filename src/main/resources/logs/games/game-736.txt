@@ -1,0 +1,20 @@
+GAME_ID: 736
+STARTED_AT:  2020/07/07 16:03:44 
+
+p1: hasti
+p1_hero: rogue
+p1_deck: p
+
+p1:end_turn 2020/07/07 16:03:45 
+p1:end_turn 2020/07/07 16:03:46 
+p1:end_turn 2020/07/07 16:03:46 
+p1:end_turn 2020/07/07 16:03:46 
+p1:end_turn 2020/07/07 16:03:46 
+p1:end_turn 2020/07/07 16:03:47 
+p1:end_turn 2020/07/07 16:03:47 
+p1:play_card 2020/07/07 16:03:48 Truesilver Champion
+p1:end_turn 2020/07/07 16:03:49 
+p1:end_turn 2020/07/07 16:03:51 
+p1:end_turn 2020/07/07 16:03:52 
+p1:play_card 2020/07/07 16:03:55 Kobold Stickyfinger
+p1:end_turn 2020/07/07 16:04:06 
