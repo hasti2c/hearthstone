@@ -11,7 +11,7 @@ import system.player.Inventory;
 public class Deck implements Comparable<Deck>, Configable {
     private String name;
     private ArrayList<Card> cards = new ArrayList<>();
-    private final ArrayList<Integer> uses = new ArrayList<>();
+    private ArrayList<Integer> uses = new ArrayList<>();
     private HeroClass heroClass;
     private int wins, games, maxSize;
 
@@ -31,7 +31,8 @@ public class Deck implements Comparable<Deck>, Configable {
     }
 
     @Override
-    public void initialize(GameController controller) {}
+    public void initialize(GameController controller) {
+    }
 
     @Override
     public String getJsonPath(GameController controller, String name) {
@@ -74,8 +75,9 @@ public class Deck implements Comparable<Deck>, Configable {
     private void resetStats() {
         wins = 0;
         games = 0;
-        for (int i = 0; i < uses.size(); i++)
-            uses.set(i, 0);
+        uses = new ArrayList<>();
+        for (int i = 0; i < cards.size(); i++)
+            uses.add(0);
     }
 
     public String toString() {
@@ -84,7 +86,6 @@ public class Deck implements Comparable<Deck>, Configable {
 
     public void addCard(Card c) {
         cards.add(c);
-        uses.add(0);
         resetStats();
     }
 
@@ -150,7 +151,6 @@ public class Deck implements Comparable<Deck>, Configable {
                 uses.set(i, uses.get(i) + 1);
                 return;
             }
-
     }
 
     public int getWinPercentage() {
@@ -201,5 +201,13 @@ public class Deck implements Comparable<Deck>, Configable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void addGame() {
+        games++;
+    }
+
+    public void addWin() {
+        wins++;
     }
 }

@@ -38,6 +38,7 @@ public class Game {
         controller.setGameCount(id);
         gamePlayers[0].initialize();
         gamePlayers[1].initialize();
+        gamePlayers[0].getInventory().getCurrentDeck().addGame();
         timer.start();
         getCurrentPlayer().startTurn();
     }
@@ -123,5 +124,12 @@ public class Game {
 
     public int getTime() {
         return time;
+    }
+
+    public void endGame() {
+        int friendlyHealth = gamePlayers[0].getInventory().getCurrentHero().getHealth();
+        int enemyHealth = gamePlayers[1].getInventory().getCurrentHero().getHealth();
+        if (friendlyHealth > 0 && enemyHealth <= 0)
+            gamePlayers[0].getInventory().getCurrentDeck().addWin();
     }
 }

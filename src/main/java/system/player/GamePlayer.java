@@ -135,7 +135,6 @@ public class GamePlayer {
         if (!isMyTurn() || !hand.contains(card) || mana < card.getGameMana(this) || (card instanceof Minion && minionsInGame.size() >= 7))
             return false;
 
-        inventory.getCurrentDeck().addUse(card);
         mana -= card.getGameMana(this);
         hand.remove(card);
         if (card instanceof Minion minion) {
@@ -146,6 +145,7 @@ public class GamePlayer {
             setCurrentWeapon(weapon);
         } else if (card instanceof Spell spell)
             lastSpell = spell;
+        inventory.getCurrentDeck().addUse(card);
         doCardAction("doActionOnPlay", card);
         return true;
     }
@@ -220,7 +220,6 @@ public class GamePlayer {
     }
 
     public boolean canAttack(Attackable attacker) {
-        System.out.println(attacker);
         boolean ret = this == game.getCurrentPlayer() && !attacker.getHasAttacked();
         if (attacker instanceof Hero)
             return ret && currentWeapon != null;

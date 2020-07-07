@@ -55,7 +55,6 @@ public enum HeroClass {
     public void doHeroAction(Minion minion) {
         if (this != HUNTER)
             return;
-        System.out.println(minion);
         minion.setRush(true);
     }
 }

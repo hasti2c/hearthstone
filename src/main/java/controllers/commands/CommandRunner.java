@@ -337,6 +337,7 @@ public class CommandRunner {
         Player player = controller.getCurrentPlayer();
         Game game = player.getGame();
         player.setGame(null);
+        game.endGame();
         graphics.endGame();
         player.getLogger().log("end_game", "game id: " + game.getId());
         game.logEndGame();

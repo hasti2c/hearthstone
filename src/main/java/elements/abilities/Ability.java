@@ -141,7 +141,6 @@ public abstract class Ability implements Configable {
                 ArrayList<Element> possibleElements = getValidSublist(actionPerformer.getOpponent().getHand());
                 if (possibleElements.size() > 0)
                     targets.add(Element.getRandomElement(possibleElements));
-                System.out.println(possibleElements + " " + targets);
             }
             case BATTLEFIELD -> {
                 ArrayList<Element> possibleElements = getValidSublist(actionPerformer.getMinionsInGame());
@@ -156,7 +155,6 @@ public abstract class Ability implements Configable {
             case OPPONENT_WEAPON -> {
                 if (actionPerformer.getOpponent().getCurrentWeapon() != null)
                     addIfValid(targets, actionPerformer.getCurrentWeapon());
-                System.out.println("+++++" + targets);
             }
             case DISCOVER -> {
                 ArrayList<Element> possibleElements = getValidSublist(GameController.getCardsList());
