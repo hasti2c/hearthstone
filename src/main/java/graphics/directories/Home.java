@@ -65,6 +65,10 @@ public class Home extends Directory {
         return store;
     }
 
+    public PlayGround getPlayGround() {
+        return playGround;
+    }
+
     private class GameStartPage extends PopupBox {
         private Game game;
         @FXML
@@ -147,7 +151,9 @@ public class Home extends Directory {
         }
 
         private void displayPlayGround() {
-            playGround = new PlayGround(controller.getCurrentPlayer().getGame(), controller, runner);
+            Game game = controller.getCurrentPlayer().getGame();
+            playGround = new PlayGround(game, controller, runner);
+            game.setPlayGround(playGround);
             playGround.display();
         }
     }

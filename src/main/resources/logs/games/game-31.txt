@@ -1,0 +1,53 @@
+GAME_ID: 31
+STARTED_AT:  2020/07/07 23:25:22 
+
+p1: hasti
+p1_hero: mage
+p1_deck: wow
+
+p2: hasti
+p2_hero: mage
+p2_deck: wow
+
+p2:end_turn 2020/07/07 23:25:25 
+p1:end_turn 2020/07/07 23:25:25 
+p2:end_turn 2020/07/07 23:25:26 
+p1:end_turn 2020/07/07 23:25:26 
+p2:end_turn 2020/07/07 23:25:27 
+p1:end_turn 2020/07/07 23:25:27 
+p1:play_card 2020/07/07 23:25:28 Dreadscale
+p2:end_turn 2020/07/07 23:25:29 
+p1:end_turn 2020/07/07 23:25:32 
+p1:play_card 2020/07/07 23:25:35 Dreadscale
+p2:end_turn 2020/07/07 23:25:38 
+p1:end_turn 2020/07/07 23:25:38 
+p2:end_turn 2020/07/07 23:25:40 
+p1:end_turn 2020/07/07 23:25:41 
+p2:end_turn 2020/07/07 23:25:41 
+p1:end_turn 2020/07/07 23:25:41 
+p2:end_turn 2020/07/07 23:25:41 
+p1:end_turn 2020/07/07 23:25:41 
+p2:end_turn 2020/07/07 23:25:41 
+p1:end_turn 2020/07/07 23:25:41 
+p1:play_card 2020/07/07 23:25:42 Amani War Bear
+p2:end_turn 2020/07/07 23:25:43 
+p1:end_turn 2020/07/07 23:25:44 
+p1:play_card 2020/07/07 23:25:45 Hogger
+p2:end_turn 2020/07/07 23:25:46 
+p1:end_turn 2020/07/07 23:25:46 
+p2:end_turn 2020/07/07 23:25:46 
+p1:end_turn 2020/07/07 23:25:47 
+p2:end_turn 2020/07/07 23:25:47 
+p1:end_turn 2020/07/07 23:25:47 
+p1:play_card 2020/07/07 23:25:47 Amani War Bear
+p2:end_turn 2020/07/07 23:25:49 
+p1:end_turn 2020/07/07 23:25:50 
+p1:play_card 2020/07/07 23:25:51 Sathrovarr
+p2:end_turn 2020/07/07 23:25:53 
+p1:end_turn 2020/07/07 23:25:53 
+p1:play_card 2020/07/07 23:25:54 Tomb Warden
+p2:end_turn 2020/07/07 23:25:56 
+p1:end_turn 2020/07/07 23:25:56 
+p1:play_card 2020/07/07 23:25:57 Curio Collector
+p2:end_turn 2020/07/07 23:25:58 
+p1:end_turn 2020/07/07 23:25:59 

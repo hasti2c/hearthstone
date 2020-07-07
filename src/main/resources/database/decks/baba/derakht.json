@@ -1,0 +1,27 @@
+{
+  "name": "derakht",
+  "heroClass": "MAGE",
+  "cards": [
+    "Tomb Warden",
+    "Tomb Warden",
+    "Kobold Stickyfinger",
+    "Kobold Stickyfinger",
+    "Amani War Bear",
+    "Amani War Bear",
+    "Cobra Shot",
+    "Cobra Shot"
+  ],
+  "uses": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "wins": 0,
+  "games": 0,
+  "maxSize": 15
+}

@@ -1,6 +1,8 @@
 package graphics.directories.playground;
 
 import controllers.commands.*;
+import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import system.Game;
 import graphics.*;
 import graphics.directories.*;
@@ -16,7 +18,7 @@ public class PlayGround extends Directory {
     @FXML
     private Pane pane;
     @FXML
-    private Label gameEventsLabel;
+    private Label gameEventsLabel, timerLabel;
     @FXML
     private Button endTurnButton, gameEventsButton;
     @FXML
@@ -65,7 +67,24 @@ public class PlayGround extends Directory {
     public void config() {
         for (GamePlayerGraphics gamePlayer : gamePlayers)
             gamePlayer.config();
+        updateTime();
         gameEventsLabel.setText("Game Events:\n" + game.getGameEvents());
+    }
+
+    public void updateTime() {
+        int time = game.getTime();
+        String timeText;
+        if (time < 10)
+            timeText = "0:0" + time;
+        else if (time < 60)
+            timeText = "0:" + time;
+        else
+            timeText = "1:00";
+        timerLabel.setText(timeText);
+        if (time <= 10)
+            timerLabel.setTextFill(Color.RED);
+        else
+            timerLabel.setTextFill(Color.WHITE);
     }
 
     private boolean confirm() {
@@ -100,5 +119,10 @@ public class PlayGround extends Directory {
     private void putOnTop(Node node) {
         pane.getChildren().remove(node);
         pane.getChildren().add(node);
+    }
+
+    public void endGame() {
+        GameEnding gameEnd = new GameEnding(controller, runner, game);
+        gameEnd.display();
     }
 }

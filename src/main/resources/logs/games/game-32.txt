@@ -1,0 +1,50 @@
+GAME_ID: 32
+STARTED_AT:  2020/07/08 00:31:23 
+
+p1: hasti
+p1_hero: mage
+p1_deck: wow
+
+p2: hasti
+p2_hero: mage
+p2_deck: wow
+
+p2:end_turn 2020/07/08 00:31:26 
+p1:end_turn 2020/07/08 00:31:26 
+p2:end_turn 2020/07/08 00:31:27 
+p1:end_turn 2020/07/08 00:31:27 
+p2:end_turn 2020/07/08 00:31:27 
+p1:end_turn 2020/07/08 00:31:27 
+p2:end_turn 2020/07/08 00:31:28 
+p1:end_turn 2020/07/08 00:31:28 
+p2:end_turn 2020/07/08 00:31:28 
+p1:end_turn 2020/07/08 00:31:29 
+p1:play_card 2020/07/08 00:31:30 Hogger
+p2:end_turn 2020/07/08 00:31:32 
+p2:play_card 2020/07/08 00:31:33 Hogger
+p1:end_turn 2020/07/08 00:31:35 
+p1:attack 2020/07/08 00:31:37 Temple Enforcer -> mage
+p2:end_turn 2020/07/08 00:31:38 
+p2:attack 2020/07/08 00:31:40 Tomb Warden -> mage
+p1:end_turn 2020/07/08 00:31:42 
+p1:attack 2020/07/08 00:31:43 Tomb Warden -> mage
+p1:attack 2020/07/08 00:31:44 Temple Enforcer -> mage
+p1:attack 2020/07/08 00:31:45 Hogger -> mage
+p2:end_turn 2020/07/08 00:31:46 
+p1:end_turn 2020/07/08 00:31:47 
+p1:attack 2020/07/08 00:31:48 Temple Enforcer -> mage
+p1:attack 2020/07/08 00:31:49 Tomb Warden -> mage
+p1:attack 2020/07/08 00:31:50 Temple Enforcer -> mage
+p1:attack 2020/07/08 00:31:52 Hogger -> mage
+p1:play_card 2020/07/08 00:31:53 Sathrovarr
+p2:end_turn 2020/07/08 00:31:54 
+p1:end_turn 2020/07/08 00:31:55 
+p1:attack 2020/07/08 00:31:57 Big Bad Archmage -> mage
+p1:attack 2020/07/08 00:31:59 Dreadscale -> mage
+p1:attack 2020/07/08 00:32:00 Sathrovarr -> mage
+p1:attack 2020/07/08 00:32:01 Temple Enforcer -> mage
+p1:attack 2020/07/08 00:32:04 Tomb Warden -> mage
+p1:attack 2020/07/08 00:32:06 Temple Enforcer -> mage
+p1:attack 2020/07/08 00:32:07 Hogger -> mage
+
+ENDED_AT:  2020/07/08 00:32:09 

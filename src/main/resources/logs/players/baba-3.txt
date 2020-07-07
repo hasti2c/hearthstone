@@ -1,0 +1,19 @@
+USER: baba
+PASSWORD: babaamadnanavard
+CREATED_AT:  2020/07/08 00:40:55 
+
+signup 2020/07/08 00:40:55 
+login 2020/07/08 00:40:55 
+add 2020/07/08 00:41:07 deck: derakht
+select 2020/07/08 00:41:08 deck: derakht
+add 2020/07/08 00:41:11 card: Tomb Warden -> deck: derakht
+add 2020/07/08 00:41:11 card: Tomb Warden -> deck: derakht
+add 2020/07/08 00:41:12 card: Kobold Stickyfinger -> deck: derakht
+add 2020/07/08 00:41:12 card: Kobold Stickyfinger -> deck: derakht
+add 2020/07/08 00:41:13 card: Amani War Bear -> deck: derakht
+add 2020/07/08 00:41:13 card: Amani War Bear -> deck: derakht
+add 2020/07/08 00:41:14 card: Cobra Shot -> deck: derakht
+add 2020/07/08 00:41:14 card: Cobra Shot -> deck: derakht
+start_game 2020/07/08 00:41:16 game id: 35
+end_game 2020/07/08 00:41:57 game id: 35
+logout 2020/07/08 00:41:57 

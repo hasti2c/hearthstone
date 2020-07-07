@@ -1,0 +1,48 @@
+GAME_ID: 30
+STARTED_AT:  2020/07/07 23:24:05 
+
+p1: hasti
+p1_hero: mage
+p1_deck: wow
+
+p2: hasti
+p2_hero: mage
+p2_deck: wow
+
+p2:end_turn 2020/07/07 23:24:07 
+p1:end_turn 2020/07/07 23:24:07 
+p2:end_turn 2020/07/07 23:24:08 
+p1:end_turn 2020/07/07 23:24:08 
+p2:end_turn 2020/07/07 23:24:08 
+p1:end_turn 2020/07/07 23:24:08 
+p2:end_turn 2020/07/07 23:24:08 
+p1:end_turn 2020/07/07 23:24:08 
+p2:end_turn 2020/07/07 23:24:09 
+p1:end_turn 2020/07/07 23:24:09 
+p2:end_turn 2020/07/07 23:24:09 
+p1:end_turn 2020/07/07 23:24:10 
+p1:play_card 2020/07/07 23:24:11 Dreadscale
+p2:end_turn 2020/07/07 23:24:13 
+p2:play_card 2020/07/07 23:24:14 Amani War Bear
+p1:end_turn 2020/07/07 23:24:16 
+p1:play_card 2020/07/07 23:24:17 Hogger
+p2:end_turn 2020/07/07 23:24:19 
+p2:play_card 2020/07/07 23:24:22 Amani War Bear
+p1:end_turn 2020/07/07 23:24:24 
+p1:play_card 2020/07/07 23:24:25 Amani War Bear
+p2:end_turn 2020/07/07 23:24:34 
+p1:end_turn 2020/07/07 23:24:35 
+p2:end_turn 2020/07/07 23:24:35 
+p1:end_turn 2020/07/07 23:24:35 
+p2:end_turn 2020/07/07 23:24:36 
+p1:end_turn 2020/07/07 23:24:36 
+p2:end_turn 2020/07/07 23:24:36 
+p1:end_turn 2020/07/07 23:24:36 
+p1:play_card 2020/07/07 23:24:37 Big Bad Archmage
+p2:end_turn 2020/07/07 23:24:39 
+p1:end_turn 2020/07/07 23:24:39 
+p1:play_card 2020/07/07 23:24:40 Hogger
+p1:play_card 2020/07/07 23:24:42 Dreadscale
+p2:end_turn 2020/07/07 23:24:44 
+p1:end_turn 2020/07/07 23:24:44 
+p1:play_card 2020/07/07 23:24:45 Sathrovarr

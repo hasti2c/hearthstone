@@ -2,6 +2,7 @@ package system;
 
 import controllers.game.*;
 import elements.heros.*;
+import graphics.directories.playground.PlayGround;
 import system.player.GamePlayer;
 import system.player.PlayerFaction;
 
@@ -12,13 +13,16 @@ public class Game {
     private final GamePlayer[] gamePlayers = new GamePlayer[2];
     private int id, turn = 0;
     private final int playerCount = 2;
-    private FileWriter logWriter;
-    private String gameEvents = "";
+    private Logger logger;
+    private Timer timer;
+    private int time = 60;
+    private PlayGround playGround;
 
     public Game(GameController controller) {
         this.controller = controller;
         gamePlayers[0] = new GamePlayer(controller, this, PlayerFaction.FRIENDLY);
         gamePlayers[1] = new GamePlayer(controller, this, PlayerFaction.ENEMY);
+        timer = new Timer(this);
     }
 
     public Game(GameController controller, DeckPair deckPair) {
@@ -30,14 +34,11 @@ public class Game {
 
     public void startGame() {
         id = controller.getGameCount() + 1;
-        try {
-            logWriter = new FileWriter(getLogPath(), true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        logger = new Logger("src/main/resources/logs/games/game-" + id + ".txt");
         controller.setGameCount(id);
         gamePlayers[0].initialize();
         gamePlayers[1].initialize();
+        timer.start();
         getCurrentPlayer().startTurn();
     }
 
@@ -65,9 +66,14 @@ public class Game {
         return turn;
     }
 
+    public void setPlayGround(PlayGround playGround) {
+        this.playGround = playGround;
+    }
+
     public void nextTurn() {
         getCurrentPlayer().endTurn();
         turn++;
+        time = 60;
         getCurrentPlayer().startTurn();
     }
 
@@ -76,30 +82,46 @@ public class Game {
     }
 
     public String getGameEvents() {
-        return gameEvents;
+        return logger.getEvents();
     }
 
-    public String getLogPath() {
-        return "src/main/resources/logs/games/game-" + id + ".txt";
+    public boolean isFinished() {
+        int myHealth = gamePlayers[0].getInventory().getCurrentHero().getHealth();
+        int opponentHealth = gamePlayers[1].getInventory().getCurrentHero().getHealth();
+        return myHealth <= 0 || opponentHealth <= 0;
     }
 
-    public void log(String line) {
-        try {
-            logWriter.write(line + "\n");
-            logWriter.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void logStartGame() {
+        logger.log("GAME_ID: " + id);
+        logger.log("STARTED_AT: ", "");
+        logger.log("");
+        logger.log("p1: " + gamePlayers[0]);
+        logger.log("p1_hero: " + gamePlayers[0].getInventory().getCurrentHero());
+        logger.log("p1_deck: " + gamePlayers[0].getInventory().getCurrentDeck());
+        logger.log("");
+        logger.log("p2: " + gamePlayers[1]);
+        logger.log("p2_hero: " + gamePlayers[1].getInventory().getCurrentHero());
+        logger.log("p2_deck: " + gamePlayers[1].getInventory().getCurrentDeck());
+        logger.log("");
+    }
+
+    public void logEndGame() {
+        logger.log("");
+        logger.log("ENDED_AT: ", "");
     }
 
     public void log(String type, String details) {
-        try {
-            if (!"STARTED_AT: ".equals(type) && !"ENDED_AT: ".equals(details))
-                gameEvents += type + " " + details + "\n";
-            logWriter.write(type + " " + GameController.getTime() + " " + details + "\n");
-            logWriter.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        logger.log("p" + (getCurrentPlayerNumber() + 1) + ":" + type, details);
+    }
+
+    public void nextSecond() {
+        time--;
+        if (time <= 0)
+            nextTurn();
+        playGround.updateTime();
+    }
+
+    public int getTime() {
+        return time;
     }
 }

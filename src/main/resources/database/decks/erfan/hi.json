@@ -1,0 +1,23 @@
+{
+  "name": "hi",
+  "heroClass": "WARLOCK",
+  "cards": [
+    "Kobold Stickyfinger",
+    "Kobold Stickyfinger",
+    "Amani War Bear",
+    "Amani War Bear",
+    "Dirty Rat",
+    "Dirty Rat"
+  ],
+  "uses": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "wins": 0,
+  "games": 0,
+  "maxSize": 15
+}

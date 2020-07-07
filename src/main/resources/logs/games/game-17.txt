@@ -1,0 +1,25 @@
+GAME_ID: 17
+STARTED_AT:  2020/07/07 22:55:49 
+
+p1: hasti
+p1_hero: mage
+p1_deck: wow
+
+p2: hasti
+p2_hero: mage
+p2_deck: wow
+
+p2:end_turn 2020/07/07 22:56:09 
+p1:end_turn 2020/07/07 22:56:09 
+p2:end_turn 2020/07/07 22:56:10 
+p1:end_turn 2020/07/07 22:56:10 
+p2:end_turn 2020/07/07 22:56:11 
+p1:end_turn 2020/07/07 22:56:11 
+p2:end_turn 2020/07/07 22:56:12 
+p1:end_turn 2020/07/07 22:56:13 
+p2:end_turn 2020/07/07 22:56:13 
+p1:end_turn 2020/07/07 22:56:14 
+p2:end_turn 2020/07/07 22:56:14 
+p1:end_turn 2020/07/07 22:56:15 
+p2:end_turn 2020/07/07 22:56:15 
+p1:end_turn 2020/07/07 22:56:16 

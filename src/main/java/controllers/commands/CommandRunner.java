@@ -150,17 +150,9 @@ public class CommandRunner {
     private Player signUp(String username, String password) {
         controller.setPlayerCount(controller.getPlayerCount() + 1);
         Player p = Player.getNewPlayer(controller, username, password);
-        try {
-            (new File(p.getDeckJsonPath())).mkdir();
-            (new File(p.getLogPath())).createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        p.log("USER: " + username);
-        p.log("PASSWORD: " + password);
-        p.log("CREATED_AT: ", "");
-        p.log("");
-        p.log("signup", "");
+        (new File(p.getDeckJsonPath())).mkdir();
+        p.getLogger().createFile();
+        p.logSignup();
         return p;
     }
 
@@ -168,7 +160,7 @@ public class CommandRunner {
         if (!p.loginAttempt(password))
             return false;
         controller.setCurrentPlayer(p);
-        p.log("login", "");
+        p.getLogger().log("login", "");
         return true;
     }
 
@@ -177,7 +169,7 @@ public class CommandRunner {
         if (player != null && player.getGame() != null)
             endGame();
         if (player != null)
-            player.log("logout", "");
+            player.getLogger().log("logout", "");
         controller.setCurrentPlayer(null);
         return true;
     }
@@ -185,8 +177,8 @@ public class CommandRunner {
     private boolean deletePlayer() {
         Player p = controller.getCurrentPlayer();
         logout();
-        p.log("");
-        p.log("DELETED_AT:", "");
+        p.getLogger().log("");
+        p.getLogger().log("DELETED_AT:", "");
         return (new File(p.getJsonPath())).delete() && p.deleteDeckDirectory();
     }
 
@@ -195,7 +187,7 @@ public class CommandRunner {
         if (!player.getInventory().getAllDecks().contains(deck))
             return false;
         player.setCurrentDeck(deck);
-        player.log("select", "deck: " + deck);
+        player.getLogger().log("select", "deck: " + deck);
         return true;
     }
 
@@ -204,7 +196,7 @@ public class CommandRunner {
         if (player.getInventory().getCurrentDeck() != deck)
             return false;
         player.deselectCurrentDeck();
-        player.log("deselect", "deck");
+        player.getLogger().log("deselect", "deck");
         return true;
     }
 
@@ -212,13 +204,13 @@ public class CommandRunner {
         if (!deck.canAddCard(card))
             return false;
         deck.addCard(card);
-        controller.getCurrentPlayer().log("add", "card: " + card + " -> deck: " + deck.getHeroClass().toString().toLowerCase() + "-" + deck);
+        controller.getCurrentPlayer().getLogger().log("add", "card: " + card + " -> deck: " + deck);
         return true;
     }
 
     private boolean removeCard(Deck deck, Card card) {
         deck.removeCard(card);
-        controller.getCurrentPlayer().log("remove", "card: " + card + " -> deck: " + deck.getHeroClass().toString().toLowerCase() + "-" + deck);
+        controller.getCurrentPlayer().getLogger().log("remove", "card: " + card + " -> deck: " + deck);
         return true;
     }
 
@@ -226,7 +218,7 @@ public class CommandRunner {
         Player player = controller.getCurrentPlayer();
         boolean ret = validDeckName(name) && player.addNewDeck(heroClass, name);
         if (ret)
-            player.log("add", "deck: " + name + " -> hero: " + heroClass);
+            player.getLogger().log("add", "deck: " + name);
         return ret;
     }
 
@@ -234,22 +226,23 @@ public class CommandRunner {
         Player player = controller.getCurrentPlayer();
         boolean ret = player.getInventory().removeDeck(deck);
         if (ret)
-            player.log("remove", "deck: " + deck);
+            player.getLogger().log("remove", "deck: " + deck);
         return ret;
     }
 
     private boolean moveDeck(Deck deck, HeroClass heroClass) {
         boolean ret = deck.move(heroClass);
         if (ret)
-            controller.getCurrentPlayer().log("move", "deck:" + deck + " -> hero: " + heroClass);
+            controller.getCurrentPlayer().getLogger().log("move", "deck:" + deck + " -> hero class: " + heroClass);
         return ret;
     }
 
     private boolean renameDeck(Deck deck, String deckName) {
+        String oldName = deck.toString();
         boolean ret = validDeckName(deckName);
         deck.setName(deckName);
         if (ret)
-            controller.getCurrentPlayer().log("rename", "deck: -> name: " + deckName);
+            controller.getCurrentPlayer().getLogger().log("rename", "deck: " + oldName + " -> " + deckName);
         return ret;
     }
 
@@ -259,7 +252,7 @@ public class CommandRunner {
             return false;
         player.getInventory().addCard(card);
         player.setBalance(player.getBalance() - card.getPrice());
-        controller.getCurrentPlayer().log("buy", "card: " + card.toString());
+        controller.getCurrentPlayer().getLogger().log("buy", "card: " + card.toString());
         return true;
     }
 
@@ -269,7 +262,7 @@ public class CommandRunner {
             return false;
         p.getInventory().removeCard(card);
         p.setBalance(p.getBalance() + card.getPrice());
-        controller.getCurrentPlayer().log("sell", "card: " + card.toString());
+        controller.getCurrentPlayer().getLogger().log("sell", "card: " + card.toString());
         return true;
     }
 
@@ -279,7 +272,6 @@ public class CommandRunner {
             return false;
         Game game = new Game(controller);
         player.setGame(game);
-
         return true;
     }
 
@@ -289,19 +281,8 @@ public class CommandRunner {
             return false;
         Game game = player.getGame();
         game.startGame();
-        player.log("start_game", "game id: " + game.getId());
-        try {
-            (new File(game.getLogPath())).createNewFile();
-            game.log("GAME_ID: " + game.getId());
-            game.log("STARTED_AT: ", "");
-            game.log("");
-            game.log("p1: " + player);
-            game.log("p1_hero: " + player.getInventory().getCurrentHero());
-            game.log("p1_deck: " + player.getInventory().getCurrentDeck());
-            game.log("");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        player.getLogger().log("start_game", "game id: " + game.getId());
+        game.logStartGame();
         return true;
     }
 
@@ -319,14 +300,16 @@ public class CommandRunner {
         Game game = controller.getCurrentPlayer().getGame();
         boolean ret = game.getCurrentPlayer().playCard(card);
         if (ret)
-            game.log("p1:play_card", card.toString());
+            game.log( "play_card", card.toString());
         return ret;
     }
 
     private boolean endTurn() {
         Game game = controller.getCurrentPlayer().getGame();
         game.nextTurn();
-            game.log("p1:end_turn", "");
+        game.log("end_turn", "");
+        if (game.isFinished())
+            return endGame();
         return true;
     }
 
@@ -334,21 +317,29 @@ public class CommandRunner {
         Game game = controller.getCurrentPlayer().getGame();
         boolean ret =  game.getCurrentPlayer().useHeroPower();
         if (ret)
-            game.log("p1:hero_power", "");
+            game.log("hero_power", "");
+        if (game.isFinished())
+            return endGame();
         return ret;
     }
 
     private boolean attack(Attackable attacker, Attackable defender) {
         Game game = controller.getCurrentPlayer().getGame();
-        return game.getCurrentPlayer().attack(attacker, defender);
+        boolean ret = game.getCurrentPlayer().attack(attacker, defender);
+        if (ret)
+            game.log("attack", attacker + " -> " + defender);
+        if (game.isFinished())
+            return endGame();
+        return ret;
     }
 
     private boolean endGame() {
         Player player = controller.getCurrentPlayer();
         Game game = player.getGame();
-        player.log("end_game", "game id: " + game.getId());
-        game.log("");
-        game.log("ENDED_AT: ", "");
+        player.setGame(null);
+        graphics.endGame();
+        player.getLogger().log("end_game", "game id: " + game.getId());
+        game.logEndGame();
         return true;
     }
 }

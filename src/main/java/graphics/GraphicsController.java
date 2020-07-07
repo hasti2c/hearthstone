@@ -69,4 +69,8 @@ public class GraphicsController {
         store.display();
         store.search(card.toString());
     }
+
+    public void endGame() {
+        home.getPlayGround().endGame();
+    }
 }

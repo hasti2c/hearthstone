@@ -11,6 +11,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane fx:id="heroImagePane" layoutX="467.0" layoutY="94.0" />
+      <HBox fx:id="minionsHBox" alignment="CENTER" layoutX="182.0" layoutY="248.0" prefHeight="135.0" prefWidth="700.0" />
       <ImageView fitHeight="49.0" fitWidth="32.0" layoutX="574.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../assets/hp-mana-attack/health.png" />
@@ -24,7 +25,7 @@
             <Glow />
          </effect>
       </Label>
-      <HBox fx:id="manaHBox" layoutX="750.0" layoutY="55.0" prefHeight="25.0" prefWidth="230.0">
+      <HBox fx:id="manaHBox" layoutX="753.0" layoutY="55.0" prefHeight="25.0" prefWidth="230.0">
          <children>
             <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -88,10 +89,9 @@
             <Font name="DIN Alternate Bold" size="18.0" />
          </font>
       </Label>
-      <HBox fx:id="handHBox2" alignment="CENTER" layoutX="325.0" layoutY="-50.0" prefHeight="100.0" />
-      <HBox fx:id="handHBox1" alignment="CENTER" layoutX="384.0" layoutY="23.0" maxWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" />
-      <HBox fx:id="minionsHBox" alignment="CENTER" layoutX="182.0" layoutY="248.0" prefHeight="135.0" prefWidth="700.0" />
       <Pane fx:id="weaponPane" layoutX="329.0" layoutY="101.0" prefHeight="125.0" prefWidth="125.0" />
       <Pane fx:id="heroPowerPane" layoutX="602.0" layoutY="101.0" prefHeight="125.0" prefWidth="125.0" />
+      <HBox fx:id="handHBox2" alignment="CENTER" layoutX="325.0" layoutY="-30.0" prefHeight="100.0" />
+      <HBox fx:id="handHBox1" alignment="CENTER" layoutX="375.0" layoutY="20.0" maxWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" />
    </children>
 </Pane>

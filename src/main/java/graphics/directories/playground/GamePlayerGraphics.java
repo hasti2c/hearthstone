@@ -118,7 +118,7 @@ public class GamePlayerGraphics {
         handHBox2.setVisible(false);
     else {
         handHBox2.setVisible(true);
-        handHBox2.setLayoutX(640 - handHBox2.getChildren().size() * 30);
+        handHBox2.setLayoutX(525 - handHBox2.getChildren().size() * 30);
     }
 }
 
@@ -300,7 +300,10 @@ public class GamePlayerGraphics {
             } else if (mouseEvent.getEventType() == MouseEvent.MOUSE_ENTERED) {
                 pane.getChildren().add(bigImageView);
                 bigImageView.setLayoutX(getLayoutX() + getWidth(normalImageView) / 2 - getWidth(bigImageView) / 2);
-                bigImageView.setLayoutY(getLayoutY() - getHeight(bigImageView));
+                if (playerFaction == PlayerFaction.FRIENDLY)
+                    bigImageView.setLayoutY(getLayoutY() - getHeight(bigImageView));
+                else
+                    bigImageView.setLayoutY(getLayoutY() + getHeight(bigImageView) - getHeight(normalImageView) / 2);
             } else if (mouseEvent.getEventType() == MouseEvent.MOUSE_EXITED) {
                 pane.getChildren().remove(bigImageView);
             }

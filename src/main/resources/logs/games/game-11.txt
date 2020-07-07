@@ -1,0 +1,11 @@
+GAME_ID: 11
+STARTED_AT:  2020/07/07 21:21:33 
+
+p1: erfan
+p1_hero: warlock
+p1_deck: hi
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+

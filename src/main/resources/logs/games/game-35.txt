@@ -1,0 +1,38 @@
+GAME_ID: 35
+STARTED_AT:  2020/07/08 00:41:16 
+
+p1: baba
+p1_hero: mage
+p1_deck: derakht
+
+p2: baba
+p2_hero: mage
+p2_deck: derakht
+
+p2:end_turn 2020/07/08 00:41:18 
+p1:end_turn 2020/07/08 00:41:18 
+p2:end_turn 2020/07/08 00:41:18 
+p1:end_turn 2020/07/08 00:41:19 
+p2:end_turn 2020/07/08 00:41:19 
+p1:end_turn 2020/07/08 00:41:19 
+p2:end_turn 2020/07/08 00:41:20 
+p1:end_turn 2020/07/08 00:41:20 
+p1:play_card 2020/07/08 00:41:21 Cobra Shot
+p2:end_turn 2020/07/08 00:41:27 
+p1:end_turn 2020/07/08 00:41:28 
+p1:play_card 2020/07/08 00:41:29 Kobold Stickyfinger
+p2:end_turn 2020/07/08 00:41:31 
+p1:end_turn 2020/07/08 00:41:33 
+p2:end_turn 2020/07/08 00:41:33 
+p2:play_card 2020/07/08 00:41:34 Amani War Bear
+p2:attack 2020/07/08 00:41:38 Amani War Bear -> Kobold Stickyfinger
+p1:end_turn 2020/07/08 00:41:39 
+p2:end_turn 2020/07/08 00:41:40 
+p2:attack 2020/07/08 00:41:42 Amani War Bear -> mage
+p1:end_turn 2020/07/08 00:41:43 
+p1:play_card 2020/07/08 00:41:44 Cobra Shot
+p2:end_turn 2020/07/08 00:41:47 
+p1:end_turn 2020/07/08 00:41:50 
+p1:play_card 2020/07/08 00:41:51 Amani War Bear
+
+ENDED_AT:  2020/07/08 00:41:57 

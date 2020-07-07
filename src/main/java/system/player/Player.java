@@ -1,6 +1,7 @@
 package system.player;
 
 import java.io.*;
+import java.nio.file.Files;
 
 import com.google.gson.stream.*;
 import controllers.game.*;
@@ -9,6 +10,7 @@ import elements.cards.*;
 import system.Configable;
 import system.Configor;
 import system.Game;
+import system.Logger;
 
 public class Player implements Configable {
     private String username, password;
@@ -16,7 +18,7 @@ public class Player implements Configable {
     private Inventory inventory;
     private GameController controller;
     private Game game;
-    private Writer logWriter;
+    private Logger logger;
 
     public static Player getExistingPlayer(GameController controller, String username) throws FileNotFoundException {
         controller.setInitPlayerName(username);
@@ -38,11 +40,7 @@ public class Player implements Configable {
     @Override
     public void initialize(GameController controller) {
         this.controller = controller;
-        try {
-            logWriter = new FileWriter(this.getLogPath(), true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        logger = new Logger("src/main/resources/logs/players/" + username + "-" + id + ".txt");
     }
 
     @Override
@@ -87,24 +85,6 @@ public class Player implements Configable {
         }
     }
 
-    public void log(String line) {
-        try {
-            logWriter.write(line + "\n");
-            logWriter.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void log(String type, String details) {
-        try {
-            logWriter.write(type + " " + GameController.getTime() + " " + details + "\n");
-            logWriter.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public boolean loginAttempt(String password) {
         return this.password.equals(password);
     }
@@ -131,10 +111,6 @@ public class Player implements Configable {
 
     public String getDeckJsonPath() {
         return "src/main/resources/database/decks/" + username;
-    }
-
-    public String getLogPath() {
-        return "src/main/resources/logs/players/" + username + "-" + id + ".txt";
     }
 
     public void setCurrentDeck(Deck currentDeck) {
@@ -195,5 +171,17 @@ public class Player implements Configable {
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public Logger getLogger() {
+        return logger;
+    }
+
+    public void logSignup() {
+        logger.log("USER: " + username);
+        logger.log("PASSWORD: " + password);
+        logger.log("CREATED_AT: ", "");
+        logger.log("");
+        logger.log("signup", "");
     }
 }

@@ -15,6 +15,7 @@ import java.lang.reflect.*;
 import java.util.*;
 
 public class GamePlayer {
+    private final String name;
     private final Inventory inventory;
     private ArrayList<Card> leftInDeck;
     private final ArrayList<Card> hand = new ArrayList<>();
@@ -31,6 +32,7 @@ public class GamePlayer {
 
     public GamePlayer(GameController controller, Game game, PlayerFaction playerFaction) {
         Player player = controller.getCurrentPlayer();
+        name = player.toString();
         inventory = player.getInventory().clone();
         leftInDeck = new ArrayList<>();
         for (Card card : inventory.getCurrentDeck().getCards())
@@ -56,6 +58,10 @@ public class GamePlayer {
 
         for (int i = 0; i < 3; i++)
             draw();
+    }
+
+    public String toString() {
+        return name;
     }
 
     public Inventory getInventory() {
@@ -196,9 +202,8 @@ public class GamePlayer {
                 draw();
         heroPowerCount = 0;
 
-        for (Card card : inventory.getCurrentDeck().getCards())
-            if (card instanceof Minion minion)
-                minion.setHasAttacked(false);
+        for (Minion minion : minionsInGame)
+            minion.setHasAttacked(false);
         inventory.getCurrentHero().setHasAttacked(false);
 
         mana = Math.min(getMyTurnNumber(), 10);
@@ -215,6 +220,7 @@ public class GamePlayer {
     }
 
     public boolean canAttack(Attackable attacker) {
+        System.out.println(attacker);
         boolean ret = this == game.getCurrentPlayer() && !attacker.getHasAttacked();
         if (attacker instanceof Hero)
             return ret && currentWeapon != null;
