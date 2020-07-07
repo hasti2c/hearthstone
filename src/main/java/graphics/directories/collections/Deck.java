@@ -1,8 +1,8 @@
 package graphics.directories.collections;
 
 import controllers.commands.*;
-import gameObjects.cards.*;
-import gameObjects.heros.*;
+import elements.cards.*;
+import elements.heros.*;
 import graphics.*;
 import graphics.popups.*;
 import javafx.fxml.*;
@@ -12,11 +12,11 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 
 public class Deck extends CardsList {
-    private final gameObjects.heros.Deck deck;
+    private final elements.heros.Deck deck;
     @FXML
     private Label deckCount;
 
-    Deck(gameObjects.heros.Deck deck, GraphicsController controller, CommandRunner runner) {
+    Deck(elements.heros.Deck deck, GraphicsController controller, CommandRunner runner) {
         super(controller, runner);
         border.setId("deck-bg");
         this.deck = deck;
@@ -28,7 +28,7 @@ public class Deck extends CardsList {
         deckCount.setText(deck.getCards().size() + "/" + controller.getCurrentPlayer().getInventory().getDeckCap());
     }
 
-    public gameObjects.heros.Deck getDeck() {
+    public elements.heros.Deck getDeck() {
         return deck;
     }
 

@@ -1,7 +1,0 @@
-GAME_ID: 35
-STARTED_AT:  2020/06/28 18:24:14 
-
-p1: hasti
-p1_hero: mage
-p1_deck: first
-

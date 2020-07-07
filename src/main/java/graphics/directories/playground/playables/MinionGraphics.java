@@ -1,6 +1,6 @@
 package graphics.directories.playground.playables;
 
-import gameObjects.cards.*;
+import elements.cards.*;
 import graphics.directories.playground.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;

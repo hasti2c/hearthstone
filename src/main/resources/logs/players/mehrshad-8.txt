@@ -1,6 +1,0 @@
-USER: mehrshad
-PASSWORD: heliumhelium
-CREATED_AT:  2020/07/02 19:53:10 
-
-signup 2020/07/02 19:53:10 
-login 2020/07/02 19:53:10 

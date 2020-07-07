@@ -1,7 +1,0 @@
-GAME_ID: 490
-STARTED_AT:  2020/07/05 13:29:51 
-
-p1: hasti
-p1_hero: mage
-p1_deck: spell
-

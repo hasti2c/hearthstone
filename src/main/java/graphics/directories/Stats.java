@@ -2,7 +2,7 @@ package graphics.directories;
 
 import java.util.*;
 import controllers.commands.*;
-import gameObjects.heros.*;
+import elements.heros.*;
 import graphics.*;
 import javafx.fxml.*;
 import javafx.geometry.*;

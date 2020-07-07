@@ -1,12 +1,13 @@
 package graphics.directories.playground;
 
 import controllers.commands.*;
-import gameObjects.cards.abilities.targets.Attackable;
-import gameObjects.cards.abilities.targets.TargetEventHandler;
-import gameObjects.cards.abilities.targets.Targetable;
-import gameObjects.player.*;
-import gameObjects.cards.*;
-import gameObjects.heros.*;
+import elements.abilities.targets.Attackable;
+import elements.abilities.targets.TargetEventHandler;
+import elements.abilities.targets.Targetable;
+import elements.cards.*;
+import elements.heros.*;
+import system.player.GamePlayer;
+import system.player.PlayerFaction;
 import graphics.directories.playground.playables.*;
 import javafx.event.*;
 import javafx.fxml.*;

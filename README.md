@@ -1,24 +1,23 @@
-# Hearthstone project: Phase 2
+# Hearthstone project: Phase 3
 ### Hasti Toossi (Student No. 98100464)
 
-- This project might not work properly on windows systems. It would be better if it was tested on a Unix-based operating system such as Linux or MacOS.
-- The cli interface also works for this phase, although the commands might not be very easy to guess! :D 
-- To test the main version (with graphics) you can run the Hearthstone class but to test the cli you can run HearthstoneConsole. (It's nothing special.)
-- Because of the volume of the files, assets couldn't be uploaded, but they can be found on [https://github.com/hasti2c/hearthstone/tree/phase2](phase2 branch on my Github repository).
-
+- The maven build tool is used.
+- Because of the upload restriction, I have uploaded the assets and the javafx library on github instead.
 
 ## Explanation 
 
-- Each command given by the user is parsed and represented by a Command object. Then a CommandRunner object runs the command (by giving orders to different game objects).
-- The Console class and the GraphicsController / DirectoryGraphics classes are responsible for communicating with the user respectively through cli and graphics. (It's important to note that these UIs shouldn't be used at the same time.)
-- Each page has a Directory class and a DirectoryGraphics class. The Directory class isn't much more than an easier representation of each page. The DirectoryGraphics is more involved with logic, although mostly through CommandRunner.
-
+- The Inventory class holds the heros, cards and decks that a system owns, as well as the current deck. 
+- The Player class only has data about the system's username, balance and other account info, as well as its inventory.
+- The GamePlayer class has the inventory and handles its own game actions. (Player and GamePlayer are independant of each other.)
+- After each action, each GamePlayer invokes the doAction method on each of its cards which is related to the current event, e.g. doActionOnDraw(), doActionOnDamaged(), etc.
+- Each card calls the callDoAction() method on any ability which needs to be activated.
+- In the Activity class, the target is determined and then the action is done in the related subclass.
 
 ## Sources
 
-- The cards used in the game (and the pictures, etc.) where found through: [playhearthstone.com](The Play Hearthstone Website) and [hearthstone.gamepedia.com](Hearthstone Wiki).
-- The following websites where used as learning materials: [Jenkov](jenkov.com), [stackoverflow.com](Stack Overflow).
-- The build tool [maven.apache.org](Maven) was used in this project.
+- The build tool [maven](https://maven.apache.org) was used in this project.
+- The cards used in the game (and the pictures, etc.) were found through [Hearthstone Wiki](https://hearthstone.gamepedia.com).
+- The assets were found through the inspect elements feature on [HS Replay](https://HSReplay.net).
 
 
 ## External Libraries
@@ -29,15 +28,12 @@
 
 ## Positive Points
 
-- A good degree of abstraction and cleanness was used in the source code, though it could be improved.
-- A decent user interface, especially in the collections / store section with the Options feature.
-- CLI feature
-- Proper use of different java features such as Enums, Inner Classees, Interfaces, etc.
-
+- The abilities were implemented a lot of generalization and abstraction.
+- It's possible to implement many abilities with the current source code.
+- The Configor class reads the objects from json very cleanly and it's independant of the particular class. Also there's a lot of Reflection and Generics used in that class, making the code more concise.
 
 ## Negative Points
 
-- The scopes (logic and graphics) could be a lot more seperate. 
-- The interface in the game section isn't that good. (Especially for weapons / hero powers :D ).
-- The home page takes a long time to load when logging in. 
-- There are too many classes, for example two different classes for each page might be excessive.
+- Some classes might have too much access to change fields. 
+- The game page has no animation and not a really good user interface. (It looks good generally, but doesn't show errors, etc.).
+- Some logic classes have access to and change graphic classes and don't work independantly enough.

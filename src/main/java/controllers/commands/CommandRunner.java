@@ -3,13 +3,13 @@ package controllers.commands;
 import java.io.*;
 import java.util.*;
 import controllers.game.*;
-import gameObjects.cards.abilities.targets.Attackable;
-import gameObjects.player.Player;
+import elements.abilities.targets.Attackable;
+import system.Game;
+import system.player.Player;
 import graphics.*;
 import graphics.directories.*;
-import gameObjects.*;
-import gameObjects.heros.*;
-import gameObjects.cards.*;
+import elements.heros.*;
+import elements.cards.*;
 
 public class CommandRunner {
     private final GameController controller;

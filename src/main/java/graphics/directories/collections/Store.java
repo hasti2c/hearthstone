@@ -2,9 +2,9 @@ package graphics.directories.collections;
 
 import com.jfoenix.controls.*;
 import controllers.commands.*;
-import gameObjects.player.*;
-import gameObjects.cards.*;
-import gameObjects.heros.*;
+import elements.cards.*;
+import elements.heros.*;
+import system.player.Player;
 import graphics.*;
 import graphics.popups.*;
 import javafx.fxml.*;

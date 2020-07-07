@@ -1,7 +1,0 @@
-GAME_ID: 713
-STARTED_AT:  2020/07/07 14:30:24 
-
-p1: hasti
-p1_hero: priest
-p1_deck: high
-

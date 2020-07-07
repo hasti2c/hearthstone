@@ -1,8 +1,0 @@
-GAME_ID: 63
-STARTED_AT:  2020/06/29 16:55:13 
-
-p1: hasti
-p1_hero: warlock
-p1_deck: bye
-
-p1:end_turn 2020/06/29 16:55:17 

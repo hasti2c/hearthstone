@@ -1,7 +1,6 @@
 package graphics.directories.playground.playables;
 
-import gameObjects.cards.Weapon;
-import gameObjects.heros.HeroPower;
+import elements.heros.HeroPower;
 import graphics.directories.playground.GamePlayerGraphics;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

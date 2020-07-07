@@ -1,6 +1,6 @@
 package graphics.popups;
 
-import gameObjects.heros.*;
+import elements.heros.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import java.util.*;

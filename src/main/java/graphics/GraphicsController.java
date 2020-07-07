@@ -2,8 +2,8 @@ package graphics;
 
 import controllers.commands.*;
 import controllers.game.*;
-import gameObjects.player.*;
-import gameObjects.cards.*;
+import elements.cards.*;
+import system.player.Player;
 import graphics.directories.*;
 import graphics.directories.collections.*;
 import javafx.scene.*;

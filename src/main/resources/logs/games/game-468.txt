@@ -1,8 +1,0 @@
-GAME_ID: 468
-STARTED_AT:  2020/07/05 12:43:24 
-
-p1: hasti
-p1_hero: mage
-p1_deck: spell
-
-p1:play_card 2020/07/05 12:43:31 murloc raider

@@ -1,7 +1,0 @@
-GAME_ID: 360
-STARTED_AT:  2020/07/04 12:56:29 
-
-p1: hasti
-p1_hero: priest
-p1_deck: high
-

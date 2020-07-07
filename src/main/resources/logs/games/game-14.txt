@@ -1,7 +1,0 @@
-GAME_ID: 14
-STARTED_AT:  2020/06/28 03:07:17 
-
-p1: hasti
-p1_hero: mage
-p1_deck: first
-

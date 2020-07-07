@@ -1,7 +1,0 @@
-GAME_ID: 668
-STARTED_AT:  2020/07/06 18:24:09 
-
-p1: hasti
-p1_hero: warlock
-p1_deck: zarafe
-

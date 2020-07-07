@@ -1,7 +1,0 @@
-GAME_ID: 747
-STARTED_AT:  2020/07/07 17:37:12 
-
-p1: hasti
-p1_hero: mage
-p1_deck: minions
-

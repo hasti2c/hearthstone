@@ -3,7 +3,7 @@ package graphics.directories.collections;
 import java.util.*;
 import controllers.commands.*;
 import controllers.game.*;
-import gameObjects.heros.*;
+import elements.heros.*;
 import graphics.*;
 import graphics.popups.*;
 import graphics.directories.*;
@@ -16,7 +16,7 @@ import javafx.scene.paint.*;
 
 public class Collections extends Directory {
     private ArrayList<Hero> heros;
-    private ArrayList<gameObjects.heros.Deck> decks;
+    private ArrayList<elements.heros.Deck> decks;
     @FXML
     private HBox topHBox1, topHBox2;
     @FXML
@@ -66,7 +66,7 @@ public class Collections extends Directory {
     }
 
     private void configDecks() {
-        for (gameObjects.heros.Deck deck : controller.getCurrentPlayer().getInventory().getAllDecks())
+        for (elements.heros.Deck deck : controller.getCurrentPlayer().getInventory().getAllDecks())
             configDeckRow(deck);
         for (Node n : grid.getChildren()) {
             GridPane.setHalignment(n, HPos.CENTER);
@@ -74,7 +74,7 @@ public class Collections extends Directory {
         }
     }
 
-    private void configDeckRow(gameObjects.heros.Deck deck) {
+    private void configDeckRow(elements.heros.Deck deck) {
         int i = grid.getRowCount();
         grid.add(deck.getHeroClass().getIcon(), 0, i);
         grid.add(new Label(deck.toString()), 1, i);
@@ -104,7 +104,7 @@ public class Collections extends Directory {
         grid.add(options, 5, i);
     }
 
-    private void selectDeck(gameObjects.heros.Deck deck) {
+    private void selectDeck(elements.heros.Deck deck) {
         runner.run(new Command(CommandType.SELECT, deck));
         config();
     }
@@ -124,7 +124,7 @@ public class Collections extends Directory {
         config();
     }
 
-    private void renameDeck(gameObjects.heros.Deck deck) {
+    private void renameDeck(elements.heros.Deck deck) {
         QuestionBox questionBox = new QuestionBox("What is the name you want to set for " + deck.toString() + "?", "Done", "Cancel");
         questionBox.display();
         if (questionBox.getButtonResponse()) {
@@ -134,7 +134,7 @@ public class Collections extends Directory {
         config();
     }
 
-    private void changeHero(gameObjects.heros.Deck deck) {
+    private void changeHero(elements.heros.Deck deck) {
         ArrayList<String> heroStrings = new ArrayList<>();
         for (Hero h : controller.getCurrentPlayer().getInventory().getAllHeros())
             heroStrings.add(h.toString());
@@ -156,7 +156,7 @@ public class Collections extends Directory {
         config();
     }
 
-    private void deleteDeck(gameObjects.heros.Deck deck) {
+    private void deleteDeck(elements.heros.Deck deck) {
         ConfirmationBox confirmationBox = new ConfirmationBox("Are you sure you want to delete the deck " + deck.toString() + "?", "Yes", "No");
         confirmationBox.display();
         if (confirmationBox.getResponse())
@@ -164,7 +164,7 @@ public class Collections extends Directory {
         config();
     }
 
-    private void displayDeck(gameObjects.heros.Deck deck) {
+    private void displayDeck(elements.heros.Deck deck) {
         Deck graphics = new Deck(deck, controller, runner);
         graphics.display();
     }

@@ -1,8 +1,8 @@
 package graphics.directories.collections;
 
 import controllers.commands.*;
-import gameObjects.cards.*;
-import gameObjects.heros.*;
+import elements.cards.*;
+import elements.heros.*;
 import graphics.*;
 import javafx.fxml.*;
 import javafx.geometry.*;

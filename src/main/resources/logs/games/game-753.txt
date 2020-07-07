@@ -1,7 +1,0 @@
-GAME_ID: 753
-STARTED_AT:  2020/07/07 18:03:12 
-
-p1: hasti
-p1_hero: hunter
-p1_deck: swamp
-

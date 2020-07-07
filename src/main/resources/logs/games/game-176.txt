@@ -1,8 +1,0 @@
-GAME_ID: 176
-STARTED_AT:  2020/07/02 14:12:47 
-
-p1: hasti
-p1_hero: mage
-p1_deck: first
-
-p1:end_turn 2020/07/02 14:12:53 

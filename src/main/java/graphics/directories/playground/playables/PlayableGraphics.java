@@ -1,6 +1,6 @@
 package graphics.directories.playground.playables;
 
-import gameObjects.Playable;
+import elements.Playable;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.shape.*;

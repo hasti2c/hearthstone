@@ -1,8 +1,0 @@
-{
-  "name": "arcane missiles",
-  "description": "deal 3 damage randomly split among enemies",
-  "mana": 1,
-  "price": 10,
-  "heroClass": "NEUTRAL",
-  "rarity": "COMMON"
-}

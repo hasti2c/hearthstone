@@ -1,9 +1,0 @@
-GAME_ID: 30
-STARTED_AT:  2020/06/28 18:19:38 
-
-p1: hasti
-p1_hero: mage
-p1_deck: first
-
-p1:end_turn 2020/06/28 18:19:39 
-p1:end_turn 2020/06/28 18:19:40 

@@ -1,7 +1,7 @@
 package graphics.directories.playground;
 
 import controllers.commands.*;
-import gameObjects.*;
+import system.Game;
 import graphics.*;
 import graphics.directories.*;
 import graphics.popups.*;

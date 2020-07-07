@@ -1,9 +1,8 @@
 package graphics.directories;
 
 import controllers.commands.*;
-import gameObjects.*;
-import gameObjects.player.*;
-import gameObjects.cards.*;
+import system.*;
+import system.player.Inventory;
 import graphics.*;
 import graphics.directories.collections.*;
 import graphics.directories.playground.*;
@@ -23,7 +22,6 @@ public class Home extends Directory {
 
     public Home(GraphicsController controller, CommandRunner runner) {
         super(controller, runner);
-        //playButton.setOnAction(e -> displayPlayGround());
         playButton.setOnAction(e -> {
             if (gameBeginning == null)
                 gameBeginning = new GameStartPage();
@@ -74,8 +72,8 @@ public class Home extends Directory {
         private Label deckName;
         @FXML
         private Button doneButton, cancelButton, collectionsButton, deckReaderButton;
-        @FXML
-        private ChoiceBox<Passive> passiveChoiceBox;
+        /*@FXML
+        private ChoiceBox<Passive> passiveChoiceBox;*/
 
         protected GameStartPage() {
             vBox.getChildren().remove(deckHBox);
@@ -99,7 +97,7 @@ public class Home extends Directory {
         private void clear() {
             if (deckHBox.getChildren().size() == 3)
                 deckHBox.getChildren().remove(1);
-            passiveChoiceBox.getItems().clear();
+            //passiveChoiceBox.getItems().clear();
         }
 
         protected void config() {

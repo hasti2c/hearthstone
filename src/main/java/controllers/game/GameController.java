@@ -4,11 +4,12 @@ import java.io.*;
 import java.time.*;
 import java.time.format.*;
 import java.util.*;
-import gameObjects.*;
-import gameObjects.player.*;
-import gameObjects.cards.*;
-import gameObjects.heros.*;
+
+import system.*;
+import elements.cards.*;
+import elements.heros.*;
 import com.google.gson.stream.*;
+import system.player.Player;
 
 public class GameController implements Configable {
     private Player currentPlayer = null, defaultPlayer;
