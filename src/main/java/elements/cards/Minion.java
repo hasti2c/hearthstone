@@ -111,4 +111,9 @@ public class Minion extends Card implements Attackable {
     public void setDivineShield(boolean divineShield) {
         this.divineShield = divineShield;
     }
+
+    public void restore() {
+        Minion minion = (Minion) GameController.getCard(name);
+        health = minion.health;
+    }
 }

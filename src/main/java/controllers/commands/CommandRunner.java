@@ -69,6 +69,8 @@ public class CommandRunner {
             ret = buyCard(card);
         else if (CommandType.SELL.equals(commandType) && input[0] instanceof Card card)
             ret = sellCard(card);
+        else if (CommandType.CREATE_GAME.equals(commandType))
+            ret = createGame();
         else if (CommandType.START_GAME.equals(commandType))
             ret = startGame();
         else if (CommandType.DECK_READER.equals(commandType))
@@ -271,12 +273,21 @@ public class CommandRunner {
         return true;
     }
 
-    private boolean startGame() {
+    private boolean createGame() {
         Player player = controller.getCurrentPlayer();
         if (player.getInventory().getCurrentDeck() == null)
             return false;
         Game game = new Game(controller);
         player.setGame(game);
+
+        return true;
+    }
+
+    private boolean startGame() {
+        Player player = controller.getCurrentPlayer();
+        if (player.getGame() == null)
+            return false;
+        Game game = player.getGame();
         game.startGame();
         player.log("start_game", "game id: " + game.getId());
         try {

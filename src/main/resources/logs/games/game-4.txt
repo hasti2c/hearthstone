@@ -1,0 +1,14 @@
+GAME_ID: 4
+STARTED_AT:  2020/07/07 19:30:32 
+
+p1: hasti
+p1_hero: mage
+p1_deck: wow
+
+p1:end_turn 2020/07/07 19:30:36 
+p1:end_turn 2020/07/07 19:30:36 
+p1:end_turn 2020/07/07 19:30:37 
+p1:end_turn 2020/07/07 19:30:37 
+p1:end_turn 2020/07/07 19:30:38 
+p1:play_card 2020/07/07 19:30:39 Dreadscale
+p1:end_turn 2020/07/07 19:30:40 

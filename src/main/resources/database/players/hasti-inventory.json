@@ -46,5 +46,8 @@
     "Learn Draconic",
     "Strength in Numbers"
   ],
-  "allDecks": []
+  "allDecks": [
+    "wow"
+  ],
+  "currentDeck": "wow"
 }

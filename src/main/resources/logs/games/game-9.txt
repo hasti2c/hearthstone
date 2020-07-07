@@ -1,0 +1,22 @@
+GAME_ID: 9
+STARTED_AT:  2020/07/07 19:37:00 
+
+p1: hasti
+p1_hero: mage
+p1_deck: wow
+
+p1:end_turn 2020/07/07 19:37:02 
+p1:end_turn 2020/07/07 19:37:02 
+p1:end_turn 2020/07/07 19:37:02 
+p1:end_turn 2020/07/07 19:37:02 
+p1:end_turn 2020/07/07 19:37:03 
+p1:end_turn 2020/07/07 19:37:03 
+p1:end_turn 2020/07/07 19:37:03 
+p1:end_turn 2020/07/07 19:37:03 
+p1:end_turn 2020/07/07 19:37:04 
+p1:end_turn 2020/07/07 19:37:04 
+p1:end_turn 2020/07/07 19:37:04 
+p1:end_turn 2020/07/07 19:37:05 
+p1:play_card 2020/07/07 19:37:06 Hogger
+p1:end_turn 2020/07/07 19:37:10 
+p1:end_turn 2020/07/07 19:37:16 

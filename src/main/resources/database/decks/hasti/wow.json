@@ -1,0 +1,27 @@
+{
+  "name": "wow",
+  "heroClass": "MAGE",
+  "cards": [
+    "Dreadscale",
+    "Dreadscale",
+    "Hogger",
+    "Hogger",
+    "Sathrovarr",
+    "Sathrovarr",
+    "Tomb Warden",
+    "Tomb Warden"
+  ],
+  "uses": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "wins": 0,
+  "games": 0,
+  "maxSize": 15
+}

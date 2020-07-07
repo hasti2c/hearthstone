@@ -1,6 +1,7 @@
 package graphics.directories;
 
 import controllers.commands.*;
+import elements.cards.Passive;
 import system.*;
 import system.player.Inventory;
 import graphics.*;
@@ -10,6 +11,8 @@ import graphics.popups.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+
+import java.util.ArrayList;
 
 public class Home extends Directory {
     private PlayGround playGround;
@@ -72,8 +75,8 @@ public class Home extends Directory {
         private Label deckName;
         @FXML
         private Button doneButton, cancelButton, collectionsButton, deckReaderButton;
-        /*@FXML
-        private ChoiceBox<Passive> passiveChoiceBox;*/
+        @FXML
+        private ChoiceBox<Passive> passiveChoiceBox;
 
         protected GameStartPage() {
             vBox.getChildren().remove(deckHBox);
@@ -82,7 +85,10 @@ public class Home extends Directory {
             cancelButton.setOnAction(e -> close());
             doneButton.setOnAction(e -> {
                 close();
-                //game.setPassive(passiveChoiceBox.getValue());
+                runner.run(new Command(CommandType.CREATE_GAME));
+                game = controller.getCurrentPlayer().getGame();
+                game.getGamePlayers()[0].setPassive(passiveChoiceBox.getValue());
+                game.getGamePlayers()[1].setPassive(passiveChoiceBox.getValue());
                 runner.run(new Command(CommandType.START_GAME));
                 displayPlayGround();
             });
@@ -97,7 +103,7 @@ public class Home extends Directory {
         private void clear() {
             if (deckHBox.getChildren().size() == 3)
                 deckHBox.getChildren().remove(1);
-            //passiveChoiceBox.getItems().clear();
+            passiveChoiceBox.getItems().clear();
         }
 
         protected void config() {
@@ -125,15 +131,11 @@ public class Home extends Directory {
             deckHBox.getChildren().add(1, inventory.getCurrentHero().getHeroClass().getIcon());
             deckName.setText(inventory.getCurrentDeck().toString());
 
-            /*ArrayList<Passive> passives = new ArrayList<>();
-            while (passives.size() < 3) {
-                Passive p = GameController.getRandomPassive();
-                if (!passives.contains(p))
-                    passives.add(p);
+            while (passiveChoiceBox.getItems().size() < 3) {
+                Passive p = Passive.getRandomPassive();
+                if (!passiveChoiceBox.getItems().contains(p))
+                    passiveChoiceBox.getItems().add(p);
             }
-            for (Passive p : passives) {
-                passiveChoiceBox.getItems().add(p);
-            }*/
         }
 
         private void configNoDeck() {

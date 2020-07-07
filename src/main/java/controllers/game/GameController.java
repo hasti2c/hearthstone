@@ -18,7 +18,6 @@ public class GameController implements Configable {
     private String initPlayerName;
     private static ArrayList<Hero> herosList = new ArrayList<>();
     private static ArrayList<Card> cardsList = new ArrayList<>();
-    //private static ArrayList<Passive> passivesList = new ArrayList<>();
     private final String defaultPath = "src/main/resources/database/defaults.json";
 
     public static GameController getInstance() {
@@ -29,6 +28,13 @@ public class GameController implements Configable {
             e.printStackTrace();
         }
         return configor.getConfigedObject();
+    }
+
+    public static Card getCard(String name) {
+        for (Card card : cardsList)
+            if (card.toString().equals(name))
+                return card;
+        return null;
     }
 
     @Override
@@ -45,10 +51,6 @@ public class GameController implements Configable {
 
     public void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
-    }
-
-    public static ArrayList<Hero> getHerosList() {
-        return herosList;
     }
 
     public static ArrayList<Card> getCardsList() {
@@ -107,12 +109,6 @@ public class GameController implements Configable {
     public static String toEnumCase(String s) {
         return (s.toUpperCase()).replace(' ', '_');
     }
-
-    /*public static Passive getRandomPassive() {
-        int n = passivesList.size();
-        int i = (int) (Math.floor(Math.random() * n) % n);
-        return passivesList.get(i);
-    }*/
 
     private void updateJson() {
         try {

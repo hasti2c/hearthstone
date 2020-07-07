@@ -21,9 +21,10 @@ public class GamePlayer {
     private final ArrayList<Minion> minionsInGame = new ArrayList<>();
     private Spell lastSpell;
     private Weapon currentWeapon;
+    private Passive passive;
     private final int playerNumber;
-    private int mana = 1;
-    private boolean usedHeroPower, randomDraw = true;
+    private int mana = 1, drawCap = 1, heroPowerCap = 1, heroPowerCount = 0;
+    private boolean randomDraw = true;
     private final PlayerFaction playerFaction;
     private final Game game;
     private GamePlayerGraphics graphics;
@@ -47,6 +48,12 @@ public class GamePlayer {
     }
 
     public void initialize() {
+        if (passive != null) {
+            mana = 1 + passive.getTurnManaPromotion(1);
+            drawCap = passive.getDrawCap();
+            heroPowerCap = passive.getHeroPowerCap();
+        }
+
         for (int i = 0; i < 3; i++)
             draw();
     }
@@ -83,8 +90,8 @@ public class GamePlayer {
         this.mana = mana;
     }
 
-    public void setUsedHeroPower(boolean usedHeroPower) {
-        this.usedHeroPower = usedHeroPower;
+    public void setPassive(Passive passive) {
+        this.passive = passive;
     }
 
     public boolean draw() {
@@ -119,11 +126,11 @@ public class GamePlayer {
     }
 
     public boolean playCard(Card card) {
-        if (!isMyTurn() || !hand.contains(card) || mana < card.getGameMana(inventory.getCurrentHero().getHeroClass()) || (card instanceof Minion && minionsInGame.size() >= 7))
+        if (!isMyTurn() || !hand.contains(card) || mana < card.getGameMana(this) || (card instanceof Minion && minionsInGame.size() >= 7))
             return false;
 
         inventory.getCurrentDeck().addUse(card);
-        mana -= card.getGameMana(inventory.getCurrentHero().getHeroClass());
+        mana -= card.getGameMana(this);
         hand.remove(card);
         if (card instanceof Minion minion) {
             inventory.getCurrentHero().getHeroClass().doHeroAction(minion);
@@ -149,16 +156,16 @@ public class GamePlayer {
     public boolean useHeroPower() {
         Hero hero = inventory.getCurrentHero();
         HeroPower heroPower = hero.getHeroPower();
-        if (!isMyTurn() || usedHeroPower || mana < heroPower.getGameMana(inventory.getCurrentHero().getHeroClass()))
+        if (!isMyTurn() || heroPowerCount >= heroPowerCap || mana < heroPower.getGameMana(this))
             return false;
-        setUsedHeroPower(true);
+        heroPowerCount++;
         heroPower.reduceCost(this);
         doCardAction("doActionOnHeroPower");
         return true;
     }
 
     public boolean canUseHeroPower() {
-        return !usedHeroPower && !inventory.getCurrentHero().getHeroPower().isPassive();
+        return heroPowerCount < heroPowerCap && !inventory.getCurrentHero().getHeroPower().isPassive();
     }
 
     public int getMyTurnNumber() {
@@ -185,8 +192,9 @@ public class GamePlayer {
 
     public void startTurn() {
         if (getMyTurnNumber() != 1)
-            draw();
-        usedHeroPower = false;
+            for (int i = 0; i < drawCap; i++)
+                draw();
+        heroPowerCount = 0;
 
         for (Card card : inventory.getCurrentDeck().getCards())
             if (card instanceof Minion minion)
@@ -194,10 +202,14 @@ public class GamePlayer {
         inventory.getCurrentHero().setHasAttacked(false);
 
         mana = Math.min(getMyTurnNumber(), 10);
+        if (passive != null)
+            mana += passive.getTurnManaPromotion(getMyTurnNumber());
     }
 
     public void endTurn() {
         doCardAction("doActionOnEndTurn");
+        if (passive != null)
+            passive.doEndTurnAction(minionsInGame);
         for (Minion minion : getMinionsInGame())
             minion.setAsleep(false);
     }
@@ -326,5 +338,9 @@ public class GamePlayer {
             elements.add(new Pair<>(inventory.getCurrentHero().getHeroPower(), graphics.getHeroPowerNode()));
         elements.add(new Pair<>(inventory.getCurrentHero(), graphics.getHeroImageView()));
         return elements;
+    }
+
+    public Passive getPassive() {
+        return passive;
     }
 }

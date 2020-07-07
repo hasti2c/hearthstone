@@ -2237,3 +2237,32 @@ login 2020/07/07 18:14:57
 start_game 2020/07/07 18:15:00 game id: 758
 start_game 2020/07/07 18:16:22 game id: 759
 login 2020/07/07 18:43:44 
+login 2020/07/07 18:58:33 
+add 2020/07/07 19:01:58 deck: wow -> hero: MAGE
+select 2020/07/07 19:01:59 deck: wow
+login 2020/07/07 19:24:20 
+login 2020/07/07 19:26:35 
+start_game 2020/07/07 19:26:38 game id: 0
+login 2020/07/07 19:28:13 
+login 2020/07/07 19:28:52 
+start_game 2020/07/07 19:28:54 game id: 1
+add 2020/07/07 19:29:04 card: Dreadscale -> deck: mage-wow
+add 2020/07/07 19:29:04 card: Dreadscale -> deck: mage-wow
+add 2020/07/07 19:29:05 card: Hogger -> deck: mage-wow
+add 2020/07/07 19:29:05 card: Hogger -> deck: mage-wow
+add 2020/07/07 19:29:07 card: Sathrovarr -> deck: mage-wow
+add 2020/07/07 19:29:07 card: Sathrovarr -> deck: mage-wow
+add 2020/07/07 19:29:09 card: Tomb Warden -> deck: mage-wow
+add 2020/07/07 19:29:09 card: Tomb Warden -> deck: mage-wow
+start_game 2020/07/07 19:29:11 game id: 2
+start_game 2020/07/07 19:29:25 game id: 3
+start_game 2020/07/07 19:30:32 game id: 4
+login 2020/07/07 19:31:56 
+start_game 2020/07/07 19:32:03 game id: 5
+start_game 2020/07/07 19:32:35 game id: 6
+login 2020/07/07 19:35:23 
+start_game 2020/07/07 19:35:52 game id: 7
+login 2020/07/07 19:36:50 
+start_game 2020/07/07 19:36:54 game id: 8
+start_game 2020/07/07 19:37:00 game id: 9
+start_game 2020/07/07 19:37:29 game id: 10
