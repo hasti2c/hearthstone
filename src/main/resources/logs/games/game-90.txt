@@ -1,0 +1,27 @@
+GAME_ID: 90
+STARTED_AT:  2020/07/08 23:44:33 
+
+p1: hasti
+p1_hero: mage
+p1_deck: wow
+
+p2: hasti
+p2_hero: mage
+p2_deck: wow
+
+p1:play_card 2020/07/08 23:44:36 Learn Draconic
+p2:end_turn 2020/07/08 23:44:39 
+p1:end_turn 2020/07/08 23:44:40 
+p1:play_card 2020/07/08 23:44:41 Dirty Rat
+p2:end_turn 2020/07/08 23:44:43 
+p1:end_turn 2020/07/08 23:44:43 
+p1:play_card 2020/07/08 23:44:44 Hand of Adal
+p2:end_turn 2020/07/08 23:44:45 
+p1:end_turn 2020/07/08 23:44:45 
+p1:play_card 2020/07/08 23:44:47 Flame Lance
+p2:end_turn 2020/07/08 23:44:48 
+p1:end_turn 2020/07/08 23:44:48 
+p1:play_card 2020/07/08 23:44:50 Divine Strength
+p2:end_turn 2020/07/08 23:45:31 
+p1:end_turn 2020/07/08 23:45:31 
+p1:play_card 2020/07/08 23:45:33 Divine Strength

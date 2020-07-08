@@ -1,0 +1,32 @@
+GAME_ID: 106
+STARTED_AT:  2020/07/09 00:09:57 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: pppp
+
+p2: hasti
+p2_hero: warlock
+p2_deck: pppp
+
+p1:play_card 2020/07/09 00:10:01 Learn Draconic
+p2:end_turn 2020/07/09 00:10:02 
+p1:end_turn 2020/07/09 00:10:02 
+p1:play_card 2020/07/09 00:10:03 Hand of Adal
+p2:end_turn 2020/07/09 00:10:04 
+p1:end_turn 2020/07/09 00:10:04 
+p1:play_card 2020/07/09 00:10:05 Hand of Adal
+p2:end_turn 2020/07/09 00:10:06 
+p1:end_turn 2020/07/09 00:10:06 
+p1:play_card 2020/07/09 00:10:08 Divine Strength
+p2:end_turn 2020/07/09 00:10:08 
+p1:end_turn 2020/07/09 00:10:09 
+p2:end_turn 2020/07/09 00:10:10 
+p2:play_card 2020/07/09 00:10:12 Flame Lance
+p1:end_turn 2020/07/09 00:10:13 
+p2:end_turn 2020/07/09 00:10:13 
+p1:end_turn 2020/07/09 00:10:14 
+p1:play_card 2020/07/09 00:10:15 Pharaohs Blessing
+p2:end_turn 2020/07/09 00:10:18 
+p1:end_turn 2020/07/09 00:10:18 
+p1:play_card 2020/07/09 00:10:21 Sprint

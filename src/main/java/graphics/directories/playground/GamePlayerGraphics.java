@@ -6,27 +6,20 @@ import elements.abilities.targets.TargetEventHandler;
 import elements.abilities.targets.Targetable;
 import elements.cards.*;
 import elements.heros.*;
+import javafx.scene.control.Button;
 import system.player.GamePlayer;
 import system.player.PlayerFaction;
 import graphics.directories.playground.playables.*;
 import javafx.event.*;
-import javafx.fxml.*;
 import javafx.scene.*;
-import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.input.*;
-import javafx.scene.layout.*;
-import java.io.*;
-import java.util.*;
 
 public class GamePlayerGraphics extends CharacterGraphics<GamePlayer> {
-    private final CommandRunner runner;
     private Attackable selectedAttackable;
 
     GamePlayerGraphics(PlayGround playGround, CommandRunner runner, GamePlayer gamePlayer) {
-        super(playGround, gamePlayer);
-        this.runner = runner;
-        gamePlayer.setGraphics(this);
+        super(playGround, runner, gamePlayer);
     }
 
     protected void configMana() {
@@ -43,19 +36,11 @@ public class GamePlayerGraphics extends CharacterGraphics<GamePlayer> {
         node.addEventHandler(MouseEvent.MOUSE_CLICKED, new AttackEventHandler(hero, node));
     }
 
-    protected Node getHandNode(Card card) {
-        ImageView iv;
-        int n = character.getHand().size();
-        if (n <= 5)
-            iv = card.getImageView(Math.min(300 / n, 100), -1);
-        else
-            iv = card.getImageView(60, -1);
-
-        HandEventHandler eventHandler = new HandEventHandler(card, iv);
-        iv.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
-        iv.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandler);
-        iv.addEventHandler(MouseEvent.MOUSE_EXITED, eventHandler);
-        return iv;
+    protected void configHandNode(Card card, ImageView imageView) {
+        GamePlayerGraphics.HandEventHandler eventHandler = new GamePlayerGraphics.HandEventHandler(card, imageView);
+        imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
+        imageView.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandler);
+        imageView.addEventHandler(MouseEvent.MOUSE_EXITED, eventHandler);
     }
 
     protected void configTargetNode(Minion minion, Node node) {
@@ -72,35 +57,14 @@ public class GamePlayerGraphics extends CharacterGraphics<GamePlayer> {
         return group;
     }
 
-    private void attackMode() {
-        for (Minion minion : character.getMinionsInGame())
-            if (character.canAttack(minion))
-                TargetEventHandler.enableNode(getNode(minion));
-            else
-                TargetEventHandler.disableNode(getNode(minion));
-        Hero hero = character.getHero();
-        if (character.canAttack(hero))
-            TargetEventHandler.enableNode(heroImagePane);
-        else
-            TargetEventHandler.disableNode(heroImagePane);
-    }
-
-    private void defenseMode(Attackable attacker) {
-        for (Minion minion : character.getMinionsInGame())
-            if (character.canBeAttacked(attacker, minion))
-                TargetEventHandler.enableNode(getNode(minion));
-            else
-                TargetEventHandler.disableNode(getNode(minion));
-        Hero hero = character.getHero();
-        if (character.canBeAttacked(attacker, hero))
-            TargetEventHandler.enableNode(heroImagePane);
-        else
-            TargetEventHandler.disableNode(heroImagePane);
-    }
-
-
     private Attackable getSelectedAttackable() {
             return selectedAttackable;
+    }
+
+    protected void configEndTurnButton() {
+        Button button = playGround.getEndTurnButton();
+        button.setDisable(false);
+        button.setText("End Turn");
     }
 
     private class HandEventHandler implements EventHandler<MouseEvent> {
@@ -175,24 +139,24 @@ public class GamePlayerGraphics extends CharacterGraphics<GamePlayer> {
 
         @Override
         protected boolean isEnough() {
-            return playGround.getCurrentGamePlayer() != GamePlayerGraphics.this;
+            return playGround.getCurrentCharacter() != GamePlayerGraphics.this;
         }
 
         @Override
         protected void deselectedMode() {
-            playGround.getCurrentGamePlayer().attackMode();
-            playGround.getOtherGamePlayer().attackMode();
+            playGround.getCurrentCharacter().attackMode();
+            playGround.getOtherCharacter().attackMode();
         }
 
         @Override
         protected void oneSelectedMode() {
-            playGround.getCurrentGamePlayer().defenseMode((Attackable) targetable);
-            playGround.getOtherGamePlayer().defenseMode((Attackable) targetable);
+            playGround.getCurrentCharacter().defenseMode((Attackable) targetable);
+            playGround.getOtherCharacter().defenseMode((Attackable) targetable);
         }
 
         @Override
         protected void doAction() {
-            GamePlayerGraphics current = playGround.getCurrentGamePlayer();
+            GamePlayerGraphics current = (GamePlayerGraphics) playGround.getCurrentCharacter();
             runner.run(new Command(CommandType.ATTACK, current.getSelectedAttackable(), selectedAttackable));
             playGround.config();
         }

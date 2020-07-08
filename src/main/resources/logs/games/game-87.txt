@@ -1,0 +1,23 @@
+GAME_ID: 87
+STARTED_AT:  2020/07/08 23:40:02 
+
+p1: hasti
+p1_hero: mage
+p1_deck: wow
+
+p2: hasti
+p2_hero: mage
+p2_deck: wow
+
+p1:play_card 2020/07/08 23:40:04 Strength in Numbers
+p2:end_turn 2020/07/08 23:40:05 
+p1:end_turn 2020/07/08 23:40:06 
+p2:end_turn 2020/07/08 23:40:06 
+p1:end_turn 2020/07/08 23:40:06 
+p2:end_turn 2020/07/08 23:40:07 
+p1:end_turn 2020/07/08 23:40:07 
+p2:end_turn 2020/07/08 23:40:08 
+p1:end_turn 2020/07/08 23:40:08 
+p1:play_card 2020/07/08 23:40:09 Flame Lance
+p2:end_turn 2020/07/08 23:40:11 
+p1:end_turn 2020/07/08 23:40:11 

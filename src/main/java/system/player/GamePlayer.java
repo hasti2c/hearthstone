@@ -42,31 +42,17 @@ public class GamePlayer extends Character {
         return inventory;
     }
 
-    public void startTurn() {
-        if (getMyTurnNumber() != 1)
-            for (int i = 0; i < drawCap; i++)
-                draw();
-        heroPowerCount = 0;
-
-        for (Minion minion : minionsInGame)
-            minion.setHasAttacked(false);
-        hero.setHasAttacked(false);
-
-        mana = Math.min(getMyTurnNumber(), 10);
-        if (passive != null)
-            mana += passive.getTurnManaPromotion(getMyTurnNumber());
+    protected void initializeHelper() {
+        deck.addGame();
     }
 
-    public void endTurn() {
-        doCardAction("doActionOnEndTurn");
-        if (passive != null)
-            passive.doEndTurnAction(minionsInGame);
-        for (Minion minion : getMinionsInGame())
-            minion.setAsleep(false);
-    }
+    protected void startTurnHelper() {}
 
-    @Override
     protected void playCardHelper(Card card) {
         inventory.getCurrentDeck().addUse(card);
+    }
+
+    public void addWin() {
+        deck.addWin();
     }
 }

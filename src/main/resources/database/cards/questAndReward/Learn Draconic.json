@@ -4,5 +4,18 @@
   "mana": 1,
   "price": 10,
   "heroClass": "NEUTRAL",
-  "rarity": "COMMON"
+  "rarity": "COMMON",
+  "questMana": 8,
+  "questElementType": "SPELL",
+  "addCardAbility": {
+    "abilityType": "QUEST",
+    "callerSide": "SELF",
+    "targetType": "BY_STATS",
+    "targetElementTypes": [
+      "MINION"
+    ],
+    "type": "SUMMON",
+    "targetHealth": 6,
+    "targetAttack": 6
+  }
 }

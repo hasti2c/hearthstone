@@ -11,10 +11,12 @@ import javafx.fxml.*;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import system.player.GamePlayer;
+import system.player.NPC;
 
 public class PlayGround extends Directory {
     private final Game game;
-    private final GamePlayerGraphics[] gamePlayers = new GamePlayerGraphics[2];
+    private final CharacterGraphics<?>[] characters = new CharacterGraphics<?>[2];
     @FXML
     private Pane pane;
     @FXML
@@ -30,8 +32,11 @@ public class PlayGround extends Directory {
         super(controller, runner);
         this.game = game;
         for (int i = 0; i < 2; i++) {
-            gamePlayers[i] = new GamePlayerGraphics(this, runner, game.getGamePlayers()[i]);
-            pane.getChildren().add(i, gamePlayers[i].getPane());
+            if (game.getCharacters()[i] instanceof GamePlayer gamePlayer)
+                characters[i] = new GamePlayerGraphics(this, runner, gamePlayer);
+            else
+                characters[i] = new NPCGraphics(this, runner, (NPC) game.getCharacters()[i]);
+            pane.getChildren().add(i, characters[i].getPane());
         }
 
         homeButton.setOnAction(e -> {
@@ -46,6 +51,7 @@ public class PlayGround extends Directory {
             if (confirm())
                 controller.exit();
         });
+
         endTurnButton.setOnAction(e -> {
             runner.run(new Command(CommandType.END_TURN));
             config();
@@ -65,9 +71,10 @@ public class PlayGround extends Directory {
 
     @Override
     public void config() {
-        for (GamePlayerGraphics gamePlayer : gamePlayers)
-            gamePlayer.config();
+        for (CharacterGraphics<?> character : characters)
+            character.config();
         updateTime();
+        timerLabel.setVisible(game.getCurrentCharacter() instanceof GamePlayer);
         gameEventsLabel.setText("Game Events:\n" + game.getGameEvents());
     }
 
@@ -93,12 +100,12 @@ public class PlayGround extends Directory {
         return confirmationBox.getResponse();
     }
 
-    GamePlayerGraphics getCurrentGamePlayer() {
-        return gamePlayers[game.getCurrentPlayerNumber()];
+    CharacterGraphics<?> getCurrentCharacter() {
+        return characters[game.getCurrentPlayerNumber()];
     }
 
-    GamePlayerGraphics getOtherGamePlayer() {
-        return gamePlayers[game.getPlayerCount() - 1 - game.getCurrentPlayerNumber()];
+    CharacterGraphics<?> getOtherCharacter() {
+        return characters[game.getPlayerCount() - 1 - game.getCurrentPlayerNumber()];
     }
 
     @Override
@@ -124,5 +131,9 @@ public class PlayGround extends Directory {
     public void endGame() {
         GameEnding gameEnd = new GameEnding(controller, runner, game);
         gameEnd.display();
+    }
+
+    public Button getEndTurnButton() {
+        return endTurnButton;
     }
 }

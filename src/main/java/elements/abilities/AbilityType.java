@@ -2,6 +2,7 @@ package elements.abilities;
 
 import elements.Playable;
 import elements.cards.Card;
+import elements.cards.QuestAndReward;
 import system.player.Character;
 import system.player.GamePlayer;
 
@@ -16,10 +17,11 @@ public enum AbilityType {
     END_TURN,
     BATTLE_CRY,
     TAKES_DAMAGE,
-    HERO_POWER;
+    HERO_POWER,
+    QUEST;
 
-    public void doActionOnRandomAbility(ArrayList<Ability> abilities, Character actionPerformer, Playable caller, Card played, Card damaged) {
-        Ability ability = getRandomAbility(getValidAbilities(abilities, caller, played, damaged));
+    public void doActionOnRandomAbility(ArrayList<Ability> abilities, Character actionPerformer, Playable caller, Card played, Card damaged, Card quest) {
+        Ability ability = getRandomAbility(getValidAbilities(abilities, caller, played, damaged, quest));
         if (ability == null)
             return;
         ability.callDoAction(actionPerformer, caller, played);
@@ -27,20 +29,21 @@ public enum AbilityType {
             actionPerformer.getGraphics().getPlayGround().config();
     }
 
-    private ArrayList<Ability> getValidAbilities(ArrayList<Ability> abilities, Playable caller, Card played, Card damaged) {
+    private ArrayList<Ability> getValidAbilities(ArrayList<Ability> abilities, Playable caller, Card played, Card damaged, Card quest) {
         ArrayList<Ability> ret = new ArrayList<>();
         for (Ability ability : abilities)
-            if (isValid(ability, caller, played, damaged))
+            if (isValid(ability, caller, played, damaged, quest))
                 ret.add(ability);
         return ret;
     }
 
-    private boolean isValid(Ability ability, Playable caller, Card played, Card damaged) {
+    private boolean isValid(Ability ability, Playable caller, Card played, Card damaged, Card quest) {
         if (ability.getAbilityType() != this)
             return false;
         return switch (this) {
             case PLAY: yield played == caller;
             case TAKES_DAMAGE: yield damaged == caller;
+            case QUEST: yield quest == caller;
             default: yield true;
         };
     }

@@ -1,0 +1,25 @@
+GAME_ID: 105
+STARTED_AT:  2020/07/09 00:07:34 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: pppp
+
+p2: hasti
+p2_hero: warlock
+p2_deck: pppp
+
+p1:play_card 2020/07/09 00:07:37 Learn Draconic
+p2:end_turn 2020/07/09 00:07:38 
+p1:end_turn 2020/07/09 00:07:38 
+p1:play_card 2020/07/09 00:07:43 Hand of Adal
+p2:end_turn 2020/07/09 00:07:46 
+p1:end_turn 2020/07/09 00:07:46 
+p2:end_turn 2020/07/09 00:07:47 
+p1:end_turn 2020/07/09 00:07:47 
+p1:play_card 2020/07/09 00:07:50 Hand of Adal
+p2:end_turn 2020/07/09 00:07:52 
+p1:end_turn 2020/07/09 00:07:52 
+p2:end_turn 2020/07/09 00:07:54 
+p1:end_turn 2020/07/09 00:07:54 
+p1:play_card 2020/07/09 00:08:54 Pharaohs Blessing

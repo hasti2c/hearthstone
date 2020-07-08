@@ -78,7 +78,7 @@ public class Home extends Directory {
         @FXML
         private Label deckName;
         @FXML
-        private Button doneButton, cancelButton, collectionsButton, deckReaderButton;
+        private Button singlePlayerButton, multiPlayerButton, cancelButton, collectionsButton, deckReaderButton;
         @FXML
         private ChoiceBox<Passive> passiveChoiceBox;
 
@@ -87,15 +87,8 @@ public class Home extends Directory {
             vBox.getChildren().remove(passiveHBox);
             vBox.getChildren().remove(noDeckHBox);
             cancelButton.setOnAction(e -> close());
-            doneButton.setOnAction(e -> {
-                close();
-                runner.run(new Command(CommandType.CREATE_GAME));
-                game = controller.getCurrentPlayer().getGame();
-                game.getGamePlayers()[0].setPassive(passiveChoiceBox.getValue());
-                game.getGamePlayers()[1].setPassive(passiveChoiceBox.getValue());
-                runner.run(new Command(CommandType.START_GAME));
-                displayPlayGround();
-            });
+            singlePlayerButton.setOnAction(e -> startGame(1));
+            multiPlayerButton.setOnAction(e -> startGame(2));
             collectionsButton.setOnAction(e -> displayCollections());
             deckReaderButton.setOnAction(e -> {
                 close();
@@ -129,7 +122,7 @@ public class Home extends Directory {
             if (!vBox.getChildren().contains(passiveHBox))
                 vBox.getChildren().add(passiveHBox);
             vBox.getChildren().remove(noDeckHBox);
-            doneButton.setDisable(false);
+            singlePlayerButton.setDisable(false);
 
             Inventory inventory = controller.getCurrentPlayer().getInventory();
             deckHBox.getChildren().add(1, inventory.getCurrentHero().getHeroClass().getIcon());
@@ -147,7 +140,17 @@ public class Home extends Directory {
                 vBox.getChildren().add(noDeckHBox);
             vBox.getChildren().remove(deckHBox);
             vBox.getChildren().remove(passiveHBox);
-            doneButton.setDisable(true);
+            singlePlayerButton.setDisable(true);
+        }
+
+        private void startGame(int playerCount) {
+            close();
+            runner.run(new Command(CommandType.CREATE_GAME, playerCount));
+            game = controller.getCurrentPlayer().getGame();
+            game.getCharacters()[0].setPassive(passiveChoiceBox.getValue());
+            game.getCharacters()[1].setPassive(passiveChoiceBox.getValue());
+            runner.run(new Command(CommandType.START_GAME));
+            displayPlayGround();
         }
 
         private void displayPlayGround() {

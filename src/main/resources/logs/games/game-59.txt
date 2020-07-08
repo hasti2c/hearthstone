@@ -1,0 +1,36 @@
+GAME_ID: 59
+STARTED_AT:  2020/07/08 19:15:26 
+
+p1: hasti
+p1_hero: mage
+p1_deck: wow
+
+p2: system.player.NPC@3224a4a6
+p2_hero: mage
+p2_deck: wow
+
+p2:end_turn 2020/07/08 19:15:27 
+p1:end_turn 2020/07/08 19:15:28 
+p2:end_turn 2020/07/08 19:15:28 
+p1:end_turn 2020/07/08 19:15:28 
+p2:end_turn 2020/07/08 19:15:29 
+p1:end_turn 2020/07/08 19:15:29 
+p2:end_turn 2020/07/08 19:15:30 
+p1:end_turn 2020/07/08 19:15:30 
+p2:end_turn 2020/07/08 19:15:30 
+p1:end_turn 2020/07/08 19:15:31 
+p2:end_turn 2020/07/08 19:15:31 
+p1:end_turn 2020/07/08 19:15:31 
+p2:end_turn 2020/07/08 19:15:32 
+p1:end_turn 2020/07/08 19:15:32 
+p2:end_turn 2020/07/08 19:15:33 
+p1:end_turn 2020/07/08 19:15:33 
+p1:play_card 2020/07/08 19:15:35 Tomb Warden
+p2:end_turn 2020/07/08 19:15:42 
+p1:end_turn 2020/07/08 19:15:46 
+p2:end_turn 2020/07/08 19:15:46 
+p1:end_turn 2020/07/08 19:15:47 
+p2:end_turn 2020/07/08 19:16:02 
+p1:end_turn 2020/07/08 19:16:02 
+p2:end_turn 2020/07/08 19:16:04 
+p1:end_turn 2020/07/08 19:16:11 

@@ -11,9 +11,10 @@
 
 <BorderPane prefHeight="187.0" prefWidth="479.0" stylesheets="@../../css/popup.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
-      <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="doneButton" mnemonicParsing="false" text="Start Game" />
+            <Button fx:id="singlePlayerButton" mnemonicParsing="false" text="Single Player" />
+            <Button fx:id="multiPlayerButton" mnemonicParsing="false" text="Multi Player" />
             <Button fx:id="deckReaderButton" mnemonicParsing="false" text="Deck Reader" />
             <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" />
          </children>

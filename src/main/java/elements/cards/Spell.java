@@ -28,4 +28,16 @@ public class Spell extends Card {
                 return false;
         return true;
     }
+
+    @Override
+    public int compareTo(Card card) {
+        int n = mana - card.getMana();
+        if (n != 0)
+            return n;
+        if (card instanceof Minion)
+            return -1;
+        if (!(card instanceof Spell))
+            return 1;
+        return 0;
+    }
 }

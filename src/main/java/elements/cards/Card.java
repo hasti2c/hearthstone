@@ -10,7 +10,7 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 
-public abstract class Card extends Playable implements Targetable {
+public abstract class Card extends Playable implements Targetable, Comparable<Card> {
     private int price;
     private RarityType rarity;
 

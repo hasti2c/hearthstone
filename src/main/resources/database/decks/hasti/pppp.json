@@ -1,0 +1,39 @@
+{
+  "name": "pppp",
+  "heroClass": "WARLOCK",
+  "cards": [
+    "Learn Draconic",
+    "Strength in Numbers",
+    "Sprint",
+    "Sprint",
+    "Hand of Adal",
+    "Hand of Adal",
+    "Pharaohs Blessing",
+    "Pharaohs Blessing",
+    "Firelands Portal",
+    "Firelands Portal",
+    "Flame Lance",
+    "Flame Lance",
+    "Divine Strength",
+    "Divine Strength"
+  ],
+  "uses": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "wins": 0,
+  "games": 12,
+  "maxSize": 15
+}

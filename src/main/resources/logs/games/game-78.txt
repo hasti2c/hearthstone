@@ -1,0 +1,31 @@
+GAME_ID: 78
+STARTED_AT:  2020/07/08 20:47:59 
+
+p1: hasti
+p1_hero: mage
+p1_deck: wow
+
+p2: system.player.NPC@1ff6fac3
+p2_hero: mage
+p2_deck: wow
+
+p1:end_turn 2020/07/08 20:48:03 
+p1:end_turn 2020/07/08 20:48:04 
+p1:end_turn 2020/07/08 20:48:08 
+p1:end_turn 2020/07/08 20:48:08 
+p1:end_turn 2020/07/08 20:48:09 
+p1:end_turn 2020/07/08 20:48:09 
+p1:end_turn 2020/07/08 20:48:10 
+p1:end_turn 2020/07/08 20:48:11 
+p1:end_turn 2020/07/08 20:48:12 
+p1:end_turn 2020/07/08 20:48:14 
+p1:end_turn 2020/07/08 20:48:16 
+p1:end_turn 2020/07/08 20:48:17 
+p1:end_turn 2020/07/08 20:48:21 
+p1:end_turn 2020/07/08 20:48:21 
+p1:end_turn 2020/07/08 20:48:22 
+p1:end_turn 2020/07/08 20:48:22 
+p1:end_turn 2020/07/08 20:48:22 
+p1:end_turn 2020/07/08 20:48:23 
+p1:play_card 2020/07/08 20:48:25 Amani War Bear
+p1:end_turn 2020/07/08 20:48:27 

@@ -4,5 +4,20 @@
   "mana": 1,
   "price": 10,
   "heroClass": "NEUTRAL",
-  "rarity": "COMMON"
+  "rarity": "COMMON",
+  "questMana": 10,
+  "questElementType": "MINION",
+  "removeCardAbility": {
+    "abilityType": "QUEST",
+    "callerSide": "SELF",
+    "targetType": "MY_DECK",
+    "targetElementTypes": [
+      "MINION"
+    ],
+    "type": "DECK",
+    "nextAddCard": {
+      "targetType": "SELF",
+      "type": "SUMMON"
+    }
+  }
 }

@@ -118,4 +118,18 @@ public class Minion extends Card implements Attackable {
         Minion minion = (Minion) GameController.getCard(name);
         health = minion.health;
     }
+
+    @Override
+    public int compareTo(Card card) {
+        int n = mana - card.getMana();
+        if (n != 0)
+            return n;
+        if (!(card instanceof Minion minion))
+            return 1;
+        n = attack - minion.attack;
+        if (n != 0)
+            return n;
+        n = health - minion.health;
+        return n;
+    }
 }

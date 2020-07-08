@@ -1,5 +1,6 @@
 package graphics.directories.playground;
 
+import controllers.commands.CommandRunner;
 import elements.abilities.targets.Attackable;
 import elements.abilities.targets.TargetEventHandler;
 import elements.cards.Card;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 
 public abstract class CharacterGraphics <C extends Character> {
     protected final PlayGround playGround;
+    protected CommandRunner runner;
     protected final PlayerFaction playerFaction;
     protected final C character;
     protected Pane pane;
@@ -38,10 +40,12 @@ public abstract class CharacterGraphics <C extends Character> {
     @FXML
     protected Pane weaponPane, heroPowerPane, heroImagePane;
 
-    public CharacterGraphics(PlayGround playGround, C character) {
+    public CharacterGraphics(PlayGround playGround, CommandRunner runner, C character) {
         this.playGround = playGround;
+        this.runner = runner;
         this.character = character;
         playerFaction = character.getPlayerFaction();
+        character.setGraphics(this);
         load();
     }
 
@@ -87,6 +91,9 @@ public abstract class CharacterGraphics <C extends Character> {
         configTargets();
         configWeapon();
         configHeroPower();
+
+        if (playGround.getCurrentCharacter() == this)
+            configEndTurnButton();
     }
 
     protected abstract void configMana();
@@ -115,7 +122,18 @@ public abstract class CharacterGraphics <C extends Character> {
         }
     }
 
-    protected abstract Node getHandNode(Card card);
+    protected Node getHandNode(Card card) {
+        ImageView iv;
+        int n = character.getHand().size();
+        if (n <= 5)
+            iv = card.getImageView(Math.min(300 / n, 100), -1);
+        else
+            iv = card.getImageView(60, -1);
+        configHandNode(card, iv);
+        return iv;
+    }
+
+    protected abstract void configHandNode(Card card, ImageView imageView);
 
     private void configTargets() {
         character.clearDeadMinions();
@@ -205,4 +223,32 @@ public abstract class CharacterGraphics <C extends Character> {
             return null;
         return minionsHBox.getChildren().get(character.getMinionsInGame().indexOf(minion));
     }
+
+    protected void attackMode() {
+        for (Minion minion : character.getMinionsInGame())
+            if (character.canAttack(minion))
+                TargetEventHandler.enableNode(getNode(minion));
+            else
+                TargetEventHandler.disableNode(getNode(minion));
+        Hero hero = character.getHero();
+        if (character.canAttack(hero))
+            TargetEventHandler.enableNode(heroImagePane);
+        else
+            TargetEventHandler.disableNode(heroImagePane);
+    }
+
+    protected void defenseMode(Attackable attacker) {
+        for (Minion minion : character.getMinionsInGame())
+            if (character.canBeAttacked(attacker, minion))
+                TargetEventHandler.enableNode(getNode(minion));
+            else
+                TargetEventHandler.disableNode(getNode(minion));
+        Hero hero = character.getHero();
+        if (character.canBeAttacked(attacker, hero))
+            TargetEventHandler.enableNode(heroImagePane);
+        else
+            TargetEventHandler.disableNode(heroImagePane);
+    }
+
+    protected abstract void configEndTurnButton();
 }

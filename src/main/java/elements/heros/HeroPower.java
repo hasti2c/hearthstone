@@ -78,7 +78,7 @@ public class HeroPower extends Playable {
     }
 
     public void reduceCost(Character character) {
-        character.setMana(character.getMana() - getGameMana(character));
+        character.setMana(this, character.getMana() - getGameMana(character));
         Hero hero = character.getHero();
         hero.setHealth(hero.getHealth() - healthCost);
     }

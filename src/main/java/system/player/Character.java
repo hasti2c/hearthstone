@@ -25,12 +25,13 @@ public abstract class Character {
     protected Spell lastSpell;
     protected Weapon currentWeapon;
     protected Passive passive;
+    protected ArrayList<QuestAndReward> questAndRewards = new ArrayList<>();
     private final int playerNumber;
     protected int mana = 1, drawCap = 1, heroPowerCap = 1, heroPowerCount = 0;
     protected boolean randomDraw = true;
     private final PlayerFaction playerFaction;
-    private final Game game;
-    private CharacterGraphics<? extends Character> graphics;
+    protected final Game game;
+    protected CharacterGraphics<? extends Character> graphics;
 
     public Character(Hero hero, Deck deck, Game game, PlayerFaction playerFaction) {
         this.hero = hero;
@@ -42,6 +43,7 @@ public abstract class Character {
     }
 
     public void initialize() {
+        initializeHelper();
         if (passive != null) {
             mana = 1 + passive.getTurnManaPromotion(1);
             drawCap = passive.getDrawCap();
@@ -50,6 +52,35 @@ public abstract class Character {
 
         for (int i = 0; i < 3; i++)
             draw();
+    }
+
+    protected abstract void initializeHelper();
+
+    public void startTurn() {
+        if (getMyTurnNumber() != 1)
+            for (int i = 0; i < drawCap; i++)
+                draw();
+        heroPowerCount = 0;
+
+        for (Minion minion : minionsInGame)
+            minion.setHasAttacked(false);
+        hero.setHasAttacked(false);
+
+        mana = Math.min(getMyTurnNumber(), 10);
+        if (passive != null)
+            mana += passive.getTurnManaPromotion(getMyTurnNumber());
+
+        startTurnHelper();
+    }
+
+    protected abstract void startTurnHelper();
+
+    public void endTurn() {
+        doCardAction("doActionOnEndTurn");
+        if (passive != null)
+            passive.doEndTurnAction(minionsInGame);
+        for (Minion minion : getMinionsInGame())
+            minion.setAsleep(false);
     }
 
     public PlayerFaction getPlayerFaction() {
@@ -76,8 +107,20 @@ public abstract class Character {
         return mana;
     }
 
-    public void setMana(int mana) {
+    public void setMana(Element element, int mana) {
+        int manaUse = this.mana - mana;
         this.mana = mana;
+        if (manaUse > 0)
+            checkQuests(element, manaUse);
+    }
+
+    private void checkQuests(Element element, int mana) {
+        for (QuestAndReward quest : questAndRewards) {
+            quest.addManaUse(element, mana);
+            if (quest.isDone())
+                doCardAction("doActionOnQuest", quest);
+        }
+        questAndRewards.removeIf(QuestAndReward::isDone);
     }
 
     public void setPassive(Passive passive) {
@@ -119,17 +162,20 @@ public abstract class Character {
         if (!isMyTurn() || !hand.contains(card) || mana < card.getGameMana(this) || (card instanceof Minion && minionsInGame.size() >= 7))
             return false;
 
-        mana -= card.getGameMana(this);
+        setMana(card, mana - card.getGameMana(this));
         hand.remove(card);
         if (card instanceof Minion minion) {
             hero.getHeroClass().doHeroAction(minion);
             minionsInGame.add(minion);
             minion.setAsleep(true);
-        } else if (card instanceof Weapon weapon) {
+        } else if (card instanceof Weapon weapon)
             setCurrentWeapon(weapon);
-        } else if (card instanceof Spell spell)
+        else if (card instanceof Spell spell)
             lastSpell = spell;
+        else if (card instanceof QuestAndReward questAndReward)
+            questAndRewards.add(questAndReward);
         playCardHelper(card);
+        getGraphics().getPlayGround().config();
         doCardAction("doActionOnPlay", card);
         return true;
     }
@@ -169,36 +215,29 @@ public abstract class Character {
 
     public boolean owns(Element element) {
         boolean ret = minionsInGame.contains(element) || hand.contains(element) || leftInDeck.contains(element);
-        ret |= lastSpell == element || currentWeapon == element;
+        ret |= lastSpell == element || currentWeapon == element || questAndRewards.contains(element);
         ret |= hero.getHeroPower() == element;
         ret |= hero == element;
         return ret;
     }
 
     public Character getOpponent() {
-        if (game.getCurrentPlayer() == this)
-            return game.getOtherPlayer();
-        return game.getCurrentPlayer();
+        if (game.getCurrentCharacter() == this)
+            return game.getOtherCharacter();
+        return game.getCurrentCharacter();
     }
 
     public boolean canAttack(Attackable attacker) {
-        boolean ret = this == game.getCurrentPlayer() && !attacker.getHasAttacked();
+        boolean ret = this == game.getCurrentCharacter() && !attacker.getHasAttacked();
         if (attacker instanceof Hero)
             return ret && currentWeapon != null;
         Minion minion = (Minion) attacker;
         ret &= minionsInGame.contains(minion) && (!minion.getAsleep() || minion.getRush());
         return ret;
-        /*
-        if (target == null || target instanceof Minion)
-            ret &= !minion.getAsleep() || minion.getRush();
-        else
-            ret &= !minion.getAsleep();
-        return ret;
-         */
     }
 
     public boolean canBeAttacked(Attackable attacker, Attackable target) {
-        boolean ret = this != game.getCurrentPlayer();
+        boolean ret = this != game.getCurrentCharacter();
         if (target instanceof Minion minion) {
             ret &= minionsInGame.contains(minion);
             ret &= !hasAnyTaunt() || minion.getTaunt();
@@ -279,6 +318,7 @@ public abstract class Character {
             ret.add(lastSpell);
         if (currentWeapon != null)
             ret.add(currentWeapon);
+        ret.addAll(questAndRewards);
         ret.add(hero.getHeroPower());
         return ret;
     }
@@ -295,7 +335,7 @@ public abstract class Character {
         return deck;
     }
 
-    public void setGraphics(GamePlayerGraphics graphics) {
+    public void setGraphics(CharacterGraphics<? extends Character> graphics) {
         this.graphics = graphics;
     }
 
@@ -316,4 +356,6 @@ public abstract class Character {
         elements.add(new Pair<>(hero, graphics.getHeroImageView()));
         return elements;
     }
+
+    public abstract void addWin();
 }

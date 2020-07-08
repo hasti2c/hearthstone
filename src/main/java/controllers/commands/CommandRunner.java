@@ -69,8 +69,8 @@ public class CommandRunner {
             ret = buyCard(card);
         else if (CommandType.SELL.equals(commandType) && input[0] instanceof Card card)
             ret = sellCard(card);
-        else if (CommandType.CREATE_GAME.equals(commandType))
-            ret = createGame();
+        else if (CommandType.CREATE_GAME.equals(commandType) && input[0] instanceof Integer num)
+            ret = createGame(num);
         else if (CommandType.START_GAME.equals(commandType))
             ret = startGame();
         else if (CommandType.DECK_READER.equals(commandType))
@@ -266,11 +266,11 @@ public class CommandRunner {
         return true;
     }
 
-    private boolean createGame() {
+    private boolean createGame(int playerCount) {
         Player player = controller.getCurrentPlayer();
         if (player.getInventory().getCurrentDeck() == null)
             return false;
-        Game game = new Game(controller);
+        Game game = new Game(controller, playerCount);
         player.setGame(game);
         return true;
     }
@@ -298,7 +298,7 @@ public class CommandRunner {
 
     private boolean playCard(Card card) {
         Game game = controller.getCurrentPlayer().getGame();
-        boolean ret = game.getCurrentPlayer().playCard(card);
+        boolean ret = game.getCurrentCharacter().playCard(card);
         if (ret)
             game.log( "play_card", card.toString());
         return ret;
@@ -315,7 +315,7 @@ public class CommandRunner {
 
     private boolean heroPower() {
         Game game = controller.getCurrentPlayer().getGame();
-        boolean ret =  game.getCurrentPlayer().useHeroPower();
+        boolean ret =  game.getCurrentCharacter().useHeroPower();
         if (ret)
             game.log("hero_power", "");
         if (game.isFinished())
@@ -325,7 +325,7 @@ public class CommandRunner {
 
     private boolean attack(Attackable attacker, Attackable defender) {
         Game game = controller.getCurrentPlayer().getGame();
-        boolean ret = game.getCurrentPlayer().attack(attacker, defender);
+        boolean ret = game.getCurrentCharacter().attack(attacker, defender);
         if (ret)
             game.log("attack", attacker + " -> " + defender);
         if (game.isFinished())

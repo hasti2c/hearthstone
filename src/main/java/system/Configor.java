@@ -2,6 +2,7 @@ package system;
 
 import com.google.gson.stream.*;
 import controllers.game.*;
+import elements.ElementType;
 import elements.cards.*;
 import java.io.*;
 import java.lang.reflect.*;

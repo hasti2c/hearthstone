@@ -4,6 +4,7 @@ import controllers.game.GameController;
 import elements.cards.Card;
 import elements.Element;
 import elements.abilities.*;
+import elements.cards.QuestAndReward;
 import elements.heros.HeroClass;
 import system.player.Character;
 import system.player.GamePlayer;
@@ -115,23 +116,27 @@ public abstract class Playable extends Element {
     }
 
     public void doActionOnDraw(Character actionPerformer) {
-        DRAW.doActionOnRandomAbility(abilities, actionPerformer, this, null, null);
+        DRAW.doActionOnRandomAbility(abilities, actionPerformer, this, null, null, null);
     }
 
     public void doActionOnPlay(Character actionPerformer, Card played) {
-        PLAY.doActionOnRandomAbility(abilities, actionPerformer, this, played, null);
-        BATTLE_CRY.doActionOnRandomAbility(abilities, actionPerformer, this, played, null);
+        PLAY.doActionOnRandomAbility(abilities, actionPerformer, this, played, null, null);
+        BATTLE_CRY.doActionOnRandomAbility(abilities, actionPerformer, this, played, null, null);
     }
 
     public void doActionOnEndTurn(Character actionPerformer) {
-        END_TURN.doActionOnRandomAbility(abilities, actionPerformer, this, null, null);
+        END_TURN.doActionOnRandomAbility(abilities, actionPerformer, this, null, null, null);
     }
 
     public void doActionOnDamaged(Character actionPerformer, Card damaged) {
-        TAKES_DAMAGE.doActionOnRandomAbility(abilities, actionPerformer, this, null, damaged);
+        TAKES_DAMAGE.doActionOnRandomAbility(abilities, actionPerformer, this, null, damaged, null);
     }
 
     public void doActionOnHeroPower(Character actionPerformer) {
-        HERO_POWER.doActionOnRandomAbility(abilities, actionPerformer, this, null, null);
+        HERO_POWER.doActionOnRandomAbility(abilities, actionPerformer, this, null, null, null);
+    }
+
+    public void doActionOnQuest(Character actionPerformer, Card quest) {
+        QUEST.doActionOnRandomAbility(abilities, actionPerformer, this, null, null, quest);
     }
 }

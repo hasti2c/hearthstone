@@ -1,0 +1,21 @@
+GAME_ID: 88
+STARTED_AT:  2020/07/08 23:41:23 
+
+p1: hasti
+p1_hero: mage
+p1_deck: wow
+
+p2: hasti
+p2_hero: mage
+p2_deck: wow
+
+p1:play_card 2020/07/08 23:41:25 Strength in Numbers
+p2:end_turn 2020/07/08 23:41:25 
+p1:end_turn 2020/07/08 23:41:26 
+p2:end_turn 2020/07/08 23:41:26 
+p1:end_turn 2020/07/08 23:41:26 
+p2:end_turn 2020/07/08 23:41:27 
+p1:end_turn 2020/07/08 23:41:27 
+p2:end_turn 2020/07/08 23:41:28 
+p1:end_turn 2020/07/08 23:41:28 
+p1:play_card 2020/07/08 23:41:29 Hand of Adal

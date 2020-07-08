@@ -2,21 +2,19 @@
   "name": "wow",
   "heroClass": "MAGE",
   "cards": [
-    "Dreadscale",
-    "Dreadscale",
-    "Hogger",
-    "Hogger",
-    "Sathrovarr",
-    "Sathrovarr",
-    "Tomb Warden",
-    "Tomb Warden",
-    "Amani War Bear",
-    "Amani War Bear",
-    "Big Bad Archmage",
-    "Big Bad Archmage",
     "Gruul",
     "Gruul",
-    "Curio Collector"
+    "Dirty Rat",
+    "Dirty Rat",
+    "Divine Strength",
+    "Divine Strength",
+    "Learn Draconic",
+    "Strength in Numbers",
+    "Flame Lance",
+    "Flame Lance",
+    "Hand of Adal",
+    "Hand of Adal",
+    "Book of Specters"
   ],
   "uses": [
     0,
@@ -31,11 +29,9 @@
     0,
     0,
     0,
-    0,
-    0,
     0
   ],
-  "wins": 1,
-  "games": 7,
+  "wins": 0,
+  "games": 45,
   "maxSize": 15
 }

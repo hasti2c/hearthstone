@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import system.Game;
 
 public class GameEnding extends Directory {
-    private Game game;
+    private final Game game;
     @FXML
     private Label label;
 
@@ -20,8 +20,8 @@ public class GameEnding extends Directory {
 
     @Override
     protected void config() {
-        int friendlyHealth = game.getGamePlayers()[0].getHero().getHealth();
-        int enemyHealth = game.getGamePlayers()[1].getHero().getHealth();
+        int friendlyHealth = game.getCharacters()[0].getHero().getHealth();
+        int enemyHealth = game.getCharacters()[1].getHero().getHealth();
         if (friendlyHealth <= 0 && enemyHealth <= 0)
             label.setText("IT'S A TIE!");
         else if (friendlyHealth <= 0)

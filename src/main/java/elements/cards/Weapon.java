@@ -59,4 +59,20 @@ public class Weapon extends Card {
         closedImageView.setLayoutY(2);
         return closedImageView;
     }
+
+    @Override
+    public int compareTo(Card card) {
+        int n = mana - card.getMana();
+        if (n != 0)
+            return n;
+        if (card instanceof QuestAndReward)
+            return -1;
+        if (!(card instanceof Weapon weapon))
+            return 1;
+        n = attack - weapon.attack;
+        if (n != 0)
+            return n;
+        n = durability - weapon.durability;
+        return n;
+    }
 }

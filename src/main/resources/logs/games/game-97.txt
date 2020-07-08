@@ -1,0 +1,35 @@
+GAME_ID: 97
+STARTED_AT:  2020/07/08 23:57:01 
+
+p1: hasti
+p1_hero: mage
+p1_deck: wow
+
+p2: hasti
+p2_hero: mage
+p2_deck: wow
+
+p1:play_card 2020/07/08 23:57:04 Learn Draconic
+p2:end_turn 2020/07/08 23:57:06 
+p1:end_turn 2020/07/08 23:57:06 
+p2:end_turn 2020/07/08 23:57:07 
+p1:end_turn 2020/07/08 23:57:07 
+p2:end_turn 2020/07/08 23:57:07 
+p1:end_turn 2020/07/08 23:57:07 
+p2:end_turn 2020/07/08 23:57:08 
+p1:end_turn 2020/07/08 23:57:09 
+p1:play_card 2020/07/08 23:57:11 Flame Lance
+p2:end_turn 2020/07/08 23:57:12 
+p2:play_card 2020/07/08 23:57:14 Book of Specters
+p1:end_turn 2020/07/08 23:57:15 
+p2:end_turn 2020/07/08 23:57:16 
+p2:play_card 2020/07/08 23:57:16 Hand of Adal
+p1:end_turn 2020/07/08 23:57:17 
+p2:end_turn 2020/07/08 23:57:17 
+p1:end_turn 2020/07/08 23:57:21 
+p1:play_card 2020/07/08 23:57:27 Divine Strength
+p2:end_turn 2020/07/08 23:57:28 
+p1:end_turn 2020/07/08 23:57:28 
+p1:play_card 2020/07/08 23:57:29 Flame Lance
+p2:end_turn 2020/07/08 23:57:30 
+p1:end_turn 2020/07/08 23:57:30 

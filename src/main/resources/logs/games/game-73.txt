@@ -1,0 +1,12 @@
+GAME_ID: 73
+STARTED_AT:  2020/07/08 19:47:18 
+
+p1: hasti
+p1_hero: mage
+p1_deck: wow
+
+p2: system.player.NPC@30d96d2d
+p2_hero: mage
+p2_deck: wow
+
+p1:end_turn 2020/07/08 19:47:21 
