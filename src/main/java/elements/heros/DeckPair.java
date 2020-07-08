@@ -35,9 +35,6 @@ public class DeckPair implements Configable {
         for (String s : enemy)
             enemyCards.add(Card.getCard(s));
         enemyDeck = new Deck(enemyCards);
-
-        System.out.println(friendlyCards);
-        System.out.println(enemyCards);
     }
 
     @Override

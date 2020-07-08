@@ -1,7 +1,11 @@
 package graphics.directories.playground;
 
 import controllers.commands.*;
-import javafx.scene.Scene;
+import elements.abilities.targets.DiscoverGraphics;
+import elements.cards.Card;
+import javafx.event.EventHandler;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import system.Game;
 import graphics.*;
@@ -13,6 +17,10 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import system.player.GamePlayer;
 import system.player.NPC;
+import system.player.Player;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class PlayGround extends Directory {
     private final Game game;
@@ -67,6 +75,9 @@ public class PlayGround extends Directory {
                 gameEventsButton.setText("Click to hide game events.");
             }
         });
+
+        if (!game.isDeckReader())
+            (new ChooseCards()).display();
     }
 
     @Override
@@ -135,5 +146,82 @@ public class PlayGround extends Directory {
 
     public Button getEndTurnButton() {
         return endTurnButton;
+    }
+
+    private class ChooseCards {
+        private Pane pane;
+        private ArrayList<Card> cards, mainCards, extraCards;
+        @FXML
+        private HBox cardsHBox;
+        @FXML
+        private Button continueButton;
+
+        private ChooseCards() {
+            ArrayList<Card> cards = new ArrayList<>();
+            while (cards.size() < 6) {
+                Card card = Card.getRandomElement(characters[0].getCharacter().getLeftInDeck());
+                if (!cards.contains(card))
+                    cards.add(card);
+            }
+            mainCards = new ArrayList<>(cards.subList(0, 3));
+            extraCards = new ArrayList<>(cards.subList(3, 6));
+            this.cards = mainCards;
+
+            load();
+            continueButton.setOnAction(e -> hide());
+        }
+
+        private void clear() {
+            cardsHBox.getChildren().clear();
+        }
+
+        private void config() {
+            clear();
+            for (Card card : cards) {
+                ImageView iv = card.getImageView(250, -1);
+                cardsHBox.getChildren().add(iv);
+                iv.addEventHandler(MouseEvent.MOUSE_CLICKED, new ChooseCardsEventHandler(card));
+            }
+        }
+
+        private void display() {
+            config();
+            showDiscover(pane);
+        }
+
+        private void hide() {
+            PlayGround.this.pane.getChildren().remove(pane);
+            runner.run(new Command(CommandType.START_GAME, cards));
+            PlayGround.this.config();
+        }
+
+        private void load() {
+            FXMLLoader loader = new FXMLLoader(DiscoverGraphics.class.getResource("/fxml/popups/chooseCards.fxml"));
+            loader.setController(this);
+            try {
+                pane = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        private class ChooseCardsEventHandler implements EventHandler<MouseEvent> {
+            Card card;
+
+            private ChooseCardsEventHandler(Card card) {
+                this.card = card;
+            }
+
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getEventType() == MouseEvent.MOUSE_CLICKED) {
+                    if (mainCards.contains(card)) {
+                        int i = mainCards.indexOf(card);
+                        cards.set(i, extraCards.get(i));
+                        config();
+                    }
+                }
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 package system;
 
 import controllers.game.*;
+import elements.cards.Card;
 import elements.heros.*;
 import graphics.directories.playground.PlayGround;
 import system.player.Character;
@@ -9,6 +10,7 @@ import system.player.NPC;
 import system.player.PlayerFaction;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class Game {
     private final GameController controller;
@@ -19,6 +21,7 @@ public class Game {
     private Timer timer;
     private int time = 60;
     private PlayGround playGround;
+    private boolean deckReader;
 
     public Game(GameController controller, int playerCount) {
         this.controller = controller;
@@ -28,6 +31,10 @@ public class Game {
         else
             characters[1] = new NPC(controller.getCurrentHero().clone(), controller.getCurrentDeck().clone(), this, PlayerFaction.ENEMY);
         timer = new Timer(this);
+        id = controller.getGameCount() + 1;
+        controller.setGameCount(id);
+        logger = new Logger("src/main/resources/logs/games/game-" + id + ".txt");
+        deckReader = false;
     }
 
     public Game(GameController controller, DeckPair deckPair) {
@@ -36,14 +43,22 @@ public class Game {
         characters[0] = new GamePlayer(controller, this, PlayerFaction.FRIENDLY, decks[0]);
         characters[1] = new GamePlayer(controller, this, PlayerFaction.ENEMY, decks[1]);
         timer = new Timer(this);
+        id = controller.getGameCount() + 1;
+        controller.setGameCount(id);
+        logger = new Logger("src/main/resources/logs/games/game-" + id + ".txt");
+        deckReader = true;
     }
 
     public void startGame() {
-        id = controller.getGameCount() + 1;
-        logger = new Logger("src/main/resources/logs/games/game-" + id + ".txt");
-        controller.setGameCount(id);
         characters[0].initialize();
         characters[1].initialize();
+        timer.start();
+        getCurrentCharacter().startTurn();
+    }
+
+    public void startGame(ArrayList<Card> cards) {
+        characters[0].initialize(cards);
+        characters[1].initialize(cards);
         timer.start();
         getCurrentCharacter().startTurn();
     }
@@ -136,5 +151,9 @@ public class Game {
         int enemyHealth = characters[1].getHero().getHealth();
         if (friendlyHealth > 0 && enemyHealth <= 0)
             characters[0].addWin();
+    }
+
+    public boolean isDeckReader() {
+        return deckReader;
     }
 }

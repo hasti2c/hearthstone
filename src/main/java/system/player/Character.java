@@ -54,6 +54,18 @@ public abstract class Character {
             draw();
     }
 
+    public void initialize(ArrayList<Card> cards) {
+        initializeHelper();
+        if (passive != null) {
+            mana = 1 + passive.getTurnManaPromotion(1);
+            drawCap = passive.getDrawCap();
+            heroPowerCap = passive.getHeroPowerCap();
+        }
+
+        for (int i = 0; i < 3; i++)
+            draw(cards.get(i));
+    }
+
     protected abstract void initializeHelper();
 
     public void startTurn() {
@@ -127,6 +139,15 @@ public abstract class Character {
         this.passive = passive;
     }
 
+    private boolean draw(Card card) {
+        leftInDeck.remove(card);
+        if (hand.size() < 12) {
+            hand.add(card);
+            doCardAction("doActionOnDraw");
+        }
+        return true;
+    }
+
     public boolean draw() {
         if (leftInDeck.size() == 0)
             return false;
@@ -144,12 +165,7 @@ public abstract class Character {
         else
             return false;
 
-        leftInDeck.remove(card);
-        if (hand.size() < 12) {
-            hand.add(card);
-            doCardAction("doActionOnDraw");
-        }
-        return true;
+        return draw(card);
     }
 
     private Card getNextCard(ArrayList<Card> cards) {

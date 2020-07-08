@@ -30,7 +30,6 @@ public class GamePlayer extends Character {
         Player player = controller.getCurrentPlayer();
         name = player.toString();
         inventory = player.getInventory();
-        inventory.setCurrentDeck(deck.clone());
         randomDraw = false;
     }
 

@@ -12,8 +12,6 @@ import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
-import java.util.ArrayList;
-
 public class Home extends Directory {
     private PlayGround playGround;
     private Collections collections;
@@ -87,8 +85,8 @@ public class Home extends Directory {
             vBox.getChildren().remove(passiveHBox);
             vBox.getChildren().remove(noDeckHBox);
             cancelButton.setOnAction(e -> close());
-            singlePlayerButton.setOnAction(e -> startGame(1));
-            multiPlayerButton.setOnAction(e -> startGame(2));
+            singlePlayerButton.setOnAction(e -> createGame(1));
+            multiPlayerButton.setOnAction(e -> createGame(2));
             collectionsButton.setOnAction(e -> displayCollections());
             deckReaderButton.setOnAction(e -> {
                 close();
@@ -143,13 +141,12 @@ public class Home extends Directory {
             singlePlayerButton.setDisable(true);
         }
 
-        private void startGame(int playerCount) {
+        private void createGame(int playerCount) {
             close();
             runner.run(new Command(CommandType.CREATE_GAME, playerCount));
             game = controller.getCurrentPlayer().getGame();
             game.getCharacters()[0].setPassive(passiveChoiceBox.getValue());
             game.getCharacters()[1].setPassive(passiveChoiceBox.getValue());
-            runner.run(new Command(CommandType.START_GAME));
             displayPlayGround();
         }
 

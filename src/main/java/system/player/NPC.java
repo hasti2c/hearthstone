@@ -27,9 +27,7 @@ public class NPC extends Character {
     public void addWin() {}
 
     protected void startTurnHelper() {
-        do {
-            System.out.println("hi");
-        } while (nextStep());
+        while (nextStep());
     }
 
     private boolean nextStep() {
