@@ -134,6 +134,13 @@ public class Deck implements Comparable<Deck>, Configable {
         return cards;
     }
 
+    public ArrayList<Card> getCardClones() {
+        ArrayList<Card> clones = new ArrayList<>();
+        for (Card card : cards)
+            clones.add(card.clone());
+        return clones;
+    }
+
     public HeroClass getHeroClass() {
         return heroClass;
     }

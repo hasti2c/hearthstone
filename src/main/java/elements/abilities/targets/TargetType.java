@@ -11,6 +11,7 @@ public enum TargetType {
     MY_DECK,
     OPPONENT_DECK,
     OPPONENT_HAND,
+    IN_GAME,
     BATTLEFIELD,
     MY_WEAPON,
     OPPONENT_WEAPON,

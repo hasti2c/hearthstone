@@ -3,6 +3,7 @@ package elements.abilities;
 import elements.Element;
 import elements.heros.Hero;
 import elements.cards.*;
+import system.player.Character;
 import system.player.GamePlayer;
 
 import static elements.abilities.ChangeStatsType.CONSTANT;
@@ -13,7 +14,7 @@ public class ChangeStats extends Ability {
     private boolean giveTaunt, giveDivineShield;
 
     @Override
-    protected void doAction(GamePlayer actionPerformer, Element caller, Element target) {
+    protected void doAction(Character actionPerformer, Element caller, Element target) {
         if (type == CONSTANT) {
             if (target instanceof Minion minion) {
                 minion.setAttack(minion.getAttack() + attackChange);

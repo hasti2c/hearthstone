@@ -65,11 +65,15 @@ public abstract class TargetEventHandler implements EventHandler<MouseEvent> {
     protected abstract void doAction();
 
     public static void enableNode(Node node) {
+        if (node == null)
+            return;
         node.setDisable(false);
         node.setEffect(new Glow());
     }
 
     public static void disableNode(Node node) {
+        if (node == null)
+            return;
         node.setDisable(true);
         node.setEffect(null);
     }

@@ -2,6 +2,7 @@ package elements.cards;
 
 import controllers.game.GameController;
 import elements.abilities.targets.Attackable;
+import system.player.Character;
 import system.player.GamePlayer;
 
 import static elements.ElementType.MINION;
@@ -42,13 +43,13 @@ public class Minion extends Card implements Attackable {
         return c;
     }
 
-    public void doDamage(GamePlayer gamePlayer, int damage) {
+    public void doDamage(Character character, int damage) {
         if (divineShield) {
             divineShield = false;
             return;
         }
         health -= damage;
-        gamePlayer.doCardAction("doActionOnDamaged", this);
+        character.doCardAction("doActionOnDamaged", this);
     }
 
     public boolean getHasAttacked() {
@@ -67,7 +68,7 @@ public class Minion extends Card implements Attackable {
         this.health = health;
     }
 
-    public int getAttack(GamePlayer gamePlayer) {
+    public int getAttack(Character character) {
         return attack;
     }
 

@@ -19,215 +19,33 @@ import javafx.scene.layout.*;
 import java.io.*;
 import java.util.*;
 
-public class GamePlayerGraphics {
-    private final PlayGround playGround;
+public class GamePlayerGraphics extends CharacterGraphics<GamePlayer> {
     private final CommandRunner runner;
-    private final PlayerFaction playerFaction;
-    private final GamePlayer gamePlayer;
-    private Pane pane;
     private Attackable selectedAttackable;
-    @FXML
-    private Label hpLabel, manaLabel, deckLabel;
-    @FXML
-    private HBox manaHBox, handHBox1, handHBox2, minionsHBox;
-    @FXML
-    private Pane weaponPane, heroPowerPane, heroImagePane;
 
     GamePlayerGraphics(PlayGround playGround, CommandRunner runner, GamePlayer gamePlayer) {
-        this.playGround = playGround;
+        super(playGround, gamePlayer);
         this.runner = runner;
-        this.gamePlayer = gamePlayer;
         gamePlayer.setGraphics(this);
-        this.playerFaction = gamePlayer.getPlayerFaction();
-        load();
-        reloadHeroImage();
-
-        /*heroPowerButton.setOnAction(e -> {
-            runner.run(new Command(CommandType.HERO_POWER));
-            config();
-        });*/
     }
 
-    private FXMLLoader getLoader() {
-        return new FXMLLoader(GamePlayerGraphics.class.getResource("/fxml/directories/" + playerFaction.toString().toLowerCase() + "GamePlayer.fxml"));
-    }
-
-    private void load() {
-        FXMLLoader loader = getLoader();
-        loader.setController(this);
-        try {
-            pane = loader.load();
-            pane.setLayoutX(115);
-            switch (playerFaction) {
-                case FRIENDLY: pane.setLayoutY(387); break;
-                case ENEMY: pane.setLayoutY(0); break;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void clear() {
-        handHBox1.getChildren().clear();
-        handHBox2.getChildren().clear();
-        minionsHBox.getChildren().clear();
-        weaponPane.getChildren().clear();
-        heroPowerPane.getChildren().clear();
-    }
-
-    protected void config() {
-        clear();
-
-        hpLabel.setText(gamePlayer.getHero().getHealth() + "");
-        manaLabel.setText(gamePlayer.getMana() + "/10");
-        for (int i = 0; i < gamePlayer.getMana(); i++)
+    protected void configMana() {
+        manaLabel.setText(character.getMana() + "/10");
+        for (int i = 0; i < character.getMana(); i++)
             manaHBox.getChildren().get(i).setVisible(true);
-        for (int i = gamePlayer.getMana(); i < 10; i++)
+        for (int i = character.getMana(); i < 10; i++)
             manaHBox.getChildren().get(i).setVisible(false);
-        deckLabel.setText(gamePlayer.getLeftInDeck().size() + "/" + gamePlayer.getInventory().getCurrentDeck().getCards().size());
-
-        configHero();
-        configHand();
-        configTargets();
-        configWeapon();
-        configHeroPower();
     }
 
-    private void configHero() {
-        reloadHeroImage();
-        Hero hero = gamePlayer.getHero();
+    protected void configHero() {
+        Hero hero = character.getHero();
         Node node = heroImagePane.getChildren().get(0);
         node.addEventHandler(MouseEvent.MOUSE_CLICKED, new AttackEventHandler(hero, node));
     }
 
-    public void reloadHeroImage() {
-        heroImagePane.getChildren().clear();
-        heroImagePane.getChildren().add(gamePlayer.getHero().getGameImageView(125, -1));
-    }
-
-    private void configHand() {
-    ArrayList<Card> hand = gamePlayer.getHand();
-    for (int i = 0; i < hand.size(); i++) {
-        ImageView iv = getImageView(hand.get(i));
-        if (i < 5)
-            handHBox1.getChildren().add(iv);
-        else
-            handHBox2.getChildren().add(iv);
-    }
-    if (hand.size() < 5)
-        handHBox2.setVisible(false);
-    else {
-        handHBox2.setVisible(true);
-        handHBox2.setLayoutX(525 - handHBox2.getChildren().size() * 30);
-    }
-}
-
-    private void configTargets() {
-        gamePlayer.clearDeadMinions();
-        reloadMinionsHBox();
-        for (int i = 0; i < gamePlayer.getMinionsInGame().size(); i++) {
-            Minion minion = gamePlayer.getMinionsInGame().get(i);
-            Node node = minionsHBox.getChildren().get(i);
-            node.addEventHandler(MouseEvent.MOUSE_CLICKED, new AttackEventHandler(minion, node));
-        }
-    }
-
-    public void reloadMinionsHBox() {
-        minionsHBox.getChildren().clear();
-        for (Minion minion : gamePlayer.getMinionsInGame()) {
-            Group group = new MinionGraphics(minion).getGroup();
-            minionsHBox.getChildren().add(group);
-        }
-    }
-
-    private void configWeapon() {
-        if (gamePlayer.getCurrentWeapon() == null)
-            return;
-        if (gamePlayer.canAttack(gamePlayer.getHero()))
-            weaponPane.getChildren().add((new WeaponGraphics(gamePlayer.getCurrentWeapon()).getGroup()));
-        else
-            weaponPane.getChildren().add(Weapon.getClosedImageView());
-    }
-
-    private void configHeroPower() {
-        HeroPower heroPower = gamePlayer.getHero().getHeroPower();
-        if (gamePlayer.canUseHeroPower()) {
-            Group group = (new HeroPowerGraphics(heroPower)).getGroup();
-            heroPowerPane.getChildren().add(group);
-            group.setOnMouseClicked(e -> {
-                gamePlayer.useHeroPower();
-                if (!heroPower.needsTarget())
-                    playGround.config();
-            });
-        } else if (heroPower.isPassive())
-            heroPowerPane.getChildren().add((new HeroPowerGraphics(heroPower)).getGroup());
-        else
-            heroPowerPane.getChildren().add(HeroPower.getClosedImageView());
-    }
-
-    private void attackMode() {
-        for (Minion minion : gamePlayer.getMinionsInGame())
-            if (gamePlayer.canAttack(minion))
-                enableTarget(minion);
-            else
-                disableTarget(minion);
-        Hero hero = gamePlayer.getHero();
-        if (gamePlayer.canAttack(hero))
-            enableTarget(hero);
-        else
-            disableTarget(hero);
-    }
-
-    private void defenseMode(Attackable attacker) {
-        for (Minion minion : gamePlayer.getMinionsInGame())
-            if (gamePlayer.canBeAttacked(attacker, minion))
-                enableTarget(minion);
-            else
-                disableTarget(minion);
-        Hero hero = gamePlayer.getHero();
-        if (gamePlayer.canBeAttacked(attacker, hero))
-            enableTarget(hero);
-        else
-            disableTarget(hero);
-    }
-
-    private Node getNode(Attackable attackable) {
-        if (attackable instanceof Hero)
-            return heroImagePane.getChildren().get(0);
-        if (gamePlayer.getMinionsInGame().size() != minionsHBox.getChildren().size())
-            return null;
-        assert gamePlayer.getMinionsInGame().contains(attackable);
-        return minionsHBox.getChildren().get(gamePlayer.getMinionsInGame().indexOf(attackable));
-    }
-
-    private void enableTarget(Attackable attackable) {
-        Node node = getNode(attackable);
-        if (node != null)
-            TargetEventHandler.enableNode(node);
-    }
-
-    private void disableTarget(Attackable attackable) {
-        Node node = getNode(attackable);
-        if (node != null)
-            TargetEventHandler.disableNode(node);
-    }
-
-    public void enableHero() {
-        enableTarget(gamePlayer.getHero());
-    }
-
-    public void disableHero() {
-        disableTarget(gamePlayer.getHero());
-    }
-
-    public void enableMinions() {
-        for (Node node : minionsHBox.getChildren())
-            TargetEventHandler.enableNode(node);
-    }
-
-    private ImageView getImageView(Card card) {
+    protected Node getHandNode(Card card) {
         ImageView iv;
-        int n = gamePlayer.getHand().size();
+        int n = character.getHand().size();
         if (n <= 5)
             iv = card.getImageView(Math.min(300 / n, 100), -1);
         else
@@ -240,44 +58,49 @@ public class GamePlayerGraphics {
         return iv;
     }
 
-    public Pane getPane() {
-    return pane;
-}
+    protected void configTargetNode(Minion minion, Node node) {
+        node.addEventHandler(MouseEvent.MOUSE_CLICKED, new GamePlayerGraphics.AttackEventHandler(minion, node));
+    }
+
+    protected Node getHeroPowerNode(HeroPower heroPower) {
+        Group group = (new HeroPowerGraphics(heroPower)).getGroup();
+        group.setOnMouseClicked(e -> {
+            character.useHeroPower();
+            if (!heroPower.needsTarget())
+                playGround.config();
+        });
+        return group;
+    }
+
+    private void attackMode() {
+        for (Minion minion : character.getMinionsInGame())
+            if (character.canAttack(minion))
+                TargetEventHandler.enableNode(getNode(minion));
+            else
+                TargetEventHandler.disableNode(getNode(minion));
+        Hero hero = character.getHero();
+        if (character.canAttack(hero))
+            TargetEventHandler.enableNode(heroImagePane);
+        else
+            TargetEventHandler.disableNode(heroImagePane);
+    }
+
+    private void defenseMode(Attackable attacker) {
+        for (Minion minion : character.getMinionsInGame())
+            if (character.canBeAttacked(attacker, minion))
+                TargetEventHandler.enableNode(getNode(minion));
+            else
+                TargetEventHandler.disableNode(getNode(minion));
+        Hero hero = character.getHero();
+        if (character.canBeAttacked(attacker, hero))
+            TargetEventHandler.enableNode(heroImagePane);
+        else
+            TargetEventHandler.disableNode(heroImagePane);
+    }
+
 
     private Attackable getSelectedAttackable() {
             return selectedAttackable;
-        }
-
-    public HBox getMinionsHBox() {
-        return minionsHBox;
-    }
-
-    public GamePlayerGraphics getOpponent() {
-        return gamePlayer.getOpponent().getGraphics();
-    }
-
-    public PlayGround getPlayGround() {
-        return playGround;
-    }
-
-    public GamePlayer getGamePlayer() {
-        return gamePlayer;
-    }
-
-    public Node getWeaponNode() {
-        if (weaponPane.getChildren().size() == 0)
-            return null;
-        return weaponPane.getChildren().get(0);
-    }
-
-    public Node getHeroPowerNode() {
-        if (heroPowerPane.getChildren().size() == 0)
-            return null;
-        return heroPowerPane.getChildren().get(0);
-    }
-
-    public ImageView getHeroImageView() {
-        return (ImageView) heroImagePane.getChildren().get(0);
     }
 
     private class HandEventHandler implements EventHandler<MouseEvent> {

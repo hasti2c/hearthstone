@@ -7,6 +7,7 @@ import elements.abilities.targets.*;
 import elements.Playable;
 import system.*;
 import elements.cards.*;
+import system.player.Character;
 import system.player.GamePlayer;
 import graphics.directories.playground.GamePlayerGraphics;
 import javafx.scene.Node;
@@ -43,12 +44,14 @@ public abstract class Ability implements Configable {
         return null;
     }
 
-    private void callDoAction(GamePlayer actionPerformer, Element caller, Element played, boolean assertValidCaller) {
+    private void callDoAction(Character actionPerformer, Element caller, Element played, boolean assertValidCaller) {
+        handleSelectionForNPC(actionPerformer);
+
         for (int i = 0; i < times; i++) {
             if (targetType.equals(SELECTED))
-                selectAndDoAction(actionPerformer, caller);
+                selectAndDoAction((GamePlayer) actionPerformer, caller);
             else if (targetType.equals(DISCOVER))
-                discoverAndDoAction(actionPerformer, (Card) caller, (Card) played);
+                discoverAndDoAction((GamePlayer) actionPerformer, (Card) caller, (Card) played);
             else
                 for (Element target : getTarget(actionPerformer, caller, (Card) played)) {
                     if (isValidCaller(actionPerformer, caller) && (assertValidCaller || caller.isValid()) && target.isValid())
@@ -57,19 +60,28 @@ public abstract class Ability implements Configable {
         }
     }
 
-    public void callDoAction(GamePlayer actionPerformer, Playable caller, Card played) {
+    private void handleSelectionForNPC(Character actionPerformer) {
+        if (actionPerformer instanceof GamePlayer)
+            return;
+        if (targetType == SELECTED)
+            targetType = IN_GAME;
+        else
+            targetType = RANDOM;
+    }
+
+    public void callDoAction(Character actionPerformer, Playable caller, Card played) {
         callDoAction(actionPerformer, caller, played, false);
     }
 
-    public void doActionAndNext(GamePlayer actionPerformer, Element caller, Element target) {
+    public void doActionAndNext(Character actionPerformer, Element caller, Element target) {
         doAction(actionPerformer, caller, target);
         if (nextAbility != null)
             nextAbility.callDoAction(actionPerformer, target, null, true);
     }
 
-    protected abstract void doAction(GamePlayer actionPerformer, Element caller, Element target);
+    protected abstract void doAction(Character actionPerformer, Element caller, Element target);
 
-    private ArrayList<Element> getTarget(GamePlayer actionPerformer, Element caller, Card played) {
+    private ArrayList<Element> getTarget(Character actionPerformer, Element caller, Card played) {
         ArrayList<Element> targets = new ArrayList<>();
         switch (targetType) {
             case SELF -> addIfValid(targets, caller);
@@ -142,6 +154,14 @@ public abstract class Ability implements Configable {
                 if (possibleElements.size() > 0)
                     targets.add(Element.getRandomElement(possibleElements));
             }
+            case IN_GAME -> {
+                ArrayList<Element> possibleElements = getValidSublist(actionPerformer.getMinionsInGame());
+                addIfValid(possibleElements, actionPerformer.getCurrentWeapon());
+                addIfValid(possibleElements, actionPerformer.getHero());
+                possibleElements.addAll(getValidSublist(actionPerformer.getOpponent().getMinionsInGame()));
+                if (possibleElements.size() > 0)
+                    targets.add(Element.getRandomElement(possibleElements));
+            }
             case BATTLEFIELD -> {
                 ArrayList<Element> possibleElements = getValidSublist(actionPerformer.getMinionsInGame());
                 possibleElements.addAll(getValidSublist(actionPerformer.getOpponent().getMinionsInGame()));
@@ -183,7 +203,7 @@ public abstract class Ability implements Configable {
         return true;
     }
 
-    private boolean isValidCaller(GamePlayer actionPerformer, Element caller) {
+    private boolean isValidCaller(Character actionPerformer, Element caller) {
         if (callerSide == null)
             return true;
         boolean ret = callerSide.equals(PlayerSide.SELF) && actionPerformer.owns(caller);
@@ -214,14 +234,14 @@ public abstract class Ability implements Configable {
 
     protected void selectAndDoAction(GamePlayer actionPerformer, Element caller) {
         selectionMode(actionPerformer, caller);
-        selectionMode(actionPerformer.getOpponent(), caller);
+        selectionMode((GamePlayer) actionPerformer.getOpponent(), caller);
     }
 
     private void selectionMode(GamePlayer gamePlayer, Element caller) {
         ArrayList<Pair<Element, Node>> elements = gamePlayer.getCurrentElementsAndNodes();
         for (Pair<Element, Node> pair : elements)
             if (isValidTarget(pair.getKey()) && pair.getKey() instanceof Targetable targetable)
-                pair.getValue().addEventHandler(MouseEvent.MOUSE_CLICKED, new SelectionEventHandler(gamePlayer.getGraphics(), caller, targetable, pair.getValue()));
+                pair.getValue().addEventHandler(MouseEvent.MOUSE_CLICKED, new SelectionEventHandler((GamePlayerGraphics) gamePlayer.getGraphics(), caller, targetable, pair.getValue()));
             else if (pair.getKey() instanceof Targetable)
                 TargetEventHandler.disableNode(pair.getValue());
     }
@@ -287,7 +307,7 @@ public abstract class Ability implements Configable {
 
         @Override
         protected void doAction() {
-            Ability.this.doActionAndNext(player.getGamePlayer(), caller, (Element) targetable) ;
+            Ability.this.doActionAndNext(player.getCharacter(), caller, (Element) targetable) ;
             player.getPlayGround().config();
         }
     }

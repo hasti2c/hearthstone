@@ -3,6 +3,7 @@ package elements.abilities;
 import elements.Element;
 import elements.ElementType;
 import elements.cards.*;
+import system.player.Character;
 import system.player.GamePlayer;
 
 import java.util.ArrayList;
@@ -15,9 +16,9 @@ public class AddCard extends Ability {
     private boolean insert = false;
 
     @Override
-    protected void doAction(GamePlayer actionPerformer, Element caller, Element target) {
+    protected void doAction(Character actionPerformer, Element caller, Element target) {
         Card card = (Card) target;
-        GamePlayer player;
+        Character player;
         if (actionPerformer.getOpponent().owns(caller))
             player = actionPerformer.getOpponent();
         else

@@ -2,14 +2,15 @@ package elements.abilities;
 
 import elements.Element;
 import elements.cards.Minion;
+import system.player.Character;
 import system.player.GamePlayer;
 
 public class RemoveCard extends Ability {
     private RemoveCardType type;
 
     @Override
-    protected void doAction(GamePlayer actionPerformer, Element caller, Element target) {
-        GamePlayer player;
+    protected void doAction(Character actionPerformer, Element caller, Element target) {
+        Character player;
         if (actionPerformer.owns(target))
             player = actionPerformer;
         else if (actionPerformer.getOpponent().owns(target))

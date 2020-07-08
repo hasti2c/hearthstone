@@ -2,6 +2,7 @@ package elements.abilities;
 
 import elements.Playable;
 import elements.cards.Card;
+import system.player.Character;
 import system.player.GamePlayer;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public enum AbilityType {
     TAKES_DAMAGE,
     HERO_POWER;
 
-    public void doActionOnRandomAbility(ArrayList<Ability> abilities, GamePlayer actionPerformer, Playable caller, Card played, Card damaged) {
+    public void doActionOnRandomAbility(ArrayList<Ability> abilities, Character actionPerformer, Playable caller, Card played, Card damaged) {
         Ability ability = getRandomAbility(getValidAbilities(abilities, caller, played, damaged));
         if (ability == null)
             return;

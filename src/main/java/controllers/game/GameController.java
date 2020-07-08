@@ -159,4 +159,16 @@ public class GameController implements Configable {
     public Player getDefaultPlayer() {
         return defaultPlayer;
     }
+
+    public Hero getCurrentHero() {
+        if (currentPlayer == null || currentPlayer.getInventory().getCurrentHero() == null)
+            return null;
+        return currentPlayer.getInventory().getCurrentHero();
+    }
+
+    public Deck getCurrentDeck() {
+        if (currentPlayer == null || currentPlayer.getInventory().getCurrentDeck() == null)
+            return null;
+        return currentPlayer.getInventory().getCurrentDeck();
+    }
 }

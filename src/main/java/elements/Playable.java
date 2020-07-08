@@ -5,6 +5,7 @@ import elements.cards.Card;
 import elements.Element;
 import elements.abilities.*;
 import elements.heros.HeroClass;
+import system.player.Character;
 import system.player.GamePlayer;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -49,11 +50,11 @@ public abstract class Playable extends Element {
         this.mana = mana;
     }
 
-    public int getGameMana(GamePlayer gamePlayer) {
-        HeroClass heroClass = gamePlayer.getHero().getHeroClass();
+    public int getGameMana(Character character) {
+        HeroClass heroClass = character.getHero().getHeroClass();
         int ret = mana - heroClass.getManaReduction(this);
-        if (gamePlayer.getPassive() != null)
-            ret -= gamePlayer.getPassive().getManaReduction(this);
+        if (character.getPassive() != null)
+            ret -= character.getPassive().getManaReduction(this);
         return ret;
     }
 
@@ -113,24 +114,24 @@ public abstract class Playable extends Element {
         return new ImagePattern(fullImage);
     }
 
-    public void doActionOnDraw(GamePlayer actionPerformer) {
+    public void doActionOnDraw(Character actionPerformer) {
         DRAW.doActionOnRandomAbility(abilities, actionPerformer, this, null, null);
     }
 
-    public void doActionOnPlay(GamePlayer actionPerformer, Card played) {
+    public void doActionOnPlay(Character actionPerformer, Card played) {
         PLAY.doActionOnRandomAbility(abilities, actionPerformer, this, played, null);
         BATTLE_CRY.doActionOnRandomAbility(abilities, actionPerformer, this, played, null);
     }
 
-    public void doActionOnEndTurn(GamePlayer actionPerformer) {
+    public void doActionOnEndTurn(Character actionPerformer) {
         END_TURN.doActionOnRandomAbility(abilities, actionPerformer, this, null, null);
     }
 
-    public void doActionOnDamaged(GamePlayer actionPerformer, Card damaged) {
+    public void doActionOnDamaged(Character actionPerformer, Card damaged) {
         TAKES_DAMAGE.doActionOnRandomAbility(abilities, actionPerformer, this, null, damaged);
     }
 
-    public void doActionOnHeroPower(GamePlayer actionPerformer) {
+    public void doActionOnHeroPower(Character actionPerformer) {
         HERO_POWER.doActionOnRandomAbility(abilities, actionPerformer, this, null, null);
     }
 }
