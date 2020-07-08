@@ -14,10 +14,9 @@ public class Inventory implements Configable {
     private Deck currentDeck;
     private ArrayList<Deck> allDecks = new ArrayList<>();
     private ArrayList<Hero> allHeros = new ArrayList<>();
-    private final ArrayList<Card> allCards = new ArrayList<>();
+    private ArrayList<Card> allCards = new ArrayList<>();
 
-    public Inventory() {
-    }
+    public Inventory() {}
 
     @Override
     public void initialize(GameController controller) {}
@@ -33,33 +32,16 @@ public class Inventory implements Configable {
         inventory.deckCap = defaultInventory.getDeckCap();
 
         inventory.allHeros = new ArrayList<>(defaultInventory.allHeros);
-        for (Card c : inventory.allCards)
-            inventory.addCard(c);
+        inventory.allCards = new ArrayList<>(defaultInventory.allCards);
 
         inventory.allDecks = new ArrayList<>();
         for (Deck deck : defaultInventory.allDecks)
-            inventory.addDeck(deck.clone(inventory));
+            inventory.addDeck(deck.clone());
         for (Deck deck : inventory.allDecks)
             if (deck.toString().equals(defaultInventory.currentDeck.toString()))
                 inventory.setCurrentDeck(deck);
+
         return defaultInventory;
-    }
-
-    public Inventory clone() {
-        Inventory inventory = new Inventory();
-        inventory.deckCap = deckCap;
-
-        for (Card card : allCards)
-            inventory.allCards.add(card.clone());
-        for (Hero hero : allHeros)
-            inventory.allHeros.add(hero.clone());
-        for (Deck deck : allDecks) {
-            Deck deckClone = deck.clone(inventory);
-            inventory.allDecks.add(deckClone);
-            if (deck == currentDeck)
-                inventory.currentDeck = deckClone;
-        }
-        return inventory;
     }
 
     public int getDeckCap() {

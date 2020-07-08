@@ -28,6 +28,7 @@ public abstract class TargetEventHandler implements EventHandler<MouseEvent> {
             else
                 deselect();
         }
+        mouseEvent.consume();
     }
 
     private void select() {

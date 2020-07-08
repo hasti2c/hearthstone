@@ -42,12 +42,13 @@ public class Minion extends Card implements Attackable {
         return c;
     }
 
-    public void doDamage(int damage) {
+    public void doDamage(GamePlayer gamePlayer, int damage) {
         if (divineShield) {
             divineShield = false;
             return;
         }
         health -= damage;
+        gamePlayer.doCardAction("doActionOnDamaged", this);
     }
 
     public boolean getHasAttacked() {

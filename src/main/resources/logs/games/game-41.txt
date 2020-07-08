@@ -9,3 +9,5 @@ p2: hasti
 p2_hero: mage
 p2_deck: wow
 
+
+ENDED_AT:  2020/07/08 01:46:55 

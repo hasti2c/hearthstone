@@ -17,7 +17,8 @@ import java.util.*;
 public class GamePlayer {
     private final String name;
     private final Inventory inventory;
-    private ArrayList<Card> leftInDeck;
+    private final Hero hero;
+    private final ArrayList<Card> leftInDeck;
     private final ArrayList<Card> hand = new ArrayList<>();
     private final ArrayList<Minion> minionsInGame = new ArrayList<>();
     private Spell lastSpell;
@@ -33,7 +34,8 @@ public class GamePlayer {
     public GamePlayer(GameController controller, Game game, PlayerFaction playerFaction) {
         Player player = controller.getCurrentPlayer();
         name = player.toString();
-        inventory = player.getInventory().clone();
+        inventory = player.getInventory();
+        hero = inventory.getCurrentHero().clone();
         leftInDeck = new ArrayList<>();
         for (Card card : inventory.getCurrentDeck().getCards())
             leftInDeck.add(card.clone());
@@ -44,8 +46,10 @@ public class GamePlayer {
 
     public GamePlayer(GameController controller, Game game, PlayerFaction playerFaction, Deck deck) {
         this(controller, game, playerFaction);
-        inventory.setCurrentDeck(deck.clone(inventory));
-        leftInDeck = new ArrayList<>(inventory.getCurrentDeck().getCards());
+        inventory.setCurrentDeck(deck.clone());
+
+        for (Card card : inventory.getCurrentDeck().getCards())
+            leftInDeck.add(card.clone());
         randomDraw = false;
     }
 
@@ -138,7 +142,7 @@ public class GamePlayer {
         mana -= card.getGameMana(this);
         hand.remove(card);
         if (card instanceof Minion minion) {
-            inventory.getCurrentHero().getHeroClass().doHeroAction(minion);
+            hero.getHeroClass().doHeroAction(minion);
             minionsInGame.add(minion);
             minion.setAsleep(true);
         } else if (card instanceof Weapon weapon) {
@@ -153,14 +157,13 @@ public class GamePlayer {
     public void setCurrentWeapon(Weapon weapon) {
         currentWeapon = weapon;
         if (weapon != null)
-            inventory.getCurrentHero().getHeroPower().promote();
+            hero.getHeroPower().promote();
         else
-            inventory.getCurrentHero().getHeroPower().demote();
-        inventory.getCurrentHero().setHasAttacked(false);
+            hero.getHeroPower().demote();
+        hero.setHasAttacked(false);
     }
 
     public boolean useHeroPower() {
-        Hero hero = inventory.getCurrentHero();
         HeroPower heroPower = hero.getHeroPower();
         if (!isMyTurn() || heroPowerCount >= heroPowerCap || mana < heroPower.getGameMana(this))
             return false;
@@ -171,7 +174,7 @@ public class GamePlayer {
     }
 
     public boolean canUseHeroPower() {
-        return heroPowerCount < heroPowerCap && !inventory.getCurrentHero().getHeroPower().isPassive();
+        return heroPowerCount < heroPowerCap && !hero.getHeroPower().isPassive();
     }
 
     public int getMyTurnNumber() {
@@ -185,8 +188,8 @@ public class GamePlayer {
     public boolean owns(Element element) {
         boolean ret = minionsInGame.contains(element) || hand.contains(element) || leftInDeck.contains(element);
         ret |= lastSpell == element || currentWeapon == element;
-        ret |= inventory.getCurrentHero().getHeroPower() == element;
-        ret |= inventory.getCurrentHero() == element;
+        ret |= hero.getHeroPower() == element;
+        ret |= hero == element;
         return ret;
     }
 
@@ -204,7 +207,7 @@ public class GamePlayer {
 
         for (Minion minion : minionsInGame)
             minion.setHasAttacked(false);
-        inventory.getCurrentHero().setHasAttacked(false);
+        hero.setHasAttacked(false);
 
         mana = Math.min(getMyTurnNumber(), 10);
         if (passive != null)
@@ -266,10 +269,8 @@ public class GamePlayer {
     }
 
     public void rawAttack(Attackable attacker, Attackable defender) {
-        if (defender instanceof Card card)
-            doCardAction("doActionOnDamaged", card);
-        attacker.doDamage(defender.getAttack(getOpponent()));
-        defender.doDamage(attacker.getAttack(this));
+        attacker.doDamage(this, defender.getAttack(getOpponent()));
+        defender.doDamage(this, attacker.getAttack(this));
         if (attacker instanceof Hero && currentWeapon != null)
             currentWeapon.setDurability(currentWeapon.getDurability() - 1);
     }
@@ -297,7 +298,7 @@ public class GamePlayer {
 
     //TODO cleaaaaan soon
 
-    private void doCardAction(String actionName, Card input) {
+    public void doCardAction(String actionName, Card input) {
         try {
             Method method = Playable.class.getDeclaredMethod(actionName, GamePlayer.class, Card.class);
 
@@ -319,7 +320,7 @@ public class GamePlayer {
             ret.add(lastSpell);
         if (currentWeapon != null)
             ret.add(currentWeapon);
-        ret.add(inventory.getCurrentHero().getHeroPower());
+        ret.add(hero.getHeroPower());
         return ret;
     }
 
@@ -340,12 +341,16 @@ public class GamePlayer {
         if (currentWeapon != null)
             elements.add(new Pair<>(currentWeapon, graphics.getWeaponNode()));
         if (canUseHeroPower())
-            elements.add(new Pair<>(inventory.getCurrentHero().getHeroPower(), graphics.getHeroPowerNode()));
-        elements.add(new Pair<>(inventory.getCurrentHero(), graphics.getHeroImageView()));
+            elements.add(new Pair<>(hero.getHeroPower(), graphics.getHeroPowerNode()));
+        elements.add(new Pair<>(hero, graphics.getHeroImageView()));
         return elements;
     }
 
     public Passive getPassive() {
         return passive;
+    }
+
+    public Hero getHero() {
+        return hero;
     }
 }

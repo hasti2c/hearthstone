@@ -50,7 +50,7 @@ public abstract class CardsList extends Directory {
         });
         advancedSearchButton.setOnAction(e -> searchPage.display());
 
-        options = new HashMap<>(Map.of("Owned", true, "Not Owned", true, "Unlocked", true, "Locked", false, "Minion", true, "Spell", true, "Weapon", true));
+        options = new HashMap<>(Map.of("Owned", true, "Not Owned", true, "Unlocked", true, "Locked", false, "Minion", true, "Spell", true, "Weapon", true, "Quest And Reward", true));
         manaRange = new Pair<>(null, null);
         healthRange = new Pair<>(null, null);
         attackRange = new Pair<>(null, null);
@@ -119,14 +119,10 @@ public abstract class CardsList extends Directory {
 
     protected abstract boolean validCard(Card card);
 
-    //TODO untof =)
     private boolean selectedCard(Card card) {
         boolean ret = options.get("Unlocked");
-        ElementType elementType = card.getElementType();
-        if (elementType == ElementType.QUEST_AND_REWARD)
-            elementType = ElementType.SPELL;
-        ret &= options.get(GameController.toProperCase(elementType.toString()));
-        ret &= options.get(GameController.toProperCase(card.getHeroClass().toString()));
+        ret &= options.get(GameController.toNonEnumCase(card.getElementType().toString()));
+        ret &= options.get(GameController.toNonEnumCase(card.getHeroClass().toString()));
         if (this instanceof Deck dg) {
             if (dg.getDeck().getCards().contains(card))
                 ret &= options.get("In Deck");

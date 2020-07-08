@@ -5,6 +5,6 @@ import system.player.GamePlayer;
 public interface Attackable extends Targetable {
     boolean getHasAttacked();
     void setHasAttacked(boolean hasAttacked);
-    void doDamage(int damage);
+    void doDamage(GamePlayer gamePlayer, int damage);
     int getAttack(GamePlayer gamePlayer);
 }

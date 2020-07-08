@@ -50,7 +50,7 @@ public abstract class Playable extends Element {
     }
 
     public int getGameMana(GamePlayer gamePlayer) {
-        HeroClass heroClass = gamePlayer.getInventory().getCurrentHero().getHeroClass();
+        HeroClass heroClass = gamePlayer.getHero().getHeroClass();
         int ret = mana - heroClass.getManaReduction(this);
         if (gamePlayer.getPassive() != null)
             ret -= gamePlayer.getPassive().getManaReduction(this);

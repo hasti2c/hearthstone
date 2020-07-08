@@ -106,6 +106,14 @@ public class GameController implements Configable {
         return s;
     }
 
+    public static String toNonEnumCase(String s) {
+        s = (toProperCase(s)).replace('_', ' ');
+        for (int i = 1; i < s.length(); i++)
+            if (s.charAt(i - 1) == ' ')
+                s = s.substring(0, i) + s.substring(i, i + 1).toUpperCase() + s.substring(i + 1);
+        return s;
+    }
+
     public static String toEnumCase(String s) {
         return (s.toUpperCase()).replace(' ', '_');
     }

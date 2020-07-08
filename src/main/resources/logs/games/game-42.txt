@@ -1,0 +1,11 @@
+GAME_ID: 42
+STARTED_AT:  2020/07/08 12:40:47 
+
+p1: hasti
+p1_hero: mage
+p1_deck: wow
+
+p2: hasti
+p2_hero: mage
+p2_deck: wow
+

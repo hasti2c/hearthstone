@@ -78,7 +78,7 @@ public class GamePlayerGraphics {
     protected void config() {
         clear();
 
-        hpLabel.setText(gamePlayer.getInventory().getCurrentHero().getHealth() + "");
+        hpLabel.setText(gamePlayer.getHero().getHealth() + "");
         manaLabel.setText(gamePlayer.getMana() + "/10");
         for (int i = 0; i < gamePlayer.getMana(); i++)
             manaHBox.getChildren().get(i).setVisible(true);
@@ -95,14 +95,14 @@ public class GamePlayerGraphics {
 
     private void configHero() {
         reloadHeroImage();
-        Hero hero = gamePlayer.getInventory().getCurrentHero();
+        Hero hero = gamePlayer.getHero();
         Node node = heroImagePane.getChildren().get(0);
         node.addEventHandler(MouseEvent.MOUSE_CLICKED, new AttackEventHandler(hero, node));
     }
 
     public void reloadHeroImage() {
         heroImagePane.getChildren().clear();
-        heroImagePane.getChildren().add(gamePlayer.getInventory().getCurrentHero().getGameImageView(125, -1));
+        heroImagePane.getChildren().add(gamePlayer.getHero().getGameImageView(125, -1));
     }
 
     private void configHand() {
@@ -143,14 +143,14 @@ public class GamePlayerGraphics {
     private void configWeapon() {
         if (gamePlayer.getCurrentWeapon() == null)
             return;
-        if (gamePlayer.canAttack(gamePlayer.getInventory().getCurrentHero()))
+        if (gamePlayer.canAttack(gamePlayer.getHero()))
             weaponPane.getChildren().add((new WeaponGraphics(gamePlayer.getCurrentWeapon()).getGroup()));
         else
             weaponPane.getChildren().add(Weapon.getClosedImageView());
     }
 
     private void configHeroPower() {
-        HeroPower heroPower = gamePlayer.getInventory().getCurrentHero().getHeroPower();
+        HeroPower heroPower = gamePlayer.getHero().getHeroPower();
         if (gamePlayer.canUseHeroPower()) {
             Group group = (new HeroPowerGraphics(heroPower)).getGroup();
             heroPowerPane.getChildren().add(group);
@@ -171,7 +171,7 @@ public class GamePlayerGraphics {
                 enableTarget(minion);
             else
                 disableTarget(minion);
-        Hero hero = gamePlayer.getInventory().getCurrentHero();
+        Hero hero = gamePlayer.getHero();
         if (gamePlayer.canAttack(hero))
             enableTarget(hero);
         else
@@ -184,7 +184,7 @@ public class GamePlayerGraphics {
                 enableTarget(minion);
             else
                 disableTarget(minion);
-        Hero hero = gamePlayer.getInventory().getCurrentHero();
+        Hero hero = gamePlayer.getHero();
         if (gamePlayer.canBeAttacked(attacker, hero))
             enableTarget(hero);
         else
@@ -213,11 +213,11 @@ public class GamePlayerGraphics {
     }
 
     public void enableHero() {
-        enableTarget(gamePlayer.getInventory().getCurrentHero());
+        enableTarget(gamePlayer.getHero());
     }
 
     public void disableHero() {
-        disableTarget(gamePlayer.getInventory().getCurrentHero());
+        disableTarget(gamePlayer.getHero());
     }
 
     public void enableMinions() {

@@ -38,9 +38,7 @@ public class Hero extends Element implements Attackable {
         }
     }
 
-
-    //TODO takes damage
-    public void doDamage(int damage) {
+    public void doDamage(GamePlayer gamePlayer, int damage) {
         health -= damage;
     }
 

@@ -87,8 +87,8 @@ public class Game {
     }
 
     public boolean isFinished() {
-        int myHealth = gamePlayers[0].getInventory().getCurrentHero().getHealth();
-        int opponentHealth = gamePlayers[1].getInventory().getCurrentHero().getHealth();
+        int myHealth = gamePlayers[0].getHero().getHealth();
+        int opponentHealth = gamePlayers[1].getHero().getHealth();
         return myHealth <= 0 || opponentHealth <= 0;
     }
 
@@ -97,11 +97,11 @@ public class Game {
         logger.log("STARTED_AT: ", "");
         logger.log("");
         logger.log("p1: " + gamePlayers[0]);
-        logger.log("p1_hero: " + gamePlayers[0].getInventory().getCurrentHero());
+        logger.log("p1_hero: " + gamePlayers[0].getHero());
         logger.log("p1_deck: " + gamePlayers[0].getInventory().getCurrentDeck());
         logger.log("");
         logger.log("p2: " + gamePlayers[1]);
-        logger.log("p2_hero: " + gamePlayers[1].getInventory().getCurrentHero());
+        logger.log("p2_hero: " + gamePlayers[1].getHero());
         logger.log("p2_deck: " + gamePlayers[1].getInventory().getCurrentDeck());
         logger.log("");
     }
@@ -127,8 +127,8 @@ public class Game {
     }
 
     public void endGame() {
-        int friendlyHealth = gamePlayers[0].getInventory().getCurrentHero().getHealth();
-        int enemyHealth = gamePlayers[1].getInventory().getCurrentHero().getHealth();
+        int friendlyHealth = gamePlayers[0].getHero().getHealth();
+        int enemyHealth = gamePlayers[1].getHero().getHealth();
         if (friendlyHealth > 0 && enemyHealth <= 0)
             gamePlayers[0].getInventory().getCurrentDeck().addWin();
     }

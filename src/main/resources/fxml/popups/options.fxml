@@ -26,6 +26,7 @@
                   <CheckBox mnemonicParsing="false" selected="true" text="Minion" />
                   <CheckBox mnemonicParsing="false" selected="true" text="Spell" />
                   <CheckBox mnemonicParsing="false" selected="true" text="Weapon" />
+                  <CheckBox mnemonicParsing="false" selected="true" text="Quest And Reward" />
                </children>
                <HBox.margin>
                   <Insets />

@@ -34,7 +34,7 @@ public class AddCard extends Ability {
         switch (type) {
             case ALL_THREE -> {
                 if (target instanceof Minion minion) {
-                    player.getInventory().getCurrentHero().getHeroClass().doHeroAction(minion);
+                    player.getHero().getHeroClass().doHeroAction(minion);
                     addToList(player.getMinionsInGame(), caller, minion, 7);
                 }
                 else if (target instanceof Weapon weapon)
@@ -49,7 +49,7 @@ public class AddCard extends Ability {
             case HAND -> addToList(player.getHand(), caller, card, 12);
             case SUMMON, OPPONENT_SUMMON -> {
                 if (card instanceof Minion minion) {
-                    player.getInventory().getCurrentHero().getHeroClass().doHeroAction(minion);
+                    player.getHero().getHeroClass().doHeroAction(minion);
                     addToList(player.getMinionsInGame(), caller, minion, 7);
                 }
                 else if (card instanceof Weapon weapon)

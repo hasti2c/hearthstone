@@ -20,8 +20,8 @@ public class GameEnding extends Directory {
 
     @Override
     protected void config() {
-        int friendlyHealth = game.getGamePlayers()[0].getInventory().getCurrentHero().getHealth();
-        int enemyHealth = game.getGamePlayers()[1].getInventory().getCurrentHero().getHealth();
+        int friendlyHealth = game.getGamePlayers()[0].getHero().getHealth();
+        int enemyHealth = game.getGamePlayers()[1].getHero().getHealth();
         if (friendlyHealth <= 0 && enemyHealth <= 0)
             label.setText("IT'S A TIE!");
         else if (friendlyHealth <= 0)

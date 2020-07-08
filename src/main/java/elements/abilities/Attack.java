@@ -17,7 +17,7 @@ public class Attack extends Ability {
                 if (caller instanceof Attackable attacker)
                     actionPerformer.rawAttack(attacker, defender);
             }
-            case CONSTANT -> defender.doDamage(damageAmount);
+            case CONSTANT -> defender.doDamage(actionPerformer, damageAmount);
         }
     }
 }
