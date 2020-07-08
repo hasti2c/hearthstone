@@ -6,6 +6,7 @@ import elements.ElementType;
 import elements.cards.*;
 import java.io.*;
 import java.lang.reflect.*;
+import java.nio.file.NoSuchFileException;
 import java.util.*;
 
 public class Configor<O extends Configable> {
@@ -117,9 +118,8 @@ public class Configor<O extends Configable> {
                     }
                 } catch (NoSuchMethodException e1) {
                     if (JsonToken.STRING.equals(jsonReader.peek())) {
-                        String nextString = jsonReader.nextString();
-                        Class<? extends Configable> objectClass = getObjectClass((Class<? extends Configable>) readType, nextString);
-                        String objectName = getObjectName(objectClass, nextString);
+                        String objectName = jsonReader.nextString();
+                        Class<? extends Configable> objectClass = getObjectClass((Class<? extends Configable>) readType, objectName);
                         return (T) readObject(objectClass, objectName);
                     } else if (JsonToken.BEGIN_OBJECT.equals(jsonReader.peek()))
                         return (T) readObject((Class<? extends Configable>) readType);
@@ -136,7 +136,11 @@ public class Configor<O extends Configable> {
             return readType.getDeclaredConstructor().newInstance().getClass();
         } catch (InstantiationException e) {
                 assert readType.equals(Card.class);
-                return Card.getCardClass(objectName);
+            try {
+                return Card.getSubclass(objectName);
+            } catch (NoSuchFileException e2) {
+                e2.printStackTrace();
+            }
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -165,7 +169,6 @@ public class Configor<O extends Configable> {
         }
         return null;
     }
-
 
     private <T extends Configable> T readObject(Class<T> readType) {
         try {
@@ -205,9 +208,7 @@ public class Configor<O extends Configable> {
             methodName = "nextLong";
         else if (byte.class.equals(readType) || short.class.equals(readType) || int.class.equals(readType) || char.class.equals(readType) || Number.class.isAssignableFrom(readType) || Character.class.isAssignableFrom(readType))
             methodName = "nextInt";
-        else if (String.class.equals(readType))
-            methodName = "nextString";
-        else if (readType.isEnum())
+        else if (String.class.equals(readType) || readType.isEnum())
             methodName = "nextString";
         else
             throw new NoSuchMethodException();

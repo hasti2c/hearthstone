@@ -41,7 +41,7 @@ public enum AbilityType {
         if (ability.getAbilityType() != this)
             return false;
         return switch (this) {
-            case PLAY: yield played == caller;
+            case BATTLE_CRY: yield played == caller;
             case TAKES_DAMAGE: yield damaged == caller;
             case QUEST: yield quest == caller;
             default: yield true;

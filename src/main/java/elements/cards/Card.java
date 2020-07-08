@@ -1,6 +1,7 @@
 package elements.cards;
 
 import controllers.game.*;
+import elements.ElementType;
 import elements.abilities.targets.Targetable;
 import elements.Playable;
 import elements.heros.*;
@@ -10,13 +11,20 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 
+import static elements.ElementType.*;
+
 public abstract class Card extends Playable implements Targetable, Comparable<Card> {
     private int price;
     private RarityType rarity;
 
     @Override
     public String getJsonPath(GameController controller, String name) {
-        return "cards/" + getCardClass(name).getSimpleName() + "/";
+        try {
+            return "cards/" + getSubclass(name).getSimpleName() + "/";
+        } catch (NoSuchFileException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public int getPrice() {
@@ -99,7 +107,7 @@ public abstract class Card extends Playable implements Targetable, Comparable<Ca
             throw new NoSuchFileException(path);
     }
 
-    private static Class<? extends Card> getSubclass(String name) throws NoSuchFileException {
+    public static Class<? extends Card> getSubclass(String name) throws NoSuchFileException {
         try {
             tryToGetCard(Minion.class, name);
             return Minion.class;
@@ -119,31 +127,42 @@ public abstract class Card extends Playable implements Targetable, Comparable<Ca
         }
     }
 
-    public static Class<? extends Configable> getCardClass(String cardName) {
-        try {
-            return getSubclass(cardName);
-        } catch (NoSuchFileException e) {
-            return switch (cardName) {
-                case "Minion" -> Minion.class;
-                case "Spell" -> Spell.class;
-                case "Weapon" -> Weapon.class;
-                case "QuestAndReward" -> QuestAndReward.class;
-                default -> null;
-            };
+    public static Card getCard(String name) {
+        Card card = GameController.getCard(name);
+        if (card != null)
+            return card;
+        switch (name.toLowerCase()) {
+            case "minion": return getRandomCard(Minion.class);
+            case "spell": return getRandomCard(Spell.class);
+            case "weapon": return getRandomCard(Weapon.class);
+            case "quest and reward": return getRandomCard(QuestAndReward.class);
+            case "special hero card": return getRandomHeroCard();
         }
+        if (name.contains("->")) {
+            int i = name.indexOf("->");
+            Card quest = GameController.getCard(name.substring(0, i).trim()), reward = GameController.getCard(name.substring(i + 2).trim());
+            if (quest == null)
+                return null;
+            quest = quest.clone();
+            quest.abilities.get(0).setSpecificTarget(reward);
+            return quest;
+        }
+        return null;
     }
 
-    public static String getRandomCardName(Class<? extends Card> cardClass, String name) {
-        try {
-            getSubclass(name);
-            return name;
-        } catch (NoSuchFileException e) {
-            ArrayList<Card> cards = new ArrayList<>();
-            for (Card card : GameController.getCardsList())
-                if (cardClass.isAssignableFrom(card.getClass()))
-                    cards.add(card);
-            int n = cards.size();
-            return cards.get((int) ((Math.random() * n) % n)).toString();
-        }
+    private static <C> C getRandomCard(Class<C> cardClass) {
+        ArrayList<Card> possibleCards = new ArrayList<>();
+        for (Card card : GameController.getCardsList())
+            if (card.getClass() == cardClass)
+                possibleCards.add(card);
+        return (C) getRandomElement(possibleCards);
+    }
+
+    private static Card getRandomHeroCard() {
+        ArrayList<Card> possibleCards = new ArrayList<>();
+        for (Card card : GameController.getCardsList())
+            if (card.getHeroClass() != HeroClass.NEUTRAL)
+                possibleCards.add(card);
+        return getRandomElement(possibleCards);
     }
 }

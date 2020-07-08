@@ -9,7 +9,7 @@ import java.io.*;
 import java.util.*;
 
 public class DeckPair implements Configable {
-    private ArrayList<Card> friendly, enemy;
+    private ArrayList<String> friendly, enemy;
     private Deck friendlyDeck, enemyDeck;
 
     public DeckPair() {}
@@ -26,8 +26,18 @@ public class DeckPair implements Configable {
 
     @Override
     public void initialize(GameController controller) {
-        friendlyDeck = new Deck(friendly);
-        enemyDeck = new Deck(enemy);
+        ArrayList<Card> friendlyCards = new ArrayList<>();
+        for (String s : friendly)
+            friendlyCards.add(Card.getCard(s));
+        friendlyDeck = new Deck(friendlyCards);
+
+        ArrayList<Card> enemyCards = new ArrayList<>();
+        for (String s : enemy)
+            enemyCards.add(Card.getCard(s));
+        enemyDeck = new Deck(enemyCards);
+
+        System.out.println(friendlyCards);
+        System.out.println(enemyCards);
     }
 
     @Override

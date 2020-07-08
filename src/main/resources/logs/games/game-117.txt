@@ -1,0 +1,24 @@
+GAME_ID: 117
+STARTED_AT:  2020/07/09 00:59:54 
+
+p1: hasti
+p1_hero: mage
+p1_deck: Deck Reader
+
+p2: hasti
+p2_hero: mage
+p2_deck: Deck Reader
+
+p2:end_turn 2020/07/09 00:59:56 
+p1:end_turn 2020/07/09 00:59:57 
+p2:end_turn 2020/07/09 00:59:57 
+p1:end_turn 2020/07/09 00:59:57 
+p2:end_turn 2020/07/09 00:59:58 
+p1:end_turn 2020/07/09 00:59:58 
+p2:end_turn 2020/07/09 01:00:03 
+p1:end_turn 2020/07/09 01:00:03 
+p2:end_turn 2020/07/09 01:00:05 
+p1:end_turn 2020/07/09 01:00:05 
+p2:end_turn 2020/07/09 01:00:09 
+p1:end_turn 2020/07/09 01:00:09 
+p2:end_turn 2020/07/09 01:00:10 

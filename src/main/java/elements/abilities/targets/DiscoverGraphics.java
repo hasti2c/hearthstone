@@ -40,7 +40,7 @@ public class DiscoverGraphics {
         for (Card card : targets) {
             ImageView iv = card.getImageView(250, -1);
             cardsHBox.getChildren().add(iv);
-            iv.addEventHandler(MouseEvent.MOUSE_CLICKED, new DiscoverEventHandler(card , iv));
+            iv.addEventHandler(MouseEvent.MOUSE_CLICKED, new DiscoverEventHandler(card, iv));
         }
     }
 

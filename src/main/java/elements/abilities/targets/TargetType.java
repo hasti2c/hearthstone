@@ -2,6 +2,7 @@ package elements.abilities.targets;
 
 public enum TargetType {
     SELF,
+    SPECIFIC,
     PLAYED,
     ALL_ELSE,
     RANDOM_FRIENDLY,

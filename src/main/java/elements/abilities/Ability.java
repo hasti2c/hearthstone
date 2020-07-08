@@ -25,6 +25,7 @@ public abstract class Ability implements Configable {
     protected PlayerSide callerSide;
     protected TargetType targetType;
     protected ArrayList<ElementType> targetElementTypes = new ArrayList<>();
+    private Element specificTarget;
     private int times = 1;
     private int targetAttack, targetHealth, targetMana;
     private boolean hasTaunt = false, hasRush = false;
@@ -85,6 +86,7 @@ public abstract class Ability implements Configable {
         ArrayList<Element> targets = new ArrayList<>();
         switch (targetType) {
             case SELF -> addIfValid(targets, caller);
+            case SPECIFIC -> addIfValid(targets, specificTarget);
             case PLAYED -> addIfValid(targets, played);
             case ALL_ELSE -> {
                 for (Card card : actionPerformer.getOpponent().getMinionsInGame())
@@ -268,6 +270,11 @@ public abstract class Ability implements Configable {
 
     public Ability getNextAbility() {
         return nextAbility;
+    }
+
+    public void setSpecificTarget(Card reward) {
+        targetType = SPECIFIC;
+        specificTarget = reward;
     }
 
     private class SelectionEventHandler extends TargetEventHandler {

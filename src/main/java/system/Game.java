@@ -35,6 +35,7 @@ public class Game {
         Deck[] decks = deckPair.getDecks();
         characters[0] = new GamePlayer(controller, this, PlayerFaction.FRIENDLY, decks[0]);
         characters[1] = new GamePlayer(controller, this, PlayerFaction.ENEMY, decks[1]);
+        timer = new Timer(this);
     }
 
     public void startGame() {
