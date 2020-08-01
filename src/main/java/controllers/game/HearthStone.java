@@ -17,6 +17,5 @@ public class HearthStone extends Application {
         game = GameController.getInstance();
         graphics = new GraphicsController(game, primaryStage);
     }
-
 }
 
