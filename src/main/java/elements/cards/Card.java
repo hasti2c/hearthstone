@@ -1,24 +1,20 @@
 package elements.cards;
 
-import controllers.game.*;
-import elements.ElementType;
+import server.Controller;
 import elements.abilities.targets.Targetable;
 import elements.Playable;
 import elements.heros.*;
-import system.Configable;
 
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
-
-import static elements.ElementType.*;
 
 public abstract class Card extends Playable implements Targetable, Comparable<Card> {
     private int price;
     private RarityType rarity;
 
     @Override
-    public String getJsonPath(GameController controller, String name) {
+    public String getJsonPath(Controller controller, String name) {
         try {
             return "cards/" + getSubclass(name).getSimpleName() + "/";
         } catch (NoSuchFileException e) {
@@ -128,7 +124,7 @@ public abstract class Card extends Playable implements Targetable, Comparable<Ca
     }
 
     public static Card getCard(String name) {
-        Card card = GameController.getCard(name);
+        Card card = Controller.getCard(name);
         if (card != null)
             return card;
         switch (name.toLowerCase()) {
@@ -140,7 +136,7 @@ public abstract class Card extends Playable implements Targetable, Comparable<Ca
         }
         if (name.contains("->")) {
             int i = name.indexOf("->");
-            Card quest = GameController.getCard(name.substring(0, i).trim()), reward = GameController.getCard(name.substring(i + 2).trim());
+            Card quest = Controller.getCard(name.substring(0, i).trim()), reward = Controller.getCard(name.substring(i + 2).trim());
             if (quest == null)
                 return null;
             quest = quest.clone();
@@ -152,7 +148,7 @@ public abstract class Card extends Playable implements Targetable, Comparable<Ca
 
     private static <C> C getRandomCard(Class<C> cardClass) {
         ArrayList<Card> possibleCards = new ArrayList<>();
-        for (Card card : GameController.getCardsList())
+        for (Card card : Controller.getCardsList())
             if (card.getClass() == cardClass)
                 possibleCards.add(card);
         return (C) getRandomElement(possibleCards);
@@ -160,7 +156,7 @@ public abstract class Card extends Playable implements Targetable, Comparable<Ca
 
     private static Card getRandomHeroCard() {
         ArrayList<Card> possibleCards = new ArrayList<>();
-        for (Card card : GameController.getCardsList())
+        for (Card card : Controller.getCardsList())
             if (card.getHeroClass() != HeroClass.NEUTRAL)
                 possibleCards.add(card);
         return getRandomElement(possibleCards);

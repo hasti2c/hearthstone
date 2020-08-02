@@ -1,13 +1,10 @@
 package elements;
 
-import controllers.game.GameController;
+import server.Controller;
 import elements.cards.Card;
-import elements.Element;
 import elements.abilities.*;
-import elements.cards.QuestAndReward;
 import elements.heros.HeroClass;
 import system.player.Character;
-import system.player.GamePlayer;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
@@ -31,7 +28,7 @@ public abstract class Playable extends Element {
     private RemoveCard removeCardAbility;
 
     @Override
-    public void initialize(GameController controller) {
+    public void initialize(Controller controller) {
         abilities = new ArrayList<>();
         if (changeStatsAbility != null)
             abilities.add(changeStatsAbility);

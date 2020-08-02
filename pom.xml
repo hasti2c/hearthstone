@@ -29,7 +29,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>controllers.game.HearthStone</mainClass>
+                    <mainClass>server.HearthStone</mainClass>
                 </configuration>
             </plugin>
         </plugins>

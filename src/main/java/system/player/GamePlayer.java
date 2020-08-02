@@ -1,31 +1,22 @@
 package system.player;
 
-import controllers.game.*;
-import elements.Element;
-import elements.abilities.targets.Attackable;
-import elements.Playable;
+import server.Controller;
 import system.Game;
-import graphics.directories.playground.GamePlayerGraphics;
 import elements.cards.*;
 import elements.heros.*;
-import javafx.scene.Node;
-import javafx.util.Pair;
-
-import java.lang.reflect.*;
-import java.util.*;
 
 public class GamePlayer extends Character {
     private final String name;
     private final Inventory inventory;
 
-    public GamePlayer(GameController controller, Game game, PlayerFaction playerFaction) {
+    public GamePlayer(Controller controller, Game game, PlayerFaction playerFaction) {
         super(controller.getCurrentHero().clone(), controller.getCurrentDeck(), game, playerFaction);
         Player player = controller.getCurrentPlayer();
         name = player.toString();
         inventory = player.getInventory();
     }
 
-    public GamePlayer(GameController controller, Game game, PlayerFaction playerFaction, Deck deck) {
+    public GamePlayer(Controller controller, Game game, PlayerFaction playerFaction, Deck deck) {
         super(deck.getHero(controller.getCurrentPlayer().getInventory()), deck, game, playerFaction);
         Player player = controller.getCurrentPlayer();
         name = player.toString();

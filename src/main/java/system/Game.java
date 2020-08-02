@@ -1,29 +1,29 @@
 package system;
 
-import controllers.game.*;
+import server.Controller;
 import elements.cards.Card;
 import elements.heros.*;
-import graphics.directories.playground.PlayGround;
+import client.graphics.directories.playground.PlayGround;
 import system.player.Character;
 import system.player.GamePlayer;
 import system.player.NPC;
 import system.player.PlayerFaction;
 
-import java.io.*;
 import java.util.ArrayList;
 
 public class Game {
-    private final GameController controller;
+    private final Controller controller;
     private final Character[] characters = new Character[2];
-    private int id, turn = 0;
+    private final int id;
+    private int turn = 0;
     private final int playerCount = 2;
-    private Logger logger;
-    private Timer timer;
+    private final Logger logger;
+    private final Timer timer;
     private int time = 60;
     private PlayGround playGround;
-    private boolean deckReader;
+    private final boolean deckReader;
 
-    public Game(GameController controller, int playerCount) {
+    public Game(Controller controller, int playerCount) {
         this.controller = controller;
         characters[0] = new GamePlayer(controller, this, PlayerFaction.FRIENDLY);
         if (playerCount == 2)
@@ -37,7 +37,7 @@ public class Game {
         deckReader = false;
     }
 
-    public Game(GameController controller, DeckPair deckPair) {
+    public Game(Controller controller, DeckPair deckPair) {
         this.controller = controller;
         Deck[] decks = deckPair.getDecks();
         characters[0] = new GamePlayer(controller, this, PlayerFaction.FRIENDLY, decks[0]);

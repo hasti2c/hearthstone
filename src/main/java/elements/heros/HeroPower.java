@@ -1,10 +1,9 @@
 package elements.heros;
 
-import controllers.game.*;
+import server.Controller;
 import elements.abilities.*;
 import elements.Playable;
 import system.player.Character;
-import system.player.GamePlayer;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -23,7 +22,7 @@ public class HeroPower extends Playable {
     }
 
     @Override
-    public void initialize(GameController controller) {
+    public void initialize(Controller controller) {
         super.initialize(controller);
         demote();
     }
@@ -41,7 +40,7 @@ public class HeroPower extends Playable {
     }
 
     @Override
-    public String getJsonPath(GameController controller, String name) {
+    public String getJsonPath(Controller controller, String name) {
         return "hero powers/";
     }
 

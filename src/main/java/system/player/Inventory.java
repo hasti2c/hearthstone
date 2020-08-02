@@ -1,7 +1,7 @@
 package system.player;
 
 import com.google.gson.stream.*;
-import controllers.game.*;
+import server.Controller;
 import elements.cards.*;
 import elements.heros.*;
 import system.Configable;
@@ -19,10 +19,10 @@ public class Inventory implements Configable {
     public Inventory() {}
 
     @Override
-    public void initialize(GameController controller) {}
+    public void initialize(Controller controller) {}
 
     @Override
-    public String getJsonPath(GameController controller, String name) {
+    public String getJsonPath(Controller controller, String name) {
         return "players/";
     }
 
@@ -150,7 +150,7 @@ public class Inventory implements Configable {
         for (Card card : allCards)
             if (card.toString().equals(cardName))
                 return card;
-        for (Card card : GameController.getCardsList())
+        for (Card card : Controller.getCardsList())
             if (card.toString().equals(cardName)) {
                 Card cardClone = card.clone();
                 allCards.add(cardClone);

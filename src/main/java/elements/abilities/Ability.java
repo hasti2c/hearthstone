@@ -1,6 +1,6 @@
 package elements.abilities;
 
-import controllers.game.*;
+import server.Controller;
 import elements.Element;
 import elements.ElementType;
 import elements.abilities.targets.*;
@@ -9,7 +9,7 @@ import system.*;
 import elements.cards.*;
 import system.player.Character;
 import system.player.GamePlayer;
-import graphics.directories.playground.GamePlayerGraphics;
+import client.graphics.directories.playground.GamePlayerGraphics;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Pair;
@@ -36,12 +36,12 @@ public abstract class Ability implements Configable {
     private Attack nextAttack;
 
     @Override
-    public void initialize(GameController controller) {
+    public void initialize(Controller controller) {
         setNextAbility();
     }
 
     @Override
-    public String getJsonPath(GameController controller, String name) {
+    public String getJsonPath(Controller controller, String name) {
         return null;
     }
 
@@ -112,19 +112,19 @@ public abstract class Ability implements Configable {
                 targets.add(Element.getRandomElement(possibleElements));
             }
             case RANDOM -> {
-                ArrayList<Element> possibleElements = getValidSublist(GameController.getCardsList());
+                ArrayList<Element> possibleElements = getValidSublist(Controller.getCardsList());
                 if (possibleElements.size() > 0)
                     targets.add(Element.getRandomElement(possibleElements));
             }
             case BY_STATS -> {
                 ArrayList<Element> possibleElements = new ArrayList<>();
-                for (Card card : GameController.getCardsList())
+                for (Card card : Controller.getCardsList())
                     if (isValidTarget(card) && card instanceof Minion minion && matchesStats(minion))
                         possibleElements.add(card);
                 if (possibleElements.size() > 0)
                     targets.add(Element.getRandomElement(possibleElements));
                 else {
-                    Minion minion = (Minion) Element.getRandomElement(getValidSublist(GameController.getCardsList()));
+                    Minion minion = (Minion) Element.getRandomElement(getValidSublist(Controller.getCardsList()));
                     if (minion == null)
                         break;
                     Minion minionClone = (Minion) minion.clone();
@@ -179,7 +179,7 @@ public abstract class Ability implements Configable {
                     addIfValid(targets, actionPerformer.getCurrentWeapon());
             }
             case DISCOVER -> {
-                ArrayList<Element> possibleElements = getValidSublist(GameController.getCardsList());
+                ArrayList<Element> possibleElements = getValidSublist(Controller.getCardsList());
                 for (int i = 0; i < 3; i++) {
                     Card card = (Card) Element.getRandomElement(possibleElements);
                     if (card != null)

@@ -1,6 +1,6 @@
 package system;
 
-import controllers.game.GameController;
+import server.Controller;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -42,7 +42,7 @@ public class Logger {
         try {
             if (!"STARTED_AT: ".equals(type) && !"ENDED_AT: ".equals(type))
                 events += type + " " + details + "\n";
-            writer.write(type + " " + GameController.getTime() + " " + details + "\n");
+            writer.write(type + " " + Controller.getTime() + " " + details + "\n");
             writer.flush();
         } catch (IOException e) {
             e.printStackTrace();

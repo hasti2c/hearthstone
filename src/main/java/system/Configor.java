@@ -1,8 +1,7 @@
 package system;
 
 import com.google.gson.stream.*;
-import controllers.game.*;
-import elements.ElementType;
+import server.Controller;
 import elements.cards.*;
 import java.io.*;
 import java.lang.reflect.*;
@@ -15,14 +14,14 @@ public class Configor<O extends Configable> {
     private final String name;
     private final JsonReader jsonReader;
     private O object;
-    private GameController controller;
+    private Controller controller;
 
-    public Configor(GameController controller, String name, Class<O> objectClass, JsonReader jsonReader) throws FileNotFoundException {
+    public Configor(Controller controller, String name, Class<O> objectClass, JsonReader jsonReader) throws FileNotFoundException {
         this.controller = controller;
         this.name = name;
         try {
             object = objectClass.getDeclaredConstructor().newInstance();
-            if (this.controller == null && object instanceof GameController c)
+            if (this.controller == null && object instanceof Controller c)
                 this.controller = c;
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
@@ -30,12 +29,12 @@ public class Configor<O extends Configable> {
         this.jsonReader = jsonReader;
     }
 
-    public Configor(GameController controller, String name, Class<O> objectClass) throws FileNotFoundException {
+    public Configor(Controller controller, String name, Class<O> objectClass) throws FileNotFoundException {
         this.controller = controller;
         this.name = name;
         try {
             object = objectClass.getDeclaredConstructor().newInstance();
-            if (this.controller == null && object instanceof GameController c)
+            if (this.controller == null && object instanceof Controller c)
                 this.controller = c;
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();

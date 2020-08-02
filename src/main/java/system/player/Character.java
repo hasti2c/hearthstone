@@ -7,8 +7,7 @@ import elements.cards.*;
 import elements.heros.Deck;
 import elements.heros.Hero;
 import elements.heros.HeroPower;
-import graphics.directories.playground.CharacterGraphics;
-import graphics.directories.playground.GamePlayerGraphics;
+import client.graphics.directories.playground.CharacterGraphics;
 import javafx.scene.Node;
 import javafx.util.Pair;
 import system.Game;
@@ -374,4 +373,10 @@ public abstract class Character {
     }
 
     public abstract void addWin();
+
+    public ArrayList<Attackable> getAttackables() {
+        ArrayList<Attackable> ret = new ArrayList<>(minionsInGame);
+        ret.add(hero);
+        return ret;
+    }
 }

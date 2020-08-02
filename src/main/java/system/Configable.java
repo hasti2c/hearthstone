@@ -1,8 +1,8 @@
 package system;
 
-import controllers.game.*;
+import server.Controller;
 
 public interface Configable {
-    void initialize(GameController controller);
-    String getJsonPath(GameController controller, String name);
+    void initialize(Controller controller);
+    String getJsonPath(Controller controller, String name);
 }

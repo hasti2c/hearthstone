@@ -1,9 +1,8 @@
 package elements.cards;
 
-import controllers.game.GameController;
+import server.Controller;
 import elements.abilities.targets.Attackable;
 import system.player.Character;
-import system.player.GamePlayer;
 
 import static elements.ElementType.MINION;
 
@@ -18,7 +17,7 @@ public class Minion extends Card implements Attackable {
     }
 
     @Override
-    public void initialize(GameController controller) {
+    public void initialize(Controller controller) {
         super.initialize(controller);
         setAsleep(true);
     }
@@ -115,7 +114,7 @@ public class Minion extends Card implements Attackable {
     }
 
     public void restore() {
-        Minion minion = (Minion) GameController.getCard(name);
+        Minion minion = (Minion) Controller.getCard(name);
         health = minion.health;
     }
 

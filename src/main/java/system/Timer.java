@@ -1,6 +1,5 @@
 package system;
 
-import controllers.game.GameController;
 import javafx.application.Platform;
 
 public class Timer extends Thread {

@@ -1,11 +1,11 @@
 package elements.heros;
 
 import java.io.*;
-import controllers.game.*;
+
+import server.Controller;
 import elements.Element;
 import elements.abilities.targets.Attackable;
 import system.player.Character;
-import system.player.GamePlayer;
 import javafx.scene.image.*;
 
 import static elements.ElementType.HERO;
@@ -21,12 +21,12 @@ public class Hero extends Element implements Attackable {
     }
 
     @Override
-    public void initialize(GameController controller) {
+    public void initialize(Controller controller) {
         configGameImage();
     }
 
     @Override
-    public String getJsonPath(GameController controller, String name) {
+    public String getJsonPath(Controller controller, String name) {
         return "heros/";
     }
 

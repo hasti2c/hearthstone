@@ -4,7 +4,7 @@ import elements.cards.Card;
 import elements.Element;
 import elements.abilities.Ability;
 import system.player.GamePlayer;
-import graphics.directories.playground.PlayGround;
+import client.graphics.directories.playground.PlayGround;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

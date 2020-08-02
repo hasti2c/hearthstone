@@ -1,6 +1,5 @@
 package elements.cards;
 
-import controllers.game.GameController;
 import elements.ElementType;
 import elements.Playable;
 import elements.heros.HeroPower;

@@ -1,10 +1,9 @@
 package system.player;
 
 import java.io.*;
-import java.nio.file.Files;
 
 import com.google.gson.stream.*;
-import controllers.game.*;
+import server.Controller;
 import elements.heros.*;
 import elements.cards.*;
 import system.Configable;
@@ -16,17 +15,17 @@ public class Player implements Configable {
     private String username, password;
     private int balance, id;
     private Inventory inventory;
-    private GameController controller;
+    private Controller controller;
     private Game game;
     private Logger logger;
 
-    public static Player getExistingPlayer(GameController controller, String username) throws FileNotFoundException {
+    public static Player getExistingPlayer(Controller controller, String username) throws FileNotFoundException {
         controller.setInitPlayerName(username);
         Configor<Player> configor = new Configor<>(controller, username, Player.class);
         return configor.getConfigedObject();
     }
 
-    public static Player getNewPlayer(GameController controller, String username, String password) {
+    public static Player getNewPlayer(Controller controller, String username, String password) {
         Player player = new Player();
         player.username = username;
         player.password = password;
@@ -38,13 +37,13 @@ public class Player implements Configable {
     }
 
     @Override
-    public void initialize(GameController controller) {
+    public void initialize(Controller controller) {
         this.controller = controller;
         logger = new Logger("src/main/resources/logs/players/" + username + "-" + id + ".txt");
     }
 
     @Override
-    public String getJsonPath(GameController controller, String name) {
+    public String getJsonPath(Controller controller, String name) {
         return "players/";
     }
 

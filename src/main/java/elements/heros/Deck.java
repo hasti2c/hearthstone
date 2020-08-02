@@ -3,7 +3,7 @@ package elements.heros;
 import java.io.*;
 import java.util.*;
 import com.google.gson.stream.*;
-import controllers.game.*;
+import server.Controller;
 import system.*;
 import elements.cards.*;
 import system.player.Inventory;
@@ -31,11 +31,11 @@ public class Deck implements Comparable<Deck>, Configable {
     }
 
     @Override
-    public void initialize(GameController controller) {
+    public void initialize(Controller controller) {
     }
 
     @Override
-    public String getJsonPath(GameController controller, String name) {
+    public String getJsonPath(Controller controller, String name) {
         return "decks/" + controller.getInitPlayerName() + "/";
     }
 
