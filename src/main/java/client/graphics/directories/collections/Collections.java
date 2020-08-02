@@ -13,9 +13,10 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
-import server.commands.Command;
-import server.commands.CommandType;
-import server.Controller;
+import shared.commands.Command;
+import shared.GameData;
+
+import static shared.commands.types.ServerCommandType.*;
 
 public class Collections extends Directory {
     private ArrayList<Hero> heros;
@@ -58,7 +59,7 @@ public class Collections extends Directory {
         neutralButton.setOnAction(e -> displayHeroCards(HeroClass.NEUTRAL));
         for (HeroClass hc : HeroClass.values())
             if (hc != HeroClass.NEUTRAL) {
-                Button button = new Button("View " + Controller.toProperCase(hc.toString()) + " Cards");
+                Button button = new Button("View " + GameData.getInstance().toProperCase(hc.toString()) + " Cards");
                 button.setOnAction(e -> displayHeroCards(hc));
                 if (topHBox1.getChildren().size() < 4)
                     topHBox1.getChildren().add(button);
@@ -108,7 +109,7 @@ public class Collections extends Directory {
     }
 
     private void selectDeck(elements.heros.Deck deck) {
-        client.runCommand(new Command(CommandType.SELECT, deck));
+        client.request(new Command<>(SELECT, deck));
         config();
     }
 
@@ -121,7 +122,7 @@ public class Collections extends Directory {
         optionAndQuestionBox.display();
 
         if (optionAndQuestionBox.getButtonResponse()) {
-            if (!client.runCommand(new Command(CommandType.ADD_DECK, optionAndQuestionBox.getHeroChoice(), optionAndQuestionBox.getDeckName())))
+            if (!client.request(new Command<>(ADD_DECK, optionAndQuestionBox.getHeroChoice(), optionAndQuestionBox.getDeckName())))
                 deckNameError();
         }
         config();
@@ -131,7 +132,7 @@ public class Collections extends Directory {
         QuestionBox questionBox = new QuestionBox("What is the name you want to set for " + deck.toString() + "?", "Done", "Cancel");
         questionBox.display();
         if (questionBox.getButtonResponse()) {
-            if (!client.runCommand(new Command(CommandType.RENAME, deck, questionBox.getText())))
+            if (!client.request(new Command<>(RENAME, deck, questionBox.getText())))
                 deckNameError();
         }
         config();
@@ -145,7 +146,7 @@ public class Collections extends Directory {
         optionBox.display();
         if (optionBox.getButtonResponse()) {
             HeroClass heroClass = HeroClass.valueOf(optionBox.getChoice().toUpperCase());
-            if (!client.runCommand(new Command(CommandType.MOVE, deck, heroClass))) {
+            if (!client.request(new Command<>(MOVE, deck, heroClass))) {
                 String alert = """
                         Hero change couldn't be done.
                         Possible reasons include:
@@ -163,7 +164,7 @@ public class Collections extends Directory {
         ConfirmationBox confirmationBox = new ConfirmationBox("Are you sure you want to delete the deck " + deck.toString() + "?", "Yes", "No");
         confirmationBox.display();
         if (confirmationBox.getResponse())
-            client.runCommand(new Command(CommandType.REMOVE_DECK, deck));
+            client.request(new Command<>(REMOVE_DECK, deck));
         config();
     }
 

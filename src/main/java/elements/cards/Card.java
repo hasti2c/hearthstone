@@ -4,6 +4,8 @@ import server.Controller;
 import elements.abilities.targets.Targetable;
 import elements.Playable;
 import elements.heros.*;
+import shared.GameData;
+import system.Game;
 
 import java.io.*;
 import java.nio.file.*;
@@ -124,7 +126,8 @@ public abstract class Card extends Playable implements Targetable, Comparable<Ca
     }
 
     public static Card getCard(String name) {
-        Card card = Controller.getCard(name);
+        GameData data = GameData.getInstance();
+        Card card = data.getCard(name);
         if (card != null)
             return card;
         switch (name.toLowerCase()) {
@@ -136,7 +139,7 @@ public abstract class Card extends Playable implements Targetable, Comparable<Ca
         }
         if (name.contains("->")) {
             int i = name.indexOf("->");
-            Card quest = Controller.getCard(name.substring(0, i).trim()), reward = Controller.getCard(name.substring(i + 2).trim());
+            Card quest = data.getCard(name.substring(0, i).trim()), reward = data.getCard(name.substring(i + 2).trim());
             if (quest == null)
                 return null;
             quest = quest.clone();
@@ -148,7 +151,7 @@ public abstract class Card extends Playable implements Targetable, Comparable<Ca
 
     private static <C> C getRandomCard(Class<C> cardClass) {
         ArrayList<Card> possibleCards = new ArrayList<>();
-        for (Card card : Controller.getCardsList())
+        for (Card card : GameData.getInstance().getCardsList())
             if (card.getClass() == cardClass)
                 possibleCards.add(card);
         return (C) getRandomElement(possibleCards);
@@ -156,7 +159,7 @@ public abstract class Card extends Playable implements Targetable, Comparable<Ca
 
     private static Card getRandomHeroCard() {
         ArrayList<Card> possibleCards = new ArrayList<>();
-        for (Card card : Controller.getCardsList())
+        for (Card card : GameData.getInstance().getCardsList())
             if (card.getHeroClass() != HeroClass.NEUTRAL)
                 possibleCards.add(card);
         return getRandomElement(possibleCards);

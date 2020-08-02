@@ -1,8 +1,7 @@
 package client.graphics;
 
 import client.Client;
-import server.commands.Command;
-import server.commands.CommandType;
+import shared.commands.Command;
 import server.Controller;
 import elements.cards.*;
 import system.player.Player;
@@ -10,6 +9,8 @@ import client.graphics.directories.*;
 import client.graphics.directories.collections.*;
 import javafx.scene.*;
 import javafx.stage.*;
+
+import static shared.commands.types.ServerCommandType.*;
 
 public class GraphicsController {
     private final Stage stage;
@@ -39,7 +40,7 @@ public class GraphicsController {
     }
 
     public void exit() {
-        client.runCommand(new Command(CommandType.EXIT));
+        client.request(new Command<>(EXIT));
         stage.close();
     }
 
@@ -48,7 +49,7 @@ public class GraphicsController {
     }
 
     public void displayStartPage() {
-        client.runCommand(new Command(CommandType.LOGOUT));
+        client.request(new Command<>(LOGOUT));
         startPage.display();
     }
 

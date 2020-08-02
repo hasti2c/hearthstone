@@ -1,7 +1,7 @@
 package client.graphics.directories.playground;
 
 import client.Client;
-import server.commands.*;
+import shared.commands.*;
 import elements.abilities.targets.Attackable;
 import elements.abilities.targets.TargetEventHandler;
 import elements.abilities.targets.Targetable;
@@ -15,6 +15,8 @@ import javafx.event.*;
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.input.*;
+
+import static shared.commands.types.ServerCommandType.*;
 
 public class GamePlayerGraphics extends CharacterGraphics<GamePlayer> {
     private Attackable selectedAttackable;
@@ -82,7 +84,7 @@ public class GamePlayerGraphics extends CharacterGraphics<GamePlayer> {
         @Override
         public void handle(MouseEvent mouseEvent) {
             if (mouseEvent.getEventType() == MouseEvent.MOUSE_CLICKED) {
-                client.runCommand(new Command(CommandType.PLAY, card));
+                client.request(new Command<>(PLAY, card));
                 if (!card.needsTarget())
                     playGround.config();
             } else if (mouseEvent.getEventType() == MouseEvent.MOUSE_ENTERED) {
@@ -158,7 +160,7 @@ public class GamePlayerGraphics extends CharacterGraphics<GamePlayer> {
         @Override
         protected void doAction() {
             GamePlayerGraphics current = (GamePlayerGraphics) playGround.getCurrentCharacter();
-            client.runCommand(new Command(CommandType.ATTACK, current.getSelectedAttackable(), selectedAttackable));
+            client.request(new Command<>(ATTACK, current.getSelectedAttackable(), selectedAttackable));
             playGround.config();
         }
     }

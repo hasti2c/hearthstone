@@ -1,11 +1,13 @@
 package client.graphics.directories;
 
 import client.Client;
-import server.commands.*;
+import shared.commands.*;
 import client.graphics.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+
+import static shared.commands.types.ServerCommandType.*;
 
 public class StartPage extends Directory {
     @FXML
@@ -38,7 +40,7 @@ public class StartPage extends Directory {
     @FXML
     private void runSignUp() {
         vBox.getChildren().removeAll(loginError, signUpError);
-        if (!client.runCommand(new Command(CommandType.SIGN_UP, usernameField.getText(), passwordField.getText()))) {
+        if (!client.request(new Command<>(SIGN_UP, usernameField.getText(), passwordField.getText()))) {
             vBox.getChildren().add(0, signUpError);
         } else
             controller.displayHome();
@@ -49,7 +51,7 @@ public class StartPage extends Directory {
     @FXML
     private void runLogin() {
         vBox.getChildren().removeAll(loginError, signUpError);
-        if (!client.runCommand(new Command(CommandType.LOGIN, usernameField.getText(), passwordField.getText()))) {
+        if (!client.request(new Command<>(LOGIN, usernameField.getText(), passwordField.getText()))) {
             vBox.getChildren().add(0, loginError);
         } else
             controller.displayHome();

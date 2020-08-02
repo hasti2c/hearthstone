@@ -1,6 +1,6 @@
-package server.commands;
+package shared.commands.types;
 
-public enum CommandType {
+public enum ServerCommandType implements CommandType {
     SIGN_UP,
     LOGIN,
     EXIT,

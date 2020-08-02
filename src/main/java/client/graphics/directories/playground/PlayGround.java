@@ -1,7 +1,7 @@
 package client.graphics.directories.playground;
 
 import client.Client;
-import server.commands.*;
+import shared.commands.*;
 import elements.abilities.targets.DiscoverGraphics;
 import elements.cards.Card;
 import javafx.event.EventHandler;
@@ -21,6 +21,8 @@ import system.player.NPC;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import static shared.commands.types.ServerCommandType.*;
 
 public class PlayGround extends Directory {
     private final Game game;
@@ -61,7 +63,7 @@ public class PlayGround extends Directory {
         });
 
         endTurnButton.setOnAction(e -> {
-            client.runCommand(new Command(CommandType.END_TURN));
+            client.request(new Command<>(END_TURN));
             config();
         });
 
@@ -191,7 +193,7 @@ public class PlayGround extends Directory {
 
         private void hide() {
             PlayGround.this.pane.getChildren().remove(pane);
-            client.runCommand(new Command(CommandType.START_GAME, cards));
+            client.request(new Command<>(START_GAME, cards));
             PlayGround.this.config();
         }
 

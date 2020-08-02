@@ -1,7 +1,7 @@
 package client.graphics.directories.collections;
 
 import client.Client;
-import server.commands.*;
+import shared.commands.*;
 import elements.cards.*;
 import elements.heros.*;
 import client.graphics.*;
@@ -11,6 +11,8 @@ import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
+
+import static shared.commands.types.ServerCommandType.*;
 
 public class DeckGraphics extends CardsList {
     private final elements.heros.Deck deck;
@@ -86,12 +88,12 @@ public class DeckGraphics extends CardsList {
     }
 
     private void removeCard(Card card) {
-        client.runCommand(new Command(CommandType.REMOVE_CARD, deck, card));
+        client.request(new Command<>(REMOVE_CARD, deck, card));
         config();
     }
 
     private void addCard(Card card) {
-        if (!client.runCommand(new Command(CommandType.ADD_CARD, deck, card)))
+        if (!client.request(new Command<>(ADD_CARD, deck, card)))
             (new AlertBox("This card couldn't be added to the deck. This deck is full.", Color.RED, "Okay")).display();
         config();
     }

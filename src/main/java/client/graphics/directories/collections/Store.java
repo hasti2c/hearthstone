@@ -4,8 +4,7 @@ import client.Client;
 import com.jfoenix.controls.*;
 import elements.cards.*;
 import elements.heros.*;
-import server.commands.Command;
-import server.commands.CommandType;
+import shared.commands.Command;
 import system.player.Player;
 import client.graphics.*;
 import client.graphics.popups.*;
@@ -13,6 +12,8 @@ import javafx.fxml.*;
 import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+
+import static shared.commands.types.ServerCommandType.*;
 
 public class Store extends CardsList {
     private boolean sellMode = false;
@@ -78,7 +79,7 @@ public class Store extends CardsList {
             ConfirmationBox confirmationBox = new ConfirmationBox(text, "Proceed", "Cancel");
             confirmationBox.display();
             if (confirmationBox.getResponse())
-                client.runCommand(new Command(CommandType.BUY, c));
+                client.request(new Command<>(BUY, c));
         } else {
             String text = "You don't have enough money to buy \"" + c + "\".\n" +
                     "Current Balance: " + currentPlayer.getBalance() + "\n" +
@@ -98,7 +99,7 @@ public class Store extends CardsList {
             ConfirmationBox confirmationBox = new ConfirmationBox(text, "Proceed", "Cancel");
             confirmationBox.display();
             if (confirmationBox.getResponse())
-                client.runCommand(new Command(CommandType.SELL, c));
+                client.request(new Command<>(SELL, c));
         } else {
             String text = "You can't sell \"" + c + "\", because it is in at least one of your decks.";
             new AlertBox(text, "Okay").display();

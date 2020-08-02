@@ -3,9 +3,9 @@ package client.graphics.directories.collections;
 import java.util.*;
 
 import client.Client;
-import server.Controller;
 import elements.cards.*;
 import elements.heros.*;
+import shared.GameData;
 import system.player.Player;
 import client.graphics.*;
 import client.graphics.directories.*;
@@ -62,7 +62,7 @@ public abstract class CardsList extends Directory {
 
         Player player = controller.getCurrentPlayer();
         owned.addAll(player.getInventory().getAllCards());
-        for (Card c : Controller.getCardsList())
+        for (Card c : GameData.getInstance().getCardsList())
             if (!owned.contains(c))
                 notOwned.add(c);
         arrangeCards();
@@ -121,8 +121,8 @@ public abstract class CardsList extends Directory {
 
     private boolean selectedCard(Card card) {
         boolean ret = options.get("Unlocked");
-        ret &= options.get(Controller.toNonEnumCase(card.getElementType().toString()));
-        ret &= options.get(Controller.toNonEnumCase(card.getHeroClass().toString()));
+        ret &= options.get(GameData.getInstance().toNonEnumCase(card.getElementType().toString()));
+        ret &= options.get(GameData.getInstance().toNonEnumCase(card.getHeroClass().toString()));
         if (this instanceof DeckGraphics dg) {
             if (dg.getDeck().getCards().contains(card))
                 ret &= options.get("In Deck");
@@ -222,7 +222,7 @@ public abstract class CardsList extends Directory {
         private void configChangeableVBox() {
             CardsList parent = CardsList.this;
             for (HeroClass hc : HeroClass.values())
-                addCheckBox(Controller.toProperCase(hc.toString()), parent.validHero(hc), parent.validHero(hc));
+                addCheckBox(GameData.getInstance().toProperCase(hc.toString()), parent.validHero(hc), parent.validHero(hc));
             if (parent instanceof DeckGraphics) {
                 changeableVBox.getChildren().add(new Separator());
                 addCheckBox("In Deck", true, true);
@@ -258,7 +258,7 @@ public abstract class CardsList extends Directory {
         }
 
         private void initSort() {
-            sortType = SortType.valueOf(Controller.toEnumCase(((RadioButton) sort.getSelectedToggle()).getText()));
+            sortType = SortType.valueOf(GameData.getInstance().toEnumCase(((RadioButton) sort.getSelectedToggle()).getText()));
 
             for (Toggle t : sort.getToggles())
                 configToggle((RadioButton) t);
@@ -269,7 +269,7 @@ public abstract class CardsList extends Directory {
                 radioButton.setSelected(true);
             radioButton.setOnAction(e -> {
                 if (radioButton.isSelected())
-                    tmpSortType = SortType.valueOf(Controller.toEnumCase(radioButton.getText()));
+                    tmpSortType = SortType.valueOf(GameData.getInstance().toEnumCase(radioButton.getText()));
             });
         }
 

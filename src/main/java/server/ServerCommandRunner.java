@@ -1,88 +1,86 @@
-package server.commands;
-
-import java.io.*;
-import java.util.*;
+package server;
 
 import client.Client;
-import server.Controller;
 import elements.abilities.targets.Attackable;
+import elements.cards.Card;
+import elements.heros.Deck;
+import elements.heros.DeckPair;
+import elements.heros.HeroClass;
+import server.Controller;
+import shared.commands.Command;
+import shared.commands.CommandRunner;
+import shared.commands.types.ServerCommandType;
 import system.Game;
 import system.player.Player;
-import client.graphics.GraphicsController;
-import elements.heros.*;
-import elements.cards.*;
 
-public class CommandRunner {
-    private final Controller controller;
-    private final Client client;
-    private static final ArrayList<Character> usernameChars = new ArrayList<>();
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-    static {
-        for (char c = 'a'; c <= 'z'; c++)
-            usernameChars.add(c);
-        for (char c = 'A'; c <= 'Z'; c++)
-            usernameChars.add(c);
-        for (char c = '0'; c <= '9'; c++)
-            usernameChars.add(c);
-        usernameChars.add('_');
-        usernameChars.add('.');
-    }
+import static shared.commands.types.ServerCommandType.*;
 
-    public CommandRunner(Controller controller, Client client) {
+public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
+    protected final Controller controller;
+    protected final Client client;
+
+    public ServerCommandRunner(Controller controller, Client client) {
         this.controller = controller;
         this.client = client;
     }
 
-    public boolean run(Command command) {
-        CommandType commandType = command.getCommandType();
+    @Override
+    public boolean run(Command<ServerCommandType> command) {
+        ServerCommandType commandType = command.getCommandType();
         Object[] input = command.getInput();
 
         boolean ret = false;
-        if (CommandType.SIGN_UP.equals(commandType) && input[0] instanceof String username && input[1] instanceof String password)
+        if (SIGN_UP.equals(commandType) && input[0] instanceof String username && input[1] instanceof String password)
             ret = runSignup(username, password);
-        else if (CommandType.LOGIN.equals(commandType) && input[0] instanceof String username && input[1] instanceof String password)
+        else if (LOGIN.equals(commandType) && input[0] instanceof String username && input[1] instanceof String password)
             ret = runLogin(username, password);
-        else if (CommandType.EXIT.equals(commandType))
+        else if (EXIT.equals(commandType))
             ret = logout();
 
         if (controller.getCurrentPlayer() == null)
             return ret;
 
-        if (CommandType.DELETE.equals(commandType))
+        if (DELETE.equals(commandType))
             ret = runDeletePlayer();
-        else if (CommandType.SELECT.equals(commandType) && input[0] instanceof Deck deck)
+        else if (SELECT.equals(commandType) && input[0] instanceof Deck deck)
             ret = selectDeck(deck);
-        else if (CommandType.DESELECT.equals(commandType) && input[0] instanceof Deck deck)
+        else if (DESELECT.equals(commandType) && input[0] instanceof Deck deck)
             ret = deselectDeck(deck);
-        else if (CommandType.ADD_DECK.equals(commandType) && input[0] instanceof HeroClass heroClass && input[1] instanceof String name)
+        else if (ADD_DECK.equals(commandType) && input[0] instanceof HeroClass heroClass && input[1] instanceof String name)
             ret = addDeck(heroClass, name);
-        else if (CommandType.ADD_CARD.equals(commandType) && input[0] instanceof Deck deck && input[1] instanceof Card card)
+        else if (ADD_CARD.equals(commandType) && input[0] instanceof Deck deck && input[1] instanceof Card card)
             ret = addCard(deck, card);
-        else if (CommandType.REMOVE_DECK.equals(commandType) && input[0] instanceof Deck deck)
+        else if (REMOVE_DECK.equals(commandType) && input[0] instanceof Deck deck)
             ret = removeDeck(deck);
-        else if (CommandType.REMOVE_CARD.equals(commandType) && input[0] instanceof Deck deck && input[1] instanceof Card card)
+        else if (REMOVE_CARD.equals(commandType) && input[0] instanceof Deck deck && input[1] instanceof Card card)
             ret = removeCard(deck, card);
-        else if (CommandType.MOVE.equals(commandType) && input[0] instanceof Deck deck && input[1] instanceof HeroClass heroClass)
+        else if (MOVE.equals(commandType) && input[0] instanceof Deck deck && input[1] instanceof HeroClass heroClass)
             ret = moveDeck(deck, heroClass);
-        else if (CommandType.RENAME.equals(commandType) && input[0] instanceof Deck deck && input[1] instanceof String deckName)
+        else if (RENAME.equals(commandType) && input[0] instanceof Deck deck && input[1] instanceof String deckName)
             ret = renameDeck(deck, deckName);
-        else if (CommandType.BUY.equals(commandType) && input[0] instanceof Card card)
+        else if (BUY.equals(commandType) && input[0] instanceof Card card)
             ret = buyCard(card);
-        else if (CommandType.SELL.equals(commandType) && input[0] instanceof Card card)
+        else if (SELL.equals(commandType) && input[0] instanceof Card card)
             ret = sellCard(card);
-        else if (CommandType.CREATE_GAME.equals(commandType) && input[0] instanceof Integer num)
+        else if (CREATE_GAME.equals(commandType) && input[0] instanceof Integer num)
             ret = createGame(num);
-        else if (CommandType.START_GAME.equals(commandType) && isCards(input))
+        else if (START_GAME.equals(commandType) && isCards(input))
             ret = startGame(new ArrayList<>(Arrays.asList((Card[]) input)));
-        else if (CommandType.DECK_READER.equals(commandType))
+        else if (DECK_READER.equals(commandType))
             ret = deckReader();
-        else if (CommandType.PLAY.equals(commandType) && input[0] instanceof Card card)
+        else if (PLAY.equals(commandType) && input[0] instanceof Card card)
             ret = playCard(card);
-        else if (CommandType.END_TURN.equals(commandType))
+        else if (END_TURN.equals(commandType))
             ret = endTurn();
-        else if (CommandType.HERO_POWER.equals(commandType))
+        else if (HERO_POWER.equals(commandType))
             ret = heroPower();
-        else if (CommandType.ATTACK.equals(commandType) && input[0] instanceof Attackable attacker && input[1] instanceof Attackable defender)
+        else if (ATTACK.equals(commandType) && input[0] instanceof Attackable attacker && input[1] instanceof Attackable defender)
             ret = attack(attacker, defender);
 
         if (ret && controller.getCurrentPlayer() != null)
@@ -97,16 +95,29 @@ public class CommandRunner {
         return true;
     }
 
+    private ArrayList<Character> getUsernameChars() {
+        ArrayList<Character> usernameChars = new ArrayList<>();
+        for (char c = 'a'; c <= 'z'; c++)
+            usernameChars.add(c);
+        for (char c = 'A'; c <= 'Z'; c++)
+            usernameChars.add(c);
+        for (char c = '0'; c <= '9'; c++)
+            usernameChars.add(c);
+        usernameChars.add('_');
+        usernameChars.add('.');
+        return usernameChars;
+    }
+
     private boolean validUsername(String name) {
         for (int i = 0; i < name.length(); i++)
-            if (!usernameChars.contains(name.charAt(i)))
+            if (!getUsernameChars().contains(name.charAt(i)))
                 return false;
         return true;
     }
 
     private boolean validDeckName(String name) {
         for (int i = 0; i < name.length(); i++)
-            if (!usernameChars.contains(name.charAt(i)) && name.charAt(i) != ' ')
+            if (!getUsernameChars().contains(name.charAt(i)) && name.charAt(i) != ' ')
                 return false;
         for (Deck deck : controller.getCurrentPlayer().getInventory().getAllDecks())
             if (deck.toString().equals(name))

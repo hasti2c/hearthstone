@@ -5,6 +5,7 @@ import elements.Element;
 import elements.ElementType;
 import elements.abilities.targets.*;
 import elements.Playable;
+import shared.GameData;
 import system.*;
 import elements.cards.*;
 import system.player.Character;
@@ -83,6 +84,7 @@ public abstract class Ability implements Configable {
     protected abstract void doAction(Character actionPerformer, Element caller, Element target);
 
     private ArrayList<Element> getTarget(Character actionPerformer, Element caller, Card played) {
+        ArrayList<Card> cardsList = GameData.getInstance().getCardsList();
         ArrayList<Element> targets = new ArrayList<>();
         switch (targetType) {
             case SELF -> addIfValid(targets, caller);
@@ -112,19 +114,19 @@ public abstract class Ability implements Configable {
                 targets.add(Element.getRandomElement(possibleElements));
             }
             case RANDOM -> {
-                ArrayList<Element> possibleElements = getValidSublist(Controller.getCardsList());
+                ArrayList<Element> possibleElements = getValidSublist(cardsList);
                 if (possibleElements.size() > 0)
                     targets.add(Element.getRandomElement(possibleElements));
             }
             case BY_STATS -> {
                 ArrayList<Element> possibleElements = new ArrayList<>();
-                for (Card card : Controller.getCardsList())
+                for (Card card : cardsList)
                     if (isValidTarget(card) && card instanceof Minion minion && matchesStats(minion))
                         possibleElements.add(card);
                 if (possibleElements.size() > 0)
                     targets.add(Element.getRandomElement(possibleElements));
                 else {
-                    Minion minion = (Minion) Element.getRandomElement(getValidSublist(Controller.getCardsList()));
+                    Minion minion = (Minion) Element.getRandomElement(getValidSublist(cardsList));
                     if (minion == null)
                         break;
                     Minion minionClone = (Minion) minion.clone();
@@ -179,7 +181,7 @@ public abstract class Ability implements Configable {
                     addIfValid(targets, actionPerformer.getCurrentWeapon());
             }
             case DISCOVER -> {
-                ArrayList<Element> possibleElements = getValidSublist(Controller.getCardsList());
+                ArrayList<Element> possibleElements = getValidSublist(cardsList);
                 for (int i = 0; i < 3; i++) {
                     Card card = (Card) Element.getRandomElement(possibleElements);
                     if (card != null)

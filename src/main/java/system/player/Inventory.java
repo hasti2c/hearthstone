@@ -4,6 +4,7 @@ import com.google.gson.stream.*;
 import server.Controller;
 import elements.cards.*;
 import elements.heros.*;
+import shared.GameData;
 import system.Configable;
 
 import java.io.*;
@@ -150,7 +151,7 @@ public class Inventory implements Configable {
         for (Card card : allCards)
             if (card.toString().equals(cardName))
                 return card;
-        for (Card card : Controller.getCardsList())
+        for (Card card : GameData.getInstance().getCardsList())
             if (card.toString().equals(cardName)) {
                 Card cardClone = card.clone();
                 allCards.add(cardClone);

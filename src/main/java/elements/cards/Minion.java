@@ -2,6 +2,7 @@ package elements.cards;
 
 import server.Controller;
 import elements.abilities.targets.Attackable;
+import shared.GameData;
 import system.player.Character;
 
 import static elements.ElementType.MINION;
@@ -114,7 +115,7 @@ public class Minion extends Card implements Attackable {
     }
 
     public void restore() {
-        Minion minion = (Minion) Controller.getCard(name);
+        Minion minion = (Minion) GameData.getInstance().getCard(name);
         health = minion.health;
     }
 

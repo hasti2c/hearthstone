@@ -5,6 +5,7 @@ import java.time.*;
 import java.time.format.*;
 import java.util.*;
 
+import shared.GameData;
 import system.*;
 import elements.cards.*;
 import elements.heros.*;
@@ -16,9 +17,10 @@ public class Controller implements Configable {
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     private int playerCount, gameCount;
     private String initPlayerName;
-    private static ArrayList<Hero> herosList = new ArrayList<>();
-    private static ArrayList<Card> cardsList = new ArrayList<>();
-    private final String defaultPath = "src/main/resources/database/defaults.json";
+
+    public Controller() {
+        GameData.getInstance();
+    }
 
     public static Controller getInstance() {
         Configor<Controller> configor = null;
@@ -28,13 +30,6 @@ public class Controller implements Configable {
             e.printStackTrace();
         }
         return configor.getConfigedObject();
-    }
-
-    public static Card getCard(String name) {
-        for (Card card : cardsList)
-            if (card.toString().equals(name))
-                return card;
-        return null;
     }
 
     @Override
@@ -51,10 +46,6 @@ public class Controller implements Configable {
 
     public void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
-    }
-
-    public static ArrayList<Card> getCardsList() {
-        return cardsList;
     }
 
     public int getPlayerCount() {
@@ -98,46 +89,14 @@ public class Controller implements Configable {
         return ret;
     }
 
-    public static String toProperCase(String s) {
-        s = s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
-        for (int i = 1; i < s.length(); i++)
-            if (s.charAt(i - 1) == ' ')
-                s = s.substring(0, i - 1).toLowerCase() + s.substring(i, i + 1).toUpperCase() + s.substring(i + 1).toLowerCase();
-        return s;
-    }
-
-    public static String toNonEnumCase(String s) {
-        s = (toProperCase(s)).replace('_', ' ');
-        for (int i = 1; i < s.length(); i++)
-            if (s.charAt(i - 1) == ' ')
-                s = s.substring(0, i) + s.substring(i, i + 1).toUpperCase() + s.substring(i + 1);
-        return s;
-    }
-
-    public static String toEnumCase(String s) {
-        return (s.toUpperCase()).replace(' ', '_');
-    }
-
     private void updateJson() {
         try {
-            JsonWriter jsonWriter = new JsonWriter(new FileWriter(defaultPath));
+            JsonWriter jsonWriter = new JsonWriter(new FileWriter("src/main/resources/database/defaults.json"));
             jsonWriter.setIndent("  ");
 
             jsonWriter.beginObject();
             jsonWriter.name("playerCount").value(playerCount);
             jsonWriter.name("gameCount").value(gameCount);
-
-            jsonWriter.name("herosList");
-            jsonWriter.beginArray();
-            for (Hero h : herosList)
-                jsonWriter.value(h.toString());
-            jsonWriter.endArray();
-
-            jsonWriter.name("cardsList");
-            jsonWriter.beginArray();
-            for (Card c : cardsList)
-                jsonWriter.value(c.toString());
-            jsonWriter.endArray();
 
             jsonWriter.name("defaultPlayer").value("-def-");
 

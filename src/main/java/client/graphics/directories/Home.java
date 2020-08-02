@@ -1,7 +1,7 @@
 package client.graphics.directories;
 
 import client.Client;
-import server.commands.*;
+import shared.commands.*;
 import elements.cards.Passive;
 import system.*;
 import system.player.Inventory;
@@ -12,6 +12,8 @@ import client.graphics.popups.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+
+import static shared.commands.types.ServerCommandType.*;
 
 public class Home extends Directory {
     private PlayGround playGround;
@@ -91,7 +93,7 @@ public class Home extends Directory {
             collectionsButton.setOnAction(e -> displayCollections());
             deckReaderButton.setOnAction(e -> {
                 close();
-                client.runCommand(new Command(CommandType.DECK_READER));
+                client.request(new Command<>(DECK_READER));
                 displayPlayGround();
             });
         }
@@ -144,7 +146,7 @@ public class Home extends Directory {
 
         private void createGame(int playerCount) {
             close();
-            client.runCommand(new Command(CommandType.CREATE_GAME, playerCount));
+            client.request(new Command<>(CREATE_GAME, playerCount));
             game = controller.getCurrentPlayer().getGame();
             game.getCharacters()[0].setPassive(passiveChoiceBox.getValue());
             game.getCharacters()[1].setPassive(passiveChoiceBox.getValue());

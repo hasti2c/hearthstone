@@ -1,24 +1,25 @@
-package server.commands;
+package shared.commands;
 
 import elements.abilities.targets.Attackable;
 import elements.cards.Card;
 import elements.heros.Deck;
 import elements.heros.HeroClass;
+import shared.commands.types.CommandType;
 
-public class Command {
-    private final CommandType commandType;
+public class Command <T extends CommandType> {
+    private final T commandType;
     private final Object[] input;
 
-    public Command(CommandType commandType, Object ...input) {
+    public Command(T commandType, Object ...input) {
         this.commandType = commandType;
         this.input = input;
     }
 
-    CommandType getCommandType() {
+    public T getCommandType() {
         return commandType;
     }
 
-    Object[] getInput() {
+    public Object[] getInput() {
         return input;
     }
 
