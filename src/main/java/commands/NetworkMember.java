@@ -1,19 +1,25 @@
 package commands;
 
-import shared.*;
 import commands.types.*;
+import shared.Controller;
 
-public class NetworkMember <T extends CommandType> {
+import java.util.ArrayList;
+
+public abstract class NetworkMember <T extends CommandType> {
     protected Controller<T> controller;
     protected CommandRunner<T> runner;
     protected CommandParser<T> parser;
     protected NetworkMember<?> target;
 
-    public NetworkMember(Controller<T> controller) {
+    protected NetworkMember(Controller<T> controller) {
         this.controller = controller;
     }
 
-    public NetworkMember(Controller<T> controller, NetworkMember<?> target) {
+    protected NetworkMember(NetworkMember<?> target) {
+        this.target = target;
+    }
+
+    protected NetworkMember(Controller<T> controller, NetworkMember<?> target) {
         this.controller = controller;
         this.target = target;
     }

@@ -29,7 +29,16 @@ public abstract class Character {
     protected CharacterGraphics<? extends Character> graphics;
 
     public Character(Hero hero, Deck deck, Game game, PlayerFaction playerFaction) {
-        this.hero = hero;
+        this.hero = hero.clone();
+        this.deck = deck;
+        leftInDeck = deck.getCardClones();
+        this.game = game;
+        this.playerFaction = playerFaction;
+        playerNumber = playerFaction.getPlayerNumber();
+    }
+
+    public Character(HeroClass heroClass, Deck deck, Game game, PlayerFaction playerFaction) {
+        this.hero = heroClass.getHero().clone();
         this.deck = deck;
         leftInDeck = deck.getCardClones();
         this.game = game;

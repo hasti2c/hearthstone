@@ -2,8 +2,8 @@ package shared;
 
 import elements.cards.*;
 import elements.heros.*;
-import server.*;
 import system.*;
+import system.player.Player;
 
 import java.io.*;
 import java.util.*;
@@ -12,14 +12,14 @@ public class GameData implements Configable {
     private static GameData gameData;
     private final ArrayList<Hero> herosList = new ArrayList<>();
     private final ArrayList<Card> cardsList = new ArrayList<>();
+    private Player defaultPlayer;
+    private String initPlayerName;
 
     @Override
-    public void initialize(ServerController controller) {
-
-    }
+    public void initialize() {}
 
     @Override
-    public String getJsonPath(ServerController controller, String name) {
+    public String getJsonPath(String name) {
         return "";
     }
 
@@ -27,7 +27,7 @@ public class GameData implements Configable {
         if (gameData == null) {
             Configor<GameData> configor = null;
             try {
-                configor = new Configor<>(null, "gameData", GameData.class);
+                configor = new Configor<>("gameData", GameData.class);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -38,6 +38,10 @@ public class GameData implements Configable {
 
     public ArrayList<Card> getCardsList() {
         return cardsList;
+    }
+
+    public ArrayList<Hero> getHerosList() {
+        return herosList;
     }
 
     public Card getCard(String name) {
@@ -65,5 +69,17 @@ public class GameData implements Configable {
 
     public String toEnumCase(String s) {
         return (s.toUpperCase()).replace(' ', '_');
+    }
+
+    public Player getDefaultPlayer() {
+        return defaultPlayer;
+    }
+
+    public void setInitPlayerName(String initPlayerName) {
+        this.initPlayerName = initPlayerName;
+    }
+
+    public String getInitPlayerName() {
+        return initPlayerName;
     }
 }

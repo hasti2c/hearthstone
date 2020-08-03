@@ -2,6 +2,7 @@ package elements.heros;
 
 import elements.*;
 import elements.cards.*;
+import shared.GameData;
 import system.player.*;
 import javafx.scene.image.*;
 import java.io.*;
@@ -13,6 +14,13 @@ public enum HeroClass {
     WARLOCK,
     HUNTER,
     PRIEST;
+
+    public Hero getHero() {
+        for (Hero h : GameData.getInstance().getHerosList())
+            if (h.toString().equalsIgnoreCase(toString()))
+                return h;
+        return null;
+    }
 
     public Hero getHero(Inventory inventory) {
         for (Hero h : inventory.getAllHeros())

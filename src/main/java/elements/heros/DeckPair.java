@@ -1,6 +1,5 @@
 package elements.heros;
 
-import server.*;
 import elements.cards.*;
 import system.*;
 
@@ -13,9 +12,9 @@ public class DeckPair implements Configable {
 
     public DeckPair() {}
 
-    public static DeckPair getInstance(ServerController controller) {
+    public static DeckPair getInstance() {
         try {
-            Configor<DeckPair> configor = new Configor<>(controller, "config", DeckPair.class);
+            Configor<DeckPair> configor = new Configor<>("config", DeckPair.class);
             return configor.getConfigedObject();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -24,7 +23,7 @@ public class DeckPair implements Configable {
     }
 
     @Override
-    public void initialize(ServerController controller) {
+    public void initialize() {
         ArrayList<Card> friendlyCards = new ArrayList<>();
         for (String s : friendly)
             friendlyCards.add(Card.getCard(s));
@@ -37,7 +36,7 @@ public class DeckPair implements Configable {
     }
 
     @Override
-    public String getJsonPath(ServerController controller, String name) {
+    public String getJsonPath(String name) {
         return "decks/";
     }
 

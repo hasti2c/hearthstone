@@ -3,13 +3,14 @@ package elements.heros;
 import java.io.*;
 import java.util.*;
 import com.google.gson.stream.*;
-import server.*;
+import shared.GameData;
 import system.*;
 import elements.cards.*;
 import system.player.*;
 
 public class Deck implements Comparable<Deck>, Configable {
     private String name;
+    private String playerName;
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Integer> uses = new ArrayList<>();
     private HeroClass heroClass;
@@ -17,10 +18,11 @@ public class Deck implements Comparable<Deck>, Configable {
 
     public Deck() {}
 
-    public Deck(String name, HeroClass heroClass, int maxSize) {
+    public Deck(String name, HeroClass heroClass, int maxSize, String playerName) {
         this.name = name;
         this.heroClass = heroClass;
         this.maxSize = maxSize;
+        this.playerName = playerName;
     }
 
     public Deck(ArrayList<Card> cards) {
@@ -31,15 +33,16 @@ public class Deck implements Comparable<Deck>, Configable {
     }
 
     @Override
-    public void initialize(ServerController controller) {
+    public void initialize() {
+        playerName = GameData.getInstance().getInitPlayerName();
     }
 
     @Override
-    public String getJsonPath(ServerController controller, String name) {
-        return "decks/" + controller.getInitPlayerName() + "/";
+    public String getJsonPath(String name) {
+        return "decks/" + GameData.getInstance().getInitPlayerName() + "/";
     }
 
-    public void updateJson(String playerName) {
+    public void updateJson() {
         try {
             JsonWriter jsonWriter = new JsonWriter(new FileWriter("src/main/resources/database/decks/" + playerName + "/" + name + ".json"));
             jsonWriter.setIndent("  ");
@@ -48,6 +51,7 @@ public class Deck implements Comparable<Deck>, Configable {
 
             jsonWriter.name("name").value(name);
             jsonWriter.name("heroClass").value(heroClass.toString());
+            jsonWriter.name("playerName").value(playerName);
 
             jsonWriter.name("cards");
             jsonWriter.beginArray();
@@ -127,6 +131,7 @@ public class Deck implements Comparable<Deck>, Configable {
         deck.cards = new ArrayList<>(cards);
         deck.wins = wins;
         deck.games = games;
+        deck.playerName = playerName;
         return deck;
     }
 

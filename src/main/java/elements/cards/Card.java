@@ -1,9 +1,9 @@
 package elements.cards;
 
-import server.ServerController;
 import elements.abilities.targets.Targetable;
 import elements.Playable;
 import elements.heros.*;
+import shared.Controller;
 import shared.GameData;
 
 import java.io.*;
@@ -15,7 +15,7 @@ public abstract class Card extends Playable implements Targetable, Comparable<Ca
     private RarityType rarity;
 
     @Override
-    public String getJsonPath(ServerController controller, String name) {
+    public String getJsonPath(String name) {
         try {
             return "cards/" + getSubclass(name).getSimpleName() + "/";
         } catch (NoSuchFileException e) {

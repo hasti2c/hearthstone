@@ -1,31 +1,34 @@
 package server;
 
-import java.io.*;
-import java.time.*;
-import java.time.format.*;
-import java.util.*;
+import com.google.gson.stream.JsonWriter;
+import commands.types.ServerCommandType;
+import elements.heros.Deck;
+import elements.heros.Hero;
+import shared.Controller;
+import shared.GameData;
+import system.Configable;
+import system.Configor;
+import system.player.Player;
 
-import shared.*;
-import commands.types.*;
-import system.*;
-import elements.heros.*;
-import com.google.gson.stream.*;
-import system.player.*;
+import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class ServerController extends Controller<ServerCommandType> implements Configable {
-    private Player currentPlayer = null, defaultPlayer;
+    private Player currentPlayer = null;
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     private int playerCount, gameCount;
     private String initPlayerName;
 
-    public ServerController() {
+    private ServerController() {
         GameData.getInstance();
     }
 
     public static ServerController getInstance() {
         Configor<ServerController> configor = null;
         try {
-            configor = new Configor<>(null, "defaults", ServerController.class);
+            configor = new Configor<>("defaults", ServerController.class);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -33,10 +36,10 @@ public class ServerController extends Controller<ServerCommandType> implements C
     }
 
     @Override
-    public void initialize(ServerController controller) {}
+    public void initialize() {}
 
     @Override
-    public String getJsonPath(ServerController controller, String name) {
+    public String getJsonPath(String name) {
         return "";
     }
 
@@ -98,8 +101,6 @@ public class ServerController extends Controller<ServerCommandType> implements C
             jsonWriter.name("playerCount").value(playerCount);
             jsonWriter.name("gameCount").value(gameCount);
 
-            jsonWriter.name("defaultPlayer").value("-def-");
-
             jsonWriter.endObject();
             jsonWriter.close();
         } catch (IOException e) {
@@ -113,10 +114,6 @@ public class ServerController extends Controller<ServerCommandType> implements C
 
     public void setInitPlayerName(String initPlayerName) {
         this.initPlayerName = initPlayerName;
-    }
-
-    public Player getDefaultPlayer() {
-        return defaultPlayer;
     }
 
     public Hero getCurrentHero() {

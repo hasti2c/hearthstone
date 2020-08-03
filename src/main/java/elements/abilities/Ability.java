@@ -1,6 +1,5 @@
 package elements.abilities;
 
-import server.*;
 import elements.*;
 import elements.abilities.targets.*;
 import shared.*;
@@ -34,12 +33,12 @@ public abstract class Ability implements Configable {
     private Attack nextAttack;
 
     @Override
-    public void initialize(ServerController controller) {
+    public void initialize() {
         setNextAbility();
     }
 
     @Override
-    public String getJsonPath(ServerController controller, String name) {
+    public String getJsonPath(String name) {
         return null;
     }
 

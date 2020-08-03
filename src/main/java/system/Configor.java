@@ -1,7 +1,6 @@
 package system;
 
 import com.google.gson.stream.*;
-import server.*;
 import elements.cards.*;
 import java.io.*;
 import java.lang.reflect.*;
@@ -9,37 +8,32 @@ import java.nio.file.*;
 import java.util.*;
 
 public class Configor<O extends Configable> {
-    private static final Map<Class, Map<String, ?>> instances = new HashMap<>();
-
+    private static final Map<Class<?>, Map<String, ?>> instances = new HashMap<>();
     private final String name;
     private final JsonReader jsonReader;
     private O object;
-    private ServerController controller;
 
-    public Configor(ServerController controller, String name, Class<O> objectClass, JsonReader jsonReader) throws FileNotFoundException {
-        this.controller = controller;
+    public Configor(String name, Class<O> objectClass, JsonReader jsonReader) {
         this.name = name;
         try {
             object = objectClass.getDeclaredConstructor().newInstance();
-            if (this.controller == null && object instanceof ServerController c)
-                this.controller = c;
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
         this.jsonReader = jsonReader;
     }
 
-    public Configor(ServerController controller, String name, Class<O> objectClass) throws FileNotFoundException {
-        this.controller = controller;
+    public Configor(String name, Class<O> objectClass) throws FileNotFoundException {
         this.name = name;
         try {
-            object = objectClass.getDeclaredConstructor().newInstance();
-            if (this.controller == null && object instanceof ServerController c)
-                this.controller = c;
+            Constructor<O> constructor = objectClass.getDeclaredConstructor();
+            constructor.setAccessible(true);
+            object = constructor.newInstance();
+            constructor.setAccessible(false);
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
-        jsonReader = new JsonReader(new FileReader("src/main/resources/database/" + object.getJsonPath(controller, name) + name + ".json"));
+        jsonReader = new JsonReader(new FileReader("src/main/resources/database/" + object.getJsonPath(name) + name + ".json"));
     }
 
     public O getConfigedObject() {
@@ -47,7 +41,7 @@ public class Configor<O extends Configable> {
             config();
         else
             object = getObjectFromMap();
-        object.initialize(controller);
+        object.initialize();
         return object;
     }
 
@@ -76,6 +70,7 @@ public class Configor<O extends Configable> {
                 currentClass = currentClass.getSuperclass();
             }
         }
+        System.out.println(object.getClass() + " " + fieldName);
         throw new NoSuchFieldException();
     }
 
@@ -161,7 +156,7 @@ public class Configor<O extends Configable> {
 
     private <T extends Configable> T readObject(Class<T> readType, String objectName) {
         try {
-            Configor<T> objectConfigor = new Configor<>(controller, objectName, readType);
+            Configor<T> objectConfigor = new Configor<>(objectName, readType);
             return objectConfigor.getConfigedObject();
         } catch (IOException e) {
             e.printStackTrace();
@@ -170,13 +165,8 @@ public class Configor<O extends Configable> {
     }
 
     private <T extends Configable> T readObject(Class<T> readType) {
-        try {
-            Configor<T> objectConfigor = new Configor<>(controller, name + "." + readType.getSimpleName(), readType, jsonReader);
-            return objectConfigor.getConfigedObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        Configor<T> objectConfigor = new Configor<>(name + "." + readType.getSimpleName(), readType, jsonReader);
+        return objectConfigor.getConfigedObject();
     }
 
     private <T extends Enum<T>> T readEnum(Class<T> readType) {

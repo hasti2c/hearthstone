@@ -22,11 +22,11 @@ public class ClientController extends Controller<ClientCommandType> {
     private final ServerController serverController;
     private Player currentPlayer;
 
-    public ClientController(Client client, Stage stage) {
+    ClientController(Client client, Stage stage) {
+        this.stage = stage;
         this.client = client;
         serverController = (ServerController) client.getTarget().getController();
-        this.stage = stage;
-        currentPlayer = serverController.getCurrentPlayer();
+        currentPlayer = this.serverController.getCurrentPlayer();
         startPage = new StartPage(this, client);
         home = new Home(this, client);
     }
@@ -76,5 +76,11 @@ public class ClientController extends Controller<ClientCommandType> {
     @Override
     public ArrayList<?> getObjectsList(String name) {
         return new ArrayList<>();
+    }
+
+    //TODO
+    @Override
+    public String getInitPlayerName() {
+        return "hasti";
     }
 }

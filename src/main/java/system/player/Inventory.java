@@ -1,7 +1,6 @@
 package system.player;
 
 import com.google.gson.stream.*;
-import server.*;
 import elements.cards.*;
 import elements.heros.*;
 import shared.*;
@@ -20,10 +19,10 @@ public class Inventory implements Configable {
     public Inventory() {}
 
     @Override
-    public void initialize(ServerController controller) {}
+    public void initialize() {}
 
     @Override
-    public String getJsonPath(ServerController controller, String name) {
+    public String getJsonPath(String name) {
         return "players/";
     }
 
@@ -134,7 +133,7 @@ public class Inventory implements Configable {
             jsonWriter.beginArray();
             for (Deck deck : allDecks) {
                 jsonWriter.value(deck.toString());
-                deck.updateJson(playerName);
+                deck.updateJson();
             }
             jsonWriter.endArray();
 

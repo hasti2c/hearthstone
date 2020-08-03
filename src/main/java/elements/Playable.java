@@ -1,9 +1,9 @@
 package elements;
 
-import server.*;
 import elements.cards.*;
 import elements.abilities.*;
 import elements.heros.*;
+import shared.Controller;
 import system.player.Character;
 import javafx.scene.image.*;
 import javafx.scene.paint.*;
@@ -25,7 +25,7 @@ public abstract class Playable extends Element {
     private RemoveCard removeCardAbility;
 
     @Override
-    public void initialize(ServerController controller) {
+    public void initialize() {
         abilities = new ArrayList<>();
         if (changeStatsAbility != null)
             abilities.add(changeStatsAbility);

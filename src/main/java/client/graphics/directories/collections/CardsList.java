@@ -36,7 +36,7 @@ public abstract class CardsList extends Directory {
     @FXML
     private TextField searchField;
 
-    CardsList(ClientController controller, Client client) {
+    public CardsList(ClientController controller, Client client) {
         super(controller, client);
         if (backButton != null)
             backButton.setOnAction(e -> {
@@ -287,14 +287,14 @@ public abstract class CardsList extends Directory {
             CardsList.this.config();
         }
 
-        protected void fixOwned(boolean disable, boolean selected) {
+        public void fixOwned(boolean disable, boolean selected) {
             ownedBox.setSelected(selected);
             ownedBox.setDisable(disable);
             tmpOptions.replace("Owned", selected);
             options.replace("Owned", selected);
         }
 
-        protected void fixNotOwned(boolean disable, boolean selected) {
+        public void fixNotOwned(boolean disable, boolean selected) {
             notOwnedBox.setSelected(selected);
             notOwnedBox.setDisable(disable);
             tmpOptions.replace("Not Owned", selected);

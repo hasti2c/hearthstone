@@ -9,7 +9,7 @@ public class Client extends NetworkMember<ClientCommandType> {
     private final ClientController graphics;
 
     public Client(Server target, Stage stage) {
-        super(new ClientController(), target);
+        super(target);
         runner = new ClientCommandRunner();
         parser = new CommandParser<>(controller, ClientCommandType.class);
 

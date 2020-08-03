@@ -6,19 +6,19 @@ import com.google.gson.stream.*;
 import server.*;
 import elements.heros.*;
 import elements.cards.*;
+import shared.GameData;
 import system.*;
 
 public class Player implements Configable {
     private String username, password;
     private int balance, id;
     private Inventory inventory;
-    private ServerController controller;
     private Game game;
     private Logger logger;
 
-    public static Player getExistingPlayer(ServerController controller, String username) throws FileNotFoundException {
-        controller.setInitPlayerName(username);
-        Configor<Player> configor = new Configor<>(controller, username, Player.class);
+    public static Player getExistingPlayer(String username) throws FileNotFoundException {
+        GameData.getInstance().setInitPlayerName(username);
+        Configor<Player> configor = new Configor<>(username, Player.class);
         return configor.getConfigedObject();
     }
 
@@ -27,25 +27,24 @@ public class Player implements Configable {
         player.username = username;
         player.password = password;
         player.id = controller.getPlayerCount();
-        player.initialize(controller);
+        player.initialize();
         player.copyDefault();
         Configor.putInMap(player, username);
         return player;
     }
 
     @Override
-    public void initialize(ServerController controller) {
-        this.controller = controller;
+    public void initialize() {
         logger = new Logger("src/main/resources/logs/players/" + username + "-" + id + ".txt");
     }
 
     @Override
-    public String getJsonPath(ServerController controller, String name) {
+    public String getJsonPath(String name) {
         return "players/";
     }
 
     private void copyDefault() {
-        Player defaultPlayer = controller.getDefaultPlayer();
+        Player defaultPlayer = GameData.getInstance().getDefaultPlayer();
         balance = defaultPlayer.balance;
         inventory = Inventory.copyDefault(defaultPlayer);
     }
@@ -121,7 +120,7 @@ public class Player implements Configable {
         for (Deck d : inventory.getAllDecks())
             if (d.toString().equals(name))
                 return false;
-        Deck deck = new Deck(name, heroClass, inventory.getDeckCap());
+        Deck deck = new Deck(name, heroClass, inventory.getDeckCap(), username);
         inventory.addDeck(deck);
         try {
             String path = "src/main/resources/database/decks/" + username + "/" + name + ".json";

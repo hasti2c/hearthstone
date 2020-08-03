@@ -135,7 +135,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
 
     private boolean runLogin(String username, String password) {
         try {
-            Player p = Player.getExistingPlayer(controller, username);
+            Player p = Player.getExistingPlayer(username);
             return login(p, password);
         } catch (IOException e) {
             return false;
@@ -294,7 +294,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private boolean deckReader() {
-        DeckPair deckPair = DeckPair.getInstance(controller);
+        DeckPair deckPair = DeckPair.getInstance();
         if (deckPair == null)
             return false;
         Game game = new Game(controller, deckPair);
