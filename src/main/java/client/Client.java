@@ -1,19 +1,19 @@
 package client;
 
-import client.graphics.GraphicsController;
-import javafx.stage.Stage;
-import server.Controller;
-import server.Server;
-import shared.commands.Command;
-import shared.commands.NetworkMember;
-import shared.commands.types.ClientCommandType;
+import javafx.stage.*;
+import server.*;
+import commands.*;
+import commands.types.*;
 
 public class Client extends NetworkMember<ClientCommandType> {
-    private final GraphicsController graphics;
+    private final ClientController graphics;
 
     public Client(Server target, Stage stage) {
-        super(target);
-        graphics = new GraphicsController(this, Controller.getInstance(), stage);
+        super(new ClientController(), target);
+        runner = new ClientCommandRunner();
+        parser = new CommandParser<>(controller, ClientCommandType.class);
+
+        graphics = new ClientController(this, stage);
         target.setClient(this);
         graphics.start();
     }

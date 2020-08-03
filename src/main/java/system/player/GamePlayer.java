@@ -1,7 +1,7 @@
 package system.player;
 
-import server.Controller;
-import system.Game;
+import server.*;
+import system.*;
 import elements.cards.*;
 import elements.heros.*;
 
@@ -9,14 +9,14 @@ public class GamePlayer extends Character {
     private final String name;
     private final Inventory inventory;
 
-    public GamePlayer(Controller controller, Game game, PlayerFaction playerFaction) {
+    public GamePlayer(ServerController controller, Game game, PlayerFaction playerFaction) {
         super(controller.getCurrentHero().clone(), controller.getCurrentDeck(), game, playerFaction);
         Player player = controller.getCurrentPlayer();
         name = player.toString();
         inventory = player.getInventory();
     }
 
-    public GamePlayer(Controller controller, Game game, PlayerFaction playerFaction, Deck deck) {
+    public GamePlayer(ServerController controller, Game game, PlayerFaction playerFaction, Deck deck) {
         super(deck.getHero(controller.getCurrentPlayer().getInventory()), deck, game, playerFaction);
         Player player = controller.getCurrentPlayer();
         name = player.toString();

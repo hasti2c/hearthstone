@@ -1,31 +1,25 @@
 package server;
 
-import client.Client;
-import elements.abilities.targets.Attackable;
-import elements.cards.Card;
-import elements.heros.Deck;
-import elements.heros.DeckPair;
-import elements.heros.HeroClass;
-import server.Controller;
-import shared.commands.Command;
-import shared.commands.CommandRunner;
-import shared.commands.types.ServerCommandType;
-import system.Game;
-import system.player.Player;
+import client.*;
+import elements.abilities.targets.*;
+import elements.cards.*;
+import elements.heros.*;
+import commands.*;
+import commands.types.*;
+import system.*;
+import system.player.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.io.*;
+import java.lang.Character;
+import java.util.*;
 
-import static shared.commands.types.ServerCommandType.*;
+import static commands.types.ServerCommandType.*;
 
 public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
-    protected final Controller controller;
+    protected final ServerController controller;
     protected final Client client;
 
-    public ServerCommandRunner(Controller controller, Client client) {
+    public ServerCommandRunner(ServerController controller, Client client) {
         this.controller = controller;
         this.client = client;
     }
@@ -130,7 +124,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
             return false;
 
         try {
-            Controller.readFile("src/main/resources/database/players/" + username + ".json");
+            ServerController.readFile("src/main/resources/database/players/" + username + ".json");
             return false;
         } catch (FileNotFoundException e) {
             if (password.length() < 8)

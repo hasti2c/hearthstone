@@ -1,11 +1,10 @@
 package client.graphics.directories;
 
-import client.Client;
-import shared.commands.*;
-import elements.cards.Passive;
+import client.*;
+import commands.*;
+import elements.cards.*;
 import system.*;
-import system.player.Inventory;
-import client.graphics.*;
+import system.player.*;
 import client.graphics.directories.collections.*;
 import client.graphics.directories.playground.*;
 import client.graphics.popups.*;
@@ -13,7 +12,7 @@ import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
-import static shared.commands.types.ServerCommandType.*;
+import static commands.types.ServerCommandType.*;
 
 public class Home extends Directory {
     private PlayGround playGround;
@@ -24,7 +23,7 @@ public class Home extends Directory {
     @FXML
     private Button playButton, collectionsButton, storeButton, statsButton, homeLogoutButton, homeExitButton;
 
-    public Home(GraphicsController controller, Client client) {
+    public Home(ClientController controller, Client client) {
         super(controller, client);
         playButton.setOnAction(e -> {
             if (gameBeginning == null)

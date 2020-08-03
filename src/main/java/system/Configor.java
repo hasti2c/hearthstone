@@ -1,11 +1,11 @@
 package system;
 
 import com.google.gson.stream.*;
-import server.Controller;
+import server.*;
 import elements.cards.*;
 import java.io.*;
 import java.lang.reflect.*;
-import java.nio.file.NoSuchFileException;
+import java.nio.file.*;
 import java.util.*;
 
 public class Configor<O extends Configable> {
@@ -14,14 +14,14 @@ public class Configor<O extends Configable> {
     private final String name;
     private final JsonReader jsonReader;
     private O object;
-    private Controller controller;
+    private ServerController controller;
 
-    public Configor(Controller controller, String name, Class<O> objectClass, JsonReader jsonReader) throws FileNotFoundException {
+    public Configor(ServerController controller, String name, Class<O> objectClass, JsonReader jsonReader) throws FileNotFoundException {
         this.controller = controller;
         this.name = name;
         try {
             object = objectClass.getDeclaredConstructor().newInstance();
-            if (this.controller == null && object instanceof Controller c)
+            if (this.controller == null && object instanceof ServerController c)
                 this.controller = c;
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
@@ -29,12 +29,12 @@ public class Configor<O extends Configable> {
         this.jsonReader = jsonReader;
     }
 
-    public Configor(Controller controller, String name, Class<O> objectClass) throws FileNotFoundException {
+    public Configor(ServerController controller, String name, Class<O> objectClass) throws FileNotFoundException {
         this.controller = controller;
         this.name = name;
         try {
             object = objectClass.getDeclaredConstructor().newInstance();
-            if (this.controller == null && object instanceof Controller c)
+            if (this.controller == null && object instanceof ServerController c)
                 this.controller = c;
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();

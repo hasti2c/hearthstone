@@ -1,10 +1,9 @@
-package shared.commands;
+package commands;
 
-import elements.abilities.targets.Attackable;
-import elements.cards.Card;
-import elements.heros.Deck;
-import elements.heros.HeroClass;
-import shared.commands.types.CommandType;
+import elements.abilities.targets.*;
+import elements.cards.*;
+import elements.heros.*;
+import commands.types.*;
 
 public class Command <T extends CommandType> {
     private final T commandType;

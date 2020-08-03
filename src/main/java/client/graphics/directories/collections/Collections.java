@@ -2,9 +2,8 @@ package client.graphics.directories.collections;
 
 import java.util.*;
 
-import client.Client;
+import client.*;
 import elements.heros.*;
-import client.graphics.*;
 import client.graphics.popups.*;
 import client.graphics.directories.*;
 import javafx.fxml.*;
@@ -13,10 +12,10 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
-import shared.commands.Command;
-import shared.GameData;
+import commands.*;
+import shared.*;
 
-import static shared.commands.types.ServerCommandType.*;
+import static commands.types.ServerCommandType.*;
 
 public class Collections extends Directory {
     private ArrayList<Hero> heros;
@@ -28,7 +27,7 @@ public class Collections extends Directory {
     @FXML
     private Button allButton, neutralButton, addButton;
 
-    public Collections(GraphicsController controller, Client client) {
+    public Collections(ClientController controller, Client client) {
         super(controller, client);
         addButton.setOnAction(e -> addDeck());
     }

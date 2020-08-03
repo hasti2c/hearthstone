@@ -1,8 +1,7 @@
 package client;
 
-import shared.commands.Command;
-import shared.commands.CommandRunner;
-import shared.commands.types.ClientCommandType;
+import commands.*;
+import commands.types.*;
 
 public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
     @Override

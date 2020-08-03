@@ -5,27 +5,27 @@ import java.time.*;
 import java.time.format.*;
 import java.util.*;
 
-import shared.GameData;
+import shared.*;
+import commands.types.*;
 import system.*;
-import elements.cards.*;
 import elements.heros.*;
 import com.google.gson.stream.*;
-import system.player.Player;
+import system.player.*;
 
-public class Controller implements Configable {
+public class ServerController extends Controller<ServerCommandType> implements Configable {
     private Player currentPlayer = null, defaultPlayer;
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     private int playerCount, gameCount;
     private String initPlayerName;
 
-    public Controller() {
+    public ServerController() {
         GameData.getInstance();
     }
 
-    public static Controller getInstance() {
-        Configor<Controller> configor = null;
+    public static ServerController getInstance() {
+        Configor<ServerController> configor = null;
         try {
-            configor = new Configor<>(null, "defaults", Controller.class);
+            configor = new Configor<>(null, "defaults", ServerController.class);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -33,10 +33,10 @@ public class Controller implements Configable {
     }
 
     @Override
-    public void initialize(Controller controller) {}
+    public void initialize(ServerController controller) {}
 
     @Override
-    public String getJsonPath(Controller controller, String name) {
+    public String getJsonPath(ServerController controller, String name) {
         return "";
     }
 
@@ -129,5 +129,17 @@ public class Controller implements Configable {
         if (currentPlayer == null || currentPlayer.getInventory().getCurrentDeck() == null)
             return null;
         return currentPlayer.getInventory().getCurrentDeck();
+    }
+
+
+    @Override
+    public ArrayList<?> getObjectsList(String name) {
+        return switch (name) {
+            case "Deck": yield currentPlayer.getInventory().getAllDecks();
+            case "Card": yield GameData.getInstance().getCardsList();
+            case "Attackable|mine": yield currentPlayer.getGame().getCharacters()[0].getAttackables();
+            case "Attackable|opponent": yield currentPlayer.getGame().getCharacters()[1].getAttackables();
+            default: yield new ArrayList<>();
+        };
     }
 }

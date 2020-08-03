@@ -1,29 +1,20 @@
 package client.graphics.directories.playground;
 
-import client.Client;
-import elements.abilities.targets.Attackable;
-import elements.abilities.targets.TargetEventHandler;
-import elements.cards.Card;
-import elements.cards.Minion;
-import elements.cards.Weapon;
-import elements.heros.Hero;
-import elements.heros.HeroPower;
-import client.graphics.directories.playground.playables.HeroPowerGraphics;
-import client.graphics.directories.playground.playables.MinionGraphics;
-import client.graphics.directories.playground.playables.WeaponGraphics;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import client.*;
+import elements.abilities.targets.*;
+import elements.cards.*;
+import elements.heros.*;
+import client.graphics.directories.playground.playables.*;
+import javafx.fxml.*;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
+import javafx.scene.layout.*;
+import system.player.*;
 import system.player.Character;
-import system.player.PlayerFaction;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 
 public abstract class CharacterGraphics <C extends Character> {
     protected final PlayGround playGround;

@@ -1,15 +1,11 @@
 package system.player;
 
-import elements.abilities.targets.Attackable;
-import elements.cards.Card;
-import elements.cards.Minion;
-import elements.heros.Deck;
-import elements.heros.Hero;
-import system.Game;
+import elements.abilities.targets.*;
+import elements.cards.*;
+import elements.heros.*;
+import system.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
 public class NPC extends Character {
 

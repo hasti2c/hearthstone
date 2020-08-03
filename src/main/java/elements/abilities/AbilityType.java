@@ -1,15 +1,12 @@
 package elements.abilities;
 
-import elements.Playable;
-import elements.cards.Card;
-import elements.cards.QuestAndReward;
+import elements.*;
+import elements.cards.*;
 import system.player.Character;
-import system.player.GamePlayer;
 
 import java.util.ArrayList;
 
-import static elements.abilities.targets.TargetType.DISCOVER;
-import static elements.abilities.targets.TargetType.SELECTED;
+import static elements.abilities.targets.TargetType.*;
 
 public enum AbilityType {
     DRAW,

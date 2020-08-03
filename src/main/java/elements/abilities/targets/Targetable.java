@@ -1,4 +1,3 @@
 package elements.abilities.targets;
 
-public interface Targetable {
-}
+public interface Targetable {}

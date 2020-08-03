@@ -1,22 +1,19 @@
 package client.graphics.directories.playground;
 
-import client.Client;
-import shared.commands.*;
-import elements.abilities.targets.Attackable;
-import elements.abilities.targets.TargetEventHandler;
-import elements.abilities.targets.Targetable;
+import client.*;
+import commands.*;
+import elements.abilities.targets.*;
 import elements.cards.*;
 import elements.heros.*;
-import javafx.scene.control.Button;
-import system.player.GamePlayer;
-import system.player.PlayerFaction;
+import javafx.scene.control.*;
+import system.player.*;
 import client.graphics.directories.playground.playables.*;
 import javafx.event.*;
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.input.*;
 
-import static shared.commands.types.ServerCommandType.*;
+import static commands.types.ServerCommandType.*;
 
 public class GamePlayerGraphics extends CharacterGraphics<GamePlayer> {
     private Attackable selectedAttackable;

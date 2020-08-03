@@ -1,11 +1,11 @@
 package system.player;
 
 import com.google.gson.stream.*;
-import server.Controller;
+import server.*;
 import elements.cards.*;
 import elements.heros.*;
-import shared.GameData;
-import system.Configable;
+import shared.*;
+import system.*;
 
 import java.io.*;
 import java.util.*;
@@ -20,10 +20,10 @@ public class Inventory implements Configable {
     public Inventory() {}
 
     @Override
-    public void initialize(Controller controller) {}
+    public void initialize(ServerController controller) {}
 
     @Override
-    public String getJsonPath(Controller controller, String name) {
+    public String getJsonPath(ServerController controller, String name) {
         return "players/";
     }
 

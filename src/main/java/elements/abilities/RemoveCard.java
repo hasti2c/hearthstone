@@ -1,9 +1,8 @@
 package elements.abilities;
 
-import elements.Element;
-import elements.cards.Minion;
+import elements.*;
+import elements.cards.*;
 import system.player.Character;
-import system.player.GamePlayer;
 
 public class RemoveCard extends Ability {
     private RemoveCardType type;

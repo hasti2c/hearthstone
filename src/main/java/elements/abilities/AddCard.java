@@ -1,10 +1,8 @@
 package elements.abilities;
 
-import elements.Element;
-import elements.ElementType;
+import elements.*;
 import elements.cards.*;
 import system.player.Character;
-import system.player.GamePlayer;
 
 import java.util.ArrayList;
 

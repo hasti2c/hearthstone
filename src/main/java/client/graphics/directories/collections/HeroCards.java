@@ -1,9 +1,8 @@
 package client.graphics.directories.collections;
 
-import client.Client;
+import client.*;
 import elements.cards.*;
 import elements.heros.*;
-import client.graphics.*;
 import javafx.fxml.*;
 import javafx.geometry.*;
 import javafx.scene.*;
@@ -14,7 +13,7 @@ import javafx.scene.layout.*;
 public class HeroCards extends CardsList {
     private final HeroClass heroClass;
 
-    HeroCards(HeroClass heroClass, GraphicsController controller, Client client) {
+    HeroCards(HeroClass heroClass, ClientController controller, Client client) {
         super(controller, client);
         border.setId("heroCards-bg");
         this.heroClass = heroClass;

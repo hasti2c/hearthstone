@@ -3,21 +3,21 @@ package client.graphics.directories;
 import java.io.*;
 
 import client.Client;
-import client.graphics.*;
+import client.*;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
 
 public abstract class Directory {
     protected Client client;
-    protected GraphicsController controller;
+    protected ClientController controller;
     protected Scene scene;
     @FXML
     protected Button homeButton;
     @FXML
     protected MenuItem logoutButton, exitButton;
 
-    protected Directory(GraphicsController controller, Client client) {
+    protected Directory(ClientController controller, Client client) {
         this.controller = controller;
         this.client = client;
         load();

@@ -1,19 +1,17 @@
 package client.graphics.directories.playground;
 
-import client.Client;
-import client.graphics.GraphicsController;
-import client.graphics.directories.Directory;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
-import system.Game;
+import client.*;
+import client.graphics.directories.*;
+import javafx.fxml.*;
+import javafx.scene.control.*;
+import system.*;
 
 public class GameEnding extends Directory {
     private final Game game;
     @FXML
     private Label label;
 
-    public GameEnding(GraphicsController controller, Client client, Game game) {
+    public GameEnding(ClientController controller, Client client, Game game) {
         super(controller, client);
         this.game = game;
     }

@@ -1,12 +1,10 @@
 package elements;
 
-import elements.abilities.Ability;
-import elements.cards.Minion;
-import system.Configable;
-import elements.heros.HeroClass;
+import elements.cards.*;
+import system.*;
+import elements.heros.*;
 
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 public abstract class Element implements Configable {
     protected String name;

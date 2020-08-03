@@ -1,4 +1,4 @@
-package shared.commands.types;
+package commands.types;
 
 public enum ServerCommandType implements CommandType {
     SIGN_UP,

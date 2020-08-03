@@ -1,20 +1,17 @@
 package server;
 
-import client.Client;
-import shared.commands.CommandParser;
-import shared.commands.NetworkMember;
-import shared.commands.types.ServerCommandType;
+import client.*;
+import commands.*;
+import commands.types.*;
 
 public class Server extends NetworkMember<ServerCommandType> {
-    private final Controller controller;
-
     public Server() {
-        this.controller = Controller.getInstance();
+        super(ServerController.getInstance());
     }
 
     public void setClient(Client client) {
         this.target = client;
-        runner = new ServerCommandRunner(controller, client);
+        runner = new ServerCommandRunner((ServerController) controller, client);
         parser = new CommandParser<>(controller, ServerCommandType.class);
     }
 }

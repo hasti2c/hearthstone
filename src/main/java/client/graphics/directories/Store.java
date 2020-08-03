@@ -1,19 +1,19 @@
-package client.graphics.directories.collections;
+package client.graphics.directories;
 
-import client.Client;
+import client.*;
+import client.graphics.directories.collections.*;
 import com.jfoenix.controls.*;
 import elements.cards.*;
 import elements.heros.*;
-import shared.commands.Command;
-import system.player.Player;
-import client.graphics.*;
+import commands.*;
+import system.player.*;
 import client.graphics.popups.*;
 import javafx.fxml.*;
 import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
-import static shared.commands.types.ServerCommandType.*;
+import static commands.types.ServerCommandType.*;
 
 public class Store extends CardsList {
     private boolean sellMode = false;
@@ -22,7 +22,7 @@ public class Store extends CardsList {
     @FXML
     private JFXToggleButton sellModeButton;
 
-    public Store(GraphicsController controller, Client client) {
+    public Store(ClientController controller, Client client) {
         super(controller, client);
         border.setId("store-bg");
         initTopHBox();

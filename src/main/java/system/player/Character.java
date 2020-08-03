@@ -1,20 +1,16 @@
 package system.player;
 
-import elements.Element;
-import elements.Playable;
-import elements.abilities.targets.Attackable;
+import elements.*;
+import elements.abilities.targets.*;
 import elements.cards.*;
-import elements.heros.Deck;
-import elements.heros.Hero;
-import elements.heros.HeroPower;
-import client.graphics.directories.playground.CharacterGraphics;
-import javafx.scene.Node;
-import javafx.util.Pair;
-import system.Game;
+import elements.heros.*;
+import client.graphics.directories.playground.*;
+import javafx.scene.*;
+import shared.*;
+import system.*;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
+import java.lang.reflect.*;
+import java.util.*;
 
 public abstract class Character {
     protected final Hero hero;

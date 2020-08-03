@@ -1,9 +1,8 @@
 package elements.heros;
 
-import elements.Playable;
-import elements.cards.Minion;
-import elements.cards.Spell;
-import system.player.Inventory;
+import elements.*;
+import elements.cards.*;
+import system.player.*;
 import javafx.scene.image.*;
 import java.io.*;
 

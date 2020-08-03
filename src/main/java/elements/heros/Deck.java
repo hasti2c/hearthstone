@@ -3,10 +3,10 @@ package elements.heros;
 import java.io.*;
 import java.util.*;
 import com.google.gson.stream.*;
-import server.Controller;
+import server.*;
 import system.*;
 import elements.cards.*;
-import system.player.Inventory;
+import system.player.*;
 
 public class Deck implements Comparable<Deck>, Configable {
     private String name;
@@ -31,11 +31,11 @@ public class Deck implements Comparable<Deck>, Configable {
     }
 
     @Override
-    public void initialize(Controller controller) {
+    public void initialize(ServerController controller) {
     }
 
     @Override
-    public String getJsonPath(Controller controller, String name) {
+    public String getJsonPath(ServerController controller, String name) {
         return "decks/" + controller.getInitPlayerName() + "/";
     }
 

@@ -1,18 +1,16 @@
 package system;
 
-import server.Controller;
-import elements.cards.Card;
+import server.*;
+import elements.cards.*;
 import elements.heros.*;
-import client.graphics.directories.playground.PlayGround;
+import client.graphics.directories.playground.*;
 import system.player.Character;
-import system.player.GamePlayer;
-import system.player.NPC;
-import system.player.PlayerFaction;
+import system.player.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Game {
-    private final Controller controller;
+    private final ServerController controller;
     private final Character[] characters = new Character[2];
     private final int id;
     private int turn = 0;
@@ -23,7 +21,7 @@ public class Game {
     private PlayGround playGround;
     private final boolean deckReader;
 
-    public Game(Controller controller, int playerCount) {
+    public Game(ServerController controller, int playerCount) {
         this.controller = controller;
         characters[0] = new GamePlayer(controller, this, PlayerFaction.FRIENDLY);
         if (playerCount == 2)
@@ -37,7 +35,7 @@ public class Game {
         deckReader = false;
     }
 
-    public Game(Controller controller, DeckPair deckPair) {
+    public Game(ServerController controller, DeckPair deckPair) {
         this.controller = controller;
         Deck[] decks = deckPair.getDecks();
         characters[0] = new GamePlayer(controller, this, PlayerFaction.FRIENDLY, decks[0]);

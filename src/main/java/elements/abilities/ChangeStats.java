@@ -1,10 +1,9 @@
 package elements.abilities;
 
-import elements.Element;
-import elements.heros.Hero;
+import elements.*;
+import elements.heros.*;
 import elements.cards.*;
 import system.player.Character;
-import system.player.GamePlayer;
 
 import static elements.abilities.ChangeStatsType.CONSTANT;
 

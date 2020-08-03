@@ -1,6 +1,6 @@
 package elements.cards;
 
-import server.Controller;
+import server.ServerController;
 import elements.abilities.targets.Attackable;
 import shared.GameData;
 import system.player.Character;
@@ -18,7 +18,7 @@ public class Minion extends Card implements Attackable {
     }
 
     @Override
-    public void initialize(Controller controller) {
+    public void initialize(ServerController controller) {
         super.initialize(controller);
         setAsleep(true);
     }

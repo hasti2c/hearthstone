@@ -1,9 +1,8 @@
 package elements.abilities;
 
-import elements.Element;
-import elements.abilities.targets.Attackable;
+import elements.*;
+import elements.abilities.targets.*;
 import system.player.Character;
-import system.player.GamePlayer;
 
 public class Attack extends Ability {
     private AttackType type;

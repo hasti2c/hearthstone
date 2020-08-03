@@ -1,21 +1,18 @@
 package elements;
 
-import server.Controller;
-import elements.cards.Card;
+import server.*;
+import elements.cards.*;
 import elements.abilities.*;
-import elements.heros.HeroClass;
+import elements.heros.*;
 import system.player.Character;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.ImagePattern;
+import javafx.scene.image.*;
+import javafx.scene.paint.*;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 
 import static elements.abilities.AbilityType.*;
-import static elements.abilities.targets.TargetType.DISCOVER;
-import static elements.abilities.targets.TargetType.SELECTED;
+import static elements.abilities.targets.TargetType.*;
 
 public abstract class Playable extends Element {
     protected String description;
@@ -28,7 +25,7 @@ public abstract class Playable extends Element {
     private RemoveCard removeCardAbility;
 
     @Override
-    public void initialize(Controller controller) {
+    public void initialize(ServerController controller) {
         abilities = new ArrayList<>();
         if (changeStatsAbility != null)
             abilities.add(changeStatsAbility);

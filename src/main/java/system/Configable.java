@@ -1,8 +1,8 @@
 package system;
 
-import server.Controller;
+import server.*;
 
 public interface Configable {
-    void initialize(Controller controller);
-    String getJsonPath(Controller controller, String name);
+    void initialize(ServerController controller);
+    String getJsonPath(ServerController controller, String name);
 }

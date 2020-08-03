@@ -1,14 +1,13 @@
 package client.graphics.directories.playground;
 
-import client.Client;
-import elements.cards.Card;
-import elements.cards.Minion;
-import elements.heros.HeroPower;
-import client.graphics.directories.playground.playables.HeroPowerGraphics;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import system.player.NPC;
+import client.*;
+import elements.cards.*;
+import elements.heros.*;
+import client.graphics.directories.playground.playables.*;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
+import system.player.*;
 
 public class NPCGraphics extends CharacterGraphics<NPC> {
     public NPCGraphics(PlayGround playGround, Client client, NPC character) {

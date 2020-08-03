@@ -1,9 +1,8 @@
 package elements.heros;
 
-import server.Controller;
+import server.*;
 import elements.cards.*;
-import system.Configable;
-import system.Configor;
+import system.*;
 
 import java.io.*;
 import java.util.*;
@@ -14,7 +13,7 @@ public class DeckPair implements Configable {
 
     public DeckPair() {}
 
-    public static DeckPair getInstance(Controller controller) {
+    public static DeckPair getInstance(ServerController controller) {
         try {
             Configor<DeckPair> configor = new Configor<>(controller, "config", DeckPair.class);
             return configor.getConfigedObject();
@@ -25,7 +24,7 @@ public class DeckPair implements Configable {
     }
 
     @Override
-    public void initialize(Controller controller) {
+    public void initialize(ServerController controller) {
         ArrayList<Card> friendlyCards = new ArrayList<>();
         for (String s : friendly)
             friendlyCards.add(Card.getCard(s));
@@ -38,7 +37,7 @@ public class DeckPair implements Configable {
     }
 
     @Override
-    public String getJsonPath(Controller controller, String name) {
+    public String getJsonPath(ServerController controller, String name) {
         return "decks/";
     }
 

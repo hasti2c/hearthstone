@@ -1,13 +1,12 @@
 package client.graphics.directories;
 
-import client.Client;
-import shared.commands.*;
-import client.graphics.*;
+import client.*;
+import commands.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
-import static shared.commands.types.ServerCommandType.*;
+import static commands.types.ServerCommandType.*;
 
 public class StartPage extends Directory {
     @FXML
@@ -21,7 +20,7 @@ public class StartPage extends Directory {
     @FXML
     private Label signUpError, loginError;
 
-    public StartPage(GraphicsController controller, Client client) {
+    public StartPage(ClientController controller, Client client) {
         super(controller, client);
         vBox.getChildren().removeAll(signUpError, loginError);
     }

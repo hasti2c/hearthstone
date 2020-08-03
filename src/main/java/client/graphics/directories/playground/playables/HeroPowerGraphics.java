@@ -1,12 +1,10 @@
 package client.graphics.directories.playground.playables;
 
-import elements.heros.HeroPower;
-import client.graphics.directories.playground.GamePlayerGraphics;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Shape;
+import elements.heros.*;
+import client.graphics.directories.playground.*;
+import javafx.fxml.*;
+import javafx.scene.control.*;
+import javafx.scene.shape.*;
 
 public class HeroPowerGraphics extends PlayableGraphics<HeroPower> {
     @FXML

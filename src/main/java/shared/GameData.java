@@ -1,13 +1,12 @@
 package shared;
 
-import elements.cards.Card;
-import elements.heros.Hero;
-import server.Controller;
-import system.Configable;
-import system.Configor;
+import elements.cards.*;
+import elements.heros.*;
+import server.*;
+import system.*;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 
 public class GameData implements Configable {
     private static GameData gameData;
@@ -15,12 +14,12 @@ public class GameData implements Configable {
     private final ArrayList<Card> cardsList = new ArrayList<>();
 
     @Override
-    public void initialize(Controller controller) {
+    public void initialize(ServerController controller) {
 
     }
 
     @Override
-    public String getJsonPath(Controller controller, String name) {
+    public String getJsonPath(ServerController controller, String name) {
         return "";
     }
 

@@ -1,9 +1,9 @@
 package system;
 
-import javafx.application.Platform;
+import javafx.application.*;
 
 public class Timer extends Thread {
-    private Game game;
+    private final Game game;
 
     public Timer(Game game) {
         this.game = game;

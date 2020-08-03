@@ -1,7 +1,6 @@
 package server;
 
-import client.Client;
-import client.graphics.*;
+import client.*;
 import javafx.application.*;
 import javafx.stage.*;
 

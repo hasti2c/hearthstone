@@ -1,14 +1,11 @@
 package system;
 
-import server.Controller;
+import server.*;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 
 public class Logger {
-    private String path;
+    private final String path;
     private Writer writer;
     private String events = "";
 
@@ -42,7 +39,7 @@ public class Logger {
         try {
             if (!"STARTED_AT: ".equals(type) && !"ENDED_AT: ".equals(type))
                 events += type + " " + details + "\n";
-            writer.write(type + " " + Controller.getTime() + " " + details + "\n");
+            writer.write(type + " " + ServerController.getTime() + " " + details + "\n");
             writer.flush();
         } catch (IOException e) {
             e.printStackTrace();

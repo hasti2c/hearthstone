@@ -3,29 +3,26 @@ package system.player;
 import java.io.*;
 
 import com.google.gson.stream.*;
-import server.Controller;
+import server.*;
 import elements.heros.*;
 import elements.cards.*;
-import system.Configable;
-import system.Configor;
-import system.Game;
-import system.Logger;
+import system.*;
 
 public class Player implements Configable {
     private String username, password;
     private int balance, id;
     private Inventory inventory;
-    private Controller controller;
+    private ServerController controller;
     private Game game;
     private Logger logger;
 
-    public static Player getExistingPlayer(Controller controller, String username) throws FileNotFoundException {
+    public static Player getExistingPlayer(ServerController controller, String username) throws FileNotFoundException {
         controller.setInitPlayerName(username);
         Configor<Player> configor = new Configor<>(controller, username, Player.class);
         return configor.getConfigedObject();
     }
 
-    public static Player getNewPlayer(Controller controller, String username, String password) {
+    public static Player getNewPlayer(ServerController controller, String username, String password) {
         Player player = new Player();
         player.username = username;
         player.password = password;
@@ -37,13 +34,13 @@ public class Player implements Configable {
     }
 
     @Override
-    public void initialize(Controller controller) {
+    public void initialize(ServerController controller) {
         this.controller = controller;
         logger = new Logger("src/main/resources/logs/players/" + username + "-" + id + ".txt");
     }
 
     @Override
-    public String getJsonPath(Controller controller, String name) {
+    public String getJsonPath(ServerController controller, String name) {
         return "players/";
     }
 

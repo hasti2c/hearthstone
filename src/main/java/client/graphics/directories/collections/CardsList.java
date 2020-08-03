@@ -2,12 +2,12 @@ package client.graphics.directories.collections;
 
 import java.util.*;
 
-import client.Client;
+import client.*;
 import elements.cards.*;
 import elements.heros.*;
-import shared.GameData;
-import system.player.Player;
-import client.graphics.*;
+import shared.*;
+import shared.Pair;
+import system.player.*;
 import client.graphics.directories.*;
 import client.graphics.popups.*;
 import javafx.fxml.*;
@@ -36,7 +36,7 @@ public abstract class CardsList extends Directory {
     @FXML
     private TextField searchField;
 
-    CardsList(GraphicsController controller, Client client) {
+    CardsList(ClientController controller, Client client) {
         super(controller, client);
         if (backButton != null)
             backButton.setOnAction(e -> {
@@ -155,7 +155,7 @@ public abstract class CardsList extends Directory {
     }
 
     private boolean inRange(int n, Pair<Integer, Integer> range) {
-        return (range.getKey() == null || range.getKey() <= n) && (range.getValue() == null || n <= range.getValue());
+        return (range.getFirst() == null || range.getFirst() <= n) && (range.getSecond() == null || n <= range.getSecond());
     }
 
     protected abstract Node getNode(Card card);
@@ -328,18 +328,18 @@ public abstract class CardsList extends Directory {
 
         @Override
         protected void config() {
-            if (manaRange.getKey() != null)
-            manaMin.setText(manaRange.getKey() + "");
-            if (manaRange.getValue() != null)
-            manaMax.setText(manaRange.getValue() + "");
-            if (healthRange.getKey() != null)
-            healthMin.setText(healthRange.getKey() + "");
-            if (healthRange.getValue() != null)
-            healthMax.setText(healthRange.getValue() + "");
-            if (attackRange.getKey() != null)
-            attackMin.setText(attackRange.getKey() + "");
-            if (attackRange.getValue() != null)
-            attackMax.setText(attackRange.getValue() + "");
+            if (manaRange.getFirst() != null)
+            manaMin.setText(manaRange.getFirst() + "");
+            if (manaRange.getSecond() != null)
+            manaMax.setText(manaRange.getSecond() + "");
+            if (healthRange.getFirst() != null)
+            healthMin.setText(healthRange.getFirst() + "");
+            if (healthRange.getSecond() != null)
+            healthMax.setText(healthRange.getSecond() + "");
+            if (attackRange.getFirst() != null)
+            attackMin.setText(attackRange.getFirst() + "");
+            if (attackRange.getSecond() != null)
+            attackMax.setText(attackRange.getSecond() + "");
         }
 
         private void close(boolean save) {

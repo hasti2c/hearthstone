@@ -1,14 +1,13 @@
 package elements.heros;
 
-import server.Controller;
+import server.*;
 import elements.abilities.*;
-import elements.Playable;
+import elements.*;
+import system.player.*;
+import javafx.scene.image.*;
 import system.player.Character;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 
 import static elements.ElementType.HERO_POWER;
 import static elements.heros.HeroClass.ROGUE;
@@ -22,7 +21,7 @@ public class HeroPower extends Playable {
     }
 
     @Override
-    public void initialize(Controller controller) {
+    public void initialize(ServerController controller) {
         super.initialize(controller);
         demote();
     }
@@ -40,7 +39,7 @@ public class HeroPower extends Playable {
     }
 
     @Override
-    public String getJsonPath(Controller controller, String name) {
+    public String getJsonPath(ServerController controller, String name) {
         return "hero powers/";
     }
 

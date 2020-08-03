@@ -2,9 +2,8 @@ package client.graphics.directories;
 
 import java.util.*;
 
-import client.Client;
+import client.*;
 import elements.heros.*;
-import client.graphics.*;
 import javafx.fxml.*;
 import javafx.geometry.*;
 import javafx.scene.control.*;
@@ -20,7 +19,7 @@ public class Stats extends Directory {
     @FXML
     private MenuItem settingsButton, logoutButton, exitButton;
 
-    Stats(GraphicsController controller, Client client) {
+    Stats(ClientController controller, Client client) {
         super(controller, client);
     }
 

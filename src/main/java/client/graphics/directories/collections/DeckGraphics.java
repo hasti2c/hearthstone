@@ -1,10 +1,9 @@
 package client.graphics.directories.collections;
 
-import client.Client;
-import shared.commands.*;
+import client.*;
+import commands.*;
 import elements.cards.*;
 import elements.heros.*;
-import client.graphics.*;
 import client.graphics.popups.*;
 import javafx.fxml.*;
 import javafx.geometry.*;
@@ -12,14 +11,14 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 
-import static shared.commands.types.ServerCommandType.*;
+import static commands.types.ServerCommandType.*;
 
 public class DeckGraphics extends CardsList {
     private final elements.heros.Deck deck;
     @FXML
     private Label deckCount;
 
-    DeckGraphics(elements.heros.Deck deck, GraphicsController controller, Client client) {
+    DeckGraphics(elements.heros.Deck deck, ClientController controller, Client client) {
         super(controller, client);
         border.setId("deck-bg");
         this.deck = deck;

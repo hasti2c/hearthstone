@@ -4,7 +4,7 @@ import elements.cards.*;
 import client.graphics.directories.playground.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.*;
 import javafx.scene.shape.*;
 
 public class MinionGraphics extends PlayableGraphics<Minion> {

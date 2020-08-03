@@ -1,19 +1,16 @@
 package elements.abilities;
 
-import server.Controller;
-import elements.Element;
-import elements.ElementType;
+import server.*;
+import elements.*;
 import elements.abilities.targets.*;
-import elements.Playable;
-import shared.GameData;
+import shared.*;
 import system.*;
 import elements.cards.*;
+import system.player.*;
+import client.graphics.directories.playground.*;
+import javafx.scene.*;
+import javafx.scene.input.*;
 import system.player.Character;
-import system.player.GamePlayer;
-import client.graphics.directories.playground.GamePlayerGraphics;
-import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
-import javafx.util.Pair;
 
 import java.util.*;
 
@@ -37,12 +34,12 @@ public abstract class Ability implements Configable {
     private Attack nextAttack;
 
     @Override
-    public void initialize(Controller controller) {
+    public void initialize(ServerController controller) {
         setNextAbility();
     }
 
     @Override
-    public String getJsonPath(Controller controller, String name) {
+    public String getJsonPath(ServerController controller, String name) {
         return null;
     }
 
@@ -244,10 +241,10 @@ public abstract class Ability implements Configable {
     private void selectionMode(GamePlayer gamePlayer, Element caller) {
         ArrayList<Pair<Element, Node>> elements = gamePlayer.getCurrentElementsAndNodes();
         for (Pair<Element, Node> pair : elements)
-            if (isValidTarget(pair.getKey()) && pair.getKey() instanceof Targetable targetable)
-                pair.getValue().addEventHandler(MouseEvent.MOUSE_CLICKED, new SelectionEventHandler((GamePlayerGraphics) gamePlayer.getGraphics(), caller, targetable, pair.getValue()));
-            else if (pair.getKey() instanceof Targetable)
-                TargetEventHandler.disableNode(pair.getValue());
+            if (isValidTarget(pair.getFirst()) && pair.getFirst() instanceof Targetable targetable)
+                pair.getSecond().addEventHandler(MouseEvent.MOUSE_CLICKED, new SelectionEventHandler((GamePlayerGraphics) gamePlayer.getGraphics(), caller, targetable, pair.getSecond()));
+            else if (pair.getFirst() instanceof Targetable)
+                TargetEventHandler.disableNode(pair.getSecond());
     }
 
     private void discoverAndDoAction(GamePlayer actionPerformer, Card caller, Card played) {

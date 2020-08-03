@@ -1,21 +1,16 @@
-package shared.commands;
+package commands;
 
-import elements.heros.HeroClass;
-import server.Controller;
-import shared.GameData;
-import shared.Pair;
-import shared.commands.types.CommandType;
-import shared.commands.types.ServerCommandType;
+import elements.heros.*;
+import shared.*;
+import commands.types.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class CommandParser <T extends CommandType> {
-    private final Controller controller;
+    private final Controller<T> controller;
     private final Class<T> commandTypeClass;
 
-
-    public CommandParser(Controller controller, Class<T> commandTypeClass) {
+    public CommandParser(Controller<T> controller, Class<T> commandTypeClass) {
         this.controller = controller;
         this.commandTypeClass = commandTypeClass;
     }
@@ -37,7 +32,7 @@ public class CommandParser <T extends CommandType> {
         for (int i = 0; i < namePairs.size(); i++)
             input[i] = getObject(namePairs.get(i));
 
-        return new Command<T>(commandType, input);
+        return new Command<>(commandType, input);
     }
 
     private Pair<String, String> getNamePair(String word) {
@@ -51,11 +46,7 @@ public class CommandParser <T extends CommandType> {
             case "String": yield name;
             case "Integer": yield Integer.valueOf(name);
             case "HeroClass": yield HeroClass.valueOf(name);
-            case "Deck": yield getObject(controller.getCurrentPlayer().getInventory().getAllDecks(), name);
-            case "Card": yield getObject(GameData.getInstance().getCardsList(), name);
-            case "Attackable|mine": yield getObject(controller.getCurrentPlayer().getGame().getCharacters()[0].getAttackables(), name);
-            case "Attackable|opponent": yield getObject(controller.getCurrentPlayer().getGame().getCharacters()[1].getAttackables(), name);
-            default: yield null;
+            default: yield getObject(controller.getObjectsList(name), name);
         };
     }
 

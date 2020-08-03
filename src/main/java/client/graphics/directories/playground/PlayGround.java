@@ -1,28 +1,26 @@
 package client.graphics.directories.playground;
 
-import client.Client;
-import shared.commands.*;
-import elements.abilities.targets.DiscoverGraphics;
-import elements.cards.Card;
-import javafx.event.EventHandler;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import system.Game;
-import client.graphics.*;
+import client.*;
+import commands.*;
+import elements.abilities.targets.*;
+import elements.cards.*;
+import javafx.event.*;
+import javafx.scene.image.*;
+import javafx.scene.input.*;
+import javafx.scene.paint.*;
+import system.*;
 import client.graphics.directories.*;
 import client.graphics.popups.*;
 import javafx.fxml.*;
-import javafx.scene.Node;
+import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import system.player.GamePlayer;
-import system.player.NPC;
+import system.player.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static shared.commands.types.ServerCommandType.*;
+import static commands.types.ServerCommandType.*;
 
 public class PlayGround extends Directory {
     private final Game game;
@@ -38,7 +36,7 @@ public class PlayGround extends Directory {
     @FXML
     private HBox topBar;
 
-    public PlayGround(Game game, GraphicsController controller, Client client) {
+    public PlayGround(Game game, ClientController controller, Client client) {
         super(controller, client);
         this.game = game;
         for (int i = 0; i < 2; i++) {
