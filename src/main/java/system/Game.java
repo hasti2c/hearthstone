@@ -1,48 +1,37 @@
 package system;
 
-import server.*;
 import elements.cards.*;
 import elements.heros.*;
-import client.graphics.directories.playground.*;
+import shared.Controller;
 import system.player.Character;
 import system.player.*;
 
 import java.util.*;
 
 public class Game {
-    private final ServerController controller;
     private final Character[] characters = new Character[2];
     private final int id;
     private int turn = 0;
     private final int playerCount = 2;
     private final Logger logger;
-    private final Timer timer;
-    private int time = 60;
-    private PlayGround playGround;
     private final boolean deckReader;
 
-    public Game(ServerController controller, int playerCount) {
-        this.controller = controller;
+    public Game(Controller<?> controller, int playerCount, int id) {
         characters[0] = new GamePlayer(controller, this, PlayerFaction.FRIENDLY);
         if (playerCount == 2)
             characters[1] = new GamePlayer(controller, this, PlayerFaction.ENEMY);
         else
             characters[1] = new NPC(controller.getCurrentHero().clone(), controller.getCurrentDeck().clone(), this, PlayerFaction.ENEMY);
-        timer = new Timer(this);
-        id = controller.getGameCount() + 1;
-        controller.setGameCount(id);
+        this.id = id;
         logger = new Logger("src/main/resources/logs/games/game-" + id + ".txt");
         deckReader = false;
     }
 
-    public Game(ServerController controller, DeckPair deckPair) {
-        this.controller = controller;
+    public Game(Controller<?> controller, DeckPair deckPair, int id) {
         Deck[] decks = deckPair.getDecks();
         characters[0] = new GamePlayer(controller, this, PlayerFaction.FRIENDLY, decks[0]);
         characters[1] = new GamePlayer(controller, this, PlayerFaction.ENEMY, decks[1]);
-        timer = new Timer(this);
-        id = controller.getGameCount() + 1;
-        controller.setGameCount(id);
+        this.id = id;
         logger = new Logger("src/main/resources/logs/games/game-" + id + ".txt");
         deckReader = true;
     }
@@ -50,14 +39,12 @@ public class Game {
     public void startGame() {
         characters[0].initialize();
         characters[1].initialize();
-        timer.start();
         getCurrentCharacter().startTurn();
     }
 
     public void startGame(ArrayList<Card> cards) {
         characters[0].initialize(cards);
         characters[1].initialize(cards);
-        timer.start();
         getCurrentCharacter().startTurn();
     }
 
@@ -85,14 +72,9 @@ public class Game {
         return turn;
     }
 
-    public void setPlayGround(PlayGround playGround) {
-        this.playGround = playGround;
-    }
-
     public void nextTurn() {
         getCurrentCharacter().endTurn();
         turn++;
-        time = 60;
         getCurrentCharacter().startTurn();
     }
 
@@ -131,17 +113,6 @@ public class Game {
 
     public void log(String type, String details) {
         logger.log("p" + (getCurrentPlayerNumber() + 1) + ":" + type, details);
-    }
-
-    public void nextSecond() {
-        time--;
-        if (time <= 0)
-            nextTurn();
-        playGround.updateTime();
-    }
-
-    public int getTime() {
-        return time;
     }
 
     public void endGame() {

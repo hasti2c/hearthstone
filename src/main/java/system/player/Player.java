@@ -3,7 +3,6 @@ package system.player;
 import java.io.*;
 
 import com.google.gson.stream.*;
-import server.*;
 import elements.heros.*;
 import elements.cards.*;
 import shared.GameData;
@@ -22,11 +21,11 @@ public class Player implements Configable {
         return configor.getConfigedObject();
     }
 
-    public static Player getNewPlayer(ServerController controller, String username, String password) {
+    public static Player getNewPlayer(String username, String password, int id) {
         Player player = new Player();
         player.username = username;
         player.password = password;
-        player.id = controller.getPlayerCount();
+        player.id = id;
         player.initialize();
         player.copyDefault();
         Configor.putInMap(player, username);

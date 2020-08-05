@@ -5,6 +5,8 @@ import elements.cards.*;
 import elements.heros.*;
 import commands.types.*;
 
+import java.util.Arrays;
+
 public class Command <T extends CommandType> {
     private final T commandType;
     private final Object[] input;
@@ -30,6 +32,7 @@ public class Command <T extends CommandType> {
     }
 
     private String toString(Object object, int index) {
+        System.out.println(commandType + " " + Arrays.toString(input));
         String className = "";
         if (isAssignable(String.class, object))
             className = "String";

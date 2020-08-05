@@ -92,7 +92,9 @@ public class Home extends Directory {
             collectionsButton.setOnAction(e -> displayCollections());
             deckReaderButton.setOnAction(e -> {
                 close();
-                client.request(new Command<>(DECK_READER));
+                initPlayGround();
+                if (client.request(new Command<>(DECK_READER)))
+                    playGround.startTimer();
                 displayPlayGround();
             });
         }
@@ -149,13 +151,16 @@ public class Home extends Directory {
             game = controller.getCurrentPlayer().getGame();
             game.getCharacters()[0].setPassive(passiveChoiceBox.getValue());
             game.getCharacters()[1].setPassive(passiveChoiceBox.getValue());
+            initPlayGround();
             displayPlayGround();
         }
 
-        private void displayPlayGround() {
+        private void initPlayGround() {
             Game game = controller.getCurrentPlayer().getGame();
             playGround = new PlayGround(game, controller, client);
-            game.setPlayGround(playGround);
+        }
+
+        private void displayPlayGround() {
             playGround.display();
         }
     }

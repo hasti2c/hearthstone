@@ -58,8 +58,19 @@ public abstract class Playable extends Element {
     }
 
     public boolean needsTarget() {
+        return needsSelection() || needsDiscover();
+    }
+
+    public boolean needsSelection() {
         for (Ability ability : abilities)
-            if (SELECTED.equals(ability.getTargetType()) || DISCOVER.equals(ability.getTargetType()))
+            if (SELECTED.equals(ability.getTargetType()))
+                return true;
+        return false;
+    }
+
+    public boolean needsDiscover() {
+        for (Ability ability : abilities)
+            if (DISCOVER.equals(ability.getTargetType()))
                 return true;
         return false;
     }
@@ -107,6 +118,10 @@ public abstract class Playable extends Element {
         if (fullImage == null)
             configFullImage();
         return new ImagePattern(fullImage);
+    }
+
+    public ArrayList<Ability> getAbilities() {
+        return abilities;
     }
 
     public void doActionOnDraw(Character actionPerformer) {

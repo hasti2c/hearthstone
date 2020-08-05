@@ -1,6 +1,6 @@
 package system;
 
-import server.*;
+import shared.Controller;
 
 import java.io.*;
 
@@ -39,7 +39,7 @@ public class Logger {
         try {
             if (!"STARTED_AT: ".equals(type) && !"ENDED_AT: ".equals(type))
                 events += type + " " + details + "\n";
-            writer.write(type + " " + ServerController.getTime() + " " + details + "\n");
+            writer.write(type + " " + Controller.getTime() + " " + details + "\n");
             writer.flush();
         } catch (IOException e) {
             e.printStackTrace();

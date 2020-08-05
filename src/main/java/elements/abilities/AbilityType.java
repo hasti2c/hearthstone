@@ -21,9 +21,7 @@ public enum AbilityType {
         Ability ability = getRandomAbility(getValidAbilities(abilities, caller, played, damaged, quest));
         if (ability == null)
             return;
-        ability.callDoAction(actionPerformer, caller, played);
-        if (ability.getTargetType() != SELECTED && ability.getTargetType() != DISCOVER)
-            actionPerformer.getGraphics().getPlayGround().config();
+        ability.callDoAction(actionPerformer, caller, played, null);
     }
 
     private ArrayList<Ability> getValidAbilities(ArrayList<Ability> abilities, Playable caller, Card played, Card damaged, Card quest) {

@@ -1,15 +1,27 @@
 package client.graphics.directories.playground;
 
 import client.*;
+import client.graphics.directories.playground.targets.DiscoverGraphics;
+import client.graphics.directories.playground.targets.SelectionEventHandler;
+import client.graphics.directories.playground.targets.TargetEventHandler;
+import commands.Command;
+import commands.types.CommandType;
+import commands.types.ServerCommandType;
+import elements.Element;
+import elements.Playable;
+import elements.abilities.Ability;
 import elements.abilities.targets.*;
 import elements.cards.*;
 import elements.heros.*;
 import client.graphics.directories.playground.playables.*;
+import javafx.collections.ObservableList;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import shared.Pair;
 import system.player.*;
 import system.player.Character;
 
@@ -22,6 +34,7 @@ public abstract class CharacterGraphics <C extends Character> {
     protected final PlayerFaction playerFaction;
     protected final C character;
     protected Pane pane;
+    private Attackable selectedAttackable;
     @FXML
     protected Label hpLabel, manaLabel, deckLabel;
     @FXML
@@ -34,7 +47,6 @@ public abstract class CharacterGraphics <C extends Character> {
         this.client = client;
         this.character = character;
         playerFaction = character.getPlayerFaction();
-        character.setGraphics(this);
         load();
     }
 
@@ -171,7 +183,7 @@ public abstract class CharacterGraphics <C extends Character> {
     }
 
     public CharacterGraphics<C> getOpponent() {
-        return (CharacterGraphics<C>) character.getOpponent().getGraphics();
+        return (CharacterGraphics<C>) playGround.getOpponent(this);
     }
 
     public PlayGround getPlayGround() {
@@ -207,13 +219,23 @@ public abstract class CharacterGraphics <C extends Character> {
             TargetEventHandler.enableNode(node);
     }
 
-    protected Node getNode(Minion minion) {
-        if (character.getMinionsInGame().size() != minionsHBox.getChildren().size())
-            return null;
-        return minionsHBox.getChildren().get(character.getMinionsInGame().indexOf(minion));
+    public Node getNode(Element element) {
+        if (element instanceof Minion minion && character.getMinionsInGame().size() == minionsHBox.getChildren().size())
+            return minionsHBox.getChildren().get(character.getMinionsInGame().indexOf(minion));
+        if (element instanceof Weapon weapon && character.getCurrentWeapon() == weapon)
+            return getFirst(weaponPane);
+        if (element instanceof HeroPower heroPower && character.getHero().getHeroPower() == heroPower)
+            return getFirst(heroPowerPane);
+        if (element instanceof Hero hero && character.getHero() == hero)
+            return getFirst(heroImagePane);
+        return null;
     }
 
-    protected void attackMode() {
+    private Node getFirst(Pane pane) {
+        return pane.getChildren().size() != 0 ? pane.getChildren().get(0) : null;
+    }
+
+    public void attackMode() {
         for (Minion minion : character.getMinionsInGame())
             if (character.canAttack(minion))
                 TargetEventHandler.enableNode(getNode(minion));
@@ -226,7 +248,7 @@ public abstract class CharacterGraphics <C extends Character> {
             TargetEventHandler.disableNode(heroImagePane);
     }
 
-    protected void defenseMode(Attackable attacker) {
+    public void defenseMode(Attackable attacker) {
         for (Minion minion : character.getMinionsInGame())
             if (character.canBeAttacked(attacker, minion))
                 TargetEventHandler.enableNode(getNode(minion));
@@ -240,4 +262,67 @@ public abstract class CharacterGraphics <C extends Character> {
     }
 
     protected abstract void configEndTurnButton();
+
+    protected ArrayList<Element> getCurrentElementsAndNodes() {
+        reloadMinionsHBox();
+        reloadHeroImage();
+
+        ArrayList<Element> elements = new ArrayList<>(character.getMinionsInGame());
+        if (character.getCurrentWeapon() != null)
+            elements.add(character.getCurrentWeapon());
+        if (character.canUseHeroPower())
+            elements.add(character.getHero().getHeroPower());
+        elements.add(character.getHero());
+        return elements;
+    }
+
+    public Attackable getSelectedAttackable() {
+        return selectedAttackable;
+    }
+
+    public void setSelectedAttackable(Attackable selectedAttackable) {
+        this.selectedAttackable = selectedAttackable;
+    }
+
+    protected abstract void handleSelection(Playable playable);
+
+    protected abstract void handleDiscover(Playable playable);
+
+    protected void useHeroPower(HeroPower heroPower) {
+        if (heroPower.needsSelection())
+            handleSelection(heroPower);
+        else if (heroPower.needsDiscover())
+            handleDiscover(heroPower);
+        else {
+            client.request(new Command<>(ServerCommandType.HERO_POWER));
+            playGround.config();
+        }
+    }
+
+    public void playCard(Card card) {
+        if (card.needsSelection())
+            handleSelection(card);
+        else if (card.needsDiscover())
+            handleDiscover(card);
+        else {
+            client.request(new Command<>(ServerCommandType.PLAY, card));
+            playGround.config();
+        }
+    }
+
+    protected void selectionMode(Ability ability, Playable caller) {
+        ArrayList<Element> elements = getCurrentElementsAndNodes();
+        for (Element element : elements) {
+            Node node = getNode(element);
+            if (ability.isValidTarget(element) && element instanceof Targetable targetable)
+                node.addEventHandler(MouseEvent.MOUSE_CLICKED, new SelectionEventHandler(client, this, caller, targetable, ability));
+            else if (element instanceof Targetable)
+                TargetEventHandler.disableNode(node);
+        }
+    }
+
+    protected void discoverMode(Ability ability, Playable caller) {
+        DiscoverGraphics discover = new DiscoverGraphics(client, this, ability, caller);
+        discover.display();
+    }
 }

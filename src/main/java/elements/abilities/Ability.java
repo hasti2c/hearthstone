@@ -1,5 +1,7 @@
 package elements.abilities;
 
+import client.graphics.directories.playground.targets.DiscoverGraphics;
+import client.graphics.directories.playground.targets.TargetEventHandler;
 import elements.*;
 import elements.abilities.targets.*;
 import shared.*;
@@ -42,14 +44,12 @@ public abstract class Ability implements Configable {
         return null;
     }
 
-    private void callDoAction(Character actionPerformer, Element caller, Element played, boolean assertValidCaller) {
+    private void callDoAction(Character actionPerformer, Element caller, Element played, Element selected, boolean assertValidCaller) {
         handleSelectionForNPC(actionPerformer);
 
         for (int i = 0; i < times; i++) {
-            if (targetType.equals(SELECTED))
-                selectAndDoAction((GamePlayer) actionPerformer, caller);
-            else if (targetType.equals(DISCOVER))
-                discoverAndDoAction((GamePlayer) actionPerformer, (Card) caller, (Card) played);
+            if (targetType.equals(SELECTED) || targetType.equals(DISCOVER))
+                doActionAndNext(actionPerformer, caller, selected);
             else
                 for (Element target : getTarget(actionPerformer, caller, (Card) played)) {
                     if (isValidCaller(actionPerformer, caller) && (assertValidCaller || caller.isValid()) && target.isValid())
@@ -67,19 +67,19 @@ public abstract class Ability implements Configable {
             targetType = RANDOM;
     }
 
-    public void callDoAction(Character actionPerformer, Playable caller, Card played) {
-        callDoAction(actionPerformer, caller, played, false);
+    public void callDoAction(Character actionPerformer, Playable caller, Element played, Element selected) {
+        callDoAction(actionPerformer, caller, played, selected, false);
     }
 
     public void doActionAndNext(Character actionPerformer, Element caller, Element target) {
         doAction(actionPerformer, caller, target);
         if (nextAbility != null)
-            nextAbility.callDoAction(actionPerformer, target, null, true);
+            nextAbility.callDoAction(actionPerformer, target, null, null,true);
     }
 
     protected abstract void doAction(Character actionPerformer, Element caller, Element target);
 
-    private ArrayList<Element> getTarget(Character actionPerformer, Element caller, Card played) {
+    public ArrayList<Element> getTarget(Character actionPerformer, Element caller, Card played) {
         ArrayList<Card> cardsList = GameData.getInstance().getCardsList();
         ArrayList<Element> targets = new ArrayList<>();
         switch (targetType) {
@@ -211,7 +211,7 @@ public abstract class Ability implements Configable {
         return ret;
     }
 
-    private boolean isValidTarget(Element target) {
+    public boolean isValidTarget(Element target) {
         return targetElementTypes.size() == 0 || targetElementTypes.contains(target.getElementType());
     }
 
@@ -230,25 +230,6 @@ public abstract class Ability implements Configable {
 
     public TargetType getTargetType() {
         return targetType;
-    }
-
-    protected void selectAndDoAction(GamePlayer actionPerformer, Element caller) {
-        selectionMode(actionPerformer, caller);
-        selectionMode((GamePlayer) actionPerformer.getOpponent(), caller);
-    }
-
-    private void selectionMode(GamePlayer gamePlayer, Element caller) {
-        ArrayList<Pair<Element, Node>> elements = gamePlayer.getCurrentElementsAndNodes();
-        for (Pair<Element, Node> pair : elements)
-            if (isValidTarget(pair.getFirst()) && pair.getFirst() instanceof Targetable targetable)
-                pair.getSecond().addEventHandler(MouseEvent.MOUSE_CLICKED, new SelectionEventHandler((GamePlayerGraphics) gamePlayer.getGraphics(), caller, targetable, pair.getSecond()));
-            else if (pair.getFirst() instanceof Targetable)
-                TargetEventHandler.disableNode(pair.getSecond());
-    }
-
-    private void discoverAndDoAction(GamePlayer actionPerformer, Card caller, Card played) {
-        DiscoverGraphics discover = new DiscoverGraphics(actionPerformer, this, caller, getTarget(actionPerformer, caller, played));
-        discover.display();
     }
 
     public void setNextAbility() {
@@ -275,45 +256,12 @@ public abstract class Ability implements Configable {
         specificTarget = reward;
     }
 
-    private class SelectionEventHandler extends TargetEventHandler {
-        private GamePlayerGraphics player;
-        private Element caller;
+    public static Ability getRandomAbility(ArrayList<Ability> abilities) {
+        int n = abilities.size(), i = (int) Math.floor(Math.random() * n) % n;
+        return abilities.get(i);
+    }
 
-        protected SelectionEventHandler(GamePlayerGraphics player, Element caller, Targetable targetable, Node node) {
-            super(targetable, node);
-            this.player = player;
-            this.caller = caller;
-            initialize();
-        }
-
-        @Override
-        protected void setSelectedTargetable(Targetable targetable) {
-        }
-
-        @Override
-        protected boolean isEnough() {
-            return true;
-        }
-
-        @Override
-        protected void deselectedMode() {
-            if (targetElementTypes.contains(MINION)) {
-                player.enableMinions();
-                player.getOpponent().enableMinions();
-            }
-            if (targetElementTypes.contains(HERO)) {
-                player.enableHero();
-                player.getOpponent().enableHero();
-            }
-        }
-
-        @Override
-        protected void oneSelectedMode() {}
-
-        @Override
-        protected void doAction() {
-            Ability.this.doActionAndNext(player.getCharacter(), caller, (Element) targetable) ;
-            player.getPlayGround().config();
-        }
+    public ArrayList<ElementType> getTargetElementTypes() {
+        return targetElementTypes;
     }
 }

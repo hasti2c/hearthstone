@@ -1,8 +1,8 @@
 package client.graphics.directories.playground;
 
 import client.*;
+import client.graphics.directories.playground.targets.DiscoverGraphics;
 import commands.*;
-import elements.abilities.targets.*;
 import elements.cards.*;
 import javafx.event.*;
 import javafx.scene.image.*;
@@ -25,6 +25,8 @@ import static commands.types.ServerCommandType.*;
 public class PlayGround extends Directory {
     private final Game game;
     private final CharacterGraphics<?>[] characters = new CharacterGraphics<?>[2];
+    private int time;
+    private final Timer timer;
     @FXML
     private Pane pane;
     @FXML
@@ -78,19 +80,20 @@ public class PlayGround extends Directory {
 
         if (!game.isDeckReader())
             (new ChooseCards()).display();
+
+        this.timer = new Timer(this);
     }
 
     @Override
     public void config() {
         for (CharacterGraphics<?> character : characters)
             character.config();
-        updateTime();
+        configTime();
         timerLabel.setVisible(game.getCurrentCharacter() instanceof GamePlayer);
         gameEventsLabel.setText("Game Events:\n" + game.getGameEvents());
     }
 
-    public void updateTime() {
-        int time = game.getTime();
+    public void configTime() {
         String timeText;
         if (time < 10)
             timeText = "0:0" + time;
@@ -105,17 +108,24 @@ public class PlayGround extends Directory {
             timerLabel.setTextFill(Color.WHITE);
     }
 
+    public void nextSecond() {
+        time--;
+        if (time <= 0)
+            client.request(new Command<>(END_TURN));
+        config();
+    }
+
     private boolean confirm() {
         ConfirmationBox confirmationBox = new ConfirmationBox("Your progress will not be saved.\nAre you sure you want to quit the game?", "Proceed", "Cancel");
         confirmationBox.display();
         return confirmationBox.getResponse();
     }
 
-    CharacterGraphics<?> getCurrentCharacter() {
+    public CharacterGraphics<?> getCurrentCharacter() {
         return characters[game.getCurrentPlayerNumber()];
     }
 
-    CharacterGraphics<?> getOtherCharacter() {
+    public CharacterGraphics<?> getOtherCharacter() {
         return characters[game.getPlayerCount() - 1 - game.getCurrentPlayerNumber()];
     }
 
@@ -148,9 +158,23 @@ public class PlayGround extends Directory {
         return endTurnButton;
     }
 
+    public Game getGame() {
+        return game;
+    }
+
+    public void startTimer() {
+        startTimer();
+    }
+
+    public CharacterGraphics<?> getOpponent(CharacterGraphics<?> character) {
+        if (character == characters[0])
+            return characters[0];
+        return character == characters[1] ? characters[1] : null;
+    }
+
     private class ChooseCards {
         private Pane pane;
-        private ArrayList<Card> cards, mainCards, extraCards;
+        private final ArrayList<Card> cards, mainCards, extraCards;
         @FXML
         private HBox cardsHBox;
         @FXML
@@ -191,7 +215,9 @@ public class PlayGround extends Directory {
 
         private void hide() {
             PlayGround.this.pane.getChildren().remove(pane);
-            client.request(new Command<>(START_GAME, cards));
+            System.out.println(cards);
+            if (client.request(new Command<>(START_GAME, cards.toArray())))
+                startTimer();
             PlayGround.this.config();
         }
 

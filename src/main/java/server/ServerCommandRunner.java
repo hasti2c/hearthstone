@@ -26,6 +26,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
 
     @Override
     public boolean run(Command<ServerCommandType> command) {
+        System.out.println(command);
         ServerCommandType commandType = command.getCommandType();
         Object[] input = command.getInput();
 
@@ -79,6 +80,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
 
         if (ret && controller.getCurrentPlayer() != null)
             controller.getCurrentPlayer().updateJson();
+        System.out.println(ret);
         return ret;
     }
 
@@ -156,7 +158,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
 
     private Player signUp(String username, String password) {
         controller.setPlayerCount(controller.getPlayerCount() + 1);
-        Player p = Player.getNewPlayer(controller, username, password);
+        Player p = Player.getNewPlayer(username, password, controller.getPlayerCount());
         (new File(p.getDeckJsonPath())).mkdir();
         p.getLogger().createFile();
         p.logSignup();
@@ -277,7 +279,8 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         Player player = controller.getCurrentPlayer();
         if (player.getInventory().getCurrentDeck() == null)
             return false;
-        Game game = new Game(controller, playerCount);
+        controller.setGameCount(controller.getGameCount() + 1);
+        Game game = new Game((ClientController) client.getController(), playerCount, controller.getGameCount());
         player.setGame(game);
         return true;
     }
@@ -297,7 +300,8 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         DeckPair deckPair = DeckPair.getInstance();
         if (deckPair == null)
             return false;
-        Game game = new Game(controller, deckPair);
+        controller.setGameCount(controller.getGameCount() + 1);
+        Game game = new Game(client.getController(), deckPair, controller.getGameCount());
         controller.getCurrentPlayer().setGame(game);
         game.startGame();
         return true;
@@ -322,7 +326,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
 
     private boolean heroPower() {
         Game game = controller.getCurrentPlayer().getGame();
-        boolean ret =  game.getCurrentCharacter().useHeroPower();
+        boolean ret = game.getCurrentCharacter().useHeroPower();
         if (ret)
             game.log("hero_power", "");
         if (game.isFinished())

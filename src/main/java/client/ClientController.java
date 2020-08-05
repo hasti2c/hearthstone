@@ -8,7 +8,6 @@ import server.*;
 import shared.*;
 import commands.*;
 import commands.types.*;
-import system.player.*;
 
 import java.util.*;
 
@@ -20,7 +19,6 @@ public class ClientController extends Controller<ClientCommandType> {
     private final Home home;
     private final Client client;
     private final ServerController serverController;
-    private Player currentPlayer;
 
     ClientController(Client client, Stage stage) {
         this.stage = stage;
@@ -29,10 +27,6 @@ public class ClientController extends Controller<ClientCommandType> {
         currentPlayer = this.serverController.getCurrentPlayer();
         startPage = new StartPage(this, client);
         home = new Home(this, client);
-    }
-
-    public Player getCurrentPlayer() {
-        return currentPlayer;
     }
 
     public void start() {

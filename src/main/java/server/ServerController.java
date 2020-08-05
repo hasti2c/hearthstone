@@ -2,22 +2,15 @@ package server;
 
 import com.google.gson.stream.JsonWriter;
 import commands.types.ServerCommandType;
-import elements.heros.Deck;
-import elements.heros.Hero;
 import shared.Controller;
 import shared.GameData;
 import system.Configable;
 import system.Configor;
-import system.player.Player;
 
 import java.io.*;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class ServerController extends Controller<ServerCommandType> implements Configable {
-    private Player currentPlayer = null;
-    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     private int playerCount, gameCount;
     private String initPlayerName;
 
@@ -43,14 +36,6 @@ public class ServerController extends Controller<ServerCommandType> implements C
         return "";
     }
 
-    public Player getCurrentPlayer() {
-        return currentPlayer;
-    }
-
-    public void setCurrentPlayer(Player currentPlayer) {
-        this.currentPlayer = currentPlayer;
-    }
-
     public int getPlayerCount() {
         return playerCount;
     }
@@ -67,10 +52,6 @@ public class ServerController extends Controller<ServerCommandType> implements C
     public void setGameCount(int gameCount) {
         this.gameCount = gameCount;
         updateJson();
-    }
-
-    public static String getTime() {
-        return dtf.format(LocalDateTime.now());
     }
 
     public static String readFile(String path) throws FileNotFoundException {
@@ -114,29 +95,5 @@ public class ServerController extends Controller<ServerCommandType> implements C
 
     public void setInitPlayerName(String initPlayerName) {
         this.initPlayerName = initPlayerName;
-    }
-
-    public Hero getCurrentHero() {
-        if (currentPlayer == null || currentPlayer.getInventory().getCurrentHero() == null)
-            return null;
-        return currentPlayer.getInventory().getCurrentHero();
-    }
-
-    public Deck getCurrentDeck() {
-        if (currentPlayer == null || currentPlayer.getInventory().getCurrentDeck() == null)
-            return null;
-        return currentPlayer.getInventory().getCurrentDeck();
-    }
-
-
-    @Override
-    public ArrayList<?> getObjectsList(String name) {
-        return switch (name) {
-            case "Deck": yield currentPlayer.getInventory().getAllDecks();
-            case "Card": yield GameData.getInstance().getCardsList();
-            case "Attackable|mine": yield currentPlayer.getGame().getCharacters()[0].getAttackables();
-            case "Attackable|opponent": yield currentPlayer.getGame().getCharacters()[1].getAttackables();
-            default: yield new ArrayList<>();
-        };
     }
 }

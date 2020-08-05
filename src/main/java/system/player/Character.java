@@ -4,7 +4,6 @@ import elements.*;
 import elements.abilities.targets.*;
 import elements.cards.*;
 import elements.heros.*;
-import client.graphics.directories.playground.*;
 import javafx.scene.*;
 import shared.*;
 import system.*;
@@ -26,19 +25,9 @@ public abstract class Character {
     protected boolean randomDraw = true;
     private final PlayerFaction playerFaction;
     protected final Game game;
-    protected CharacterGraphics<? extends Character> graphics;
 
     public Character(Hero hero, Deck deck, Game game, PlayerFaction playerFaction) {
         this.hero = hero.clone();
-        this.deck = deck;
-        leftInDeck = deck.getCardClones();
-        this.game = game;
-        this.playerFaction = playerFaction;
-        playerNumber = playerFaction.getPlayerNumber();
-    }
-
-    public Character(HeroClass heroClass, Deck deck, Game game, PlayerFaction playerFaction) {
-        this.hero = heroClass.getHero().clone();
         this.deck = deck;
         leftInDeck = deck.getCardClones();
         this.game = game;
@@ -195,8 +184,8 @@ public abstract class Character {
         else if (card instanceof QuestAndReward questAndReward)
             questAndRewards.add(questAndReward);
         playCardHelper(card);
-        getGraphics().getPlayGround().config();
-        doCardAction("doActionOnPlay", card);
+        if (!card.needsTarget())
+            doCardAction("doActionOnPlay", card);
         return true;
     }
 
@@ -217,7 +206,8 @@ public abstract class Character {
             return false;
         heroPowerCount++;
         heroPower.reduceCost(this);
-        doCardAction("doActionOnHeroPower");
+        if (!heroPower.needsTarget())
+            doCardAction("doActionOnHeroPower");
         return true;
     }
 
@@ -299,35 +289,39 @@ public abstract class Character {
                 minionsInGame.remove(i--);
     }
 
-    protected void doCardAction(String actionName) {
-        try {
-            Method method = Playable.class.getDeclaredMethod(actionName, Character.class);
-            for (Playable playable : getPlayables())
-                method.invoke(playable, this);
-            for (Playable playable : getOpponent().getPlayables())
-                method.invoke(playable, this);
+    public void doCardAction(String actionName, Card... input) {
+        Method method = getCardMethod(actionName, input.length);
+        System.out.println(actionName + " " + Arrays.toString(input) + " " + method);
+        for (Playable playable : getPlayables())
+            invokeCardMethod(method, playable, input);
+        for (Playable playable : getOpponent().getPlayables())
+            invokeCardMethod(method, playable, input);
 
-            clearDeadMinions();
-            getOpponent().clearDeadMinions();
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+        clearDeadMinions();
+        getOpponent().clearDeadMinions();
+    }
+
+    private Method getCardMethod(String actionName, int length) {
+        try {
+            return switch (length) {
+                default -> Playable.class.getDeclaredMethod(actionName, Character.class);
+                case 1 -> Playable.class.getDeclaredMethod(actionName, Character.class, Card.class);
+                case 2 -> Playable.class.getDeclaredMethod(actionName, Character.class, Card.class, Card.class);
+            };
+        } catch (NoSuchMethodException e) {
             e.printStackTrace();
+            return null;
         }
     }
 
-    //TODO cleaaaaan soon
-
-    public void doCardAction(String actionName, Card input) {
+    private void invokeCardMethod(Method method, Playable playable, Card... input) {
         try {
-            Method method = Playable.class.getDeclaredMethod(actionName, Character.class, Card.class);
-
-            for (Playable playable : getPlayables())
-                method.invoke(playable, this, input);
-            for (Playable playable : getOpponent().getPlayables())
-                method.invoke(playable, this, input);
-
-            clearDeadMinions();
-            getOpponent().clearDeadMinions();
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            switch (input.length) {
+                default -> method.invoke(playable, this);
+                case 1 -> method.invoke(playable, this, input[0]);
+                case 2 -> method.invoke(playable, this, input[1]);
+            }
+        } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
     }
@@ -353,28 +347,6 @@ public abstract class Character {
 
     public Deck getDeck() {
         return deck;
-    }
-
-    public void setGraphics(CharacterGraphics<? extends Character> graphics) {
-        this.graphics = graphics;
-    }
-
-    public CharacterGraphics<? extends Character> getGraphics() {
-        return graphics;
-    }
-
-    public ArrayList<Pair<Element, Node>> getCurrentElementsAndNodes() {
-        ArrayList<Pair<Element, Node>> elements = new ArrayList<>();
-        graphics.reloadMinionsHBox();
-        graphics.reloadHeroImage();
-        for (int i = 0; i < minionsInGame.size(); i++)
-            elements.add(new Pair<>(minionsInGame.get(i), graphics.getMinionsHBox().getChildren().get(i)));
-        if (currentWeapon != null)
-            elements.add(new Pair<>(currentWeapon, graphics.getWeaponNode()));
-        if (canUseHeroPower())
-            elements.add(new Pair<>(hero.getHeroPower(), graphics.getHeroPowerNode()));
-        elements.add(new Pair<>(hero, graphics.getHeroImageView()));
-        return elements;
     }
 
     public abstract void addWin();

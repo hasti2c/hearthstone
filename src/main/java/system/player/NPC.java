@@ -44,7 +44,6 @@ public class NPC extends Character {
             return true;
 
         game.nextTurn();
-        graphics.getPlayGround().config();
         return false;
     }
 

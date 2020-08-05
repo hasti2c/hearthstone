@@ -1,8 +1,13 @@
-package elements.abilities.targets;
+package client.graphics.directories.playground.targets;
 
+import client.Client;
+import commands.Command;
+import commands.types.ServerCommandType;
+import elements.abilities.targets.Targetable;
 import elements.cards.*;
 import elements.*;
 import elements.abilities.*;
+import elements.heros.HeroPower;
 import system.player.*;
 import client.graphics.directories.playground.*;
 import javafx.fxml.*;
@@ -15,22 +20,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DiscoverGraphics {
-    private PlayGround playGround;
-    private GamePlayer actionPerformer;
+    private final Client client;
+    private final PlayGround playGround;
     private Pane pane;
-    private Card caller;
-    private ArrayList<Card> targets = new ArrayList<>();
-    private Ability ability;
+    private final Playable caller;
+    private final ArrayList<Card> targets = new ArrayList<>();
     @FXML
     private HBox cardsHBox;
 
-    public DiscoverGraphics(GamePlayer actionPerformer, Ability ability, Card caller, ArrayList<Element> targets) {
-        this.actionPerformer = actionPerformer;
-        playGround = actionPerformer.getGraphics().getPlayGround();
+    public DiscoverGraphics(Client client, CharacterGraphics<?> actionPerformer, Ability ability, Playable caller) {
+        this.client = client;
+        this.playGround = actionPerformer.getPlayGround();
+        ArrayList<Element> targets = ability.getTarget(actionPerformer.getCharacter(), caller, null);
         for (Element element : targets)
             this.targets.add((Card) element);
         this.caller = caller;
-        this.ability = ability;
         load();
     }
 
@@ -81,7 +85,10 @@ public class DiscoverGraphics {
 
         @Override
         protected void doAction() {
-            ability.doActionAndNext(actionPerformer, caller, (Card) targetable);
+            if (caller instanceof HeroPower)
+                client.request(new Command<>(ServerCommandType.HERO_POWER, targetable));
+            else if (caller instanceof Card)
+                client.request(new Command<>(ServerCommandType.PLAY, caller, targetable));
             playGround.removeDiscover(pane);
             playGround.config();
         }
