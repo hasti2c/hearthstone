@@ -1,11 +1,13 @@
 package commands;
 
+import elements.Element;
 import elements.abilities.targets.*;
 import elements.cards.*;
 import elements.heros.*;
 import commands.types.*;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public class Command <T extends CommandType> {
     private final T commandType;
@@ -26,13 +28,11 @@ public class Command <T extends CommandType> {
 
     public String toString() {
         StringBuilder s = new StringBuilder(commandType.toString());
-        for (int i = 0; i < input.length; i++)
-            s.append("-").append(toString(input[i], i));
+        for (Object o : input) s.append("-").append(toString(o));
         return s.toString();
     }
 
-    private String toString(Object object, int index) {
-        System.out.println(commandType + " " + Arrays.toString(input));
+    private String toString(Object object) {
         String className = "";
         if (isAssignable(String.class, object))
             className = "String";
@@ -42,12 +42,12 @@ public class Command <T extends CommandType> {
             className = "HeroClass";
         else if (isAssignable(Deck.class, object))
             className = "Deck";
-        else if (isAssignable(Card.class, object))
+        else if (isAssignable(Card.class, object) && !Arrays.asList(ServerCommandType.getGameCommands()).contains(commandType))
             className = "Card";
-        else if (isAssignable(Attackable.class, object) && index == 0)
-            className = "Attackable|mine";
-        else if (isAssignable(Attackable.class, object) && index == 1)
-            className = "Attackable|opponent";
+        else if (isAssignable(Element.class, object) && (input.length != 2 || input[0] == object))
+            className = "Element|mine";
+        else if (isAssignable(Element.class, object))
+            className = "Element|opponent";
         return className + ":" + object;
     }
 

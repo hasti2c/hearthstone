@@ -1,0 +1,14 @@
+GAME_ID: 179
+STARTED_AT:  2020/08/05 20:11:04 
+
+p1: hasti
+p1_hero: mage
+p1_deck: wow
+
+p2: hasti
+p2_hero: mage
+p2_deck: wow
+
+p2:end_turn 2020/08/05 20:11:10 
+p1:end_turn 2020/08/05 20:11:12 
+p2:end_turn 2020/08/05 20:12:12 

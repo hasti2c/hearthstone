@@ -17,7 +17,6 @@
     "Gruul",
     "High Priest Amet",
     "Hogger",
-    "King Krush",
     "Kobold Stickyfinger",
     "Sathrovarr",
     "Security Rover",
@@ -44,11 +43,12 @@
     "Truesilver Champion",
     "Wicked Knife",
     "Learn Draconic",
-    "Strength in Numbers"
+    "Strength in Numbers",
+    "King Krush"
   ],
   "allDecks": [
     "wow",
     "pppp"
   ],
-  "currentDeck": "wow"
+  "currentDeck": "pppp"
 }

@@ -7,6 +7,7 @@ import javafx.scene.effect.*;
 import javafx.scene.input.*;
 
 public abstract class TargetEventHandler implements EventHandler<MouseEvent> {
+    //TODO cards with targets debugged
     protected final Node node;
     protected final Targetable targetable;
     protected boolean isSelected = false;

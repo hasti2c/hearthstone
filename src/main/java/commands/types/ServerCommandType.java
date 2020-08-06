@@ -1,5 +1,7 @@
 package commands.types;
 
+import java.util.ArrayList;
+
 public enum ServerCommandType implements CommandType {
     SIGN_UP,
     LOGIN,
@@ -22,5 +24,11 @@ public enum ServerCommandType implements CommandType {
     END_TURN,
     CREATE_GAME,
     START_GAME,
-    ATTACK
+    ATTACK;
+
+    private static final ServerCommandType[] gameCommands = {PLAY, HERO_POWER, END_TURN, ATTACK, START_GAME};
+
+    public static ServerCommandType[] getGameCommands() {
+        return gameCommands;
+    }
 }

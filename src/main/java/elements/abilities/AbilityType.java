@@ -17,11 +17,11 @@ public enum AbilityType {
     HERO_POWER,
     QUEST;
 
-    public void doActionOnRandomAbility(ArrayList<Ability> abilities, Character actionPerformer, Playable caller, Card played, Card damaged, Card quest) {
+    public void doActionOnRandomAbility(ArrayList<Ability> abilities, Character actionPerformer, Playable caller, Card played, Card damaged, Card quest, Element selected) {
         Ability ability = getRandomAbility(getValidAbilities(abilities, caller, played, damaged, quest));
         if (ability == null)
             return;
-        ability.callDoAction(actionPerformer, caller, played, null);
+        ability.callDoAction(actionPerformer, caller, played, selected);
     }
 
     private ArrayList<Ability> getValidAbilities(ArrayList<Ability> abilities, Playable caller, Card played, Card damaged, Card quest) {

@@ -41,12 +41,12 @@ public class CommandParser <T extends CommandType> {
     }
 
     private Object getObject(Pair<String, String> namePair) {
-        String name = namePair.getSecond();
-        return switch (namePair.getFirst()) {
+        String className = namePair.getFirst(), name = namePair.getSecond();
+        return switch (className) {
             case "String": yield name;
             case "Integer": yield Integer.valueOf(name);
             case "HeroClass": yield HeroClass.valueOf(name);
-            default: yield getObject(controller.getObjectsList(name), name);
+            default: yield getObject(controller.getObjectsList(className), name);
         };
     }
 

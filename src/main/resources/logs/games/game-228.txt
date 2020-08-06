@@ -1,0 +1,44 @@
+GAME_ID: 228
+STARTED_AT:  2020/08/06 14:57:21 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: pppp
+
+p2: hasti
+p2_hero: warlock
+p2_deck: pppp
+
+p2:end_turn 2020/08/06 14:57:22 
+p1:end_turn 2020/08/06 14:57:22 
+p2:end_turn 2020/08/06 14:57:23 
+p1:end_turn 2020/08/06 14:57:23 
+p2:end_turn 2020/08/06 14:57:23 
+p1:end_turn 2020/08/06 14:57:23 
+p2:end_turn 2020/08/06 14:57:24 
+p1:end_turn 2020/08/06 14:57:24 
+p2:end_turn 2020/08/06 14:57:25 
+p1:end_turn 2020/08/06 14:57:25 
+p2:end_turn 2020/08/06 14:57:26 
+p1:end_turn 2020/08/06 14:57:27 
+p2:end_turn 2020/08/06 14:57:27 
+p1:end_turn 2020/08/06 14:57:28 
+p2:end_turn 2020/08/06 14:57:28 
+p1:end_turn 2020/08/06 14:57:28 
+p2:end_turn 2020/08/06 14:57:30 
+p1:end_turn 2020/08/06 14:57:30 
+p1:play_card 2020/08/06 14:57:31 Dirty Rat
+p1:play_card 2020/08/06 14:57:34 Divine Strength
+p2:end_turn 2020/08/06 14:57:36 
+p1:end_turn 2020/08/06 14:57:36 
+p1:play_card 2020/08/06 14:57:39 Divine Strength
+p2:end_turn 2020/08/06 14:57:41 
+p1:end_turn 2020/08/06 14:57:41 
+p2:end_turn 2020/08/06 14:57:42 
+p1:end_turn 2020/08/06 14:57:51 
+p2:end_turn 2020/08/06 14:57:53 
+p1:end_turn 2020/08/06 14:57:58 
+p2:end_turn 2020/08/06 14:57:59 
+p1:end_turn 2020/08/06 14:58:59 
+p2:end_turn 2020/08/06 14:59:59 
+p1:end_turn 2020/08/06 15:00:59 

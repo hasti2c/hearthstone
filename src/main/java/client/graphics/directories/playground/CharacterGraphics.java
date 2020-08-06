@@ -86,8 +86,6 @@ public abstract class CharacterGraphics <C extends Character> {
 
         reloadHeroImage();
         configHero();
-
-        configHero();
         configHand();
         configTargets();
         configWeapon();
@@ -182,8 +180,8 @@ public abstract class CharacterGraphics <C extends Character> {
         return minionsHBox;
     }
 
-    public CharacterGraphics<C> getOpponent() {
-        return (CharacterGraphics<C>) playGround.getOpponent(this);
+    public CharacterGraphics<?> getOpponent() {
+        return playGround.getOpponent(this);
     }
 
     public PlayGround getPlayGround() {
@@ -314,9 +312,10 @@ public abstract class CharacterGraphics <C extends Character> {
         ArrayList<Element> elements = getCurrentElementsAndNodes();
         for (Element element : elements) {
             Node node = getNode(element);
-            if (ability.isValidTarget(element) && element instanceof Targetable targetable)
-                node.addEventHandler(MouseEvent.MOUSE_CLICKED, new SelectionEventHandler(client, this, caller, targetable, ability));
-            else if (element instanceof Targetable)
+            if (ability.isValidTarget(element) && element instanceof Targetable targetable) {
+                SelectionEventHandler handler = new SelectionEventHandler(client, this,caller, targetable, ability);
+                node.setOnMouseClicked(handler);
+            } else if (element instanceof Targetable)
                 TargetEventHandler.disableNode(node);
         }
     }

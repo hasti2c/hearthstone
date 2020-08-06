@@ -125,27 +125,35 @@ public abstract class Playable extends Element {
     }
 
     public void doActionOnDraw(Character actionPerformer) {
-        DRAW.doActionOnRandomAbility(abilities, actionPerformer, this, null, null, null);
+        DRAW.doActionOnRandomAbility(abilities, actionPerformer, this, null, null, null, null);
     }
 
-    public void doActionOnPlay(Character actionPerformer, Card played) {
-        PLAY.doActionOnRandomAbility(abilities, actionPerformer, this, played, null, null);
-        BATTLE_CRY.doActionOnRandomAbility(abilities, actionPerformer, this, played, null, null);
+    public void doActionOnPlay(Character actionPerformer, Element played) {
+        doActionOnPlay(actionPerformer, played, null);
+    }
+
+    public void doActionOnPlay(Character actionPerformer, Element played, Element selected) {
+        PLAY.doActionOnRandomAbility(abilities, actionPerformer, this, (Card) played, null, null, selected);
+        BATTLE_CRY.doActionOnRandomAbility(abilities, actionPerformer, this, (Card) played, null, null, selected);
     }
 
     public void doActionOnEndTurn(Character actionPerformer) {
-        END_TURN.doActionOnRandomAbility(abilities, actionPerformer, this, null, null, null);
+        END_TURN.doActionOnRandomAbility(abilities, actionPerformer, this, null, null, null, null);
     }
 
-    public void doActionOnDamaged(Character actionPerformer, Card damaged) {
-        TAKES_DAMAGE.doActionOnRandomAbility(abilities, actionPerformer, this, null, damaged, null);
+    public void doActionOnDamaged(Character actionPerformer, Element damaged) {
+        TAKES_DAMAGE.doActionOnRandomAbility(abilities, actionPerformer, this, null, (Card) damaged, null, null);
     }
 
     public void doActionOnHeroPower(Character actionPerformer) {
-        HERO_POWER.doActionOnRandomAbility(abilities, actionPerformer, this, null, null, null);
+        HERO_POWER.doActionOnRandomAbility(abilities, actionPerformer, this, null, null, null, null);
     }
 
-    public void doActionOnQuest(Character actionPerformer, Card quest) {
-        QUEST.doActionOnRandomAbility(abilities, actionPerformer, this, null, null, quest);
+    public void doActionOnHeroPower(Character actionPerformer, Element selected) {
+        HERO_POWER.doActionOnRandomAbility(abilities, actionPerformer, this, null, null, null, selected);
+    }
+
+    public void doActionOnQuest(Character actionPerformer, Element quest) {
+        QUEST.doActionOnRandomAbility(abilities, actionPerformer, this, null, null, (Card) quest, null);
     }
 }

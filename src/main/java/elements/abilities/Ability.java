@@ -47,7 +47,7 @@ public abstract class Ability implements Configable {
     private void callDoAction(Character actionPerformer, Element caller, Element played, Element selected, boolean assertValidCaller) {
         handleSelectionForNPC(actionPerformer);
 
-        for (int i = 0; i < times; i++) {
+        for (int i = 0; i < times; i++)
             if (targetType.equals(SELECTED) || targetType.equals(DISCOVER))
                 doActionAndNext(actionPerformer, caller, selected);
             else
@@ -55,7 +55,6 @@ public abstract class Ability implements Configable {
                     if (isValidCaller(actionPerformer, caller) && (assertValidCaller || caller.isValid()) && target.isValid())
                         doActionAndNext(actionPerformer, caller, target);
                 }
-        }
     }
 
     private void handleSelectionForNPC(Character actionPerformer) {

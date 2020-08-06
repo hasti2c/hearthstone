@@ -167,7 +167,7 @@ public abstract class Character {
         return leftInDeck.get(0);
     }
 
-    public boolean playCard(Card card) {
+    public boolean playCard(Card card, Element target) {
         if (!isMyTurn() || !hand.contains(card) || mana < card.getGameMana(this) || (card instanceof Minion && minionsInGame.size() >= 7))
             return false;
 
@@ -184,9 +184,15 @@ public abstract class Character {
         else if (card instanceof QuestAndReward questAndReward)
             questAndRewards.add(questAndReward);
         playCardHelper(card);
-        if (!card.needsTarget())
+        if (target != null)
+            doCardAction("doActionOnPlay", card, target);
+        else
             doCardAction("doActionOnPlay", card);
         return true;
+    }
+
+    public boolean playCard(Card card) {
+        return playCard(card, null);
     }
 
     protected abstract void playCardHelper(Card card);
@@ -200,15 +206,18 @@ public abstract class Character {
         hero.setHasAttacked(false);
     }
 
-    public boolean useHeroPower() {
+    public boolean useHeroPower(Element target) {
         HeroPower heroPower = hero.getHeroPower();
         if (!isMyTurn() || heroPowerCount >= heroPowerCap || mana < heroPower.getGameMana(this))
             return false;
         heroPowerCount++;
         heroPower.reduceCost(this);
-        if (!heroPower.needsTarget())
-            doCardAction("doActionOnHeroPower");
+        doCardAction("doActionOnHeroPower", target);
         return true;
+    }
+
+    public boolean useHeroPower() {
+        return useHeroPower(null);
     }
 
     public boolean canUseHeroPower() {
@@ -289,9 +298,8 @@ public abstract class Character {
                 minionsInGame.remove(i--);
     }
 
-    public void doCardAction(String actionName, Card... input) {
+    public void doCardAction(String actionName, Element... input) {
         Method method = getCardMethod(actionName, input.length);
-        System.out.println(actionName + " " + Arrays.toString(input) + " " + method);
         for (Playable playable : getPlayables())
             invokeCardMethod(method, playable, input);
         for (Playable playable : getOpponent().getPlayables())
@@ -305,8 +313,8 @@ public abstract class Character {
         try {
             return switch (length) {
                 default -> Playable.class.getDeclaredMethod(actionName, Character.class);
-                case 1 -> Playable.class.getDeclaredMethod(actionName, Character.class, Card.class);
-                case 2 -> Playable.class.getDeclaredMethod(actionName, Character.class, Card.class, Card.class);
+                case 1 -> Playable.class.getDeclaredMethod(actionName, Character.class, Element.class);
+                case 2 -> Playable.class.getDeclaredMethod(actionName, Character.class, Element.class, Element.class);
             };
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
@@ -314,12 +322,12 @@ public abstract class Character {
         }
     }
 
-    private void invokeCardMethod(Method method, Playable playable, Card... input) {
+    private void invokeCardMethod(Method method, Playable playable, Element... input) {
         try {
             switch (input.length) {
                 default -> method.invoke(playable, this);
                 case 1 -> method.invoke(playable, this, input[0]);
-                case 2 -> method.invoke(playable, this, input[1]);
+                case 2 -> method.invoke(playable, this, input[0], input[1]);
             }
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
@@ -354,6 +362,19 @@ public abstract class Character {
     public ArrayList<Attackable> getAttackables() {
         ArrayList<Attackable> ret = new ArrayList<>(minionsInGame);
         ret.add(hero);
+        return ret;
+    }
+
+    public ArrayList<Element> getElements() {
+        ArrayList<Element> ret = new ArrayList<>(minionsInGame);
+        ret.addAll(hand);
+        ret.addAll(leftInDeck);
+        if (lastSpell != null)
+            ret.add(lastSpell);
+        if (currentWeapon != null)
+            ret.add(currentWeapon);
+        ret.add(hero);
+        ret.add(hero.getHeroPower());
         return ret;
     }
 }

@@ -5,16 +5,14 @@
   "cards": [
     "Learn Draconic",
     "Strength in Numbers",
-    "Sprint",
-    "Sprint",
-    "Hand of Adal",
-    "Hand of Adal",
-    "Pharaohs Blessing",
-    "Pharaohs Blessing",
-    "Firelands Portal",
-    "Firelands Portal",
-    "Flame Lance",
-    "Flame Lance",
+    "Dread Infernal",
+    "Dread Infernal",
+    "Curio Collector",
+    "Curio Collector",
+    "Hogger",
+    "Hogger",
+    "Dirty Rat",
+    "Dirty Rat",
     "Divine Strength",
     "Divine Strength"
   ],
@@ -30,11 +28,9 @@
     0,
     0,
     0,
-    0,
-    0,
     0
   ],
   "wins": 0,
-  "games": 12,
+  "games": 77,
   "maxSize": 15
 }

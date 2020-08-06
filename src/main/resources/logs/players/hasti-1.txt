@@ -33,3 +33,150 @@ login 2020/08/05 17:20:43
 login 2020/08/05 17:21:00 
 login 2020/08/05 17:21:54 
 login 2020/08/05 17:23:31 
+login 2020/08/05 17:47:03 
+login 2020/08/05 17:55:32 
+login 2020/08/05 18:01:10 
+login 2020/08/05 18:01:59 
+login 2020/08/05 18:02:58 
+login 2020/08/05 18:03:26 
+login 2020/08/05 18:04:11 
+login 2020/08/05 18:43:27 
+login 2020/08/05 18:44:21 
+login 2020/08/05 18:50:40 
+login 2020/08/05 18:52:05 
+login 2020/08/05 19:51:47 
+login 2020/08/05 19:52:56 
+login 2020/08/05 19:53:35 
+login 2020/08/05 19:54:31 
+login 2020/08/05 19:55:58 
+login 2020/08/05 19:58:33 
+login 2020/08/05 20:01:23 
+login 2020/08/05 20:05:45 
+start_game 2020/08/05 20:05:50 game id: 175
+login 2020/08/05 20:06:19 
+start_game 2020/08/05 20:06:24 game id: 176
+login 2020/08/05 20:07:01 
+start_game 2020/08/05 20:07:08 game id: 177
+login 2020/08/05 20:07:39 
+start_game 2020/08/05 20:07:44 game id: 178
+login 2020/08/05 20:10:59 
+start_game 2020/08/05 20:11:04 game id: 179
+login 2020/08/05 20:12:52 
+start_game 2020/08/05 20:12:57 game id: 180
+login 2020/08/05 20:15:00 
+start_game 2020/08/05 20:15:05 game id: 181
+login 2020/08/05 20:15:37 
+start_game 2020/08/05 20:15:42 game id: 182
+login 2020/08/05 20:16:28 
+start_game 2020/08/05 20:16:32 game id: 183
+select 2020/08/05 20:16:42 deck: pppp
+add 2020/08/05 20:16:45 card: Dread Infernal -> deck: pppp
+remove 2020/08/05 20:16:53 card: Divine Strength -> deck: pppp
+remove 2020/08/05 20:16:53 card: Divine Strength -> deck: pppp
+remove 2020/08/05 20:16:54 card: Firelands Portal -> deck: pppp
+remove 2020/08/05 20:16:54 card: Firelands Portal -> deck: pppp
+remove 2020/08/05 20:16:55 card: Flame Lance -> deck: pppp
+remove 2020/08/05 20:16:56 card: Flame Lance -> deck: pppp
+remove 2020/08/05 20:16:57 card: Pharaohs Blessing -> deck: pppp
+remove 2020/08/05 20:16:57 card: Pharaohs Blessing -> deck: pppp
+remove 2020/08/05 20:16:58 card: Hand of Adal -> deck: pppp
+remove 2020/08/05 20:16:58 card: Hand of Adal -> deck: pppp
+remove 2020/08/05 20:16:59 card: Sprint -> deck: pppp
+remove 2020/08/05 20:16:59 card: Sprint -> deck: pppp
+add 2020/08/05 20:17:05 card: Dread Infernal -> deck: pppp
+add 2020/08/05 20:17:06 card: Curio Collector -> deck: pppp
+add 2020/08/05 20:17:06 card: Curio Collector -> deck: pppp
+add 2020/08/05 20:17:07 card: Hogger -> deck: pppp
+add 2020/08/05 20:17:07 card: Hogger -> deck: pppp
+add 2020/08/05 20:17:09 card: Dirty Rat -> deck: pppp
+add 2020/08/05 20:17:09 card: Dirty Rat -> deck: pppp
+start_game 2020/08/05 20:17:20 game id: 184
+login 2020/08/05 20:18:19 
+start_game 2020/08/05 20:18:24 game id: 185
+add 2020/08/05 20:18:58 card: Divine Strength -> deck: pppp
+add 2020/08/05 20:18:58 card: Divine Strength -> deck: pppp
+start_game 2020/08/05 20:19:03 game id: 186
+login 2020/08/05 20:20:17 
+start_game 2020/08/05 20:20:28 game id: 187
+login 2020/08/05 20:21:00 
+start_game 2020/08/05 20:21:04 game id: 188
+login 2020/08/05 20:23:07 
+start_game 2020/08/05 20:23:19 game id: 189
+login 2020/08/05 20:25:55 
+start_game 2020/08/05 20:26:06 game id: 190
+login 2020/08/05 20:27:18 
+start_game 2020/08/05 20:27:25 game id: 191
+login 2020/08/05 20:28:31 
+start_game 2020/08/05 20:28:37 game id: 192
+login 2020/08/05 20:30:31 
+start_game 2020/08/05 20:30:39 game id: 193
+login 2020/08/05 20:31:33 
+start_game 2020/08/05 20:31:42 game id: 194
+login 2020/08/05 20:32:55 
+start_game 2020/08/05 20:33:01 game id: 195
+login 2020/08/05 20:35:01 
+start_game 2020/08/05 20:35:07 game id: 196
+login 2020/08/05 20:36:04 
+start_game 2020/08/05 20:36:13 game id: 197
+login 2020/08/05 20:56:58 
+start_game 2020/08/05 20:57:04 game id: 198
+login 2020/08/05 21:00:29 
+start_game 2020/08/05 21:00:35 game id: 199
+login 2020/08/05 21:02:06 
+start_game 2020/08/05 21:02:16 game id: 200
+login 2020/08/05 21:04:53 
+logout 2020/08/05 21:11:12 
+login 2020/08/05 23:14:54 
+start_game 2020/08/05 23:15:06 game id: 201
+login 2020/08/05 23:16:17 
+start_game 2020/08/05 23:16:25 game id: 202
+login 2020/08/05 23:17:58 
+start_game 2020/08/05 23:18:08 game id: 203
+login 2020/08/05 23:23:07 
+start_game 2020/08/05 23:23:16 game id: 204
+login 2020/08/06 13:42:01 
+start_game 2020/08/06 13:42:07 game id: 205
+end_game 2020/08/06 13:42:18 game id: 205
+start_game 2020/08/06 13:42:22 game id: 206
+login 2020/08/06 13:43:01 
+start_game 2020/08/06 13:43:06 game id: 207
+login 2020/08/06 13:46:41 
+start_game 2020/08/06 13:46:46 game id: 208
+login 2020/08/06 13:47:36 
+start_game 2020/08/06 13:47:42 game id: 209
+login 2020/08/06 13:49:19 
+start_game 2020/08/06 13:49:26 game id: 210
+login 2020/08/06 13:49:58 
+start_game 2020/08/06 13:50:03 game id: 211
+sell 2020/08/06 14:04:44 card: King Krush
+buy 2020/08/06 14:04:50 card: King Krush
+start_game 2020/08/06 14:05:00 game id: 212
+start_game 2020/08/06 14:06:34 game id: 213
+login 2020/08/06 14:07:51 
+start_game 2020/08/06 14:07:55 game id: 214
+end_game 2020/08/06 14:07:57 game id: 214
+start_game 2020/08/06 14:08:04 game id: 215
+end_game 2020/08/06 14:08:12 game id: 215
+start_game 2020/08/06 14:08:17 game id: 216
+start_game 2020/08/06 14:08:31 game id: 217
+end_game 2020/08/06 14:08:52 game id: 217
+start_game 2020/08/06 14:08:56 game id: 218
+end_game 2020/08/06 14:09:04 game id: 218
+login 2020/08/06 14:15:17 
+start_game 2020/08/06 14:15:31 game id: 219
+login 2020/08/06 14:17:45 
+start_game 2020/08/06 14:17:52 game id: 220
+login 2020/08/06 14:20:48 
+start_game 2020/08/06 14:20:54 game id: 222
+login 2020/08/06 14:25:39 
+start_game 2020/08/06 14:25:54 game id: 223
+login 2020/08/06 14:28:56 
+start_game 2020/08/06 14:29:01 game id: 224
+login 2020/08/06 14:31:08 
+start_game 2020/08/06 14:31:14 game id: 225
+login 2020/08/06 14:36:02 
+start_game 2020/08/06 14:36:12 game id: 226
+login 2020/08/06 14:56:18 
+start_game 2020/08/06 14:56:22 game id: 227
+login 2020/08/06 14:57:16 
+start_game 2020/08/06 14:57:21 game id: 228

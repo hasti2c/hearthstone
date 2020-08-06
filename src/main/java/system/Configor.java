@@ -70,7 +70,6 @@ public class Configor<O extends Configable> {
                 currentClass = currentClass.getSuperclass();
             }
         }
-        System.out.println(object.getClass() + " " + fieldName);
         throw new NoSuchFieldException();
     }
 

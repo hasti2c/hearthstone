@@ -1,6 +1,7 @@
 package server;
 
 import client.*;
+import elements.Element;
 import elements.abilities.targets.*;
 import elements.cards.*;
 import elements.heros.*;
@@ -26,7 +27,6 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
 
     @Override
     public boolean run(Command<ServerCommandType> command) {
-        System.out.println(command);
         ServerCommandType commandType = command.getCommandType();
         Object[] input = command.getInput();
 
@@ -65,13 +65,19 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
             ret = sellCard(card);
         else if (CREATE_GAME.equals(commandType) && input[0] instanceof Integer num)
             ret = createGame(num);
-        else if (START_GAME.equals(commandType) && isCards(input))
-            ret = startGame(new ArrayList<>(Arrays.asList((Card[]) input)));
-        else if (DECK_READER.equals(commandType))
+        else if (START_GAME.equals(commandType) && isCards(input)) {
+            ArrayList<Card> cards = new ArrayList<>();
+            for (Object card : input)
+                cards.add((Card) card);
+            ret = startGame(cards);
+        } else if (DECK_READER.equals(commandType))
             ret = deckReader();
-        else if (PLAY.equals(commandType) && input[0] instanceof Card card)
-            ret = playCard(card);
-        else if (END_TURN.equals(commandType))
+        else if (PLAY.equals(commandType) && input[0] instanceof Card card) {
+            if (input.length < 2)
+                ret = playCard(card);
+            else if (input[1] instanceof Element target)
+                ret = playCard(card, target);
+        } else if (END_TURN.equals(commandType))
             ret = endTurn();
         else if (HERO_POWER.equals(commandType))
             ret = heroPower();
@@ -80,7 +86,6 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
 
         if (ret && controller.getCurrentPlayer() != null)
             controller.getCurrentPlayer().updateJson();
-        System.out.println(ret);
         return ret;
     }
 
@@ -280,7 +285,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         if (player.getInventory().getCurrentDeck() == null)
             return false;
         controller.setGameCount(controller.getGameCount() + 1);
-        Game game = new Game((ClientController) client.getController(), playerCount, controller.getGameCount());
+        Game game = new Game(client.getController(), playerCount, controller.getGameCount());
         player.setGame(game);
         return true;
     }
@@ -308,8 +313,12 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private boolean playCard(Card card) {
+        return playCard(card, null);
+    }
+
+    private boolean playCard(Card card, Element target) {
         Game game = controller.getCurrentPlayer().getGame();
-        boolean ret = game.getCurrentCharacter().playCard(card);
+        boolean ret = game.getCurrentCharacter().playCard(card, target);
         if (ret)
             game.log( "play_card", card.toString());
         return ret;

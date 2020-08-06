@@ -27,18 +27,17 @@ public class HandEventHandler implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-        if (mouseEvent.getEventType() == MouseEvent.MOUSE_CLICKED)
+        if (mouseEvent.getEventType() == MouseEvent.MOUSE_CLICKED) {
             gamePlayer.playCard(card);
-        else if (mouseEvent.getEventType() == MouseEvent.MOUSE_ENTERED) {
+        } else if (mouseEvent.getEventType() == MouseEvent.MOUSE_ENTERED) {
             gamePlayer.getPane().getChildren().add(bigImageView);
             bigImageView.setLayoutX(getLayoutX() + getWidth(normalImageView) / 2 - getWidth(bigImageView) / 2);
             if (gamePlayer.getCharacter().getPlayerFaction() == PlayerFaction.FRIENDLY)
                 bigImageView.setLayoutY(getLayoutY() - getHeight(bigImageView));
             else
                 bigImageView.setLayoutY(getLayoutY() + getHeight(bigImageView) - getHeight(normalImageView) / 2);
-        } else if (mouseEvent.getEventType() == MouseEvent.MOUSE_EXITED) {
+        } else if (mouseEvent.getEventType() == MouseEvent.MOUSE_EXITED)
             gamePlayer.getPane().getChildren().remove(bigImageView);
-        }
         mouseEvent.consume();
     }
 

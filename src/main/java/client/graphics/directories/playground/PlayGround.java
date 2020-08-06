@@ -25,7 +25,7 @@ import static commands.types.ServerCommandType.*;
 public class PlayGround extends Directory {
     private final Game game;
     private final CharacterGraphics<?>[] characters = new CharacterGraphics<?>[2];
-    private int time;
+    private int time = 60;
     private final Timer timer;
     @FXML
     private Pane pane;
@@ -62,10 +62,7 @@ public class PlayGround extends Directory {
                 controller.exit();
         });
 
-        endTurnButton.setOnAction(e -> {
-            client.request(new Command<>(END_TURN));
-            config();
-        });
+        endTurnButton.setOnAction(e -> endTurn());
 
         gameEventsScrollPane.setVisible(false);
         gameEventsButton.setOnAction(e -> {
@@ -111,8 +108,8 @@ public class PlayGround extends Directory {
     public void nextSecond() {
         time--;
         if (time <= 0)
-            client.request(new Command<>(END_TURN));
-        config();
+            endTurn();
+        configTime();
     }
 
     private boolean confirm() {
@@ -152,6 +149,7 @@ public class PlayGround extends Directory {
     public void endGame() {
         GameEnding gameEnd = new GameEnding(controller, client, game);
         gameEnd.display();
+        timer.exit();
     }
 
     public Button getEndTurnButton() {
@@ -163,13 +161,22 @@ public class PlayGround extends Directory {
     }
 
     public void startTimer() {
-        startTimer();
+        time = 60;
+        timer.start();
+    }
+
+    private void endTurn() {
+        client.request(new Command<>(END_TURN));
+        timer.exit();
+        time = 60;
+        timer.restart();
+        config();
     }
 
     public CharacterGraphics<?> getOpponent(CharacterGraphics<?> character) {
         if (character == characters[0])
-            return characters[0];
-        return character == characters[1] ? characters[1] : null;
+            return characters[1];
+        return character == characters[1] ? characters[0] : null;
     }
 
     private class ChooseCards {
@@ -204,7 +211,7 @@ public class PlayGround extends Directory {
             for (Card card : cards) {
                 ImageView iv = card.getImageView(250, -1);
                 cardsHBox.getChildren().add(iv);
-                iv.addEventHandler(MouseEvent.MOUSE_CLICKED, new ChooseCardsEventHandler(card));
+                iv.setOnMouseClicked(new ChooseCardsEventHandler(card));
             }
         }
 
@@ -215,7 +222,6 @@ public class PlayGround extends Directory {
 
         private void hide() {
             PlayGround.this.pane.getChildren().remove(pane);
-            System.out.println(cards);
             if (client.request(new Command<>(START_GAME, cards.toArray())))
                 startTimer();
             PlayGround.this.config();

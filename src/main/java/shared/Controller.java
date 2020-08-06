@@ -37,8 +37,8 @@ public abstract class Controller <T extends CommandType> {
         return switch (name) {
             case "Deck": yield currentPlayer.getInventory().getAllDecks();
             case "Card": yield GameData.getInstance().getCardsList();
-            case "Attackable|mine": yield currentPlayer.getGame().getCharacters()[0].getAttackables();
-            case "Attackable|opponent": yield currentPlayer.getGame().getCharacters()[1].getAttackables();
+            case "Element|mine": yield currentPlayer.getGame().getCharacters()[0].getElements();
+            case "Element|opponent": yield currentPlayer.getGame().getCharacters()[1].getElements();
             default: yield new ArrayList<>();
         };
     }

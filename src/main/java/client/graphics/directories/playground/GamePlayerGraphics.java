@@ -34,18 +34,18 @@ public class GamePlayerGraphics extends CharacterGraphics<GamePlayer> {
     protected void configHero() {
         Hero hero = character.getHero();
         Node node = heroImagePane.getChildren().get(0);
-        node.addEventHandler(MouseEvent.MOUSE_CLICKED, new AttackEventHandler(this, hero, node));
+        node.setOnMouseClicked(new AttackEventHandler(this, hero, node));
     }
 
     protected void configHandNode(Card card, ImageView imageView) {
         HandEventHandler eventHandler = new HandEventHandler(this, card, imageView);
-        imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
-        imageView.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandler);
-        imageView.addEventHandler(MouseEvent.MOUSE_EXITED, eventHandler);
+        imageView.setOnMouseClicked(eventHandler);
+        imageView.setOnMouseEntered(eventHandler);
+        imageView.setOnMouseExited(eventHandler);
     }
 
     protected void configTargetNode(Minion minion, Node node) {
-        node.addEventHandler(MouseEvent.MOUSE_CLICKED, new AttackEventHandler(this, minion, node));
+        node.setOnMouseClicked(new AttackEventHandler(this, minion, node));
     }
 
     protected Node getHeroPowerNode(HeroPower heroPower) {

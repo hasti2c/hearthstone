@@ -1,0 +1,22 @@
+GAME_ID: 185
+STARTED_AT:  2020/08/05 20:18:24 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: pppp
+
+p2: hasti
+p2_hero: warlock
+p2_deck: pppp
+
+p2:end_turn 2020/08/05 20:18:26 
+p1:end_turn 2020/08/05 20:18:27 
+p2:end_turn 2020/08/05 20:18:27 
+p1:end_turn 2020/08/05 20:18:27 
+p2:end_turn 2020/08/05 20:18:27 
+p1:end_turn 2020/08/05 20:18:27 
+p2:end_turn 2020/08/05 20:18:28 
+p1:end_turn 2020/08/05 20:18:28 
+p1:play_card 2020/08/05 20:18:29 Curio Collector
+p2:end_turn 2020/08/05 20:18:33 
+p1:end_turn 2020/08/05 20:18:39 
