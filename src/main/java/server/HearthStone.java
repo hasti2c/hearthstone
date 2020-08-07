@@ -15,7 +15,8 @@ public class HearthStone extends Application {
     @Override
     public void start(Stage primaryStage) {
         server = new Server();
-        client = new Client(server, primaryStage);
+        server.start();
+        client = new Client(primaryStage);
     }
 }
 

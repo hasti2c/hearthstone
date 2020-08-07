@@ -1,10 +1,9 @@
 package elements.cards;
 
-import elements.abilities.targets.Targetable;
-import elements.Playable;
+import elements.abilities.targets.*;
+import elements.*;
 import elements.heros.*;
-import shared.Controller;
-import shared.GameData;
+import shared.*;
 
 import java.io.*;
 import java.nio.file.*;

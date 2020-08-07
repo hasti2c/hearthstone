@@ -16,11 +16,13 @@ public class CommandParser <T extends CommandType> {
     }
 
     public Command<T> parse(String message) {
-        String[] words = message.split("-");
+        String[] words = message.split("\\|");
 
         T commandType;
         if (ServerCommandType.class.isAssignableFrom(commandTypeClass))
             commandType = (T) ServerCommandType.valueOf(words[0]);
+        else if (ClientCommandType.class.isAssignableFrom(commandTypeClass))
+            commandType = (T) ClientCommandType.valueOf(words[0]);
         else
             return null;
         Object[] input = new Object[words.length - 1];
@@ -36,7 +38,9 @@ public class CommandParser <T extends CommandType> {
     }
 
     private Pair<String, String> getNamePair(String word) {
+        System.out.println(word);
         String[] names = word.split(":", 2);
+        System.out.println(Arrays.toString(names));
         return new Pair<>(names[0], names[1]);
     }
 
@@ -45,7 +49,9 @@ public class CommandParser <T extends CommandType> {
         return switch (className) {
             case "String": yield name;
             case "Integer": yield Integer.valueOf(name);
+            case "Boolean": yield Boolean.valueOf(name);
             case "HeroClass": yield HeroClass.valueOf(name);
+            case "ServerCommandType": yield ServerCommandType.valueOf(name);
             default: yield getObject(controller.getObjectsList(className), name);
         };
     }

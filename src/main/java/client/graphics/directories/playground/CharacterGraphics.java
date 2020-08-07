@@ -1,27 +1,20 @@
 package client.graphics.directories.playground;
 
 import client.*;
-import client.graphics.directories.playground.targets.DiscoverGraphics;
-import client.graphics.directories.playground.targets.SelectionEventHandler;
-import client.graphics.directories.playground.targets.TargetEventHandler;
-import commands.Command;
-import commands.types.CommandType;
-import commands.types.ServerCommandType;
-import elements.Element;
-import elements.Playable;
-import elements.abilities.Ability;
+import client.graphics.directories.playground.targets.*;
+import commands.*;
+import commands.types.*;
+import elements.*;
+import elements.abilities.*;
 import elements.abilities.targets.*;
 import elements.cards.*;
 import elements.heros.*;
 import client.graphics.directories.playground.playables.*;
-import javafx.collections.ObservableList;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import shared.Pair;
 import system.player.*;
 import system.player.Character;
 

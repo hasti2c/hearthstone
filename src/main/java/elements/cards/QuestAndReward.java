@@ -1,9 +1,8 @@
 package elements.cards;
 
-import elements.Element;
-import elements.ElementType;
+import elements.*;
 
-import static elements.ElementType.QUEST_AND_REWARD;
+import static elements.ElementType.*;
 
 public class QuestAndReward extends Card {
     private int questMana, usedMana;

@@ -1,7 +1,6 @@
 package server;
 
-import client.*;
-import elements.Element;
+import elements.*;
 import elements.abilities.targets.*;
 import elements.cards.*;
 import elements.heros.*;
@@ -14,15 +13,18 @@ import java.io.*;
 import java.lang.Character;
 import java.util.*;
 
+import static commands.types.ClientCommandType.*;
 import static commands.types.ServerCommandType.*;
 
 public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     protected final ServerController controller;
-    protected final Client client;
+    protected final ClientHandler handler;
+    //protected final Client client;
 
-    public ServerCommandRunner(ServerController controller, Client client) {
+    public ServerCommandRunner(ServerController controller, ClientHandler handler) {
         this.controller = controller;
-        this.client = client;
+        this.handler = handler;
+        //this.client = client;
     }
 
     @Override
@@ -35,11 +37,14 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
             ret = runSignup(username, password);
         else if (LOGIN.equals(commandType) && input[0] instanceof String username && input[1] instanceof String password)
             ret = runLogin(username, password);
-        else if (EXIT.equals(commandType))
+        else if (LOGOUT.equals(commandType) || EXIT.equals(commandType))
             ret = logout();
 
-        if (controller.getCurrentPlayer() == null)
+        if (handler.getCurrentPlayer() == null) {
+            respond(commandType, ret);
+            updatePlayer();
             return ret;
+        }
 
         if (DELETE.equals(commandType))
             ret = runDeletePlayer();
@@ -84,9 +89,22 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         else if (ATTACK.equals(commandType) && input[0] instanceof Attackable attacker && input[1] instanceof Attackable defender)
             ret = attack(attacker, defender);
 
-        if (ret && controller.getCurrentPlayer() != null)
-            controller.getCurrentPlayer().updateJson();
+        respond(commandType, ret);
+        updatePlayer();
         return ret;
+    }
+
+    private void respond(ServerCommandType type, boolean ret) {
+        handler.respond(new Command<>(RESULT, type, ret));
+    }
+
+    private void updatePlayer() {
+        if (handler.getCurrentPlayer() != null) {
+            handler.getCurrentPlayer().updateJson();
+            handler.respond(new Command<>(UPDATE_PLAYER, handler.getCurrentPlayer().toString(), handler.getCurrentPlayer().getJson()));
+        } else {
+            handler.respond(new Command<>(UPDATE_PLAYER, "null"));
+        }
     }
 
     private boolean isCards(Object[] input) {
@@ -120,7 +138,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         for (int i = 0; i < name.length(); i++)
             if (!getUsernameChars().contains(name.charAt(i)) && name.charAt(i) != ' ')
                 return false;
-        for (Deck deck : controller.getCurrentPlayer().getInventory().getAllDecks())
+        for (Deck deck : handler.getCurrentPlayer().getInventory().getAllDecks())
             if (deck.toString().equals(name))
                 return false;
         return true;
@@ -141,6 +159,8 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private boolean runLogin(String username, String password) {
+        if (handler.getCurrentPlayer() != null)
+            return false;
         try {
             Player p = Player.getExistingPlayer(username);
             return login(p, password);
@@ -173,23 +193,23 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     private boolean login(Player p, String password) {
         if (!p.loginAttempt(password))
             return false;
-        controller.setCurrentPlayer(p);
+        handler.setCurrentPlayer(p);
         p.getLogger().log("login", "");
         return true;
     }
 
     private boolean logout() {
-        Player player = controller.getCurrentPlayer();
+        Player player = handler.getCurrentPlayer();
         if (player != null && player.getGame() != null)
             endGame();
         if (player != null)
             player.getLogger().log("logout", "");
-        controller.setCurrentPlayer(null);
+        handler.setCurrentPlayer(null);
         return true;
     }
 
     private boolean deletePlayer() {
-        Player p = controller.getCurrentPlayer();
+        Player p = handler.getCurrentPlayer();
         logout();
         p.getLogger().log("");
         p.getLogger().log("DELETED_AT:", "");
@@ -197,7 +217,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private boolean selectDeck(Deck deck) {
-        Player player = controller.getCurrentPlayer();
+        Player player = handler.getCurrentPlayer();
         if (!player.getInventory().getAllDecks().contains(deck))
             return false;
         player.setCurrentDeck(deck);
@@ -206,7 +226,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private boolean deselectDeck(Deck deck) {
-        Player player = controller.getCurrentPlayer();
+        Player player = handler.getCurrentPlayer();
         if (player.getInventory().getCurrentDeck() != deck)
             return false;
         player.deselectCurrentDeck();
@@ -218,18 +238,18 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         if (!deck.canAddCard(card))
             return false;
         deck.addCard(card);
-        controller.getCurrentPlayer().getLogger().log("add", "card: " + card + " -> deck: " + deck);
+        handler.getCurrentPlayer().getLogger().log("add", "card: " + card + " -> deck: " + deck);
         return true;
     }
 
     private boolean removeCard(Deck deck, Card card) {
         deck.removeCard(card);
-        controller.getCurrentPlayer().getLogger().log("remove", "card: " + card + " -> deck: " + deck);
+        handler.getCurrentPlayer().getLogger().log("remove", "card: " + card + " -> deck: " + deck);
         return true;
     }
 
     private boolean addDeck(HeroClass heroClass, String name) {
-        Player player = controller.getCurrentPlayer();
+        Player player = handler.getCurrentPlayer();
         boolean ret = validDeckName(name) && player.addNewDeck(heroClass, name);
         if (ret)
             player.getLogger().log("add", "deck: " + name);
@@ -237,7 +257,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private boolean removeDeck(Deck deck) {
-        Player player = controller.getCurrentPlayer();
+        Player player = handler.getCurrentPlayer();
         boolean ret = player.getInventory().removeDeck(deck);
         if (ret)
             player.getLogger().log("remove", "deck: " + deck);
@@ -247,7 +267,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     private boolean moveDeck(Deck deck, HeroClass heroClass) {
         boolean ret = deck.move(heroClass);
         if (ret)
-            controller.getCurrentPlayer().getLogger().log("move", "deck:" + deck + " -> hero class: " + heroClass);
+            handler.getCurrentPlayer().getLogger().log("move", "deck:" + deck + " -> hero class: " + heroClass);
         return ret;
     }
 
@@ -256,42 +276,42 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         boolean ret = validDeckName(deckName);
         deck.setName(deckName);
         if (ret)
-            controller.getCurrentPlayer().getLogger().log("rename", "deck: " + oldName + " -> " + deckName);
+            handler.getCurrentPlayer().getLogger().log("rename", "deck: " + oldName + " -> " + deckName);
         return ret;
     }
 
     private boolean buyCard(Card card) {
-        Player player = controller.getCurrentPlayer();
+        Player player = handler.getCurrentPlayer();
         if (!player.canBuy(card))
             return false;
         player.getInventory().addCard(card);
         player.setBalance(player.getBalance() - card.getPrice());
-        controller.getCurrentPlayer().getLogger().log("buy", "card: " + card.toString());
+        handler.getCurrentPlayer().getLogger().log("buy", "card: " + card.toString());
         return true;
     }
 
     private boolean sellCard(Card card) {
-        Player p = controller.getCurrentPlayer();
+        Player p = handler.getCurrentPlayer();
         if (!p.canSell(card))
             return false;
         p.getInventory().removeCard(card);
         p.setBalance(p.getBalance() + card.getPrice());
-        controller.getCurrentPlayer().getLogger().log("sell", "card: " + card.toString());
+        handler.getCurrentPlayer().getLogger().log("sell", "card: " + card.toString());
         return true;
     }
 
     private boolean createGame(int playerCount) {
-        Player player = controller.getCurrentPlayer();
+        Player player = handler.getCurrentPlayer();
         if (player.getInventory().getCurrentDeck() == null)
             return false;
         controller.setGameCount(controller.getGameCount() + 1);
-        Game game = new Game(client.getController(), playerCount, controller.getGameCount());
+        Game game = new Game(handler, playerCount, controller.getGameCount());
         player.setGame(game);
         return true;
     }
 
     private boolean startGame(ArrayList<Card> cards) {
-        Player player = controller.getCurrentPlayer();
+        Player player = handler.getCurrentPlayer();
         if (player.getGame() == null)
             return false;
         Game game = player.getGame();
@@ -306,8 +326,8 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         if (deckPair == null)
             return false;
         controller.setGameCount(controller.getGameCount() + 1);
-        Game game = new Game(client.getController(), deckPair, controller.getGameCount());
-        controller.getCurrentPlayer().setGame(game);
+        Game game = new Game(handler, deckPair, controller.getGameCount());
+        handler.getCurrentPlayer().setGame(game);
         game.startGame();
         return true;
     }
@@ -317,7 +337,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private boolean playCard(Card card, Element target) {
-        Game game = controller.getCurrentPlayer().getGame();
+        Game game = handler.getCurrentPlayer().getGame();
         boolean ret = game.getCurrentCharacter().playCard(card, target);
         if (ret)
             game.log( "play_card", card.toString());
@@ -325,7 +345,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private boolean endTurn() {
-        Game game = controller.getCurrentPlayer().getGame();
+        Game game = handler.getCurrentPlayer().getGame();
         game.nextTurn();
         game.log("end_turn", "");
         if (game.isFinished())
@@ -334,7 +354,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private boolean heroPower() {
-        Game game = controller.getCurrentPlayer().getGame();
+        Game game = handler.getCurrentPlayer().getGame();
         boolean ret = game.getCurrentCharacter().useHeroPower();
         if (ret)
             game.log("hero_power", "");
@@ -344,7 +364,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private boolean attack(Attackable attacker, Attackable defender) {
-        Game game = controller.getCurrentPlayer().getGame();
+        Game game = handler.getCurrentPlayer().getGame();
         boolean ret = game.getCurrentCharacter().attack(attacker, defender);
         if (ret)
             game.log("attack", attacker + " -> " + defender);
@@ -353,12 +373,13 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         return ret;
     }
 
+    //TODO tell client
     private boolean endGame() {
-        Player player = controller.getCurrentPlayer();
+        Player player = handler.getCurrentPlayer();
         Game game = player.getGame();
         player.setGame(null);
         game.endGame();
-        client.endGame();
+        //client.endGame();
         player.getLogger().log("end_game", "game id: " + game.getId());
         game.logEndGame();
         return true;

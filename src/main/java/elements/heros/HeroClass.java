@@ -2,7 +2,7 @@ package elements.heros;
 
 import elements.*;
 import elements.cards.*;
-import shared.GameData;
+import shared.*;
 import system.player.*;
 import javafx.scene.image.*;
 import java.io.*;

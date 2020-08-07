@@ -4,8 +4,6 @@ import elements.*;
 import elements.abilities.targets.*;
 import elements.cards.*;
 import elements.heros.*;
-import javafx.scene.*;
-import shared.*;
 import system.*;
 
 import java.lang.reflect.*;

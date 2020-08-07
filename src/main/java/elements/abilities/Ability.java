@@ -1,22 +1,15 @@
 package elements.abilities;
 
-import client.graphics.directories.playground.targets.DiscoverGraphics;
-import client.graphics.directories.playground.targets.TargetEventHandler;
 import elements.*;
 import elements.abilities.targets.*;
 import shared.*;
 import system.*;
 import elements.cards.*;
 import system.player.*;
-import client.graphics.directories.playground.*;
-import javafx.scene.*;
-import javafx.scene.input.*;
 import system.player.Character;
 
 import java.util.*;
 
-import static elements.ElementType.HERO;
-import static elements.ElementType.MINION;
 import static elements.abilities.targets.TargetType.*;
 
 public abstract class Ability implements Configable {

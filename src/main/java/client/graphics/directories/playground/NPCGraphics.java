@@ -1,11 +1,10 @@
 package client.graphics.directories.playground;
 
 import client.*;
-import commands.Command;
-import commands.types.ServerCommandType;
-import elements.Element;
-import elements.Playable;
-import elements.abilities.Ability;
+import commands.*;
+import commands.types.*;
+import elements.*;
+import elements.abilities.*;
 import elements.cards.*;
 import elements.heros.*;
 import client.graphics.directories.playground.playables.*;
@@ -14,7 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.*;
 import system.player.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class NPCGraphics extends CharacterGraphics<NPC> {
     public NPCGraphics(PlayGround playGround, Client client, NPC character) {

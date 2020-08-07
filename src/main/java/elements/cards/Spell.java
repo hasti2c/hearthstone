@@ -1,9 +1,8 @@
 package elements.cards;
 
-import elements.abilities.Ability;
-import elements.abilities.ChangeStats;
+import elements.abilities.*;
 
-import static elements.ElementType.SPELL;
+import static elements.ElementType.*;
 
 public class Spell extends Card {
     public Spell() {

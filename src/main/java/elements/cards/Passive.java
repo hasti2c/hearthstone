@@ -1,12 +1,11 @@
 package elements.cards;
 
-import elements.ElementType;
-import elements.Playable;
-import elements.heros.HeroPower;
+import elements.*;
+import elements.heros.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
-import static elements.ElementType.PASSIVE;
+import static elements.ElementType.*;
 
 public enum Passive {
     TWICE_DRAW,

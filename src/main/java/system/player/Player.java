@@ -5,7 +5,7 @@ import java.io.*;
 import com.google.gson.stream.*;
 import elements.heros.*;
 import elements.cards.*;
-import shared.GameData;
+import shared.*;
 import system.*;
 
 public class Player implements Configable {
@@ -18,6 +18,12 @@ public class Player implements Configable {
     public static Player getExistingPlayer(String username) throws FileNotFoundException {
         GameData.getInstance().setInitPlayerName(username);
         Configor<Player> configor = new Configor<>(username, Player.class);
+        return configor.getConfigedObject();
+    }
+
+    public static Player getExistingPlayer(String username, String json) {
+        GameData.getInstance().setInitPlayerName(username);
+        Configor<Player> configor = new Configor<>(username, Player.class, new JsonReader(new StringReader(json)));
         return configor.getConfigedObject();
     }
 
@@ -57,6 +63,12 @@ public class Player implements Configable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getJson() {
+        StringWriter json = new StringWriter();
+        updateJson(new JsonWriter(json));
+        return json.toString();
     }
 
     private void updateJson(JsonWriter jsonWriter) {

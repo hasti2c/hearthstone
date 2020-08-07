@@ -1,10 +1,10 @@
 package elements.cards;
 
-import elements.abilities.targets.Attackable;
-import shared.GameData;
+import elements.abilities.targets.*;
+import shared.*;
 import system.player.Character;
 
-import static elements.ElementType.MINION;
+import static elements.ElementType.*;
 
 public class Minion extends Card implements Attackable {
     private int health;

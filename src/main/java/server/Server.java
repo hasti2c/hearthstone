@@ -1,17 +1,51 @@
 package server;
 
-import client.*;
-import commands.*;
-import commands.types.*;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
-public class Server extends NetworkMember<ServerCommandType> {
+public class Server {
+    private ServerSocket serverSocket;
+    private final ArrayList<ClientHandler> clients = new ArrayList<>();
+    private final Object clientsMonitor = new Object();
+    private final ServerController controller;
+
     public Server() {
-        super(ServerController.getInstance());
+        try {
+            serverSocket = new ServerSocket(8000);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        controller = ServerController.getInstance();
+        (new Accepter()).start();
     }
 
-    public void setClient(Client client) {
-        this.target = client;
-        runner = new ServerCommandRunner((ServerController) controller, client);
-        parser = new CommandParser<>(controller, ServerCommandType.class);
+    public void start() {
+        (new Thread(Server.this::run)).start();
+    }
+
+    private void run() {
+        while (true) {
+            synchronized (clientsMonitor) {
+                for (ClientHandler client : clients) {
+                    client.run();
+                }
+            }
+        }
+    }
+
+    private class Accepter extends Thread {
+        public void run() {
+            while (true) {
+                try {
+                    Socket socket = serverSocket.accept();
+                    synchronized (clientsMonitor) {
+                        clients.add(new ClientHandler(controller, socket));
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

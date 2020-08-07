@@ -2,7 +2,7 @@ package system;
 
 import elements.cards.*;
 import elements.heros.*;
-import shared.Controller;
+import shared.*;
 import system.player.Character;
 import system.player.*;
 

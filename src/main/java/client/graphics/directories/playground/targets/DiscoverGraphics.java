@@ -1,23 +1,21 @@
 package client.graphics.directories.playground.targets;
 
-import client.Client;
-import commands.Command;
-import commands.types.ServerCommandType;
-import elements.abilities.targets.Targetable;
+import client.*;
+import commands.*;
+import commands.types.*;
+import elements.abilities.targets.*;
 import elements.cards.*;
 import elements.*;
 import elements.abilities.*;
-import elements.heros.HeroPower;
-import system.player.*;
+import elements.heros.*;
 import client.graphics.directories.playground.*;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.image.*;
-import javafx.scene.input.*;
 import javafx.scene.layout.*;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 
 public class DiscoverGraphics {
     private final Client client;

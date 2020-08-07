@@ -1,18 +1,13 @@
 package server;
 
-import com.google.gson.stream.JsonWriter;
-import commands.types.ServerCommandType;
-import shared.Controller;
-import shared.GameData;
-import system.Configable;
-import system.Configor;
+import com.google.gson.stream.*;
+import shared.*;
+import system.*;
 
 import java.io.*;
-import java.time.format.DateTimeFormatter;
 
-public class ServerController extends Controller<ServerCommandType> implements Configable {
+public class ServerController implements Configable {
     private int playerCount, gameCount;
-    private String initPlayerName;
 
     private ServerController() {
         GameData.getInstance();
@@ -87,13 +82,5 @@ public class ServerController extends Controller<ServerCommandType> implements C
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public String getInitPlayerName() {
-        return initPlayerName;
-    }
-
-    public void setInitPlayerName(String initPlayerName) {
-        this.initPlayerName = initPlayerName;
     }
 }

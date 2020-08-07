@@ -4,7 +4,7 @@ import elements.*;
 import elements.cards.*;
 import system.player.Character;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import static elements.abilities.AddCardType.*;
 

@@ -1,7 +1,5 @@
 package commands.types;
 
-import java.util.ArrayList;
-
 public enum ServerCommandType implements CommandType {
     SIGN_UP,
     LOGIN,

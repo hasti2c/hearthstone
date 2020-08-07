@@ -1,6 +1,6 @@
 package system;
 
-import shared.Controller;
+import shared.*;
 
 import java.io.*;
 

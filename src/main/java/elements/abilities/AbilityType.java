@@ -4,9 +4,7 @@ import elements.*;
 import elements.cards.*;
 import system.player.Character;
 
-import java.util.ArrayList;
-
-import static elements.abilities.targets.TargetType.*;
+import java.util.*;
 
 public enum AbilityType {
     DRAW,

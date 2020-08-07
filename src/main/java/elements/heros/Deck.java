@@ -3,7 +3,7 @@ package elements.heros;
 import java.io.*;
 import java.util.*;
 import com.google.gson.stream.*;
-import shared.GameData;
+import shared.*;
 import system.*;
 import elements.cards.*;
 import system.player.*;

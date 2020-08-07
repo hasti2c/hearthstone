@@ -1,16 +1,13 @@
 package client.graphics.directories.playground.targets;
 
-import client.graphics.directories.playground.GamePlayerGraphics;
-import commands.Command;
-import elements.cards.Card;
-import javafx.event.EventHandler;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
+import client.graphics.directories.playground.*;
+import elements.cards.*;
+import javafx.event.*;
+import javafx.scene.image.*;
+import javafx.scene.input.*;
+import javafx.scene.layout.*;
 import shared.Pair;
-import system.player.PlayerFaction;
-
-import static commands.types.ServerCommandType.PLAY;
+import system.player.*;
 
 public class HandEventHandler implements EventHandler<MouseEvent> {
     private final Card card;

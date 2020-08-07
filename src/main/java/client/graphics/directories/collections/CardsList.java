@@ -15,7 +15,6 @@ import javafx.geometry.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.util.*;
 
 public abstract class CardsList extends Directory {
     private Map<String, Boolean> options;

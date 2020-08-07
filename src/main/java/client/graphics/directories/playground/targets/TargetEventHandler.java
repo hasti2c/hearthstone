@@ -1,6 +1,6 @@
 package client.graphics.directories.playground.targets;
 
-import elements.abilities.targets.Targetable;
+import elements.abilities.targets.*;
 import javafx.event.*;
 import javafx.scene.*;
 import javafx.scene.effect.*;

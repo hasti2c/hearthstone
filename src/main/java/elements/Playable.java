@@ -3,7 +3,6 @@ package elements;
 import elements.cards.*;
 import elements.abilities.*;
 import elements.heros.*;
-import shared.Controller;
 import system.player.Character;
 import javafx.scene.image.*;
 import javafx.scene.paint.*;

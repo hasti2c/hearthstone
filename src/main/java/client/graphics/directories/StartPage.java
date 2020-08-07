@@ -39,23 +39,31 @@ public class StartPage extends Directory {
     @FXML
     private void runSignUp() {
         vBox.getChildren().removeAll(loginError, signUpError);
-        if (!client.request(new Command<>(SIGN_UP, usernameField.getText(), passwordField.getText()))) {
-            vBox.getChildren().add(0, signUpError);
-        } else
-            controller.displayHome();
+        client.request(new Command<>(SIGN_UP, usernameField.getText(), passwordField.getText()));
         usernameField.clear();
         passwordField.clear();
+    }
+
+    public void signUpResult(boolean success) {
+        if (success)
+            controller.displayHome();
+        else
+            vBox.getChildren().add(0, signUpError);
     }
 
     @FXML
     private void runLogin() {
         vBox.getChildren().removeAll(loginError, signUpError);
-        if (!client.request(new Command<>(LOGIN, usernameField.getText(), passwordField.getText()))) {
-            vBox.getChildren().add(0, loginError);
-        } else
-            controller.displayHome();
+        client.request(new Command<>(LOGIN, usernameField.getText(), passwordField.getText()));
         usernameField.clear();
         passwordField.clear();
+    }
+
+    public void loginResult(boolean success) {
+        if (success)
+            controller.displayHome();
+        else
+            vBox.getChildren().add(0, loginError);
     }
 
     @Override

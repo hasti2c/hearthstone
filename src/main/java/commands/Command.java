@@ -1,13 +1,11 @@
 package commands;
 
-import elements.Element;
-import elements.abilities.targets.*;
+import elements.*;
 import elements.cards.*;
 import elements.heros.*;
 import commands.types.*;
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.*;
 
 public class Command <T extends CommandType> {
     private final T commandType;
@@ -28,7 +26,7 @@ public class Command <T extends CommandType> {
 
     public String toString() {
         StringBuilder s = new StringBuilder(commandType.toString());
-        for (Object o : input) s.append("-").append(toString(o));
+        for (Object o : input) s.append("|").append(toString(o));
         return s.toString();
     }
 
@@ -38,8 +36,12 @@ public class Command <T extends CommandType> {
             className = "String";
         else if (isAssignable(int.class, object) || isAssignable(Integer.class, object))
             className = "Integer";
+        else if (isAssignable(boolean.class, object) || isAssignable(Boolean.class, object))
+            className = "Boolean";
         else if (isAssignable(HeroClass.class, object))
             className = "HeroClass";
+        else if (isAssignable(ServerCommandType.class, object))
+            className = "ServerCommandType";
         else if (isAssignable(Deck.class, object))
             className = "Deck";
         else if (isAssignable(Card.class, object) && !Arrays.asList(ServerCommandType.getGameCommands()).contains(commandType))

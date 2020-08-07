@@ -1,15 +1,11 @@
 package client.graphics.directories.playground.targets;
 
-import client.graphics.directories.playground.CharacterGraphics;
-import client.graphics.directories.playground.GamePlayerGraphics;
-import client.graphics.directories.playground.PlayGround;
-import commands.Command;
-import elements.abilities.targets.Attackable;
-import elements.abilities.targets.Targetable;
-import javafx.scene.Node;
-import system.player.GamePlayer;
+import client.graphics.directories.playground.*;
+import commands.*;
+import elements.abilities.targets.*;
+import javafx.scene.*;
 
-import static commands.types.ServerCommandType.ATTACK;
+import static commands.types.ServerCommandType.*;
 
 public class AttackEventHandler extends TargetEventHandler {
     private final PlayGround playGround;

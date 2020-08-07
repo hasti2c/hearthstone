@@ -1,8 +1,6 @@
 package client.graphics.directories;
 
 import java.io.*;
-
-import client.Client;
 import client.*;
 import javafx.fxml.*;
 import javafx.scene.*;
@@ -45,7 +43,7 @@ public abstract class Directory {
     }
 
     public void display() {
-        controller.updatePlayer();
+        //controller.updatePlayer();
         config();
         controller.setScene(scene);
     }

@@ -1,7 +1,7 @@
 package client.graphics.directories.playground;
 
 import client.*;
-import client.graphics.directories.playground.targets.DiscoverGraphics;
+import client.graphics.directories.playground.targets.*;
 import commands.*;
 import elements.cards.*;
 import javafx.event.*;
@@ -17,8 +17,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import system.player.*;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 
 import static commands.types.ServerCommandType.*;
 

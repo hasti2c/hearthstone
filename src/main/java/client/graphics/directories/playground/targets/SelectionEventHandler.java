@@ -1,21 +1,18 @@
 package client.graphics.directories.playground.targets;
 
-import client.Client;
-import client.graphics.directories.playground.CharacterGraphics;
-import commands.Command;
-import commands.types.ServerCommandType;
-import elements.Element;
-import elements.ElementType;
-import elements.Playable;
-import elements.abilities.Ability;
-import elements.abilities.targets.Targetable;
-import elements.cards.Card;
-import elements.heros.HeroPower;
+import client.*;
+import client.graphics.directories.playground.*;
+import commands.*;
+import commands.types.*;
+import elements.*;
+import elements.abilities.*;
+import elements.abilities.targets.*;
+import elements.cards.*;
+import elements.heros.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
-import static elements.ElementType.HERO;
-import static elements.ElementType.MINION;
+import static elements.ElementType.*;
 
 public class SelectionEventHandler extends TargetEventHandler {
     private final Client client;

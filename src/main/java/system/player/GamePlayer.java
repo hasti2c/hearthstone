@@ -1,21 +1,9 @@
 package system.player;
 
-import client.graphics.directories.playground.targets.DiscoverGraphics;
-import client.graphics.directories.playground.targets.SelectionEventHandler;
-import client.graphics.directories.playground.targets.TargetEventHandler;
-import elements.Element;
-import elements.Playable;
-import elements.abilities.Ability;
-import elements.abilities.targets.Targetable;
-import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 import shared.Controller;
 import system.*;
 import elements.cards.*;
 import elements.heros.*;
-
-import java.net.http.HttpResponse;
-import java.util.ArrayList;
 
 public class GamePlayer extends Character {
     private final String name;

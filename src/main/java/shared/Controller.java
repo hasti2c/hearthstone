@@ -1,17 +1,19 @@
 package shared;
 
-import commands.types.CommandType;
-import elements.heros.Deck;
-import elements.heros.Hero;
-import system.player.Player;
+import commands.*;
+import commands.types.*;
+import elements.heros.*;
+import system.player.*;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.time.*;
+import java.time.format.*;
+import java.util.*;
 
 public abstract class Controller <T extends CommandType> {
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     protected Player currentPlayer;
+    protected CommandRunner<T> runner;
+    protected CommandParser<T> parser;
 
     public Player getCurrentPlayer() {
         return currentPlayer;
@@ -19,6 +21,7 @@ public abstract class Controller <T extends CommandType> {
 
     public void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
+        System.out.println(currentPlayer);
     }
 
     public Hero getCurrentHero() {
@@ -43,9 +46,15 @@ public abstract class Controller <T extends CommandType> {
         };
     }
 
-    public abstract String getInitPlayerName();
-
     public static String getTime() {
         return dtf.format(LocalDateTime.now());
+    }
+
+    public CommandRunner<T> getRunner() {
+        return runner;
+    }
+
+    public CommandParser<T> getParser() {
+        return parser;
     }
 }

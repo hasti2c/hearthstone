@@ -4,7 +4,6 @@ import client.*;
 import client.graphics.directories.playground.targets.*;
 import elements.*;
 import elements.abilities.*;
-import elements.abilities.targets.*;
 import elements.cards.*;
 import elements.heros.*;
 import javafx.scene.control.*;
@@ -14,9 +13,6 @@ import system.player.*;
 import client.graphics.directories.playground.playables.*;
 import javafx.scene.*;
 import javafx.scene.image.*;
-import javafx.scene.input.*;
-
-import java.util.ArrayList;
 
 public class GamePlayerGraphics extends CharacterGraphics<GamePlayer> {
     GamePlayerGraphics(PlayGround playGround, Client client, GamePlayer gamePlayer) {

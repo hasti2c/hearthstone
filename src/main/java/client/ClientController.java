@@ -4,10 +4,10 @@ import client.graphics.directories.*;
 import elements.cards.*;
 import javafx.scene.*;
 import javafx.stage.*;
-import server.*;
 import shared.*;
 import commands.*;
 import commands.types.*;
+import system.player.*;
 
 import java.util.*;
 
@@ -18,13 +18,17 @@ public class ClientController extends Controller<ClientCommandType> {
     private final StartPage startPage;
     private final Home home;
     private final Client client;
-    private final ServerController serverController;
+    //private final ServerController serverController;
 
     ClientController(Client client, Stage stage) {
         this.stage = stage;
         this.client = client;
-        serverController = (ServerController) client.getTarget().getController();
-        currentPlayer = this.serverController.getCurrentPlayer();
+
+        runner = new ClientCommandRunner(this);
+        parser = new CommandParser<>(this, ClientCommandType.class);
+
+        //serverController = (ServerController) client.getTarget().getController();
+        //currentPlayer = this.serverController.getCurrentPlayer();
         startPage = new StartPage(this, client);
         home = new Home(this, client);
     }
@@ -45,12 +49,13 @@ public class ClientController extends Controller<ClientCommandType> {
     }
 
     public void displayStartPage() {
-        client.request(new Command<>(LOGOUT));
+        if (currentPlayer != null)
+            client.request(new Command<>(LOGOUT));
         startPage.display();
     }
 
-    public void updatePlayer() {
-        currentPlayer = serverController.getCurrentPlayer();
+    public void updatePlayer(String username, String json) {
+        currentPlayer = Player.getExistingPlayer(username, json);
     }
 
     public void setScene(Scene scene) {
@@ -72,9 +77,7 @@ public class ClientController extends Controller<ClientCommandType> {
         return new ArrayList<>();
     }
 
-    //TODO
-    @Override
-    public String getInitPlayerName() {
-        return "hasti";
+    public StartPage getStartPage() {
+        return startPage;
     }
 }

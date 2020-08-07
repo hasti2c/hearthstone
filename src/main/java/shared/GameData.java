@@ -3,7 +3,7 @@ package shared;
 import elements.cards.*;
 import elements.heros.*;
 import system.*;
-import system.player.Player;
+import system.player.*;
 
 import java.io.*;
 import java.util.*;
