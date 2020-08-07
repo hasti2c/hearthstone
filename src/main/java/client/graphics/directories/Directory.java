@@ -27,7 +27,7 @@ public abstract class Directory {
             exitButton.setOnAction(e -> controller.exit());
     }
 
-    protected abstract void config();
+    public abstract void config();
 
     protected abstract FXMLLoader getLoader();
 
@@ -43,6 +43,7 @@ public abstract class Directory {
     }
 
     public void display() {
+        controller.setCurrentDirectory(this);
         //controller.updatePlayer();
         config();
         controller.setScene(scene);

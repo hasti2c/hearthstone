@@ -1,8 +1,11 @@
 package client;
 
 import client.graphics.directories.*;
+import client.graphics.directories.collections.Collections;
+import client.graphics.popups.*;
 import elements.cards.*;
 import javafx.scene.*;
+import javafx.scene.paint.*;
 import javafx.stage.*;
 import shared.*;
 import commands.*;
@@ -18,6 +21,7 @@ public class ClientController extends Controller<ClientCommandType> {
     private final StartPage startPage;
     private final Home home;
     private final Client client;
+    private Directory currentDirectory;
     //private final ServerController serverController;
 
     ClientController(Client client, Stage stage) {
@@ -77,7 +81,39 @@ public class ClientController extends Controller<ClientCommandType> {
         return new ArrayList<>();
     }
 
-    public StartPage getStartPage() {
-        return startPage;
+    public void setCurrentDirectory(Directory currentDirectory) {
+        this.currentDirectory = currentDirectory;
+    }
+
+    public void signUpResult(boolean success) {
+        if (success)
+            displayHome();
+        else
+            startPage.displaySignUpError();
+    }
+
+    public void loginResult(boolean success) {
+        if (success)
+            displayHome();
+        else
+            startPage.displayLoginError();
+    }
+
+    public void addCardResult(boolean result) {
+        if (!result)
+            (new AlertBox("This card couldn't be added to the deck. This deck is full.", Color.RED, "Okay")).display();
+        currentDirectory.config();
+    }
+
+    public void deckNameResult(boolean result) {
+        if (!result && currentDirectory instanceof Collections collections)
+            collections.displayDeckNameError();
+        currentDirectory.config();
+    }
+
+    public void moveDeckResult(boolean result) {
+        if (!result && currentDirectory instanceof Collections collections)
+            collections.displayHeroChangeError();
+        currentDirectory.config();
     }
 }

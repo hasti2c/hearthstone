@@ -46,7 +46,7 @@ public class Home extends Directory {
     }
 
     @Override
-    protected void config() {}
+    public void config() {}
 
     @Override
     protected FXMLLoader getLoader() {

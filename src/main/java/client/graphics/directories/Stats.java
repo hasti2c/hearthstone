@@ -24,7 +24,7 @@ public class Stats extends Directory {
     }
 
     @Override
-    protected void config() {
+    public void config() {
         decks = controller.getCurrentPlayer().getInventory().getAllDecks();
         Collections.sort(decks);
         if (decks.size() > 10)

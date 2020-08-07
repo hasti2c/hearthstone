@@ -26,7 +26,7 @@ public class StartPage extends Directory {
     }
 
     @Override
-    protected void config() {}
+    public void config() {}
 
     public String getUsername() {
         return usernameField.getText();
@@ -44,12 +44,6 @@ public class StartPage extends Directory {
         passwordField.clear();
     }
 
-    public void signUpResult(boolean success) {
-        if (success)
-            controller.displayHome();
-        else
-            vBox.getChildren().add(0, signUpError);
-    }
 
     @FXML
     private void runLogin() {
@@ -59,15 +53,16 @@ public class StartPage extends Directory {
         passwordField.clear();
     }
 
-    public void loginResult(boolean success) {
-        if (success)
-            controller.displayHome();
-        else
-            vBox.getChildren().add(0, loginError);
-    }
-
     @Override
     protected FXMLLoader getLoader() {
         return new FXMLLoader(StartPage.class.getResource("/fxml/directories/startPage.fxml"));
+    }
+
+    public void displaySignUpError() {
+        vBox.getChildren().add(0, signUpError);
+    }
+
+    public void displayLoginError() {
+        vBox.getChildren().add(0, loginError);
     }
 }

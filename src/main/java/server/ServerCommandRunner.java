@@ -47,7 +47,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         }
 
         if (DELETE.equals(commandType))
-            ret = runDeletePlayer();
+            ret = deletePlayer();
         else if (SELECT.equals(commandType) && input[0] instanceof Deck deck)
             ret = selectDeck(deck);
         else if (DESELECT.equals(commandType) && input[0] instanceof Deck deck)
@@ -154,7 +154,8 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         } catch (FileNotFoundException e) {
             if (password.length() < 8)
                 return false;
-            return login(signUp(username, password), password);
+            signUp(username, password);
+            return run(new Command<>(LOGIN, username, password));
         }
     }
 
@@ -167,18 +168,6 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         } catch (IOException e) {
             return false;
         }
-    }
-
-    private boolean runDeletePlayer() {
-        /*String password = console.getPassword("Password: ");
-        if (!controller.getCurrentPlayer().loginAttempt(password))
-            return false;
-        String sure = console.getInput("Are you sure you want to delete " + controller.getCurrentPlayer().toString() + "? (y/n) ");
-        if (sure.equals("n"))
-            return true;
-        if (!sure.equals("y"))
-            return false;*/
-        return deletePlayer();
     }
 
     private Player signUp(String username, String password) {
@@ -274,9 +263,10 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     private boolean renameDeck(Deck deck, String deckName) {
         String oldName = deck.toString();
         boolean ret = validDeckName(deckName);
-        deck.setName(deckName);
-        if (ret)
+        if (ret) {
+            deck.setName(deckName);
             handler.getCurrentPlayer().getLogger().log("rename", "deck: " + oldName + " -> " + deckName);
+        }
         return ret;
     }
 

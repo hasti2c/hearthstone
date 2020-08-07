@@ -55,7 +55,7 @@ public abstract class CardsList extends Directory {
         attackRange = new Pair<>(null, null);
     }
 
-    protected void config() {
+    public void config() {
         clear();
         optionsPage.config();
 

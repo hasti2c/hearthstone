@@ -38,9 +38,7 @@ public class CommandParser <T extends CommandType> {
     }
 
     private Pair<String, String> getNamePair(String word) {
-        System.out.println(word);
         String[] names = word.split(":", 2);
-        System.out.println(Arrays.toString(names));
         return new Pair<>(names[0], names[1]);
     }
 

@@ -39,8 +39,11 @@ public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
         if (!(input[1] instanceof Boolean bool))
             return false;
         switch (serverType) {
-            case SIGN_UP -> Platform.runLater(() -> controller.getStartPage().signUpResult(bool));
-            case LOGIN -> Platform.runLater(() -> controller.getStartPage().loginResult(bool));
+            case SIGN_UP -> Platform.runLater(() -> controller.signUpResult(bool));
+            case LOGIN -> Platform.runLater(() -> controller.loginResult(bool));
+            case ADD_CARD -> Platform.runLater(() -> controller.addCardResult(bool));
+            case ADD_DECK, RENAME -> Platform.runLater(() -> controller.deckNameResult(bool));
+            case MOVE -> Platform.runLater(() -> controller.moveDeckResult(bool));
         }
         return true;
     }

@@ -25,7 +25,7 @@ public class DeckGraphics extends CardsList {
         initTopHBox();
     }
 
-    protected void config() {
+    public void config() {
         super.config();
         deckCount.setText(deck.getCards().size() + "/" + controller.getCurrentPlayer().getInventory().getDeckCap());
     }
@@ -68,7 +68,7 @@ public class DeckGraphics extends CardsList {
             Button removeButton = new Button("-");
             Button addButton = new Button("+");
             removeButton.setOnAction(e -> removeCard(card));
-            addButton.setOnAction(e -> addCard(card));
+            addButton.setOnAction(e -> client.request(new Command<>(ADD_CARD, deck, card)));
             removeButton.getStyleClass().add("add-remove");
             addButton.getStyleClass().add("add-remove");
 
@@ -88,12 +88,6 @@ public class DeckGraphics extends CardsList {
 
     private void removeCard(Card card) {
         client.request(new Command<>(REMOVE_CARD, deck, card));
-        config();
-    }
-
-    private void addCard(Card card) {
-        if (!client.request(new Command<>(ADD_CARD, deck, card)))
-            (new AlertBox("This card couldn't be added to the deck. This deck is full.", Color.RED, "Okay")).display();
         config();
     }
 

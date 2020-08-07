@@ -21,7 +21,6 @@ public abstract class Controller <T extends CommandType> {
 
     public void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
-        System.out.println(currentPlayer);
     }
 
     public Hero getCurrentHero() {

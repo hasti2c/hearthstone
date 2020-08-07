@@ -17,7 +17,7 @@ public class GameEnding extends Directory {
     }
 
     @Override
-    protected void config() {
+    public void config() {
         int friendlyHealth = game.getCharacters()[0].getHero().getHealth();
         int enemyHealth = game.getCharacters()[1].getHero().getHealth();
         if (friendlyHealth <= 0 && enemyHealth <= 0)

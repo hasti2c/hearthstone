@@ -208,3 +208,38 @@ login 2020/08/07 13:49:13
 login 2020/08/07 13:49:43 
 login 2020/08/07 13:51:38 
 logout 2020/08/07 13:51:41 
+login 2020/08/07 15:35:46 
+select 2020/08/07 15:35:51 deck: wow
+add 2020/08/07 15:35:54 card: Curio Collector -> deck: wow
+add 2020/08/07 15:35:55 card: Curio Collector -> deck: wow
+login 2020/08/07 15:39:52 
+add 2020/08/07 15:40:00 deck: salam
+login 2020/08/07 15:40:59 
+select 2020/08/07 15:41:03 deck: salam
+add 2020/08/07 15:41:08 deck: khar
+add 2020/08/07 15:41:25 deck: 
+select 2020/08/07 15:41:32 deck: 
+remove 2020/08/07 15:41:59 deck: pppp
+login 2020/08/07 15:43:41 
+add 2020/08/07 15:43:54 card: Dread Infernal -> deck: khar
+add 2020/08/07 15:43:54 card: Dread Infernal -> deck: khar
+login 2020/08/07 15:48:34 
+select 2020/08/07 15:48:38 deck: khar
+login 2020/08/07 15:49:40 
+rename 2020/08/07 15:49:52 deck: wow -> oh no
+remove 2020/08/07 15:49:57 deck: oh no
+select 2020/08/07 15:49:58 deck: oh no
+rename 2020/08/07 15:50:07 deck: oh no -> yo
+login 2020/08/07 15:52:34 
+login 2020/08/07 15:57:53 
+sell 2020/08/07 15:58:14 card: Curio Collector
+sell 2020/08/07 15:58:16 card: High Priest Amet
+buy 2020/08/07 15:58:19 card: Curio Collector
+buy 2020/08/07 15:58:25 card: High Priest Amet
+login 2020/08/07 15:59:10 
+sell 2020/08/07 15:59:18 card: Dreadscale
+buy 2020/08/07 15:59:20 card: Dreadscale
+sell 2020/08/07 15:59:24 card: Dirty Rat
+buy 2020/08/07 15:59:26 card: Dirty Rat
+logout 2020/08/07 15:59:30 
+login 2020/08/07 15:59:44 

@@ -10,12 +10,8 @@
   "allCards": [
     "Amani War Bear",
     "Big Bad Archmage",
-    "Curio Collector",
-    "Dirty Rat",
     "Dread Infernal",
-    "Dreadscale",
     "Gruul",
-    "High Priest Amet",
     "Hogger",
     "Kobold Stickyfinger",
     "Sathrovarr",
@@ -44,11 +40,16 @@
     "Wicked Knife",
     "Learn Draconic",
     "Strength in Numbers",
-    "King Krush"
+    "King Krush",
+    "Curio Collector",
+    "High Priest Amet",
+    "Dreadscale",
+    "Dirty Rat"
   ],
   "allDecks": [
-    "wow",
-    "pppp"
+    "salam",
+    "",
+    "yo"
   ],
-  "currentDeck": "pppp"
+  "currentDeck": "yo"
 }

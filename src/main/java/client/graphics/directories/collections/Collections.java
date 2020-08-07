@@ -47,7 +47,7 @@ public class Collections extends Directory {
         }
     }
 
-    protected void config() {
+    public void config() {
         clear();
         configTopHBoxes();
         configDecks();
@@ -120,20 +120,15 @@ public class Collections extends Directory {
         OptionAndQuestionBox optionAndQuestionBox = new OptionAndQuestionBox("Type in the name of your new deck and choose its hero.", "Done", "Cancel", heroStrings);
         optionAndQuestionBox.display();
 
-        if (optionAndQuestionBox.getButtonResponse()) {
-            if (!client.request(new Command<>(ADD_DECK, optionAndQuestionBox.getHeroChoice(), optionAndQuestionBox.getDeckName())))
-                deckNameError();
-        }
-        config();
+        if (optionAndQuestionBox.getButtonResponse())
+            client.request(new Command<>(ADD_DECK, optionAndQuestionBox.getHeroChoice(), optionAndQuestionBox.getDeckName()));
     }
 
     private void renameDeck(elements.heros.Deck deck) {
         QuestionBox questionBox = new QuestionBox("What is the name you want to set for " + deck.toString() + "?", "Done", "Cancel");
         questionBox.display();
-        if (questionBox.getButtonResponse()) {
-            if (!client.request(new Command<>(RENAME, deck, questionBox.getText())))
-                deckNameError();
-        }
+        if (questionBox.getButtonResponse())
+            client.request(new Command<>(RENAME, deck, questionBox.getText()));
         config();
     }
 
@@ -145,18 +140,8 @@ public class Collections extends Directory {
         optionBox.display();
         if (optionBox.getButtonResponse()) {
             HeroClass heroClass = HeroClass.valueOf(optionBox.getChoice().toUpperCase());
-            if (!client.request(new Command<>(MOVE, deck, heroClass))) {
-                String alert = """
-                        Hero change couldn't be done.
-                        Possible reasons include:
-                           - Selected hero already has a deck with that name.
-                           - There are cards in this deck that can't be used by the selected Hero.
-                        """;
-
-                (new AlertBox(alert, Color.RED, "Okay")).display();
-            }
+            client.request(new Command<>(MOVE, deck, heroClass));
         }
-        config();
     }
 
     private void deleteDeck(elements.heros.Deck deck) {
@@ -177,14 +162,22 @@ public class Collections extends Directory {
         graphics.display();
     }
 
-    private void deckNameError() {
+    public void displayDeckNameError() {
         String alert = """
                 That's not a valid name for a deck.
                 Possible reasons include:
                    - Characters other than A-Z, a-z, 0-9, _, . and space are used.
-                   - This hero already has a deck with that name.
+                   - You already have a deck with that name.
                 """;
         new AlertBox(alert, Color.RED, "Okay").display();
+    }
+
+    public void displayHeroChangeError() {
+        String alert = """
+                        Hero change couldn't be done.
+                        There are cards in this deck that can't be used by the selected Hero.
+                        """;
+        (new AlertBox(alert, Color.RED, "Okay")).display();
     }
 
     @Override

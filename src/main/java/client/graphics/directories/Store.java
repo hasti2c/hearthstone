@@ -34,7 +34,7 @@ public class Store extends CardsList {
     }
 
     @Override
-    protected void config() {
+    public void config() {
         super.config();
         balanceLabel.setText("Balance: " + controller.getCurrentPlayer().getBalance());
     }

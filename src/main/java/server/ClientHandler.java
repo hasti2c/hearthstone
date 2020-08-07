@@ -40,7 +40,6 @@ public class ClientHandler extends Controller<ServerCommandType> {
     }
 
     public void respond(Command<ClientCommandType> command) {
-        System.out.println(command.toString());
         printer.println(command.toString());
     }
 
