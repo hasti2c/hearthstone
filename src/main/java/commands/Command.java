@@ -47,9 +47,9 @@ public class Command <T extends CommandType> {
         else if (isAssignable(Card.class, object) && !Arrays.asList(ServerCommandType.getGameCommands()).contains(commandType))
             className = "Card";
         else if (isAssignable(Element.class, object) && (input.length != 2 || input[0] == object))
-            className = "Element|mine";
+            className = "MyElement";
         else if (isAssignable(Element.class, object))
-            className = "Element|opponent";
+            className = "EnemyElement";
         return className + ":" + object;
     }
 

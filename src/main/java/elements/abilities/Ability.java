@@ -5,8 +5,8 @@ import elements.abilities.targets.*;
 import shared.*;
 import system.*;
 import elements.cards.*;
-import system.player.*;
-import system.player.Character;
+import system.game.*;
+import system.game.Character;
 
 import java.util.*;
 
@@ -74,14 +74,16 @@ public abstract class Ability implements Configable {
     public ArrayList<Element> getTarget(Character actionPerformer, Element caller, Card played) {
         ArrayList<Card> cardsList = GameData.getInstance().getCardsList();
         ArrayList<Element> targets = new ArrayList<>();
+        ArrayList<Minion> myMinions = actionPerformer.getState().getMinionsInGame(), enemyMinions = actionPerformer.getOpponent().getState().getMinionsInGame();
+        Weapon myWeapon = actionPerformer.getState().getCurrentWeapon(), enemyWeapon = actionPerformer.getOpponent().getState().getCurrentWeapon();
         switch (targetType) {
             case SELF -> addIfValid(targets, caller);
             case SPECIFIC -> addIfValid(targets, specificTarget);
             case PLAYED -> addIfValid(targets, played);
             case ALL_ELSE -> {
-                for (Card card : actionPerformer.getOpponent().getMinionsInGame())
+                for (Card card : enemyMinions)
                     addIfValid(targets, card);
-                for (Card card : actionPerformer.getMinionsInGame())
+                for (Card card : myMinions)
                     addIfValid(targets, card);
                 addIfValid(targets, actionPerformer.getHero());
                 addIfValid(targets, actionPerformer.getOpponent().getHero());
@@ -89,14 +91,14 @@ public abstract class Ability implements Configable {
             }
             case RANDOM_FRIENDLY -> {
                 ArrayList<Element> possibleElements = new ArrayList<>();
-                for (Card card : actionPerformer.getMinionsInGame())
+                for (Card card : myMinions)
                     addIfValid(possibleElements, card);
                 addIfValid(possibleElements, actionPerformer.getHero());
                 targets.add(Element.getRandomElement(possibleElements));
             }
             case RANDOM_ENEMY -> {
                 ArrayList<Element> possibleElements = new ArrayList<>();
-                for (Card card : actionPerformer.getOpponent().getMinionsInGame())
+                for (Card card : enemyMinions)
                     addIfValid(possibleElements, card);
                 addIfValid(possibleElements, actionPerformer.getOpponent().getHero());
                 targets.add(Element.getRandomElement(possibleElements));
@@ -132,41 +134,41 @@ public abstract class Ability implements Configable {
                 }
             }
             case MY_DECK -> {
-                ArrayList<Element> possibleElements = getValidSublist(actionPerformer.getLeftInDeck());
+                ArrayList<Element> possibleElements = getValidSublist(actionPerformer.getState().getLeftInDeck());
                 if (possibleElements.size() > 0)
                     targets.add(Element.getRandomElement(possibleElements));
             }
             case OPPONENT_DECK -> {
-                ArrayList<Element> possibleElements = getValidSublist(actionPerformer.getOpponent().getLeftInDeck());
+                ArrayList<Element> possibleElements = getValidSublist(actionPerformer.getOpponent().getState().getLeftInDeck());
                 if (possibleElements.size() > 0)
                     targets.add(Element.getRandomElement(possibleElements));
             }
             case OPPONENT_HAND -> {
-                ArrayList<Element> possibleElements = getValidSublist(actionPerformer.getOpponent().getHand());
+                ArrayList<Element> possibleElements = getValidSublist(actionPerformer.getOpponent().getState().getHand());
                 if (possibleElements.size() > 0)
                     targets.add(Element.getRandomElement(possibleElements));
             }
             case IN_GAME -> {
-                ArrayList<Element> possibleElements = getValidSublist(actionPerformer.getMinionsInGame());
-                addIfValid(possibleElements, actionPerformer.getCurrentWeapon());
+                ArrayList<Element> possibleElements = getValidSublist(myMinions);
+                addIfValid(possibleElements, myWeapon);
                 addIfValid(possibleElements, actionPerformer.getHero());
-                possibleElements.addAll(getValidSublist(actionPerformer.getOpponent().getMinionsInGame()));
+                possibleElements.addAll(getValidSublist(enemyMinions));
                 if (possibleElements.size() > 0)
                     targets.add(Element.getRandomElement(possibleElements));
             }
             case BATTLEFIELD -> {
-                ArrayList<Element> possibleElements = getValidSublist(actionPerformer.getMinionsInGame());
-                possibleElements.addAll(getValidSublist(actionPerformer.getOpponent().getMinionsInGame()));
+                ArrayList<Element> possibleElements = getValidSublist(myMinions);
+                possibleElements.addAll(getValidSublist(enemyMinions));
                 if (possibleElements.size() > 0)
                     targets.add(Element.getRandomElement(possibleElements));
             }
             case MY_WEAPON -> {
-                if (actionPerformer.getCurrentWeapon() != null)
-                    addIfValid(targets, actionPerformer.getCurrentWeapon());
+                if (myWeapon != null)
+                    addIfValid(targets, myWeapon);
             }
             case OPPONENT_WEAPON -> {
-                if (actionPerformer.getOpponent().getCurrentWeapon() != null)
-                    addIfValid(targets, actionPerformer.getCurrentWeapon());
+                if (enemyWeapon != null)
+                    addIfValid(targets, enemyWeapon);
             }
             case DISCOVER -> {
                 ArrayList<Element> possibleElements = getValidSublist(cardsList);

@@ -3,7 +3,7 @@ package elements.abilities;
 import elements.*;
 import elements.heros.*;
 import elements.cards.*;
-import system.player.Character;
+import system.game.Character;
 
 import static elements.abilities.ChangeStatsType.CONSTANT;
 

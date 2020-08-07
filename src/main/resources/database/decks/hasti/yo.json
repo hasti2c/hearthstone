@@ -4,13 +4,25 @@
   "playerName": "hasti",
   "cards": [
     "Dread Infernal",
-    "Dread Infernal"
+    "Dread Infernal",
+    "Sathrovarr",
+    "Sathrovarr",
+    "Tomb Warden",
+    "Tomb Warden",
+    "Hogger",
+    "Hogger"
   ],
   "uses": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
     0,
     0
   ],
   "wins": 0,
-  "games": 0,
+  "games": 2,
   "maxSize": 15
 }

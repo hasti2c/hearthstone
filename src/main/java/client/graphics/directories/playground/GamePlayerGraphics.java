@@ -9,7 +9,7 @@ import elements.heros.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import shared.*;
-import system.player.*;
+import system.game.GamePlayer;
 import client.graphics.directories.playground.playables.*;
 import javafx.scene.*;
 import javafx.scene.image.*;
@@ -20,10 +20,11 @@ public class GamePlayerGraphics extends CharacterGraphics<GamePlayer> {
     }
 
     protected void configMana() {
-        manaLabel.setText(character.getMana() + "/10");
-        for (int i = 0; i < character.getMana(); i++)
+        int mana = character.getState().getMana();
+        manaLabel.setText(mana + "/10");
+        for (int i = 0; i < mana; i++)
             manaHBox.getChildren().get(i).setVisible(true);
-        for (int i = character.getMana(); i < 10; i++)
+        for (int i = mana; i < 10; i++)
             manaHBox.getChildren().get(i).setVisible(false);
     }
 

@@ -5,7 +5,7 @@ p1: hasti
 p1_hero: warlock
 p1_deck: pppp
 
-p2: system.player.NPC@2c812b1e
+p2: system.game.NPC@2c812b1e
 p2_hero: warlock
 p2_deck: pppp
 

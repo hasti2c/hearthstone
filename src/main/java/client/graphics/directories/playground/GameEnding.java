@@ -4,7 +4,7 @@ import client.*;
 import client.graphics.directories.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
-import system.*;
+import system.game.*;
 
 public class GameEnding extends Directory {
     private final Game game;

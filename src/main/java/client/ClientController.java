@@ -1,7 +1,7 @@
 package client;
 
 import client.graphics.directories.*;
-import client.graphics.directories.collections.Collections;
+import client.graphics.directories.collections.*;
 import client.graphics.popups.*;
 import elements.cards.*;
 import javafx.scene.*;
@@ -115,5 +115,15 @@ public class ClientController extends Controller<ClientCommandType> {
         if (!result && currentDirectory instanceof Collections collections)
             collections.displayHeroChangeError();
         currentDirectory.config();
+    }
+
+    public void createGameResult(boolean result) {
+        if (result)
+            home.startGame();
+    }
+
+    public void startGameResult(boolean result) {
+        if (result)
+            home.getPlayGround().startTimer();
     }
 }

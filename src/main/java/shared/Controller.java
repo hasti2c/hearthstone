@@ -3,6 +3,7 @@ package shared;
 import commands.*;
 import commands.types.*;
 import elements.heros.*;
+import system.game.*;
 import system.player.*;
 
 import java.time.*;
@@ -23,6 +24,8 @@ public abstract class Controller <T extends CommandType> {
         this.currentPlayer = currentPlayer;
     }
 
+
+
     public Hero getCurrentHero() {
         if (currentPlayer == null || currentPlayer.getInventory().getCurrentHero() == null)
             return null;
@@ -39,8 +42,8 @@ public abstract class Controller <T extends CommandType> {
         return switch (name) {
             case "Deck": yield currentPlayer.getInventory().getAllDecks();
             case "Card": yield GameData.getInstance().getCardsList();
-            case "Element|mine": yield currentPlayer.getGame().getCharacters()[0].getElements();
-            case "Element|opponent": yield currentPlayer.getGame().getCharacters()[1].getElements();
+            case "MyElement": yield currentPlayer.getGame().getCharacters()[0].getElements();
+            case "EnemeyElement": yield currentPlayer.getGame().getCharacters()[1].getElements();
             default: yield new ArrayList<>();
         };
     }
@@ -55,5 +58,11 @@ public abstract class Controller <T extends CommandType> {
 
     public CommandParser<T> getParser() {
         return parser;
+    }
+
+    public Game getGame() {
+        if (currentPlayer == null)
+            return null;
+        return currentPlayer.getGame();
     }
 }

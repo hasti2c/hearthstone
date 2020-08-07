@@ -6,11 +6,11 @@ import elements.cards.*;
 import elements.heros.*;
 import commands.*;
 import commands.types.*;
-import system.*;
+import system.game.Game;
 import system.player.*;
+import system.game.Character;
 
 import java.io.*;
-import java.lang.Character;
 import java.util.*;
 
 import static commands.types.ClientCommandType.*;
@@ -41,8 +41,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
             ret = logout();
 
         if (handler.getCurrentPlayer() == null) {
-            respond(commandType, ret);
-            updatePlayer();
+            update(commandType, ret);
             return ret;
         }
 
@@ -70,14 +69,20 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
             ret = sellCard(card);
         else if (CREATE_GAME.equals(commandType) && input[0] instanceof Integer num)
             ret = createGame(num);
-        else if (START_GAME.equals(commandType) && isCards(input)) {
+        else if (DECK_READER.equals(commandType))
+            ret = deckReader();
+
+        if (handler.getGame() == null) {
+            update(commandType, ret);
+            return ret;
+        }
+
+        if (START_GAME.equals(commandType) && isCards(input)) {
             ArrayList<Card> cards = new ArrayList<>();
             for (Object card : input)
                 cards.add((Card) card);
             ret = startGame(cards);
-        } else if (DECK_READER.equals(commandType))
-            ret = deckReader();
-        else if (PLAY.equals(commandType) && input[0] instanceof Card card) {
+        } else if (PLAY.equals(commandType) && input[0] instanceof Card card) {
             if (input.length < 2)
                 ret = playCard(card);
             else if (input[1] instanceof Element target)
@@ -89,9 +94,14 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         else if (ATTACK.equals(commandType) && input[0] instanceof Attackable attacker && input[1] instanceof Attackable defender)
             ret = attack(attacker, defender);
 
+        update(commandType, ret);
+        return ret;
+    }
+
+    private void update(ServerCommandType commandType, boolean ret) {
         respond(commandType, ret);
         updatePlayer();
-        return ret;
+        updateGame();
     }
 
     private void respond(ServerCommandType type, boolean ret) {
@@ -102,9 +112,17 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         if (handler.getCurrentPlayer() != null) {
             handler.getCurrentPlayer().updateJson();
             handler.respond(new Command<>(UPDATE_PLAYER, handler.getCurrentPlayer().toString(), handler.getCurrentPlayer().getJson()));
-        } else {
+        } else
             handler.respond(new Command<>(UPDATE_PLAYER, "null"));
-        }
+    }
+
+    private void updateGame() {
+        if (handler.getGame() != null) {
+            Character[] characters = handler.getGame().getCharacters();
+            for (int i = 0; i < characters.length; i++)
+                handler.respond(new Command<>(UPDATE_GAME, i, characters[i].getState().getJson()));
+        } else
+            handler.respond(new Command<>(UPDATE_GAME, "null"));
     }
 
     private boolean isCards(Object[] input) {
@@ -114,8 +132,8 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         return true;
     }
 
-    private ArrayList<Character> getUsernameChars() {
-        ArrayList<Character> usernameChars = new ArrayList<>();
+    private ArrayList<java.lang.Character> getUsernameChars() {
+        ArrayList<java.lang.Character> usernameChars = new ArrayList<>();
         for (char c = 'a'; c <= 'z'; c++)
             usernameChars.add(c);
         for (char c = 'A'; c <= 'Z'; c++)
@@ -294,9 +312,19 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         Player player = handler.getCurrentPlayer();
         if (player.getInventory().getCurrentDeck() == null)
             return false;
+        return createGame(new Game(handler, playerCount, controller.getGameCount() + 1));
+    }
+
+    private boolean deckReader() {
+        DeckPair deckPair = DeckPair.getInstance();
+        if (deckPair == null)
+            return false;
+        return createGame(new Game(handler, deckPair, controller.getGameCount() + 1));
+    }
+
+    private boolean createGame(Game game) {
         controller.setGameCount(controller.getGameCount() + 1);
-        Game game = new Game(handler, playerCount, controller.getGameCount());
-        player.setGame(game);
+        handler.getCurrentPlayer().setGame(game);
         return true;
     }
 
@@ -311,23 +339,12 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         return true;
     }
 
-    private boolean deckReader() {
-        DeckPair deckPair = DeckPair.getInstance();
-        if (deckPair == null)
-            return false;
-        controller.setGameCount(controller.getGameCount() + 1);
-        Game game = new Game(handler, deckPair, controller.getGameCount());
-        handler.getCurrentPlayer().setGame(game);
-        game.startGame();
-        return true;
-    }
-
     private boolean playCard(Card card) {
         return playCard(card, null);
     }
 
     private boolean playCard(Card card, Element target) {
-        Game game = handler.getCurrentPlayer().getGame();
+        Game game = handler.getGame();
         boolean ret = game.getCurrentCharacter().playCard(card, target);
         if (ret)
             game.log( "play_card", card.toString());
@@ -335,7 +352,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private boolean endTurn() {
-        Game game = handler.getCurrentPlayer().getGame();
+        Game game = handler.getGame();
         game.nextTurn();
         game.log("end_turn", "");
         if (game.isFinished())
@@ -344,7 +361,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private boolean heroPower() {
-        Game game = handler.getCurrentPlayer().getGame();
+        Game game = handler.getGame();
         boolean ret = game.getCurrentCharacter().useHeroPower();
         if (ret)
             game.log("hero_power", "");
@@ -354,7 +371,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private boolean attack(Attackable attacker, Attackable defender) {
-        Game game = handler.getCurrentPlayer().getGame();
+        Game game = handler.getGame();
         boolean ret = game.getCurrentCharacter().attack(attacker, defender);
         if (ret)
             game.log("attack", attacker + " -> " + defender);

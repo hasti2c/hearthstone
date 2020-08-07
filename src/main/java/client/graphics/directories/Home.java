@@ -3,7 +3,7 @@ package client.graphics.directories;
 import client.*;
 import commands.*;
 import elements.cards.*;
-import system.*;
+import system.game.Game;
 import system.player.*;
 import client.graphics.directories.collections.*;
 import client.graphics.directories.playground.*;
@@ -69,6 +69,10 @@ public class Home extends Directory {
         return playGround;
     }
 
+    public void startGame() {
+        gameBeginning.startGame();
+    }
+
     private class GameStartPage extends PopupBox {
         private Game game;
         @FXML
@@ -92,10 +96,7 @@ public class Home extends Directory {
             collectionsButton.setOnAction(e -> displayCollections());
             deckReaderButton.setOnAction(e -> {
                 close();
-                initPlayGround();
-                if (client.request(new Command<>(DECK_READER)))
-                    playGround.startTimer();
-                displayPlayGround();
+                client.request(new Command<>(DECK_READER));
             });
         }
 
@@ -146,8 +147,11 @@ public class Home extends Directory {
         }
 
         private void createGame(int playerCount) {
-            close();
             client.request(new Command<>(CREATE_GAME, playerCount));
+        }
+
+        public void startGame() {
+            close();
             game = controller.getCurrentPlayer().getGame();
             game.getCharacters()[0].setPassive(passiveChoiceBox.getValue());
             game.getCharacters()[1].setPassive(passiveChoiceBox.getValue());

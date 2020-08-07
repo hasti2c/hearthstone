@@ -1,6 +1,6 @@
 package elements.abilities.targets;
 
-import system.player.Character;
+import system.game.Character;
 
 public interface Attackable extends Targetable {
     boolean getHasAttacked();

@@ -4,7 +4,7 @@ import java.io.*;
 
 import elements.*;
 import elements.abilities.targets.*;
-import system.player.Character;
+import system.game.Character;
 import javafx.scene.image.*;
 
 import static elements.ElementType.*;
@@ -59,9 +59,9 @@ public class Hero extends Element implements Attackable {
     }
 
     public int getAttack(Character character) {
-        if (character.getCurrentWeapon() == null || !character.canAttack(this))
+        if (character.getState().getCurrentWeapon() == null || !character.canAttack(this))
             return 0;
-        return character.getCurrentWeapon().getAttack();
+        return character.getState().getCurrentWeapon().getAttack();
     }
 
     public Hero clone() {

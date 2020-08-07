@@ -2,7 +2,7 @@ package elements.cards;
 
 import elements.abilities.targets.*;
 import shared.*;
-import system.player.Character;
+import system.game.Character;
 
 import static elements.ElementType.*;
 

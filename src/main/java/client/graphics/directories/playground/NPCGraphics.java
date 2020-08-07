@@ -11,7 +11,7 @@ import client.graphics.directories.playground.playables.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
-import system.player.*;
+import system.game.*;
 
 import java.util.*;
 

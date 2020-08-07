@@ -1,14 +1,13 @@
-package system.player;
+package system.game;
 
 import elements.abilities.targets.*;
 import elements.cards.*;
 import elements.heros.*;
-import system.*;
+import system.player.*;
 
 import java.util.*;
 
 public class NPC extends Character {
-
     public NPC(Hero hero, Deck deck, Game game, PlayerFaction playerFaction) {
         super(hero, deck, game, playerFaction);
     }
@@ -49,13 +48,13 @@ public class NPC extends Character {
 
     private boolean canWin() {
         int attackSum = hero.getAttack(this);
-        for (Minion minion : minionsInGame)
+        for (Minion minion : state.getMinionsInGame())
             attackSum += minion.getAttack();
         return attackSum >= getOpponent().hero.getHealth();
     }
 
     private boolean attackWeakMinion() {
-        ArrayList<Minion> opponentMinions = new ArrayList<>(getOpponent().minionsInGame);
+        ArrayList<Minion> opponentMinions = new ArrayList<>(getOpponent().state.getMinionsInGame());
         opponentMinions.sort(Comparator.comparingInt(Minion::getHealth));
         for (Minion minion : opponentMinions)
             if (tryToAttack(minion))
@@ -68,7 +67,7 @@ public class NPC extends Character {
     }
 
     private boolean tryToAttack(Attackable target) {
-        ArrayList<Minion> myMinions = new ArrayList<>(minionsInGame);
+        ArrayList<Minion> myMinions = new ArrayList<>(state.getMinionsInGame());
         myMinions.sort(Comparator.comparingInt(Minion::getAttack));
 
         for (Minion myMinion : myMinions)
@@ -78,7 +77,7 @@ public class NPC extends Character {
     }
 
     private boolean playTopCard() {
-        ArrayList<Card> cards = new ArrayList<>(hand);
+        ArrayList<Card> cards = new ArrayList<>(state.getHand());
         Collections.sort(cards);
         int i = cards.size() - 1;
         while (i >= 0 && !playCard(cards.get(i)))

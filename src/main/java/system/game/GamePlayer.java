@@ -1,9 +1,9 @@
-package system.player;
+package system.game;
 
-import shared.Controller;
-import system.*;
+import shared.*;
 import elements.cards.*;
 import elements.heros.*;
+import system.player.*;
 
 public class GamePlayer extends Character {
     private final String name;
@@ -26,10 +26,6 @@ public class GamePlayer extends Character {
 
     public String toString() {
         return name;
-    }
-
-    public Inventory getInventory() {
-        return inventory;
     }
 
     protected void initializeHelper() {

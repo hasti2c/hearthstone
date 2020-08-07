@@ -32,6 +32,18 @@ public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
                 controller.updatePlayer(username, json);
                 yield true;
             }
+            case UPDATE_GAME -> {
+                if (controller.getCurrentPlayer() == null)
+                    yield false;
+                if (input[0].equals("null")) {
+                    controller.getCurrentPlayer().setGame(null);
+                    yield true;
+                }
+                if (!(input[0] instanceof Integer num && input[1] instanceof String json))
+                    yield false;
+                controller.getGame().getCharacters()[num].updateState(json);
+                yield true;
+            }
         };
     }
 
@@ -44,6 +56,8 @@ public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
             case ADD_CARD -> Platform.runLater(() -> controller.addCardResult(bool));
             case ADD_DECK, RENAME -> Platform.runLater(() -> controller.deckNameResult(bool));
             case MOVE -> Platform.runLater(() -> controller.moveDeckResult(bool));
+            case CREATE_GAME, DECK_READER -> Platform.runLater(() -> controller.createGameResult(bool));
+            case START_GAME -> Platform.runLater(() -> controller.startGameResult(bool));
         }
         return true;
     }

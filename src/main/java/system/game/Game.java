@@ -1,9 +1,9 @@
-package system;
+package system.game;
 
 import elements.cards.*;
 import elements.heros.*;
 import shared.*;
-import system.player.Character;
+import system.*;
 import system.player.*;
 
 import java.util.*;
@@ -34,12 +34,6 @@ public class Game {
         this.id = id;
         logger = new Logger("src/main/resources/logs/games/game-" + id + ".txt");
         deckReader = true;
-    }
-
-    public void startGame() {
-        characters[0].initialize();
-        characters[1].initialize();
-        getCurrentCharacter().startTurn();
     }
 
     public void startGame(ArrayList<Card> cards) {

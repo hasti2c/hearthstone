@@ -2,7 +2,7 @@ package elements.abilities;
 
 import elements.*;
 import elements.cards.*;
-import system.player.Character;
+import system.game.Character;
 
 public class RemoveCard extends Ability {
     private RemoveCardType type;
@@ -23,8 +23,8 @@ public class RemoveCard extends Ability {
                     minion.setHealth(0);
             }
             case WEAPON -> player.setCurrentWeapon(null);
-            case HAND -> player.getHand().remove(target);
-            case DECK -> player.getLeftInDeck().remove(target);
+            case HAND -> player.getState().getHand().remove(target);
+            case DECK -> player.getState().getLeftInDeck().remove(target);
         }
     }
 }

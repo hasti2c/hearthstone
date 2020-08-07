@@ -7,6 +7,7 @@ import elements.heros.*;
 import elements.cards.*;
 import shared.*;
 import system.*;
+import system.game.*;
 
 public class Player implements Configable {
     private String username, password;

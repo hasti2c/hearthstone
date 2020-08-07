@@ -8,14 +8,13 @@ import javafx.event.*;
 import javafx.scene.image.*;
 import javafx.scene.input.*;
 import javafx.scene.paint.*;
-import system.*;
 import client.graphics.directories.*;
 import client.graphics.popups.*;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import system.player.*;
+import system.game.*;
 
 import java.io.*;
 import java.util.*;
@@ -74,10 +73,6 @@ public class PlayGround extends Directory {
                 gameEventsButton.setText("Click to hide game events.");
             }
         });
-
-        if (!game.isDeckReader())
-            (new ChooseCards()).display();
-
         this.timer = new Timer(this);
     }
 
@@ -179,6 +174,17 @@ public class PlayGround extends Directory {
         return character == characters[1] ? characters[0] : null;
     }
 
+    //TODO less than 6 cards has bug
+    private void displayChooseCards() {
+        if (!game.isDeckReader())
+            (new ChooseCards()).display();
+    }
+
+    public void display() {
+        super.display();
+        displayChooseCards();
+    }
+
     private class ChooseCards {
         private Pane pane;
         private final ArrayList<Card> cards, mainCards, extraCards;
@@ -188,9 +194,9 @@ public class PlayGround extends Directory {
         private Button continueButton;
 
         private ChooseCards() {
-            ArrayList<Card> cards = new ArrayList<>();
+            ArrayList<Card> cards = new ArrayList<>(), leftInDeck = characters[0].getCharacter().getState().getLeftInDeck();
             while (cards.size() < 6) {
-                Card card = Card.getRandomElement(characters[0].getCharacter().getLeftInDeck());
+                Card card = Card.getRandomElement(leftInDeck);
                 if (!cards.contains(card))
                     cards.add(card);
             }
@@ -222,8 +228,7 @@ public class PlayGround extends Directory {
 
         private void hide() {
             PlayGround.this.pane.getChildren().remove(pane);
-            if (client.request(new Command<>(START_GAME, cards.toArray())))
-                startTimer();
+            client.request(new Command<>(START_GAME, cards.toArray()));
             PlayGround.this.config();
         }
 

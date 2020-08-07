@@ -135,11 +135,17 @@ public class Deck implements Comparable<Deck>, Configable {
         return deck;
     }
 
+    public Deck cloneCards() {
+        Deck deck = clone();
+        deck.cards = getCardClones();
+        return deck;
+    }
+
     public ArrayList<Card> getCards() {
         return cards;
     }
 
-    public ArrayList<Card> getCardClones() {
+    private ArrayList<Card> getCardClones() {
         ArrayList<Card> clones = new ArrayList<>();
         for (Card card : cards)
             clones.add(card.clone());
@@ -232,5 +238,14 @@ public class Deck implements Comparable<Deck>, Configable {
 
     public void addWin() {
         wins++;
+    }
+
+    public <C extends Card> C getCard(C card, int num) {
+        int i = 0;
+        for (Card c : cards)
+            if (card.toString().equals(c.toString()))
+                if (++i == num)
+                    return (C) c;
+        return null;
     }
 }

@@ -2,7 +2,7 @@ package elements.abilities;
 
 import elements.*;
 import elements.cards.*;
-import system.player.Character;
+import system.game.Character;
 
 import java.util.*;
 
@@ -24,9 +24,12 @@ public class AddCard extends Ability {
         if (type == OPPONENT_SUMMON)
             player = player.getOpponent();
 
+        ArrayList<Card> leftInDeck = player.getState().getLeftInDeck(), hand = player.getState().getHand();
+        ArrayList<Minion> minionsInGame = player.getState().getMinionsInGame();
+
         if (target.getElementType().equals(discardElementType)) {
             if (type.equals(DRAW))
-                player.getLeftInDeck().remove(card);
+                leftInDeck.remove(card);
             return;
         }
 
@@ -34,22 +37,22 @@ public class AddCard extends Ability {
             case ALL_THREE -> {
                 if (target instanceof Minion minion) {
                     player.getHero().getHeroClass().doHeroAction(minion);
-                    addToList(player.getMinionsInGame(), caller, minion, 7);
+                    addToList(minionsInGame, caller, minion, 7);
                 }
                 else if (target instanceof Weapon weapon)
                     player.setCurrentWeapon(weapon);
-                addToList(player.getHand(), caller, card, 12);
-                addToList(player.getLeftInDeck(), caller, card, -1);
+                addToList(hand, caller, card, 12);
+                addToList(leftInDeck, caller, card, -1);
             }
             case DRAW -> {
-                addToList(player.getHand(), caller, card, 12);
-                player.getLeftInDeck().remove(card);
+                addToList(hand, caller, card, 12);
+                leftInDeck.remove(card);
             }
-            case HAND -> addToList(player.getHand(), caller, card, 12);
+            case HAND -> addToList(hand, caller, card, 12);
             case SUMMON, OPPONENT_SUMMON -> {
                 if (card instanceof Minion minion) {
                     player.getHero().getHeroClass().doHeroAction(minion);
-                    addToList(player.getMinionsInGame(), caller, minion, 7);
+                    addToList(minionsInGame, caller, minion, 7);
                 }
                 else if (card instanceof Weapon weapon)
                     player.setCurrentWeapon(weapon);

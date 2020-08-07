@@ -3,7 +3,7 @@ package elements.heros;
 import elements.abilities.*;
 import elements.*;
 import javafx.scene.image.*;
-import system.player.Character;
+import system.game.Character;
 
 import java.io.*;
 
@@ -74,7 +74,7 @@ public class HeroPower extends Playable {
     }
 
     public void reduceCost(Character character) {
-        character.setMana(this, character.getMana() - getGameMana(character));
+        character.setMana(this, character.getState().getMana() - getGameMana(character));
         Hero hero = character.getHero();
         hero.setHealth(hero.getHealth() - healthCost);
     }

@@ -17,12 +17,12 @@ public enum ServerCommandType implements CommandType {
     RENAME,
     BUY,
     SELL,
-    PLAY,
+    CREATE_GAME,
     DECK_READER,
+    START_GAME,
+    PLAY,
     HERO_POWER,
     END_TURN,
-    CREATE_GAME,
-    START_GAME,
     ATTACK;
 
     private static final ServerCommandType[] gameCommands = {PLAY, HERO_POWER, END_TURN, ATTACK, START_GAME};

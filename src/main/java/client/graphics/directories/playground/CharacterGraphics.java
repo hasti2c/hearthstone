@@ -16,7 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import system.player.*;
-import system.player.Character;
+import system.game.Character;
 
 import java.io.*;
 import java.util.*;
@@ -74,7 +74,7 @@ public abstract class CharacterGraphics <C extends Character> {
         clear();
 
         hpLabel.setText(character.getHero().getHealth() + "");
-        deckLabel.setText(character.getLeftInDeck().size() + "/" + character.getDeck().getCards().size());
+        deckLabel.setText(character.getState().getLeftInDeck().size() + "/" + character.getDeck().getCards().size());
         configMana();
 
         reloadHeroImage();
@@ -98,7 +98,7 @@ public abstract class CharacterGraphics <C extends Character> {
     }
 
     private void configHand() {
-        ArrayList<Card> hand = character.getHand();
+        ArrayList<Card> hand = character.getState().getHand();
         for (int i = 0; i < hand.size(); i++) {
             Node node = getHandNode(hand.get(i));
             if (i < 5)
@@ -116,7 +116,7 @@ public abstract class CharacterGraphics <C extends Character> {
 
     protected Node getHandNode(Card card) {
         ImageView iv;
-        int n = character.getHand().size();
+        int n = character.getState().getHand().size();
         if (n <= 5)
             iv = card.getImageView(Math.min(300 / n, 100), -1);
         else
@@ -130,13 +130,13 @@ public abstract class CharacterGraphics <C extends Character> {
     private void configTargets() {
         character.clearDeadMinions();
         reloadMinionsHBox();
-        for (int i = 0; i < character.getMinionsInGame().size(); i++)
-            configTargetNode(character.getMinionsInGame().get(i), minionsHBox.getChildren().get(i));
+        for (int i = 0; i < character.getState().getMinionsInGame().size(); i++)
+            configTargetNode(character.getState().getMinionsInGame().get(i), minionsHBox.getChildren().get(i));
     }
 
     public void reloadMinionsHBox() {
         minionsHBox.getChildren().clear();
-        for (Minion minion : character.getMinionsInGame()) {
+        for (Minion minion : character.getState().getMinionsInGame()) {
             Group group = new MinionGraphics(minion).getGroup();
             minionsHBox.getChildren().add(group);
         }
@@ -145,10 +145,10 @@ public abstract class CharacterGraphics <C extends Character> {
     protected abstract void configTargetNode(Minion minion, Node node);
 
     private void configWeapon() {
-        if (character.getCurrentWeapon() == null)
+        if (character.getState().getCurrentWeapon() == null)
             return;
         if (character.canAttack(character.getHero()))
-            weaponPane.getChildren().add((new WeaponGraphics(character.getCurrentWeapon()).getGroup()));
+            weaponPane.getChildren().add((new WeaponGraphics(character.getState().getCurrentWeapon()).getGroup()));
         else
             weaponPane.getChildren().add(Weapon.getClosedImageView());
     }
@@ -211,9 +211,9 @@ public abstract class CharacterGraphics <C extends Character> {
     }
 
     public Node getNode(Element element) {
-        if (element instanceof Minion minion && character.getMinionsInGame().size() == minionsHBox.getChildren().size())
-            return minionsHBox.getChildren().get(character.getMinionsInGame().indexOf(minion));
-        if (element instanceof Weapon weapon && character.getCurrentWeapon() == weapon)
+        if (element instanceof Minion minion && character.getState().getMinionsInGame().size() == minionsHBox.getChildren().size())
+            return minionsHBox.getChildren().get(character.getState().getMinionsInGame().indexOf(minion));
+        if (element instanceof Weapon weapon && character.getState().getCurrentWeapon() == weapon)
             return getFirst(weaponPane);
         if (element instanceof HeroPower heroPower && character.getHero().getHeroPower() == heroPower)
             return getFirst(heroPowerPane);
@@ -227,7 +227,7 @@ public abstract class CharacterGraphics <C extends Character> {
     }
 
     public void attackMode() {
-        for (Minion minion : character.getMinionsInGame())
+        for (Minion minion : character.getState().getMinionsInGame())
             if (character.canAttack(minion))
                 TargetEventHandler.enableNode(getNode(minion));
             else
@@ -240,7 +240,7 @@ public abstract class CharacterGraphics <C extends Character> {
     }
 
     public void defenseMode(Attackable attacker) {
-        for (Minion minion : character.getMinionsInGame())
+        for (Minion minion : character.getState().getMinionsInGame())
             if (character.canBeAttacked(attacker, minion))
                 TargetEventHandler.enableNode(getNode(minion));
             else
@@ -258,9 +258,9 @@ public abstract class CharacterGraphics <C extends Character> {
         reloadMinionsHBox();
         reloadHeroImage();
 
-        ArrayList<Element> elements = new ArrayList<>(character.getMinionsInGame());
-        if (character.getCurrentWeapon() != null)
-            elements.add(character.getCurrentWeapon());
+        ArrayList<Element> elements = new ArrayList<>(character.getState().getMinionsInGame());
+        if (character.getState().getCurrentWeapon() != null)
+            elements.add(character.getState().getCurrentWeapon());
         if (character.canUseHeroPower())
             elements.add(character.getHero().getHeroPower());
         elements.add(character.getHero());
