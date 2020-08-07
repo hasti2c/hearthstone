@@ -1,7 +1,7 @@
 package client;
 
 import client.graphics.directories.*;
-import client.graphics.directories.collections.*;
+import client.graphics.directories.collections.Collections;
 import client.graphics.popups.*;
 import elements.cards.*;
 import javafx.scene.*;
@@ -10,6 +10,7 @@ import javafx.stage.*;
 import shared.*;
 import commands.*;
 import commands.types.*;
+import system.game.Game;
 import system.player.*;
 
 import java.util.*;
@@ -22,7 +23,6 @@ public class ClientController extends Controller<ClientCommandType> {
     private final Home home;
     private final Client client;
     private Directory currentDirectory;
-    //private final ServerController serverController;
 
     ClientController(Client client, Stage stage) {
         this.stage = stage;
@@ -31,8 +31,6 @@ public class ClientController extends Controller<ClientCommandType> {
         runner = new ClientCommandRunner(this);
         parser = new CommandParser<>(this, ClientCommandType.class);
 
-        //serverController = (ServerController) client.getTarget().getController();
-        //currentPlayer = this.serverController.getCurrentPlayer();
         startPage = new StartPage(this, client);
         home = new Home(this, client);
     }
@@ -72,7 +70,11 @@ public class ClientController extends Controller<ClientCommandType> {
         store.search(card.toString());
     }
 
+    //TODO debug end game
     public void endGame() {
+        Game game = currentPlayer.getGame();
+        currentPlayer.setGame(null);
+        game.endGame();
         home.getPlayGround().endGame();
     }
 
@@ -102,19 +104,16 @@ public class ClientController extends Controller<ClientCommandType> {
     public void addCardResult(boolean result) {
         if (!result)
             (new AlertBox("This card couldn't be added to the deck. This deck is full.", Color.RED, "Okay")).display();
-        currentDirectory.config();
     }
 
     public void deckNameResult(boolean result) {
         if (!result && currentDirectory instanceof Collections collections)
             collections.displayDeckNameError();
-        currentDirectory.config();
     }
 
     public void moveDeckResult(boolean result) {
         if (!result && currentDirectory instanceof Collections collections)
             collections.displayHeroChangeError();
-        currentDirectory.config();
     }
 
     public void createGameResult(boolean result) {
@@ -125,5 +124,14 @@ public class ClientController extends Controller<ClientCommandType> {
     public void startGameResult(boolean result) {
         if (result)
             home.getPlayGround().startTimer();
+    }
+
+    public void config() {
+        currentDirectory.config();
+    }
+
+    public void endTurnResult(Boolean result) {
+        if (result)
+            home.getPlayGround().doEndTurn();
     }
 }

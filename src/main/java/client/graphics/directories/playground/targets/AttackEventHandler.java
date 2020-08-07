@@ -43,6 +43,5 @@ public class AttackEventHandler extends TargetEventHandler {
     @Override
     protected void doAction() {
         gamePlayer.getClient().request(new Command<>(ATTACK, gamePlayer.getSelectedAttackable(), gamePlayer.getOpponent().getSelectedAttackable()));
-        playGround.config();
     }
 }

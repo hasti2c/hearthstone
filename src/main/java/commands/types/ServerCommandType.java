@@ -22,8 +22,8 @@ public enum ServerCommandType implements CommandType {
     START_GAME,
     PLAY,
     HERO_POWER,
-    END_TURN,
-    ATTACK;
+    ATTACK,
+    END_TURN;
 
     private static final ServerCommandType[] gameCommands = {PLAY, HERO_POWER, END_TURN, ATTACK, START_GAME};
 

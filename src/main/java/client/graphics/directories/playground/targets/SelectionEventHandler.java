@@ -59,6 +59,5 @@ public class SelectionEventHandler extends TargetEventHandler {
             client.request(new Command<>(ServerCommandType.HERO_POWER, targetable));
         else if (caller instanceof Card)
             client.request(new Command<>(ServerCommandType.PLAY, caller, targetable));
-        character.getPlayGround().config();
     }
 }

@@ -309,3 +309,15 @@ add 2020/08/08 00:02:24 card: Hogger -> deck: yo
 login 2020/08/08 00:07:55 
 login 2020/08/08 00:14:05 
 start_game 2020/08/08 00:14:17 game id: 287
+start_game 2020/08/08 00:23:15 game id: 288
+start_game 2020/08/08 00:23:59 game id: 289
+login 2020/08/08 00:35:52 
+start_game 2020/08/08 00:35:58 game id: 290
+login 2020/08/08 00:48:09 
+start_game 2020/08/08 00:48:15 game id: 291
+login 2020/08/08 00:49:55 
+start_game 2020/08/08 00:49:59 game id: 292
+login 2020/08/08 00:56:11 
+start_game 2020/08/08 00:56:16 game id: 293
+end_game 2020/08/08 01:03:27 game id: 293
+logout 2020/08/08 01:03:27 

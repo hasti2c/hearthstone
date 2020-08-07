@@ -88,7 +88,6 @@ public class DiscoverGraphics {
             else if (caller instanceof Card)
                 client.request(new Command<>(ServerCommandType.PLAY, caller, targetable));
             playGround.removeDiscover(pane);
-            playGround.config();
         }
     }
 }

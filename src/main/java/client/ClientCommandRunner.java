@@ -2,7 +2,6 @@ package client;
 
 import commands.*;
 import commands.types.*;
-import javafx.application.*;
 
 public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
     private final ClientController controller;
@@ -16,7 +15,7 @@ public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
         ClientCommandType type = command.getCommandType();
         Object[] input = command.getInput();
 
-        return switch (type) {
+        boolean ret = switch (type) {
             case RESULT -> {
                 if (!(input[0] instanceof ServerCommandType serverType))
                     yield false;
@@ -44,20 +43,27 @@ public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
                 controller.getGame().getCharacters()[num].updateState(json);
                 yield true;
             }
+            case END_GAME -> {
+                controller.endGame();
+                yield true;
+            }
         };
+        controller.config();
+        return ret;
     }
 
     private boolean handleResponse(ServerCommandType serverType, Object[] input) {
         if (!(input[1] instanceof Boolean bool))
             return false;
         switch (serverType) {
-            case SIGN_UP -> Platform.runLater(() -> controller.signUpResult(bool));
-            case LOGIN -> Platform.runLater(() -> controller.loginResult(bool));
-            case ADD_CARD -> Platform.runLater(() -> controller.addCardResult(bool));
-            case ADD_DECK, RENAME -> Platform.runLater(() -> controller.deckNameResult(bool));
-            case MOVE -> Platform.runLater(() -> controller.moveDeckResult(bool));
-            case CREATE_GAME, DECK_READER -> Platform.runLater(() -> controller.createGameResult(bool));
-            case START_GAME -> Platform.runLater(() -> controller.startGameResult(bool));
+            case SIGN_UP -> controller.signUpResult(bool);
+            case LOGIN -> controller.loginResult(bool);
+            case ADD_CARD -> controller.addCardResult(bool);
+            case ADD_DECK, RENAME -> controller.deckNameResult(bool);
+            case MOVE -> controller.moveDeckResult(bool);
+            case CREATE_GAME, DECK_READER -> controller.createGameResult(bool);
+            case START_GAME -> controller.startGameResult(bool);
+            case END_TURN -> controller.endTurnResult(bool);
         }
         return true;
     }

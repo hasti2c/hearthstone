@@ -19,12 +19,10 @@ import static commands.types.ServerCommandType.*;
 public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     protected final ServerController controller;
     protected final ClientHandler handler;
-    //protected final Client client;
 
     public ServerCommandRunner(ServerController controller, ClientHandler handler) {
         this.controller = controller;
         this.handler = handler;
-        //this.client = client;
     }
 
     @Override
@@ -380,13 +378,12 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         return ret;
     }
 
-    //TODO tell client
     private boolean endGame() {
         Player player = handler.getCurrentPlayer();
         Game game = player.getGame();
         player.setGame(null);
         game.endGame();
-        //client.endGame();
+        handler.respond(new Command<>(END_GAME));
         player.getLogger().log("end_game", "game id: " + game.getId());
         game.logEndGame();
         return true;

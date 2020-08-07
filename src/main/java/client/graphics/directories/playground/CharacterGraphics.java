@@ -284,10 +284,8 @@ public abstract class CharacterGraphics <C extends Character> {
             handleSelection(heroPower);
         else if (heroPower.needsDiscover())
             handleDiscover(heroPower);
-        else {
+        else
             client.request(new Command<>(ServerCommandType.HERO_POWER));
-            playGround.config();
-        }
     }
 
     public void playCard(Card card) {
@@ -295,10 +293,8 @@ public abstract class CharacterGraphics <C extends Character> {
             handleSelection(card);
         else if (card.needsDiscover())
             handleDiscover(card);
-        else {
+        else
             client.request(new Command<>(ServerCommandType.PLAY, card));
-            playGround.config();
-        }
     }
 
     protected void selectionMode(Ability ability, Playable caller) {

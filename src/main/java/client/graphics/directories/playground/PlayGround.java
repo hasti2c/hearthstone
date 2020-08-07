@@ -61,7 +61,7 @@ public class PlayGround extends Directory {
                 controller.exit();
         });
 
-        endTurnButton.setOnAction(e -> endTurn());
+        endTurnButton.setOnAction(e -> requestEndTurn());
 
         gameEventsScrollPane.setVisible(false);
         gameEventsButton.setOnAction(e -> {
@@ -103,7 +103,7 @@ public class PlayGround extends Directory {
     public void nextSecond() {
         time--;
         if (time <= 0)
-            endTurn();
+            requestEndTurn();
         configTime();
     }
 
@@ -160,12 +160,14 @@ public class PlayGround extends Directory {
         timer.start();
     }
 
-    private void endTurn() {
+    private void requestEndTurn() {
         client.request(new Command<>(END_TURN));
+    }
+
+    public void doEndTurn() {
         timer.exit();
         time = 60;
         timer.restart();
-        config();
     }
 
     public CharacterGraphics<?> getOpponent(CharacterGraphics<?> character) {

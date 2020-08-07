@@ -1,0 +1,16 @@
+GAME_ID: 288
+STARTED_AT:  2020/08/08 00:23:15 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: system.game.NPC@6e86b98d
+p2_hero: warlock
+p2_deck: yo
+
+p1:end_turn 2020/08/08 00:23:17 
+p1:end_turn 2020/08/08 00:23:18 
+p1:end_turn 2020/08/08 00:23:18 
+p1:end_turn 2020/08/08 00:23:19 
+p1:end_turn 2020/08/08 00:23:19 

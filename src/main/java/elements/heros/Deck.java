@@ -110,18 +110,6 @@ public class Deck implements Comparable<Deck>, Configable {
                 cnt++;
         return cnt <= 1 && (card.getHeroClass() == heroClass || card.getHeroClass() == HeroClass.NEUTRAL) && cards.size() < maxSize;
     }
-/*
-    public Deck clone(Inventory inventory) {
-        Deck deck = new Deck();
-        deck.name = name;
-        deck.heroClass = heroClass;
-        deck.maxSize = maxSize;
-        for (Card card : cards)
-            deck.addCard(inventory.getCard(card.toString()));
-        deck.wins = wins;
-        deck.games = games;
-        return deck;
-    }*/
 
     public Deck clone() {
         Deck deck = new Deck();

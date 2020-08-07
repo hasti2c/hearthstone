@@ -1,5 +1,6 @@
 package client;
 
+import javafx.application.Platform;
 import javafx.stage.*;
 import commands.*;
 import commands.types.*;
@@ -34,10 +35,6 @@ public class Client {
         return false;
     }
 
-    /*public void endGame() {
-        ((ClientController) controller).endGame();
-    }*/
-
     private class Listener extends Thread {
         private Scanner scanner;
         private final CommandRunner<ClientCommandType> runner;
@@ -58,7 +55,7 @@ public class Client {
             while (true) {
                 Command<ClientCommandType> command = parser.parse(scanner.nextLine());
                 synchronized (socketMonitor) {
-                    runner.run(command);
+                    Platform.runLater(() -> runner.run(command));
                 }
             }
         }

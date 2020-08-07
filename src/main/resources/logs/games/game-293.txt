@@ -1,0 +1,44 @@
+GAME_ID: 293
+STARTED_AT:  2020/08/08 00:56:16 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: hasti
+p2_hero: warlock
+p2_deck: yo
+
+p2:end_turn 2020/08/08 00:56:18 
+p1:end_turn 2020/08/08 00:56:19 
+p2:end_turn 2020/08/08 00:56:19 
+p1:end_turn 2020/08/08 00:56:19 
+p2:end_turn 2020/08/08 00:56:19 
+p1:end_turn 2020/08/08 00:56:20 
+p2:end_turn 2020/08/08 00:56:20 
+p1:end_turn 2020/08/08 00:56:21 
+p2:end_turn 2020/08/08 00:56:22 
+p1:end_turn 2020/08/08 00:56:22 
+p1:play_card 2020/08/08 00:56:23 Dread Infernal
+p2:end_turn 2020/08/08 00:56:25 
+p1:end_turn 2020/08/08 00:56:26 
+p1:hero_power 2020/08/08 00:56:27 
+p2:end_turn 2020/08/08 00:56:31 
+p1:end_turn 2020/08/08 00:56:31 
+p2:end_turn 2020/08/08 00:56:31 
+p1:end_turn 2020/08/08 00:56:31 
+p2:end_turn 2020/08/08 00:56:32 
+p1:end_turn 2020/08/08 00:56:32 
+p1:play_card 2020/08/08 00:56:33 Hogger
+p2:end_turn 2020/08/08 00:56:34 
+p1:end_turn 2020/08/08 00:56:34 
+p2:end_turn 2020/08/08 00:56:34 
+p1:end_turn 2020/08/08 00:56:35 
+p2:end_turn 2020/08/08 00:57:35 
+p1:end_turn 2020/08/08 00:58:35 
+p2:end_turn 2020/08/08 00:59:35 
+p1:end_turn 2020/08/08 01:00:35 
+p2:end_turn 2020/08/08 01:01:35 
+p1:end_turn 2020/08/08 01:02:35 
+
+ENDED_AT:  2020/08/08 01:03:27 

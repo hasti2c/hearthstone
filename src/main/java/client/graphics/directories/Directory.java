@@ -44,7 +44,6 @@ public abstract class Directory {
 
     public void display() {
         controller.setCurrentDirectory(this);
-        //controller.updatePlayer();
         config();
         controller.setScene(scene);
     }
