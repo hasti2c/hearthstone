@@ -88,9 +88,7 @@ public class ClientController extends Controller<ClientCommandType> {
     }
 
     public void signUpResult(boolean success) {
-        if (success)
-            displayHome();
-        else
+        if (!success)
             startPage.displaySignUpError();
     }
 
@@ -117,6 +115,7 @@ public class ClientController extends Controller<ClientCommandType> {
     }
 
     public void createGameResult(boolean result) {
+        System.out.println(result);
         if (result)
             home.startGame();
     }

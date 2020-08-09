@@ -24,7 +24,7 @@ public class Player implements Configable {
 
     public static Player getExistingPlayer(String username, String json) {
         GameData.getInstance().setInitPlayerName(username);
-        Configor<Player> configor = new Configor<>(username, Player.class, new JsonReader(new StringReader(json)));
+        Configor<Player> configor = new Configor<>(username, Player.class, new JsonReader(new StringReader(json)), false);
         return configor.getConfigedObject();
     }
 
@@ -59,7 +59,7 @@ public class Player implements Configable {
         try {
             JsonWriter jsonWriter = new JsonWriter(new FileWriter(getJsonPath()));
             jsonWriter.setIndent("  ");
-            updateJson(jsonWriter);
+            updateJson(jsonWriter, true);
             jsonWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -68,11 +68,11 @@ public class Player implements Configable {
 
     public String getJson() {
         StringWriter json = new StringWriter();
-        updateJson(new JsonWriter(json));
+        updateJson(new JsonWriter(json), false);
         return json.toString();
     }
 
-    private void updateJson(JsonWriter jsonWriter) {
+    private void updateJson(JsonWriter jsonWriter, boolean compact) {
         try {
             jsonWriter.beginObject();
 
@@ -83,8 +83,13 @@ public class Player implements Configable {
             if (id != 0)
                 jsonWriter.name("id").value(id);
             jsonWriter.name("balance").value(balance);
-            jsonWriter.name("inventory").value(username + "-inventory");
-            inventory.updateJson(username);
+            jsonWriter.name("inventory");
+            if (compact) {
+                jsonWriter.value(username + "-inventory");
+                inventory.updateJson(username);
+            } else {
+                inventory.updateJson(jsonWriter, false);
+            }
 
             jsonWriter.endObject();
         } catch (IOException e) {
@@ -129,22 +134,17 @@ public class Player implements Configable {
     }
 
     public boolean addNewDeck(HeroClass heroClass, String name) {
-        for (Deck d : inventory.getAllDecks())
-            if (d.toString().equals(name))
-                return false;
+        if (inventory.getDeck(name) != null)
+            return false;
         Deck deck = new Deck(name, heroClass, inventory.getDeckCap(), username);
         inventory.addDeck(deck);
         try {
             String path = "src/main/resources/database/decks/" + username + "/" + name + ".json";
             (new File(path)).createNewFile();
-            JsonWriter jsonWriter = new JsonWriter(new FileWriter(path));
-            jsonWriter.setIndent("  ");
-            jsonWriter.beginObject();
-            jsonWriter.endObject();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
+        deck.updateJson();
         return true;
     }
 

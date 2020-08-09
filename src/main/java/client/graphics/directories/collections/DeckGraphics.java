@@ -14,7 +14,7 @@ import javafx.scene.paint.*;
 import static commands.types.ServerCommandType.*;
 
 public class DeckGraphics extends CardsList {
-    private final elements.heros.Deck deck;
+    private Deck deck;
     @FXML
     private Label deckCount;
 
@@ -26,6 +26,7 @@ public class DeckGraphics extends CardsList {
     }
 
     public void config() {
+        deck = controller.getCurrentPlayer().getInventory().getDeck(deck.toString());
         super.config();
         deckCount.setText(deck.getCards().size() + "/" + controller.getCurrentPlayer().getInventory().getDeckCap());
     }

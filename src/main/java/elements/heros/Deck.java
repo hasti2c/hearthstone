@@ -46,7 +46,15 @@ public class Deck implements Comparable<Deck>, Configable {
         try {
             JsonWriter jsonWriter = new JsonWriter(new FileWriter("src/main/resources/database/decks/" + playerName + "/" + name + ".json"));
             jsonWriter.setIndent("  ");
+            updateJson(jsonWriter);
+            jsonWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void updateJson(JsonWriter jsonWriter) {
+        try {
             jsonWriter.beginObject();
 
             jsonWriter.name("name").value(name);
@@ -70,7 +78,6 @@ public class Deck implements Comparable<Deck>, Configable {
             jsonWriter.name("maxSize").value(maxSize);
 
             jsonWriter.endObject();
-            jsonWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

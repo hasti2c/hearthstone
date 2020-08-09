@@ -19,7 +19,10 @@ public class Inventory implements Configable {
     public Inventory() {}
 
     @Override
-    public void initialize() {}
+    public void initialize() {
+        if (currentDeck != null && !allDecks.contains(currentDeck))
+            currentDeck = getDeck(currentDeck.toString());
+    }
 
     @Override
     public String getJsonPath(String name) {
@@ -37,11 +40,10 @@ public class Inventory implements Configable {
         inventory.allDecks = new ArrayList<>();
         for (Deck deck : defaultInventory.allDecks)
             inventory.addDeck(deck.clone());
-        for (Deck deck : inventory.allDecks)
-            if (deck.toString().equals(defaultInventory.currentDeck.toString()))
-                inventory.setCurrentDeck(deck);
+        if (defaultInventory.currentDeck != null)
+            inventory.currentDeck = inventory.getDeck(defaultInventory.currentDeck.toString());
 
-        return defaultInventory;
+        return inventory;
     }
 
     public int getDeckCap() {
@@ -103,17 +105,16 @@ public class Inventory implements Configable {
         try {
             JsonWriter jsonWriter = new JsonWriter(new FileWriter("src/main/resources/database/players/" + playerName + "-inventory.json"));
             jsonWriter.setIndent("  ");
-            updateJson(jsonWriter, playerName);
+            updateJson(jsonWriter, true);
             jsonWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void updateJson(JsonWriter jsonWriter, String playerName) {
+    public void updateJson(JsonWriter jsonWriter, boolean compact) {
         try {
             jsonWriter.beginObject();
-
 
             jsonWriter.name("deckCap").value(deckCap);
 
@@ -132,13 +133,22 @@ public class Inventory implements Configable {
             jsonWriter.name("allDecks");
             jsonWriter.beginArray();
             for (Deck deck : allDecks) {
-                jsonWriter.value(deck.toString());
-                deck.updateJson();
+                if (compact) {
+                    jsonWriter.value(deck.toString());
+                    deck.updateJson();
+                } else
+                    deck.updateJson(jsonWriter);
             }
             jsonWriter.endArray();
 
-            if (currentDeck != null)
-                jsonWriter.name("currentDeck").value(currentDeck.toString());
+            if (currentDeck != null) {
+                jsonWriter.name("currentDeck");
+                if (compact) {
+                    jsonWriter.value(currentDeck.toString());
+                    currentDeck.updateJson();
+                } else
+                    currentDeck.updateJson(jsonWriter);
+            }
 
             jsonWriter.endObject();
         } catch (IOException e) {
@@ -156,6 +166,13 @@ public class Inventory implements Configable {
                 allCards.add(cardClone);
                 return cardClone;
             }
+        return null;
+    }
+
+    public Deck getDeck(String deckName) {
+        for (Deck deck : allDecks)
+            if (deck.toString().equals(deckName))
+                return deck;
         return null;
     }
 }

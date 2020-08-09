@@ -10,30 +10,47 @@ import java.util.*;
 
 public class Game {
     private final Character[] characters = new Character[2];
-    private final int id;
+    private int id;
     private int turn = 0;
     private final int playerCount = 2;
-    private final Logger logger;
-    private final boolean deckReader;
+    private Logger logger;
+    private boolean deckReader;
 
-    public Game(Controller<?> controller, int playerCount, int id) {
-        characters[0] = new GamePlayer(controller, this, PlayerFaction.FRIENDLY);
-        if (playerCount == 2)
-            characters[1] = new GamePlayer(controller, this, PlayerFaction.ENEMY);
-        else
-            characters[1] = new NPC(controller.getCurrentHero().clone(), controller.getCurrentDeck().clone(), this, PlayerFaction.ENEMY);
-        this.id = id;
-        logger = new Logger("src/main/resources/logs/games/game-" + id + ".txt");
-        deckReader = false;
+    private static Game getInstance(Character[] characters, int id, boolean deckReader) {
+        Game game = new Game();
+        game.characters[0] = characters[0];
+        game.characters[1] = characters[1];
+        characters[0].setGame(game);
+        characters[1].setGame(game);
+        game.id = id;
+        game.deckReader = deckReader;
+        game.logger = new Logger("src/main/resources/logs/games/game-" + id + ".txt");
+        return game;
     }
 
-    public Game(Controller<?> controller, DeckPair deckPair, int id) {
+    public static Game getInstance(Controller<?> controller, int playerCount, int id) {
+        Character[] characters = new Character[2];
+        characters[0] = new GamePlayer(controller, PlayerFaction.FRIENDLY);
+        if (playerCount == 2)
+            characters[1] = new GamePlayer(controller, PlayerFaction.ENEMY);
+        else
+            characters[1] = new NPC(controller.getCurrentHero().clone(), controller.getCurrentDeck().clone(), PlayerFaction.ENEMY);
+        return getInstance(characters, id, false);
+    }
+
+    public static Game getInstance(Controller<?> controller, DeckPair deckPair, int id) {
         Deck[] decks = deckPair.getDecks();
-        characters[0] = new GamePlayer(controller, this, PlayerFaction.FRIENDLY, decks[0]);
-        characters[1] = new GamePlayer(controller, this, PlayerFaction.ENEMY, decks[1]);
-        this.id = id;
-        logger = new Logger("src/main/resources/logs/games/game-" + id + ".txt");
-        deckReader = true;
+        Character[] characters = new Character[2];
+        characters[0] = new GamePlayer(controller, PlayerFaction.FRIENDLY, decks[0]);
+        characters[1] = new GamePlayer(controller, PlayerFaction.ENEMY, decks[1]);
+        return getInstance(characters, id, true);
+    }
+
+    public static Game getInstance(Controller<?> controller, int playerCount, int id, String[] json) {
+        Character[] characters = new Character[2];
+        characters[0] = new GamePlayer(controller, PlayerFaction.FRIENDLY, json[0]);
+        characters[1] = new GamePlayer(controller, PlayerFaction.ENEMY, json[1]);
+        return getInstance(characters, id, false);
     }
 
     public void startGame(ArrayList<Card> cards) {

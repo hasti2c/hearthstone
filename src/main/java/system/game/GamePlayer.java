@@ -9,15 +9,15 @@ public class GamePlayer extends Character {
     private final String name;
     private final Inventory inventory;
 
-    public GamePlayer(Controller<?> controller, Game game, PlayerFaction playerFaction) {
-        super(controller.getCurrentHero().clone(), controller.getCurrentDeck(), game, playerFaction);
+    public GamePlayer(Controller<?> controller, PlayerFaction playerFaction) {
+        super(controller.getCurrentHero().clone(), controller.getCurrentDeck(), playerFaction);
         Player player = controller.getCurrentPlayer();
         name = player.toString();
         inventory = player.getInventory();
     }
 
-    public GamePlayer(Controller<?> controller, Game game, PlayerFaction playerFaction, Deck deck) {
-        super(deck.getHero(controller.getCurrentPlayer().getInventory()), deck, game, playerFaction);
+    public GamePlayer(Controller<?> controller, PlayerFaction playerFaction, Deck deck) {
+        super(deck.getHero(controller.getCurrentPlayer().getInventory()), deck, playerFaction);
         Player player = controller.getCurrentPlayer();
         name = player.toString();
         inventory = player.getInventory();

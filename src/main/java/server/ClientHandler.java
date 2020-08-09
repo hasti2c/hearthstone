@@ -8,14 +8,19 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+import static commands.types.ServerCommandType.CREATE_GAME;
+
 public class ClientHandler extends Controller<ServerCommandType> {
     private final ArrayList<Command<ServerCommandType>> commands = new ArrayList<>();
     private final Object commandsMonitor = new Object();
+    private final Server server;
     private final Socket socket;
     private final Listener listener;
     private PrintStream printer;
+    private ClientHandler opponent;
 
-    public ClientHandler(ServerController controller, Socket socket) {
+    public ClientHandler(Server server, ServerController controller, Socket socket) {
+        this.server = server;
         this.socket = socket;
         runner = new ServerCommandRunner(controller,this);
         parser = new CommandParser<>(this, ServerCommandType.class);
@@ -41,6 +46,22 @@ public class ClientHandler extends Controller<ServerCommandType> {
 
     public void respond(Command<ClientCommandType> command) {
         printer.println(command.toString());
+    }
+
+    public boolean joinGame() {
+        return server.joinGame(this);
+    }
+
+    public void createGame() {
+        runner.run(new Command<>(CREATE_GAME, 2));
+    }
+
+    public ClientHandler getOpponent() {
+        return opponent;
+    }
+
+    public void setOpponent(ClientHandler opponent) {
+        this.opponent = opponent;
     }
 
     private class Listener extends Thread {

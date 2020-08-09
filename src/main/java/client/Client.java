@@ -22,8 +22,10 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         controller = new ClientController(this, stage);
+    }
+
+    public void start() {
         new Listener().start();
         controller.start();
     }

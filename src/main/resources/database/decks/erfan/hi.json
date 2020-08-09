@@ -1,0 +1,32 @@
+{
+  "name": "hi",
+  "heroClass": "WARLOCK",
+  "playerName": "erfan",
+  "cards": [
+    "Tomb Warden",
+    "Tomb Warden",
+    "Cobra Shot",
+    "Kobold Stickyfinger",
+    "Kobold Stickyfinger",
+    "Amani War Bear",
+    "Amani War Bear",
+    "Cobra Shot",
+    "Sprint",
+    "Sprint"
+  ],
+  "uses": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "wins": 0,
+  "games": 0,
+  "maxSize": 15
+}

@@ -17,14 +17,13 @@ public abstract class Character {
     protected int drawCap = 1, heroPowerCap = 1;
     protected boolean randomDraw = true;
     private final PlayerFaction playerFaction;
-    protected final Game game;
+    protected Game game;
     protected CharacterState state;
 
-    public Character(Hero hero, Deck deck, Game game, PlayerFaction playerFaction) {
+    public Character(Hero hero, Deck deck, PlayerFaction playerFaction) {
         this.hero = hero.clone();
         this.deck = deck;
         state = new CharacterState(deck);
-        this.game = game;
         this.playerFaction = playerFaction;
         playerNumber = playerFaction.getPlayerNumber();
     }
@@ -358,5 +357,9 @@ public abstract class Character {
 
     public void updateState(String json) {
         state = CharacterState.getInstance("game-" + game.getId() + "-state-" + playerNumber, json, deck);
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 }

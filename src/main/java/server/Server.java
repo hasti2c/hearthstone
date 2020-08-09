@@ -1,13 +1,15 @@
 package server;
 
+import shared.Pair;
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
 
 public class Server {
     private ServerSocket serverSocket;
-    private final ArrayList<ClientHandler> clients = new ArrayList<>();
-    private final Object clientsMonitor = new Object();
+    private final ArrayList<ClientHandler> clients = new ArrayList<>(), gameQueue = new ArrayList<>();
+    private final Object clientsMonitor = new Object(), queueMonitor = new Object();
     private final ServerController controller;
 
     public Server() {
@@ -34,13 +36,30 @@ public class Server {
         }
     }
 
+    public boolean joinGame(ClientHandler client) {
+        synchronized (queueMonitor) {
+            gameQueue.add(client);
+            while (gameQueue.size() >= 2)
+                pairClients(new Pair<>(gameQueue.remove(0), gameQueue.remove(0)));
+            System.out.println(gameQueue);
+            return gameQueue.size() == 0;
+        }
+    }
+
+    private void pairClients(Pair<ClientHandler, ClientHandler> clients) {
+        ClientHandler first = clients.getFirst(), second = clients.getSecond();
+        first.setOpponent(second);
+        second.setOpponent(first);
+        first.createGame();
+    }
+
     private class Accepter extends Thread {
         public void run() {
             while (true) {
                 try {
                     Socket socket = serverSocket.accept();
                     synchronized (clientsMonitor) {
-                        clients.add(new ClientHandler(controller, socket));
+                        clients.add(new ClientHandler(Server.this, controller, socket));
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

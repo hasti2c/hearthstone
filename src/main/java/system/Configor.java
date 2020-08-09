@@ -11,6 +11,7 @@ public class Configor<O extends Configable> {
     private static final Map<Class<?>, Map<String, ?>> instances = new HashMap<>();
     private final String name;
     private final JsonReader jsonReader;
+    private boolean sameReference = true;
     private O object;
 
     public Configor(String name, Class<O> objectClass, JsonReader jsonReader) {
@@ -36,8 +37,13 @@ public class Configor<O extends Configable> {
         jsonReader = new JsonReader(new FileReader("src/main/resources/database/" + object.getJsonPath(name) + name + ".json"));
     }
 
+    public Configor(String name, Class<O> objectClass, JsonReader jsonReader, boolean sameReference) {
+        this(name, objectClass, jsonReader);
+        this.sameReference = sameReference;
+    }
+
     public O getConfigedObject() {
-        if (!mapContainsObject())
+        if (!mapContainsObject() || !sameReference)
             config();
         else
             object = getObjectFromMap();
@@ -164,7 +170,7 @@ public class Configor<O extends Configable> {
     }
 
     private <T extends Configable> T readObject(Class<T> readType) {
-        Configor<T> objectConfigor = new Configor<>(name + "." + readType.getSimpleName(), readType, jsonReader);
+        Configor<T> objectConfigor = new Configor<>(name + "." + readType.getSimpleName(), readType, jsonReader, sameReference);
         return objectConfigor.getConfigedObject();
     }
 

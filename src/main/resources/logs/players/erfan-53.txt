@@ -1,0 +1,28 @@
+USER: erfan
+PASSWORD: semsemsem
+CREATED_AT:  2020/08/08 21:57:27 
+
+signup 2020/08/08 21:57:27 
+login 2020/08/08 21:57:27 
+add 2020/08/08 21:57:35 deck: hi
+select 2020/08/08 21:57:36 deck: hi
+add 2020/08/08 21:57:38 card: Tomb Warden -> deck: hi
+add 2020/08/08 21:57:38 card: Tomb Warden -> deck: hi
+add 2020/08/08 21:57:38 card: Cobra Shot -> deck: hi
+add 2020/08/08 21:57:39 card: Kobold Stickyfinger -> deck: hi
+add 2020/08/08 21:57:39 card: Kobold Stickyfinger -> deck: hi
+add 2020/08/08 21:57:40 card: Amani War Bear -> deck: hi
+add 2020/08/08 21:57:40 card: Amani War Bear -> deck: hi
+add 2020/08/08 21:57:41 card: Cobra Shot -> deck: hi
+add 2020/08/08 21:57:42 card: Sprint -> deck: hi
+add 2020/08/08 21:57:42 card: Sprint -> deck: hi
+login 2020/08/08 22:01:49 
+login 2020/08/08 22:03:59 
+login 2020/08/08 22:05:42 
+login 2020/08/08 22:12:37 
+login 2020/08/08 22:13:31 
+login 2020/08/08 22:14:31 
+login 2020/08/08 22:17:33 
+login 2020/08/08 22:18:39 
+login 2020/08/08 22:19:49 
+login 2020/08/08 22:21:37 

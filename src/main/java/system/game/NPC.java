@@ -8,8 +8,8 @@ import system.player.*;
 import java.util.*;
 
 public class NPC extends Character {
-    public NPC(Hero hero, Deck deck, Game game, PlayerFaction playerFaction) {
-        super(hero, deck, game, playerFaction);
+    public NPC(Hero hero, Deck deck, PlayerFaction playerFaction) {
+        super(hero, deck, playerFaction);
     }
 
     @Override

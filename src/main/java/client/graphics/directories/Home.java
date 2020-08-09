@@ -91,8 +91,8 @@ public class Home extends Directory {
             vBox.getChildren().remove(passiveHBox);
             vBox.getChildren().remove(noDeckHBox);
             cancelButton.setOnAction(e -> close());
-            singlePlayerButton.setOnAction(e -> createGame(1));
-            multiPlayerButton.setOnAction(e -> createGame(2));
+            singlePlayerButton.setOnAction(e -> joinGame(1));
+            multiPlayerButton.setOnAction(e -> joinGame(2));
             collectionsButton.setOnAction(e -> displayCollections());
             deckReaderButton.setOnAction(e -> {
                 close();
@@ -125,7 +125,10 @@ public class Home extends Directory {
             if (!vBox.getChildren().contains(passiveHBox))
                 vBox.getChildren().add(passiveHBox);
             vBox.getChildren().remove(noDeckHBox);
+
             singlePlayerButton.setDisable(false);
+            multiPlayerButton.setDisable(false);
+            deckReaderButton.setDisable(false);
 
             Inventory inventory = controller.getCurrentPlayer().getInventory();
             deckHBox.getChildren().add(1, inventory.getCurrentHero().getHeroClass().getIcon());
@@ -144,10 +147,12 @@ public class Home extends Directory {
             vBox.getChildren().remove(deckHBox);
             vBox.getChildren().remove(passiveHBox);
             singlePlayerButton.setDisable(true);
+            multiPlayerButton.setDisable(true);
+            deckReaderButton.setDisable(true);
         }
 
-        private void createGame(int playerCount) {
-            client.request(new Command<>(CREATE_GAME, playerCount));
+        private void joinGame(int playerCount) {
+            client.request(new Command<>(JOIN_GAME, playerCount));
         }
 
         public void startGame() {
