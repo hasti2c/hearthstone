@@ -1,12 +1,12 @@
 package server;
 
-import com.google.gson.stream.*;
 import shared.*;
-import system.*;
+import system.configor.*;
+import system.updater.*;
 
 import java.io.*;
 
-public class ServerController implements Configable {
+public class ServerController extends Updatable {
     private int playerCount, gameCount;
 
     private ServerController() {
@@ -24,10 +24,15 @@ public class ServerController implements Configable {
     }
 
     @Override
-    public void initialize() {}
+    public void initialize(String initPlayerName) {}
 
     @Override
-    public String getJsonPath(String name) {
+    public String getName() {
+        return "defaults";
+    }
+
+    @Override
+    public String getJsonPath(String name, String initPlayerName) {
         return "";
     }
 
@@ -66,21 +71,5 @@ public class ServerController implements Configable {
             e.printStackTrace();
         }
         return ret;
-    }
-
-    private void updateJson() {
-        try {
-            JsonWriter jsonWriter = new JsonWriter(new FileWriter("src/main/resources/database/defaults.json"));
-            jsonWriter.setIndent("  ");
-
-            jsonWriter.beginObject();
-            jsonWriter.name("playerCount").value(playerCount);
-            jsonWriter.name("gameCount").value(gameCount);
-
-            jsonWriter.endObject();
-            jsonWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

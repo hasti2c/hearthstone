@@ -1,0 +1,20 @@
+{
+  "fieldNames": [
+    "name",
+    "description",
+    "mana",
+    "health",
+    "attack",
+    "price",
+    "heroClass",
+    "rarity",
+    "taunt",
+    "rush",
+    "charge",
+    "divineShield",
+    "changeStatsAbility",
+    "attackAbility",
+    "addCardAbility",
+    "removeCardAbility"
+  ]
+}

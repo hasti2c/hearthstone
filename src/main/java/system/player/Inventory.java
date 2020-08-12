@@ -1,15 +1,14 @@
 package system.player;
 
-import com.google.gson.stream.*;
 import elements.cards.*;
 import elements.heros.*;
 import shared.*;
-import system.*;
+import system.updater.*;
 
-import java.io.*;
 import java.util.*;
 
-public class Inventory implements Configable {
+public class Inventory extends Updatable {
+    private String playerName;
     private int deckCap;
     private Deck currentDeck;
     private ArrayList<Deck> allDecks = new ArrayList<>();
@@ -19,13 +18,18 @@ public class Inventory implements Configable {
     public Inventory() {}
 
     @Override
-    public void initialize() {
+    public void initialize(String initPlayerName) {
         if (currentDeck != null && !allDecks.contains(currentDeck))
             currentDeck = getDeck(currentDeck.toString());
     }
 
     @Override
-    public String getJsonPath(String name) {
+    public String getName() {
+        return playerName + "-inventory";
+    }
+
+    @Override
+    public String getJsonPath(String name, String initPlayerName) {
         return "players/";
     }
 
@@ -101,61 +105,6 @@ public class Inventory implements Configable {
                 allCards.remove(i--);
     }
 
-    public void updateJson(String playerName) {
-        try {
-            JsonWriter jsonWriter = new JsonWriter(new FileWriter("src/main/resources/database/players/" + playerName + "-inventory.json"));
-            jsonWriter.setIndent("  ");
-            updateJson(jsonWriter, true);
-            jsonWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void updateJson(JsonWriter jsonWriter, boolean compact) {
-        try {
-            jsonWriter.beginObject();
-
-            jsonWriter.name("deckCap").value(deckCap);
-
-            jsonWriter.name("allHeros");
-            jsonWriter.beginArray();
-            for (Hero h : allHeros)
-                jsonWriter.value(h.toString());
-            jsonWriter.endArray();
-
-            jsonWriter.name("allCards");
-            jsonWriter.beginArray();
-            for (Card c : allCards)
-                jsonWriter.value(c.toString());
-            jsonWriter.endArray();
-
-            jsonWriter.name("allDecks");
-            jsonWriter.beginArray();
-            for (Deck deck : allDecks) {
-                if (compact) {
-                    jsonWriter.value(deck.toString());
-                    deck.updateJson();
-                } else
-                    deck.updateJson(jsonWriter);
-            }
-            jsonWriter.endArray();
-
-            if (currentDeck != null) {
-                jsonWriter.name("currentDeck");
-                if (compact) {
-                    jsonWriter.value(currentDeck.toString());
-                    currentDeck.updateJson();
-                } else
-                    currentDeck.updateJson(jsonWriter);
-            }
-
-            jsonWriter.endObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public Card getCard(String cardName) {
         for (Card card : allCards)
             if (card.toString().equals(cardName))
@@ -174,5 +123,15 @@ public class Inventory implements Configable {
             if (deck.toString().equals(deckName))
                 return deck;
         return null;
+    }
+
+    public void update() {
+        for (Deck deck : allDecks) {
+            deck.update(allCards);
+            if (deck.toString().equals(currentDeck.toString())) {
+                currentDeck = deck;
+                return;
+            }
+        }
     }
 }

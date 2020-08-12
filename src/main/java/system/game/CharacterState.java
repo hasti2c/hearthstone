@@ -3,12 +3,13 @@ package system.game;
 import com.google.gson.stream.*;
 import elements.cards.*;
 import elements.heros.*;
-import system.*;
+import system.configor.*;
+import system.updater.*;
 
 import java.io.*;
 import java.util.*;
 
-public class CharacterState implements Configable {
+public class CharacterState extends Updatable {
     private Deck deck;
     private ArrayList<Card> leftInDeck, hand = new ArrayList<>();
     private ArrayList<Minion> minionsInGame = new ArrayList<>();
@@ -17,23 +18,29 @@ public class CharacterState implements Configable {
     private ArrayList<QuestAndReward> questAndRewards = new ArrayList<>();
     private int mana = 1, heroPowerCount = 0;
 
-    public CharacterState() {}
+    private CharacterState() {}
 
     public CharacterState(Deck deck) {
-        this.deck = deck.cloneCards();
+        this.deck = deck;
         leftInDeck = new ArrayList<>(this.deck.getCards());
     }
 
-    public static CharacterState getInstance(String name, String json, Deck deck) {
+    public static CharacterState getInstance(String name, String json) {
         JsonReader jsonReader = new JsonReader(new StringReader(json));
         Configor<CharacterState> configor = new Configor<>(name, CharacterState.class, jsonReader);
         CharacterState state = configor.getConfigedObject();
-        state.deck = deck.cloneCards();
+        state.deck = state.deck.cloneCards();
         state.replaceCards();
         return state;
     }
 
-    public void initialize() {}
+    @Override
+    public void initialize(String initPlayerName) {}
+
+    @Override
+    public String getName() {
+        return "";
+    }
 
     private void replaceCards() {
         initCardList(leftInDeck);
@@ -70,46 +77,8 @@ public class CharacterState implements Configable {
         }
     }
 
-    public String getJson() {
-        StringWriter json = new StringWriter();
-        updateJson(new JsonWriter(json));
-        return json.toString();
-    }
-
-    private void updateJson(JsonWriter jsonWriter) {
-        try {
-            jsonWriter.beginObject();
-
-            writeArray(jsonWriter, "leftInDeck", leftInDeck);
-            writeArray(jsonWriter, "hand", hand);
-            writeArray(jsonWriter, "minionsInGame", minionsInGame);
-            if (lastSpell != null)
-                jsonWriter.name("lastSpell").value(lastSpell.toString());
-            if (currentWeapon != null)
-                jsonWriter.name("currentWeapon").value(currentWeapon.toString());
-            writeArray(jsonWriter, "questAndRewards", questAndRewards);
-            jsonWriter.name("mana").value(mana);
-            jsonWriter.name("heroPowerCount").value(heroPowerCount);
-
-            jsonWriter.endObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void writeArray(JsonWriter jsonWriter, String name, ArrayList<? extends Card> cards) {
-        try {
-            jsonWriter.name(name).beginArray();
-            for (Card card : cards)
-                jsonWriter.value(card.toString());
-            jsonWriter.endArray();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
-    public String getJsonPath(String name) {
+    public String getJsonPath(String name, String initPlayerName) {
         return null;
     }
 
@@ -163,5 +132,9 @@ public class CharacterState implements Configable {
 
     public ArrayList<QuestAndReward> getQuestAndRewards() {
         return questAndRewards;
+    }
+
+    public Deck getDeck() {
+        return deck;
     }
 }

@@ -1,0 +1,12 @@
+{
+  "fieldNames": [
+    "name",
+    "heroClass",
+    "playerName",
+    "cards",
+    "uses",
+    "wins",
+    "games",
+    "maxSize"
+  ]
+}

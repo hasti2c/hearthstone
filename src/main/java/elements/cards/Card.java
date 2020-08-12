@@ -14,7 +14,7 @@ public abstract class Card extends Playable implements Targetable, Comparable<Ca
     private RarityType rarity;
 
     @Override
-    public String getJsonPath(String name) {
+    public String getJsonPath(String name, String initPlayerName) {
         try {
             return "cards/" + getSubclass(name).getSimpleName() + "/";
         } catch (NoSuchFileException e) {

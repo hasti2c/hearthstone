@@ -1,0 +1,23 @@
+GAME_ID: 2
+STARTED_AT:  2020/08/12 16:18:08 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+GAME_ID: 2
+STARTED_AT:  2020/08/12 16:18:11 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/12 16:18:17 

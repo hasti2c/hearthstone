@@ -1,14 +1,12 @@
 package elements.heros;
 
-import java.io.*;
 import java.util.*;
-import com.google.gson.stream.*;
-import shared.*;
-import system.*;
+import elements.*;
 import elements.cards.*;
 import system.player.*;
+import system.updater.*;
 
-public class Deck implements Comparable<Deck>, Configable {
+public class Deck extends Updatable implements Comparable<Deck> {
     private String name;
     private String playerName;
     private ArrayList<Card> cards = new ArrayList<>();
@@ -33,54 +31,18 @@ public class Deck implements Comparable<Deck>, Configable {
     }
 
     @Override
-    public void initialize() {
-        playerName = GameData.getInstance().getInitPlayerName();
+    public void initialize(String initPlayerName) {
+        playerName = initPlayerName;
     }
 
     @Override
-    public String getJsonPath(String name) {
-        return "decks/" + GameData.getInstance().getInitPlayerName() + "/";
+    public String getName() {
+        return name;
     }
 
-    public void updateJson() {
-        try {
-            JsonWriter jsonWriter = new JsonWriter(new FileWriter("src/main/resources/database/decks/" + playerName + "/" + name + ".json"));
-            jsonWriter.setIndent("  ");
-            updateJson(jsonWriter);
-            jsonWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void updateJson(JsonWriter jsonWriter) {
-        try {
-            jsonWriter.beginObject();
-
-            jsonWriter.name("name").value(name);
-            jsonWriter.name("heroClass").value(heroClass.toString());
-            jsonWriter.name("playerName").value(playerName);
-
-            jsonWriter.name("cards");
-            jsonWriter.beginArray();
-            for (Card c : cards)
-                jsonWriter.value(c.toString());
-            jsonWriter.endArray();
-
-            jsonWriter.name("uses");
-            jsonWriter.beginArray();
-            for (Integer n : uses)
-                jsonWriter.value(n);
-            jsonWriter.endArray();
-
-            jsonWriter.name("wins").value(wins);
-            jsonWriter.name("games").value(games);
-            jsonWriter.name("maxSize").value(maxSize);
-
-            jsonWriter.endObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public String getJsonPath(String name, String initPlayerName) {
+        return "decks/" + initPlayerName + "/";
     }
 
     private void resetStats() {
@@ -242,5 +204,12 @@ public class Deck implements Comparable<Deck>, Configable {
                 if (++i == num)
                     return (C) c;
         return null;
+    }
+
+    public void update(ArrayList<Card> cards) {
+        for (int i = 0; i < this.cards.size(); i++) {
+            Card card = this.cards.remove(i);
+            this.cards.add(i, Element.getElement(cards, card.toString()));
+        }
     }
 }

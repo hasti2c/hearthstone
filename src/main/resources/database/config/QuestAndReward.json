@@ -1,0 +1,16 @@
+{
+  "fieldNames": [
+    "name",
+    "description",
+    "mana",
+    "price",
+    "heroClass",
+    "rarity",
+    "questMana",
+    "questElementType",
+    "changeStatsAbility",
+    "attackAbility",
+    "addCardAbility",
+    "removeCardAbility"
+  ]
+}

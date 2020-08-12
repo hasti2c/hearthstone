@@ -10,7 +10,7 @@ import javafx.stage.*;
 import shared.*;
 import commands.*;
 import commands.types.*;
-import system.game.Game;
+import system.game.*;
 import system.player.*;
 
 import java.util.*;
@@ -115,7 +115,6 @@ public class ClientController extends Controller<ClientCommandType> {
     }
 
     public void createGameResult(boolean result) {
-        System.out.println(result);
         if (result)
             home.startGame();
     }
@@ -132,5 +131,11 @@ public class ClientController extends Controller<ClientCommandType> {
     public void endTurnResult(Boolean result) {
         if (result)
             home.getPlayGround().doEndTurn();
+    }
+
+    @Override
+    public void setGame(Game game) {
+        super.setGame(game);
+        home.setGame(game);
     }
 }

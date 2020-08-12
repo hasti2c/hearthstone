@@ -8,8 +8,6 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-import static commands.types.ServerCommandType.CREATE_GAME;
-
 public class ClientHandler extends Controller<ServerCommandType> {
     private final ArrayList<Command<ServerCommandType>> commands = new ArrayList<>();
     private final Object commandsMonitor = new Object();
@@ -50,10 +48,6 @@ public class ClientHandler extends Controller<ServerCommandType> {
 
     public boolean joinGame() {
         return server.joinGame(this);
-    }
-
-    public void createGame() {
-        runner.run(new Command<>(CREATE_GAME, 2));
     }
 
     public ClientHandler getOpponent() {

@@ -1,7 +1,7 @@
 package elements.heros;
 
 import elements.cards.*;
-import system.*;
+import system.configor.*;
 
 import java.io.*;
 import java.util.*;
@@ -23,7 +23,7 @@ public class DeckPair implements Configable {
     }
 
     @Override
-    public void initialize() {
+    public void initialize(String initPlayerName) {
         ArrayList<Card> friendlyCards = new ArrayList<>();
         for (String s : friendly)
             friendlyCards.add(Card.getCard(s));
@@ -36,7 +36,12 @@ public class DeckPair implements Configable {
     }
 
     @Override
-    public String getJsonPath(String name) {
+    public String getName() {
+        return "deckPair";
+    }
+
+    @Override
+    public String getJsonPath(String name, String initPlayerNamee) {
         return "decks/";
     }
 

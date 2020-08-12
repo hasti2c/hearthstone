@@ -2,7 +2,7 @@ package shared;
 
 import elements.cards.*;
 import elements.heros.*;
-import system.*;
+import system.configor.*;
 import system.player.*;
 
 import java.io.*;
@@ -13,13 +13,18 @@ public class GameData implements Configable {
     private final ArrayList<Hero> herosList = new ArrayList<>();
     private final ArrayList<Card> cardsList = new ArrayList<>();
     private Player defaultPlayer;
-    private String initPlayerName;
 
     @Override
-    public void initialize() {}
+    public void initialize(String initPlayerName) {
+    }
 
     @Override
-    public String getJsonPath(String name) {
+    public String getName() {
+        return "gameData";
+    }
+
+    @Override
+    public String getJsonPath(String name, String initPlayerName) {
         return "";
     }
 
@@ -73,13 +78,5 @@ public class GameData implements Configable {
 
     public Player getDefaultPlayer() {
         return defaultPlayer;
-    }
-
-    public void setInitPlayerName(String initPlayerName) {
-        this.initPlayerName = initPlayerName;
-    }
-
-    public String getInitPlayerName() {
-        return initPlayerName;
     }
 }

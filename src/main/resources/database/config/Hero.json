@@ -1,0 +1,8 @@
+{
+  "fieldNames": [
+    "name",
+    "heroClass",
+    "health",
+    "heroPower"
+  ]
+}

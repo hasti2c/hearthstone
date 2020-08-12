@@ -1,0 +1,12 @@
+{
+  "fieldNames": [
+    "name",
+    "heroClass",
+    "mana",
+    "healthCost",
+    "changeStatsAbility",
+    "attackAbility",
+    "addCardAbility",
+    "removeCardAbility"
+  ]
+}

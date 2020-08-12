@@ -1,0 +1,9 @@
+{
+  "fieldNames": [
+    "deckCap",
+    "allHeros",
+    "allCards",
+    "allDecks",
+    "currentDeck"
+  ]
+}

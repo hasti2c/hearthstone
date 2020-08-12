@@ -1,0 +1,13 @@
+{
+  "fieldNames": [
+    "deck",
+    "leftInDeck",
+    "hand",
+    "minionsInGame",
+    "lastSpell",
+    "currentWeapon",
+    "questAndRewards",
+    "mana",
+    "heroPowerCount"
+  ]
+}

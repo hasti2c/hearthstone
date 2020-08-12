@@ -22,8 +22,16 @@ public abstract class Character {
 
     public Character(Hero hero, Deck deck, PlayerFaction playerFaction) {
         this.hero = hero.clone();
-        this.deck = deck;
+        this.deck = deck.cloneCards();
         state = new CharacterState(deck);
+        this.playerFaction = playerFaction;
+        playerNumber = playerFaction.getPlayerNumber();
+    }
+
+    public Character(Hero hero, String json, PlayerFaction playerFaction, int gameId) {
+        this.hero = hero.clone();
+        updateState(json, gameId);
+        this.deck = state.getDeck();
         this.playerFaction = playerFaction;
         playerNumber = playerFaction.getPlayerNumber();
     }
@@ -355,8 +363,12 @@ public abstract class Character {
         return state;
     }
 
+    public void updateState(String json, int gameId) {
+        state = CharacterState.getInstance("game-" + gameId + "-state-" + playerNumber, json);
+    }
+
     public void updateState(String json) {
-        state = CharacterState.getInstance("game-" + game.getId() + "-state-" + playerNumber, json, deck);
+        updateState(json, game.getId());
     }
 
     public void setGame(Game game) {

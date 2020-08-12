@@ -24,6 +24,13 @@ public class GamePlayer extends Character {
         randomDraw = false;
     }
 
+    public GamePlayer(Controller<?> controller, HeroClass heroClass, String json, PlayerFaction playerFaction, int gameId) {
+        super(heroClass.getHero(controller.getCurrentPlayer().getInventory()), json, playerFaction, gameId);
+        Player player = controller.getCurrentPlayer();
+        name = player.toString();
+        inventory = player.getInventory();
+    }
+
     public String toString() {
         return name;
     }

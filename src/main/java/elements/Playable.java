@@ -24,7 +24,7 @@ public abstract class Playable extends Element {
     private RemoveCard removeCardAbility;
 
     @Override
-    public void initialize() {
+    public void initialize(String initPlayerName) {
         abilities = new ArrayList<>();
         if (changeStatsAbility != null)
             abilities.add(changeStatsAbility);

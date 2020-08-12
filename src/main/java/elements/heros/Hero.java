@@ -20,12 +20,10 @@ public class Hero extends Element implements Attackable {
     }
 
     @Override
-    public void initialize() {
-        configGameImage();
-    }
+    public void initialize(String initPlayerName) {}
 
     @Override
-    public String getJsonPath(String name) {
+    public String getJsonPath(String name, String initPlayerName) {
         return "heros/";
     }
 

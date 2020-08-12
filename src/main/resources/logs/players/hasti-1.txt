@@ -347,3 +347,131 @@ login 2020/08/08 22:19:32
 login 2020/08/08 22:21:05 
 login 2020/08/08 22:21:26 
 login 2020/08/08 22:22:49 
+login 2020/08/09 17:20:21 
+login 2020/08/09 17:21:26 
+login 2020/08/09 17:25:32 
+login 2020/08/09 17:27:43 
+login 2020/08/09 17:29:15 
+login 2020/08/09 17:30:09 
+login 2020/08/09 17:36:46 
+login 2020/08/09 17:37:25 
+login 2020/08/09 17:37:58 
+login 2020/08/09 17:57:30 
+select 2020/08/09 17:57:55 deck: salam
+add 2020/08/09 17:58:04 card: Hogger -> deck: salam
+add 2020/08/09 17:58:08 card: Hogger -> deck: salam
+add 2020/08/09 18:10:05 card: Sathrovarr -> deck: salam
+login 2020/08/09 18:12:58 
+login 2020/08/09 18:14:26 
+select 2020/08/09 18:14:32 deck: 
+add 2020/08/09 18:14:35 card: Kobold Stickyfinger -> deck: 
+add 2020/08/09 18:14:36 card: Kobold Stickyfinger -> deck: 
+add 2020/08/09 18:14:37 card: Security Rover -> deck: 
+add 2020/08/09 18:14:42 card: Security Rover -> deck: 
+login 2020/08/09 18:39:14 
+select 2020/08/09 18:39:20 deck: 
+add 2020/08/09 18:39:22 card: Kobold Stickyfinger -> deck: 
+login 2020/08/09 18:43:20 
+select 2020/08/09 18:43:26 deck: salam
+add 2020/08/09 18:43:28 card: Hogger -> deck: salam
+add 2020/08/09 18:43:33 card: Hogger -> deck: salam
+login 2020/08/09 18:47:23 
+select 2020/08/09 18:47:29 deck: salam
+add 2020/08/09 18:47:32 card: Hogger -> deck: salam
+login 2020/08/09 18:50:58 
+select 2020/08/09 18:51:06 deck: 
+add 2020/08/09 18:51:33 card: Gruul -> deck: 
+login 2020/08/09 18:53:03 
+login 2020/08/09 19:03:50 
+login 2020/08/09 19:04:51 
+add 2020/08/09 19:05:06 card: Amani War Bear -> deck: yo
+add 2020/08/09 19:05:18 card: Big Bad Archmage -> deck: yo
+login 2020/08/09 19:09:33 
+login 2020/08/09 19:11:37 
+login 2020/08/09 19:14:21 
+login 2020/08/09 19:52:49 
+login 2020/08/09 19:55:07 
+login 2020/08/09 19:58:15 
+login 2020/08/09 20:03:55 
+login 2020/08/09 20:05:20 
+login 2020/08/09 20:06:08 
+login 2020/08/09 20:07:10 
+login 2020/08/09 20:10:03 
+login 2020/08/09 20:10:44 
+login 2020/08/09 20:11:33 
+login 2020/08/09 20:15:39 
+login 2020/08/09 20:16:59 
+login 2020/08/09 20:17:43 
+login 2020/08/09 20:22:57 
+login 2020/08/09 20:24:03 
+login 2020/08/09 20:28:29 
+login 2020/08/09 20:29:47 
+login 2020/08/11 03:55:15 
+login 2020/08/11 04:10:39 
+login 2020/08/11 04:13:55 
+login 2020/08/11 04:15:36 
+login 2020/08/11 04:17:10 
+login 2020/08/11 04:45:35 
+login 2020/08/11 04:46:11 
+login 2020/08/11 04:47:29 
+login 2020/08/11 04:51:39 
+login 2020/08/11 04:57:50 
+login 2020/08/11 05:05:01 
+login 2020/08/11 05:05:50 
+login 2020/08/11 05:09:09 
+login 2020/08/11 05:15:58 
+login 2020/08/11 05:16:15 
+login 2020/08/11 05:17:45 
+login 2020/08/11 05:18:01 
+login 2020/08/11 05:18:26 
+login 2020/08/11 05:21:25 
+login 2020/08/11 05:23:38 
+login 2020/08/11 10:49:48 
+login 2020/08/11 10:50:15 
+login 2020/08/11 10:52:15 
+login 2020/08/11 10:52:54 
+login 2020/08/11 10:54:01 
+login 2020/08/11 10:54:24 
+login 2020/08/11 10:55:47 
+login 2020/08/11 10:56:23 
+login 2020/08/11 10:57:10 
+login 2020/08/11 10:59:52 
+select 2020/08/11 11:00:06 deck: 
+add 2020/08/11 11:00:08 card: Kobold Stickyfinger -> deck: 
+add 2020/08/11 11:00:08 card: Kobold Stickyfinger -> deck: 
+add 2020/08/11 11:00:10 card: Security Rover -> deck: 
+add 2020/08/11 11:00:17 card: Big Bad Archmage -> deck: 
+sell 2020/08/11 11:00:29 card: Swamp King Dred
+login 2020/08/11 23:57:14 
+login 2020/08/11 23:58:09 
+login 2020/08/12 00:06:53 
+login 2020/08/12 00:11:00 
+select 2020/08/12 00:11:10 deck: 
+add 2020/08/12 00:11:14 card: Kobold Stickyfinger -> deck: 
+add 2020/08/12 00:11:15 card: Kobold Stickyfinger -> deck: 
+add 2020/08/12 00:11:18 card: Gruul -> deck: 
+login 2020/08/12 00:12:40 
+login 2020/08/12 12:00:25 
+login 2020/08/12 12:02:52 
+login 2020/08/12 12:04:26 
+login 2020/08/12 12:05:22 
+login 2020/08/12 12:07:28 
+login 2020/08/12 12:10:40 
+login 2020/08/12 12:12:04 
+login 2020/08/12 12:13:04 
+login 2020/08/12 12:13:45 
+login 2020/08/12 12:15:16 
+login 2020/08/12 12:26:46 
+login 2020/08/12 12:28:03 
+login 2020/08/12 12:28:15 
+login 2020/08/12 12:30:19 
+login 2020/08/12 12:31:30 
+login 2020/08/12 12:32:17 
+login 2020/08/12 12:34:37 
+login 2020/08/12 12:36:41 
+login 2020/08/12 15:52:09 
+login 2020/08/12 16:07:36 
+login 2020/08/12 16:12:05 
+login 2020/08/12 16:14:57 
+login 2020/08/12 16:17:41 
+start_game 2020/08/12 16:18:08 game id: 2

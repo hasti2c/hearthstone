@@ -1,7 +1,7 @@
 {
-  "username": "hasti",
   "password": "password",
+  "balance": 499315,
   "id": 1,
-  "balance": 499215,
-  "inventory": "hasti-inventory"
+  "inventory": "hasti-inventory",
+  "username": "hasti"
 }

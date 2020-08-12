@@ -1,12 +1,12 @@
 package elements;
 
 import elements.cards.*;
-import system.*;
 import elements.heros.*;
+import system.updater.*;
 
 import java.util.*;
 
-public abstract class Element implements Configable {
+public abstract class Element extends Updatable {
     protected String name;
     protected ElementType elementType;
     protected HeroClass heroClass;
@@ -18,8 +18,19 @@ public abstract class Element implements Configable {
         return elements.get(i);
     }
 
+    public static <T extends Element> T getElement(ArrayList<T> list, String name) {
+        for (T element : list)
+            if (element.toString().equals(name))
+                return element;
+        return null;
+    }
+
     public String toString() {
         return this.name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public ElementType getElementType() {

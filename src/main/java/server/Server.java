@@ -1,6 +1,6 @@
 package server;
 
-import shared.Pair;
+import shared.*;
 
 import java.io.*;
 import java.net.*;
@@ -9,6 +9,7 @@ import java.util.*;
 public class Server {
     private ServerSocket serverSocket;
     private final ArrayList<ClientHandler> clients = new ArrayList<>(), gameQueue = new ArrayList<>();
+    private final Map<ClientHandler, GameHandler> gameHandlers = new HashMap<>();
     private final Object clientsMonitor = new Object(), queueMonitor = new Object();
     private final ServerController controller;
 
@@ -41,16 +42,15 @@ public class Server {
             gameQueue.add(client);
             while (gameQueue.size() >= 2)
                 pairClients(new Pair<>(gameQueue.remove(0), gameQueue.remove(0)));
-            System.out.println(gameQueue);
             return gameQueue.size() == 0;
         }
     }
 
     private void pairClients(Pair<ClientHandler, ClientHandler> clients) {
         ClientHandler first = clients.getFirst(), second = clients.getSecond();
-        first.setOpponent(second);
-        second.setOpponent(first);
-        first.createGame();
+        GameHandler gameHandler = new GameHandler(first, second);
+        gameHandlers.put(first, gameHandler);
+        gameHandlers.put(second, gameHandler);
     }
 
     private class Accepter extends Thread {

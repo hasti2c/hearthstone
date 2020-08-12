@@ -24,5 +24,6 @@
   "allDecks": [
     "hi"
   ],
-  "currentDeck": "hi"
+  "currentDeck": "hi",
+  "playerName": "erfan"
 }

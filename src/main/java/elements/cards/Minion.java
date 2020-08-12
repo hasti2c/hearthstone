@@ -17,8 +17,8 @@ public class Minion extends Card implements Attackable {
     }
 
     @Override
-    public void initialize() {
-        super.initialize();
+    public void initialize(String initPlayerName) {
+        super.initialize(initPlayerName);
         setAsleep(true);
     }
 

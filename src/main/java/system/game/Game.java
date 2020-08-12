@@ -16,7 +16,7 @@ public class Game {
     private Logger logger;
     private boolean deckReader;
 
-    private static Game getInstance(Character[] characters, int id, boolean deckReader) {
+    public static Game getInstance(Character[] characters, int id, boolean deckReader) {
         Game game = new Game();
         game.characters[0] = characters[0];
         game.characters[1] = characters[1];
@@ -46,10 +46,10 @@ public class Game {
         return getInstance(characters, id, true);
     }
 
-    public static Game getInstance(Controller<?> controller, int playerCount, int id, String[] json) {
+    public static Game getInstance(Controller<?> controller, int playerCount, int id, ArrayList<HeroClass> heroClasses, ArrayList<String> json) {
         Character[] characters = new Character[2];
-        characters[0] = new GamePlayer(controller, PlayerFaction.FRIENDLY, json[0]);
-        characters[1] = new GamePlayer(controller, PlayerFaction.ENEMY, json[1]);
+        characters[0] = new GamePlayer(controller, heroClasses.get(0), json.get(0), PlayerFaction.FRIENDLY, id);
+        characters[1] = new GamePlayer(controller, heroClasses.get(1), json.get(1), PlayerFaction.ENEMY, id);
         return getInstance(characters, id, false);
     }
 

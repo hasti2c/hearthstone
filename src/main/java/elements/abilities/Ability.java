@@ -3,16 +3,16 @@ package elements.abilities;
 import elements.*;
 import elements.abilities.targets.*;
 import shared.*;
-import system.*;
 import elements.cards.*;
 import system.game.*;
 import system.game.Character;
+import system.updater.*;
 
 import java.util.*;
 
 import static elements.abilities.targets.TargetType.*;
 
-public abstract class Ability implements Configable {
+public abstract class Ability extends Updatable {
     protected AbilityType abilityType;
     protected PlayerSide callerSide;
     protected TargetType targetType;
@@ -28,12 +28,12 @@ public abstract class Ability implements Configable {
     private Attack nextAttack;
 
     @Override
-    public void initialize() {
+    public void initialize(String initPlayerName) {
         setNextAbility();
     }
 
     @Override
-    public String getJsonPath(String name) {
+    public String getJsonPath(String name, String initPlayerName) {
         return null;
     }
 
@@ -257,5 +257,9 @@ public abstract class Ability implements Configable {
 
     public ArrayList<ElementType> getTargetElementTypes() {
         return targetElementTypes;
+    }
+
+    public String getName() {
+        return "";
     }
 }

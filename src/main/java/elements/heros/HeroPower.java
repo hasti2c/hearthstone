@@ -19,8 +19,8 @@ public class HeroPower extends Playable {
     }
 
     @Override
-    public void initialize() {
-        super.initialize();
+    public void initialize(String initPlayerName) {
+        super.initialize(initPlayerName);
         demote();
     }
 
@@ -37,7 +37,7 @@ public class HeroPower extends Playable {
     }
 
     @Override
-    public String getJsonPath(String name) {
+    public String getJsonPath(String name, String initPlayerName) {
         return "hero powers/";
     }
 

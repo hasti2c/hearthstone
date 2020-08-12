@@ -1,7 +1,9 @@
-package system;
+package system.configor;
 
 import com.google.gson.stream.*;
 import elements.cards.*;
+import system.player.*;
+
 import java.io.*;
 import java.lang.reflect.*;
 import java.nio.file.*;
@@ -9,22 +11,37 @@ import java.util.*;
 
 public class Configor<O extends Configable> {
     private static final Map<Class<?>, Map<String, ?>> instances = new HashMap<>();
-    private final String name;
+    private String name;
     private final JsonReader jsonReader;
     private boolean sameReference = true;
     private O object;
+    private String initPlayerName;
 
     public Configor(String name, Class<O> objectClass, JsonReader jsonReader) {
-        this.name = name;
-        try {
-            object = objectClass.getDeclaredConstructor().newInstance();
-        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
+        initialize(name, objectClass, true, null);
         this.jsonReader = jsonReader;
     }
 
     public Configor(String name, Class<O> objectClass) throws FileNotFoundException {
+        this(name, objectClass, (String) null);
+    }
+
+    public Configor(String name, Class<O> objectClass, JsonReader jsonReader, boolean sameReference) {
+        this(name, objectClass, jsonReader, sameReference, null);
+    }
+
+    private Configor(String name, Class<O> objectClass, String initPlayerName) throws FileNotFoundException {
+        initialize(name, objectClass,true, initPlayerName);
+        jsonReader = new JsonReader(new FileReader("src/main/resources/database/" + object.getJsonPath(name, initPlayerName) + name + ".json"));
+    }
+
+    private Configor(String name, Class<O> objectClass, JsonReader jsonReader, boolean sameReference, String initPlayerName) {
+        initialize(name, objectClass, sameReference, initPlayerName);
+        this.jsonReader = jsonReader;
+        this.sameReference = sameReference;
+    }
+
+    private void initialize(String name, Class<O> objectClass, boolean sameReference, String initPlayerName) {
         this.name = name;
         try {
             Constructor<O> constructor = objectClass.getDeclaredConstructor();
@@ -34,12 +51,10 @@ public class Configor<O extends Configable> {
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
-        jsonReader = new JsonReader(new FileReader("src/main/resources/database/" + object.getJsonPath(name) + name + ".json"));
-    }
-
-    public Configor(String name, Class<O> objectClass, JsonReader jsonReader, boolean sameReference) {
-        this(name, objectClass, jsonReader);
         this.sameReference = sameReference;
+        this.initPlayerName = initPlayerName;
+        if (objectClass.equals(Player.class))
+            this.initPlayerName = name;
     }
 
     public O getConfigedObject() {
@@ -47,7 +62,7 @@ public class Configor<O extends Configable> {
             config();
         else
             object = getObjectFromMap();
-        object.initialize();
+        object.initialize(initPlayerName);
         return object;
     }
 
@@ -120,8 +135,9 @@ public class Configor<O extends Configable> {
                         String objectName = jsonReader.nextString();
                         Class<? extends Configable> objectClass = getObjectClass((Class<? extends Configable>) readType, objectName);
                         return (T) readObject(objectClass, objectName);
-                    } else if (JsonToken.BEGIN_OBJECT.equals(jsonReader.peek()))
+                    } else if (JsonToken.BEGIN_OBJECT.equals(jsonReader.peek())) {
                         return (T) readObject((Class<? extends Configable>) readType);
+                    }
                 }
             }
         } catch (IOException e) {
@@ -161,7 +177,7 @@ public class Configor<O extends Configable> {
 
     private <T extends Configable> T readObject(Class<T> readType, String objectName) {
         try {
-            Configor<T> objectConfigor = new Configor<>(objectName, readType);
+            Configor<T> objectConfigor = new Configor<>(objectName, readType, initPlayerName);
             return objectConfigor.getConfigedObject();
         } catch (IOException e) {
             e.printStackTrace();
@@ -170,7 +186,10 @@ public class Configor<O extends Configable> {
     }
 
     private <T extends Configable> T readObject(Class<T> readType) {
-        Configor<T> objectConfigor = new Configor<>(name + "." + readType.getSimpleName(), readType, jsonReader, sameReference);
+        boolean sameReference = this.sameReference;
+        if (Card.class.isAssignableFrom(readType))
+            sameReference = true;
+        Configor<T> objectConfigor = new Configor<>(name + "." + readType.getSimpleName(), readType, jsonReader, sameReference, initPlayerName);
         return objectConfigor.getConfigedObject();
     }
 

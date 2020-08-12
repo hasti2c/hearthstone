@@ -7,9 +7,11 @@ import elements.heros.*;
 import elements.cards.*;
 import shared.*;
 import system.*;
+import system.configor.*;
 import system.game.*;
+import system.updater.*;
 
-public class Player implements Configable {
+public class Player extends Updatable {
     private String username, password;
     private int balance, id;
     private Inventory inventory;
@@ -17,15 +19,15 @@ public class Player implements Configable {
     private Logger logger;
 
     public static Player getExistingPlayer(String username) throws FileNotFoundException {
-        GameData.getInstance().setInitPlayerName(username);
         Configor<Player> configor = new Configor<>(username, Player.class);
         return configor.getConfigedObject();
     }
 
     public static Player getExistingPlayer(String username, String json) {
-        GameData.getInstance().setInitPlayerName(username);
         Configor<Player> configor = new Configor<>(username, Player.class, new JsonReader(new StringReader(json)), false);
-        return configor.getConfigedObject();
+        Player player = configor.getConfigedObject();
+        player.getInventory().update();
+        return player;
     }
 
     public static Player getNewPlayer(String username, String password, int id) {
@@ -33,19 +35,24 @@ public class Player implements Configable {
         player.username = username;
         player.password = password;
         player.id = id;
-        player.initialize();
+        player.initialize(username);
         player.copyDefault();
         Configor.putInMap(player, username);
         return player;
     }
 
     @Override
-    public void initialize() {
+    public void initialize(String initPlayerName) {
         logger = new Logger("src/main/resources/logs/players/" + username + "-" + id + ".txt");
     }
 
     @Override
-    public String getJsonPath(String name) {
+    public String getName() {
+        return username;
+    }
+
+    @Override
+    public String getJsonPath(String name, String initPlayerName) {
         return "players/";
     }
 
@@ -53,48 +60,6 @@ public class Player implements Configable {
         Player defaultPlayer = GameData.getInstance().getDefaultPlayer();
         balance = defaultPlayer.balance;
         inventory = Inventory.copyDefault(defaultPlayer);
-    }
-
-    public void updateJson() {
-        try {
-            JsonWriter jsonWriter = new JsonWriter(new FileWriter(getJsonPath()));
-            jsonWriter.setIndent("  ");
-            updateJson(jsonWriter, true);
-            jsonWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public String getJson() {
-        StringWriter json = new StringWriter();
-        updateJson(new JsonWriter(json), false);
-        return json.toString();
-    }
-
-    private void updateJson(JsonWriter jsonWriter, boolean compact) {
-        try {
-            jsonWriter.beginObject();
-
-            if (username != null)
-                jsonWriter.name("username").value(username);
-            if (password != null)
-                jsonWriter.name("password").value(password);
-            if (id != 0)
-                jsonWriter.name("id").value(id);
-            jsonWriter.name("balance").value(balance);
-            jsonWriter.name("inventory");
-            if (compact) {
-                jsonWriter.value(username + "-inventory");
-                inventory.updateJson(username);
-            } else {
-                inventory.updateJson(jsonWriter, false);
-            }
-
-            jsonWriter.endObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public boolean loginAttempt(String password) {

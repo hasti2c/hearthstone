@@ -1,0 +1,9 @@
+{
+  "fieldNames": [
+    "username",
+    "password",
+    "id",
+    "balance",
+    "inventory"
+  ]
+}

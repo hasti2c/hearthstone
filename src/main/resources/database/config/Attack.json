@@ -1,0 +1,20 @@
+{
+  "fieldNames": [
+    "abilityType",
+    "callerSide",
+    "targetType",
+    "targetElementTypes",
+    "times",
+    "targetAttack",
+    "targetHealth",
+    "targetMana",
+    "hasTaunt",
+    "hasRush",
+    "nextAddCard",
+    "nextChangeStats",
+    "nextRemoveCard",
+    "nextAttack",
+    "type",
+    "damageAmount"
+  ]
+}
