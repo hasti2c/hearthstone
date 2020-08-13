@@ -136,4 +136,9 @@ public class Game {
     public boolean isDeckReader() {
         return deckReader;
     }
+
+    public void updateState(String[] jsons) {
+        for (int i = 0; i < playerCount; i++)
+            characters[i].updateState(jsons[i]);
+    }
 }

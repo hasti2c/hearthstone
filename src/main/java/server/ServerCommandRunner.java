@@ -9,7 +9,6 @@ import commands.types.*;
 import shared.Methods;
 import system.game.Game;
 import system.player.*;
-import system.game.Character;
 
 import java.io.*;
 import java.util.*;
@@ -68,8 +67,6 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
             ret = sellCard(card);
         else if (JOIN_GAME.equals(commandType) && input[0] instanceof Integer num)
             ret = joinGame(num);
-        else if (CREATE_GAME.equals(commandType) && input[0] instanceof Integer num)
-            ret = createGame(num);
         else if (DECK_READER.equals(commandType))
             ret = deckReader();
 
@@ -122,12 +119,14 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private void updateGame() {
-        if (handler.getGame() != null) {
-            Character[] characters = handler.getGame().getCharacters();
-            for (int i = 0; i < characters.length; i++)
-                handler.respond(new Command<>(UPDATE_GAME, i, characters[i].getState().getJson(false)));
-        } else
+        Game game = handler.getGame();
+        if (game == null) {
             handler.respond(new Command<>(UPDATE_GAME, "null"));
+            return;
+        }
+
+        GameHandler gameHandler = handler.getGameHandler();
+        handler.respond(new Command<>(UPDATE_GAME, game.getId(), gameHandler.getHeroClasses()[0], gameHandler.getHeroClasses()[1], gameHandler.getJsons()[0], gameHandler.getJsons()[1]));
     }
 
     private ArrayList<java.lang.Character> getUsernameChars() {
@@ -309,13 +308,6 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         return handler.joinGame();
     }
 
-    private boolean createGame(int playerCount) {
-        Player player = handler.getCurrentPlayer();
-        if (player.getInventory().getCurrentDeck() == null)
-            return false;
-        return createGame(Game.getInstance(handler, playerCount, controller.getGameCount() + 1));
-    }
-
     private boolean deckReader() {
         DeckPair deckPair = DeckPair.getInstance();
         if (deckPair == null)
@@ -325,8 +317,8 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
 
     private boolean createGame(Game game) {
         controller.setGameCount(controller.getGameCount() + 1);
-        handler.getCurrentPlayer().setGame(game);
-        handler.getOpponent().getCurrentPlayer().setGame(game);
+        handler.setGame(game);
+        handler.getOpponent().setGame(game);
         return true;
     }
 
@@ -334,11 +326,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         Player player = handler.getCurrentPlayer();
         if (player.getGame() == null)
             return false;
-        Game game = player.getGame();
-        game.startGame(cards);
-        player.getLogger().log("start_game", "game id: " + game.getId());
-        game.logStartGame();
-        return true;
+        return handler.startGame(cards);
     }
 
     private boolean playCard(Card card) {

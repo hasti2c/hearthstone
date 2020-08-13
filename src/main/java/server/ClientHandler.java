@@ -2,6 +2,7 @@ package server;
 
 import commands.*;
 import commands.types.*;
+import elements.cards.*;
 import shared.*;
 
 import java.io.*;
@@ -15,7 +16,7 @@ public class ClientHandler extends Controller<ServerCommandType> {
     private final Socket socket;
     private final Listener listener;
     private PrintStream printer;
-    private ClientHandler opponent;
+    private GameHandler gameHandler;
 
     public ClientHandler(Server server, ServerController controller, Socket socket) {
         this.server = server;
@@ -46,16 +47,28 @@ public class ClientHandler extends Controller<ServerCommandType> {
         printer.println(command.toString());
     }
 
+    public void setGameHandler(GameHandler gameHandler) {
+        this.gameHandler = gameHandler;
+    }
+
     public boolean joinGame() {
         return server.joinGame(this);
     }
 
-    public ClientHandler getOpponent() {
-        return opponent;
+    public boolean startGame(ArrayList<Card> cards) {
+        if (gameHandler == null)
+            return false;
+        return gameHandler.startGame(this, cards);
     }
 
-    public void setOpponent(ClientHandler opponent) {
-        this.opponent = opponent;
+    public ClientHandler getOpponent() {
+        if (gameHandler == null)
+            return null;
+        return gameHandler.getOpponent(this);
+    }
+
+    public GameHandler getGameHandler() {
+        return gameHandler;
     }
 
     private class Listener extends Thread {

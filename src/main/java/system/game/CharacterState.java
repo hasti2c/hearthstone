@@ -27,8 +27,9 @@ public class CharacterState extends Updatable {
 
     public static CharacterState getInstance(String name, String json) {
         JsonReader jsonReader = new JsonReader(new StringReader(json));
-        Configor<CharacterState> configor = new Configor<>(name, CharacterState.class, jsonReader);
+        Configor<CharacterState> configor = new Configor<>(name, CharacterState.class, jsonReader, false);
         CharacterState state = configor.getConfigedObject();
+        System.out.println(json + " " + state.getHand());
         state.deck = state.deck.cloneCards();
         state.replaceCards();
         return state;

@@ -156,8 +156,10 @@ public class PlayGround extends Directory {
     }
 
     public void startTimer() {
-        time = 60;
-        timer.start();
+        if (!timer.isAlive()) {
+            time = 60;
+            timer.start();
+        }
     }
 
     private void requestEndTurn() {

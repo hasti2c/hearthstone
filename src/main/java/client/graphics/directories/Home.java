@@ -73,10 +73,6 @@ public class Home extends Directory {
         gameBeginning.startGame();
     }
 
-    public void setGame(Game game) {
-        gameBeginning.game = game;
-    }
-
     private class GameStartPage extends PopupBox {
         private Game game;
         @FXML

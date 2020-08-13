@@ -67,6 +67,8 @@ public abstract class Controller <T extends CommandType> {
     }
 
     public void setGame(Game game) {
+        if (currentPlayer == null)
+            return;
         currentPlayer.setGame(game);
     }
 }

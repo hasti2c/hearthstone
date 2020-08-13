@@ -9,7 +9,6 @@ import java.util.*;
 public class Server {
     private ServerSocket serverSocket;
     private final ArrayList<ClientHandler> clients = new ArrayList<>(), gameQueue = new ArrayList<>();
-    private final Map<ClientHandler, GameHandler> gameHandlers = new HashMap<>();
     private final Object clientsMonitor = new Object(), queueMonitor = new Object();
     private final ServerController controller;
 
@@ -49,8 +48,7 @@ public class Server {
     private void pairClients(Pair<ClientHandler, ClientHandler> clients) {
         ClientHandler first = clients.getFirst(), second = clients.getSecond();
         GameHandler gameHandler = new GameHandler(first, second);
-        gameHandlers.put(first, gameHandler);
-        gameHandlers.put(second, gameHandler);
+        gameHandler.createGame();
     }
 
     private class Accepter extends Thread {

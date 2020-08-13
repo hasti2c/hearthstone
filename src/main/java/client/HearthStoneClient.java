@@ -1,7 +1,7 @@
 package client;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
+import javafx.application.*;
+import javafx.stage.*;
 
 public class HearthStoneClient extends Application {
     public static void main(String[] args) {

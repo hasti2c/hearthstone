@@ -57,7 +57,9 @@ public class ClientController extends Controller<ClientCommandType> {
     }
 
     public void updatePlayer(String username, String json) {
+        Game game = getGame();
         currentPlayer = Player.getExistingPlayer(username, json);
+        setGame(game);
     }
 
     public void setScene(Scene scene) {
@@ -72,8 +74,8 @@ public class ClientController extends Controller<ClientCommandType> {
 
     //TODO debug end game
     public void endGame() {
-        Game game = currentPlayer.getGame();
-        currentPlayer.setGame(null);
+        Game game = getGame();
+        setGame(null);
         game.endGame();
         home.getPlayGround().endGame();
     }
@@ -114,9 +116,8 @@ public class ClientController extends Controller<ClientCommandType> {
             collections.displayHeroChangeError();
     }
 
-    public void createGameResult(boolean result) {
-        if (result)
-            home.startGame();
+    public void gameInitialized() {
+        home.startGame();
     }
 
     public void startGameResult(boolean result) {
@@ -131,11 +132,5 @@ public class ClientController extends Controller<ClientCommandType> {
     public void endTurnResult(Boolean result) {
         if (result)
             home.getPlayGround().doEndTurn();
-    }
-
-    @Override
-    public void setGame(Game game) {
-        super.setGame(game);
-        home.setGame(game);
     }
 }
