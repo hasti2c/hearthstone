@@ -4,33 +4,25 @@
   "description": "Whenever this minion takes damage, summon a 2/3 Mech with Taunt.",
   "health": 6,
   "rush": false,
-  "changeStatsAbility": null,
   "mana": 6,
   "attack": 2,
   "price": 25,
   "name": "Security Rover",
   "divineShield": false,
-  "attackAbility": null,
   "addCardAbility": {
     "abilityType": "TAKES_DAMAGE",
     "targetMana": 0,
     "targetAttack": 3,
-    "nextChangeStats": null,
-    "nextAttack": null,
     "targetType": "BY_STATS",
     "targetHealth": 2,
-    "nextAddCard": null,
     "type": "SUMMON",
-    "nextRemoveCard": null,
     "targetElementTypes": [
       "MINION"
     ],
     "times": 1,
     "hasTaunt": true,
-    "callerSide": null,
     "hasRush": false
   },
-  "removeCardAbility": null,
   "taunt": false,
   "rarity": "RARE"
 }

@@ -1,0 +1,645 @@
+GAME_ID: 2
+STARTED_AT:  2020/08/12 16:18:08 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+GAME_ID: 2
+STARTED_AT:  2020/08/12 16:18:11 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/12 16:18:17 
+GAME_ID: 2
+STARTED_AT:  2020/08/12 20:08:27 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/12 20:09:26 
+p1:end_turn 2020/08/12 20:09:26 
+p2:end_turn 2020/08/12 20:09:27 
+p1:end_turn 2020/08/12 20:09:27 
+p2:end_turn 2020/08/12 20:09:28 
+p1:end_turn 2020/08/12 20:09:28 
+p2:end_turn 2020/08/12 20:09:28 
+p1:end_turn 2020/08/12 20:09:29 
+p2:end_turn 2020/08/12 20:09:29 
+p1:end_turn 2020/08/12 20:09:29 
+p2:end_turn 2020/08/12 20:09:30 
+p1:end_turn 2020/08/12 20:09:30 
+p2:end_turn 2020/08/12 20:09:30 
+p1:end_turn 2020/08/12 20:09:31 
+p2:end_turn 2020/08/12 20:09:31 
+p1:end_turn 2020/08/12 20:09:31 
+p2:end_turn 2020/08/12 20:09:31 
+p1:end_turn 2020/08/12 20:09:32 
+p2:end_turn 2020/08/12 20:09:32 
+p1:end_turn 2020/08/12 20:09:33 
+p2:end_turn 2020/08/12 20:09:33 
+p1:end_turn 2020/08/12 20:09:33 
+p2:end_turn 2020/08/12 20:09:34 
+p1:end_turn 2020/08/12 20:09:34 
+p2:end_turn 2020/08/12 20:09:34 
+p1:end_turn 2020/08/12 20:09:35 
+p2:end_turn 2020/08/12 20:09:35 
+p1:end_turn 2020/08/12 20:09:35 
+p2:end_turn 2020/08/12 20:09:36 
+p1:end_turn 2020/08/12 20:09:36 
+p2:end_turn 2020/08/12 20:09:36 
+p1:end_turn 2020/08/12 20:09:37 
+p2:end_turn 2020/08/12 20:09:37 
+p1:end_turn 2020/08/12 20:09:38 
+p2:end_turn 2020/08/12 20:09:38 
+p1:end_turn 2020/08/12 20:09:38 
+p2:end_turn 2020/08/12 20:09:39 
+p1:end_turn 2020/08/12 20:09:39 
+p2:end_turn 2020/08/12 20:09:39 
+p1:end_turn 2020/08/12 20:09:39 
+p2:end_turn 2020/08/12 20:09:40 
+p1:end_turn 2020/08/12 20:09:40 
+p2:end_turn 2020/08/12 20:09:40 
+p1:end_turn 2020/08/12 20:09:41 
+p2:end_turn 2020/08/12 20:09:41 
+p1:end_turn 2020/08/12 20:09:41 
+p2:end_turn 2020/08/12 20:09:42 
+p1:end_turn 2020/08/12 20:09:42 
+p2:end_turn 2020/08/12 20:09:42 
+p1:end_turn 2020/08/12 20:09:43 
+p2:end_turn 2020/08/12 20:09:43 
+p1:end_turn 2020/08/12 20:09:43 
+p2:end_turn 2020/08/12 20:09:44 
+p1:end_turn 2020/08/12 20:09:44 
+p2:end_turn 2020/08/12 20:09:44 
+p1:end_turn 2020/08/12 20:09:45 
+p2:end_turn 2020/08/12 20:09:45 
+p1:end_turn 2020/08/12 20:09:45 
+GAME_ID: 2
+STARTED_AT:  2020/08/12 21:55:05 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/12 21:55:13 
+GAME_ID: 2
+STARTED_AT:  2020/08/12 21:56:47 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/12 21:57:46 
+p1:end_turn 2020/08/12 21:57:46 
+GAME_ID: 2
+STARTED_AT:  2020/08/12 22:00:07 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/12 22:00:16 
+p1:end_turn 2020/08/12 22:00:24 
+p2:end_turn 2020/08/12 22:00:28 
+p1:end_turn 2020/08/12 22:00:29 
+p2:end_turn 2020/08/12 22:00:29 
+p1:end_turn 2020/08/12 22:00:29 
+p2:end_turn 2020/08/12 22:00:30 
+p1:end_turn 2020/08/12 22:00:30 
+p2:end_turn 2020/08/12 22:00:30 
+p1:end_turn 2020/08/12 22:00:30 
+p2:end_turn 2020/08/12 22:00:31 
+p1:end_turn 2020/08/12 22:01:31 
+p2:end_turn 2020/08/12 22:02:30 
+GAME_ID: 2
+STARTED_AT:  2020/08/12 22:03:23 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/12 22:03:40 
+p1:end_turn 2020/08/12 22:03:41 
+p2:end_turn 2020/08/12 22:04:41 
+GAME_ID: 2
+STARTED_AT:  2020/08/12 22:05:16 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/12 22:06:15 
+p1:end_turn 2020/08/12 22:06:15 
+p2:end_turn 2020/08/12 22:07:16 
+p1:end_turn 2020/08/12 22:07:16 
+GAME_ID: 2
+STARTED_AT:  2020/08/12 22:19:57 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/12 22:20:11 
+p1:end_turn 2020/08/12 22:21:10 
+p2:end_turn 2020/08/12 22:22:10 
+p1:end_turn 2020/08/12 22:22:10 
+p2:end_turn 2020/08/12 22:23:10 
+p1:end_turn 2020/08/12 22:23:10 
+p2:end_turn 2020/08/12 22:24:07 
+GAME_ID: 2
+STARTED_AT:  2020/08/12 22:24:15 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+GAME_ID: 2
+STARTED_AT:  2020/08/12 22:26:03 
+
+p1: erfan
+p1_hero: warlock
+p1_deck: hi
+
+p2: hasti
+p2_hero: warlock
+p2_deck: yo
+
+p2:end_turn 2020/08/12 22:26:11 
+p1:end_turn 2020/08/12 22:26:17 
+GAME_ID: 2
+STARTED_AT:  2020/08/13 11:43:21 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+GAME_ID: 2
+STARTED_AT:  2020/08/13 11:44:25 
+
+p1: erfan
+p1_hero: warlock
+p1_deck: hi
+
+p2: hasti
+p2_hero: warlock
+p2_deck: yo
+
+p2:end_turn 2020/08/13 11:45:24 
+p1:end_turn 2020/08/13 11:45:24 
+GAME_ID: 2
+STARTED_AT:  2020/08/13 11:46:26 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/13 11:46:31 
+p1:end_turn 2020/08/13 11:46:33 
+p2:end_turn 2020/08/13 11:46:36 
+p1:end_turn 2020/08/13 11:46:36 
+p2:end_turn 2020/08/13 11:46:37 
+p1:end_turn 2020/08/13 11:46:37 
+p2:end_turn 2020/08/13 11:46:38 
+p1:end_turn 2020/08/13 11:46:40 
+p2:end_turn 2020/08/13 11:46:41 
+p1:end_turn 2020/08/13 11:46:42 
+p2:end_turn 2020/08/13 11:46:42 
+p1:end_turn 2020/08/13 11:46:43 
+p2:end_turn 2020/08/13 11:46:44 
+p1:end_turn 2020/08/13 11:46:45 
+p2:end_turn 2020/08/13 11:46:46 
+p1:end_turn 2020/08/13 11:46:46 
+p2:end_turn 2020/08/13 11:46:47 
+p1:end_turn 2020/08/13 11:46:48 
+p2:end_turn 2020/08/13 11:46:49 
+p1:end_turn 2020/08/13 11:47:48 
+p2:end_turn 2020/08/13 11:48:47 
+p1:end_turn 2020/08/13 11:49:48 
+p2:end_turn 2020/08/13 11:49:48 
+p1:end_turn 2020/08/13 11:50:48 
+p2:end_turn 2020/08/13 11:50:48 
+p1:end_turn 2020/08/13 11:51:48 
+p2:end_turn 2020/08/13 11:51:48 
+p1:end_turn 2020/08/13 11:52:49 
+p2:end_turn 2020/08/13 11:52:49 
+p1:end_turn 2020/08/13 11:53:49 
+p2:end_turn 2020/08/13 11:54:48 
+p1:end_turn 2020/08/13 11:55:48 
+p2:end_turn 2020/08/13 11:55:48 
+p1:end_turn 2020/08/13 11:56:49 
+p2:end_turn 2020/08/13 11:56:49 
+p1:end_turn 2020/08/13 11:57:49 
+p2:end_turn 2020/08/13 11:57:49 
+p1:end_turn 2020/08/13 11:58:49 
+p2:end_turn 2020/08/13 11:58:49 
+p1:end_turn 2020/08/13 11:59:49 
+p2:end_turn 2020/08/13 11:59:49 
+p1:end_turn 2020/08/13 12:00:49 
+p2:end_turn 2020/08/13 12:00:49 
+p1:end_turn 2020/08/13 12:01:50 
+p2:end_turn 2020/08/13 12:01:50 
+p1:end_turn 2020/08/13 12:02:50 
+p2:end_turn 2020/08/13 12:02:50 
+p1:end_turn 2020/08/13 12:03:50 
+p2:end_turn 2020/08/13 12:03:50 
+p1:end_turn 2020/08/13 12:04:50 
+p2:end_turn 2020/08/13 12:04:50 
+GAME_ID: 2
+STARTED_AT:  2020/08/13 12:11:08 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/13 12:11:16 
+p1:end_turn 2020/08/13 12:11:21 
+p2:end_turn 2020/08/13 12:11:24 
+p1:end_turn 2020/08/13 12:11:25 
+p2:end_turn 2020/08/13 12:11:28 
+p1:end_turn 2020/08/13 12:11:33 
+p2:end_turn 2020/08/13 12:11:36 
+GAME_ID: 2
+STARTED_AT:  2020/08/13 12:12:38 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/13 12:12:46 
+p1:end_turn 2020/08/13 12:12:47 
+p2:end_turn 2020/08/13 12:12:49 
+p1:end_turn 2020/08/13 12:12:50 
+p2:end_turn 2020/08/13 12:12:53 
+p1:end_turn 2020/08/13 12:13:52 
+p2:end_turn 2020/08/13 12:23:18 
+p1:end_turn 2020/08/13 12:23:18 
+p2:end_turn 2020/08/13 12:23:26 
+p1:end_turn 2020/08/13 12:23:28 
+p1:play_card 2020/08/13 12:23:35 Hogger
+p2:end_turn 2020/08/13 12:23:40 
+p2:hero_power 2020/08/13 12:23:41 
+p1:end_turn 2020/08/13 12:23:44 
+p2:end_turn 2020/08/13 12:23:46 
+p1:end_turn 2020/08/13 12:23:56 
+p1:play_card 2020/08/13 12:24:04 Tomb Warden
+p2:end_turn 2020/08/13 12:24:56 
+p1:end_turn 2020/08/13 12:24:56 
+p2:end_turn 2020/08/13 12:25:56 
+p1:end_turn 2020/08/13 12:25:56 
+p2:end_turn 2020/08/13 12:26:56 
+p1:end_turn 2020/08/13 12:27:55 
+p2:end_turn 2020/08/13 12:28:56 
+p1:end_turn 2020/08/13 12:29:56 
+p2:end_turn 2020/08/13 12:29:56 
+p1:end_turn 2020/08/13 12:30:57 
+p2:end_turn 2020/08/13 12:31:56 
+p1:end_turn 2020/08/13 12:31:56 
+p2:end_turn 2020/08/13 12:32:57 
+p1:end_turn 2020/08/13 12:33:56 
+GAME_ID: 2
+STARTED_AT:  2020/08/13 12:35:25 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/13 12:36:24 
+GAME_ID: 2
+STARTED_AT:  2020/08/13 12:37:11 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/13 12:37:18 
+p1:end_turn 2020/08/13 12:37:20 
+p2:end_turn 2020/08/13 12:37:24 
+p1:end_turn 2020/08/13 12:37:26 
+p2:end_turn 2020/08/13 12:37:28 
+GAME_ID: 2
+STARTED_AT:  2020/08/13 12:39:19 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/13 12:39:25 
+p1:end_turn 2020/08/13 12:40:24 
+p2:end_turn 2020/08/13 12:41:24 
+p1:end_turn 2020/08/13 12:42:23 
+p2:end_turn 2020/08/13 12:43:24 
+p1:end_turn 2020/08/13 12:44:23 
+p2:end_turn 2020/08/13 12:45:23 
+p1:end_turn 2020/08/13 12:46:23 
+p2:end_turn 2020/08/13 12:47:23 
+p1:end_turn 2020/08/13 12:48:23 
+p2:end_turn 2020/08/13 12:49:24 
+p1:end_turn 2020/08/13 12:49:24 
+p2:end_turn 2020/08/13 12:50:24 
+p1:end_turn 2020/08/13 12:50:24 
+p2:end_turn 2020/08/13 12:51:24 
+p1:end_turn 2020/08/13 12:51:24 
+p2:end_turn 2020/08/13 12:52:24 
+p1:end_turn 2020/08/13 12:52:24 
+p2:end_turn 2020/08/13 12:53:24 
+p1:end_turn 2020/08/13 12:53:24 
+p2:end_turn 2020/08/13 12:54:25 
+p1:end_turn 2020/08/13 12:54:25 
+p2:end_turn 2020/08/13 12:55:25 
+p1:end_turn 2020/08/13 12:56:25 
+p2:end_turn 2020/08/13 12:57:25 
+p1:end_turn 2020/08/13 12:58:25 
+p2:end_turn 2020/08/13 12:59:26 
+p1:end_turn 2020/08/13 13:00:26 
+p2:end_turn 2020/08/13 13:01:26 
+p1:end_turn 2020/08/13 13:01:26 
+p2:end_turn 2020/08/13 13:02:26 
+p1:end_turn 2020/08/13 13:03:27 
+p2:end_turn 2020/08/13 13:03:27 
+p1:end_turn 2020/08/13 13:25:43 
+p2:end_turn 2020/08/13 13:26:43 
+p1:end_turn 2020/08/13 13:27:43 
+p2:end_turn 2020/08/13 13:28:43 
+p1:end_turn 2020/08/13 13:29:42 
+p2:end_turn 2020/08/13 13:30:42 
+GAME_ID: 2
+STARTED_AT:  2020/08/14 12:57:18 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/14 12:58:17 
+p1:end_turn 2020/08/14 12:58:17 
+p2:end_turn 2020/08/14 12:59:17 
+p1:end_turn 2020/08/14 12:59:18 
+GAME_ID: 2
+STARTED_AT:  2020/08/14 13:00:11 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/14 13:01:10 
+p1:end_turn 2020/08/14 13:02:10 
+GAME_ID: 2
+STARTED_AT:  2020/08/14 13:04:57 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/14 13:05:03 
+p1:end_turn 2020/08/14 13:05:06 
+p2:end_turn 2020/08/14 13:05:11 
+p1:end_turn 2020/08/14 13:05:16 
+p2:end_turn 2020/08/14 13:06:16 
+GAME_ID: 2
+STARTED_AT:  2020/08/14 13:07:25 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/14 13:07:32 
+p1:end_turn 2020/08/14 13:07:35 
+p2:end_turn 2020/08/14 13:07:37 
+p1:end_turn 2020/08/14 13:07:41 
+GAME_ID: 2
+STARTED_AT:  2020/08/14 13:08:33 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/14 13:08:35 
+p1:end_turn 2020/08/14 13:08:45 
+p2:end_turn 2020/08/14 13:08:49 
+p1:end_turn 2020/08/14 13:08:53 
+GAME_ID: 2
+STARTED_AT:  2020/08/14 13:12:50 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/14 13:12:57 
+p1:end_turn 2020/08/14 13:13:00 
+p2:end_turn 2020/08/14 13:14:00 
+GAME_ID: 2
+STARTED_AT:  2020/08/14 13:21:42 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/14 13:21:44 
+p1:end_turn 2020/08/14 13:21:46 
+p2:end_turn 2020/08/14 13:21:48 
+p1:end_turn 2020/08/14 13:21:52 
+p2:end_turn 2020/08/14 13:22:52 
+p1:end_turn 2020/08/14 13:23:52 
+p2:end_turn 2020/08/14 13:24:43 
+p1:end_turn 2020/08/14 13:24:46 
+p2:end_turn 2020/08/14 13:24:50 
+p1:end_turn 2020/08/14 13:24:52 
+p1:play_card 2020/08/14 13:24:55 Dread Infernal
+p2:end_turn 2020/08/14 13:24:59 
+p2:play_card 2020/08/14 13:25:10 Kobold Stickyfinger
+p1:end_turn 2020/08/14 13:25:59 
+p2:end_turn 2020/08/14 13:26:59 
+p1:end_turn 2020/08/14 13:26:59 
+p2:end_turn 2020/08/14 13:27:59 
+p1:end_turn 2020/08/14 13:28:58 
+p2:end_turn 2020/08/14 13:29:58 
+p1:end_turn 2020/08/14 13:30:58 
+p2:end_turn 2020/08/14 13:31:58 
+p1:end_turn 2020/08/14 13:31:58 
+p2:end_turn 2020/08/14 13:32:58 
+p1:end_turn 2020/08/14 13:32:58 
+p2:end_turn 2020/08/14 13:33:58 
+p1:end_turn 2020/08/14 13:33:59 
+p2:end_turn 2020/08/14 13:35:00 
+p1:end_turn 2020/08/14 13:35:02 
+p2:end_turn 2020/08/14 13:36:03 
+p1:end_turn 2020/08/14 13:36:05 
+p2:end_turn 2020/08/14 13:37:06 
+p1:end_turn 2020/08/14 13:37:07 
+p2:end_turn 2020/08/14 13:38:08 
+p1:end_turn 2020/08/14 13:38:10 
+p2:end_turn 2020/08/14 13:39:11 
+p1:end_turn 2020/08/14 13:39:15 
+p2:end_turn 2020/08/14 13:40:15 
+GAME_ID: 2
+STARTED_AT:  2020/08/14 13:43:26 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/14 13:43:40 
+p1:end_turn 2020/08/14 13:43:43 
+p2:end_turn 2020/08/14 13:44:23 
+p1:end_turn 2020/08/14 13:44:24 
+p2:end_turn 2020/08/14 13:44:25 
+p1:end_turn 2020/08/14 13:44:27 
+p2:end_turn 2020/08/14 13:44:27 
+p1:end_turn 2020/08/14 13:44:30 
+p2:end_turn 2020/08/14 13:44:31 
+p1:end_turn 2020/08/14 13:44:33 
+p2:end_turn 2020/08/14 13:44:35 
+p1:end_turn 2020/08/14 13:44:37 
+p1:hero_power 2020/08/14 13:45:15 
+p2:end_turn 2020/08/14 13:45:23 
+p2:hero_power 2020/08/14 13:45:25 
+p1:end_turn 2020/08/14 13:45:28 
+p1:hero_power 2020/08/14 13:45:32 
+p2:end_turn 2020/08/14 13:46:27 
+GAME_ID: 2
+STARTED_AT:  2020/08/14 13:47:34 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/14 13:47:36 
+p1:end_turn 2020/08/14 13:47:38 
+p2:end_turn 2020/08/14 13:47:41 
+p1:end_turn 2020/08/14 13:47:45 
+p2:end_turn 2020/08/14 13:48:46 
+GAME_ID: 2
+STARTED_AT:  2020/08/14 13:49:52 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/14 13:49:54 
+
+ENDED_AT:  2020/08/14 14:07:17 
+
+ENDED_AT:  2020/08/14 14:07:18 
+GAME_ID: 2
+STARTED_AT:  2020/08/14 17:14:55 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: warlock
+p2_deck: hi
+
+p2:end_turn 2020/08/14 17:15:54 

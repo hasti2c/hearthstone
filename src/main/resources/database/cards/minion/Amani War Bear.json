@@ -4,15 +4,11 @@
   "description": "Rush, Taunt",
   "health": 7,
   "rush": true,
-  "changeStatsAbility": null,
   "mana": 7,
   "attack": 5,
   "price": 10,
   "name": "Amani War Bear",
   "divineShield": false,
-  "attackAbility": null,
-  "addCardAbility": null,
-  "removeCardAbility": null,
   "taunt": true,
   "rarity": "COMMON"
 }

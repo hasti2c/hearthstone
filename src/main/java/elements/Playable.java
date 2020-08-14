@@ -4,7 +4,7 @@ import elements.cards.*;
 import elements.abilities.*;
 import elements.heros.*;
 import shared.Methods;
-import system.game.Character;
+import system.game.characters.Character;
 import javafx.scene.image.*;
 import javafx.scene.paint.*;
 

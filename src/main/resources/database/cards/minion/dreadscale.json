@@ -4,7 +4,6 @@
   "description": "At the end of your turn, deal 1 damage to all other minions.",
   "health": 2,
   "rush": false,
-  "changeStatsAbility": null,
   "mana": 3,
   "attack": 4,
   "price": 100,
@@ -14,14 +13,10 @@
     "abilityType": "END_TURN",
     "targetMana": 0,
     "targetAttack": 0,
-    "nextChangeStats": null,
-    "nextAttack": null,
     "targetType": "ALL_ELSE",
     "targetHealth": 0,
     "damageAmount": 1,
-    "nextAddCard": null,
     "type": "CONSTANT",
-    "nextRemoveCard": null,
     "targetElementTypes": [
       "MINION"
     ],
@@ -30,8 +25,6 @@
     "callerSide": "SELF",
     "hasRush": false
   },
-  "addCardAbility": null,
-  "removeCardAbility": null,
   "taunt": false,
   "rarity": "LEGENDARY"
 }

@@ -2,7 +2,7 @@ package elements.abilities;
 
 import elements.*;
 import elements.cards.*;
-import system.game.Character;
+import system.game.characters.Character;
 
 import java.util.*;
 

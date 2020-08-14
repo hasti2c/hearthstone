@@ -1,0 +1,16 @@
+USER: hfjyf
+PASSWORD: ygyuuygj
+CREATED_AT:  2020/08/14 12:55:42 
+
+signup 2020/08/14 12:55:42 
+login 2020/08/14 12:55:42 
+add 2020/08/14 12:55:48 deck: aeraew
+select 2020/08/14 12:55:49 deck: aeraew
+add 2020/08/14 12:55:51 card: Kobold Stickyfinger -> deck: aeraew
+add 2020/08/14 12:55:52 card: Kobold Stickyfinger -> deck: aeraew
+add 2020/08/14 12:55:53 card: Tomb Warden -> deck: aeraew
+add 2020/08/14 12:55:53 card: Tomb Warden -> deck: aeraew
+add 2020/08/14 12:55:54 card: Cobra Shot -> deck: aeraew
+add 2020/08/14 12:55:54 card: Cobra Shot -> deck: aeraew
+add 2020/08/14 12:55:55 card: Astral Rift -> deck: aeraew
+add 2020/08/14 12:55:55 card: Astral Rift -> deck: aeraew

@@ -1,0 +1,18 @@
+GAME_ID: 201
+STARTED_AT:  2020/08/05 23:15:06 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: pppp
+
+p2: hasti
+p2_hero: warlock
+p2_deck: pppp
+
+p2:end_turn 2020/08/05 23:15:08 
+p1:end_turn 2020/08/05 23:15:09 
+p1:play_card 2020/08/05 23:15:10 Dirty Rat
+p2:end_turn 2020/08/05 23:15:11 
+p1:end_turn 2020/08/05 23:15:13 
+p2:end_turn 2020/08/05 23:15:17 
+p1:end_turn 2020/08/05 23:15:18 

@@ -18,7 +18,6 @@ public enum ServerCommandType implements CommandType {
     BUY,
     SELL,
     JOIN_GAME,
-    DECK_READER,
     START_GAME,
     END_TURN,
     PLAY,

@@ -1,0 +1,36 @@
+GAME_ID: 292
+STARTED_AT:  2020/08/08 00:49:59 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: hasti
+p2_hero: warlock
+p2_deck: yo
+
+p2:end_turn 2020/08/08 00:50:00 
+p1:end_turn 2020/08/08 00:50:00 
+p2:end_turn 2020/08/08 00:50:00 
+p1:end_turn 2020/08/08 00:50:01 
+p2:end_turn 2020/08/08 00:50:01 
+p1:end_turn 2020/08/08 00:50:01 
+p2:end_turn 2020/08/08 00:50:01 
+p1:end_turn 2020/08/08 00:50:01 
+p2:end_turn 2020/08/08 00:50:02 
+p1:end_turn 2020/08/08 00:50:02 
+p1:play_card 2020/08/08 00:50:03 Hogger
+p2:end_turn 2020/08/08 00:50:04 
+p1:end_turn 2020/08/08 00:50:05 
+p2:end_turn 2020/08/08 00:50:05 
+p1:end_turn 2020/08/08 00:50:05 
+p2:end_turn 2020/08/08 00:50:06 
+p1:end_turn 2020/08/08 00:50:06 
+p1:play_card 2020/08/08 00:50:07 Tomb Warden
+p2:end_turn 2020/08/08 00:50:08 
+p1:end_turn 2020/08/08 00:51:06 
+p2:end_turn 2020/08/08 00:51:07 
+p1:end_turn 2020/08/08 00:52:07 
+p2:end_turn 2020/08/08 00:53:07 
+p1:end_turn 2020/08/08 00:54:07 
+p2:end_turn 2020/08/08 00:55:07 

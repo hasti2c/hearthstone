@@ -1,0 +1,18 @@
+GAME_ID: 194
+STARTED_AT:  2020/08/05 20:31:42 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: pppp
+
+p2: hasti
+p2_hero: warlock
+p2_deck: pppp
+
+p2:end_turn 2020/08/05 20:31:43 
+p1:end_turn 2020/08/05 20:31:44 
+p1:play_card 2020/08/05 20:31:44 Dirty Rat
+p2:end_turn 2020/08/05 20:31:45 
+p1:end_turn 2020/08/05 20:31:46 
+p1:play_card 2020/08/05 20:31:56 Learn Draconic
+p2:end_turn 2020/08/05 20:32:45 

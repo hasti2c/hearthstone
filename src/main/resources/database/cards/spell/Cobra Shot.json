@@ -1,12 +1,38 @@
 {
-  "changeStatsAbility": null,
   "mana": 5,
   "price": 10,
   "name": "Cobra Shot",
   "heroClass": "NEUTRAL",
   "description": "Deal 3 damage to a minion and the enemy hero.",
-  "attackAbility": null,
-  "addCardAbility": null,
-  "removeCardAbility": null,
+  "attackAbility": {
+    "abilityType": "BATTLE_CRY",
+    "targetMana": 0,
+    "targetAttack": 0,
+    "nextAttack": {
+      "targetMana": 0,
+      "targetAttack": 0,
+      "targetType": "RANDOM_ENEMY",
+      "targetHealth": 0,
+      "damageAmount": 3,
+      "type": "CONSTANT",
+      "targetElementTypes": [
+        "HERO"
+      ],
+      "times": 1,
+      "hasTaunt": false,
+      "hasRush": false
+    },
+    "targetType": "SELECTED",
+    "targetHealth": 0,
+    "damageAmount": 3,
+    "type": "CONSTANT",
+    "targetElementTypes": [
+      "MINION"
+    ],
+    "times": 1,
+    "hasTaunt": false,
+    "callerSide": "SELF",
+    "hasRush": false
+  },
   "rarity": "COMMON"
 }

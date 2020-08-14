@@ -3,8 +3,7 @@ package elements.cards;
 import elements.abilities.targets.*;
 import elements.*;
 import elements.heros.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.*;
 import shared.*;
 
 import java.io.*;
@@ -144,7 +143,8 @@ public abstract class Card extends Playable implements Targetable, Comparable<Ca
             if (quest == null)
                 return null;
             quest = quest.clone();
-            quest.abilities.get(0).setSpecificTarget(reward);
+            if (quest.abilities.size() > 0)
+                quest.abilities.get(0).setSpecificTarget(reward);
             return quest;
         }
         return null;

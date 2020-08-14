@@ -15,11 +15,13 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import system.game.*;
+import system.game.characters.*;
 
 import java.io.*;
 import java.util.*;
 
 import static commands.types.ServerCommandType.*;
+import static system.game.GameType.DECK_READER;
 
 public class PlayGround extends Directory {
     private final Game game;
@@ -192,13 +194,15 @@ public class PlayGround extends Directory {
 
     //TODO less than 6 cards has bug
     private void displayChooseCards() {
-        if (!game.isDeckReader())
-            (new ChooseCards()).display();
+        (new ChooseCards()).display();
     }
 
     public void display() {
         super.display();
-        displayChooseCards();
+        if (game.getType() != DECK_READER)
+            displayChooseCards();
+        else
+            client.request(new Command<>(START_GAME));
     }
 
     public CharacterGraphics<?> getMyCharacter() {

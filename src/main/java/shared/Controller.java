@@ -4,7 +4,7 @@ import commands.*;
 import commands.types.*;
 import elements.heros.*;
 import system.game.*;
-import system.game.Character;
+import system.game.characters.Character;
 import system.player.*;
 
 import java.time.*;

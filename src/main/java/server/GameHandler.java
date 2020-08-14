@@ -2,9 +2,7 @@ package server;
 
 import elements.cards.*;
 import elements.heros.*;
-import system.game.Character;
 import system.game.*;
-import system.player.*;
 
 import java.util.*;
 
@@ -13,24 +11,16 @@ import static commands.types.ServerCommandType.*;
 public class GameHandler {
     private final ArrayList<ClientHandler> clients = new ArrayList<>();
     private final ArrayList<ArrayList<Card>> readyToStart = new ArrayList<>();
-    private Game game;
+    private final Game game;
 
-    GameHandler (ClientHandler first, ClientHandler second) {
+    GameHandler (GameType gameType, int id, ClientHandler first, ClientHandler second) {
         clients.add(first);
         clients.add(second);
         first.setGameHandler(this);
         second.setGameHandler(this);
         readyToStart.add(null);
         readyToStart.add(null);
-    }
-
-    public void createGame() {
-        GamePlayer firstPlayer = new GamePlayer(clients.get(0), PlayerFaction.FRIENDLY);
-        GamePlayer secondPlayer = new GamePlayer(clients.get(1), PlayerFaction.ENEMY);
-        game = Game.getInstance(new Character[]{firstPlayer, secondPlayer}, 2, false);
-
-        for (ClientHandler client : clients)
-            client.setGame(game);
+        game = gameType.createGame(clients, id);
     }
 
     public boolean startGame(ClientHandler client, ArrayList<Card> cards) {

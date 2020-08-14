@@ -1,5 +1,4 @@
 {
-  "changeStatsAbility": null,
   "mana": 7,
   "price": 10,
   "name": "Firelands Portal",
@@ -9,32 +8,23 @@
     "abilityType": "BATTLE_CRY",
     "targetMana": 0,
     "targetAttack": 0,
-    "nextChangeStats": null,
-    "nextAttack": null,
     "targetType": "SELECTED",
     "targetHealth": 0,
     "damageAmount": 5,
     "nextAddCard": {
-      "abilityType": null,
       "targetMana": 5,
       "targetAttack": 0,
-      "nextChangeStats": null,
-      "nextAttack": null,
       "targetType": "BY_STATS",
       "targetHealth": 0,
-      "nextAddCard": null,
       "type": "OPPONENT_SUMMON",
-      "nextRemoveCard": null,
       "targetElementTypes": [
         "MINION"
       ],
       "times": 1,
       "hasTaunt": false,
-      "callerSide": null,
       "hasRush": false
     },
     "type": "CONSTANT",
-    "nextRemoveCard": null,
     "targetElementTypes": [
       "MINION",
       "HERO"
@@ -44,7 +34,5 @@
     "callerSide": "SELF",
     "hasRush": false
   },
-  "addCardAbility": null,
-  "removeCardAbility": null,
   "rarity": "COMMON"
 }

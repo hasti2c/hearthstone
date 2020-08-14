@@ -1,15 +1,14 @@
 {
   "deckCap": 15,
   "allDecks": [
-    "hi",
-    "meee"
+    "asd"
   ],
   "allHeros": [
     "mage",
     "warlock",
     "priest"
   ],
-  "currentDeck": "hi",
+  "currentDeck": "asd",
   "allCards": [
     "Amani War Bear",
     "Dirty Rat",

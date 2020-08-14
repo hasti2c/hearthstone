@@ -1,7 +1,6 @@
 package shared;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.*;
 
 import java.util.*;
 

@@ -1,5 +1,4 @@
 {
-  "changeStatsAbility": null,
   "mana": 5,
   "price": 10,
   "name": "Flame Lance",
@@ -9,14 +8,10 @@
     "abilityType": "BATTLE_CRY",
     "targetMana": 0,
     "targetAttack": 0,
-    "nextChangeStats": null,
-    "nextAttack": null,
     "targetType": "SELECTED",
     "targetHealth": 0,
     "damageAmount": 8,
-    "nextAddCard": null,
     "type": "CONSTANT",
-    "nextRemoveCard": null,
     "targetElementTypes": [
       "MINION"
     ],
@@ -25,7 +20,5 @@
     "callerSide": "SELF",
     "hasRush": false
   },
-  "addCardAbility": null,
-  "removeCardAbility": null,
   "rarity": "COMMON"
 }

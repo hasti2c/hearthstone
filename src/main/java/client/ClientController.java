@@ -11,7 +11,7 @@ import shared.*;
 import commands.*;
 import commands.types.*;
 import system.game.*;
-import system.game.Character;
+import system.game.characters.Character;
 import system.player.*;
 
 import java.util.*;

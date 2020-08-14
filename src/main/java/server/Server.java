@@ -1,13 +1,11 @@
 package server;
 
 import shared.*;
-import system.game.GameType;
+import system.game.*;
 
 import java.io.*;
 import java.net.*;
 import java.util.*;
-
-import static system.game.GameType.ONLINE_MULTIPLAYER;
 
 public class Server {
     private ServerSocket serverSocket;
@@ -43,7 +41,7 @@ public class Server {
 
     private void initQueues() {
         for (GameType type : GameType.values())
-            if (type.getNeedsQueue())
+            if (type.needsQueue())
                 gameQueues.put(type, new ArrayList<>());
     }
 
@@ -61,8 +59,8 @@ public class Server {
 
     private void pairClients(Pair<ClientHandler, ClientHandler> clients, GameType gameType) {
         ClientHandler first = clients.getFirst(), second = clients.getSecond();
-        GameHandler gameHandler = new GameHandler(first, second);
-        gameHandler.createGame();
+        controller.setGameCount(controller.getGameCount() + 1);
+        new GameHandler(gameType, controller.getGameCount(), first, second);
     }
 
     private class Accepter extends Thread {

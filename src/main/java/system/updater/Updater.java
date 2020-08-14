@@ -64,10 +64,15 @@ public class Updater <O extends Updatable> {
 
             HashMap<String, Field> fieldsMap = fields.getFields();
             for (String name : fieldsMap.keySet()) {
-                jsonWriter.name(name);
                 Field field = fieldsMap.get(name);
                 field.setAccessible(true);
-                update(field.get(object));
+
+                Object value = field.get(object);
+                if (value != null) {
+                    jsonWriter.name(name);
+                    update(value);
+                }
+
                 field.setAccessible(false);
             }
 
@@ -78,15 +83,6 @@ public class Updater <O extends Updatable> {
     }
 
     private void update(Object value) {
-        if (value == null) {
-            try {
-                jsonWriter.nullValue();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return;
-        }
-
         if (!updateList(value))
             updateObject(value);
     }

@@ -4,8 +4,8 @@ import java.io.*;
 
 import elements.*;
 import elements.abilities.targets.*;
-import shared.Methods;
-import system.game.Character;
+import shared.*;
+import system.game.characters.Character;
 import javafx.scene.image.*;
 
 import static elements.ElementType.*;

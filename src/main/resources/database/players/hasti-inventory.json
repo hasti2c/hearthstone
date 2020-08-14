@@ -1,9 +1,8 @@
 {
   "deckCap": 15,
   "allDecks": [
-    "salam",
-    "",
-    "yo"
+    "yo",
+    "awe4ar"
   ],
   "allHeros": [
     "mage",
@@ -12,7 +11,7 @@
     "hunter",
     "rogue"
   ],
-  "currentDeck": "yo",
+  "currentDeck": "awe4ar",
   "allCards": [
     "Amani War Bear",
     "Big Bad Archmage",

@@ -3,8 +3,8 @@ package elements.heros;
 import elements.abilities.*;
 import elements.*;
 import javafx.scene.image.*;
-import shared.Methods;
-import system.game.Character;
+import shared.*;
+import system.game.characters.Character;
 
 import java.io.*;
 

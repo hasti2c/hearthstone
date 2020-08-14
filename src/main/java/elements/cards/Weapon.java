@@ -1,7 +1,7 @@
 package elements.cards;
 
 import javafx.scene.image.*;
-import shared.Methods;
+import shared.*;
 
 import java.io.*;
 

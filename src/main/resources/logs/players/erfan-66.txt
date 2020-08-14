@@ -1,0 +1,20 @@
+USER: erfan
+PASSWORD: semsemsem
+CREATED_AT:  2020/08/14 21:29:36 
+
+signup 2020/08/14 21:29:36 
+login 2020/08/14 21:29:36 
+add 2020/08/14 21:30:07 deck: asd
+select 2020/08/14 21:30:23 deck: asd
+start_game 2020/08/14 21:31:36 game id: 299
+login 2020/08/14 21:50:27 
+start_game 2020/08/14 21:50:49 game id: 300
+login 2020/08/14 21:53:01 
+login 2020/08/14 21:54:36 
+login 2020/08/14 21:57:41 
+login 2020/08/14 22:00:37 
+login 2020/08/14 22:02:45 
+login 2020/08/14 22:04:42 
+login 2020/08/14 22:09:09 
+login 2020/08/14 22:11:21 
+start_game 2020/08/14 22:11:27 game id: 309

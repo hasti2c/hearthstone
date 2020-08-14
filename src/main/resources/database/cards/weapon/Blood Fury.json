@@ -1,5 +1,4 @@
 {
-  "changeStatsAbility": null,
   "mana": 3,
   "attack": 3,
   "price": 25,
@@ -7,8 +6,5 @@
   "name": "Blood Fury",
   "heroClass": "NEUTRAL",
   "description": "",
-  "attackAbility": null,
-  "addCardAbility": null,
-  "removeCardAbility": null,
   "rarity": "RARE"
 }

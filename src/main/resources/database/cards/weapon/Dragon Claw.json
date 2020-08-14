@@ -1,5 +1,4 @@
 {
-  "changeStatsAbility": null,
   "mana": 5,
   "attack": 5,
   "price": 50,
@@ -7,8 +6,5 @@
   "name": "Dragon Claw",
   "heroClass": "NEUTRAL",
   "description": "",
-  "attackAbility": null,
-  "addCardAbility": null,
-  "removeCardAbility": null,
   "rarity": "EPIC"
 }

@@ -4,8 +4,8 @@ import elements.*;
 import elements.abilities.targets.*;
 import shared.*;
 import elements.cards.*;
-import system.game.*;
-import system.game.Character;
+import system.game.characters.Character;
+import system.game.characters.*;
 import system.updater.*;
 
 import java.util.*;
@@ -248,6 +248,10 @@ public abstract class Ability extends Updatable {
     public void setSpecificTarget(Card reward) {
         targetType = SPECIFIC;
         specificTarget = reward;
+    }
+
+    public Element getSpecificTarget() {
+        return specificTarget;
     }
 
     public static Ability getRandomAbility(ArrayList<Ability> abilities) {

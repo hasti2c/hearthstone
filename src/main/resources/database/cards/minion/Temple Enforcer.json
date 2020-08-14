@@ -10,14 +10,10 @@
     "targetMana": 0,
     "targetAttack": 0,
     "healthChange": 3,
-    "nextChangeStats": null,
-    "nextAttack": null,
     "attackChange": 0,
     "targetType": "RANDOM_FRIENDLY",
     "targetHealth": 0,
-    "nextAddCard": null,
     "type": "CONSTANT",
-    "nextRemoveCard": null,
     "giveDivineShield": false,
     "targetElementTypes": [
       "MINION"
@@ -33,9 +29,6 @@
   "price": 10,
   "name": "Temple Enforcer",
   "divineShield": false,
-  "attackAbility": null,
-  "addCardAbility": null,
-  "removeCardAbility": null,
   "taunt": false,
   "rarity": "COMMON"
 }

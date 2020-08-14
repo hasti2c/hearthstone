@@ -3,7 +3,7 @@ package commands;
 import elements.heros.*;
 import shared.*;
 import commands.types.*;
-import system.game.GameType;
+import system.game.*;
 
 import java.util.*;
 

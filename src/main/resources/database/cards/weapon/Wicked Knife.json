@@ -1,5 +1,4 @@
 {
-  "changeStatsAbility": null,
   "mana": 1,
   "attack": 1,
   "price": 10,
@@ -7,8 +6,5 @@
   "name": "Wicked Knife",
   "heroClass": "NEUTRAL",
   "description": "",
-  "attackAbility": null,
-  "addCardAbility": null,
-  "removeCardAbility": null,
   "rarity": "COMMON"
 }

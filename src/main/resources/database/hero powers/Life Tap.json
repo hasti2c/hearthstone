@@ -5,14 +5,10 @@
     "targetMana": 0,
     "targetAttack": 0,
     "healthChange": 1,
-    "nextChangeStats": null,
-    "nextAttack": null,
     "attackChange": 1,
     "targetType": "BATTLEFIELD",
     "targetHealth": 0,
-    "nextAddCard": null,
     "type": "CONSTANT",
-    "nextRemoveCard": null,
     "giveDivineShield": false,
     "targetElementTypes": [
       "MINION"
@@ -26,24 +22,18 @@
   "mana": 2,
   "name": "Life Tap",
   "heroClass": "WARLOCK",
-  "attackAbility": null,
   "healthCost": 2,
   "addCardAbility": {
     "abilityType": "HERO_POWER",
     "targetMana": 0,
     "targetAttack": 0,
-    "nextChangeStats": null,
-    "nextAttack": null,
     "targetType": "MY_DECK",
     "targetHealth": 0,
-    "nextAddCard": null,
     "type": "DRAW",
-    "nextRemoveCard": null,
     "targetElementTypes": [],
     "times": 1,
     "hasTaunt": false,
     "callerSide": "SELF",
     "hasRush": false
-  },
-  "removeCardAbility": null
+  }
 }

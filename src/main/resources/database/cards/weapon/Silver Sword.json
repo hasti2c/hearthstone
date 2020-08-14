@@ -1,5 +1,4 @@
 {
-  "changeStatsAbility": null,
   "mana": 8,
   "attack": 3,
   "price": 25,
@@ -7,8 +6,5 @@
   "name": "Silver Sword",
   "heroClass": "NEUTRAL",
   "description": "After your hero attacks, give your minions +1/+1.",
-  "attackAbility": null,
-  "addCardAbility": null,
-  "removeCardAbility": null,
   "rarity": "RARE"
 }

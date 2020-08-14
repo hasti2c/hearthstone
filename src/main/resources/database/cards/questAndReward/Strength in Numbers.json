@@ -1,48 +1,10 @@
 {
   "questMana": 10,
-  "changeStatsAbility": null,
   "mana": 1,
   "price": 10,
   "name": "Strength in Numbers",
   "heroClass": "NEUTRAL",
   "description": "Sidequest: Spend 10 Mana on minions. Reward: Summon a minion from your deck.",
-  "attackAbility": null,
-  "addCardAbility": null,
-  "removeCardAbility": {
-    "abilityType": "QUEST",
-    "targetMana": 0,
-    "targetAttack": 0,
-    "nextChangeStats": null,
-    "nextAttack": null,
-    "targetType": "MY_DECK",
-    "targetHealth": 0,
-    "nextAddCard": {
-      "abilityType": null,
-      "targetMana": 0,
-      "targetAttack": 0,
-      "nextChangeStats": null,
-      "nextAttack": null,
-      "targetType": "SELF",
-      "targetHealth": 0,
-      "nextAddCard": null,
-      "type": "SUMMON",
-      "nextRemoveCard": null,
-      "targetElementTypes": [],
-      "times": 1,
-      "hasTaunt": false,
-      "callerSide": null,
-      "hasRush": false
-    },
-    "type": "DECK",
-    "nextRemoveCard": null,
-    "targetElementTypes": [
-      "MINION"
-    ],
-    "times": 1,
-    "hasTaunt": false,
-    "callerSide": "SELF",
-    "hasRush": false
-  },
   "questElementType": "MINION",
   "rarity": "COMMON"
 }

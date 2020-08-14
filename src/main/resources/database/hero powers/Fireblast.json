@@ -1,5 +1,4 @@
 {
-  "changeStatsAbility": null,
   "mana": 2,
   "name": "Fireblast",
   "heroClass": "MAGE",
@@ -7,14 +6,10 @@
     "abilityType": "HERO_POWER",
     "targetMana": 0,
     "targetAttack": 0,
-    "nextChangeStats": null,
-    "nextAttack": null,
     "targetType": "SELECTED",
     "targetHealth": 0,
     "damageAmount": 1,
-    "nextAddCard": null,
     "type": "CONSTANT",
-    "nextRemoveCard": null,
     "targetElementTypes": [
       "MINION",
       "HERO"
@@ -24,7 +19,5 @@
     "callerSide": "SELF",
     "hasRush": false
   },
-  "healthCost": 0,
-  "addCardAbility": null,
-  "removeCardAbility": null
+  "healthCost": 0
 }

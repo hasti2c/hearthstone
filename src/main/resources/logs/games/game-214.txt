@@ -1,0 +1,21 @@
+GAME_ID: 214
+STARTED_AT:  2020/08/06 14:07:55 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: pppp
+
+p2: system.game.characters.NPC@68c5dfe2
+p2_hero: warlock
+p2_deck: pppp
+
+p1:end_turn 2020/08/06 14:07:56 
+p1:end_turn 2020/08/06 14:07:56 
+p1:end_turn 2020/08/06 14:07:56 
+p1:end_turn 2020/08/06 14:07:56 
+p1:end_turn 2020/08/06 14:07:56 
+p1:end_turn 2020/08/06 14:07:57 
+p1:end_turn 2020/08/06 14:07:57 
+p1:end_turn 2020/08/06 14:07:57 
+
+ENDED_AT:  2020/08/06 14:07:57 

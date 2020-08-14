@@ -10,14 +10,10 @@
     "targetMana": 0,
     "targetAttack": 0,
     "healthChange": 0,
-    "nextChangeStats": null,
-    "nextAttack": null,
     "attackChange": 0,
     "targetType": "PLAYED",
     "targetHealth": 0,
-    "nextAddCard": null,
     "type": "COPY_HEALTH",
-    "nextRemoveCard": null,
     "giveDivineShield": false,
     "targetElementTypes": [
       "MINION"
@@ -33,9 +29,6 @@
   "price": 100,
   "name": "High Priest Amet",
   "divineShield": false,
-  "attackAbility": null,
-  "addCardAbility": null,
-  "removeCardAbility": null,
   "taunt": false,
   "rarity": "LEGENDARY"
 }

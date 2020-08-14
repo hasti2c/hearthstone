@@ -1,22 +1,16 @@
 {
-  "changeStatsAbility": null,
   "mana": 2,
   "price": 25,
   "name": "Astral Rift",
   "heroClass": "NEUTRAL",
   "description": "Add 2 random minions to your hand.",
-  "attackAbility": null,
   "addCardAbility": {
     "abilityType": "BATTLE_CRY",
     "targetMana": 0,
     "targetAttack": 0,
-    "nextChangeStats": null,
-    "nextAttack": null,
     "targetType": "RANDOM",
     "targetHealth": 0,
-    "nextAddCard": null,
     "type": "HAND",
-    "nextRemoveCard": null,
     "targetElementTypes": [
       "MINION"
     ],
@@ -25,6 +19,5 @@
     "callerSide": "SELF",
     "hasRush": false
   },
-  "removeCardAbility": null,
   "rarity": "RARE"
 }

@@ -5,30 +5,21 @@
     "targetMana": 0,
     "targetAttack": 0,
     "healthChange": 2,
-    "nextChangeStats": null,
-    "nextAttack": null,
     "attackChange": 2,
     "targetType": "SELECTED",
     "targetHealth": 0,
     "nextAddCard": {
-      "abilityType": null,
       "targetMana": 0,
       "targetAttack": 0,
-      "nextChangeStats": null,
-      "nextAttack": null,
       "targetType": "MY_DECK",
       "targetHealth": 0,
-      "nextAddCard": null,
       "type": "DRAW",
-      "nextRemoveCard": null,
       "targetElementTypes": [],
       "times": 1,
       "hasTaunt": false,
-      "callerSide": null,
       "hasRush": false
     },
     "type": "CONSTANT",
-    "nextRemoveCard": null,
     "giveDivineShield": false,
     "targetElementTypes": [
       "MINION"
@@ -44,8 +35,5 @@
   "name": "Hand of Adal",
   "heroClass": "NEUTRAL",
   "description": "Give a minion +2/+2. Draw a card.",
-  "attackAbility": null,
-  "addCardAbility": null,
-  "removeCardAbility": null,
   "rarity": "COMMON"
 }

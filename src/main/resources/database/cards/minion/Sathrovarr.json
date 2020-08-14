@@ -4,24 +4,18 @@
   "description": "BattleCry: Choose a friendly minion. Add a copy of it to your hand, deck, and battlefield.",
   "health": 5,
   "rush": false,
-  "changeStatsAbility": null,
   "mana": 9,
   "attack": 5,
   "price": 100,
   "name": "Sathrovarr",
   "divineShield": false,
-  "attackAbility": null,
   "addCardAbility": {
     "abilityType": "BATTLE_CRY",
     "targetMana": 0,
     "targetAttack": 0,
-    "nextChangeStats": null,
-    "nextAttack": null,
     "targetType": "RANDOM",
     "targetHealth": 0,
-    "nextAddCard": null,
     "type": "ALL_THREE",
-    "nextRemoveCard": null,
     "targetElementTypes": [
       "MINION"
     ],
@@ -30,7 +24,6 @@
     "callerSide": "SELF",
     "hasRush": false
   },
-  "removeCardAbility": null,
   "taunt": false,
   "rarity": "LEGENDARY"
 }

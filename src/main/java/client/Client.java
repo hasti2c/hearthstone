@@ -1,6 +1,6 @@
 package client;
 
-import javafx.application.Platform;
+import javafx.application.*;
 import javafx.stage.*;
 import commands.*;
 import commands.types.*;

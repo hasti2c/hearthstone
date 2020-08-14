@@ -16,7 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import system.player.*;
-import system.game.Character;
+import system.game.characters.Character;
 
 import java.io.*;
 import java.util.*;

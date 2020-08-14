@@ -15,7 +15,7 @@ import javafx.scene.layout.*;
 
 import static commands.types.ServerCommandType.*;
 import static system.game.GameType.*;
-import static system.game.GameType.DECK_READER;
+import static system.game.GameType.*;
 
 public class Home extends Directory {
     private PlayGround playGround;
@@ -152,7 +152,7 @@ public class Home extends Directory {
             vBox.getChildren().remove(passiveHBox);
             singlePlayerButton.setDisable(true);
             multiPlayerButton.setDisable(true);
-            deckReaderButton.setDisable(true);
+            deckReaderButton.setDisable(false);
         }
 
         private void joinGame(GameType gameType) {

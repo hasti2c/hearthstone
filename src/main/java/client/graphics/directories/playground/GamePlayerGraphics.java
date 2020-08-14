@@ -9,7 +9,7 @@ import elements.heros.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import shared.*;
-import system.game.GamePlayer;
+import system.game.characters.GamePlayer;
 import client.graphics.directories.playground.playables.*;
 import javafx.scene.*;
 import javafx.scene.image.*;

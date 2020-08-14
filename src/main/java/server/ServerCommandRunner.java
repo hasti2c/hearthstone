@@ -6,9 +6,8 @@ import elements.cards.*;
 import elements.heros.*;
 import commands.*;
 import commands.types.*;
-import shared.Methods;
-import system.game.Game;
-import system.game.GameType;
+import shared.*;
+import system.game.*;
 import system.player.*;
 
 import java.io.*;
@@ -68,8 +67,6 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
             ret = sellCard(card);
         else if (JOIN_GAME.equals(commandType) && input[0] instanceof GameType gameType)
             ret = joinGame(gameType);
-        else if (DECK_READER.equals(commandType))
-            ret = deckReader();
 
         if (handler.getGame() == null) {
             update(commandType, ret);
@@ -133,7 +130,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         }
 
         GameHandler gameHandler = handler.getGameHandler();
-        handler.respond(new Command<>(UPDATE_GAME, game.getId(), gameHandler.indexOf(handler), gameHandler.getHeroClasses()[0], gameHandler.getHeroClasses()[1], gameHandler.getJsons()[0], gameHandler.getJsons()[1]));
+        handler.respond(new Command<>(UPDATE_GAME, gameHandler.getGame().getType(), game.getId(), gameHandler.indexOf(handler), gameHandler.getHeroClasses()[0], gameHandler.getHeroClasses()[1], gameHandler.getJsons()[0], gameHandler.getJsons()[1]));
     }
 
     private ArrayList<java.lang.Character> getUsernameChars() {
@@ -312,26 +309,12 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private boolean joinGame(GameType gameType) {
-        if (gameType.getNeedsQueue()) {
+        if (gameType.needsQueue()) {
             if (!gameType.canJoin(handler))
                 return false;
             return handler.joinGame(gameType);
         }
         return false;
-    }
-
-    private boolean deckReader() {
-        DeckPair deckPair = DeckPair.getInstance();
-        if (deckPair == null)
-            return false;
-        return createGame(Game.getInstance(handler, deckPair, controller.getGameCount() + 1));
-    }
-
-    private boolean createGame(Game game) {
-        controller.setGameCount(controller.getGameCount() + 1);
-        handler.setGame(game);
-        handler.getOpponent().setGame(game);
-        return true;
     }
 
     private boolean startGame(ArrayList<Card> cards) {

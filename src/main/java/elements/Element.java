@@ -26,7 +26,7 @@ public abstract class Element extends Updatable {
     }
 
     public String toString() {
-        return this.name;
+        return name;
     }
 
     public String getName() {

@@ -2,9 +2,8 @@
   "charge": false,
   "heroClass": "WARLOCK",
   "description": "Battlecry: Deal 1 damage to ALL other characters.",
-  "health": 4,
+  "health": 6,
   "rush": false,
-  "changeStatsAbility": null,
   "mana": 6,
   "attack": 6,
   "price": 25,
@@ -14,14 +13,10 @@
     "abilityType": "BATTLE_CRY",
     "targetMana": 0,
     "targetAttack": 0,
-    "nextChangeStats": null,
-    "nextAttack": null,
     "targetType": "ALL_ELSE",
     "targetHealth": 0,
     "damageAmount": 1,
-    "nextAddCard": null,
     "type": "CONSTANT",
-    "nextRemoveCard": null,
     "targetElementTypes": [
       "MINION",
       "HERO"
@@ -31,8 +26,6 @@
     "callerSide": "SELF",
     "hasRush": false
   },
-  "addCardAbility": null,
-  "removeCardAbility": null,
   "taunt": false,
   "rarity": "RARE"
 }

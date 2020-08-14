@@ -1,5 +1,4 @@
 {
-  "changeStatsAbility": null,
   "mana": 0,
   "name": "Caltrops",
   "heroClass": "HUNTER",
@@ -7,14 +6,10 @@
     "abilityType": "PLAY",
     "targetMana": 0,
     "targetAttack": 0,
-    "nextChangeStats": null,
-    "nextAttack": null,
     "targetType": "PLAYED",
     "targetHealth": 0,
     "damageAmount": 1,
-    "nextAddCard": null,
     "type": "CONSTANT",
-    "nextRemoveCard": null,
     "targetElementTypes": [
       "MINION"
     ],
@@ -23,7 +18,5 @@
     "callerSide": "OPPONENT",
     "hasRush": false
   },
-  "healthCost": 0,
-  "addCardAbility": null,
-  "removeCardAbility": null
+  "healthCost": 0
 }

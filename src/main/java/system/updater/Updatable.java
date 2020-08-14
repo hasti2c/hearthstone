@@ -1,6 +1,7 @@
 package system.updater;
 
 import com.google.gson.stream.*;
+import elements.*;
 import system.configor.*;
 
 import java.io.*;
@@ -11,6 +12,8 @@ public abstract class Updatable implements Configable {
     }
 
     public void updateJson(boolean compact) {
+        if (this instanceof Playable)
+            return;
         try {
             Updater<?> updater = new Updater<>(getName(), this, compact);
             updater.doUpdate();

@@ -5,14 +5,10 @@
     "targetMana": 0,
     "targetAttack": 0,
     "healthChange": 0,
-    "nextChangeStats": null,
-    "nextAttack": null,
     "attackChange": 2,
     "targetType": "MY_WEAPON",
     "targetHealth": 0,
-    "nextAddCard": null,
     "type": "CONSTANT",
-    "nextRemoveCard": null,
     "giveDivineShield": false,
     "targetElementTypes": [],
     "times": 1,
@@ -26,8 +22,5 @@
   "name": "Deadly Poison",
   "heroClass": "ROGUE",
   "description": "Give your weapon +2 Attack.",
-  "attackAbility": null,
-  "addCardAbility": null,
-  "removeCardAbility": null,
   "rarity": "COMMON"
 }

@@ -1,6 +1,7 @@
 package elements.heros;
 
 import elements.cards.*;
+import shared.*;
 import system.configor.*;
 
 import java.io.*;
@@ -45,7 +46,7 @@ public class DeckPair implements Configable {
         return "decks/";
     }
 
-    public Deck[] getDecks() {
-        return new Deck[]{friendlyDeck, enemyDeck};
+    public Pair<Deck, Deck> getDecks() {
+        return new Pair<>(friendlyDeck, enemyDeck);
     }
 }

@@ -4,7 +4,7 @@ import elements.*;
 import elements.cards.*;
 import elements.heros.*;
 import commands.types.*;
-import system.game.GameType;
+import system.game.*;
 
 import java.util.*;
 

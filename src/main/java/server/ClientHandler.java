@@ -4,8 +4,8 @@ import commands.*;
 import commands.types.*;
 import elements.cards.*;
 import shared.*;
-import system.game.Character;
-import system.game.GameType;
+import system.game.characters.Character;
+import system.game.*;
 
 import java.io.*;
 import java.net.*;

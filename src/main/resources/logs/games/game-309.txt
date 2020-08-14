@@ -1,0 +1,15 @@
+GAME_ID: 309
+STARTED_AT:  2020/08/14 22:11:27 
+
+p1: hasti
+p1_hero: mage
+p1_deck: Deck Reader
+
+p2: erfan
+p2_hero: mage
+p2_deck: Deck Reader
+
+p1:play_card 2020/08/14 22:11:37 Learn Draconic
+p2:end_turn 2020/08/14 22:11:39 
+p1:end_turn 2020/08/14 22:11:43 
+p2:end_turn 2020/08/14 22:11:55 
