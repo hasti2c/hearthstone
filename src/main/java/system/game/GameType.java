@@ -59,7 +59,6 @@ public enum GameType {
         Game game = new Game(this, characters, id);
         for (Controller<?> controller : controllers)
             controller.setGame(game);
-        System.out.println("game created: " + game + " " + Arrays.toString(game.getCharacters()));
         return game;
     }
 }

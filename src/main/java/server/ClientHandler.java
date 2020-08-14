@@ -13,12 +13,13 @@ import java.util.*;
 
 public class ClientHandler extends Controller<ServerCommandType> {
     private final ArrayList<Command<ServerCommandType>> commands = new ArrayList<>();
-    private final Object commandsMonitor = new Object();
+    private final Object commandsMonitor = new Object(), connectionMonitor = new Object();
     private final Server server;
     private final Socket socket;
     private final Listener listener;
     private PrintStream printer;
     private GameHandler gameHandler;
+    private boolean isConnected = true;
 
     public ClientHandler(Server server, ServerController controller, Socket socket) {
         this.server = server;
@@ -42,6 +43,10 @@ public class ClientHandler extends Controller<ServerCommandType> {
         while (commands.size() > 0) {
             runner.run(commands.get(0));
             commands.remove(0);
+        }
+        synchronized (connectionMonitor) {
+            if (!isConnected)
+                server.disconnect(this);
         }
     }
 
@@ -107,10 +112,16 @@ public class ClientHandler extends Controller<ServerCommandType> {
 
         @Override
         public void run() {
-            while (true) {
-                Command<ServerCommandType> command = parser.parse(scanner.nextLine());
-                synchronized (commandsMonitor) {
-                    tempCommands.add(command);
+            while (isConnected) {
+                try {
+                    Command<ServerCommandType> command = parser.parse(scanner.nextLine());
+                    synchronized (commandsMonitor) {
+                        tempCommands.add(command);
+                    }
+                } catch (NoSuchElementException e) {
+                    synchronized (connectionMonitor) {
+                        isConnected = false;
+                    }
                 }
             }
         }

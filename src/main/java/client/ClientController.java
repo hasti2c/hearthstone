@@ -75,9 +75,6 @@ public class ClientController extends Controller<ClientCommandType> {
 
     //TODO debug end game
     public void endGame() {
-        Game game = getGame();
-        setGame(null);
-        game.endGame();
         home.getPlayGround().endGame();
     }
 
@@ -118,7 +115,6 @@ public class ClientController extends Controller<ClientCommandType> {
     }
 
     public void gameInitialized(int gameIndex) {
-        System.out.println("game initialized: " + gameIndex);
         home.startGame(gameIndex);
     }
 

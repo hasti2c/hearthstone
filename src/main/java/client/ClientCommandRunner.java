@@ -19,7 +19,6 @@ public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
 
     @Override
     public void run(Command<ClientCommandType> command) {
-        System.out.println(command);
         ClientCommandType type = command.getCommandType();
         Object[] input = command.getInput();
 
@@ -72,7 +71,6 @@ public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
         if (!(input[1] instanceof Integer id && Methods.isArrayOfType(HeroClass.class, input[2], input[3]) && Methods.isArrayOfType(String.class, input[4], input[5])))
             return;
 
-        System.out.println("update game: " + gameType + " " + Arrays.toString(input));
         ArrayList<HeroClass> heroClasses = new ArrayList<>(Arrays.asList((HeroClass) input[2], (HeroClass) input[3]));
         ArrayList<String> jsons = new ArrayList<>(Arrays.asList((String) input[4], (String) input[5]));
 
@@ -90,7 +88,6 @@ public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
     }
 
     private void createGame(GameType gameType, int id, int index, ArrayList<HeroClass> heroClasses, ArrayList<String> jsons) {
-        System.out.println("create game: " + gameType + " " + index);
         controller.setGame(new Game(controller, gameType, id, heroClasses, jsons));
         controller.gameInitialized(index);
     }

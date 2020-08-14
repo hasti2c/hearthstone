@@ -333,7 +333,6 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private boolean createGame(GameType gameType) {
-        System.out.println("can join: " + gameType.canJoin(handler));
         if (!gameType.canJoin(handler))
             return false;
         controller.setGameCount(controller.getGameCount() + 1);

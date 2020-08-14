@@ -166,11 +166,8 @@ public class Home extends Directory {
             game = controller.getCurrentPlayer().getGame();
             game.getCharacters()[0].setPassive(passiveChoiceBox.getValue());
             game.getCharacters()[1].setPassive(passiveChoiceBox.getValue());
-            System.out.println("initing");
             playGround = new PlayGround(game, controller, client, gameIndex);
-            System.out.println("displaying");
             playGround.display();
-            System.out.println("done");
         }
     }
 }

@@ -199,7 +199,6 @@ public class PlayGround extends Directory {
 
     public void display() {
         super.display();
-        System.out.println("super displayed");
         if (game.getType() != DECK_READER)
             displayChooseCards();
         else

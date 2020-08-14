@@ -65,6 +65,13 @@ public class Server {
         return game.createGame(gameType, controller.getGameCount());
     }
 
+    public void disconnect(ClientHandler client) {
+        clients.remove(client);
+        for (ArrayList<ClientHandler> queue : gameQueues.values())
+            queue.remove(client);
+        //TODO disconnect from game
+    }
+
     private class Accepter extends Thread {
         public void run() {
             while (true) {

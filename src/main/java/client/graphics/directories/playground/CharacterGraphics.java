@@ -43,7 +43,6 @@ public abstract class CharacterGraphics <C extends Character> {
         this.character = character;
         playerFaction = character.getPlayerFaction();
         this.isSelf = isSelf;
-        System.out.println("is self: " + isSelf);
         load();
     }
 
