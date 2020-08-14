@@ -39,7 +39,7 @@ public abstract class PopupBox {
         stage.showAndWait();
     }
 
-    protected void close() {
+    public void close() {
         stage.close();
     }
 }

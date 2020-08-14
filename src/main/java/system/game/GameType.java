@@ -5,7 +5,7 @@ import shared.*;
 import system.game.characters.Character;
 import system.game.characters.*;
 
-import java.util.*;
+import java.util.Arrays;
 
 import static system.player.PlayerFaction.*;
 
@@ -21,7 +21,7 @@ public enum GameType {
         this.clientCount = clientCount;
     }
 
-    public boolean needsQueue() {
+    public boolean isMultiPlayer() {
         return clientCount > 1;
     }
 
@@ -31,26 +31,35 @@ public enum GameType {
         return controller.getCurrentDeck() != null;
     }
 
-    public Game createGame(ArrayList<? extends Controller<?>> controllers, int id) {
-        if (controllers.size() != clientCount)
+    public Game createGame(int id, Controller<?>... controllers) {
+        if (controllers.length != clientCount)
             return null;
 
         Character[] characters = new Character[2];
         switch (this) {
+            case SINGLE_PLAYER -> {
+                characters[0] = new GamePlayer(controllers[0], FRIENDLY);
+                characters[1] = new NPC(controllers[0], ENEMY);
+            }
             case ONLINE_MULTIPLAYER -> {
-                characters[0] = new GamePlayer(controllers.get(0), FRIENDLY);
-                characters[1] = new GamePlayer(controllers.get(1), ENEMY);
+                characters[0] = new GamePlayer(controllers[0], FRIENDLY);
+                characters[1] = new GamePlayer(controllers[1], ENEMY);
+            }
+            case OFFLINE_MULTIPLAYER -> {
+                characters[0] = new GamePlayer(controllers[0], FRIENDLY);
+                characters[1] = new GamePlayer(controllers[0], ENEMY);
             }
             case DECK_READER -> {
                 Pair<Deck, Deck> decks = DeckPair.getInstance().getDecks();
-                characters[0] = new GamePlayer(controllers.get(0), FRIENDLY, decks.getFirst());
-                characters[1] = new GamePlayer(controllers.get(1), ENEMY, decks.getSecond());
+                characters[0] = new GamePlayer(controllers[0], FRIENDLY, decks.getFirst());
+                characters[1] = new GamePlayer(controllers[1], ENEMY, decks.getSecond());
             }
         }
 
-        Game game = Game.getInstance(this, characters, id);
+        Game game = new Game(this, characters, id);
         for (Controller<?> controller : controllers)
             controller.setGame(game);
+        System.out.println("game created: " + game + " " + Arrays.toString(game.getCharacters()));
         return game;
     }
 }

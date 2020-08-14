@@ -46,9 +46,9 @@ public class PlayGround extends Directory {
         this.gameIndex = gameIndex;
         for (int i = 0; i < 2; i++) {
             if (game.getCharacters()[i] instanceof GamePlayer gamePlayer)
-                characters[i] = new GamePlayerGraphics(this, client, gamePlayer, i == gameIndex);
+                characters[i] = new GamePlayerGraphics(this, client, gamePlayer, i == gameIndex || gameIndex == -1);
             else
-                characters[i] = new NPCGraphics(this, client, (NPC) game.getCharacters()[i], i == gameIndex);
+                characters[i] = new NPCGraphics(this, client, (NPC) game.getCharacters()[i], i == gameIndex || gameIndex == -1);
             pane.getChildren().add(i, characters[i].getPane());
         }
 
@@ -90,7 +90,7 @@ public class PlayGround extends Directory {
     }
 
     private void configTime() {
-        boolean isMyTurn = getMyCharacter().getCharacter().isMyTurn();
+        boolean isMyTurn = getMyCharacter().getCharacter().isMyTurn() || !game.getType().isMultiPlayer();
         timerLabel.setVisible(isMyTurn);
 
         String timeText;
@@ -116,7 +116,7 @@ public class PlayGround extends Directory {
     }
 
     private void configEndTurnButton() {
-        boolean isMyTurn = getMyCharacter().getCharacter().isMyTurn();
+        boolean isMyTurn = getMyCharacter().getCharacter().isMyTurn() || !game.getType().isMultiPlayer();
         endTurnButton.setDisable(!isMyTurn);
         if (isMyTurn)
             endTurnButton.setText("End Turn");
@@ -199,6 +199,7 @@ public class PlayGround extends Directory {
 
     public void display() {
         super.display();
+        System.out.println("super displayed");
         if (game.getType() != DECK_READER)
             displayChooseCards();
         else
@@ -222,7 +223,7 @@ public class PlayGround extends Directory {
 
         private ChooseCards() {
             ArrayList<Card> cards = new ArrayList<>(), leftInDeck = getMyCharacter().getCharacter().getState().getLeftInDeck();
-            while (cards.size() < 6) {
+            while (cards.size() < 6 && leftInDeck.size() > 0) {
                 Card card = Card.getRandomElement(leftInDeck);
                 if (!cards.contains(card))
                     cards.add(card);

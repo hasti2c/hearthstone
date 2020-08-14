@@ -9,9 +9,8 @@ import elements.cards.*;
 import elements.heros.*;
 import client.graphics.directories.playground.playables.*;
 import javafx.scene.*;
-import javafx.scene.control.*;
 import javafx.scene.image.*;
-import system.game.characters.NPC;
+import system.game.characters.*;
 
 import java.util.*;
 
@@ -33,12 +32,6 @@ public class NPCGraphics extends CharacterGraphics<NPC> {
 
     protected Node getHeroPowerNode(HeroPower heroPower) {
         return (new HeroPowerGraphics(heroPower)).getGroup();
-    }
-
-    protected void configEndTurnButton() {
-        Button button = playGround.getEndTurnButton();
-        button.setDisable(true);
-        button.setText("Waiting...");
     }
 
     protected void handleSelection(Playable playable) {

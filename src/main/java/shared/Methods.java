@@ -5,7 +5,7 @@ import javafx.scene.image.*;
 import java.util.*;
 
 public class Methods {
-    public static <T> boolean isArrayOfType(Class<T> type, Object[] input) {
+    public static <T> boolean isArrayOfType(Class<T> type, Object... input) {
         for (Object o : input)
             if (!type.isAssignableFrom(o.getClass()))
                 return false;

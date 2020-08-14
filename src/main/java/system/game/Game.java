@@ -11,40 +11,31 @@ import system.player.*;
 import java.util.*;
 
 public class Game {
-    private final Character[] characters = new Character[2];
-    private int id;
+    private final Character[] characters;
+    private final int id;
     private int turn = 0;
     private final int playerCount = 2;
-    private Logger logger;
-    private GameType type;
+    private final Logger logger;
+    private final GameType type;
 
-    public static Game getInstance(GameType type, Character[] characters, int id) {
-        Game game = new Game();
-        game.characters[0] = characters[0];
-        game.characters[1] = characters[1];
-        characters[0].setGame(game);
-        characters[1].setGame(game);
-        game.id = id;
-        game.type = type;
-        game.logger = new Logger("src/main/resources/logs/games/game-" + id + ".txt");
-        return game;
+    public Game(GameType type, Character[] characters, int id) {
+        this.characters = characters;
+        characters[0].setGame(this);
+        characters[1].setGame(this);
+        this.id = id;
+        this.type = type;
+        logger = new Logger("src/main/resources/logs/games/game-" + id + ".txt");
     }
-/*
-    public static Game getInstance(Controller<?> controller, int playerCount, int id) {
-        Character[] characters = new Character[2];
-        characters[0] = new GamePlayer(controller, PlayerFaction.FRIENDLY);
-        if (playerCount == 2)
-            characters[1] = new GamePlayer(controller, PlayerFaction.ENEMY);
-        else
-            characters[1] = new NPC(controller.getCurrentHero().clone(), controller.getCurrentDeck().clone(), PlayerFaction.ENEMY);
-        return getInstance(characters, id);
-    }
-*/
-    public static Game getInstance(Controller<?> controller, GameType type, int id, ArrayList<HeroClass> heroClasses, ArrayList<String> json) {
-        Character[] characters = new Character[2];
+
+    public Game(Controller<?> controller, GameType type, int id, ArrayList<HeroClass> heroClasses, ArrayList<String> json) {
+        characters = new Character[2];
         characters[0] = new GamePlayer(controller, heroClasses.get(0), json.get(0), PlayerFaction.FRIENDLY, id);
         characters[1] = new GamePlayer(controller, heroClasses.get(1), json.get(1), PlayerFaction.ENEMY, id);
-        return getInstance(type, characters, id);
+        characters[0].setGame(this);
+        characters[1].setGame(this);
+        this.id = id;
+        this.type = type;
+        logger = new Logger("src/main/resources/logs/games/game-" + id + ".txt");
     }
 
     public void startGame(ArrayList<ArrayList<Card>> cards) {
@@ -123,9 +114,9 @@ public class Game {
             characters[0].addWin();
     }
 
-    public void updateState(String[] jsons) {
+    public void updateState(ArrayList<String> jsons) {
         for (int i = 0; i < playerCount; i++)
-            characters[i].updateState(jsons[i]);
+            characters[i].updateState(jsons.get(i));
     }
 
     public void doEndTurn() {
@@ -134,5 +125,12 @@ public class Game {
 
     public GameType getType() {
         return type;
+    }
+
+    public String[] getJsons() {
+        String[] ret = new String[2];
+        for (int i = 0; i < 2; i++)
+            ret[i] = characters[i].getState().getJson(false);
+        return ret;
     }
 }

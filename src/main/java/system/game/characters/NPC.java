@@ -2,14 +2,14 @@ package system.game.characters;
 
 import elements.abilities.targets.*;
 import elements.cards.*;
-import elements.heros.*;
+import shared.Controller;
 import system.player.*;
 
 import java.util.*;
 
 public class NPC extends Character {
-    public NPC(Hero hero, Deck deck, PlayerFaction playerFaction) {
-        super(hero, deck, playerFaction);
+    public NPC(Controller<?> controller, PlayerFaction playerFaction) {
+        super(controller.getCurrentHero().clone(), controller.getCurrentDeck(), playerFaction);
     }
 
     @Override

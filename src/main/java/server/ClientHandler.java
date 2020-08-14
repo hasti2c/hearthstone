@@ -58,6 +58,14 @@ public class ClientHandler extends Controller<ServerCommandType> {
     }
 
     public boolean startGame(ArrayList<Card> cards) {
+        Game game = currentPlayer.getGame();
+        if (game == null)
+            return false;
+        if (!game.getType().isMultiPlayer()) {
+            game.startGame(new ArrayList<>(Arrays.asList(cards, cards)));
+            return true;
+        }
+
         if (gameHandler == null)
             return false;
         return gameHandler.startGame(this, cards);
@@ -75,11 +83,13 @@ public class ClientHandler extends Controller<ServerCommandType> {
 
     public boolean isMyTurn() {
         if (gameHandler == null)
-            return false;
+            return true;
         return gameHandler.isMyTurn(this);
     }
 
     protected Character getMyCharacter() {
+        if (gameHandler == null)
+            return getGame().getCurrentCharacter();
         return gameHandler.getGame().getCharacters()[gameHandler.indexOf(this)];
     }
 

@@ -118,6 +118,7 @@ public class ClientController extends Controller<ClientCommandType> {
     }
 
     public void gameInitialized(int gameIndex) {
+        System.out.println("game initialized: " + gameIndex);
         home.startGame(gameIndex);
     }
 

@@ -41,7 +41,7 @@ public class Server {
 
     private void initQueues() {
         for (GameType type : GameType.values())
-            if (type.needsQueue())
+            if (type.isMultiPlayer())
                 gameQueues.put(type, new ArrayList<>());
     }
 
@@ -51,16 +51,18 @@ public class Server {
             if (gameQueue.contains(client))
                 return false;
             gameQueue.add(client);
+            boolean ret = true;
             while (gameQueue.size() >= 2)
-                pairClients(new Pair<>(gameQueue.remove(0), gameQueue.remove(0)), gameType);
-            return gameQueue.size() == 0;
+                ret &= pairClients(new Pair<>(gameQueue.remove(0), gameQueue.remove(0)), gameType);
+            return ret && gameQueue.size() == 0;
         }
     }
 
-    private void pairClients(Pair<ClientHandler, ClientHandler> clients, GameType gameType) {
+    private boolean pairClients(Pair<ClientHandler, ClientHandler> clients, GameType gameType) {
         ClientHandler first = clients.getFirst(), second = clients.getSecond();
         controller.setGameCount(controller.getGameCount() + 1);
-        new GameHandler(gameType, controller.getGameCount(), first, second);
+        GameHandler game = new GameHandler(first, second);
+        return game.createGame(gameType, controller.getGameCount());
     }
 
     private class Accepter extends Thread {

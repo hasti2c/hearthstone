@@ -15,6 +15,7 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
+import system.game.*;
 import system.player.*;
 import system.game.characters.Character;
 
@@ -42,11 +43,12 @@ public abstract class CharacterGraphics <C extends Character> {
         this.character = character;
         playerFaction = character.getPlayerFaction();
         this.isSelf = isSelf;
+        System.out.println("is self: " + isSelf);
         load();
     }
 
     private FXMLLoader getLoader() {
-        return new FXMLLoader(GamePlayerGraphics.class.getResource("/fxml/directories/" + (isSelf ? "friendly" : "enemy") + "GamePlayer.fxml"));
+        return new FXMLLoader(GamePlayerGraphics.class.getResource("/fxml/directories/" + (isBottom() ? "friendly" : "enemy") + "GamePlayer.fxml"));
     }
 
     private void load() {
@@ -55,13 +57,18 @@ public abstract class CharacterGraphics <C extends Character> {
         try {
             pane = loader.load();
             pane.setLayoutX(115);
-            if (isSelf)
+            if (isBottom())
                 pane.setLayoutY(387);
             else
                 pane.setLayoutY(0);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean isBottom() {
+        Game game = playGround.getGame();
+        return isSelf && (game.getType().isMultiPlayer() || game.getCharacters()[0] == character);
     }
 
     private void clear() {
@@ -85,9 +92,6 @@ public abstract class CharacterGraphics <C extends Character> {
         configTargets();
         configWeapon();
         configHeroPower();
-
-        if (playGround.getCurrentCharacter() == this)
-            configEndTurnButton();
     }
 
     protected abstract void configMana();
@@ -254,8 +258,6 @@ public abstract class CharacterGraphics <C extends Character> {
         else
             TargetEventHandler.disableNode(heroImagePane);
     }
-
-    protected abstract void configEndTurnButton();
 
     protected ArrayList<Element> getCurrentElementsAndNodes() {
         reloadMinionsHBox();

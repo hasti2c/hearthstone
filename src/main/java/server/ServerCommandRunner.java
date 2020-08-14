@@ -15,6 +15,7 @@ import java.util.*;
 
 import static commands.types.ClientCommandType.*;
 import static commands.types.ServerCommandType.*;
+import static system.game.GameType.*;
 
 public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     protected final ServerController controller;
@@ -129,8 +130,22 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
             return;
         }
 
-        GameHandler gameHandler = handler.getGameHandler();
-        handler.respond(new Command<>(UPDATE_GAME, gameHandler.getGame().getType(), game.getId(), gameHandler.indexOf(handler), gameHandler.getHeroClasses()[0], gameHandler.getHeroClasses()[1], gameHandler.getJsons()[0], gameHandler.getJsons()[1]));
+        GameType type = game.getType();
+        int id = game.getId();
+        String[] jsons = game.getJsons();
+
+        if (type.isMultiPlayer()) {
+            GameHandler gameHandler = handler.getGameHandler();
+            int index = gameHandler.indexOf(handler);
+            HeroClass[] heroClasses = gameHandler.getHeroClasses();
+            handler.respond(new Command<>(UPDATE_GAME, type, id, heroClasses[0], heroClasses[1], jsons[0], jsons[1], index));
+        } else {
+            HeroClass[] heroClasses = new HeroClass[]{game.getCharacters()[0].getHero().getHeroClass(), game.getCharacters()[1].getHero().getHeroClass()};
+            if (type == OFFLINE_MULTIPLAYER)
+                handler.respond(new Command<>(UPDATE_GAME, type, id, heroClasses[0], heroClasses[1], jsons[0], jsons[1]));
+            else
+                handler.respond(new Command<>(UPDATE_GAME, type, id, heroClasses[0], heroClasses[1], jsons[0], jsons[1], 0));
+        }
     }
 
     private ArrayList<java.lang.Character> getUsernameChars() {
@@ -309,12 +324,20 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private boolean joinGame(GameType gameType) {
-        if (gameType.needsQueue()) {
+        if (gameType.isMultiPlayer()) {
             if (!gameType.canJoin(handler))
                 return false;
             return handler.joinGame(gameType);
         }
-        return false;
+        return createGame(gameType);
+    }
+
+    private boolean createGame(GameType gameType) {
+        System.out.println("can join: " + gameType.canJoin(handler));
+        if (!gameType.canJoin(handler))
+            return false;
+        controller.setGameCount(controller.getGameCount() + 1);
+        return gameType.createGame(controller.getGameCount(), handler) != null;
     }
 
     private boolean startGame(ArrayList<Card> cards) {
@@ -328,6 +351,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         return playCard(card, null);
     }
 
+    //TODO bug in turns (offline multiplayer at least)
     private boolean playCard(Card card, Element target) {
         Game game = handler.getGame();
         boolean ret = game.getCurrentCharacter().playCard(card, target);

@@ -15,7 +15,6 @@ import javafx.scene.layout.*;
 
 import static commands.types.ServerCommandType.*;
 import static system.game.GameType.*;
-import static system.game.GameType.*;
 
 public class Home extends Directory {
     private PlayGround playGround;
@@ -89,7 +88,7 @@ public class Home extends Directory {
         @FXML
         private Label deckName;
         @FXML
-        private Button singlePlayerButton, multiPlayerButton, cancelButton, collectionsButton, deckReaderButton;
+        private Button singlePlayerButton, offlineMultiPlayerButton, onlineMultiPlayerButton, cancelButton, collectionsButton, deckReaderButton;
         @FXML
         private ChoiceBox<Passive> passiveChoiceBox;
 
@@ -99,7 +98,8 @@ public class Home extends Directory {
             vBox.getChildren().remove(noDeckHBox);
             cancelButton.setOnAction(e -> close());
             singlePlayerButton.setOnAction(e -> joinGame(SINGLE_PLAYER));
-            multiPlayerButton.setOnAction(e -> joinGame(ONLINE_MULTIPLAYER));
+            offlineMultiPlayerButton.setOnAction(e -> joinGame(OFFLINE_MULTIPLAYER));
+            onlineMultiPlayerButton.setOnAction(e -> joinGame(ONLINE_MULTIPLAYER));
             collectionsButton.setOnAction(e -> displayCollections());
             deckReaderButton.setOnAction(e -> joinGame(DECK_READER));
         }
@@ -131,7 +131,8 @@ public class Home extends Directory {
             vBox.getChildren().remove(noDeckHBox);
 
             singlePlayerButton.setDisable(false);
-            multiPlayerButton.setDisable(false);
+            onlineMultiPlayerButton.setDisable(false);
+            offlineMultiPlayerButton.setDisable(false);
             deckReaderButton.setDisable(false);
 
             Inventory inventory = controller.getCurrentPlayer().getInventory();
@@ -151,7 +152,8 @@ public class Home extends Directory {
             vBox.getChildren().remove(deckHBox);
             vBox.getChildren().remove(passiveHBox);
             singlePlayerButton.setDisable(true);
-            multiPlayerButton.setDisable(true);
+            offlineMultiPlayerButton.setDisable(true);
+            onlineMultiPlayerButton.setDisable(true);
             deckReaderButton.setDisable(false);
         }
 
@@ -164,21 +166,11 @@ public class Home extends Directory {
             game = controller.getCurrentPlayer().getGame();
             game.getCharacters()[0].setPassive(passiveChoiceBox.getValue());
             game.getCharacters()[1].setPassive(passiveChoiceBox.getValue());
-            initPlayGround(gameIndex);
-            displayPlayGround();
-        }
-
-        private void initPlayGround(int gameIndex) {
-            Game game = controller.getCurrentPlayer().getGame();
+            System.out.println("initing");
             playGround = new PlayGround(game, controller, client, gameIndex);
-        }
-
-        private void displayPlayGround() {
+            System.out.println("displaying");
             playGround.display();
-        }
-
-        public void close() {
-            super.close();
+            System.out.println("done");
         }
     }
 }

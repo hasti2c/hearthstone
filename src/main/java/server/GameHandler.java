@@ -11,16 +11,20 @@ import static commands.types.ServerCommandType.*;
 public class GameHandler {
     private final ArrayList<ClientHandler> clients = new ArrayList<>();
     private final ArrayList<ArrayList<Card>> readyToStart = new ArrayList<>();
-    private final Game game;
+    private Game game;
 
-    GameHandler (GameType gameType, int id, ClientHandler first, ClientHandler second) {
+    GameHandler (ClientHandler first, ClientHandler second) {
         clients.add(first);
         clients.add(second);
         first.setGameHandler(this);
         second.setGameHandler(this);
         readyToStart.add(null);
         readyToStart.add(null);
-        game = gameType.createGame(clients, id);
+    }
+
+    public boolean createGame(GameType gameType, int id) {
+        game = gameType.createGame(id, clients.get(0), clients.get(1));
+        return game == null;
     }
 
     public boolean startGame(ClientHandler client, ArrayList<Card> cards) {
@@ -58,13 +62,6 @@ public class GameHandler {
         HeroClass[] ret = new HeroClass[2];
         for (int i = 0; i < 2; i++)
             ret[i] = game.getCharacters()[i].getHero().getHeroClass();
-        return ret;
-    }
-
-    public String[] getJsons() {
-        String[] ret = new String[2];
-        for (int i = 0; i < 2; i++)
-            ret[i] = game.getCharacters()[i].getState().getJson(false);
         return ret;
     }
 

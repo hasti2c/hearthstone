@@ -6,6 +6,10 @@ import elements.heros.*;
 import shared.*;
 import system.game.*;
 
+import java.util.*;
+
+import static system.game.GameType.*;
+
 public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
     private final ClientController controller;
 
@@ -15,6 +19,7 @@ public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
 
     @Override
     public void run(Command<ClientCommandType> command) {
+        System.out.println(command);
         ClientCommandType type = command.getCommandType();
         Object[] input = command.getInput();
 
@@ -42,6 +47,7 @@ public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
                     break;
                 updateGame(gameType, input);
             }
+            //TODO end game
             case END_GAME -> controller.endGame();
         }
         controller.config();
@@ -63,21 +69,29 @@ public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
     }
 
     private void updateGame(GameType gameType, Object ...input) {
-        switch (gameType) {
-            case ONLINE_MULTIPLAYER, DECK_READER: {
-                if (input[1] instanceof Integer id && input[2] instanceof Integer index && Methods.isArrayOfType(HeroClass.class, new Object[]{input[3], input[4]}) && Methods.isArrayOfType(String.class, new Object[]{input[5], input[6]})) {
-                    Game game = controller.getGame();
-                    if (game == null)
-                        createGame(gameType, id, index, new HeroClass[]{(HeroClass) input[3], (HeroClass) input[4]}, new String[]{(String) input[5], (String) input[6]});
-                    else
-                        game.updateState(new String[]{(String) input[5], (String) input[6]});
-                }
-            }
-        }
+        if (!(input[1] instanceof Integer id && Methods.isArrayOfType(HeroClass.class, input[2], input[3]) && Methods.isArrayOfType(String.class, input[4], input[5])))
+            return;
+
+        System.out.println("update game: " + gameType + " " + Arrays.toString(input));
+        ArrayList<HeroClass> heroClasses = new ArrayList<>(Arrays.asList((HeroClass) input[2], (HeroClass) input[3]));
+        ArrayList<String> jsons = new ArrayList<>(Arrays.asList((String) input[4], (String) input[5]));
+
+        Game game = controller.getGame();
+        if (game != null)
+            game.updateState(jsons);
+        else if (gameType == OFFLINE_MULTIPLAYER)
+            createGame(gameType, id, heroClasses, jsons);
+        else if (input.length > 6 && input[6] instanceof Integer index)
+            createGame(gameType, id, index, heroClasses, jsons);
     }
 
-    private void createGame(GameType gameType, int id, int index, HeroClass[] heroClasses, String[] jsons) {
-        controller.setGame(Game.getInstance(controller, gameType, id, Methods.getListOfType(HeroClass.class, heroClasses), Methods.getListOfType(String.class, jsons)));
+    private void createGame(GameType gameType, int id, ArrayList<HeroClass> heroClasses, ArrayList<String> jsons) {
+        createGame(gameType, id, -1, heroClasses, jsons);
+    }
+
+    private void createGame(GameType gameType, int id, int index, ArrayList<HeroClass> heroClasses, ArrayList<String> jsons) {
+        System.out.println("create game: " + gameType + " " + index);
+        controller.setGame(new Game(controller, gameType, id, heroClasses, jsons));
         controller.gameInitialized(index);
     }
 }

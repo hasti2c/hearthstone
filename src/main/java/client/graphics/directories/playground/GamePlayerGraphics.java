@@ -6,7 +6,6 @@ import elements.*;
 import elements.abilities.*;
 import elements.cards.*;
 import elements.heros.*;
-import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import shared.*;
 import system.game.characters.GamePlayer;
@@ -49,12 +48,6 @@ public class GamePlayerGraphics extends CharacterGraphics<GamePlayer> {
         Group group = (new HeroPowerGraphics(heroPower)).getGroup();
         group.setOnMouseClicked(e -> useHeroPower(heroPower));
         return group;
-    }
-
-    protected void configEndTurnButton() {
-        Button button = playGround.getEndTurnButton();
-        button.setDisable(false);
-        button.setText("End Turn");
     }
 
     public Client getClient() {
