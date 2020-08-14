@@ -53,9 +53,9 @@ public class Game {
         return getInstance(characters, id, false);
     }
 
-    public void startGame(ArrayList<Card> cards) {
-        characters[0].initialize(cards);
-        characters[1].initialize(cards);
+    public void startGame(ArrayList<ArrayList<Card>> cards) {
+        for (int i = 0; i < characters.length && i < cards.size(); i++)
+            characters[i].initialize(cards.get(i));
         getCurrentCharacter().startTurn();
     }
 
@@ -65,10 +65,6 @@ public class Game {
 
     public Character getCurrentCharacter() {
         return characters[getCurrentPlayerNumber()];
-    }
-
-    public Character getOtherCharacter() {
-        return characters[playerCount - 1 - getCurrentPlayerNumber()];
     }
 
     public Character[] getCharacters() {
@@ -140,5 +136,9 @@ public class Game {
     public void updateState(String[] jsons) {
         for (int i = 0; i < playerCount; i++)
             characters[i].updateState(jsons[i]);
+    }
+
+    public void doEndTurn() {
+        turn++;
     }
 }

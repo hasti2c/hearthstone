@@ -1,10 +1,15 @@
 {
   "deckCap": 15,
+  "allDecks": [
+    "hi",
+    "meee"
+  ],
   "allHeros": [
     "mage",
     "warlock",
     "priest"
   ],
+  "currentDeck": "hi",
   "allCards": [
     "Amani War Bear",
     "Dirty Rat",
@@ -20,10 +25,5 @@
     "Blood Fury",
     "Wicked Knife",
     "Learn Draconic"
-  ],
-  "allDecks": [
-    "hi"
-  ],
-  "currentDeck": "hi",
-  "playerName": "erfan"
+  ]
 }

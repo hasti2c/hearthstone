@@ -4,6 +4,7 @@ import client.*;
 import commands.*;
 import elements.cards.*;
 import system.game.Game;
+import system.game.GameType;
 import system.player.*;
 import client.graphics.directories.collections.*;
 import client.graphics.directories.playground.*;
@@ -13,6 +14,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
 import static commands.types.ServerCommandType.*;
+import static system.game.GameType.*;
+import static system.game.GameType.DECK_READER;
 
 public class Home extends Directory {
     private PlayGround playGround;
@@ -69,8 +72,12 @@ public class Home extends Directory {
         return playGround;
     }
 
-    public void startGame() {
-        gameBeginning.startGame();
+    public void startGame(int gameIndex) {
+        gameBeginning.startGame(gameIndex);
+    }
+
+    public void closeGameBeginning() {
+        gameBeginning.close();
     }
 
     private class GameStartPage extends PopupBox {
@@ -91,13 +98,10 @@ public class Home extends Directory {
             vBox.getChildren().remove(passiveHBox);
             vBox.getChildren().remove(noDeckHBox);
             cancelButton.setOnAction(e -> close());
-            singlePlayerButton.setOnAction(e -> joinGame(1));
-            multiPlayerButton.setOnAction(e -> joinGame(2));
+            singlePlayerButton.setOnAction(e -> joinGame(SINGLE_PLAYER));
+            multiPlayerButton.setOnAction(e -> joinGame(ONLINE_MULTIPLAYER));
             collectionsButton.setOnAction(e -> displayCollections());
-            deckReaderButton.setOnAction(e -> {
-                close();
-                client.request(new Command<>(DECK_READER));
-            });
+            deckReaderButton.setOnAction(e -> joinGame(DECK_READER));
         }
 
         private void clear() {
@@ -151,26 +155,30 @@ public class Home extends Directory {
             deckReaderButton.setDisable(true);
         }
 
-        private void joinGame(int playerCount) {
-            client.request(new Command<>(JOIN_GAME, playerCount));
+        private void joinGame(GameType gameType) {
+            client.request(new Command<>(JOIN_GAME, gameType));
         }
 
-        public void startGame() {
+        public void startGame(int gameIndex) {
             close();
             game = controller.getCurrentPlayer().getGame();
             game.getCharacters()[0].setPassive(passiveChoiceBox.getValue());
             game.getCharacters()[1].setPassive(passiveChoiceBox.getValue());
-            initPlayGround();
+            initPlayGround(gameIndex);
             displayPlayGround();
         }
 
-        private void initPlayGround() {
+        private void initPlayGround(int gameIndex) {
             Game game = controller.getCurrentPlayer().getGame();
-            playGround = new PlayGround(game, controller, client);
+            playGround = new PlayGround(game, controller, client, gameIndex);
         }
 
         private void displayPlayGround() {
             playGround.display();
+        }
+
+        public void close() {
+            super.close();
         }
     }
 }

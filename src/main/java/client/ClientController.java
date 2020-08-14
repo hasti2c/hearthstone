@@ -11,6 +11,7 @@ import shared.*;
 import commands.*;
 import commands.types.*;
 import system.game.*;
+import system.game.Character;
 import system.player.*;
 
 import java.util.*;
@@ -116,8 +117,16 @@ public class ClientController extends Controller<ClientCommandType> {
             collections.displayHeroChangeError();
     }
 
-    public void gameInitialized() {
-        home.startGame();
+    public void gameInitialized(int gameIndex) {
+        home.startGame(gameIndex);
+    }
+
+    public void joinGameResult(Boolean result) {
+        //TODO don't suddenly start
+        if (!result) {
+            new AlertBox("You have joined the queue. The game will automatically start when we find an opponent for you. \nNote: If you were already in the queue, you weren't put in it again.", "Okay").display();
+            home.closeGameBeginning();
+        }
     }
 
     public void startGameResult(boolean result) {
@@ -132,5 +141,12 @@ public class ClientController extends Controller<ClientCommandType> {
     public void endTurnResult(Boolean result) {
         if (result)
             home.getPlayGround().doEndTurn();
+    }
+
+    @Override
+    protected Character getMyCharacter() {
+        if (home.getPlayGround() == null)
+            return null;
+        return home.getPlayGround().getMyCharacter().getCharacter();
     }
 }

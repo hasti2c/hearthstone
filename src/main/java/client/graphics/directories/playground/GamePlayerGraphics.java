@@ -15,8 +15,8 @@ import javafx.scene.*;
 import javafx.scene.image.*;
 
 public class GamePlayerGraphics extends CharacterGraphics<GamePlayer> {
-    GamePlayerGraphics(PlayGround playGround, Client client, GamePlayer gamePlayer) {
-        super(playGround, client, gamePlayer);
+    GamePlayerGraphics(PlayGround playGround, Client client, GamePlayer gamePlayer, boolean isSelf) {
+        super(playGround, client, gamePlayer, isSelf);
     }
 
     protected void configMana() {

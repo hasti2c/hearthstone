@@ -3,6 +3,7 @@ package elements.heros;
 import elements.abilities.*;
 import elements.*;
 import javafx.scene.image.*;
+import shared.Methods;
 import system.game.Character;
 
 import java.io.*;
@@ -60,10 +61,7 @@ public class HeroPower extends Playable {
                 e.printStackTrace();
             }
         }
-        ImageView closedImageView = new ImageView(closedImage);
-        closedImageView.setPreserveRatio(true);
-        closedImageView.setFitWidth(125);
-        return closedImageView;
+        return Methods.getImageView(closedImage, 125, -1);
     }
 
     public boolean isPassive() {

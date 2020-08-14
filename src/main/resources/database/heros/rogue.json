@@ -1,6 +1,6 @@
 {
+  "heroPower": "Dagger Mastery",
   "name": "rogue",
   "heroClass": "ROGUE",
-  "health": 30,
-  "heroPower": "Dagger Mastery"
+  "health": 30
 }

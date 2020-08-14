@@ -1,6 +1,0 @@
-USER: grayhaste
-PASSWORD: hastilyi
-CREATED_AT:  2020/08/08 17:51:20 
-
-signup 2020/08/08 17:51:20 
-login 2020/08/08 17:51:20 

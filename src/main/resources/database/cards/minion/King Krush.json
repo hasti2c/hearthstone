@@ -1,11 +1,18 @@
 {
-  "name": "King Krush",
+  "charge": true,
+  "heroClass": "HUNTER",
   "description": "Charge",
-  "mana": 9,
   "health": 8,
+  "rush": false,
+  "changeStatsAbility": null,
+  "mana": 9,
   "attack": 8,
   "price": 100,
-  "heroClass": "HUNTER",
-  "rarity": "LEGENDARY",
-  "charge": true
+  "name": "King Krush",
+  "divineShield": false,
+  "attackAbility": null,
+  "addCardAbility": null,
+  "removeCardAbility": null,
+  "taunt": false,
+  "rarity": "LEGENDARY"
 }

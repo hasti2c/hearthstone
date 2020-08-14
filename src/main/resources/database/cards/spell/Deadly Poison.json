@@ -1,15 +1,33 @@
 {
-  "name": "Deadly Poison",
-  "description": "Give your weapon +2 Attack.",
-  "mana": 1,
-  "price": 10,
-  "heroClass": "ROGUE",
-  "rarity": "COMMON",
   "changeStatsAbility": {
     "abilityType": "BATTLE_CRY",
-    "callerSide": "SELF",
+    "durabilityChange": 0,
+    "targetMana": 0,
+    "targetAttack": 0,
+    "healthChange": 0,
+    "nextChangeStats": null,
+    "nextAttack": null,
+    "attackChange": 2,
     "targetType": "MY_WEAPON",
+    "targetHealth": 0,
+    "nextAddCard": null,
     "type": "CONSTANT",
-    "attackChange": 2
-  }
+    "nextRemoveCard": null,
+    "giveDivineShield": false,
+    "targetElementTypes": [],
+    "times": 1,
+    "hasTaunt": false,
+    "giveTaunt": false,
+    "callerSide": "SELF",
+    "hasRush": false
+  },
+  "mana": 1,
+  "price": 10,
+  "name": "Deadly Poison",
+  "heroClass": "ROGUE",
+  "description": "Give your weapon +2 Attack.",
+  "attackAbility": null,
+  "addCardAbility": null,
+  "removeCardAbility": null,
+  "rarity": "COMMON"
 }

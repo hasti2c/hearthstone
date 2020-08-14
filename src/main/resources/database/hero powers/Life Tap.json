@@ -1,23 +1,49 @@
 {
-  "name": "Life Tap",
-  "heroClass": "WARLOCK",
-  "mana": 2,
-  "healthCost": 2,
   "changeStatsAbility": {
     "abilityType": "HERO_POWER",
-    "callerSide": "SELF",
+    "durabilityChange": 0,
+    "targetMana": 0,
+    "targetAttack": 0,
+    "healthChange": 1,
+    "nextChangeStats": null,
+    "nextAttack": null,
+    "attackChange": 1,
     "targetType": "BATTLEFIELD",
+    "targetHealth": 0,
+    "nextAddCard": null,
+    "type": "CONSTANT",
+    "nextRemoveCard": null,
+    "giveDivineShield": false,
     "targetElementTypes": [
       "MINION"
     ],
-    "type": "CONSTANT",
-    "attackChange": 1,
-    "healthChange": 1
+    "times": 1,
+    "hasTaunt": false,
+    "giveTaunt": false,
+    "callerSide": "SELF",
+    "hasRush": false
   },
+  "mana": 2,
+  "name": "Life Tap",
+  "heroClass": "WARLOCK",
+  "attackAbility": null,
+  "healthCost": 2,
   "addCardAbility": {
     "abilityType": "HERO_POWER",
-    "callerSide": "SELF",
+    "targetMana": 0,
+    "targetAttack": 0,
+    "nextChangeStats": null,
+    "nextAttack": null,
     "targetType": "MY_DECK",
-    "type": "DRAW"
-  }
+    "targetHealth": 0,
+    "nextAddCard": null,
+    "type": "DRAW",
+    "nextRemoveCard": null,
+    "targetElementTypes": [],
+    "times": 1,
+    "hasTaunt": false,
+    "callerSide": "SELF",
+    "hasRush": false
+  },
+  "removeCardAbility": null
 }

@@ -19,6 +19,7 @@ public class Inventory extends Updatable {
 
     @Override
     public void initialize(String initPlayerName) {
+        playerName = initPlayerName;
         if (currentDeck != null && !allDecks.contains(currentDeck))
             currentDeck = getDeck(currentDeck.toString());
     }
@@ -33,7 +34,7 @@ public class Inventory extends Updatable {
         return "players/";
     }
 
-    public static Inventory copyDefault(Player defaultPlayer) {
+    public static Inventory copyDefault(Player defaultPlayer, String initPlayerName) {
         Inventory defaultInventory = defaultPlayer.getInventory();
         Inventory inventory = new Inventory();
         inventory.deckCap = defaultInventory.getDeckCap();
@@ -47,6 +48,7 @@ public class Inventory extends Updatable {
         if (defaultInventory.currentDeck != null)
             inventory.currentDeck = inventory.getDeck(defaultInventory.currentDeck.toString());
 
+        inventory.initialize(initPlayerName);
         return inventory;
     }
 
@@ -128,7 +130,7 @@ public class Inventory extends Updatable {
     public void update() {
         for (Deck deck : allDecks) {
             deck.update(allCards);
-            if (deck.toString().equals(currentDeck.toString())) {
+            if (currentDeck != null && deck.toString().equals(currentDeck.toString())) {
                 currentDeck = deck;
                 return;
             }

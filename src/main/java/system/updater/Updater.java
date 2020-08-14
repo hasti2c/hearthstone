@@ -33,14 +33,6 @@ public class Updater <O extends Updatable> {
         this.jsonWriter = jsonWriter;
     }
 
-    public Updater(String name, O object) throws FileNotFoundException {
-        this(name, object, true);
-    }
-
-    public Updater(String name, O object, JsonWriter jsonWriter) throws FileNotFoundException {
-        this(name, object, jsonWriter, true);
-    }
-
     private void initialize(String name, O object, boolean compact) throws FileNotFoundException {
         this.name = name;
         this.compact = compact;
@@ -51,6 +43,10 @@ public class Updater <O extends Updatable> {
         fields.setUpdatableClass(object.getClass());
         if (object instanceof Player)
             initPlayerName = name;
+        else if (object instanceof Card)
+            this.compact = true;
+        else if (object instanceof Ability)
+            this.compact = false;
     }
 
     public void doUpdate() {
@@ -90,6 +86,7 @@ public class Updater <O extends Updatable> {
             }
             return;
         }
+
         if (!updateList(value))
             updateObject(value);
     }
@@ -143,14 +140,27 @@ public class Updater <O extends Updatable> {
                 return;
 
             Configable configable = (Configable) value;
-            if ((!Updatable.class.isAssignableFrom(fieldType) || compact || Card.class.isAssignableFrom(fieldType)) && !Ability.class.isAssignableFrom(fieldType)) {
-                jsonWriter.value(configable.getName());
+            if (!Updatable.class.isAssignableFrom(fieldType)) {
+                writeName(configable);
                 return;
             }
 
             Updatable updatable = (Updatable) configable;
             Updater<?> updater = new Updater<>(updatable.getName(), updatable, jsonWriter, compact);
-            updater.update();
+
+            if (updater.compact) {
+                writeName(updatable);
+                updatable.updateJson();
+            } else
+                updater.update();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void writeName(Configable configable) {
+        try {
+            jsonWriter.value(configable.getName());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,6 +1,10 @@
 {
-  "playerName": "hasti",
   "deckCap": 15,
+  "allDecks": [
+    "salam",
+    "",
+    "yo"
+  ],
   "allHeros": [
     "mage",
     "warlock",
@@ -8,6 +12,7 @@
     "hunter",
     "rogue"
   ],
+  "currentDeck": "yo",
   "allCards": [
     "Amani War Bear",
     "Big Bad Archmage",
@@ -46,11 +51,5 @@
     "High Priest Amet",
     "Dreadscale",
     "Dirty Rat"
-  ],
-  "allDecks": [
-    "salam",
-    "",
-    "yo"
-  ],
-  "currentDeck": "yo"
+  ]
 }

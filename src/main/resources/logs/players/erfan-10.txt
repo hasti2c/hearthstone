@@ -1,5 +1,0 @@
-USER: erfan
-PASSWORD: semsemsem
-CREATED_AT:  2020/08/08 15:15:36 
-
-signup 2020/08/08 15:15:36 

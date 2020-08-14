@@ -1,17 +1,34 @@
 {
-  "name": "Tomb Warden",
+  "charge": false,
+  "heroClass": "NEUTRAL",
   "description": "Taunt, Battlecry: Summon a copy of this minion.",
-  "mana": 8,
   "health": 6,
+  "rush": false,
+  "changeStatsAbility": null,
+  "mana": 8,
   "attack": 3,
   "price": 25,
-  "heroClass": "NEUTRAL",
-  "rarity": "RARE",
-  "taunt": true,
+  "name": "Tomb Warden",
+  "divineShield": false,
+  "attackAbility": null,
   "addCardAbility": {
     "abilityType": "BATTLE_CRY",
-    "callerSide": "SELF",
+    "targetMana": 0,
+    "targetAttack": 0,
+    "nextChangeStats": null,
+    "nextAttack": null,
     "targetType": "SELF",
-    "type": "SUMMON"
-  }
+    "targetHealth": 0,
+    "nextAddCard": null,
+    "type": "SUMMON",
+    "nextRemoveCard": null,
+    "targetElementTypes": [],
+    "times": 1,
+    "hasTaunt": false,
+    "callerSide": "SELF",
+    "hasRush": false
+  },
+  "removeCardAbility": null,
+  "taunt": true,
+  "rarity": "RARE"
 }

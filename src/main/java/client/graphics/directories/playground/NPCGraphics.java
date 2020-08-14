@@ -16,8 +16,8 @@ import system.game.*;
 import java.util.*;
 
 public class NPCGraphics extends CharacterGraphics<NPC> {
-    public NPCGraphics(PlayGround playGround, Client client, NPC character) {
-        super(playGround, client, character);
+    public NPCGraphics(PlayGround playGround, Client client, NPC character, boolean isSelf) {
+        super(playGround, client, character, isSelf);
     }
 
     protected void configMana() {

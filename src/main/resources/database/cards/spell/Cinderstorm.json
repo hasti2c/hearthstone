@@ -1,20 +1,32 @@
 {
-  "name": "Cinderstorm",
-  "description": "Deal 5 damage randomly split among all enemies.",
+  "changeStatsAbility": null,
   "mana": 3,
   "price": 25,
+  "name": "Cinderstorm",
   "heroClass": "MAGE",
-  "rarity": "RARE",
+  "description": "Deal 5 damage randomly split among all enemies.",
   "attackAbility": {
     "abilityType": "BATTLE_CRY",
-    "callerSide": "SELF",
+    "targetMana": 0,
+    "targetAttack": 0,
+    "nextChangeStats": null,
+    "nextAttack": null,
     "targetType": "RANDOM_ENEMY",
+    "targetHealth": 0,
+    "damageAmount": 1,
+    "nextAddCard": null,
+    "type": "CONSTANT",
+    "nextRemoveCard": null,
     "targetElementTypes": [
       "MINION",
       "HERO"
     ],
-    "type": "CONSTANT",
-    "damageAmount": 1,
-    "times": 5
-  }
+    "times": 5,
+    "hasTaunt": false,
+    "callerSide": "SELF",
+    "hasRush": false
+  },
+  "addCardAbility": null,
+  "removeCardAbility": null,
+  "rarity": "RARE"
 }

@@ -1,15 +1,28 @@
 {
-  "name": "Sprint",
-  "description": "Draw 4 cards.",
+  "changeStatsAbility": null,
   "mana": 7,
   "price": 10,
+  "name": "Sprint",
   "heroClass": "NEUTRAL",
-  "rarity": "COMMON",
+  "description": "Draw 4 cards.",
+  "attackAbility": null,
   "addCardAbility": {
     "abilityType": "BATTLE_CRY",
-    "callerSide": "SELF",
+    "targetMana": 0,
+    "targetAttack": 0,
+    "nextChangeStats": null,
+    "nextAttack": null,
     "targetType": "MY_DECK",
+    "targetHealth": 0,
+    "nextAddCard": null,
+    "type": "DRAW",
+    "nextRemoveCard": null,
+    "targetElementTypes": [],
     "times": 4,
-    "type": "DRAW"
-  }
+    "hasTaunt": false,
+    "callerSide": "SELF",
+    "hasRush": false
+  },
+  "removeCardAbility": null,
+  "rarity": "COMMON"
 }

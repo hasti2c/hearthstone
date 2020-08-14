@@ -4,6 +4,7 @@ import commands.*;
 import commands.types.*;
 import elements.heros.*;
 import system.game.*;
+import system.game.Character;
 import system.player.*;
 
 import java.time.*;
@@ -24,10 +25,8 @@ public abstract class Controller <T extends CommandType> {
         this.currentPlayer = currentPlayer;
     }
 
-
-
     public Hero getCurrentHero() {
-        if (currentPlayer == null || currentPlayer.getInventory().getCurrentHero() == null)
+        if (currentPlayer == null)
             return null;
         return currentPlayer.getInventory().getCurrentHero();
     }
@@ -42,8 +41,8 @@ public abstract class Controller <T extends CommandType> {
         return switch (name) {
             case "Deck": yield currentPlayer.getInventory().getAllDecks();
             case "Card": yield GameData.getInstance().getCardsList();
-            case "MyElement": yield currentPlayer.getGame().getCharacters()[0].getElements();
-            case "EnemeyElement": yield currentPlayer.getGame().getCharacters()[1].getElements();
+            case "MyElement": yield getMyCharacter().getElements();
+            case "EnemeyElement": yield getMyCharacter().getOpponent().getElements();
             default: yield new ArrayList<>();
         };
     }
@@ -71,4 +70,6 @@ public abstract class Controller <T extends CommandType> {
             return;
         currentPlayer.setGame(game);
     }
+
+    protected abstract Character getMyCharacter();
 }

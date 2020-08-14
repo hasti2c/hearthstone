@@ -4,6 +4,7 @@ import elements.*;
 import elements.cards.*;
 import elements.heros.*;
 import commands.types.*;
+import system.game.GameType;
 
 import java.util.*;
 
@@ -40,6 +41,8 @@ public class Command <T extends CommandType> {
             className = "Boolean";
         else if (isAssignable(HeroClass.class, object))
             className = "HeroClass";
+        else if (isAssignable(GameType.class, object))
+            className = "GameType";
         else if (isAssignable(ServerCommandType.class, object))
             className = "ServerCommandType";
         else if (isAssignable(Deck.class, object))

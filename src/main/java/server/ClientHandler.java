@@ -4,6 +4,8 @@ import commands.*;
 import commands.types.*;
 import elements.cards.*;
 import shared.*;
+import system.game.Character;
+import system.game.GameType;
 
 import java.io.*;
 import java.net.*;
@@ -51,8 +53,8 @@ public class ClientHandler extends Controller<ServerCommandType> {
         this.gameHandler = gameHandler;
     }
 
-    public boolean joinGame() {
-        return server.joinGame(this);
+    public boolean joinGame(GameType gameType) {
+        return server.joinGame(this, gameType);
     }
 
     public boolean startGame(ArrayList<Card> cards) {
@@ -69,6 +71,16 @@ public class ClientHandler extends Controller<ServerCommandType> {
 
     public GameHandler getGameHandler() {
         return gameHandler;
+    }
+
+    public boolean isMyTurn() {
+        if (gameHandler == null)
+            return false;
+        return gameHandler.isMyTurn(this);
+    }
+
+    protected Character getMyCharacter() {
+        return gameHandler.getGame().getCharacters()[gameHandler.indexOf(this)];
     }
 
     private class Listener extends Thread {

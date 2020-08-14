@@ -1,24 +1,52 @@
 {
-  "name": "Dirty Rat",
+  "charge": false,
+  "heroClass": "NEUTRAL",
   "description": "Taunt. Battlecry: Your opponent summons a random minion from their hand.",
-  "mana": 2,
   "health": 6,
+  "rush": false,
+  "changeStatsAbility": null,
+  "mana": 2,
   "attack": 2,
   "price": 50,
-  "heroClass": "NEUTRAL",
-  "rarity": "EPIC",
-  "taunt": true,
+  "name": "Dirty Rat",
+  "divineShield": false,
+  "attackAbility": null,
+  "addCardAbility": null,
   "removeCardAbility": {
     "abilityType": "BATTLE_CRY",
-    "callerSide": "SELF",
+    "targetMana": 0,
+    "targetAttack": 0,
+    "nextChangeStats": null,
+    "nextAttack": null,
     "targetType": "OPPONENT_HAND",
+    "targetHealth": 0,
+    "nextAddCard": {
+      "abilityType": null,
+      "targetMana": 0,
+      "targetAttack": 0,
+      "nextChangeStats": null,
+      "nextAttack": null,
+      "targetType": "SELF",
+      "targetHealth": 0,
+      "nextAddCard": null,
+      "type": "OPPONENT_SUMMON",
+      "nextRemoveCard": null,
+      "targetElementTypes": [],
+      "times": 1,
+      "hasTaunt": false,
+      "callerSide": null,
+      "hasRush": false
+    },
+    "type": "HAND",
+    "nextRemoveCard": null,
     "targetElementTypes": [
       "MINION"
     ],
-    "type": "HAND",
-    "nextAddCard": {
-      "targetType": "SELF",
-      "type": "OPPONENT_SUMMON"
-    }
-  }
+    "times": 1,
+    "hasTaunt": false,
+    "callerSide": "SELF",
+    "hasRush": false
+  },
+  "taunt": true,
+  "rarity": "EPIC"
 }

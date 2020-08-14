@@ -1,20 +1,41 @@
 {
-  "name": "Temple Enforcer",
-  "description": "Give a friendly minion +3 Health.",
-  "mana": 5,
-  "health": 6,
-  "attack": 5,
-  "price": 10,
+  "charge": false,
   "heroClass": "PRIEST",
-  "rarity": "COMMON",
+  "description": "Give a friendly minion +3 Health.",
+  "health": 6,
+  "rush": false,
   "changeStatsAbility": {
     "abilityType": "BATTLE_CRY",
-    "callerSide": "SELF",
+    "durabilityChange": 0,
+    "targetMana": 0,
+    "targetAttack": 0,
+    "healthChange": 3,
+    "nextChangeStats": null,
+    "nextAttack": null,
+    "attackChange": 0,
     "targetType": "RANDOM_FRIENDLY",
+    "targetHealth": 0,
+    "nextAddCard": null,
+    "type": "CONSTANT",
+    "nextRemoveCard": null,
+    "giveDivineShield": false,
     "targetElementTypes": [
       "MINION"
     ],
-    "type": "CONSTANT",
-    "healthChange": 3
-  }
+    "times": 1,
+    "hasTaunt": false,
+    "giveTaunt": false,
+    "callerSide": "SELF",
+    "hasRush": false
+  },
+  "mana": 5,
+  "attack": 5,
+  "price": 10,
+  "name": "Temple Enforcer",
+  "divineShield": false,
+  "attackAbility": null,
+  "addCardAbility": null,
+  "removeCardAbility": null,
+  "taunt": false,
+  "rarity": "COMMON"
 }

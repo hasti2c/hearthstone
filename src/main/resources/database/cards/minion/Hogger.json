@@ -1,22 +1,36 @@
 {
-  "name": "Hogger",
+  "charge": false,
+  "heroClass": "NEUTRAL",
   "description": "At the end of your turn, summon a 2/2 Gnoll with Taunt.",
-  "mana": 6,
   "health": 4,
+  "rush": false,
+  "changeStatsAbility": null,
+  "mana": 6,
   "attack": 4,
   "price": 100,
-  "heroClass": "NEUTRAL",
-  "rarity": "LEGENDARY",
+  "name": "Hogger",
+  "divineShield": false,
+  "attackAbility": null,
   "addCardAbility": {
     "abilityType": "END_TURN",
-    "callerSide": "SELF",
+    "targetMana": 0,
+    "targetAttack": 2,
+    "nextChangeStats": null,
+    "nextAttack": null,
     "targetType": "BY_STATS",
+    "targetHealth": 2,
+    "nextAddCard": null,
+    "type": "SUMMON",
+    "nextRemoveCard": null,
     "targetElementTypes": [
       "MINION"
     ],
-    "targetHealth": 2,
-    "targetAttack": 2,
+    "times": 1,
     "hasTaunt": true,
-    "type": "SUMMON"
-  }
+    "callerSide": "SELF",
+    "hasRush": false
+  },
+  "removeCardAbility": null,
+  "taunt": false,
+  "rarity": "LEGENDARY"
 }

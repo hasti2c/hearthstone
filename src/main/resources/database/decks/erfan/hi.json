@@ -1,7 +1,5 @@
 {
-  "name": "hi",
-  "heroClass": "WARLOCK",
-  "playerName": "erfan",
+  "wins": 0,
   "cards": [
     "Tomb Warden",
     "Tomb Warden",
@@ -14,11 +12,15 @@
     "Sprint",
     "Sprint"
   ],
+  "playerName": "erfan",
+  "name": "hi",
+  "heroClass": "WARLOCK",
+  "games": 0,
   "uses": [
     0,
     0,
     0,
-    0,
+    1,
     0,
     0,
     0,
@@ -26,7 +28,5 @@
     0,
     0
   ],
-  "wins": 0,
-  "games": 0,
   "maxSize": 15
 }

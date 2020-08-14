@@ -1,21 +1,35 @@
 {
-  "name": "Pharaohs Blessing",
-  "description": "Give a minion +4/+4, Divine Shield, and Taunt.",
-  "mana": 6,
-  "price": 25,
-  "heroClass": "NEUTRAL",
-  "rarity": "RARE",
   "changeStatsAbility": {
     "abilityType": "BATTLE_CRY",
-    "callerSide": "SELF",
+    "durabilityChange": 0,
+    "targetMana": 0,
+    "targetAttack": 0,
+    "healthChange": 4,
+    "nextChangeStats": null,
+    "nextAttack": null,
+    "attackChange": 4,
     "targetType": "SELECTED",
+    "targetHealth": 0,
+    "nextAddCard": null,
+    "type": "CONSTANT",
+    "nextRemoveCard": null,
+    "giveDivineShield": true,
     "targetElementTypes": [
       "MINION"
     ],
-    "type": "CONSTANT",
-    "healthChange": 4,
-    "attackChange": 4,
+    "times": 1,
+    "hasTaunt": false,
     "giveTaunt": true,
-    "giveDivineShield": true
-  }
+    "callerSide": "SELF",
+    "hasRush": false
+  },
+  "mana": 6,
+  "price": 25,
+  "name": "Pharaohs Blessing",
+  "heroClass": "NEUTRAL",
+  "description": "Give a minion +4/+4, Divine Shield, and Taunt.",
+  "attackAbility": null,
+  "addCardAbility": null,
+  "removeCardAbility": null,
+  "rarity": "RARE"
 }

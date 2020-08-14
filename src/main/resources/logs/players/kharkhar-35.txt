@@ -1,7 +1,0 @@
-USER: kharkhar
-PASSWORD: kharkhar
-CREATED_AT:  2020/08/08 18:02:29 
-
-signup 2020/08/08 18:02:29 
-login 2020/08/08 18:02:29 
-add 2020/08/08 18:02:41 deck: mee

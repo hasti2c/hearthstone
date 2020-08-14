@@ -4,6 +4,7 @@ import java.io.*;
 
 import elements.*;
 import elements.abilities.targets.*;
+import shared.Methods;
 import system.game.Character;
 import javafx.scene.image.*;
 
@@ -79,17 +80,6 @@ public class Hero extends Element implements Attackable {
     public ImageView getGameImageView(int width, int height) {
         if (gameImage == null)
             configGameImage();
-        ImageView iv = new ImageView(gameImage);
-        if (width == -1) {
-            iv.setPreserveRatio(true);
-            iv.setFitHeight(height);
-        } else if (height == -1) {
-            iv.setPreserveRatio(true);
-            iv.setFitWidth(width);
-        } else {
-            iv.setFitHeight(height);
-            iv.setFitWidth(width);
-        }
-        return iv;
+        return Methods.getImageView(gameImage, width, height);
     }
 }

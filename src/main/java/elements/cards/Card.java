@@ -3,6 +3,8 @@ package elements.cards;
 import elements.abilities.targets.*;
 import elements.*;
 import elements.heros.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import shared.*;
 
 import java.io.*;
@@ -12,6 +14,7 @@ import java.util.*;
 public abstract class Card extends Playable implements Targetable, Comparable<Card> {
     private int price;
     private RarityType rarity;
+    private static Image backImage;
 
     @Override
     public String getJsonPath(String name, String initPlayerName) {
@@ -162,4 +165,23 @@ public abstract class Card extends Playable implements Targetable, Comparable<Ca
                 possibleCards.add(card);
         return getRandomElement(possibleCards);
     }
+
+    private static void configBackImage() {
+        try {
+            FileInputStream input = new FileInputStream("src/main/resources/assets/templates/inhand_card_back.png");
+            backImage = new Image(input);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ImageView getImageView(int width, int height, boolean front) {
+        if (front)
+            return getImageView(width, height);
+        if (backImage == null)
+            configBackImage();
+        return Methods.getImageView(backImage, width, height);
+    }
+
+    //TODO clean image methods
 }

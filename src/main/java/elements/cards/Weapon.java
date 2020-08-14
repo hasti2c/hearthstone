@@ -1,6 +1,8 @@
 package elements.cards;
 
 import javafx.scene.image.*;
+import shared.Methods;
+
 import java.io.*;
 
 import static elements.ElementType.WEAPON;
@@ -53,9 +55,7 @@ public class Weapon extends Card {
                 e.printStackTrace();
             }
         }
-        ImageView closedImageView = new ImageView(closedImage);
-        closedImageView.setPreserveRatio(true);
-        closedImageView.setFitWidth(125);
+        ImageView closedImageView = Methods.getImageView(closedImage, 125, -1);
         closedImageView.setLayoutY(2);
         return closedImageView;
     }

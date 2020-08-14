@@ -1,5 +1,8 @@
 package shared;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import java.util.*;
 
 public class Methods {
@@ -17,5 +20,20 @@ public class Methods {
         for (Object o : input)
             ret.add((T) o);
         return ret;
+    }
+
+    public static ImageView getImageView(Image image, int width, int height) {
+        ImageView iv = new ImageView(image);
+        if (width == -1) {
+            iv.setPreserveRatio(true);
+            iv.setFitHeight(height);
+        } else if (height == -1) {
+            iv.setPreserveRatio(true);
+            iv.setFitWidth(width);
+        } else {
+            iv.setFitHeight(height);
+            iv.setFitWidth(width);
+        }
+        return iv;
     }
 }

@@ -8,6 +8,7 @@ import commands.*;
 import commands.types.*;
 import shared.Methods;
 import system.game.Game;
+import system.game.GameType;
 import system.player.*;
 
 import java.io.*;
@@ -65,8 +66,8 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
             ret = buyCard(card);
         else if (SELL.equals(commandType) && input[0] instanceof Card card)
             ret = sellCard(card);
-        else if (JOIN_GAME.equals(commandType) && input[0] instanceof Integer num)
-            ret = joinGame(num);
+        else if (JOIN_GAME.equals(commandType) && input[0] instanceof GameType gameType)
+            ret = joinGame(gameType);
         else if (DECK_READER.equals(commandType))
             ret = deckReader();
 
@@ -77,7 +78,13 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
 
         if (START_GAME.equals(commandType) && Methods.isArrayOfType(Card.class, input))
             ret = startGame(Methods.getListOfType(Card.class, input));
-        else if (PLAY.equals(commandType) && input[0] instanceof Card card) {
+
+        if (!handler.isMyTurn()) {
+            update(commandType, ret);
+            return;
+        }
+
+        if (PLAY.equals(commandType) && input[0] instanceof Card card) {
             if (input.length < 2)
                 ret = playCard(card);
             else if (input[1] instanceof Element target)
@@ -126,7 +133,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         }
 
         GameHandler gameHandler = handler.getGameHandler();
-        handler.respond(new Command<>(UPDATE_GAME, game.getId(), gameHandler.getHeroClasses()[0], gameHandler.getHeroClasses()[1], gameHandler.getJsons()[0], gameHandler.getJsons()[1]));
+        handler.respond(new Command<>(UPDATE_GAME, game.getId(), gameHandler.indexOf(handler), gameHandler.getHeroClasses()[0], gameHandler.getHeroClasses()[1], gameHandler.getJsons()[0], gameHandler.getJsons()[1]));
     }
 
     private ArrayList<java.lang.Character> getUsernameChars() {
@@ -304,8 +311,13 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         return true;
     }
 
-    private boolean joinGame(int playerCount) {
-        return handler.joinGame();
+    private boolean joinGame(GameType gameType) {
+        if (gameType.getNeedsQueue()) {
+            if (!gameType.canJoin(handler))
+                return false;
+            return handler.joinGame(gameType);
+        }
+        return false;
     }
 
     private boolean deckReader() {

@@ -1,16 +1,34 @@
 {
-  "name": "Heal",
-  "heroClass": "PRIEST",
-  "mana": 2,
   "changeStatsAbility": {
     "abilityType": "HERO_POWER",
-    "callerSide": "SELF",
+    "durabilityChange": 0,
+    "targetMana": 0,
+    "targetAttack": 0,
+    "healthChange": 4,
+    "nextChangeStats": null,
+    "nextAttack": null,
+    "attackChange": 0,
     "targetType": "SELECTED",
+    "targetHealth": 0,
+    "nextAddCard": null,
+    "type": "CONSTANT",
+    "nextRemoveCard": null,
+    "giveDivineShield": false,
     "targetElementTypes": [
       "MINION",
       "HERO"
     ],
-    "type": "CONSTANT",
-    "healthChange": 4
-  }
+    "times": 1,
+    "hasTaunt": false,
+    "giveTaunt": false,
+    "callerSide": "SELF",
+    "hasRush": false
+  },
+  "mana": 2,
+  "name": "Heal",
+  "heroClass": "PRIEST",
+  "attackAbility": null,
+  "healthCost": 0,
+  "addCardAbility": null,
+  "removeCardAbility": null
 }

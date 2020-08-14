@@ -59,7 +59,7 @@ public class Player extends Updatable {
     private void copyDefault() {
         Player defaultPlayer = GameData.getInstance().getDefaultPlayer();
         balance = defaultPlayer.balance;
-        inventory = Inventory.copyDefault(defaultPlayer);
+        inventory = Inventory.copyDefault(defaultPlayer, username);
     }
 
     public boolean loginAttempt(String password) {

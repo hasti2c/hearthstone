@@ -1,12 +1,18 @@
 {
-  "name": "Amani War Bear",
+  "charge": false,
+  "heroClass": "NEUTRAL",
   "description": "Rush, Taunt",
-  "mana": 7,
   "health": 7,
+  "rush": true,
+  "changeStatsAbility": null,
+  "mana": 7,
   "attack": 5,
   "price": 10,
-  "heroClass": "NEUTRAL",
-  "rarity": "COMMON",
-  "rush": true,
-  "taunt": true
+  "name": "Amani War Bear",
+  "divineShield": false,
+  "attackAbility": null,
+  "addCardAbility": null,
+  "removeCardAbility": null,
+  "taunt": true,
+  "rarity": "COMMON"
 }

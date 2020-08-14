@@ -1,8 +1,0 @@
-USER: hastiiiiiijjkk
-PASSWORD: passwordddd
-CREATED_AT:  2020/08/08 17:47:47 
-
-signup 2020/08/08 17:47:47 
-login 2020/08/08 17:47:47 
-add 2020/08/08 17:47:54 deck: hi
-add 2020/08/08 17:48:08 deck: kjkj

@@ -1,6 +1,6 @@
 {
+  "heroPower": "Life Tap",
   "name": "warlock",
   "heroClass": "WARLOCK",
-  "health": 35,
-  "heroPower": "Life Tap"
+  "health": 35
 }

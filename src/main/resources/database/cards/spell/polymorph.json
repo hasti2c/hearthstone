@@ -1,27 +1,48 @@
 {
-  "name": "Polymorph",
-  "description": "Transform a minion into a 1/1 Sheep.",
+  "changeStatsAbility": null,
   "mana": 4,
   "price": 25,
+  "name": "Polymorph",
   "heroClass": "MAGE",
-  "rarity": "RARE",
+  "description": "Transform a minion into a 1/1 Sheep.",
+  "attackAbility": null,
+  "addCardAbility": null,
   "removeCardAbility": {
     "abilityType": "BATTLE_CRY",
-    "callerSide": "SELF",
+    "targetMana": 0,
+    "targetAttack": 0,
+    "nextChangeStats": null,
+    "nextAttack": null,
     "targetType": "SELECTED",
+    "targetHealth": 0,
+    "nextAddCard": {
+      "abilityType": null,
+      "targetMana": 0,
+      "targetAttack": 1,
+      "nextChangeStats": null,
+      "nextAttack": null,
+      "targetType": "BY_STATS",
+      "targetHealth": 1,
+      "nextAddCard": null,
+      "type": "SUMMON",
+      "nextRemoveCard": null,
+      "targetElementTypes": [
+        "MINION"
+      ],
+      "times": 1,
+      "hasTaunt": false,
+      "callerSide": null,
+      "hasRush": false
+    },
+    "type": "BATTLEFIELD",
+    "nextRemoveCard": null,
     "targetElementTypes": [
       "MINION"
     ],
-    "type": "BATTLEFIELD",
-    "nextAddCard": {
-      "targetType": "BY_STATS",
-      "targetHealth": 1,
-      "targetAttack": 1,
-      "targetElementTypes": [
-      "MINION"
-    ],
-      "type": "SUMMON",
-      "insert": true
-    }
-  }
+    "times": 1,
+    "hasTaunt": false,
+    "callerSide": "SELF",
+    "hasRush": false
+  },
+  "rarity": "RARE"
 }

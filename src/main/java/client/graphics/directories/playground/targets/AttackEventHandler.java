@@ -31,13 +31,13 @@ public class AttackEventHandler extends TargetEventHandler {
     @Override
     protected void deselectedMode() {
         playGround.getCurrentCharacter().attackMode();
-        playGround.getOtherCharacter().attackMode();
+        playGround.getCurrentCharacter().getOpponent().attackMode();
     }
 
     @Override
     protected void oneSelectedMode() {
         playGround.getCurrentCharacter().defenseMode((Attackable) targetable);
-        playGround.getOtherCharacter().defenseMode((Attackable) targetable);
+        playGround.getCurrentCharacter().getOpponent().defenseMode((Attackable) targetable);
     }
 
     @Override

@@ -7,19 +7,21 @@ import javafx.scene.control.*;
 import system.game.*;
 
 public class GameEnding extends Directory {
+    private final PlayGround playGround;
     private final Game game;
     @FXML
     private Label label;
 
-    public GameEnding(ClientController controller, Client client, Game game) {
+    public GameEnding(ClientController controller, Client client, PlayGround playGround) {
         super(controller, client);
-        this.game = game;
+        this.playGround = playGround;
+        game = playGround.getGame();
     }
 
     @Override
     public void config() {
-        int friendlyHealth = game.getCharacters()[0].getHero().getHealth();
-        int enemyHealth = game.getCharacters()[1].getHero().getHealth();
+        int friendlyHealth = playGround.getMyCharacter().getCharacter().getHero().getHealth();
+        int enemyHealth = playGround.getMyCharacter().getOpponent().getCharacter().getHero().getHealth();
         if (friendlyHealth <= 0 && enemyHealth <= 0)
             label.setText("IT'S A TIE!");
         else if (friendlyHealth <= 0)

@@ -1,20 +1,36 @@
 {
-  "name": "Big Bad Archmage",
+  "charge": false,
+  "heroClass": "NEUTRAL",
   "description": "At the end of your turn, summon a random 6-Cost minion.",
-  "mana": 10,
   "health": 6,
+  "rush": false,
+  "changeStatsAbility": null,
+  "mana": 10,
   "attack": 6,
   "price": 50,
-  "heroClass": "NEUTRAL",
-  "rarity": "EPIC",
+  "name": "Big Bad Archmage",
+  "divineShield": false,
+  "attackAbility": null,
   "addCardAbility": {
     "abilityType": "END_TURN",
-    "callerSide": "SELF",
+    "targetMana": 6,
+    "targetAttack": 0,
+    "nextChangeStats": null,
+    "nextAttack": null,
     "targetType": "BY_STATS",
+    "targetHealth": 0,
+    "nextAddCard": null,
+    "type": "SUMMON",
+    "nextRemoveCard": null,
     "targetElementTypes": [
       "MINION"
     ],
-    "targetMana": 6,
-    "type": "SUMMON"
-  }
+    "times": 1,
+    "hasTaunt": false,
+    "callerSide": "SELF",
+    "hasRush": false
+  },
+  "removeCardAbility": null,
+  "taunt": false,
+  "rarity": "EPIC"
 }

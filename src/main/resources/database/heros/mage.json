@@ -1,6 +1,6 @@
 {
+  "heroPower": "Fireblast",
   "name": "mage",
   "heroClass": "MAGE",
-  "health": 30,
-  "heroPower": "Fireblast"
+  "health": 30
 }

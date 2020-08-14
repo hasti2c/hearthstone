@@ -12,7 +12,7 @@ import static commands.types.ServerCommandType.*;
 
 public class GameHandler {
     private final ArrayList<ClientHandler> clients = new ArrayList<>();
-    private final ArrayList<Boolean> readyToStart = new ArrayList<>();
+    private final ArrayList<ArrayList<Card>> readyToStart = new ArrayList<>();
     private Game game;
 
     GameHandler (ClientHandler first, ClientHandler second) {
@@ -20,8 +20,8 @@ public class GameHandler {
         clients.add(second);
         first.setGameHandler(this);
         second.setGameHandler(this);
-        readyToStart.add(false);
-        readyToStart.add(false);
+        readyToStart.add(null);
+        readyToStart.add(null);
     }
 
     public void createGame() {
@@ -29,22 +29,21 @@ public class GameHandler {
         GamePlayer secondPlayer = new GamePlayer(clients.get(1), PlayerFaction.ENEMY);
         game = Game.getInstance(new Character[]{firstPlayer, secondPlayer}, 2, false);
 
-        for (ClientHandler client : clients) {
+        for (ClientHandler client : clients)
             client.setGame(game);
-            ((ServerCommandRunner) client.getRunner()).update(JOIN_GAME, true, false);
-        }
     }
 
     public boolean startGame(ClientHandler client, ArrayList<Card> cards) {
         int index = clients.indexOf(client);
         if (index < 0)
             return false;
-        readyToStart.set(index, true);
+        readyToStart.set(index, cards);
         if (isReady()) {
-            game.startGame(cards);
-            ((ServerCommandRunner) clients.get(0).getRunner()).update(START_GAME, true);
-            for (ClientHandler c : clients)
+            game.startGame(readyToStart);
+            for (ClientHandler c : clients) {
+                ((ServerCommandRunner) c.getRunner()).update(START_GAME, true, false);
                 c.getCurrentPlayer().getLogger().log("start_game", "game id: " + game.getId());
+            }
             game.logStartGame();
             return true;
         }
@@ -52,8 +51,8 @@ public class GameHandler {
     }
 
     private boolean isReady() {
-        for (Boolean bool : readyToStart)
-            if (!bool)
+        for (ArrayList<Card> cards : readyToStart)
+            if (cards == null)
                 return false;
         return true;
     }
@@ -77,5 +76,20 @@ public class GameHandler {
         for (int i = 0; i < 2; i++)
             ret[i] = game.getCharacters()[i].getState().getJson(false);
         return ret;
+    }
+
+    public boolean isMyTurn(ClientHandler client) {
+        int index = clients.indexOf(client);
+        if (index < 0)
+            return false;
+        return game.getCharacters()[index].isMyTurn();
+    }
+
+    public int indexOf(ClientHandler client) {
+        return clients.indexOf(client);
+    }
+
+    public Game getGame() {
+        return game;
     }
 }

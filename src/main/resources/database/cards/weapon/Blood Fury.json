@@ -1,10 +1,14 @@
 {
-  "name": "Blood Fury",
-  "description": "",
+  "changeStatsAbility": null,
   "mana": 3,
-  "durability": 8,
   "attack": 3,
   "price": 25,
+  "durability": 8,
+  "name": "Blood Fury",
   "heroClass": "NEUTRAL",
+  "description": "",
+  "attackAbility": null,
+  "addCardAbility": null,
+  "removeCardAbility": null,
   "rarity": "RARE"
-  }
+}

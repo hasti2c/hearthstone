@@ -42,7 +42,8 @@ public class Deck extends Updatable implements Comparable<Deck> {
 
     @Override
     public String getJsonPath(String name, String initPlayerName) {
-        return "decks/" + initPlayerName + "/";
+        String player = initPlayerName == null ? playerName : initPlayerName;
+        return "decks/" + player + "/";
     }
 
     private void resetStats() {

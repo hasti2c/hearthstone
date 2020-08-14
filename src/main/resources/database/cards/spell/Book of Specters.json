@@ -1,16 +1,28 @@
 {
-  "name": "Book of Specters",
-  "description": "Draw 3 cards. Discard any spells drawn.",
+  "changeStatsAbility": null,
   "mana": 2,
   "price": 50,
+  "name": "Book of Specters",
   "heroClass": "NEUTRAL",
-  "rarity": "EPIC",
+  "description": "Draw 3 cards. Discard any spells drawn.",
+  "attackAbility": null,
   "addCardAbility": {
     "abilityType": "BATTLE_CRY",
-    "callerSide": "SELF",
+    "targetMana": 0,
+    "targetAttack": 0,
+    "nextChangeStats": null,
+    "nextAttack": null,
     "targetType": "MY_DECK",
-    "times": 3,
+    "targetHealth": 0,
+    "nextAddCard": null,
     "type": "DRAW",
-    "discardElementType": "SPELL"
-  }
+    "nextRemoveCard": null,
+    "targetElementTypes": [],
+    "times": 3,
+    "hasTaunt": false,
+    "callerSide": "SELF",
+    "hasRush": false
+  },
+  "removeCardAbility": null,
+  "rarity": "EPIC"
 }

@@ -1,6 +1,6 @@
 {
+  "heroPower": "Heal",
   "name": "priest",
   "heroClass": "PRIEST",
-  "health": 30,
-  "heroPower": "Heal"
+  "health": 30
 }

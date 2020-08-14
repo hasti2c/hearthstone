@@ -1,23 +1,74 @@
 {
+  "changeStatsAbility": null,
+  "mana": 3,
   "name": "Dagger Mastery",
   "heroClass": "ROGUE",
-  "mana": 3,
+  "attackAbility": null,
+  "healthCost": 0,
+  "addCardAbility": null,
   "removeCardAbility": {
     "abilityType": "HERO_POWER",
-    "callerSide": "SELF",
+    "targetMana": 0,
+    "targetAttack": 0,
+    "nextChangeStats": null,
+    "nextAttack": null,
     "targetType": "OPPONENT_DECK",
-    "type": "DECK",
+    "targetHealth": 0,
     "nextAddCard": {
+      "abilityType": null,
+      "targetMana": 0,
+      "targetAttack": 0,
+      "nextChangeStats": null,
+      "nextAttack": null,
       "targetType": "SELF",
+      "targetHealth": 0,
+      "nextAddCard": null,
       "type": "HAND",
       "nextRemoveCard": {
+        "abilityType": null,
+        "targetMana": 0,
+        "targetAttack": 0,
+        "nextChangeStats": null,
+        "nextAttack": null,
         "targetType": "OPPONENT_HAND",
-        "type": "HAND",
+        "targetHealth": 0,
         "nextAddCard": {
+          "abilityType": null,
+          "targetMana": 0,
+          "targetAttack": 0,
+          "nextChangeStats": null,
+          "nextAttack": null,
           "targetType": "SELF",
-          "type": "HAND"
-        }
-      }
-    }
+          "targetHealth": 0,
+          "nextAddCard": null,
+          "type": "HAND",
+          "nextRemoveCard": null,
+          "targetElementTypes": [],
+          "times": 1,
+          "hasTaunt": false,
+          "callerSide": null,
+          "hasRush": false
+        },
+        "type": "HAND",
+        "nextRemoveCard": null,
+        "targetElementTypes": [],
+        "times": 1,
+        "hasTaunt": false,
+        "callerSide": null,
+        "hasRush": false
+      },
+      "targetElementTypes": [],
+      "times": 1,
+      "hasTaunt": false,
+      "callerSide": null,
+      "hasRush": false
+    },
+    "type": "DECK",
+    "nextRemoveCard": null,
+    "targetElementTypes": [],
+    "times": 1,
+    "hasTaunt": false,
+    "callerSide": "SELF",
+    "hasRush": false
   }
 }

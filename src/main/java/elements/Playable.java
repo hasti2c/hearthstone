@@ -3,6 +3,7 @@ package elements;
 import elements.cards.*;
 import elements.abilities.*;
 import elements.heros.*;
+import shared.Methods;
 import system.game.Character;
 import javafx.scene.image.*;
 import javafx.scene.paint.*;
@@ -88,18 +89,7 @@ public abstract class Playable extends Element {
     public ImageView getImageView(int width, int height) {
         if (image == null)
             configImage();
-        ImageView iv = new ImageView(image);
-        if (width == -1) {
-            iv.setPreserveRatio(true);
-            iv.setFitHeight(height);
-        } else if (height == -1) {
-            iv.setPreserveRatio(true);
-            iv.setFitWidth(width);
-        } else {
-            iv.setFitHeight(height);
-            iv.setFitWidth(width);
-        }
-        return iv;
+        return Methods.getImageView(image, width, height);
     }
 
     protected abstract String getFullImagePath();

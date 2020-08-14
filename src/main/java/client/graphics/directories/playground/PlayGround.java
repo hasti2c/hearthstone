@@ -26,6 +26,7 @@ public class PlayGround extends Directory {
     private final CharacterGraphics<?>[] characters = new CharacterGraphics<?>[2];
     private int time = 60;
     private final Timer timer;
+    private int gameIndex;
     @FXML
     private Pane pane;
     @FXML
@@ -37,14 +38,15 @@ public class PlayGround extends Directory {
     @FXML
     private HBox topBar;
 
-    public PlayGround(Game game, ClientController controller, Client client) {
+    public PlayGround(Game game, ClientController controller, Client client, int gameIndex) {
         super(controller, client);
         this.game = game;
+        this.gameIndex = gameIndex;
         for (int i = 0; i < 2; i++) {
             if (game.getCharacters()[i] instanceof GamePlayer gamePlayer)
-                characters[i] = new GamePlayerGraphics(this, client, gamePlayer);
+                characters[i] = new GamePlayerGraphics(this, client, gamePlayer, i == gameIndex);
             else
-                characters[i] = new NPCGraphics(this, client, (NPC) game.getCharacters()[i]);
+                characters[i] = new NPCGraphics(this, client, (NPC) game.getCharacters()[i], i == gameIndex);
             pane.getChildren().add(i, characters[i].getPane());
         }
 
@@ -81,11 +83,14 @@ public class PlayGround extends Directory {
         for (CharacterGraphics<?> character : characters)
             character.config();
         configTime();
-        timerLabel.setVisible(game.getCurrentCharacter() instanceof GamePlayer);
+        configEndTurnButton();
         gameEventsLabel.setText("Game Events:\n" + game.getGameEvents());
     }
 
-    public void configTime() {
+    private void configTime() {
+        boolean isMyTurn = getMyCharacter().getCharacter().isMyTurn();
+        timerLabel.setVisible(isMyTurn);
+
         String timeText;
         if (time < 10)
             timeText = "0:0" + time;
@@ -104,7 +109,17 @@ public class PlayGround extends Directory {
         time--;
         if (time <= 0)
             requestEndTurn();
-        configTime();
+        else
+            configTime();
+    }
+
+    private void configEndTurnButton() {
+        boolean isMyTurn = getMyCharacter().getCharacter().isMyTurn();
+        endTurnButton.setDisable(!isMyTurn);
+        if (isMyTurn)
+            endTurnButton.setText("End Turn");
+        else
+            endTurnButton.setText("Waiting...");
     }
 
     private boolean confirm() {
@@ -115,10 +130,6 @@ public class PlayGround extends Directory {
 
     public CharacterGraphics<?> getCurrentCharacter() {
         return characters[game.getCurrentPlayerNumber()];
-    }
-
-    public CharacterGraphics<?> getOtherCharacter() {
-        return characters[game.getPlayerCount() - 1 - game.getCurrentPlayerNumber()];
     }
 
     @Override
@@ -142,7 +153,7 @@ public class PlayGround extends Directory {
     }
 
     public void endGame() {
-        GameEnding gameEnd = new GameEnding(controller, client, game);
+        GameEnding gameEnd = new GameEnding(controller, client, this);
         gameEnd.display();
         timer.exit();
     }
@@ -167,6 +178,7 @@ public class PlayGround extends Directory {
     }
 
     public void doEndTurn() {
+        game.doEndTurn();
         timer.exit();
         time = 60;
         timer.restart();
@@ -189,6 +201,13 @@ public class PlayGround extends Directory {
         displayChooseCards();
     }
 
+    public CharacterGraphics<?> getMyCharacter() {
+        for (CharacterGraphics<?> character : characters)
+            if (character.getIsSelf())
+                return character;
+        return null;
+    }
+
     private class ChooseCards {
         private Pane pane;
         private final ArrayList<Card> cards, mainCards, extraCards;
@@ -198,7 +217,7 @@ public class PlayGround extends Directory {
         private Button continueButton;
 
         private ChooseCards() {
-            ArrayList<Card> cards = new ArrayList<>(), leftInDeck = characters[0].getCharacter().getState().getLeftInDeck();
+            ArrayList<Card> cards = new ArrayList<>(), leftInDeck = getMyCharacter().getCharacter().getState().getLeftInDeck();
             while (cards.size() < 6) {
                 Card card = Card.getRandomElement(leftInDeck);
                 if (!cards.contains(card))

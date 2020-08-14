@@ -1,21 +1,30 @@
 {
-  "name": "Swarm of Locusts",
-  "description": "Summon seven 1/1 Locusts with Rush.",
+  "changeStatsAbility": null,
   "mana": 6,
   "price": 25,
+  "name": "Swarm of Locusts",
   "heroClass": "NEUTRAL",
-  "rarity": "RARE",
+  "description": "Summon seven 1/1 Locusts with Rush.",
+  "attackAbility": null,
   "addCardAbility": {
     "abilityType": "BATTLE_CRY",
-    "callerSide": "SELF",
+    "targetMana": 0,
+    "targetAttack": 1,
+    "nextChangeStats": null,
+    "nextAttack": null,
     "targetType": "BY_STATS",
+    "targetHealth": 1,
+    "nextAddCard": null,
+    "type": "SUMMON",
+    "nextRemoveCard": null,
     "targetElementTypes": [
       "MINION"
     ],
-    "targetHealth": 1,
-    "targetAttack": 1,
-    "hasRush": true,
     "times": 7,
-    "type": "SUMMON"
-  }
+    "hasTaunt": false,
+    "callerSide": "SELF",
+    "hasRush": true
+  },
+  "removeCardAbility": null,
+  "rarity": "RARE"
 }

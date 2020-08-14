@@ -1,5 +1,0 @@
-USER: hastiiiiiaewraew
-PASSWORD: passwordddddddddd
-CREATED_AT:  2020/08/08 17:28:37 
-
-signup 2020/08/08 17:28:37 

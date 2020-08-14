@@ -1,16 +1,35 @@
 {
-  "name": "Swamp King Dred",
+  "charge": false,
+  "heroClass": "HUNTER",
   "description": "After your opponent plays a minion, attack it.",
-  "mana": 7,
   "health": 9,
+  "rush": false,
+  "changeStatsAbility": null,
+  "mana": 7,
   "attack": 9,
   "price": 100,
-  "heroClass": "HUNTER",
-  "rarity": "LEGENDARY",
+  "name": "Swamp King Dred",
+  "divineShield": false,
   "attackAbility": {
     "abilityType": "PLAY",
-    "callerSide": "OPPONENT",
+    "targetMana": 0,
+    "targetAttack": 0,
+    "nextChangeStats": null,
+    "nextAttack": null,
     "targetType": "PLAYED",
-    "type": "NORMAL"
-  }
+    "targetHealth": 0,
+    "damageAmount": 0,
+    "nextAddCard": null,
+    "type": "NORMAL",
+    "nextRemoveCard": null,
+    "targetElementTypes": [],
+    "times": 1,
+    "hasTaunt": false,
+    "callerSide": "OPPONENT",
+    "hasRush": false
+  },
+  "addCardAbility": null,
+  "removeCardAbility": null,
+  "taunt": false,
+  "rarity": "LEGENDARY"
 }

@@ -1,21 +1,32 @@
 {
-  "name": "Learn Draconic",
-  "description": "Spend 8 Mana on spells. Reward: Summon a 6/6 Dragon.",
+  "questMana": 8,
+  "changeStatsAbility": null,
   "mana": 1,
   "price": 10,
+  "name": "Learn Draconic",
   "heroClass": "NEUTRAL",
-  "rarity": "COMMON",
-  "questMana": 8,
-  "questElementType": "SPELL",
+  "description": "Spend 8 Mana on spells. Reward: Summon a 6/6 Dragon.",
+  "attackAbility": null,
   "addCardAbility": {
     "abilityType": "QUEST",
-    "callerSide": "SELF",
+    "targetMana": 0,
+    "targetAttack": 6,
+    "nextChangeStats": null,
+    "nextAttack": null,
     "targetType": "BY_STATS",
+    "targetHealth": 6,
+    "nextAddCard": null,
+    "type": "SUMMON",
+    "nextRemoveCard": null,
     "targetElementTypes": [
       "MINION"
     ],
-    "type": "SUMMON",
-    "targetHealth": 6,
-    "targetAttack": 6
-  }
+    "times": 1,
+    "hasTaunt": false,
+    "callerSide": "SELF",
+    "hasRush": false
+  },
+  "removeCardAbility": null,
+  "questElementType": "SPELL",
+  "rarity": "COMMON"
 }

@@ -1,26 +1,53 @@
 {
-  "name": "Friendly Smith",
-  "description": "Discover a weapon from any class. Add it to your Adventure Deck with +2/+2",
+  "changeStatsAbility": null,
   "mana": 1,
   "price": 10,
+  "name": "Friendly Smith",
   "heroClass": "ROGUE",
-  "rarity": "COMMON",
+  "description": "Discover a weapon from any class. Add it to your Adventure Deck with +2/+2",
+  "attackAbility": null,
   "addCardAbility": {
     "abilityType": "BATTLE_CRY",
+    "targetMana": 0,
+    "targetAttack": 0,
+    "nextChangeStats": {
+      "abilityType": null,
+      "durabilityChange": 4,
+      "targetMana": 0,
+      "targetAttack": 0,
+      "healthChange": 0,
+      "nextChangeStats": null,
+      "nextAttack": null,
+      "attackChange": 4,
+      "targetType": "SELF",
+      "targetHealth": 0,
+      "nextAddCard": null,
+      "type": "CONSTANT",
+      "nextRemoveCard": null,
+      "giveDivineShield": false,
+      "targetElementTypes": [
+        "WEAPON"
+      ],
+      "times": 1,
+      "hasTaunt": false,
+      "giveTaunt": false,
+      "callerSide": "SELF",
+      "hasRush": false
+    },
+    "nextAttack": null,
     "targetType": "DISCOVER",
+    "targetHealth": 0,
+    "nextAddCard": null,
+    "type": "SUMMON",
+    "nextRemoveCard": null,
     "targetElementTypes": [
       "WEAPON"
     ],
-    "type": "SUMMON",
-    "nextChangeStats": {
-      "callerSide": "SELF",
-      "targetType": "SELF",
-      "targetElementTypes": [
-      "WEAPON"
-    ],
-      "type": "CONSTANT",
-      "attackChange": 4,
-      "durabilityChange": 4
-    }
-  }
+    "times": 1,
+    "hasTaunt": false,
+    "callerSide": null,
+    "hasRush": false
+  },
+  "removeCardAbility": null,
+  "rarity": "COMMON"
 }

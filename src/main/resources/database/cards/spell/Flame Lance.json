@@ -1,18 +1,31 @@
 {
-  "name": "Flame Lance",
-  "description": "Deal 8 damage to a minion.",
+  "changeStatsAbility": null,
   "mana": 5,
   "price": 10,
+  "name": "Flame Lance",
   "heroClass": "NEUTRAL",
-  "rarity": "COMMON",
+  "description": "Deal 8 damage to a minion.",
   "attackAbility": {
     "abilityType": "BATTLE_CRY",
-    "callerSide": "SELF",
+    "targetMana": 0,
+    "targetAttack": 0,
+    "nextChangeStats": null,
+    "nextAttack": null,
     "targetType": "SELECTED",
+    "targetHealth": 0,
+    "damageAmount": 8,
+    "nextAddCard": null,
+    "type": "CONSTANT",
+    "nextRemoveCard": null,
     "targetElementTypes": [
       "MINION"
     ],
-    "type": "CONSTANT",
-    "damageAmount": 8
-  }
+    "times": 1,
+    "hasTaunt": false,
+    "callerSide": "SELF",
+    "hasRush": false
+  },
+  "addCardAbility": null,
+  "removeCardAbility": null,
+  "rarity": "COMMON"
 }

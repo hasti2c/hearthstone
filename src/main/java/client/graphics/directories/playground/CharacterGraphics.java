@@ -28,6 +28,7 @@ public abstract class CharacterGraphics <C extends Character> {
     protected final C character;
     protected Pane pane;
     private Attackable selectedAttackable;
+    private final boolean isSelf;
     @FXML
     protected Label hpLabel, manaLabel, deckLabel;
     @FXML
@@ -35,16 +36,17 @@ public abstract class CharacterGraphics <C extends Character> {
     @FXML
     protected Pane weaponPane, heroPowerPane, heroImagePane;
 
-    public CharacterGraphics(PlayGround playGround, Client client, C character) {
+    public CharacterGraphics(PlayGround playGround, Client client, C character, boolean isSelf) {
         this.playGround = playGround;
         this.client = client;
         this.character = character;
         playerFaction = character.getPlayerFaction();
+        this.isSelf = isSelf;
         load();
     }
 
     private FXMLLoader getLoader() {
-        return new FXMLLoader(GamePlayerGraphics.class.getResource("/fxml/directories/" + playerFaction.toString().toLowerCase() + "GamePlayer.fxml"));
+        return new FXMLLoader(GamePlayerGraphics.class.getResource("/fxml/directories/" + (isSelf ? "friendly" : "enemy") + "GamePlayer.fxml"));
     }
 
     private void load() {
@@ -53,10 +55,10 @@ public abstract class CharacterGraphics <C extends Character> {
         try {
             pane = loader.load();
             pane.setLayoutX(115);
-            switch (playerFaction) {
-                case FRIENDLY -> pane.setLayoutY(387);
-                case ENEMY -> pane.setLayoutY(0);
-            }
+            if (isSelf)
+                pane.setLayoutY(387);
+            else
+                pane.setLayoutY(0);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -118,10 +120,11 @@ public abstract class CharacterGraphics <C extends Character> {
         ImageView iv;
         int n = character.getState().getHand().size();
         if (n <= 5)
-            iv = card.getImageView(Math.min(300 / n, 100), -1);
+            iv = card.getImageView(Math.min(300 / n, 100), -1, isSelf);
         else
-            iv = card.getImageView(60, -1);
-        configHandNode(card, iv);
+            iv = card.getImageView(60, -1, isSelf);
+        if (isSelf)
+            configHandNode(card, iv);
         return iv;
     }
 
@@ -312,5 +315,9 @@ public abstract class CharacterGraphics <C extends Character> {
     protected void discoverMode(Ability ability, Playable caller) {
         DiscoverGraphics discover = new DiscoverGraphics(client, this, ability, caller);
         discover.display();
+    }
+
+    public boolean getIsSelf() {
+        return isSelf;
     }
 }

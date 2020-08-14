@@ -1,7 +1,5 @@
 {
-  "name": "yo",
-  "heroClass": "WARLOCK",
-  "playerName": "hasti",
+  "wins": 0,
   "cards": [
     "Dread Infernal",
     "Dread Infernal",
@@ -12,8 +10,12 @@
     "Hogger",
     "Hogger"
   ],
+  "playerName": "hasti",
+  "name": "yo",
+  "heroClass": "WARLOCK",
+  "games": 13,
   "uses": [
-    0,
+    1,
     0,
     0,
     0,
@@ -22,7 +24,5 @@
     0,
     0
   ],
-  "wins": 0,
-  "games": 13,
   "maxSize": 15
 }

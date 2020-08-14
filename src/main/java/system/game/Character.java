@@ -213,7 +213,7 @@ public abstract class Character {
         return (int) Math.floor((double) game.getTurn() / (double) game.getPlayerCount()) + 1;
     }
 
-    private boolean isMyTurn() {
+    public boolean isMyTurn() {
         return game.getTurn() % game.getPlayerCount() == playerNumber;
     }
 
@@ -226,9 +226,10 @@ public abstract class Character {
     }
 
     public Character getOpponent() {
-        if (game.getCurrentCharacter() == this)
-            return game.getOtherCharacter();
-        return game.getCurrentCharacter();
+        Character current = game.getCurrentCharacter();
+        if (current != this)
+            return current.getOpponent();
+        return current;
     }
 
     public boolean canAttack(Attackable attacker) {
