@@ -43,6 +43,8 @@ public class Command <T extends CommandType> {
             className = "HeroClass";
         else if (isAssignable(GameType.class, object))
             className = "GameType";
+        else if (isAssignable(GameEndingType.class, object))
+            className = "GameEndingType";
         else if (isAssignable(ServerCommandType.class, object))
             className = "ServerCommandType";
         else if (isAssignable(Deck.class, object))

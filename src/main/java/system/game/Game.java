@@ -10,6 +10,8 @@ import system.player.*;
 
 import java.util.*;
 
+import static system.game.GameEndingType.*;
+
 public class Game {
     private final Character[] characters;
     private final int id;
@@ -17,25 +19,21 @@ public class Game {
     private final int playerCount = 2;
     private final Logger logger;
     private final GameType type;
+    private GameEndingType gameEndingType;
+    private final GameConfigor gameConfigor;
 
-    public Game(GameType type, Character[] characters, int id) {
+    public Game(GameType type, Character[] characters, int id) throws NoSuchMethodException, ClassNotFoundException {
         this.characters = characters;
         characters[0].setGame(this);
         characters[1].setGame(this);
         this.id = id;
         this.type = type;
         logger = new Logger("src/main/resources/logs/games/game-" + id + ".txt");
+        gameConfigor = GameConfigor.getInstance(this);
     }
 
-    public Game(Controller<?> controller, GameType type, int id, ArrayList<HeroClass> heroClasses, ArrayList<String> json) {
-        characters = new Character[2];
-        characters[0] = new GamePlayer(controller, heroClasses.get(0), json.get(0), PlayerFaction.FRIENDLY, id);
-        characters[1] = new GamePlayer(controller, heroClasses.get(1), json.get(1), PlayerFaction.ENEMY, id);
-        characters[0].setGame(this);
-        characters[1].setGame(this);
-        this.id = id;
-        this.type = type;
-        logger = new Logger("src/main/resources/logs/games/game-" + id + ".txt");
+    public Game(Controller<?> controller, GameType type, int id, ArrayList<HeroClass> heroClasses, ArrayList<String> json) throws NoSuchMethodException, ClassNotFoundException {
+        this(type, new GamePlayer[]{new GamePlayer(controller, heroClasses.get(0), json.get(0), PlayerFaction.FRIENDLY, id), new GamePlayer(controller, heroClasses.get(1), json.get(1), PlayerFaction.ENEMY, id)}, id);
     }
 
     public void startGame(ArrayList<ArrayList<Card>> cards) {
@@ -110,8 +108,22 @@ public class Game {
     public void endGame() {
         int friendlyHealth = characters[0].getHero().getHealth();
         int enemyHealth = characters[1].getHero().getHealth();
-        if (friendlyHealth > 0 && enemyHealth <= 0)
-            characters[0].addWin();
+        if (friendlyHealth > enemyHealth)
+            endGame(FRIENDLY_WIN);
+        else if (enemyHealth > friendlyHealth)
+            endGame(TIE);
+        else
+            endGame(FRIENDLY_LOSS);
+    }
+
+    public void endGame(GameEndingType gameEndingType) {
+        if (gameEndingType.getWinnerIndex() >= 0)
+            characters[gameEndingType.getWinnerIndex()].addWin();
+        this.gameEndingType = gameEndingType;
+    }
+
+    public GameEndingType getGameEndingType() {
+        return gameEndingType;
     }
 
     public void updateState(ArrayList<String> jsons) {
@@ -128,9 +140,31 @@ public class Game {
     }
 
     public String[] getJsons() {
-        String[] ret = new String[2];
-        for (int i = 0; i < 2; i++)
+        String[] ret = new String[playerCount];
+        for (int i = 0; i < playerCount; i++)
             ret[i] = characters[i].getState().getJson(false);
         return ret;
     }
+
+    public String[] getJsons(int index) {
+        String[] ret = new String[playerCount];
+        for (int i = 0; i < playerCount; i++)
+            if (i == index)
+                ret[i] = characters[i].getState().getJson(false);
+            else
+                ret[i] = characters[i].getState().getHiddenJson(false);
+        return ret;
+    }
+
+    public int indexOf(Character character) {
+        for (int i = 0; i < characters.length; i++)
+            if (character == characters[i])
+                return i;
+        return -1;
+    }
+
+    public GameConfigor getConfigor() {
+        return gameConfigor;
+    }
 }
+

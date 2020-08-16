@@ -1,0 +1,14 @@
+GAME_ID: 370
+STARTED_AT:  2020/08/16 14:13:33 
+
+p1: hasti
+p1_hero: mage
+p1_deck: 45e5aw5a
+
+p2: hasti
+p2_hero: mage
+p2_deck: 45e5aw5a
+
+p2:end_turn 2020/08/16 14:13:34 
+p1:end_turn 2020/08/16 14:14:35 
+p2:end_turn 2020/08/16 14:15:35 

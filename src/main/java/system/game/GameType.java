@@ -5,15 +5,14 @@ import shared.*;
 import system.game.characters.Character;
 import system.game.characters.*;
 
-import java.util.Arrays;
-
 import static system.player.PlayerFaction.*;
 
 public enum GameType {
     SINGLE_PLAYER (1),
     ONLINE_MULTIPLAYER (2),
     OFFLINE_MULTIPLAYER (1),
-    DECK_READER (2);
+    DECK_READER (2),
+    TAVERN_BRAWL (2);
 
     private final int clientCount;
 
@@ -31,7 +30,7 @@ public enum GameType {
         return controller.getCurrentDeck() != null;
     }
 
-    public Game createGame(int id, Controller<?>... controllers) {
+    public Game createGame(int id, Controller<?>... controllers) throws NoSuchMethodException, ClassNotFoundException {
         if (controllers.length != clientCount)
             return null;
 
@@ -45,7 +44,7 @@ public enum GameType {
                 characters[0] = new GamePlayer(controllers[0], FRIENDLY);
                 characters[1] = new GamePlayer(controllers[1], ENEMY);
             }
-            case OFFLINE_MULTIPLAYER -> {
+            case OFFLINE_MULTIPLAYER, TAVERN_BRAWL -> {
                 characters[0] = new GamePlayer(controllers[0], FRIENDLY);
                 characters[1] = new GamePlayer(controllers[0], ENEMY);
             }
@@ -56,7 +55,14 @@ public enum GameType {
             }
         }
 
-        Game game = new Game(this, characters, id);
+        Game game;
+        try {
+            game = new Game(this, characters, id);
+        } catch (NoSuchMethodException | ClassNotFoundException e) {
+            if (this == TAVERN_BRAWL)
+                throw e;
+            return null;
+        }
         for (Controller<?> controller : controllers)
             controller.setGame(game);
         return game;

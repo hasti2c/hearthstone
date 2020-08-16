@@ -2,6 +2,7 @@ package client;
 
 import client.graphics.directories.*;
 import client.graphics.directories.collections.Collections;
+import client.graphics.directories.playground.*;
 import client.graphics.popups.*;
 import elements.cards.*;
 import javafx.scene.*;
@@ -74,8 +75,8 @@ public class ClientController extends Controller<ClientCommandType> {
     }
 
     //TODO debug end game
-    public void endGame() {
-        home.getPlayGround().endGame();
+    public void endGame(GameEndingType endingType) {
+        home.getPlayGround().endGame(endingType);
     }
 
     @Override
@@ -84,6 +85,8 @@ public class ClientController extends Controller<ClientCommandType> {
     }
 
     public void setCurrentDirectory(Directory currentDirectory) {
+        if (this.currentDirectory instanceof PlayGround playGround)
+            playGround.leaveGame();
         this.currentDirectory = currentDirectory;
     }
 
@@ -145,5 +148,17 @@ public class ClientController extends Controller<ClientCommandType> {
         if (home.getPlayGround() == null)
             return null;
         return home.getPlayGround().getMyCharacter().getCharacter();
+    }
+
+    public void deleteResult(boolean result) {
+        if (!result) {
+            AlertBox alert = new AlertBox("Your account couldn't be deleted. Please try again.", "Okay");
+            alert.display();
+        }
+    }
+
+    public void fileError() {
+        new AlertBox("There isn't a corrent jar file at \"src/main/resources/TavernBrawl.jar\". Please try again.", "Okay.").display();
+        home.closeGameBeginning();
     }
 }

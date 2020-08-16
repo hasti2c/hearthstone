@@ -59,6 +59,7 @@
          <children>
           <Button fx:id="homeLogoutButton" mnemonicParsing="false" text="Log Out" />
             <Button fx:id="homeExitButton" mnemonicParsing="false" text="Exit Game" />
+            <Button fx:id="deleteAccountButton" mnemonicParsing="false" text="Delete Account" />
          </children>
          <BorderPane.margin>
             <Insets bottom="30.0" />

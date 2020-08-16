@@ -10,7 +10,7 @@ import system.player.*;
 import java.lang.reflect.*;
 import java.util.*;
 
-import static system.game.GameType.DECK_READER;
+import static system.game.GameType.*;
 
 public abstract class Character {
     protected final Hero hero;
@@ -67,7 +67,7 @@ public abstract class Character {
     protected abstract void initializeHelper();
 
     public void startTurn() {
-        if (getMyTurnNumber() != 1)
+        if (getTurnCount() != 1)
             for (int i = 0; i < drawCap; i++)
                 draw();
         state.resetHeroPowerCount();
@@ -76,9 +76,9 @@ public abstract class Character {
             minion.setHasAttacked(false);
         hero.setHasAttacked(false);
 
-        state.setMana(Math.min(getMyTurnNumber(), 10));
+        int mana = game.getConfigor().getTurnMana(this);
         if (passive != null)
-            state.setMana(passive.getTurnManaPromotion(getMyTurnNumber()));
+            state.setMana(mana + passive.getTurnManaPromotion(getTurnCount()));
 
         startTurnHelper();
     }
@@ -119,7 +119,7 @@ public abstract class Character {
 
     private boolean draw(Card card) {
         state.getLeftInDeck().remove(card);
-        if (state.getHand().size() < 12) {
+        if (state.getHand().size() < game.getConfigor().getHandCap(this)) {
             state.getHand().add(card);
             doCardAction("doActionOnDraw");
         }
@@ -134,7 +134,7 @@ public abstract class Character {
         if (game.getType() == DECK_READER)
             return draw(leftInDeck.get(0));
 
-                    ArrayList<Card> questAndReward = new ArrayList<>();
+        ArrayList<Card> questAndReward = new ArrayList<>();
         for (Card c : leftInDeck)
             if (c instanceof elements.cards.QuestAndReward)
                 questAndReward.add(c);
@@ -160,7 +160,7 @@ public abstract class Character {
         ArrayList<Minion> minionsInGame = state.getMinionsInGame();
         ArrayList<Card> hand = state.getHand();
         int mana = state.getMana();
-        if (!isMyTurn() || !hand.contains(card) || mana < card.getGameMana(this) || (card instanceof Minion && minionsInGame.size() >= 7))
+        if (!isMyTurn() || !hand.contains(card) || mana < card.getGameMana(this) || (card instanceof Minion && minionsInGame.size() >= game.getConfigor().getMinionsCap(this)))
             return false;
 
         setMana(card, mana - card.getGameMana(this));
@@ -216,7 +216,7 @@ public abstract class Character {
         return state.getHeroPowerCount() < heroPowerCap && !hero.getHeroPower().isPassive();
     }
 
-    public int getMyTurnNumber() {
+    public int getTurnCount() {
         return (int) Math.floor((double) game.getTurn() / (double) game.getPlayerCount()) + 1;
     }
 
@@ -279,8 +279,8 @@ public abstract class Character {
     }
 
     public void rawAttack(Attackable attacker, Attackable defender) {
-        attacker.doDamage(this, defender.getAttack(getOpponent()));
-        defender.doDamage(this, attacker.getAttack(this));
+        attacker.doDamage(this, game.getConfigor().getAttack(defender, attacker, getOpponent()));
+        defender.doDamage(this, game.getConfigor().getAttack(attacker, defender, this));
         Weapon weapon = state.getCurrentWeapon();
         if (attacker instanceof Hero && weapon != null)
             weapon.setDurability(weapon.getDurability() - 1);
@@ -381,5 +381,9 @@ public abstract class Character {
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public Game getGame() {
+        return game;
     }
 }

@@ -21,7 +21,8 @@ import java.io.*;
 import java.util.*;
 
 import static commands.types.ServerCommandType.*;
-import static system.game.GameType.DECK_READER;
+import static system.game.GameEndingType.*;
+import static system.game.GameType.*;
 
 public class PlayGround extends Directory {
     private final Game game;
@@ -154,9 +155,11 @@ public class PlayGround extends Directory {
         pane.getChildren().add(node);
     }
 
-    public void endGame() {
-        GameEnding gameEnd = new GameEnding(controller, client, this);
-        gameEnd.display();
+    public void endGame(GameEndingType endingType) {
+        if (endingType != NONE) {
+            GameEnding gameEnd = new GameEnding(controller, client, this, endingType);
+            gameEnd.display();
+        }
         timer.exit();
     }
 
@@ -210,6 +213,10 @@ public class PlayGround extends Directory {
             if (character.getIsSelf())
                 return character;
         return null;
+    }
+
+    public void leaveGame() {
+        client.request(new Command<>(LEAVE_GAME));
     }
 
     private class ChooseCards {

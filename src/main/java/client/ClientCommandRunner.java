@@ -19,6 +19,7 @@ public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
 
     @Override
     public void run(Command<ClientCommandType> command) {
+        System.out.println(command);
         ClientCommandType type = command.getCommandType();
         Object[] input = command.getInput();
 
@@ -30,6 +31,7 @@ public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
             case UPDATE_PLAYER -> {
                 if (input[0].equals("null")) {
                     controller.setCurrentPlayer(null);
+                    controller.displayStartPage();
                     break;
                 }
                 if (input[0] instanceof String username && input[1] instanceof String json)
@@ -47,7 +49,12 @@ public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
                 updateGame(gameType, input);
             }
             //TODO end game
-            case END_GAME -> controller.endGame();
+            case END_GAME -> {
+                if (input[0] instanceof GameEndingType endingType)
+                    controller.endGame(endingType);
+            }
+            case FILE_ERROR -> controller.fileError();
+
         }
         controller.config();
     }
@@ -58,6 +65,7 @@ public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
         switch (serverType) {
             case SIGN_UP -> controller.signUpResult(bool);
             case LOGIN -> controller.loginResult(bool);
+            case DELETE -> controller.deleteResult(bool);
             case ADD_CARD -> controller.addCardResult(bool);
             case ADD_DECK, RENAME -> controller.deckNameResult(bool);
             case MOVE -> controller.moveDeckResult(bool);
@@ -88,7 +96,11 @@ public class ClientCommandRunner extends CommandRunner<ClientCommandType> {
     }
 
     private void createGame(GameType gameType, int id, int index, ArrayList<HeroClass> heroClasses, ArrayList<String> jsons) {
-        controller.setGame(new Game(controller, gameType, id, heroClasses, jsons));
+        try {
+            controller.setGame(new Game(controller, gameType, id, heroClasses, jsons));
+        } catch (NoSuchMethodException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         controller.gameInitialized(index);
     }
 }

@@ -7,7 +7,7 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-public class Server {
+public class Server extends Thread {
     private ServerSocket serverSocket;
     private final ArrayList<ClientHandler> clients = new ArrayList<>();
     private final HashMap<GameType, ArrayList<ClientHandler>> gameQueues = new HashMap<>();
@@ -25,11 +25,7 @@ public class Server {
         (new Accepter()).start();
     }
 
-    public void start() {
-        (new Thread(Server.this::run)).start();
-    }
-
-    private void run() {
+    public void run() {
         while (true) {
             synchronized (clientsMonitor) {
                 for (ClientHandler client : clients) {
@@ -50,10 +46,12 @@ public class Server {
             ArrayList<ClientHandler> gameQueue = gameQueues.get(gameType);
             if (gameQueue.contains(client))
                 return false;
+            System.out.println("not already in queue");
             gameQueue.add(client);
             boolean ret = true;
             while (gameQueue.size() >= 2)
                 ret &= pairClients(new Pair<>(gameQueue.remove(0), gameQueue.remove(0)), gameType);
+            System.out.println("paired: " + ret);
             return ret && gameQueue.size() == 0;
         }
     }

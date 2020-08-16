@@ -11,6 +11,9 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+import static commands.types.ClientCommandType.*;
+import static system.game.GameEndingType.*;
+
 public class ClientHandler extends Controller<ServerCommandType> {
     private final ArrayList<Command<ServerCommandType>> commands = new ArrayList<>();
     private final Object commandsMonitor = new Object(), connectionMonitor = new Object();
@@ -96,6 +99,29 @@ public class ClientHandler extends Controller<ServerCommandType> {
         if (gameHandler == null)
             return getGame().getCurrentCharacter();
         return gameHandler.getGame().getCharacters()[gameHandler.indexOf(this)];
+    }
+
+    public void endGame(boolean surrender) {
+        ClientHandler opponent = getOpponent();
+        Game game = getGame();
+        setGame(null);
+        if (opponent != null)
+            opponent.setGame(null);
+
+        if (!surrender)
+            game.endGame();
+        else if (gameHandler == null)
+            game.endGame(NONE);
+        else
+            game.endGame(gameHandler.indexOf(this) == 0 ? FRIENDLY_LOSS : FRIENDLY_WIN);
+
+        if (gameHandler != null)
+            gameHandler.endGame();
+
+        respond(new Command<>(END_GAME, game.getGameEndingType()));
+        if (opponent != null)
+            opponent.respond(new Command<>(END_GAME, game.getGameEndingType()));
+        gameHandler = null;
     }
 
     private class Listener extends Thread {

@@ -1,8 +1,11 @@
 package system.game.characters;
 
 import com.google.gson.stream.*;
+import elements.Element;
 import elements.cards.*;
 import elements.heros.*;
+import shared.GameData;
+import shared.Methods;
 import system.configor.*;
 import system.updater.*;
 
@@ -136,5 +139,42 @@ public class CharacterState extends Updatable {
 
     public Deck getDeck() {
         return deck;
+    }
+
+    protected CharacterState clone() {
+        CharacterState state = new CharacterState();
+        state.deck = deck.cloneCards();
+        state.leftInDeck = new ArrayList<>(leftInDeck);
+        state.hand = new ArrayList<>(hand);
+        state.minionsInGame = new ArrayList<>(minionsInGame);
+        if (lastSpell != null)
+            state.lastSpell = (Spell) lastSpell.clone();
+        if (currentWeapon != null)
+            state.currentWeapon = (Weapon) currentWeapon.clone();
+        state.questAndRewards = new ArrayList<>(questAndRewards);
+        state.mana = mana;
+        state.heroPowerCount = heroPowerCount;
+        return state;
+    }
+
+    public String getHiddenJson(boolean compact) {
+        System.out.println("***** START");
+        CharacterState state = clone();
+        state.randomize(state.deck.getCards(), Card.class, GameData.getInstance().getCardsList());
+        state.randomize(state.leftInDeck, Card.class, state.deck.getCards());
+        state.randomize(state.hand, Card.class, state.deck.getCards());
+        state.randomize(state.questAndRewards, QuestAndReward.class, state.deck.getCards());
+        state.lastSpell = Element.getRandomElement(Methods.getCards(Spell.class, state.deck.getCards()));
+        String ret = state.getJson(compact);
+        System.out.println("*****" + ret);
+        return ret;
+    }
+
+    private <C extends Card> void randomize(ArrayList<C> cards, Class<C> cardClass, ArrayList<? extends Card> allCards) {
+        int n = cards.size();
+        cards.clear();
+        ArrayList<C> correctCards = Methods.getCards(cardClass, allCards);
+        for (int i = 0; i < n; i++)
+            cards.add(Element.getRandomElement(correctCards));
     }
 }

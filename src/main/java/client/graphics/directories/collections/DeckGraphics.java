@@ -4,12 +4,10 @@ import client.*;
 import commands.*;
 import elements.cards.*;
 import elements.heros.*;
-import client.graphics.popups.*;
 import javafx.fxml.*;
 import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.*;
 
 import static commands.types.ServerCommandType.*;
 

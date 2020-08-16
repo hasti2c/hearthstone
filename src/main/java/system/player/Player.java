@@ -63,6 +63,8 @@ public class Player extends Updatable {
     }
 
     public boolean loginAttempt(String password) {
+        if (this.password == null)
+            return false;
         return this.password.equals(password);
     }
 

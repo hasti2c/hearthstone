@@ -1,7 +1,7 @@
 package commands.types;
 
 public enum ServerCommandType implements CommandType {
-    //TODO add to client: DELETE, DESELECT
+    //TODO add to client: DESELECT
     SIGN_UP,
     LOGIN,
     EXIT,
@@ -19,6 +19,7 @@ public enum ServerCommandType implements CommandType {
     SELL,
     JOIN_GAME,
     START_GAME,
+    LEAVE_GAME,
     END_TURN,
     PLAY,
     HERO_POWER,

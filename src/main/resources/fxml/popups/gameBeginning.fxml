@@ -72,6 +72,7 @@
                </padding>
                <children>
                   <Button fx:id="deckReaderButton" mnemonicParsing="false" text="Deck Reader" />
+                  <Button fx:id="tavernBrawlButton" mnemonicParsing="false" text="Tavern Brawl" />
                   <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" />
                </children>
             </HBox>

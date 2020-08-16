@@ -28,6 +28,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
 
     @Override
     public void run(Command<ServerCommandType> command) {
+        System.out.println(command);
         ServerCommandType commandType = command.getCommandType();
         Object[] input = command.getInput();
 
@@ -44,8 +45,8 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
             return;
         }
 
-        if (DELETE.equals(commandType))
-            ret = deletePlayer();
+        if (DELETE.equals(commandType) && input[0] instanceof String password)
+            ret = deletePlayer(password);
         else if (SELECT.equals(commandType) && input[0] instanceof Deck deck)
             ret = selectDeck(deck);
         else if (DESELECT.equals(commandType) && input[0] instanceof Deck deck)
@@ -76,6 +77,8 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
 
         if (START_GAME.equals(commandType) && Methods.isArrayOfType(Card.class, input))
             ret = startGame(Methods.getListOfType(Card.class, input));
+        else if (LEAVE_GAME.equals(commandType))
+            ret = leaveGame();
 
         if (!handler.isMyTurn()) {
             update(commandType, ret);
@@ -128,19 +131,23 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         if (game == null) {
             handler.respond(new Command<>(UPDATE_GAME, "null"));
             return;
+        } else if (game.isFinished()) {
+            endGame(false);
+            return;
         }
 
         GameType type = game.getType();
         int id = game.getId();
-        String[] jsons = game.getJsons();
 
         if (type.isMultiPlayer()) {
             GameHandler gameHandler = handler.getGameHandler();
             int index = gameHandler.indexOf(handler);
             HeroClass[] heroClasses = gameHandler.getHeroClasses();
+            String[] jsons = game.getJsons(index);
             handler.respond(new Command<>(UPDATE_GAME, type, id, heroClasses[0], heroClasses[1], jsons[0], jsons[1], index));
         } else {
             HeroClass[] heroClasses = new HeroClass[]{game.getCharacters()[0].getHero().getHeroClass(), game.getCharacters()[1].getHero().getHeroClass()};
+            String[] jsons = game.getJsons();
             if (type == OFFLINE_MULTIPLAYER)
                 handler.respond(new Command<>(UPDATE_GAME, type, id, heroClasses[0], heroClasses[1], jsons[0], jsons[1]));
             else
@@ -223,19 +230,23 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     private boolean logout() {
         Player player = handler.getCurrentPlayer();
         if (player != null && player.getGame() != null)
-            endGame();
+            endGame(true);
         if (player != null)
             player.getLogger().log("logout", "");
         handler.setCurrentPlayer(null);
         return true;
     }
 
-    private boolean deletePlayer() {
+    private boolean deletePlayer(String password) {
         Player p = handler.getCurrentPlayer();
+        if (!p.loginAttempt(password))
+            return false;
         logout();
         p.getLogger().log("");
         p.getLogger().log("DELETED_AT:", "");
-        return (new File(p.getJsonPath())).delete() && p.deleteDeckDirectory();
+        boolean ret = (new File("src/main/resources/database/players/" + p + ".json")).delete();
+        ret &= (new File("src/main/resources/database/players/" + p + "-inventory.json")).delete();
+        return ret && p.deleteDeckDirectory();
     }
 
     private boolean selectDeck(Deck deck) {
@@ -324,11 +335,14 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private boolean joinGame(GameType gameType) {
+        System.out.println("trying to join");
         if (gameType.isMultiPlayer()) {
             if (!gameType.canJoin(handler))
                 return false;
+            System.out.println("can join");
             return handler.joinGame(gameType);
         }
+        System.out.println("not multiplayer");
         return createGame(gameType);
     }
 
@@ -336,14 +350,24 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         if (!gameType.canJoin(handler))
             return false;
         controller.setGameCount(controller.getGameCount() + 1);
-        return gameType.createGame(controller.getGameCount(), handler) != null;
+        try {
+            return gameType.createGame(controller.getGameCount(), handler) != null;
+        } catch (NoSuchMethodException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     private boolean startGame(ArrayList<Card> cards) {
-        Player player = handler.getCurrentPlayer();
-        if (player.getGame() == null)
+        if (handler.getGame() == null)
             return false;
         return handler.startGame(cards);
+    }
+
+    private boolean leaveGame() {
+        if (handler.getGame() == null)
+            return false;
+        return endGame(true);
     }
 
     private boolean playCard(Card card) {
@@ -363,8 +387,6 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         Game game = handler.getGame();
         game.nextTurn();
         game.log("end_turn", "");
-        if (game.isFinished())
-            return endGame();
         return true;
     }
 
@@ -373,8 +395,6 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         boolean ret = game.getCurrentCharacter().useHeroPower();
         if (ret)
             game.log("hero_power", "");
-        if (game.isFinished())
-            return endGame();
         return ret;
     }
 
@@ -383,17 +403,13 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
         boolean ret = game.getCurrentCharacter().attack(attacker, defender);
         if (ret)
             game.log("attack", attacker + " -> " + defender);
-        if (game.isFinished())
-            return endGame();
         return ret;
     }
 
-    private boolean endGame() {
+    private boolean endGame(boolean surrender) {
         Player player = handler.getCurrentPlayer();
         Game game = player.getGame();
-        player.setGame(null);
-        game.endGame();
-        handler.respond(new Command<>(END_GAME));
+        handler.endGame(surrender);
         player.getLogger().log("end_game", "game id: " + game.getId());
         game.logEndGame();
         return true;

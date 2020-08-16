@@ -1,11 +1,13 @@
 package server;
 
+import commands.*;
 import elements.cards.*;
 import elements.heros.*;
 import system.game.*;
 
 import java.util.*;
 
+import static commands.types.ClientCommandType.*;
 import static commands.types.ServerCommandType.*;
 
 public class GameHandler {
@@ -23,8 +25,14 @@ public class GameHandler {
     }
 
     public boolean createGame(GameType gameType, int id) {
-        game = gameType.createGame(id, clients.get(0), clients.get(1));
-        return game == null;
+        try {
+            game = gameType.createGame(id, clients.get(0), clients.get(1));
+        } catch (NoSuchMethodException | ClassNotFoundException e) {
+            for (ClientHandler client : clients)
+                client.respond(new Command<>(FILE_ERROR));
+            return true;
+        }
+        return game != null;
     }
 
     public boolean startGame(ClientHandler client, ArrayList<Card> cards) {
@@ -78,5 +86,10 @@ public class GameHandler {
 
     public Game getGame() {
         return game;
+    }
+
+    public void endGame() {
+        for (ClientHandler client : clients)
+            client.setGameHandler(null);
     }
 }

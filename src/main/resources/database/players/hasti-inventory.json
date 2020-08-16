@@ -1,54 +1,28 @@
 {
   "deckCap": 15,
   "allDecks": [
-    "yo",
-    "awe4ar"
+    "45e5aw5a"
   ],
   "allHeros": [
     "mage",
     "warlock",
-    "priest",
-    "hunter",
-    "rogue"
+    "priest"
   ],
-  "currentDeck": "yo",
+  "currentDeck": "45e5aw5a",
   "allCards": [
     "Amani War Bear",
-    "Big Bad Archmage",
-    "Dread Infernal",
-    "Gruul",
-    "Hogger",
+    "Dirty Rat",
     "Kobold Stickyfinger",
-    "Sathrovarr",
     "Security Rover",
-    "Swamp King Dred",
-    "Temple Enforcer",
     "Tomb Warden",
     "Astral Rift",
-    "Book of Specters",
-    "Cinderstorm",
     "Cobra Shot",
-    "Deadly Poison",
-    "Divine Strength",
-    "Firelands Portal",
     "Flame Lance",
     "Friendly Smith",
-    "Hand of Adal",
-    "Pharaohs Blessing",
     "Polymorph",
     "Sprint",
-    "Swarm of Locusts",
     "Blood Fury",
-    "Dragon Claw",
-    "Silver Sword",
-    "Truesilver Champion",
     "Wicked Knife",
-    "Learn Draconic",
-    "Strength in Numbers",
-    "King Krush",
-    "Curio Collector",
-    "High Priest Amet",
-    "Dreadscale",
-    "Dirty Rat"
+    "Learn Draconic"
   ]
 }

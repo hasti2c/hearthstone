@@ -1,0 +1,16 @@
+GAME_ID: 351
+STARTED_AT:  2020/08/15 14:10:54 
+
+p1: hasti
+p1_hero: warlock
+p1_deck: yo
+
+p2: erfan
+p2_hero: mage
+p2_deck: asd
+
+p2:end_turn 2020/08/15 14:10:58 
+p1:end_turn 2020/08/15 14:11:01 
+
+ENDED_AT:  2020/08/15 14:11:05 
+p2:end_turn 2020/08/15 14:11:11 

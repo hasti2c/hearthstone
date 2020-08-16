@@ -3,7 +3,7 @@ package elements;
 import elements.cards.*;
 import elements.abilities.*;
 import elements.heros.*;
-import shared.Methods;
+import shared.*;
 import system.game.characters.Character;
 import javafx.scene.image.*;
 import javafx.scene.paint.*;
@@ -47,7 +47,7 @@ public abstract class Playable extends Element {
 
     public int getGameMana(Character character) {
         HeroClass heroClass = character.getHero().getHeroClass();
-        int ret = mana - heroClass.getManaReduction(this);
+        int ret = character.getGame().getConfigor().getMana(this) - heroClass.getManaReduction(this);
         if (character.getPassive() != null)
             ret -= character.getPassive().getManaReduction(this);
         return ret;

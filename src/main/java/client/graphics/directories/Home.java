@@ -4,7 +4,7 @@ import client.*;
 import commands.*;
 import elements.cards.*;
 import system.game.Game;
-import system.game.GameType;
+import system.game.*;
 import system.player.*;
 import client.graphics.directories.collections.*;
 import client.graphics.directories.playground.*;
@@ -23,7 +23,7 @@ public class Home extends Directory {
     private Stats stats;
     private GameStartPage gameBeginning;
     @FXML
-    private Button playButton, collectionsButton, storeButton, statsButton, homeLogoutButton, homeExitButton;
+    private Button playButton, collectionsButton, storeButton, statsButton, homeLogoutButton, homeExitButton, deleteAccountButton;
 
     public Home(ClientController controller, Client client) {
         super(controller, client);
@@ -45,6 +45,7 @@ public class Home extends Directory {
         });
         homeLogoutButton.setOnAction(e -> controller.displayStartPage());
         homeExitButton.setOnAction(e -> controller.exit());
+        deleteAccountButton.setOnAction(e -> deleteAccount());
     }
 
     @Override
@@ -79,6 +80,18 @@ public class Home extends Directory {
         gameBeginning.close();
     }
 
+    private void deleteAccount() {
+        String username = controller.getCurrentPlayer().toString();
+        ConfirmationBox confirmationBox = new ConfirmationBox("Are you sure you want to delete the account \"" + username + "\"? \nThis action is irreversible.", "Yes, I'm Sure.", "No, Never Mind.");
+        confirmationBox.display();
+        if (confirmationBox.getResponse()) {
+            QuestionBox question = new QuestionBox("Please enter your password.", "Done", "Cancel", true);
+            question.display();
+            if (question.getButtonResponse())
+                client.request(new Command<>(DELETE, question.getText()));
+        }
+    }
+
     private class GameStartPage extends PopupBox {
         private Game game;
         @FXML
@@ -88,7 +101,7 @@ public class Home extends Directory {
         @FXML
         private Label deckName;
         @FXML
-        private Button singlePlayerButton, offlineMultiPlayerButton, onlineMultiPlayerButton, cancelButton, collectionsButton, deckReaderButton;
+        private Button singlePlayerButton, offlineMultiPlayerButton, onlineMultiPlayerButton, cancelButton, collectionsButton, deckReaderButton, tavernBrawlButton;
         @FXML
         private ChoiceBox<Passive> passiveChoiceBox;
 
@@ -100,8 +113,12 @@ public class Home extends Directory {
             singlePlayerButton.setOnAction(e -> joinGame(SINGLE_PLAYER));
             offlineMultiPlayerButton.setOnAction(e -> joinGame(OFFLINE_MULTIPLAYER));
             onlineMultiPlayerButton.setOnAction(e -> joinGame(ONLINE_MULTIPLAYER));
-            collectionsButton.setOnAction(e -> displayCollections());
+            collectionsButton.setOnAction(e -> {
+                displayCollections();
+                close();
+            });
             deckReaderButton.setOnAction(e -> joinGame(DECK_READER));
+            tavernBrawlButton.setOnAction(e -> joinGame(TAVERN_BRAWL));
         }
 
         private void clear() {
@@ -134,6 +151,7 @@ public class Home extends Directory {
             onlineMultiPlayerButton.setDisable(false);
             offlineMultiPlayerButton.setDisable(false);
             deckReaderButton.setDisable(false);
+            tavernBrawlButton.setDisable(false);
 
             Inventory inventory = controller.getCurrentPlayer().getInventory();
             deckHBox.getChildren().add(1, inventory.getCurrentHero().getHeroClass().getIcon());
@@ -155,6 +173,7 @@ public class Home extends Directory {
             offlineMultiPlayerButton.setDisable(true);
             onlineMultiPlayerButton.setDisable(true);
             deckReaderButton.setDisable(false);
+            tavernBrawlButton.setDisable(true);
         }
 
         private void joinGame(GameType gameType) {

@@ -6,28 +6,32 @@ import javafx.fxml.*;
 import javafx.scene.control.*;
 import system.game.*;
 
+import static system.game.GameEndingType.*;
+
 public class GameEnding extends Directory {
     private final PlayGround playGround;
     private final Game game;
+    private final GameEndingType endingType;
     @FXML
     private Label label;
 
-    public GameEnding(ClientController controller, Client client, PlayGround playGround) {
+    public GameEnding(ClientController controller, Client client, PlayGround playGround, GameEndingType endingType) {
         super(controller, client);
         this.playGround = playGround;
         game = playGround.getGame();
+        this.endingType = endingType;
+        config();
     }
 
     @Override
     public void config() {
-        int friendlyHealth = playGround.getMyCharacter().getCharacter().getHero().getHealth();
-        int enemyHealth = playGround.getMyCharacter().getOpponent().getCharacter().getHero().getHealth();
-        if (friendlyHealth <= 0 && enemyHealth <= 0)
+        int index = game.indexOf(playGround.getMyCharacter().getCharacter());
+        if (endingType == TIE)
             label.setText("IT'S A TIE!");
-        else if (friendlyHealth <= 0)
-            label.setText("YOU LOSE!");
-        else if (enemyHealth <= 0)
+        else if (endingType.getWinnerIndex() == index)
             label.setText("YOU WIN!");
+        else if (endingType.getLoserIndex() == index)
+            label.setText("YOU LOSE!");
     }
 
     @Override

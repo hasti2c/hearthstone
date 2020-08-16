@@ -1,0 +1,25 @@
+USER: erfan
+PASSWORD: semsemsem
+CREATED_AT:  2020/08/16 00:53:20 
+
+signup 2020/08/16 00:53:20 
+login 2020/08/16 00:53:20 
+add 2020/08/16 00:53:33 deck: awrawerawe
+select 2020/08/16 00:53:34 deck: awrawerawe
+login 2020/08/16 00:54:42 
+login 2020/08/16 01:28:38 
+login 2020/08/16 01:30:22 
+login 2020/08/16 01:36:56 
+login 2020/08/16 01:40:11 
+login 2020/08/16 01:49:00 
+login 2020/08/16 01:51:39 
+login 2020/08/16 01:53:19 
+start_game 2020/08/16 01:53:27 game id: 369
+end_game 2020/08/16 01:54:15 game id: 369
+logout 2020/08/16 01:54:15 
+login 2020/08/16 14:13:26 
+start_game 2020/08/16 14:13:33 game id: 370
+login 2020/08/16 14:16:03 
+login 2020/08/16 14:18:06 
+login 2020/08/16 14:20:50 
+start_game 2020/08/16 14:20:58 game id: 372

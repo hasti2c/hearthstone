@@ -51,6 +51,7 @@ public class CommandParser <T extends CommandType> {
             case "Boolean": yield Boolean.valueOf(name);
             case "HeroClass": yield HeroClass.valueOf(name);
             case "GameType": yield GameType.valueOf(name);
+            case "GameEndingType": yield GameEndingType.valueOf(name);
             case "ServerCommandType": yield ServerCommandType.valueOf(name);
             default: yield getObject(controller.getObjectsList(className), name);
         };

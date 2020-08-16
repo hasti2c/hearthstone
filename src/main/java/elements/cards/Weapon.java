@@ -5,7 +5,7 @@ import shared.*;
 
 import java.io.*;
 
-import static elements.ElementType.WEAPON;
+import static elements.ElementType.*;
 
 public class Weapon extends Card {
     private int durability;

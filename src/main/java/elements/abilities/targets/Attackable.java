@@ -7,4 +7,5 @@ public interface Attackable extends Targetable {
     void setHasAttacked(boolean hasAttacked);
     void doDamage(Character character, int damage);
     int getAttack(Character character);
+    int getHealth();
 }
