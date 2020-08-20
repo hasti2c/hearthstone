@@ -1,9 +1,0 @@
-USER: mohammad
-PASSWORD: ahmaghhh
-CREATED_AT:  2020/08/08 19:00:19 
-
-signup 2020/08/08 19:00:19 
-login 2020/08/08 19:00:19 
-add 2020/08/08 19:00:27 deck: erawrar
-select 2020/08/08 19:00:28 deck: erawrar
-select 2020/08/08 19:02:28 deck: erawrar

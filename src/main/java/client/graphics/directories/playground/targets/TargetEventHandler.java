@@ -43,8 +43,10 @@ public abstract class TargetEventHandler implements EventHandler<MouseEvent> {
             oneSelectedMode();
             enableNode(node);
             node.setEffect(new Bloom());
-        } else
+        } else {
             doAction();
+            deselectedMode();
+        }
     }
 
     public void deselect() {

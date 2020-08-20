@@ -32,6 +32,7 @@ public class Client {
 
     public boolean request(Command<ServerCommandType> command) {
         synchronized (socketMonitor) {
+            System.out.println(command);
             printer.println(command);
         }
         return false;

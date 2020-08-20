@@ -1,7 +1,0 @@
-USER: hastiiiiiiiiiiii
-PASSWORD: password
-CREATED_AT:  2020/08/08 17:56:42 
-
-signup 2020/08/08 17:56:42 
-login 2020/08/08 17:56:42 
-add 2020/08/08 17:56:58 deck: hola

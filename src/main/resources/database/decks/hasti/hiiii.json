@@ -1,0 +1,28 @@
+{
+  "wins": 0,
+  "cards": [
+    "Kobold Stickyfinger",
+    "Kobold Stickyfinger",
+    "Amani War Bear",
+    "Amani War Bear",
+    "Security Rover",
+    "Security Rover",
+    "Tomb Warden",
+    "Tomb Warden"
+  ],
+  "playerName": "hasti",
+  "name": "hiiii",
+  "heroClass": "WARLOCK",
+  "games": 0,
+  "uses": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "maxSize": 15
+}

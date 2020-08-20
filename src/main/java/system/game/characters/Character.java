@@ -77,6 +77,7 @@ public abstract class Character {
         hero.setHasAttacked(false);
 
         int mana = game.getConfigor().getTurnMana(this);
+        state.setMana(mana);
         if (passive != null)
             state.setMana(mana + passive.getTurnManaPromotion(getTurnCount()));
 
@@ -241,23 +242,30 @@ public abstract class Character {
 
     public boolean canAttack(Attackable attacker) {
         boolean ret = this == game.getCurrentCharacter() && !attacker.getHasAttacked();
+        System.out.println("can attack 1: " + ret);
         if (attacker instanceof Hero)
             return ret && state.getCurrentWeapon() != null;
+        System.out.println("can attack 2: " + ret);
         Minion minion = (Minion) attacker;
         ret &= state.getMinionsInGame().contains(minion) && (!minion.getAsleep() || minion.getRush());
+        System.out.println("can attack 3: " + ret);
         return ret;
     }
 
     public boolean canBeAttacked(Attackable attacker, Attackable target) {
         boolean ret = this != game.getCurrentCharacter();
+        System.out.println("can be attacked 1: " + ret);
         if (target instanceof Minion minion) {
             ret &= state.getMinionsInGame().contains(minion);
+            System.out.println("can be attacked 2: " + ret);
             ret &= !hasAnyTaunt() || minion.getTaunt();
+            System.out.println("can be attacked 3: " + ret);
         } else {
             ret &= !hasAnyTaunt();
             if (attacker instanceof Minion minion)
                 ret &= !minion.getAsleep();
         }
+        System.out.println("can be attacked 4: " + ret);
         return ret;
     }
 
@@ -271,6 +279,7 @@ public abstract class Character {
     public boolean attack(Attackable attacker, Attackable defender) {
         if (!canAttack(attacker) || !getOpponent().canBeAttacked(attacker, defender))
             return false;
+        System.out.println("hi");
         rawAttack(attacker, defender);
         attacker.setHasAttacked(true);
         clearDeadMinions();

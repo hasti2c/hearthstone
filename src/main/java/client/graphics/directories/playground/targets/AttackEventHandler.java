@@ -30,18 +30,21 @@ public class AttackEventHandler extends TargetEventHandler {
 
     @Override
     protected void deselectedMode() {
+        System.out.println("deselected mode");
         playGround.getCurrentCharacter().attackMode();
         playGround.getCurrentCharacter().getOpponent().attackMode();
     }
 
     @Override
     protected void oneSelectedMode() {
+        System.out.println("one selected mode: " + targetable);
         playGround.getCurrentCharacter().defenseMode((Attackable) targetable);
         playGround.getCurrentCharacter().getOpponent().defenseMode((Attackable) targetable);
     }
 
     @Override
     protected void doAction() {
-        gamePlayer.getClient().request(new Command<>(ATTACK, gamePlayer.getSelectedAttackable(), gamePlayer.getOpponent().getSelectedAttackable()));
+        System.out.println("do action: " + gamePlayer.getSelectedAttackable() + " " + gamePlayer.getOpponent().getSelectedAttackable());
+        gamePlayer.getClient().request(new Command<>(ATTACK, gamePlayer.getOpponent().getSelectedAttackable(), gamePlayer.getSelectedAttackable()));
     }
 }

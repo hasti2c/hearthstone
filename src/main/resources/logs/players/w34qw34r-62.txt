@@ -1,8 +1,0 @@
-USER: w34qw34r
-PASSWORD: aserawer
-CREATED_AT:  2020/08/14 12:52:22 
-
-signup 2020/08/14 12:52:22 
-login 2020/08/14 12:52:22 
-add 2020/08/14 12:52:28 deck: awev
-select 2020/08/14 12:52:29 deck: awev

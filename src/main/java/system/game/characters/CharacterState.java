@@ -16,6 +16,7 @@ public class CharacterState extends Updatable {
     private Deck deck;
     private ArrayList<Card> leftInDeck, hand = new ArrayList<>();
     private ArrayList<Minion> minionsInGame = new ArrayList<>();
+    private ArrayList<Boolean> asleep = new ArrayList<>(), taunt = new ArrayList<>(), rush = new ArrayList<>(), charge = new ArrayList<>(), divineShield = new ArrayList<>();
     private Spell lastSpell;
     private Weapon currentWeapon;
     private ArrayList<QuestAndReward> questAndRewards = new ArrayList<>();
@@ -34,6 +35,8 @@ public class CharacterState extends Updatable {
         CharacterState state = configor.getConfigedObject();
         state.deck = state.deck.cloneCards();
         state.replaceCards();
+        System.out.println("awerhaioewraejwil" + json);
+        state.minionProperties();
         return state;
     }
 
@@ -43,6 +46,17 @@ public class CharacterState extends Updatable {
     @Override
     public String getName() {
         return "";
+    }
+
+    private void minionProperties() {
+        for (int i = 0; i < minionsInGame.size(); i++) {
+            Minion minion = minionsInGame.get(i);
+            minion.setAsleep(asleep.get(i));
+            minion.setTaunt(taunt.get(i));
+            minion.setRush(rush.get(i));
+            minion.setCharge(charge.get(i));
+            minion.setDivineShield(divineShield.get(i));
+        }
     }
 
     private void replaceCards() {
@@ -158,16 +172,13 @@ public class CharacterState extends Updatable {
     }
 
     public String getHiddenJson(boolean compact) {
-        System.out.println("***** START");
         CharacterState state = clone();
         state.randomize(state.deck.getCards(), Card.class, GameData.getInstance().getCardsList());
         state.randomize(state.leftInDeck, Card.class, state.deck.getCards());
         state.randomize(state.hand, Card.class, state.deck.getCards());
         state.randomize(state.questAndRewards, QuestAndReward.class, state.deck.getCards());
         state.lastSpell = Element.getRandomElement(Methods.getCards(Spell.class, state.deck.getCards()));
-        String ret = state.getJson(compact);
-        System.out.println("*****" + ret);
-        return ret;
+        return state.getJson(compact);
     }
 
     private <C extends Card> void randomize(ArrayList<C> cards, Class<C> cardClass, ArrayList<? extends Card> allCards) {
@@ -176,5 +187,22 @@ public class CharacterState extends Updatable {
         ArrayList<C> correctCards = Methods.getCards(cardClass, allCards);
         for (int i = 0; i < n; i++)
             cards.add(Element.getRandomElement(correctCards));
+    }
+
+    @Override
+    public String getJson(boolean compact) {
+        asleep.clear();
+        taunt.clear();
+        rush.clear();
+        charge.clear();
+        divineShield.clear();
+        for (Minion minion : minionsInGame) {
+            asleep.add(minion.getAsleep());
+            taunt.add(minion.getTaunt());
+            rush.add(minion.getRush());
+            charge.add(minion.getCharge());
+            divineShield.add(minion.getDivineShield());
+        }
+        return super.getJson(compact);
     }
 }

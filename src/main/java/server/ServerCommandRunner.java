@@ -335,14 +335,11 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     }
 
     private boolean joinGame(GameType gameType) {
-        System.out.println("trying to join");
         if (gameType.isMultiPlayer()) {
             if (!gameType.canJoin(handler))
                 return false;
-            System.out.println("can join");
             return handler.joinGame(gameType);
         }
-        System.out.println("not multiplayer");
         return createGame(gameType);
     }
 
@@ -401,6 +398,7 @@ public class ServerCommandRunner extends CommandRunner<ServerCommandType> {
     private boolean attack(Attackable attacker, Attackable defender) {
         Game game = handler.getGame();
         boolean ret = game.getCurrentCharacter().attack(attacker, defender);
+        System.out.println("runner: " + ret);
         if (ret)
             game.log("attack", attacker + " -> " + defender);
         return ret;

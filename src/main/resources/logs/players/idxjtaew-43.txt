@@ -1,7 +1,0 @@
-USER: idxjtaew
-PASSWORD: isELjlerst
-CREATED_AT:  2020/08/08 18:22:22 
-
-signup 2020/08/08 18:22:22 
-login 2020/08/08 18:22:22 
-add 2020/08/08 18:22:30 deck: klserjksw

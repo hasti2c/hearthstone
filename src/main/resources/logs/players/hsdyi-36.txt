@@ -1,7 +1,0 @@
-USER: hsdyi
-PASSWORD: ioawejrio;
-CREATED_AT:  2020/08/08 18:04:00 
-
-signup 2020/08/08 18:04:00 
-login 2020/08/08 18:04:00 
-add 2020/08/08 18:04:14 deck: meeee

@@ -1,9 +1,0 @@
-USER: haaaaaa
-PASSWORD: haaaaaaaaaaa
-CREATED_AT:  2020/08/08 17:33:04 
-
-signup 2020/08/08 17:33:04 
-login 2020/08/08 17:33:04 
-add 2020/08/08 17:33:16 deck: hi
-add 2020/08/08 17:33:41 deck: dum
-add 2020/08/08 17:34:54 deck: whaaaa

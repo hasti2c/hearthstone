@@ -46,12 +46,10 @@ public class Server extends Thread {
             ArrayList<ClientHandler> gameQueue = gameQueues.get(gameType);
             if (gameQueue.contains(client))
                 return false;
-            System.out.println("not already in queue");
             gameQueue.add(client);
             boolean ret = true;
             while (gameQueue.size() >= 2)
                 ret &= pairClients(new Pair<>(gameQueue.remove(0), gameQueue.remove(0)), gameType);
-            System.out.println("paired: " + ret);
             return ret && gameQueue.size() == 0;
         }
     }

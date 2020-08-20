@@ -51,10 +51,13 @@ public class Command <T extends CommandType> {
             className = "Deck";
         else if (isAssignable(Card.class, object) && !Arrays.asList(ServerCommandType.getGameCommands()).contains(commandType))
             className = "Card";
-        else if (isAssignable(Element.class, object) && (input.length != 2 || input[0] == object))
+        else if (isAssignable(Element.class, object) && (input.length != 2 || input[0] == object)) {
+            System.out.println("my: " + Arrays.toString(input) + " " + object);
             className = "MyElement";
-        else if (isAssignable(Element.class, object))
+        } else if (isAssignable(Element.class, object)) {
+            System.out.println("enemy: " + Arrays.toString(input) + " " + object);
             className = "EnemyElement";
+        }
         return className + ":" + object;
     }
 

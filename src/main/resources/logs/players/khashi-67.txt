@@ -1,9 +1,0 @@
-USER: khashi
-PASSWORD: khashkhash
-CREATED_AT:  2020/08/15 15:22:07 
-
-signup 2020/08/15 15:22:07 
-login 2020/08/15 15:22:07 
-logout 2020/08/15 15:22:25 
-
-DELETED_AT: 2020/08/15 15:22:25 

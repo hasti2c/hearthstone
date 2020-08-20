@@ -1,6 +1,0 @@
-USER: erfann
-PASSWORD: semsemsem
-CREATED_AT:  2020/08/13 15:27:32 
-
-signup 2020/08/13 15:27:32 
-login 2020/08/13 15:27:32 

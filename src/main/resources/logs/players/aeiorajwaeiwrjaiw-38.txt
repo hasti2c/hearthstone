@@ -1,7 +1,0 @@
-USER: aeiorajwaeiwrjaiw
-PASSWORD: awehraeiwrilaewhrawerwrew
-CREATED_AT:  2020/08/08 18:09:40 
-
-signup 2020/08/08 18:09:40 
-login 2020/08/08 18:09:40 
-add 2020/08/08 18:09:47 deck: jksrfhsakrlte

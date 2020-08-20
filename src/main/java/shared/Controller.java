@@ -42,7 +42,7 @@ public abstract class Controller <T extends CommandType> {
             case "Deck": yield currentPlayer.getInventory().getAllDecks();
             case "Card": yield GameData.getInstance().getCardsList();
             case "MyElement": yield getMyCharacter().getElements();
-            case "EnemeyElement": yield getMyCharacter().getOpponent().getElements();
+            case "EnemyElement": yield getMyCharacter().getOpponent().getElements();
             default: yield new ArrayList<>();
         };
     }

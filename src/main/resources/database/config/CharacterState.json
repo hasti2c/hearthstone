@@ -8,6 +8,11 @@
     "currentWeapon",
     "questAndRewards",
     "mana",
-    "heroPowerCount"
+    "heroPowerCount",
+    "asleep",
+    "taunt",
+    "rush",
+    "charge",
+    "divineShield"
   ]
 }

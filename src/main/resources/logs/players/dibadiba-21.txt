@@ -1,8 +1,0 @@
-USER: dibadiba
-PASSWORD: dibadiba
-CREATED_AT:  2020/08/08 17:29:58 
-
-signup 2020/08/08 17:29:58 
-login 2020/08/08 17:29:58 
-add 2020/08/08 17:30:07 deck: 
-add 2020/08/08 17:30:12 deck: hi

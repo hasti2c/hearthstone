@@ -1,7 +1,0 @@
-USER: estakhr
-PASSWORD: estakhtttttterawer
-CREATED_AT:  2020/08/08 17:53:57 
-
-signup 2020/08/08 17:53:57 
-login 2020/08/08 17:53:57 
-add 2020/08/08 17:54:09 deck: hiii

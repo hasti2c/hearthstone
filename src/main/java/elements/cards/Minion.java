@@ -131,4 +131,12 @@ public class Minion extends Card implements Attackable {
         n = health - minion.health;
         return n;
     }
+
+    public void setCharge(boolean charge) {
+        this.charge = charge;
+    }
+
+    public boolean getCharge() {
+        return charge;
+    }
 }

@@ -35,6 +35,7 @@ public class CommandParser <T extends CommandType> {
         for (int i = 0; i < namePairs.size(); i++)
             input[i] = getObject(namePairs.get(i));
 
+        System.out.println(Arrays.toString(input));
         return new Command<>(commandType, input);
     }
 

@@ -1,6 +1,0 @@
-USER: hastiiiiiiiiii
-PASSWORD: password
-CREATED_AT:  2020/08/07 12:49:20 
-
-signup 2020/08/07 12:49:20 
-login 2020/08/07 12:49:20 
